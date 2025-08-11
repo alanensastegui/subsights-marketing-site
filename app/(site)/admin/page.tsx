@@ -1,3 +1,9 @@
+"use client";
+
+export default function AdminPage() {
+    return <div>Admin</div>;
+}
+
 // "use client";
 
 // import { useState, useEffect } from "react";
