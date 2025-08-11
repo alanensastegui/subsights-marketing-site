@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 
 export default function Pricing() {
     return (
@@ -12,67 +13,79 @@ export default function Pricing() {
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 {/* Starter Plan */}
-                <div className="border rounded-lg p-6 space-y-4">
-                    <div>
-                        <h3 className="text-xl font-semibold">Starter</h3>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Starter</CardTitle>
                         <p className="text-muted-foreground">Perfect for small websites</p>
-                    </div>
-                    <div className="text-3xl font-bold">$29<span className="text-base text-muted-foreground">/month</span></div>
-                    <ul className="space-y-2 text-sm">
-                        <li>✓ Up to 10,000 monthly visitors</li>
-                        <li>✓ Basic analytics</li>
-                        <li>✓ Email support</li>
-                        <li>✓ 1 website</li>
-                    </ul>
-                    <Button className="w-full">
-                        Get Started
-                    </Button>
-                </div>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-3xl font-bold mb-4">$29<span className="text-base text-muted-foreground">/month</span></div>
+                        <ul className="space-y-2 text-sm">
+                            <li>✓ Up to 10,000 monthly visitors</li>
+                            <li>✓ Basic analytics</li>
+                            <li>✓ Email support</li>
+                            <li>✓ 1 website</li>
+                        </ul>
+                    </CardContent>
+                    <CardFooter>
+                        <Button className="w-full">
+                            Get Started
+                        </Button>
+                    </CardFooter>
+                </Card>
 
                 {/* Professional Plan */}
-                <div className="border-2 border-primary rounded-lg p-6 space-y-4 relative">
+                <Card className="border-2 border-primary relative">
                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                         <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
                             Most Popular
                         </span>
                     </div>
-                    <div>
-                        <h3 className="text-xl font-semibold">Professional</h3>
+                    <CardHeader>
+                        <CardTitle>Professional</CardTitle>
                         <p className="text-muted-foreground">For growing businesses</p>
-                    </div>
-                    <div className="text-3xl font-bold">$99<span className="text-base text-muted-foreground">/month</span></div>
-                    <ul className="space-y-2 text-sm">
-                        <li>✓ Up to 100,000 monthly visitors</li>
-                        <li>✓ Advanced analytics & insights</li>
-                        <li>✓ A/B testing</li>
-                        <li>✓ Priority support</li>
-                        <li>✓ Up to 5 websites</li>
-                        <li>✓ Custom targeting</li>
-                    </ul>
-                    <Button className="w-full">
-                        Get Started
-                    </Button>
-                </div>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-3xl font-bold mb-4">$99<span className="text-base text-muted-foreground">/month</span></div>
+                        <ul className="space-y-2 text-sm">
+                            <li>✓ Up to 100,000 monthly visitors</li>
+                            <li>✓ Advanced analytics & insights</li>
+                            <li>✓ A/B testing</li>
+                            <li>✓ Priority support</li>
+                            <li>✓ Up to 5 websites</li>
+                            <li>✓ Custom targeting</li>
+                        </ul>
+                    </CardContent>
+                    <CardFooter>
+                        <Button className="w-full">
+                            Get Started
+                        </Button>
+                    </CardFooter>
+                </Card>
 
                 {/* Enterprise Plan */}
-                <div className="border rounded-lg p-6 space-y-4">
-                    <div>
-                        <h3 className="text-xl font-semibold">Enterprise</h3>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Enterprise</CardTitle>
                         <p className="text-muted-foreground">For large organizations</p>
-                    </div>
-                    <div className="text-3xl font-bold">Custom</div>
-                    <ul className="space-y-2 text-sm">
-                        <li>✓ Unlimited visitors</li>
-                        <li>✓ Full feature access</li>
-                        <li>✓ Dedicated support</li>
-                        <li>✓ Unlimited websites</li>
-                        <li>✓ Custom integrations</li>
-                        <li>✓ SLA guarantee</li>
-                    </ul>
-                    <Button variant="outline" className="w-full">
-                        Contact Sales
-                    </Button>
-                </div>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-3xl font-bold mb-4">Custom</div>
+                        <ul className="space-y-2 text-sm">
+                            <li>✓ Unlimited visitors</li>
+                            <li>✓ Full feature access</li>
+                            <li>✓ Dedicated support</li>
+                            <li>✓ Unlimited websites</li>
+                            <li>✓ Custom integrations</li>
+                            <li>✓ SLA guarantee</li>
+                        </ul>
+                    </CardContent>
+                    <CardFooter>
+                        <Button variant="outline" className="w-full">
+                            Contact Sales
+                        </Button>
+                    </CardFooter>
+                </Card>
             </div>
         </div>
     );

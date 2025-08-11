@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
   return (
@@ -30,33 +31,47 @@ export default function Home() {
 
       {/* Features Preview */}
       <section className="grid md:grid-cols-3 gap-8">
-        <div className="text-center space-y-4">
-          <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto">
-            <span className="text-primary font-semibold">📊</span>
-          </div>
-          <h3 className="text-xl font-semibold">Real-time Analytics</h3>
-          <p className="text-muted-foreground">
-            Understand visitor behavior with comprehensive analytics and heatmaps.
-          </p>
-        </div>
-        <div className="text-center space-y-4">
-          <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto">
-            <span className="text-primary font-semibold">🎯</span>
-          </div>
-          <h3 className="text-xl font-semibold">Smart Targeting</h3>
-          <p className="text-muted-foreground">
-            Show the right message to the right visitor at the perfect moment.
-          </p>
-        </div>
-        <div className="text-center space-y-4">
-          <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto">
-            <span className="text-primary font-semibold">📈</span>
-          </div>
-          <h3 className="text-xl font-semibold">Conversion Optimization</h3>
-          <p className="text-muted-foreground">
-            Increase conversions with A/B testing and personalized experiences.
-          </p>
-        </div>
+        <Card>
+          <CardHeader className="text-center">
+            <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <span className="text-primary font-semibold">📊</span>
+            </div>
+            <CardTitle className="text-xl">Real-time Analytics</CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
+            <p className="text-muted-foreground text-base">
+              Understand visitor behavior with comprehensive analytics and heatmaps.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="text-center">
+            <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <span className="text-primary font-semibold">🎯</span>
+            </div>
+            <CardTitle className="text-xl">Smart Targeting</CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
+            <p className="text-muted-foreground text-base">
+              Show the right message to the right visitor at the perfect moment.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="text-center">
+            <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <span className="text-primary font-semibold">📈</span>
+            </div>
+            <CardTitle className="text-xl">Conversion Optimization</CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
+            <p className="text-muted-foreground text-base">
+              Increase conversions with A/B testing and personalized experiences.
+            </p>
+          </CardContent>
+        </Card>
       </section>
     </div>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function FAQ() {
     const faqs = [
@@ -40,10 +41,12 @@ export default function FAQ() {
 
             <div className="max-w-3xl mx-auto space-y-6">
                 {faqs.map((faq, index) => (
-                    <div key={index} className="border rounded-lg p-6">
-                        <h3 className="text-lg font-semibold mb-3">{faq.question}</h3>
-                        <p className="text-muted-foreground">{faq.answer}</p>
-                    </div>
+                    <Card key={index}>
+                        <CardContent>
+                            <h3 className="text-lg font-semibold mb-3">{faq.question}</h3>
+                            <p className="text-muted-foreground">{faq.answer}</p>
+                        </CardContent>
+                    </Card>
                 ))}
             </div>
 
