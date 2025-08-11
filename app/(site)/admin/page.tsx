@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { DEMO_TARGETS } from "@/lib/config/demo-targets";
+import { DEMO_TARGETS } from "@/lib/demo/config";
 import { getDemoEvents, clearDemoEvents, getEventStats, type DemoEvent } from "@/lib/demo/analytics";
 import { FALLBACK_MESSAGES } from "@/lib/demo/fallback";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

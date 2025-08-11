@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getDemoTarget } from "@/lib/config/demo-targets";
+import { getDemoTarget } from "@/lib/demo/config";
 import { FALLBACK_CONSTANTS } from "@/lib/demo/fallback";
 
 export const runtime = "nodejs";

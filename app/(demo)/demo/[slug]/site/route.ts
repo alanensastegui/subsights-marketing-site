@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getDemoTarget } from "@/lib/config/demo-targets";
-import { injectWidget } from "@/lib/html/inject";
+import { getDemoTarget } from "@/lib/demo/config";
+import { injectWidget } from "@/lib/demo/html";
 
 export const runtime = "nodejs"; // server function on Netlify
 export const revalidate = 0;      // no caching for demos

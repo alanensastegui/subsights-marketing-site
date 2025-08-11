@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-import { getDemoTarget, type DemoMode } from "@/lib/config/demo-targets";
+import { getDemoTarget, type DemoMode } from "@/lib/demo/config";
 import { FALLBACK_CONSTANTS, createFallbackEvent, logFallback, type FallbackReason } from "@/lib/demo/fallback";
 import { eventLogger } from "@/lib/demo/analytics";
 import { createPerformanceMonitor, type PerformanceMetrics } from "@/lib/demo/performance";
