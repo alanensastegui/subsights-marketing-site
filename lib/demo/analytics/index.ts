@@ -1,20 +1,20 @@
 import { ConsoleDemoAnalytics, GTMDemoAnalytics, CompositeDemoAnalytics } from "./providers";
 import { EventLogger } from "./event-logger";
-import type { FallbackReason } from "./fallback";
 import type { DemoMode } from "../config";
-import type { DemoEvent } from "./types";
+import type { DemoEvent, FallbackReason } from "./types";
 
 // Main exports
 export { EventLogger } from "./event-logger";
 export { CompositeDemoAnalytics } from "./providers";
-export * from "./performance";
-export * from "./fallback";
 
 // Types
-export type { DemoEvent, DemoAnalytics } from "./types";
+export type { DemoEvent, DemoAnalytics, FallbackReason, PerformanceMetrics } from "./types";
+
+// Zod schemas
+export { DemoEventSchema, PerformanceMetricsSchema } from "./types";
 
 // Utility functions
-export { isValidEvent, generateEventId, getSessionId } from "./types";
+export { isValidEvent, generateEventId, getSessionId, parseEvent, validateAndTransformEvent } from "./utils";
 
 // Event logger instance
 export const eventLogger = EventLogger.getInstance();

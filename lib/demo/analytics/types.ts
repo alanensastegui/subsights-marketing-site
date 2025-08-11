@@ -1,57 +1,43 @@
+import { z } from "zod";
 import type { DemoMode } from "../config";
-import type { FallbackReason } from "..";
 
 // ============================================================================
-// EVENT SCHEMA & VALIDATION
+// ZOD SCHEMAS & VALIDATION
 // ============================================================================
 
-export interface DemoEvent {
-    id: string;
-    slug: string;
-    reason: FallbackReason;
-    chosenMode: DemoMode;
-    timestamp: number;
-    metadata?: Record<string, unknown>;
-    sessionId?: string;
-    userAgent?: string;
-    performance?: {
-        loadTime?: number;
-        memoryUsage?: number;
-    };
-}
+// Performance metrics schema
+export const PerformanceMetricsSchema = z.object({
+    loadTime: z.number().positive().optional(),
+    memoryUsage: z.number().positive().optional(),
+});
 
-// Event validation
-export function isValidEvent(event: unknown): event is DemoEvent {
-    return (
-        typeof event === "object" &&
-        event !== null &&
-        typeof (event as DemoEvent).id === "string" &&
-        typeof (event as DemoEvent).slug === "string" &&
-        typeof (event as DemoEvent).reason === "string" &&
-        typeof (event as DemoEvent).chosenMode === "string" &&
-        typeof (event as DemoEvent).timestamp === "number" &&
-        ((event as DemoEvent).metadata === undefined || typeof (event as DemoEvent).metadata === "object") &&
-        ((event as DemoEvent).sessionId === undefined || typeof (event as DemoEvent).sessionId === "string") &&
-        ((event as DemoEvent).userAgent === undefined || typeof (event as DemoEvent).userAgent === "string")
-    );
-}
+// Main demo event schema
+export const DemoEventSchema = z.object({
+    id: z.string().min(1, "Event ID must not be empty"),
+    slug: z.string().min(1, "Slug must not be empty"),
+    reason: z.enum([
+        "proxy-timeout",
+        "proxy-error",
+        "proxy-fetch-failed",
+        "proxy-http-error",
+        "proxy-not-html",
+        "proxy-too-large",
+        "iframe-blocked",
+        "iframe-probe-failed",
+        "force-policy"
+    ]),
+    chosenMode: z.enum(["proxy", "iframe", "default"]),
+    timestamp: z.number(),
+    metadata: z.record(z.string(), z.unknown()).optional(),
+    sessionId: z.string().optional(),
+    userAgent: z.string().optional(),
+    performance: PerformanceMetricsSchema.optional(),
+});
 
-// Generate unique event ID
-export function generateEventId(): string {
-    return `demo_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-}
-
-// Generate session ID
-export function getSessionId(): string {
-    if (typeof window === "undefined") return "server";
-
-    let sessionId = localStorage.getItem("subsights_session_id");
-    if (!sessionId) {
-        sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-        localStorage.setItem("subsights_session_id", sessionId);
-    }
-    return sessionId;
-}
+// Inferred types from Zod schemas
+export type DemoEvent = z.infer<typeof DemoEventSchema>;
+export type PerformanceMetrics = z.infer<typeof PerformanceMetricsSchema>;
+export type FallbackReason = DemoEvent["reason"];
 
 // ============================================================================
 // ANALYTICS INTERFACES

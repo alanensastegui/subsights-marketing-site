@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDemoTarget } from "@/lib/demo/config";
-import { FALLBACK_CONSTANTS } from "@/lib/demo/analytics";
+import { FALLBACK_CONSTANTS } from "@/lib/demo";
 
 export const runtime = "nodejs";
 export const revalidate = 0;

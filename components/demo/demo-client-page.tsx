@@ -6,7 +6,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import { getDemoTarget, type DemoMode } from "@/lib/demo/config";
-import { eventLogger, FALLBACK_CONSTANTS, createFallbackEvent, logFallbackEvent, type FallbackReason, createPerformanceMonitor, type PerformanceMetrics, getPerformanceBudget } from "@/lib/demo/analytics";
+import { eventLogger, type FallbackReason, type PerformanceMetrics } from "@/lib/demo/analytics";
+import { FALLBACK_CONSTANTS, createFallbackEvent, logFallbackEvent, createPerformanceMonitor, getPerformanceBudget } from "@/lib/demo";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
 
@@ -94,7 +95,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
 
         // Log performance warnings if thresholds are exceeded
         const budget = getPerformanceBudget();
-        if (performanceMetrics.loadTime > budget.demoLoadTime) {
+        if (performanceMetrics.loadTime && performanceMetrics.loadTime > budget.demoLoadTime) {
           console.warn(`Slow demo load: ${slug} took ${performanceMetrics.loadTime}ms (threshold: ${budget.demoLoadTime}ms)`);
         }
 

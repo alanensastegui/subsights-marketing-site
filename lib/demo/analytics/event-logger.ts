@@ -1,6 +1,7 @@
 import { CompositeDemoAnalytics } from "./providers";
 import { ConsoleDemoAnalytics, GTMDemoAnalytics } from "./providers";
-import { isValidEvent, generateEventId, getSessionId, type DemoEvent } from "./types";
+import { isValidEvent, generateEventId, getSessionId } from "./utils";
+import type { DemoEvent } from "./types";
 import { getPerformanceBudget } from "./performance";
 import type { FallbackReason } from "..";
 import type { DemoMode } from "../config";
