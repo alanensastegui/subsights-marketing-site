@@ -1,0 +1,27 @@
+:root {
+    /* Slate + Blue */
+    --background: 255 255% 100%;
+    --foreground: 222 47% 11%;
+
+    --muted: 215 16% 47%;
+    --muted-foreground: 215 16% 35%;
+
+    --primary: 221 83% 53%;
+    /* blue-600 */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 222 14% 10%;
+    --secondary-foreground: 210 40% 98%;
+
+    --border: 215 16% 82%;
+    --input: 215 16% 82%;
+    --ring: 221 83% 53%;
+}
+
+.dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    /* blue-500 */
+    --primary-foreground: 222 47% 11%;
+}

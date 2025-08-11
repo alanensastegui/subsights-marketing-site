@@ -1,0 +1,37 @@
+# Demo pages - block indexing and set permissive policies for embedded content
+[[headers]]
+  for = "/demo/*"
+  [headers.values]
+  X-Robots-Tag = "noindex, nofollow"
+  X-Content-Type-Options = "nosniff"
+  # Allow iframe embedding for demo shell
+  X-Frame-Options = "SAMEORIGIN"
+  # Permissive CSP for demo content to work properly
+  Content-Security-Policy = "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; frame-ancestors 'self';"
+
+# API routes - stricter security
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+  X-Content-Type-Options = "nosniff"
+  X-Frame-Options = "DENY"
+  Referrer-Policy = "strict-origin"
+  Content-Security-Policy = "default-src 'self'; script-src 'self'; object-src 'none';"
+
+# Marketing site - standard security
+[[headers]]
+  for = "/*"
+  [headers.values]
+  X-Content-Type-Options = "nosniff"
+  X-Frame-Options = "DENY"
+  Referrer-Policy = "strict-origin-when-cross-origin"
+  Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+  # Stricter CSP for marketing site
+  Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
+
+# Force HTTPS (optional, depending on deployment)
+[[redirects]]
+  from = "http://subsights.netlify.app/*"
+  to = "https://subsights.netlify.app/:splat"
+  status = 301
+  force = true
