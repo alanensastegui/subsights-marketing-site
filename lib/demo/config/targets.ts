@@ -18,7 +18,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
         slug: "forks",
         url: "https://www.forkswa.com",
         label: "Forks, WA",
-        scriptTag: '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="yTtjPyV193XXx3fdvzVbXW3k0EiPPurU"></script>'
+        scriptTag: '<script src="https://widget.latest.subsights.com/chatbot.js" data-workspace="I6BHboKbqb" data-api-key="4yO7Z30ZFFZ79w75v5d1VqYhfHX63z44"></script>'
     },
 ];
 
