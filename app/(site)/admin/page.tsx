@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { DEMO_TARGETS } from "@/lib/demo/config";
 import { getDemoEvents, clearDemoEvents, getEventStats, type DemoEvent } from "@/lib/demo/analytics";
-import { FALLBACK_MESSAGES } from "@/lib/demo/fallback";
+import { FALLBACK_MESSAGES } from "@/lib/demo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -105,9 +105,17 @@ export default function AdminPage() {
 
     const getSuccessRate = (slug: string) => {
         const slugEvents = eventsBySlug[slug] || [];
-        const total = slugEvents.length;
-        const failures = slugEvents.filter((e: DemoEvent) => e.reason !== "force-policy").length;
-        return total > 0 ? Math.round(((total - failures) / total) * 100) : 100;
+
+        // Only count events that represent actual demo outcomes (exclude demo-view attempts)
+        const outcomeEvents = slugEvents.filter((e: DemoEvent) => e.reason !== "demo-view");
+        const total = outcomeEvents.length;
+
+        // Count successful events (successful demos or successful fallbacks)
+        const successes = outcomeEvents.filter((e: DemoEvent) =>
+            e.reason === "demo-success" || e.reason === "force-policy"
+        ).length;
+
+        return total > 0 ? Math.round((successes / total) * 100) : 100;
     };
 
     const renderTabContent = () => {
