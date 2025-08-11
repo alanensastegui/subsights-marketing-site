@@ -76,6 +76,65 @@ export class EventLogger {
         });
     }
 
+    /**
+     * Track when a demo mode is attempted/viewed
+     */
+    public async trackDemoView(slug: string, mode: DemoMode): Promise<void> {
+        try {
+            console.log(`[Analytics] Tracking demo view: ${slug} (${mode})`);
+
+            // Store event locally for admin dashboard
+            const viewEvent: DemoEvent = {
+                id: generateEventId(),
+                slug,
+                reason: "demo-view",
+                chosenMode: mode,
+                timestamp: Date.now(),
+                sessionId: getSessionId(),
+                userAgent: typeof navigator !== "undefined" ? navigator.userAgent : undefined,
+            };
+
+            await this.storeEvent(viewEvent);
+            console.log(`[Analytics] Stored demo view event locally`);
+
+            // Send to analytics providers
+            await this.analytics.trackDemoView(slug, mode);
+            console.log(`[Analytics] Sent demo view to analytics providers`);
+        } catch (error) {
+            console.warn("Demo view tracking failed:", error);
+        }
+    }
+
+    /**
+     * Track when a demo mode completes successfully
+     */
+    public async trackDemoSuccess(slug: string, mode: DemoMode, duration: number): Promise<void> {
+        try {
+            console.log(`[Analytics] Tracking demo success: ${slug} (${mode}) in ${duration}ms`);
+
+            // Store event locally for admin dashboard
+            const successEvent: DemoEvent = {
+                id: generateEventId(),
+                slug,
+                reason: "demo-success",
+                chosenMode: mode,
+                timestamp: Date.now(),
+                sessionId: getSessionId(),
+                userAgent: typeof navigator !== "undefined" ? navigator.userAgent : undefined,
+                performance: { loadTime: duration },
+            };
+
+            await this.storeEvent(successEvent);
+            console.log(`[Analytics] Stored demo success event locally`);
+
+            // Send to analytics providers
+            await this.analytics.trackDemoSuccess(slug, mode, duration);
+            console.log(`[Analytics] Sent demo success to analytics providers`);
+        } catch (error) {
+            console.warn("Demo success tracking failed:", error);
+        }
+    }
+
     private async storeEvent(event: DemoEvent): Promise<void> {
         if (typeof window === "undefined") return;
 
@@ -86,6 +145,7 @@ export class EventLogger {
             // Keep only last 100 events
             const trimmed = events.slice(0, 100);
             localStorage.setItem("subsights_demo_events", JSON.stringify(trimmed));
+            console.log(`[Analytics] Stored event: ${event.reason} for ${event.slug} (${event.chosenMode})`);
         } catch (error) {
             console.error("Failed to store demo event:", error);
             throw error;

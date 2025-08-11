@@ -19,6 +19,8 @@ export const FALLBACK_MESSAGES: Record<string, string> = {
     "iframe-blocked": "Target site blocks iframe embedding",
     "iframe-probe-failed": "Unable to check iframe compatibility",
     "force-policy": "Demo mode forced by configuration",
+    "demo-view": "Demo mode attempted",
+    "demo-success": "Demo mode completed successfully",
 } as const;
 
 // ============================================================================

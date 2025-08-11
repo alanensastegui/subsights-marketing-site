@@ -6,8 +6,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import { getDemoTarget, type DemoMode } from "@/lib/demo/config";
-import { eventLogger, type FallbackReason, type PerformanceMetrics } from "@/lib/demo/analytics";
-import { FALLBACK_CONSTANTS, createPerformanceMonitor, getPerformanceBudget } from "@/lib/demo";
+import { eventLogger, trackDemoView, trackDemoSuccess, type FallbackReason } from "@/lib/demo/analytics";
+import { FALLBACK_CONSTANTS, createPerformanceMonitor } from "@/lib/demo";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
 
@@ -32,7 +32,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const settledRef = useRef(false);
   const proxyTimeoutRef = useRef<number | null>(null);
-  const performanceMonitorRef = useRef<PerformanceMetrics | null>(null);
+  const performanceMonitorRef = useRef<ReturnType<typeof createPerformanceMonitor> | null>(null);
 
   const target = useMemo(() => getDemoTarget(slug), [slug]);
 
@@ -46,6 +46,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     // Start performance monitoring
     const monitor = createPerformanceMonitor();
     monitor.start();
+    performanceMonitorRef.current = monitor;
 
     // Clear any active timeouts
     if (proxyTimeoutRef.current) {
@@ -79,29 +80,9 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
 
       // Track successful demo load with performance metrics
       try {
-        const performanceMetrics = performanceMonitorRef.current || { loadTime: Date.now() - performance.now() };
+        const performanceMetrics = performanceMonitorRef.current?.end() || { loadTime: 0 };
 
-        await eventLogger.logEvent({
-          slug,
-          reason: "force-policy",
-          chosenMode: successMode,
-          metadata: {
-            loadTime: performanceMetrics.loadTime,
-            success: true,
-            mode: successMode,
-          },
-          performance: performanceMetrics,
-        });
-
-        // Log performance warnings if thresholds are exceeded
-        const budget = getPerformanceBudget();
-        if (performanceMetrics.loadTime && performanceMetrics.loadTime > budget.demoLoadTime) {
-          console.warn(`Slow demo load: ${slug} took ${performanceMetrics.loadTime}ms (threshold: ${budget.demoLoadTime}ms)`);
-        }
-
-        if (performanceMetrics.memoryUsage && performanceMetrics.memoryUsage > budget.memoryUsage) {
-          console.warn(`High memory usage: ${Math.round(performanceMetrics.memoryUsage / 1024 / 1024)}MB (threshold: ${Math.round(budget.memoryUsage / 1024 / 1024)}MB)`);
-        }
+        await trackDemoSuccess(slug, successMode, performanceMetrics.loadTime);
 
       } catch (error) {
         console.warn("Failed to track demo success:", error);
@@ -190,6 +171,9 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     setMode("proxy");
     setIsLoading(true);
 
+    // Track proxy mode attempt
+    trackDemoView(slug, "proxy");
+
     let timeoutId: number | undefined; // allow access from onMessage closure
 
     const onMessage = (e: MessageEvent) => {
@@ -230,7 +214,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         window.clearTimeout(timeoutId);
       }
     };
-  }, [markSuccess, fallbackToIframeOrDefault]);
+  }, [markSuccess, fallbackToIframeOrDefault, slug]);
 
   /**
    * Iframe attempt: load target in iframe and overlay our widget.
@@ -242,6 +226,9 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     setMode("iframe");
     setIsLoading(true);
 
+    // Track iframe mode attempt
+    trackDemoView(slug, "iframe");
+
     // Wait for iframe to load, then check if it's working
     const timeoutId = window.setTimeout(() => {
       if (settledRef.current) return;
@@ -251,7 +238,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [fallbackToIframeOrDefault]);
+  }, [fallbackToIframeOrDefault, slug]);
 
   // Main demo logic: try proxy first, fallback to iframe/default
   useEffect(() => {
@@ -274,6 +261,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
           };
         }
         case "default": {
+          trackDemoView(slug, "default");
           markSuccess("default");
           return;
         }

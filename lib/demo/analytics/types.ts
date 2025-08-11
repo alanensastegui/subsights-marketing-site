@@ -24,7 +24,9 @@ export const DemoEventSchema = z.object({
         "proxy-too-large",
         "iframe-blocked",
         "iframe-probe-failed",
-        "force-policy"
+        "force-policy",
+        "demo-view",
+        "demo-success"
     ]),
     chosenMode: z.enum(["proxy", "iframe", "default"]),
     timestamp: z.number(),
