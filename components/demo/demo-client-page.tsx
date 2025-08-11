@@ -286,7 +286,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     );
   }
 
-  const src = mode === "proxy" ? `/demo/${encodeURIComponent(slug)}/site` : target.url;
+  const src = mode === "proxy" ? `/api/demo/site/${encodeURIComponent(slug)}` : target.url;
 
   return (
     <div className="flex-1 min-h-0 flex flex-col" data-testid="demo-page-client">

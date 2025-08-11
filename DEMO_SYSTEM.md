@@ -142,13 +142,13 @@ Force specific modes for testing:
 
 ```bash
 # Test proxy injection
-curl "/demo/acme/site"
+curl "/api/demo/site/acme"
 
 # Test iframe compatibility 
 curl "/api/demo/probe?slug=acme"
 
 # Force proxy error
-curl "/demo/acme/site?force=error"
+curl "/api/demo/site/acme?force=error"
 ```
 
 ### Common Issues
