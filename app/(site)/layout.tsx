@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
-import "@/styles/globals.css";
 import "@/styles/theme.css";
+import "@/styles/globals.css";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import {

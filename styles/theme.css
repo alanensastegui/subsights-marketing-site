@@ -1,27 +1,40 @@
 :root {
-    /* Slate + Blue */
-    --background: 255 255% 100%;
-    --foreground: 222 47% 11%;
+    /* Custom Dark Blue Theme */
+    --background: #0E086A;
+    --foreground: #ffffff;
 
-    --muted: 215 16% 47%;
-    --muted-foreground: 215 16% 35%;
+    --muted: #1a1a8a;
+    --muted-foreground: #b3b3ff;
 
-    --primary: 221 83% 53%;
-    /* blue-600 */
-    --primary-foreground: 210 40% 98%;
+    --primary: #1F2BF3;
+    --primary-foreground: #ffffff;
 
-    --secondary: 222 14% 10%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: #1a1a8a;
+    --secondary-foreground: #ffffff;
 
-    --border: 215 16% 82%;
-    --input: 215 16% 82%;
-    --ring: 221 83% 53%;
+    --border: #2a2a9a;
+    --input: #2a2a9a;
+    --ring: #1F2BF3;
+
+    /* Card colors for better contrast */
+    --card: #1a1a8a;
+    --card-foreground: #ffffff;
+
+    /* Accent colors */
+    --accent: #1a1a8a;
+    --accent-foreground: #ffffff;
 }
 
 .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --primary: 217 91% 60%;
-    /* blue-500 */
-    --primary-foreground: 222 47% 11%;
+    /* Keep the same colors for dark mode since we want the dark blue theme */
+    --background: #0E086A;
+    --foreground: #ffffff;
+    --primary: #1F2BF3;
+    --primary-foreground: #ffffff;
+
+    --card: #1a1a8a;
+    --card-foreground: #ffffff;
+
+    --accent: #1a1a8a;
+    --accent-foreground: #ffffff;
 }
