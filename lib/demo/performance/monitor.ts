@@ -5,7 +5,6 @@
 export interface PerformanceMetrics {
     loadTime: number;
     memoryUsage?: number;
-    networkRequests?: number;
     domSize?: number;
 }
 
@@ -34,9 +33,9 @@ export class PerformanceMonitor {
         this.metrics.loadTime = loadTime;
 
         // Capture memory usage if available
-        if (typeof performance !== "undefined" && (performance as unknown as { memory?: { usedJSHeapSize?: number } }).memory) {
-            const memory = (performance as unknown as { memory?: { usedJSHeapSize?: number } }).memory;
-            this.metrics.memoryUsage = memory?.usedJSHeapSize;
+        const maybeMemoryUsage = this.getMemoryUsage();
+        if (maybeMemoryUsage) {
+            this.metrics.memoryUsage = maybeMemoryUsage;
         }
 
         // Capture DOM size
@@ -48,36 +47,13 @@ export class PerformanceMonitor {
     }
 
     /**
-     * Get current load time without ending the measurement
-     */
-    getCurrentLoadTime(): number {
-        return performance.now() - this.startTime;
-    }
-
-    /**
-     * Check if current load time exceeds threshold
-     */
-    isSlowLoad(thresholdMs: number = 5000): boolean {
-        return this.getCurrentLoadTime() > thresholdMs;
-    }
-
-    /**
      * Get memory usage if available
      */
-    getMemoryUsage(): number | undefined {
+    private getMemoryUsage(): number | undefined {
         if (typeof performance !== "undefined" && (performance as unknown as { memory?: { usedJSHeapSize?: number } }).memory) {
             return (performance as unknown as { memory?: { usedJSHeapSize?: number } }).memory?.usedJSHeapSize;
         }
         return undefined;
-    }
-
-    /**
-     * Check if memory usage is high
-     */
-    isHighMemoryUsage(thresholdMB: number = 50): boolean {
-        const memoryUsage = this.getMemoryUsage();
-        if (!memoryUsage) return false;
-        return memoryUsage > thresholdMB * 1024 * 1024;
     }
 }
 
@@ -89,35 +65,13 @@ export function createPerformanceMonitor(): PerformanceMonitor {
 }
 
 /**
- * Utility to measure function execution time
- */
-export async function measureExecutionTime<T>(
-    fn: () => Promise<T> | T,
-    label: string = "Function execution"
-): Promise<{ result: T; duration: number }> {
-    const start = performance.now();
-    const result = await fn();
-    const duration = performance.now() - start;
-
-    console.log(`${label}: ${duration.toFixed(2)}ms`);
-
-    return { result, duration };
-}
-
-/**
- * Utility to check if performance monitoring is available
- */
-export function isPerformanceMonitoringAvailable(): boolean {
-    return typeof performance !== "undefined" && typeof performance.now === "function";
-}
-
-/**
- * Utility to get performance budget recommendations
+ * Get centralized performance budget thresholds
+ * These values are used throughout the demo system for consistency
  */
 export function getPerformanceBudget(): Record<string, number> {
     return {
-        demoLoadTime: 3000, // 3 seconds
-        memoryUsage: 50 * 1024 * 1024, // 50MB
-        domSize: 1000, // 1000 DOM nodes
+        demoLoadTime: 5000, // 5 seconds - matches actual code usage
+        memoryUsage: 50 * 1024 * 1024, // 50MB - matches actual code usage
+        domSize: 1000, // 1000 DOM nodes - for future monitoring
     };
 }

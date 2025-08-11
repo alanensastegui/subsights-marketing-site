@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { getDemoTarget, type DemoMode } from "@/lib/demo/config";
 import { FALLBACK_CONSTANTS, createFallbackEvent, logFallback, type FallbackReason } from "@/lib/demo/fallback";
 import { eventLogger } from "@/lib/demo/analytics";
-import { createPerformanceMonitor, type PerformanceMetrics } from "@/lib/demo/performance";
+import { createPerformanceMonitor, type PerformanceMetrics, getPerformanceBudget } from "@/lib/demo/performance";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
 
@@ -95,12 +95,13 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         });
 
         // Log performance warnings if thresholds are exceeded
-        if (performanceMetrics.loadTime > 5000) {
-          console.warn(`Slow demo load: ${slug} took ${performanceMetrics.loadTime}ms`);
+        const budget = getPerformanceBudget();
+        if (performanceMetrics.loadTime > budget.demoLoadTime) {
+          console.warn(`Slow demo load: ${slug} took ${performanceMetrics.loadTime}ms (threshold: ${budget.demoLoadTime}ms)`);
         }
 
-        if (performanceMetrics.memoryUsage && performanceMetrics.memoryUsage > 50 * 1024 * 1024) {
-          console.warn(`High memory usage: ${Math.round(performanceMetrics.memoryUsage / 1024 / 1024)}MB`);
+        if (performanceMetrics.memoryUsage && performanceMetrics.memoryUsage > budget.memoryUsage) {
+          console.warn(`High memory usage: ${Math.round(performanceMetrics.memoryUsage / 1024 / 1024)}MB (threshold: ${Math.round(budget.memoryUsage / 1024 / 1024)}MB)`);
         }
 
       } catch (error) {

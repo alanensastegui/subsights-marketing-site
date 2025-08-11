@@ -1,6 +1,7 @@
 import { CompositeDemoAnalytics } from "./providers";
 import { ConsoleDemoAnalytics, GTMDemoAnalytics } from "./providers";
 import { isValidEvent, generateEventId, getSessionId, type DemoEvent } from "./types";
+import { getPerformanceBudget } from "../performance";
 
 export class EventLogger {
     private static instance: EventLogger;
@@ -78,16 +79,18 @@ export class EventLogger {
     }
 
     private monitorPerformance(event: DemoEvent): void {
+        const budget = getPerformanceBudget();
+
         // Monitor slow demo loads
-        if (event.performance?.loadTime && event.performance.loadTime > 5000) {
-            console.warn(`Slow demo load: ${event.slug} took ${event.performance.loadTime}ms`);
+        if (event.performance?.loadTime && event.performance.loadTime > budget.demoLoadTime) {
+            console.warn(`Slow demo load: ${event.slug} took ${event.performance.loadTime}ms (threshold: ${budget.demoLoadTime}ms)`);
         }
 
         // Monitor memory usage if available
         if (typeof performance !== "undefined" && (performance as unknown as { memory?: { usedJSHeapSize?: number } }).memory) {
             const memory = (performance as unknown as { memory?: { usedJSHeapSize?: number } }).memory;
-            if (memory?.usedJSHeapSize && memory.usedJSHeapSize > 50 * 1024 * 1024) { // 50MB
-                console.warn(`High memory usage: ${Math.round(memory.usedJSHeapSize / 1024 / 1024)}MB`);
+            if (memory?.usedJSHeapSize && memory.usedJSHeapSize > budget.memoryUsage) {
+                console.warn(`High memory usage: ${Math.round(memory.usedJSHeapSize / 1024 / 1024)}MB (threshold: ${Math.round(budget.memoryUsage / 1024 / 1024)}MB)`);
             }
         }
     }

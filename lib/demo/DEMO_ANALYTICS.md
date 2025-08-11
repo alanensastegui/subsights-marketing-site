@@ -188,10 +188,17 @@ await analytics.trackDemoSuccess("example-site", "iframe", 2500);
 import { getPerformanceBudget } from "@/lib/demo/performance";
 
 const budget = getPerformanceBudget();
-// demoLoadTime: 3000ms
+// demoLoadTime: 5000ms (5 seconds)
 // memoryUsage: 50MB
 // domSize: 1000 nodes
+
+// Use centralized budgets throughout the system
+if (loadTime > budget.demoLoadTime) {
+  console.warn(`Slow load: ${loadTime}ms exceeds threshold of ${budget.demoLoadTime}ms`);
+}
 ```
+
+**Centralized Configuration**: All performance thresholds are now defined in one place (`getPerformanceBudget()`) and used consistently across the demo system. This ensures consistency and makes it easy to adjust thresholds globally.
 
 ### **Custom Analytics Providers**
 ```typescript
