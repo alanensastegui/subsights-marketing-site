@@ -1,25 +1,18 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef, useMemo } from "react";
+import { useEffect, useMemo, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { getDemoTarget, type DemoMode } from "@/lib/demo/config";
-import { eventLogger, trackDemoView, trackDemoSuccess, type FallbackReason } from "@/lib/demo/analytics";
-import { FALLBACK_CONSTANTS, createPerformanceMonitor } from "@/lib/demo";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
 import { DemoNotFound } from "@/components/demo/demo-not-found";
 import { DemoLoading } from "@/components/demo/demo-loading";
 import { DemoIframe } from "@/components/demo/demo-iframe";
+import { useDemoState, useDemoAnalytics, useDemoModeRouting } from "@/components/demo/hooks";
 
 interface DemoPageClientProps {
   slug: string;
-}
-
-interface ProbeResponse {
-  frameLikelyAllowed?: boolean;
-  // allow future fields without breaking strictness
-  [k: string]: unknown;
 }
 
 /**
@@ -27,219 +20,34 @@ interface ProbeResponse {
  * proxy, iframe, and default modes. Designed for clarity and "performant enough".
  */
 function DemoPageClient({ slug }: DemoPageClientProps) {
-  const [mode, setMode] = useState<DemoMode>("default");
-  const [isLoading, setIsLoading] = useState(true);
+  const { mode, isLoading, settledRef, setMode, setIsLoading, markSuccess } = useDemoState(slug);
+  const { trackView, trackSuccess, logEvent } = useDemoAnalytics(slug);
   const searchParams = useSearchParams();
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const settledRef = useRef(false);
-  const proxyTimeoutRef = useRef<number | null>(null);
-  const performanceMonitorRef = useRef<ReturnType<typeof createPerformanceMonitor> | null>(null);
 
   const target = useMemo(() => getDemoTarget(slug), [slug]);
 
-  // Reset all state when component mounts or slug changes
-  useEffect(() => {
-    // Reset to loading state every time component mounts or slug changes
-    setMode("default");
-    setIsLoading(true);
-    settledRef.current = false;
-
-    // Start performance monitoring
-    const monitor = createPerformanceMonitor();
-    monitor.start();
-    performanceMonitorRef.current = monitor;
-
-    // Clear any active timeouts
-    if (proxyTimeoutRef.current) {
-      window.clearTimeout(proxyTimeoutRef.current);
-      proxyTimeoutRef.current = null;
-    }
-  }, [slug]);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      // Reset all state on unmount
-      setIsLoading(false);
-      setMode("default");
-      settledRef.current = false;
-
-      // Clear any active timeouts
-      if (proxyTimeoutRef.current) {
-        window.clearTimeout(proxyTimeoutRef.current);
-        proxyTimeoutRef.current = null;
-      }
-    };
-  }, []);
-
-  const markSuccess = useCallback(
+  const markSuccessWithAnalytics = useCallback(
     async (successMode: DemoMode) => {
-      if (settledRef.current) return;
-      settledRef.current = true;
-      setIsLoading(false);
-      setMode(successMode);
-
       // Track successful demo load with performance metrics
-      try {
-        const performanceMetrics = performanceMonitorRef.current?.end() || { loadTime: 0 };
+      await trackSuccess(slug, successMode);
 
-        await trackDemoSuccess(slug, successMode, performanceMetrics.loadTime);
-
-      } catch (error) {
-        console.warn("Failed to track demo success:", error);
-      }
+      // Mark success in state
+      markSuccess(successMode);
     },
-    [slug]
+    [slug, markSuccess, trackSuccess]
   );
 
-  /** Probe whether the iframe is likely allowed (with timeout & no-store cache). */
-  const probeIframe = useCallback(async () => {
-    try {
-      const res = await fetch(`/api/demo/probe?slug=${encodeURIComponent(slug)}`, {
-        signal: AbortSignal.timeout(FALLBACK_CONSTANTS.IFRAME_PROBE_TIMEOUT_MS),
-        cache: "no-store",
-      });
-      if (!res.ok) return { allowed: false as const };
-      const result: ProbeResponse = await res.json();
-      return { allowed: Boolean(result?.frameLikelyAllowed), result };
-    } catch (err) {
-      console.warn(`[Demo] ${slug}: Iframe probe failed`, err);
-      return { allowed: false as const };
-    }
-  }, [slug]);
-
-  /**
-   * Fallback: try iframe when permitted and likely allowed; otherwise default demo.
-   */
-  const fallbackToIframeOrDefault = useCallback(
-    async (reason: FallbackReason) => {
-      if (settledRef.current) return;
-
-      const allowIframe = target?.allowIframe ?? true;
-
-      if (allowIframe) {
-        // iframe fallback
-        const { allowed, result } = await probeIframe();
-        if (allowed) {
-          await eventLogger.logEvent({
-            slug,
-            reason: "iframe-blocked",
-            chosenMode: "iframe",
-            metadata: {
-              probeResult: result,
-            },
-          });
-          markSuccess("iframe");
-          return;
-        }
-
-        // default fallback
-        await eventLogger.logEvent({
-          slug,
-          reason: "force-policy",
-          chosenMode: "default",
-          metadata: {
-            allowIframe,
-            originalReason: reason,
-          },
-        });
-
-      } else {
-        // default fallback
-        await eventLogger.logEvent({
-          slug,
-          reason: "force-policy",
-          chosenMode: "default",
-          metadata: {
-            allowIframe,
-            originalReason: reason,
-          },
-        });
-      }
-
-      markSuccess("default");
-    },
-    [slug, target?.allowIframe, probeIframe, markSuccess]
-  );
-
-  /**
-   * Proxy attempt: listen for a single successful/failed postMessage from the loaded iframe.
-   * Ensures we only react to messages from our iframe and same-origin.
-   */
-  const tryProxy = useCallback(() => {
-    if (settledRef.current) return () => void 0;
-
-    setMode("proxy");
-    setIsLoading(true);
-
-    // Track proxy mode attempt
-    trackDemoView(slug, "proxy");
-
-    let timeoutId: number | undefined; // allow access from onMessage closure
-
-    const onMessage = (e: MessageEvent) => {
-      // Only handle messages from our iframe and our origin
-      if (e.origin !== window.location.origin) return;
-      if (!iframeRef.current || e.source !== iframeRef.current.contentWindow) return;
-      const data = e.data as { type?: string; status?: string; reason?: string } | undefined;
-      if (data?.type !== "subsights:proxy") return;
-
-      // Clear timeout now that we have a result
-      if (typeof timeoutId === "number") {
-        window.clearTimeout(timeoutId);
-        timeoutId = undefined;
-        proxyTimeoutRef.current = null;
-      }
-
-      if (data.status === "ok") {
-        markSuccess("proxy");
-      } else {
-        const reason = (data?.reason || "proxy-error") as FallbackReason;
-        window.removeEventListener("message", onMessage);
-        void fallbackToIframeOrDefault(reason);
-      }
-    };
-
-    window.addEventListener("message", onMessage);
-
-    // Hard timeout in case server never responds
-    timeoutId = window.setTimeout(() => {
-      window.removeEventListener("message", onMessage);
-      void fallbackToIframeOrDefault("proxy-timeout");
-    }, FALLBACK_CONSTANTS.PROXY_HARD_TIMEOUT_MS);
-    proxyTimeoutRef.current = timeoutId;
-
-    return () => {
-      window.removeEventListener("message", onMessage);
-      if (typeof timeoutId === "number") {
-        window.clearTimeout(timeoutId);
-      }
-    };
-  }, [markSuccess, fallbackToIframeOrDefault, slug]);
-
-  /**
-   * Iframe attempt: load target in iframe and overlay our widget.
-   * Falls back to default demo if iframe is blocked.
-   */
-  const tryIframe = useCallback(() => {
-    if (settledRef.current) return () => void 0;
-
-    setMode("iframe");
-    setIsLoading(true);
-
-    // Track iframe mode attempt
-    trackDemoView(slug, "iframe");
-
-    // Wait for iframe to load, then check if it's working
-    const timeoutId = window.setTimeout(() => {
-      if (settledRef.current) return;
-      void fallbackToIframeOrDefault("iframe-blocked");
-    }, FALLBACK_CONSTANTS.DEFAULT_TIMEOUT_MS);
-
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
-  }, [fallbackToIframeOrDefault, slug]);
+  const { tryProxy, tryIframe } = useDemoModeRouting({
+    slug,
+    target,
+    settledRef,
+    setMode,
+    setIsLoading,
+    markSuccess: markSuccessWithAnalytics,
+    trackView,
+    logEvent,
+  });
 
   // Main demo logic: try proxy first, fallback to iframe/default
   useEffect(() => {
@@ -262,8 +70,8 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
           };
         }
         case "default": {
-          trackDemoView(slug, "default");
-          markSuccess("default");
+          trackView("default");
+          markSuccessWithAnalytics("default");
           return;
         }
       }
@@ -273,14 +81,9 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     const cleanup = tryProxy();
     return () => {
       if (cleanup) cleanup();
-      // ensure pending timeout is cleared if we unmount mid-flight
-      if (proxyTimeoutRef.current !== null) {
-        window.clearTimeout(proxyTimeoutRef.current);
-        proxyTimeoutRef.current = null;
-      }
     };
     // NOTE: searchParams is intentionally read-only (Next provides referential stability)
-  }, [slug, target, searchParams, tryProxy, tryIframe, markSuccess]);
+  }, [slug, target, searchParams, tryProxy, tryIframe, markSuccessWithAnalytics, trackView]);
 
   if (!target) {
     return <DemoNotFound slug={slug} />;
