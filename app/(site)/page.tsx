@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <div className="h-full py-20 space-y-20">
@@ -12,18 +14,18 @@ export default function Home() {
           with intelligent insights and conversion optimization tools.
         </p>
         <div className="flex gap-4 justify-center">
-          <a
+          <Link
             href="/schedule"
             className="inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
           >
             Schedule Demo
-          </a>
-          <a
+          </Link>
+          <Link
             href="/demo/acme"
             className="inline-flex h-12 items-center justify-center rounded-lg border border-input bg-background px-8 hover:bg-accent hover:text-accent-foreground transition-colors"
           >
-            View Live Demo
-          </a>
+            Start for free
+          </Link>
         </div>
       </section>
 

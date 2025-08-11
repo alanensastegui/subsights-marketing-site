@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import "@/styles/theme.css";
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 const navItems = [
@@ -17,12 +18,14 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
     <html lang="en" className="h-full">
       <body className="bg-background text-foreground h-full">
         <header className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-          <a href="/" className="text-xl font-semibold">subsights</a>
+          <Link href="/" className="text-xl font-semibold">
+            subsights
+          </Link>
           <nav className="flex gap-6 text-sm">
             {navItems.map((item) => (
-              <a key={item.label} href={item.href} className={cn("flex items-center", item.className)}>
+              <Link key={item.label} href={item.href} className={cn("flex items-center", item.className)}>
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
         </header>

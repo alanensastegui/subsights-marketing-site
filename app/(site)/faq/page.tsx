@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function FAQ() {
     const faqs = [
         {
@@ -46,14 +48,11 @@ export default function FAQ() {
 
             <div className="text-center">
                 <p className="text-muted-foreground mb-4">
-                    Still have questions? We're here to help.
+                    Still have questions? We&apos;re here to help.
                 </p>
-                <a
-                    href="/schedule"
-                    className="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-6 text-primary-foreground hover:bg-primary/90"
-                >
+                <Link href="/schedule" className="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-6 text-primary-foreground hover:bg-primary/90">
                     Contact Support
-                </a>
+                </Link>
             </div>
         </div>
     );
