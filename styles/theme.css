@@ -1,0 +1,40 @@
+:root {
+    /* Custom Dark Blue Theme */
+    --background: #0E086A;
+    --foreground: #ffffff;
+
+    --muted: #1a1a8a;
+    --muted-foreground: #b3b3ff;
+
+    --primary: #1F2BF3;
+    --primary-foreground: #ffffff;
+
+    --secondary: #1a1a8a;
+    --secondary-foreground: #ffffff;
+
+    --border: #2a2a9a;
+    --input: #2a2a9a;
+    --ring: #1F2BF3;
+
+    /* Card colors for better contrast */
+    --card: #1a1a8a;
+    --card-foreground: #ffffff;
+
+    /* Accent colors */
+    --accent: #1a1a8a;
+    --accent-foreground: #ffffff;
+}
+
+.dark {
+    /* Keep the same colors for dark mode since we want the dark blue theme */
+    --background: #0E086A;
+    --foreground: #ffffff;
+    --primary: #1F2BF3;
+    --primary-foreground: #ffffff;
+
+    --card: #1a1a8a;
+    --card-foreground: #ffffff;
+
+    --accent: #1a1a8a;
+    --accent-foreground: #ffffff;
+}
