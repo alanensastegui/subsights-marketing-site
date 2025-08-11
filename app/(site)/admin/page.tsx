@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { NavigationMenu, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useAdminAuth, useAdminEvents } from "@/components/admin/hooks";
 import { AdminHeader, AdminTargetsTab, AdminEventsTab, AdminActionsTab } from "@/components/admin";
 
@@ -58,56 +58,28 @@ export default function AdminPage() {
     }
 
 
-
-    const renderTabContent = () => {
-        switch (activeTab) {
-            case "targets":
-                return <AdminTargetsTab getSuccessRate={getSuccessRate} />;
-            case "events":
-                return <AdminEventsTab events={events} eventStats={eventStats} />;
-            case "actions":
-                return <AdminActionsTab events={events} getSuccessRate={getSuccessRate} />;
-            default:
-                return null;
-        }
-    };
-
     return (
         <div className="py-12 space-y-8">
             <AdminHeader onRefresh={loadEvents} onClearEvents={handleClearEvents} />
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                <TabsList className="grid w-full grid-cols-3">
+                    <TabsTrigger value="targets">Demo Targets</TabsTrigger>
+                    <TabsTrigger value="events">Recent Events</TabsTrigger>
+                    <TabsTrigger value="actions">Quick Actions</TabsTrigger>
+                </TabsList>
 
-            {/* Tab Navigation */}
-            <NavigationMenu className="w-full">
-                <NavigationMenuList className="grid w-full grid-cols-3">
-                    <NavigationMenuItem className="w-full">
-                        <NavigationMenuTrigger
-                            className={`w-full ${activeTab === "targets" ? "bg-accent" : ""}`}
-                            onClick={() => setActiveTab("targets")}
-                        >
-                            Demo Targets
-                        </NavigationMenuTrigger>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem className="w-full">
-                        <NavigationMenuTrigger
-                            className={`w-full ${activeTab === "events" ? "bg-accent" : ""}`}
-                            onClick={() => setActiveTab("events")}
-                        >
-                            Recent Events
-                        </NavigationMenuTrigger>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem className="w-full">
-                        <NavigationMenuTrigger
-                            className={`w-full ${activeTab === "actions" ? "bg-accent" : ""}`}
-                            onClick={() => setActiveTab("actions")}
-                        >
-                            Quick Actions
-                        </NavigationMenuTrigger>
-                    </NavigationMenuItem>
-                </NavigationMenuList>
-            </NavigationMenu>
+                <TabsContent value="targets" className="mt-6">
+                    <AdminTargetsTab getSuccessRate={getSuccessRate} />
+                </TabsContent>
 
-            {/* Tab Content */}
-            {renderTabContent()}
+                <TabsContent value="events" className="mt-6">
+                    <AdminEventsTab events={events} eventStats={eventStats} />
+                </TabsContent>
+
+                <TabsContent value="actions" className="mt-6">
+                    <AdminActionsTab events={events} getSuccessRate={getSuccessRate} />
+                </TabsContent>
+            </Tabs>
         </div>
     );
 }
