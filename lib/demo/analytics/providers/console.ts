@@ -1,4 +1,5 @@
 import type { DemoAnalytics, DemoEvent } from "../types";
+import type { DemoMode } from "../../config";
 
 export class ConsoleDemoAnalytics implements DemoAnalytics {
     async trackFallback(event: DemoEvent): Promise<void> {
@@ -13,7 +14,7 @@ export class ConsoleDemoAnalytics implements DemoAnalytics {
         });
     }
 
-    async trackDemoView(slug: string, mode: string): Promise<void> {
+    async trackDemoView(slug: string, mode: DemoMode): Promise<void> {
         console.log("[Analytics] Demo View:", {
             slug,
             mode,
@@ -21,7 +22,7 @@ export class ConsoleDemoAnalytics implements DemoAnalytics {
         });
     }
 
-    async trackDemoSuccess(slug: string, mode: string, duration: number): Promise<void> {
+    async trackDemoSuccess(slug: string, mode: DemoMode, duration: number): Promise<void> {
         console.log("[Analytics] Demo Success:", {
             slug,
             mode,

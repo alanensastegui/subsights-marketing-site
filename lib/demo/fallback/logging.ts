@@ -36,16 +36,16 @@ export function createFallbackEvent(
     };
 }
 
-export async function logFallback(event: FallbackEvent) {
+export async function logFallbackEvent(event: FallbackEvent) {
     console.log("[Demo Fallback]", event);
 
     try {
-        await eventLogger.logEvent({
-            slug: event.slug,
-            reason: event.reason,
-            chosenMode: event.chosenMode,
-            metadata: event.metadata,
-        });
+        await eventLogger.logFallback(
+            event.slug,
+            event.reason,
+            event.chosenMode,
+            event.metadata
+        );
     } catch (error) {
         console.error("Failed to log fallback event:", error);
     }

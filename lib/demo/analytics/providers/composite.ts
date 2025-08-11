@@ -1,4 +1,5 @@
 import type { DemoAnalytics, DemoEvent } from "../types";
+import type { DemoMode } from "../../config";
 
 export class CompositeDemoAnalytics implements DemoAnalytics {
     private providers: DemoAnalytics[];
@@ -17,7 +18,7 @@ export class CompositeDemoAnalytics implements DemoAnalytics {
         );
     }
 
-    async trackDemoView(slug: string, mode: string): Promise<void> {
+    async trackDemoView(slug: string, mode: DemoMode): Promise<void> {
         await Promise.allSettled(
             this.providers.map(provider =>
                 provider.trackDemoView(slug, mode).catch(error => {
@@ -27,7 +28,7 @@ export class CompositeDemoAnalytics implements DemoAnalytics {
         );
     }
 
-    async trackDemoSuccess(slug: string, mode: string, duration: number): Promise<void> {
+    async trackDemoSuccess(slug: string, mode: DemoMode, duration: number): Promise<void> {
         await Promise.allSettled(
             this.providers.map(provider =>
                 provider.trackDemoSuccess(slug, mode, duration).catch(error => {

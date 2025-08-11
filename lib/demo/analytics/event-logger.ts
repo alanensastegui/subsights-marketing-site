@@ -2,6 +2,8 @@ import { CompositeDemoAnalytics } from "./providers";
 import { ConsoleDemoAnalytics, GTMDemoAnalytics } from "./providers";
 import { isValidEvent, generateEventId, getSessionId, type DemoEvent } from "./types";
 import { getPerformanceBudget } from "../performance";
+import type { FallbackReason } from "../fallback";
+import type { DemoMode } from "../config";
 
 export class EventLogger {
     private static instance: EventLogger;
@@ -51,6 +53,23 @@ export class EventLogger {
             console.error("Failed to log demo event:", error);
             // Could send to error reporting service here
         }
+    }
+
+    /**
+     * Log a fallback event - moved here to break circular dependency
+     */
+    public async logFallback(
+        slug: string,
+        reason: FallbackReason,
+        chosenMode: DemoMode,
+        metadata?: Record<string, unknown>
+    ): Promise<void> {
+        await this.logEvent({
+            slug,
+            reason,
+            chosenMode,
+            metadata,
+        });
     }
 
     private async storeEvent(event: DemoEvent): Promise<void> {

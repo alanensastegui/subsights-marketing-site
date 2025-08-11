@@ -1,12 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import { getDemoTarget, type DemoMode } from "@/lib/demo/config";
-import { FALLBACK_CONSTANTS, createFallbackEvent, logFallback, type FallbackReason } from "@/lib/demo/fallback";
+import { FALLBACK_CONSTANTS, createFallbackEvent, logFallbackEvent, type FallbackReason } from "@/lib/demo/fallback";
 import { eventLogger } from "@/lib/demo/analytics";
 import { createPerformanceMonitor, type PerformanceMetrics, getPerformanceBudget } from "@/lib/demo/performance";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
@@ -139,14 +139,14 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       if (allowIframe) {
         const { allowed, result } = await probeIframe();
         if (allowed) {
-          await logFallback(createFallbackEvent(slug, reason, "iframe", { probeResult: result }));
+          await logFallbackEvent(createFallbackEvent(slug, reason, "iframe", { probeResult: result }));
           markSuccess("iframe");
           return;
         }
       }
 
       // default fallback
-      await logFallback(
+      await logFallbackEvent(
         createFallbackEvent(slug, reason, "default", {
           allowIframe,
           originalReason: reason,

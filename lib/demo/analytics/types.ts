@@ -1,4 +1,5 @@
 import type { DemoMode } from "../config";
+import type { FallbackReason } from "../fallback";
 
 // ============================================================================
 // EVENT SCHEMA & VALIDATION
@@ -18,17 +19,6 @@ export interface DemoEvent {
         memoryUsage?: number;
     };
 }
-
-export type FallbackReason =
-    | "proxy-timeout"
-    | "proxy-error"
-    | "proxy-fetch-failed"
-    | "proxy-http-error"
-    | "proxy-not-html"
-    | "proxy-too-large"
-    | "iframe-blocked"
-    | "iframe-probe-failed"
-    | "force-policy";
 
 // Event validation
 export function isValidEvent(event: unknown): event is DemoEvent {
@@ -69,6 +59,6 @@ export function getSessionId(): string {
 
 export interface DemoAnalytics {
     trackFallback(event: DemoEvent): Promise<void>;
-    trackDemoView(slug: string, mode: string): Promise<void>;
-    trackDemoSuccess(slug: string, mode: string, duration: number): Promise<void>;
+    trackDemoView(slug: string, mode: DemoMode): Promise<void>;
+    trackDemoSuccess(slug: string, mode: DemoMode, duration: number): Promise<void>;
 }

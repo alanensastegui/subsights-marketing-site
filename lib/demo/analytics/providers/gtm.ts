@@ -1,4 +1,5 @@
 import type { DemoAnalytics, DemoEvent } from "../types";
+import type { DemoMode } from "../../config";
 
 export class GTMDemoAnalytics implements DemoAnalytics {
     async trackFallback(event: DemoEvent): Promise<void> {
@@ -14,7 +15,7 @@ export class GTMDemoAnalytics implements DemoAnalytics {
         }
     }
 
-    async trackDemoView(slug: string, mode: string): Promise<void> {
+    async trackDemoView(slug: string, mode: DemoMode): Promise<void> {
         if (typeof window !== "undefined" && (window as unknown as { gtag?: (event: string, action: string, params: Record<string, unknown>) => void }).gtag) {
             ((window as unknown as { gtag: (event: string, action: string, params: Record<string, unknown>) => void }).gtag)("event", "demo_view", {
                 event_category: "demo",
@@ -25,7 +26,7 @@ export class GTMDemoAnalytics implements DemoAnalytics {
         }
     }
 
-    async trackDemoSuccess(slug: string, mode: string, duration: number): Promise<void> {
+    async trackDemoSuccess(slug: string, mode: DemoMode, duration: number): Promise<void> {
         if (typeof window !== "undefined" && (window as unknown as { gtag?: (event: string, action: string, params: Record<string, unknown>) => void }).gtag) {
             ((window as unknown as { gtag: (event: string, action: string, params: Record<string, unknown>) => void }).gtag)("event", "demo_success", {
                 event_category: "demo",
