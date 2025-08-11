@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function FAQ() {
     const faqs = [
@@ -50,9 +51,11 @@ export default function FAQ() {
                 <p className="text-muted-foreground mb-4">
                     Still have questions? We&apos;re here to help.
                 </p>
-                <Link href="/schedule" className="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-6 text-primary-foreground hover:bg-primary/90">
-                    Contact Support
-                </Link>
+                <Button asChild>
+                    <Link href="/schedule">
+                        Contact Support
+                    </Link>
+                </Button>
             </div>
         </div>
     );

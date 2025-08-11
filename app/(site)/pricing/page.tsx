@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 export default function Pricing() {
     return (
         <div className="py-20 space-y-12">
@@ -22,9 +24,9 @@ export default function Pricing() {
                         <li>✓ Email support</li>
                         <li>✓ 1 website</li>
                     </ul>
-                    <button className="w-full rounded-lg bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90">
+                    <Button className="w-full">
                         Get Started
-                    </button>
+                    </Button>
                 </div>
 
                 {/* Professional Plan */}
@@ -47,9 +49,9 @@ export default function Pricing() {
                         <li>✓ Up to 5 websites</li>
                         <li>✓ Custom targeting</li>
                     </ul>
-                    <button className="w-full rounded-lg bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90">
+                    <Button className="w-full">
                         Get Started
-                    </button>
+                    </Button>
                 </div>
 
                 {/* Enterprise Plan */}
@@ -67,9 +69,9 @@ export default function Pricing() {
                         <li>✓ Custom integrations</li>
                         <li>✓ SLA guarantee</li>
                     </ul>
-                    <button className="w-full rounded-lg border border-input bg-background px-4 py-2 hover:bg-accent">
+                    <Button variant="outline" className="w-full">
                         Contact Sales
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>
