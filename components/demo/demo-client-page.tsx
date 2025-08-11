@@ -2,14 +2,15 @@
 
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 import { getDemoTarget, type DemoMode } from "@/lib/demo/config";
 import { eventLogger, trackDemoView, trackDemoSuccess, type FallbackReason } from "@/lib/demo/analytics";
 import { FALLBACK_CONSTANTS, createPerformanceMonitor } from "@/lib/demo";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
+import { DemoNotFound } from "@/components/demo/demo-not-found";
+import { DemoLoading } from "@/components/demo/demo-loading";
+import { DemoIframe } from "@/components/demo/demo-iframe";
 
 interface DemoPageClientProps {
   slug: string;
@@ -282,19 +283,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
   }, [slug, target, searchParams, tryProxy, tryIframe, markSuccess]);
 
   if (!target) {
-    return (
-      <div className="h-[calc(100vh-80px)] flex items-center justify-center" data-testid="demo-not-found">
-        <div className="text-center space-y-4">
-          <h2 className="text-xl font-semibold">Demo Not Found</h2>
-          <p className="text-muted-foreground">The demo &quot;{slug}&quot; could not be found.</p>
-          <Button asChild>
-            <Link href="/">
-              Back to Home
-            </Link>
-          </Button>
-        </div>
-      </div>
-    );
+    return <DemoNotFound slug={slug} />;
   }
 
   const src = mode === "proxy" ? `/api/demo/site/${encodeURIComponent(slug)}` : target.url;
@@ -313,36 +302,13 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
           </div>
         ) : (
           <>
-            {isLoading && (
-              <div
-                className="absolute inset-0 bg-background/60 backdrop-blur-sm flex items-center justify-center z-10"
-                aria-busy
-                role="status"
-                aria-live="polite"
-                data-testid="demo-loading"
-              >
-                <div className="text-center space-y-2">
-                  <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full mx-auto" />
-                  <p className="text-sm text-muted-foreground">Loading demo...</p>
-                </div>
-              </div>
-            )}
-            <iframe
+            {isLoading && <DemoLoading />}
+            <DemoIframe
               key={src} // force remount on src change to reset listeners/load
               ref={iframeRef}
               src={src}
               title={`Demo: ${target.label}`}
-              className="absolute inset-0 w-full h-full border-0"
-              // Add a conservative baseline; expand for iframe mode where safe
-              sandbox={
-                mode === "iframe"
-                  ? "allow-scripts allow-forms allow-popups allow-modals allow-same-origin allow-presentation allow-downloads"
-                  : "allow-scripts allow-forms allow-popups allow-modals allow-same-origin"
-              }
-              // Avoid layout thrash while loading
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              data-testid="demo-iframe"
+              mode={mode}
               onLoad={() => {
                 if (mode === "iframe") setIsLoading(false);
               }}
