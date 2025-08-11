@@ -6,12 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import { getDemoTarget, type DemoMode } from "@/lib/config/demo-targets";
-import {
-  createFallbackEvent,
-  logFallback,
-  FALLBACK_CONSTANTS,
-  type FallbackReason,
-} from "@/lib/demo/fallback";
+import { FALLBACK_CONSTANTS, createFallbackEvent, logFallback, type FallbackReason } from "@/lib/demo/fallback";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
 
@@ -19,47 +14,65 @@ interface DemoPageClientProps {
   slug: string;
 }
 
-// Narrow the probe response for better type-safety
 interface ProbeResponse {
   frameLikelyAllowed?: boolean;
   // allow future fields without breaking strictness
   [k: string]: unknown;
 }
 
-export const dynamic = "force-dynamic";
-
 /**
  * Client-side demo host with policy- & query-driven routing between
- * proxy, iframe, and default modes. Designed for clarity and “performant enough”.
+ * proxy, iframe, and default modes. Designed for clarity and "performant enough".
  */
 function DemoPageClient({ slug }: DemoPageClientProps) {
-  const [mode, setMode] = useState<DemoMode>("proxy");
+  const [mode, setMode] = useState<DemoMode>("default");
   const [isLoading, setIsLoading] = useState(true);
-  const [currentReason, setCurrentReason] = useState<string>("");
-
+  const [currentReason, setCurrentReason] = useState<FallbackReason | null>(null);
   const searchParams = useSearchParams();
-  const iframeRef = useRef<HTMLIFrameElement | null>(null);
-
-  // Track whether we've already settled on a terminal mode to avoid double transitions
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const settledRef = useRef(false);
-  // Track an outstanding proxy timeout so we can cancel it when a result arrives
   const proxyTimeoutRef = useRef<number | null>(null);
 
-  // Resolve target from slug once per slug change
   const target = useMemo(() => getDemoTarget(slug), [slug]);
 
-  // Guarded success setter to avoid duplicate transitions
-  const markSuccess = useCallback(
-    (successMode: DemoMode) => {
-      if (settledRef.current) return; // prevent double-settle
-      settledRef.current = true;
-      setMode(successMode);
+  // Reset all state when component mounts or slug changes
+  useEffect(() => {
+    // Reset to loading state every time component mounts or slug changes
+    setMode("default");
+    setIsLoading(true);
+    setCurrentReason(null);
+    settledRef.current = false;
+
+    // Clear any active timeouts
+    if (proxyTimeoutRef.current) {
+      window.clearTimeout(proxyTimeoutRef.current);
+      proxyTimeoutRef.current = null;
+    }
+  }, [slug]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      // Reset all state on unmount
       setIsLoading(false);
-      // Clear any outstanding proxy timeout if present
-      if (proxyTimeoutRef.current !== null) {
+      setMode("default");
+      setCurrentReason(null);
+      settledRef.current = false;
+
+      // Clear any active timeouts
+      if (proxyTimeoutRef.current) {
         window.clearTimeout(proxyTimeoutRef.current);
         proxyTimeoutRef.current = null;
       }
+    };
+  }, []);
+
+  const markSuccess = useCallback(
+    (successMode: DemoMode) => {
+      if (settledRef.current) return;
+      settledRef.current = true;
+      setIsLoading(false);
+      setMode(successMode);
       // eslint-disable-next-line no-console
       console.log(`[Demo] ${slug}: Success with ${successMode} mode`);
     },
@@ -162,85 +175,70 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     }, FALLBACK_CONSTANTS.PROXY_HARD_TIMEOUT_MS);
     proxyTimeoutRef.current = timeoutId;
 
-    // Cleanup
     return () => {
       window.removeEventListener("message", onMessage);
       if (typeof timeoutId === "number") {
         window.clearTimeout(timeoutId);
       }
-      proxyTimeoutRef.current = null;
     };
   }, [slug, markSuccess, fallbackToIframeOrDefault]);
 
-  /** Iframe attempt with probe first (no postMessage). */
-  const tryIframe = useCallback(async () => {
-    if (settledRef.current) return;
+  /**
+   * Iframe attempt: load target in iframe and overlay our widget.
+   * Falls back to default demo if iframe is blocked.
+   */
+  const tryIframe = useCallback(() => {
+    if (settledRef.current) return () => void 0;
     // eslint-disable-next-line no-console
     console.log(`[Demo] ${slug}: Trying iframe mode`);
-    const { allowed, result } = await probeIframe();
 
-    if (allowed) {
-      // Considered a routing success, not a fallback — still useful to log routing decision
-      logFallback(createFallbackEvent(slug, "force-policy", "iframe", { probeResult: result }));
-      markSuccess("iframe");
-    } else {
+    setMode("iframe");
+    setIsLoading(true);
+
+    // Wait for iframe to load, then check if it's working
+    const timeoutId = window.setTimeout(() => {
+      if (settledRef.current) return;
+      // eslint-disable-next-line no-console
+      console.log(`[Demo] ${slug}: Iframe timeout, falling back to default`);
       void fallbackToIframeOrDefault("iframe-blocked");
-    }
-  }, [slug, probeIframe, markSuccess, fallbackToIframeOrDefault]);
+    }, FALLBACK_CONSTANTS.DEFAULT_TIMEOUT_MS);
 
-  // Main routing effect (force param > explicit policy > auto)
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [slug, fallbackToIframeOrDefault]);
+
+  // Main demo logic: try proxy first, fallback to iframe/default
   useEffect(() => {
-    // Reset settlement when slug or query changes
-    settledRef.current = false;
+    if (!target) return;
 
-    if (!target) {
-      setMode("default");
-      setIsLoading(false);
-      return;
-    }
-
+    // Check for forced mode
     const forceMode = (searchParams.get("force") as DemoMode | null) ?? null;
-
-    let cleanup: (() => void) | undefined;
-
-    if (forceMode === "default") {
-      logFallback(createFallbackEvent(slug, "force-policy", "default"));
-      setCurrentReason("force-policy");
-      markSuccess("default");
-    } else if (forceMode === "iframe") {
-      logFallback(createFallbackEvent(slug, "force-policy", "iframe"));
-      void tryIframe();
-    } else if (forceMode === "proxy") {
-      logFallback(createFallbackEvent(slug, "force-policy", "proxy"));
-      cleanup = tryProxy();
-    } else {
-      // Policy-based routing
-      const policy = target.policy ?? "auto";
-      switch (policy) {
-        case "force-default": {
-          logFallback(createFallbackEvent(slug, "force-policy", "default"));
-          setCurrentReason("force-policy");
+    if (forceMode) {
+      // eslint-disable-next-line no-console
+      console.log(`[Demo] ${slug}: Forcing ${forceMode} mode`);
+      switch (forceMode) {
+        case "proxy": {
+          const cleanup = tryProxy();
+          return () => {
+            if (cleanup) cleanup();
+          };
+        }
+        case "iframe": {
+          const cleanup = tryIframe();
+          return () => {
+            if (cleanup) cleanup();
+          };
+        }
+        case "default": {
           markSuccess("default");
-          break;
-        }
-        case "force-iframe": {
-          logFallback(createFallbackEvent(slug, "force-policy", "iframe"));
-          void tryIframe();
-          break;
-        }
-        case "force-proxy": {
-          logFallback(createFallbackEvent(slug, "force-policy", "proxy"));
-          cleanup = tryProxy();
-          break;
-        }
-        case "auto":
-        default: {
-          cleanup = tryProxy();
-          break;
+          return;
         }
       }
     }
 
+    // Auto mode: try proxy first
+    const cleanup = tryProxy();
     return () => {
       if (cleanup) cleanup();
       // ensure pending timeout is cleared if we unmount mid-flight
@@ -275,13 +273,13 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       <DemoToolbar label={target.label} originalUrl={target.url} mode={mode} />
 
       <div className="relative flex-1 min-h-0 overflow-hidden">
-        {mode === "default" ? (
+        {mode === "default" && !isLoading ? (
           <div className="absolute inset-0 overflow-auto">
-            <DefaultDemo targetLabel={target.label} targetUrl={target.url} reason={currentReason} />
+            <DefaultDemo targetLabel={target.label} targetUrl={target.url} reason={currentReason || undefined} />
           </div>
         ) : (
           <>
-            {isLoading && mode === "proxy" && (
+            {isLoading && (
               <div
                 className="absolute inset-0 bg-background/60 backdrop-blur-sm flex items-center justify-center z-10"
                 aria-busy

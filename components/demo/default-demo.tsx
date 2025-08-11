@@ -10,7 +10,7 @@ interface DefaultDemoProps {
 
 export function DefaultDemo({ targetLabel, targetUrl, reason }: DefaultDemoProps) {
     return (
-        <div className="min-h-full bg-gradient-to-br from-slate-50 to-blue-200 flex flex-col">
+        <div className="min-h-full flex flex-col">
             {/* Demo Content */}
             <div className="flex-1">
                 <div className="max-w-4xl mx-auto px-6 py-12 space-y-12">
@@ -19,18 +19,13 @@ export function DefaultDemo({ targetLabel, targetUrl, reason }: DefaultDemoProps
                         <Badge variant="secondary" className="mb-4 bg-blue-100 text-blue-800 border-blue-200">
                             🚀 Demo Mode Active
                         </Badge>
-                        <h1 className="text-4xl font-bold text-gray-900">
+                        <h1 className="text-4xl font-bold">
                             Welcome to {targetLabel}
                         </h1>
-                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                        <p className="text-xl max-w-2xl mx-auto">
                             This is a demonstration of how Subsights integrates seamlessly with your website
                             to provide powerful insights and conversion optimization.
                         </p>
-                        {reason && (
-                            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-sm text-yellow-800">
-                                <strong>Note:</strong> Showing demo version because {reason.replace(/-/g, ' ')}.
-                            </div>
-                        )}
                     </section>
 
                     {/* Feature Preview */}
@@ -43,7 +38,7 @@ export function DefaultDemo({ targetLabel, targetUrl, reason }: DefaultDemoProps
                                 <CardTitle>Real-time Analytics</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-gray-600 text-sm">
+                                <p className="text-sm">
                                     Track visitor behavior, page views, and engagement metrics in real-time.
                                 </p>
                             </CardContent>
@@ -57,7 +52,7 @@ export function DefaultDemo({ targetLabel, targetUrl, reason }: DefaultDemoProps
                                 <CardTitle>Smart Targeting</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-gray-600 text-sm">
+                                <p className="text-sm">
                                     Show personalized content based on visitor behavior and preferences.
                                 </p>
                             </CardContent>
@@ -71,17 +66,16 @@ export function DefaultDemo({ targetLabel, targetUrl, reason }: DefaultDemoProps
                                 <CardTitle>Conversion Optimization</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-gray-600 text-sm">
+                                <p className="text-sm">
                                     A/B test different experiences to maximize conversion rates.
                                 </p>
                             </CardContent>
                         </Card>
                     </section>
 
-                    {/* Sample Content */}
                     <Card>
                         <CardContent className="pt-8">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">About Our Company</h2>
+                            <h2 className="text-2xl font-bold">About Our Company</h2>
                             <div className="prose prose-gray max-w-none">
                                 <p>
                                     We're a leading company in our industry, dedicated to providing exceptional
@@ -101,9 +95,9 @@ export function DefaultDemo({ targetLabel, targetUrl, reason }: DefaultDemoProps
                                     <li>Expert consultation and strategy</li>
                                 </ul>
 
-                                <div className="bg-gray-50 rounded-lg p-6 not-prose">
-                                    <h4 className="font-semibold text-gray-900 mb-2">Ready to get started?</h4>
-                                    <p className="text-gray-600 mb-4">
+                                <div className="rounded-lg bg-secondary p-6 not-prose">
+                                    <h4 className="font-semibold">Ready to get started?</h4>
+                                    <p className="mb-4">
                                         Contact us today to learn more about how we can help your business grow.
                                     </p>
                                     <Button>
