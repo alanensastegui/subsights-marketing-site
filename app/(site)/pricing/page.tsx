@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export default function Pricing() {
     return (
@@ -36,11 +37,6 @@ export default function Pricing() {
 
                 {/* Professional Plan */}
                 <Card className="border-2 border-primary relative">
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                        <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
-                            Most Popular
-                        </span>
-                    </div>
                     <CardHeader>
                         <CardTitle>Professional</CardTitle>
                         <p className="text-muted-foreground">For growing businesses</p>
