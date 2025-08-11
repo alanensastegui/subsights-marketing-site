@@ -6,9 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import { getDemoTarget, type DemoMode } from "@/lib/demo/config";
-import { FALLBACK_CONSTANTS, createFallbackEvent, logFallbackEvent, type FallbackReason } from "@/lib/demo/fallback";
-import { eventLogger } from "@/lib/demo/analytics";
-import { createPerformanceMonitor, type PerformanceMetrics, getPerformanceBudget } from "@/lib/demo/performance";
+import { eventLogger, FALLBACK_CONSTANTS, createFallbackEvent, logFallbackEvent, type FallbackReason, createPerformanceMonitor, type PerformanceMetrics, getPerformanceBudget } from "@/lib/demo/analytics";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
 

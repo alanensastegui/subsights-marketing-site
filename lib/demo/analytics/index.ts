@@ -1,12 +1,14 @@
 import { ConsoleDemoAnalytics, GTMDemoAnalytics, CompositeDemoAnalytics } from "./providers";
 import { EventLogger } from "./event-logger";
-import type { FallbackReason } from "../fallback";
+import type { FallbackReason } from "./fallback";
 import type { DemoMode } from "../config";
 import type { DemoEvent } from "./types";
 
 // Main exports
 export { EventLogger } from "./event-logger";
 export { CompositeDemoAnalytics } from "./providers";
+export * from "./performance";
+export * from "./fallback";
 
 // Types
 export type { DemoEvent, DemoAnalytics } from "./types";

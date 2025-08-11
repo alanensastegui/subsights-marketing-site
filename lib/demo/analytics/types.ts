@@ -1,5 +1,5 @@
 import type { DemoMode } from "../config";
-import type { FallbackReason } from "../fallback";
+import type { FallbackReason } from "..";
 
 // ============================================================================
 // EVENT SCHEMA & VALIDATION

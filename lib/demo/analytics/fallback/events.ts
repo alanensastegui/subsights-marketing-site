@@ -1,4 +1,4 @@
-import type { DemoMode } from "../config";
+import type { DemoMode } from "../../config";
 
 export type FallbackReason =
     | "proxy-timeout"

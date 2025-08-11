@@ -1,6 +1,6 @@
-import { eventLogger } from "../analytics";
+import { eventLogger } from "..";
 import type { FallbackEvent, FallbackReason } from "./events";
-import type { DemoMode } from "../config";
+import type { DemoMode } from "../../config";
 
 export const FALLBACK_CONSTANTS = {
     DEFAULT_TIMEOUT_MS: 6000,
