@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 
 import { getDemoTarget, type DemoMode } from "@/lib/config/demo-targets";
 import { FALLBACK_CONSTANTS, createFallbackEvent, logFallback, type FallbackReason } from "@/lib/demo/fallback";
+import { eventLogger } from "@/lib/demo/analytics";
+import { createPerformanceMonitor, type PerformanceMetrics } from "@/lib/demo/performance";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
 
@@ -32,6 +34,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const settledRef = useRef(false);
   const proxyTimeoutRef = useRef<number | null>(null);
+  const performanceMonitorRef = useRef<PerformanceMetrics | null>(null);
 
   const target = useMemo(() => getDemoTarget(slug), [slug]);
 
@@ -42,6 +45,10 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     setIsLoading(true);
     setCurrentReason(null);
     settledRef.current = false;
+
+    // Start performance monitoring
+    const monitor = createPerformanceMonitor();
+    monitor.start();
 
     // Clear any active timeouts
     if (proxyTimeoutRef.current) {
@@ -68,13 +75,40 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
   }, []);
 
   const markSuccess = useCallback(
-    (successMode: DemoMode) => {
+    async (successMode: DemoMode) => {
       if (settledRef.current) return;
       settledRef.current = true;
       setIsLoading(false);
       setMode(successMode);
-      // eslint-disable-next-line no-console
-      console.log(`[Demo] ${slug}: Success with ${successMode} mode`);
+
+      // Track successful demo load with performance metrics
+      try {
+        const performanceMetrics = performanceMonitorRef.current || { loadTime: Date.now() - performance.now() };
+
+        await eventLogger.logEvent({
+          slug,
+          reason: "force-policy",
+          chosenMode: successMode,
+          metadata: {
+            loadTime: performanceMetrics.loadTime,
+            success: true,
+            mode: successMode,
+          },
+          performance: performanceMetrics,
+        });
+
+        // Log performance warnings if thresholds are exceeded
+        if (performanceMetrics.loadTime > 5000) {
+          console.warn(`Slow demo load: ${slug} took ${performanceMetrics.loadTime}ms`);
+        }
+
+        if (performanceMetrics.memoryUsage && performanceMetrics.memoryUsage > 50 * 1024 * 1024) {
+          console.warn(`High memory usage: ${Math.round(performanceMetrics.memoryUsage / 1024 / 1024)}MB`);
+        }
+
+      } catch (error) {
+        console.warn("Failed to track demo success:", error);
+      }
     },
     [slug]
   );
@@ -90,7 +124,6 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       const result: ProbeResponse = await res.json();
       return { allowed: Boolean(result?.frameLikelyAllowed), result };
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.warn(`[Demo] ${slug}: Iframe probe failed`, err);
       return { allowed: false as const };
     }
@@ -102,22 +135,20 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
   const fallbackToIframeOrDefault = useCallback(
     async (reason: FallbackReason) => {
       if (settledRef.current) return;
-      // eslint-disable-next-line no-console
-      console.log(`[Demo] ${slug}: Falling back from proxy, reason: ${reason}`);
 
       const allowIframe = target?.allowIframe ?? true;
 
       if (allowIframe) {
         const { allowed, result } = await probeIframe();
         if (allowed) {
-          logFallback(createFallbackEvent(slug, reason, "iframe", { probeResult: result }));
+          await logFallback(createFallbackEvent(slug, reason, "iframe", { probeResult: result }));
           markSuccess("iframe");
           return;
         }
       }
 
       // default fallback
-      logFallback(
+      await logFallback(
         createFallbackEvent(slug, reason, "default", {
           allowIframe,
           originalReason: reason,
@@ -135,8 +166,6 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
    */
   const tryProxy = useCallback(() => {
     if (settledRef.current) return () => void 0;
-    // eslint-disable-next-line no-console
-    console.log(`[Demo] ${slug}: Trying proxy mode`);
 
     setMode("proxy");
     setIsLoading(true);
@@ -181,7 +210,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         window.clearTimeout(timeoutId);
       }
     };
-  }, [slug, markSuccess, fallbackToIframeOrDefault]);
+  }, [markSuccess, fallbackToIframeOrDefault]);
 
   /**
    * Iframe attempt: load target in iframe and overlay our widget.
@@ -189,8 +218,6 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
    */
   const tryIframe = useCallback(() => {
     if (settledRef.current) return () => void 0;
-    // eslint-disable-next-line no-console
-    console.log(`[Demo] ${slug}: Trying iframe mode`);
 
     setMode("iframe");
     setIsLoading(true);
@@ -198,15 +225,13 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     // Wait for iframe to load, then check if it's working
     const timeoutId = window.setTimeout(() => {
       if (settledRef.current) return;
-      // eslint-disable-next-line no-console
-      console.log(`[Demo] ${slug}: Iframe timeout, falling back to default`);
       void fallbackToIframeOrDefault("iframe-blocked");
     }, FALLBACK_CONSTANTS.DEFAULT_TIMEOUT_MS);
 
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [slug, fallbackToIframeOrDefault]);
+  }, [fallbackToIframeOrDefault]);
 
   // Main demo logic: try proxy first, fallback to iframe/default
   useEffect(() => {
@@ -215,8 +240,6 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     // Check for forced mode
     const forceMode = (searchParams.get("force") as DemoMode | null) ?? null;
     if (forceMode) {
-      // eslint-disable-next-line no-console
-      console.log(`[Demo] ${slug}: Forcing ${forceMode} mode`);
       switch (forceMode) {
         case "proxy": {
           const cleanup = tryProxy();
@@ -248,14 +271,14 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       }
     };
     // NOTE: searchParams is intentionally read-only (Next provides referential stability)
-  }, [slug, target, tryProxy, tryIframe, markSuccess, fallbackToIframeOrDefault, searchParams]);
+  }, [slug, target, searchParams, tryProxy, tryIframe, markSuccess]);
 
   if (!target) {
     return (
       <div className="h-[calc(100vh-80px)] flex items-center justify-center" data-testid="demo-not-found">
         <div className="text-center space-y-4">
           <h2 className="text-xl font-semibold">Demo Not Found</h2>
-          <p className="text-muted-foreground">The demo "{slug}" could not be found.</p>
+          <p className="text-muted-foreground">The demo &quot;{slug}&quot; could not be found.</p>
           <Button asChild>
             <Link href="/">
               Back to Home

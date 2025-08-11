@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import "@/styles/theme.css";
 import "@/styles/globals.css";
 import Link from "next/link";

@@ -1,14 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import type { FallbackReason } from "@/lib/demo/fallback";
 
 interface DefaultDemoProps {
     targetLabel: string;
-    targetUrl: string;
-    reason?: string;
+    targetUrl?: string;
+    reason?: FallbackReason;
 }
 
-export function DefaultDemo({ targetLabel, targetUrl, reason }: DefaultDemoProps) {
+export function DefaultDemo({ targetLabel }: DefaultDemoProps) {
     return (
         <div className="min-h-full flex flex-col">
             {/* Demo Content */}
@@ -78,12 +79,12 @@ export function DefaultDemo({ targetLabel, targetUrl, reason }: DefaultDemoProps
                             <h2 className="text-2xl font-bold">About Our Company</h2>
                             <div className="prose prose-gray max-w-none">
                                 <p>
-                                    We're a leading company in our industry, dedicated to providing exceptional
+                                    We&apos;re a leading company in our industry, dedicated to providing exceptional
                                     value to our customers. Our team of experts works tirelessly to deliver
                                     innovative solutions that drive results.
                                 </p>
                                 <p>
-                                    With years of experience and a track record of success, we've helped thousands
+                                    With years of experience and a track record of success, we&apos;ve helped thousands
                                     of businesses achieve their goals and grow their revenue.
                                 </p>
 

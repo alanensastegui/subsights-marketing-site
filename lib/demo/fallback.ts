@@ -1,4 +1,5 @@
 import type { DemoMode } from "@/lib/config/demo-targets";
+import { eventLogger } from "./analytics";
 
 export type FallbackReason =
     | "proxy-timeout"
@@ -16,7 +17,7 @@ export type FallbackEvent = {
     reason: FallbackReason;
     chosenMode: DemoMode;
     timestamp: number;
-    metadata?: Record<string, any>;
+    metadata?: Record<string, unknown>;
 };
 
 export const FALLBACK_CONSTANTS = {
@@ -42,7 +43,7 @@ export function createFallbackEvent(
     slug: string,
     reason: FallbackReason,
     chosenMode: DemoMode,
-    metadata?: Record<string, any>
+    metadata?: Record<string, unknown>
 ): FallbackEvent {
     return {
         slug,
@@ -53,14 +54,17 @@ export function createFallbackEvent(
     };
 }
 
-export function logFallback(event: FallbackEvent) {
+export async function logFallback(event: FallbackEvent) {
     console.log("[Demo Fallback]", event);
 
-    // Store event for admin viewing
-    if (typeof window !== "undefined") {
-        import("./analytics").then(({ storeDemoEvent, demoAnalytics }) => {
-            storeDemoEvent(event);
-            demoAnalytics.trackFallback(event);
+    try {
+        await eventLogger.logEvent({
+            slug: event.slug,
+            reason: event.reason,
+            chosenMode: event.chosenMode,
+            metadata: event.metadata,
         });
+    } catch (error) {
+        console.error("Failed to log fallback event:", error);
     }
 }

@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { DEMO_TARGETS } from "@/lib/config/demo-targets";
-import { getDemoEvents, clearDemoEvents } from "@/lib/demo/analytics";
+import { getDemoEvents, clearDemoEvents, getEventStats, type DemoEvent } from "@/lib/demo/analytics";
 import { FALLBACK_MESSAGES } from "@/lib/demo/fallback";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 
 /**
  * Demo Admin Dashboard
@@ -22,7 +22,8 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
  * - Individual testing/debugging
  */
 export default function AdminPage() {
-    const [events, setEvents] = useState<any[]>([]);
+    const [events, setEvents] = useState<DemoEvent[]>([]);
+    const [eventStats, setEventStats] = useState<{ total: number; byReason: Record<string, number>; byMode: Record<string, number> } | null>(null);
     const [isAuthorized, setIsAuthorized] = useState(false);
     const [password, setPassword] = useState("");
     const [activeTab, setActiveTab] = useState("targets");
@@ -38,7 +39,9 @@ export default function AdminPage() {
 
     const loadEvents = () => {
         const demoEvents = getDemoEvents();
+        const stats = getEventStats();
         setEvents(demoEvents);
+        setEventStats(stats);
     };
 
     const handleLogin = () => {
@@ -57,6 +60,7 @@ export default function AdminPage() {
         if (confirm("Clear all demo events?")) {
             clearDemoEvents();
             setEvents([]);
+            setEventStats({ total: 0, byReason: {}, byMode: {} });
         }
     };
 
@@ -97,12 +101,12 @@ export default function AdminPage() {
         if (!acc[slug]) acc[slug] = [];
         acc[slug].push(event);
         return acc;
-    }, {} as Record<string, any[]>);
+    }, {} as Record<string, DemoEvent[]>);
 
     const getSuccessRate = (slug: string) => {
         const slugEvents = eventsBySlug[slug] || [];
         const total = slugEvents.length;
-        const failures = slugEvents.filter((e: any) => e.reason !== "force-policy").length;
+        const failures = slugEvents.filter((e: DemoEvent) => e.reason !== "force-policy").length;
         return total > 0 ? Math.round(((total - failures) / total) * 100) : 100;
     };
 
@@ -185,8 +189,24 @@ export default function AdminPage() {
                             <p className="text-sm text-muted-foreground">
                                 {events.length} events tracked in this browser only
                             </p>
+                            {eventStats && (
+                                <div className="mt-2 grid grid-cols-3 gap-4 text-xs">
+                                    <div className="bg-accent/20 border border-accent/30 rounded-lg p-2 text-center">
+                                        <div className="font-semibold">{eventStats.total}</div>
+                                        <div className="text-muted-foreground">Total Events</div>
+                                    </div>
+                                    <div className="bg-accent/20 border border-accent/30 rounded-lg p-2 text-center">
+                                        <div className="font-semibold">{Object.keys(eventStats.byReason).length}</div>
+                                        <div className="text-muted-foreground">Fallback Reasons</div>
+                                    </div>
+                                    <div className="bg-accent/20 border border-accent/30 rounded-lg p-2 text-center">
+                                        <div className="font-semibold">{Object.keys(eventStats.byMode).length}</div>
+                                        <div className="text-muted-foreground">Demo Modes</div>
+                                    </div>
+                                </div>
+                            )}
                             <div className="mt-2 text-xs text-muted-foreground bg-accent/20 border border-accent/30 rounded-lg p-2">
-                                💡 <strong>Local Data Only:</strong> These events are stored in your browser's local storage.
+                                💡 <strong>Local Data Only:</strong> These events are stored in your browser&apos;s local storage.
                                 Other team members will see their own events on their devices.
                             </div>
                         </CardHeader>
@@ -210,10 +230,20 @@ export default function AdminPage() {
                                                         }>
                                                             {event.chosenMode}
                                                         </Badge>
+                                                        {event.sessionId && (
+                                                            <Badge variant="outline" className="text-xs">
+                                                                {event.sessionId.slice(-8)}
+                                                            </Badge>
+                                                        )}
                                                     </div>
                                                     <p className="text-sm text-muted-foreground">
                                                         {FALLBACK_MESSAGES[event.reason as keyof typeof FALLBACK_MESSAGES] || event.reason}
                                                     </p>
+                                                    {event.performance?.loadTime && (
+                                                        <p className="text-xs text-muted-foreground">
+                                                            Load time: {event.performance.loadTime}ms
+                                                        </p>
+                                                    )}
                                                 </div>
                                                 <div className="text-right text-xs text-muted-foreground">
                                                     {new Date(event.timestamp).toLocaleString()}
@@ -266,6 +296,15 @@ export default function AdminPage() {
                                                 ? Math.round(DEMO_TARGETS.reduce((sum, target) => sum + getSuccessRate(target.slug), 0) / DEMO_TARGETS.length)
                                                 : 100
                                         }%</div>
+                                        {eventStats && (
+                                            <>
+                                                <div>Session ID: {eventStats.total > 0 ? events[0]?.sessionId?.slice(-8) : 'N/A'}</div>
+                                                <div>Most Common Reason: {
+                                                    Object.entries(eventStats.byReason)
+                                                        .sort(([, a], [, b]) => (b as number) - (a as number))[0]?.[0] || 'N/A'
+                                                }</div>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             </div>

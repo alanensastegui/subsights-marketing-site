@@ -5,8 +5,9 @@ import { injectWidget } from "@/lib/html/inject";
 export const runtime = "nodejs"; // server function on Netlify
 export const revalidate = 0;      // no caching for demos
 
-export async function GET(req: NextRequest, { params }: { params: { slug: string } }) {
-    const target = getDemoTarget(params.slug);
+export async function GET(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const target = getDemoTarget(slug);
     if (!target) return new NextResponse("Not found", { status: 404 });
 
     // Add timeout to prevent hanging
