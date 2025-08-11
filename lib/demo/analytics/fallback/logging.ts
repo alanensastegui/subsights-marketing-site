@@ -1,5 +1,5 @@
 import { eventLogger } from "..";
-import type { FallbackEvent, FallbackReason } from "./events";
+import type { FallbackEvent, FallbackReason } from "./types";
 import type { DemoMode } from "../../config";
 
 export const FALLBACK_CONSTANTS = {
@@ -9,7 +9,7 @@ export const FALLBACK_CONSTANTS = {
     IFRAME_PROBE_TIMEOUT_MS: 3000,
 } as const;
 
-export const FALLBACK_MESSAGES = {
+export const FALLBACK_MESSAGES: Record<FallbackReason, string> = {
     "proxy-timeout": "The target site took too long to respond",
     "proxy-error": "Unable to load the target site content",
     "proxy-fetch-failed": "Failed to fetch the target site",

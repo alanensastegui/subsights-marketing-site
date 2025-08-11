@@ -70,8 +70,8 @@ export function createPerformanceMonitor(): PerformanceMonitor {
  */
 export function getPerformanceBudget(): Record<string, number> {
     return {
-        demoLoadTime: 5000, // 5 seconds - matches actual code usage
-        memoryUsage: 50 * 1024 * 1024, // 50MB - matches actual code usage
-        domSize: 1000, // 1000 DOM nodes - for future monitoring
+        demoLoadTime: 5000,
+        memoryUsage: 50 * 1024 * 1024,
+        domSize: 1000,
     };
 }
