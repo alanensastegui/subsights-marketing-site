@@ -29,7 +29,6 @@ interface ProbeResponse {
 function DemoPageClient({ slug }: DemoPageClientProps) {
   const [mode, setMode] = useState<DemoMode>("default");
   const [isLoading, setIsLoading] = useState(true);
-  const [currentReason, setCurrentReason] = useState<FallbackReason | null>(null);
   const searchParams = useSearchParams();
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const settledRef = useRef(false);
@@ -43,7 +42,6 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     // Reset to loading state every time component mounts or slug changes
     setMode("default");
     setIsLoading(true);
-    setCurrentReason(null);
     settledRef.current = false;
 
     // Start performance monitoring
@@ -63,7 +61,6 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       // Reset all state on unmount
       setIsLoading(false);
       setMode("default");
-      setCurrentReason(null);
       settledRef.current = false;
 
       // Clear any active timeouts
@@ -154,7 +151,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
           originalReason: reason,
         })
       );
-      setCurrentReason(reason);
+
       markSuccess("default");
     },
     [slug, target?.allowIframe, probeIframe, markSuccess]
@@ -298,7 +295,10 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       <div className="relative flex-1 min-h-0 overflow-hidden">
         {mode === "default" && !isLoading ? (
           <div className="absolute inset-0 overflow-auto">
-            <DefaultDemo targetLabel={target.label} targetUrl={target.url} reason={currentReason || undefined} />
+            <DefaultDemo
+              targetLabel={target.label}
+              scriptTag={target.scriptTag}
+            />
           </div>
         ) : (
           <>

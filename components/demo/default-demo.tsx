@@ -1,15 +1,79 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { FallbackReason } from "@/lib/demo/fallback";
+import { useEffect, useRef, useState } from "react";
 
 interface DefaultDemoProps {
     targetLabel: string;
-    targetUrl?: string;
-    reason?: FallbackReason;
+    scriptTag?: string;
 }
 
-export function DefaultDemo({ targetLabel }: DefaultDemoProps) {
+export function DefaultDemo({ targetLabel, scriptTag }: DefaultDemoProps) {
+    const [widgetStatus, setWidgetStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
+    const mountedRef = useRef(false);
+
+    useEffect(() => {
+        if (scriptTag && !mountedRef.current) {
+            mountedRef.current = true;
+            setWidgetStatus('loading');
+
+            try {
+                // Create a temporary container to parse the script tag
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = scriptTag;
+                const scriptElement = tempDiv.querySelector('script');
+
+                if (scriptElement) {
+                    // Clone the script element to avoid DOM manipulation issues
+                    const newScript = document.createElement('script');
+                    newScript.src = scriptElement.src || '';
+                    newScript.setAttribute('data-workspace', scriptElement.getAttribute('data-workspace') || '');
+                    newScript.setAttribute('data-api-key', scriptElement.getAttribute('data-api-key') || '');
+
+                    // Handle script load events
+                    newScript.onload = () => setWidgetStatus('loaded');
+                    newScript.onerror = () => setWidgetStatus('error');
+
+                    // Append the script to the document head
+                    document.head.appendChild(newScript);
+                } else {
+                    setWidgetStatus('error');
+                }
+            } catch (error) {
+                console.error('Failed to load widget:', error);
+                setWidgetStatus('error');
+            }
+        }
+    }, [scriptTag]);
+
+    const renderWidgetStatus = () => {
+        switch (widgetStatus) {
+            case 'loading':
+                return (
+                    <div className="flex items-center justify-center text-gray-500">
+                        <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full mr-2" />
+                        Loading chat widget...
+                    </div>
+                );
+            case 'loaded':
+                return (
+                    <div className="flex items-center justify-center text-green-600">
+                        <span className="mr-2">✅</span>
+                        Chat widget loaded successfully!
+                    </div>
+                );
+            case 'error':
+                return (
+                    <div className="flex items-center justify-center text-red-600">
+                        <span className="mr-2">❌</span>
+                        Failed to load chat widget
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
+
     return (
         <div className="min-h-full flex flex-col">
             {/* Demo Content */}
@@ -28,6 +92,24 @@ export function DefaultDemo({ targetLabel }: DefaultDemoProps) {
                             to provide powerful insights and conversion optimization.
                         </p>
                     </section>
+
+                    {/* Widget Demo Section */}
+                    {scriptTag && (
+                        <section className="text-center space-y-4">
+                            <h2 className="text-2xl font-bold">Live Chat Widget Demo</h2>
+                            <p className="text-muted-foreground">
+                                The Subsights chat widget is now active on this page! Look for the chat icon in the bottom-right corner.
+                            </p>
+                            <div className="py-4">
+                                {renderWidgetStatus()}
+                            </div>
+                            {widgetStatus === 'loaded' && (
+                                <p className="text-sm text-green-600">
+                                    🎉 Chat widget is now active! Click the chat icon to start a conversation.
+                                </p>
+                            )}
+                        </section>
+                    )}
 
                     {/* Feature Preview */}
                     <section className="grid md:grid-cols-3 gap-8">
