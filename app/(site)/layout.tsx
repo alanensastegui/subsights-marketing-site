@@ -3,8 +3,17 @@ import "@/styles/globals.css";
 import "@/styles/theme.css";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  type NavItem,
+} from "@/components/ui/navigation-menu";
 
-const navItems = [
+const navItems: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Partners", href: "/partners" },
@@ -21,13 +30,32 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           <Link href="/" className="text-xl font-semibold">
             subsights
           </Link>
-          <nav className="flex gap-6 text-sm">
-            {navItems.map((item) => (
-              <Link key={item.label} href={item.href} className={cn("flex items-center", item.className)}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navItems.map((item) => (
+                'children' in item ? (
+                  <NavigationMenuItem key={item.label}>
+                    <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                        {item.children.map((child) => (
+                          <NavigationMenuLink key={child.label} href={child.href}>
+                            {child.label}
+                          </NavigationMenuLink>
+                        ))}
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                ) : (
+                  <NavigationMenuItem key={item.label}>
+                    <NavigationMenuLink href={item.href} className={item.className}>
+                      {item.label}
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                )
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
         </header>
         <main className="mx-auto max-w-6xl px-6">{children}</main>
         <footer className="mx-auto max-w-6xl px-6 py-12 text-sm opacity-70">© {new Date().getFullYear()} Subsights</footer>

@@ -155,6 +155,22 @@ function NavigationMenuIndicator({
   )
 }
 
+export interface SimpleNavItem {
+  label: string;
+  href: string;
+  className?: string;
+}
+
+export interface DropdownNavItem {
+  label: string;
+  children: {
+    label: string;
+    href: string;
+  }[];
+}
+
+export type NavItem = SimpleNavItem | DropdownNavItem;
+
 export {
   NavigationMenu,
   NavigationMenuList,
