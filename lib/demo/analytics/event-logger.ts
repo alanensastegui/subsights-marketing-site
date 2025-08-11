@@ -1,20 +1,22 @@
 import { CompositeDemoAnalytics } from "./providers";
 import { ConsoleDemoAnalytics, GTMDemoAnalytics } from "./providers";
 import { isValidEvent, generateEventId, getSessionId } from "./utils";
-import type { DemoEvent } from "./types";
-import { getPerformanceBudget } from "./performance";
+import type { DemoEvent, DemoEventInput } from "./types";
+import { getPerformanceBudget, createPerformanceMonitor } from "./performance";
 import type { FallbackReason } from "..";
 import type { DemoMode } from "../config";
 
 export class EventLogger {
     private static instance: EventLogger;
     private analytics: CompositeDemoAnalytics;
+    private performanceMonitor: ReturnType<typeof createPerformanceMonitor>;
 
     private constructor() {
         this.analytics = new CompositeDemoAnalytics([
             new ConsoleDemoAnalytics(),
             new GTMDemoAnalytics(),
         ]);
+        this.performanceMonitor = createPerformanceMonitor();
     }
 
     public static getInstance(): EventLogger {
@@ -24,7 +26,7 @@ export class EventLogger {
         return EventLogger.instance;
     }
 
-    public async logEvent(event: Omit<DemoEvent, "id" | "timestamp" | "sessionId" | "userAgent">): Promise<void> {
+    public async logEvent(event: DemoEventInput): Promise<void> {
         try {
             // Create complete event
             const completeEvent: DemoEvent = {
@@ -106,12 +108,9 @@ export class EventLogger {
             console.warn(`Slow demo load: ${event.slug} took ${event.performance.loadTime}ms (threshold: ${budget.demoLoadTime}ms)`);
         }
 
-        // Monitor memory usage if available
-        if (typeof performance !== "undefined" && (performance as unknown as { memory?: { usedJSHeapSize?: number } }).memory) {
-            const memory = (performance as unknown as { memory?: { usedJSHeapSize?: number } }).memory;
-            if (memory?.usedJSHeapSize && memory.usedJSHeapSize > budget.memoryUsage) {
-                console.warn(`High memory usage: ${Math.round(memory.usedJSHeapSize / 1024 / 1024)}MB (threshold: ${Math.round(budget.memoryUsage / 1024 / 1024)}MB)`);
-            }
+        // Monitor memory usage using the dedicated performance monitor
+        if (event.performance?.memoryUsage && event.performance.memoryUsage > budget.memoryUsage) {
+            console.warn(`High memory usage: ${Math.round(event.performance.memoryUsage / 1024 / 1024)}MB (threshold: ${Math.round(budget.memoryUsage / 1024 / 1024)}MB)`);
         }
     }
 
@@ -122,9 +121,10 @@ export class EventLogger {
             const stored = localStorage.getItem("subsights_demo_events");
             if (!stored) return [];
 
-            const events = JSON.parse(stored) as unknown[];
+            // Use proper typing for JSON.parse - it returns unknown, but we know it's an array
+            const events = JSON.parse(stored) as Record<string, unknown>[];
 
-            // Validate stored events and filter out invalid ones
+            // Validate stored events and filter out valid ones
             const validEvents = events.filter(isValidEvent);
 
             // If we found invalid events, clean up storage

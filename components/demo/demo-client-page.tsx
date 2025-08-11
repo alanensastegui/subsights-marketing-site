@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 import { getDemoTarget, type DemoMode } from "@/lib/demo/config";
 import { eventLogger, type FallbackReason, type PerformanceMetrics } from "@/lib/demo/analytics";
-import { FALLBACK_CONSTANTS, createFallbackEvent, logFallbackEvent, createPerformanceMonitor, getPerformanceBudget } from "@/lib/demo";
+import { FALLBACK_CONSTANTS, createPerformanceMonitor, getPerformanceBudget } from "@/lib/demo";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
 
@@ -136,21 +136,44 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       const allowIframe = target?.allowIframe ?? true;
 
       if (allowIframe) {
+        // iframe fallback
         const { allowed, result } = await probeIframe();
         if (allowed) {
-          await logFallbackEvent(createFallbackEvent(slug, reason, "iframe", { probeResult: result }));
+          await eventLogger.logEvent({
+            slug,
+            reason: "iframe-blocked",
+            chosenMode: "iframe",
+            metadata: {
+              probeResult: result,
+            },
+          });
           markSuccess("iframe");
           return;
         }
-      }
 
-      // default fallback
-      await logFallbackEvent(
-        createFallbackEvent(slug, reason, "default", {
-          allowIframe,
-          originalReason: reason,
-        })
-      );
+        // default fallback
+        await eventLogger.logEvent({
+          slug,
+          reason: "force-policy",
+          chosenMode: "default",
+          metadata: {
+            allowIframe,
+            originalReason: reason,
+          },
+        });
+
+      } else {
+        // default fallback
+        await eventLogger.logEvent({
+          slug,
+          reason: "force-policy",
+          chosenMode: "default",
+          metadata: {
+            allowIframe,
+            originalReason: reason,
+          },
+        });
+      }
 
       markSuccess("default");
     },

@@ -2,6 +2,8 @@
  * Performance monitoring utilities for demo system
  */
 
+import { PERFORMANCE_CONSTANTS } from "../constants";
+
 export interface PerformanceMetrics {
     loadTime: number;
     memoryUsage?: number;
@@ -48,12 +50,22 @@ export class PerformanceMonitor {
 
     /**
      * Get memory usage if available
+     * Uses Chrome-specific performance.memory API
      */
     private getMemoryUsage(): number | undefined {
-        if (typeof performance !== "undefined" && (performance as unknown as { memory?: { usedJSHeapSize?: number } }).memory) {
-            return (performance as unknown as { memory?: { usedJSHeapSize?: number } }).memory?.usedJSHeapSize;
-        }
-        return undefined;
+        if (typeof performance === "undefined") return undefined;
+
+        // The @types/web package provides proper typing for performance.memory
+        // We need to cast to access the Chrome-specific memory property
+        const performanceWithMemory = performance as Performance & {
+            memory?: {
+                usedJSHeapSize: number;
+                totalJSHeapSize: number;
+                jsHeapSizeLimit: number;
+            };
+        };
+
+        return performanceWithMemory.memory?.usedJSHeapSize;
     }
 }
 
@@ -66,12 +78,11 @@ export function createPerformanceMonitor(): PerformanceMonitor {
 
 /**
  * Get centralized performance budget thresholds
- * These values are used throughout the demo system for consistency
  */
 export function getPerformanceBudget(): Record<string, number> {
     return {
-        demoLoadTime: 5000,
-        memoryUsage: 50 * 1024 * 1024,
-        domSize: 1000,
+        demoLoadTime: PERFORMANCE_CONSTANTS.DEMO_LOAD_TIME_THRESHOLD,
+        memoryUsage: PERFORMANCE_CONSTANTS.MEMORY_USAGE_THRESHOLD,
+        domSize: PERFORMANCE_CONSTANTS.DOM_SIZE_THRESHOLD,
     };
 }
