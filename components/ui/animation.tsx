@@ -6,11 +6,11 @@ import { motion, Variants, Transition } from 'framer-motion';
 // TYPE DEFINITIONS
 // ============================================================================
 
-export type AnimName = 'fadeIn' | 'slideUp' | 'zoomIn' | 'parallax' | 'typewriter' | 'scrollReveal' | 'counter';
+export type AnimationName = 'fadeIn' | 'slideUp' | 'zoomIn' | 'parallax' | 'typewriter' | 'scrollReveal' | 'counter';
 export type Trigger = 'onLoad' | 'onVisible' | 'onScroll';
 
 interface AnimationProps {
-    name: AnimName;
+    name: AnimationName;
     trigger?: Trigger;
     durationMs?: number;
     className?: string;
@@ -25,7 +25,7 @@ interface AnimationProps {
 // ANIMATION VARIANTS
 // ============================================================================
 
-const createVariants = (name: AnimName, duration: number, delay: number = 0): Variants => {
+const createVariants = (name: AnimationName, duration: number, delay: number = 0): Variants => {
     const baseTransition: Transition = { duration: duration / 1000, delay: delay / 1000 };
 
     switch (name) {
@@ -98,7 +98,7 @@ const createVariants = (name: AnimName, duration: number, delay: number = 0): Va
 // MAIN COMPONENT
 // ============================================================================
 
-export function A({
+export function Animate({
     name,
     trigger = 'onVisible',
     durationMs = 700,

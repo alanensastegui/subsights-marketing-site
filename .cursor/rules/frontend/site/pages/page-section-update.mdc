@@ -10,15 +10,15 @@ User asks to change appearance and/or behavior of an existing section (copy, lay
 
 ## Guardrails
 - Keep **stable identity**: same filename and `export const sectionId`.
-- **Allowed imports only**: `react`, `next/link`, `next/image`, `"@/lib/cn"`, `"@/components/ui/*"`, `"@/lib/anim"`.
-- Add `'use client'` **iff** you import `A` or use hooks/handlers/refs.
+- **Allowed imports only**: `react`, `next/link`, `next/image`, `"@/lib/cn"`, `"@/components/ui/*"`, `"@/components/ui/animation"`.
+- Add `'use client'` **iff** you import `Animate` or use hooks/handlers/refs.
 - Maintain semantic HTML/a11y; no forbidden APIs or external scripts/styles.
 
 ## Change tiers
 1) **Copy-only** — edit just the **SECTION COPY REGION** values.
 > Use **required fields by default**. Only mark a field optional if the UI conditionally renders it.
 2) **Visual** — Tailwind classes, spacing/typography/colors, grid/flex, reorder existing blocks.
-3) **Behavioral** — event handlers, small client state, `<A>` animations, swap/add UI primitives from `"@/components/ui/*"`.
+3) **Behavioral** — event handlers, small client state, `<Animate>` animations, swap/add UI primitives from `"@/components/ui/*"`.
 4) **Structural** — **add fields to the Copy type** and adjust markup.
 
 
@@ -123,10 +123,10 @@ const copy = {
 ```tsx
 // Behavioral change (tier 3) - add animation
 'use client'; // Required for A component
-import { A } from "@/lib/anim";
+import { Animate } from "@/components/ui/animation";
 
 // Wrap image with animation
-<A name="fadeIn" as="div" className="relative">
+<Animate name="fadeIn" as="div" className="relative">
   <div className="aspect-[4/3] w-full overflow-hidden rounded-xl ring-1 ring-border/50">
     <Image
       src={c.image.src}

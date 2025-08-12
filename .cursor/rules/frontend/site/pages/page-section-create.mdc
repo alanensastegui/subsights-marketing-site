@@ -23,8 +23,8 @@ User asks to **add/create/insert** a new section to a page (e.g., “Add a dark 
 2) **Create file**
    - Path: `/app/(site)/<page>/sections/<slug>.tsx`
    - Include the required contract: local `type Copy`, **SECTION COPY REGION** `copy` object (`satisfies Copy`), `export const sectionId = "<slug>"`, and `export default function Section()` that reads from `copy`.
-   - Imports allowed only: `react`, `Link` (`next/link`), `Image` (`next/image`), `cn` (`@/lib/cn`), UI primitives from `@/components/ui/*`, `A` from `@/lib/anim`.
-   - Add `'use client'` **only if** you import `A` or use hooks/handlers/refs. (Using `Link` alone does not require it.)
+   - Imports allowed only: `react`, `Link` (`next/link`), `Image` (`next/image`), `cn` (`@/lib/cn`), UI primitives from `@/components/ui/*`, `Animate` from `@/components/ui/animation`.
+       - Add `'use client'` **only if** you import `Animate` or use hooks/handlers/refs. (Using `Link` alone does not require it.)
 
 3) **Populate minimal copy**
    - Use real-sounding placeholders; keep it brief.
@@ -36,7 +36,7 @@ User asks to **add/create/insert** a new section to a page (e.g., “Add a dark 
    - Prefer internal links with `<Link>`; external links use `<a target="_blank" rel="noopener noreferrer">`.
 
 4) **Animation**
-   - If animation is requested, wrap elements with `<A ...>` and **reference** `@/lib/anim` for valid names/props (don't duplicate enums here).
+   - If animation is requested, wrap elements with `<Animate ...>` and **reference** `@/components/ui/animation` for valid names/props (don't duplicate enums here).
    - If unspecified or invalid, fall back to a gentle default (e.g., `fadeIn`) and add a `// TODO:`.
    - **For animation TODOs, include resolution steps:**
      - `// TODO: confirm animation` → Ask user: "What animation effect? (e.g., 'fade in', 'slide up', 'bounce')"
@@ -140,7 +140,7 @@ import Image from "next/image";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { A } from "@/lib/anim";
+import { Animate } from "@/components/ui/animation";
 
 type Copy = {
   title: string;
@@ -171,7 +171,7 @@ export default function Section() {
     <section className={cn("relative isolate bg-neutral-950 text-white")}>
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-          <A name="fadeIn" as="div" className="space-y-6">
+          <Animate name="fadeIn" as="div" className="space-y-6">
             {c.badge && (
               <Badge variant="outline" className="text-sm border-white/20 text-white">
                 {c.badge}
@@ -191,7 +191,7 @@ export default function Section() {
           </A>
 
           {c.image && (
-            <A name="parallax" trigger="onScroll" durationMs={1200} easing="ease-out" as="div" className="relative">
+            <Animate name="parallax" trigger="onScroll" durationMs={1200} easing="ease-out" as="div" className="relative">
               <div className="aspect-[4/3] w-full overflow-hidden rounded-xl ring-1 ring-white/10">
                 <Image
                   src={c.image.src}
@@ -243,7 +243,7 @@ export default function Page() {
 ## A11y & hygiene
 - Semantic HTML; meaningful `alt`; logical heading order.
 - Keyboard-friendly controls; adequate hit targets.
-- No `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, or direct `window`/`document` access (beyond `<A>`).
+- No `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, or direct `window`/`document` access (beyond `<Animate>`).
 - No external `<script>`/`<style>`.
 
 ## Preflight (before saving)

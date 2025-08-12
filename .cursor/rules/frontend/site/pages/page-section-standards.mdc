@@ -3,6 +3,7 @@ description: Standards for sections
 globs: app/(site)/**/page.tsx,app/(site)/**/sections/*.tsx
 alwaysApply: false
 ---
+
 # React Sections Builder — Base Standards (Sections)
 
 ## Scope
@@ -21,8 +22,8 @@ Applies to any file in `app/(site)/**/sections/` — creation and edits. Task-sp
 - import Image from `"next/image"`
 - import { cn } from `"@/lib/cn"`
 - UI primitives from `"@/components/ui/*"` (e.g., button, card, accordion)
-- import { A } from `"@/lib/anim"`
-Forbidden: `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, direct `window`/`document` access (beyond what `<A>` abstracts), external `<script>`/`<style>`.
+- import { Animate } from `"@/components/ui/animation"`
+Forbidden: `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, direct `window`/`document` access (beyond what `<Animate>` abstracts), external `<script>`/`<style>`.
 
 ## Modern Design Principles & Best Practices
 Follow these design principles to create polished, professional sections:
@@ -106,7 +107,7 @@ When a new UI component is needed that's not currently available in `@/component
 - Provide descriptive, accessible link text.
 
 ## Client Boundary
-Add `'use client'` if you import `A` **or** use hooks/handlers/refs (`useState`, `useEffect`, `onClick`, etc.). (Using `Link` alone does not require `'use client'`.)
+Add `'use client'` if you import `Animate` **or** use hooks/handlers/refs (`useState`, `useEffect`, `onClick`, etc.). (Using `Link` alone does not require `'use client'`.)
 
 ## Styling & A11y
 - Tailwind classes + design tokens (e.g., `text-primary`, `bg-secondary`, `bg-card`). No external styles.
@@ -118,210 +119,16 @@ Add `'use client'` if you import `A` **or** use hooks/handlers/refs (`useState`,
 - If the slug exists,think of a new one which still makes sense. Do not rename existing files.
 
 ## Animation (reference, don’t duplicate)
-- Use the animation helper `A` from `"@/lib/anim"`.
-- **Do not list enums or prop details here.** Treat `"@/lib/anim"` as the sole source of truth for valid names, triggers, defaults, and prop types.
+- Use the animation helper `Animate` from `"@/components/ui/animation"`.
+- **Do not list enums or prop details here.** Treat `"@/components/ui/animation"` as the sole source of truth for valid names, triggers, defaults, and prop types.
 - Usage example (pattern only):
   ```tsx
   'use client';
-  import { A } from "@/lib/anim";
+  import { Animate } from "@/components/ui/animation";
   // ...
-  <A name={/* AnimName from lib */} trigger={/* Trigger from lib */} /* optional props */>
+  <Animate name={/* AnimName from lib */} trigger={/* Trigger from lib */} /* optional props */>
     {/* animated content */}
-  </A>
-  ```
-- If an animation isn't specified by the design/copy, use the library defaults.
-- If a requested animation name doesn't exist, prefer a graceful default (e.g., fadeIn) and add a terse // TODO: near the copy.
-- **Add // TODO: when animation timing, easing, or trigger behavior needs clarification from the user.**
-
-## TODO Resolution Steps
-When adding `// TODO:` comments, include specific steps to resolve them:
-
-**Animation TODOs:**
-- `// TODO: confirm animation timing` → Ask user: "What animation timing do you prefer? (e.g., 'fast', 'medium', 'slow' or specific milliseconds)"
-- `// TODO: confirm animation trigger` → Ask user: "When should this animate? (e.g., 'on page load', 'on scroll', 'on hover')"
-- `// TODO: confirm animation style` → Ask user: "What animation style? (e.g., 'fade in', 'slide up', 'scale in')"
-
-**Layout TODOs:**
-- `// TODO: confirm grid layout` → Ask user: "How many columns? (e.g., '2 columns', '3 columns', 'responsive grid')"
-- `// TODO: confirm spacing` → Ask user: "What spacing between elements? (e.g., 'tight', 'comfortable', 'generous')"
-- `// TODO: confirm responsive behavior` → Ask user: "How should this look on mobile vs desktop?"
-
-**Component TODOs:**
-- `// TODO: confirm button style` → Ask user: "What button variant? (e.g., 'primary', 'outline', 'ghost')"
-- `// TODO: confirm card layout` → Ask user: "How should cards be arranged? (e.g., 'grid', 'list', 'carousel')"
-- `// TODO: confirm color scheme` → Ask user: "What color scheme? (e.g., 'brand colors', 'neutral', 'specific colors')"
-
-**Content TODOs:**
-- `// TODO: confirm headline` → Ask user: "What should the main headline say?"
-- `// TODO: confirm subtext` → Ask user: "What supporting text should appear below the headline?"
-- `// TODO: confirm CTA text` → Ask user: "What should the button say?"
-- `// TODO: confirm CTA link` → Ask user: "Where should the button link to?"
-
-## TODO Resolution Workflow
-When you encounter a TODO during implementation:
-
-1. **Identify the TODO type** (animation, layout, copy, asset, etc.)
-2. **Ask the user a specific question** using the resolution steps above
-3. **Wait for their response** before proceeding
-4. **Update the code** based on their answer
-5. **Remove the TODO comment** once resolved
-
-**Example Resolution Flow:**
-```
-User: "Make the hero section animate with a slide effect"
-You: "I'll add slide animation to the hero section. When should it animate? (e.g., 'on page load', 'on scroll', 'on hover')"
-User: "On page load"
-You: "Perfect! I'll use slideIn animation on page load. How fast should it slide? (e.g., 'quick', 'medium', 'slow')"
-User: "Medium speed is fine"
-You: "Great! I'll set it to medium speed. Should it slide from the left, right, top, or bottom?"
-User: "From the bottom"
-You: "Perfect! I'll implement slideIn from bottom with medium timing on page load."
-```
-
-## Agent Editing Behavior (Cursor Agent)
-- **Create:** Write new files only under `/app/(site)/<page>/sections/<slug>.tsx`. Add minimal sane copy; include TODOs for unresolved assets/links near the `copy` object. If `<Image fill>` is used, set `sizes`.
-- **Update:** Prefer **minimal diffs**. Modify only the **SECTION COPY REGION** unless fixing a11y or contract violations. Preserve the public surface (exports, props). Don’t reorder unrelated imports or code.
-- Perform file edits directly (no conversational output or code fences).
-
-## Diff Hygiene
-- Keep changes atomic and scoped; avoid churn.
-- Preserve formatting; run Prettier. Keep import groupings consistent.
-- Ensure `sectionId` matches the filename slug.
-
-## Preflight Checklist (self-verify before saving)
-- [ ] Only allowlisted imports used (including `Link` where appropriate)
-- [ ] `'use client'` present when needed
-- [ ] `sectionId` === filename slug
-- [ ] `copy` typed with `satisfies Copy`
-- [ ] **Heading hierarchy consistent**: Use `h2` for section titles, `h3` for subsections
-- [ ] Alt text present; `sizes` provided when `fill`
-- [ ] Internal links use `<Link>`; external links use `<a target="_blank" rel="noopener noreferrer">`
-- [ ] No forbidden APIs; no external scripts/styles
-- [ ] Keyboard interaction and focus order make sense# React Sections Builder — Base Standards (Sections)
-
-## Scope
-Applies to any file in `app/(site)/**/sections/` — creation and edits. Task-specific rules (Create/Update) may add steps but must not relax these constraints.
-
-## File Contract (every section file must include)
-- A local `type Copy`.
-- A **SECTION COPY REGION** `copy` object using `satisfies Copy`.
-- `export default function Section()` that reads exclusively from `copy`.
-- `export const sectionId = "<slug>"` where `<slug>` === filename (kebab-case).
-- **Consistent heading hierarchy**: Use `h2` for section titles to avoid multiple `h1` tags on multi-section pages.
-
-## Allowed Imports (strict allowlist)
-- `react`
-- import Link from "next/link"
-- import Image from `"next/image"`
-- import { cn } from `"@/lib/cn"`
-- UI primitives from `"@/components/ui/*"` (e.g., button, card, accordion)
-- import { A } from `"@/lib/anim"`
-Forbidden: `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, direct `window`/`document` access (beyond what `<A>` abstracts), external `<script>`/`<style>`.
-
-## Modern Design Principles & Best Practices
-Follow these design principles to create polished, professional sections:
-
-**Visual Hierarchy:**
-- **Use `h2` for section titles** - Since sections are components within pages, use `h2` for the main section headline to avoid multiple `h1` tags on multi-section pages
-- **Use `h3` for subsections** - For content within a section (e.g., feature titles, card headers)
-- **Use `h4` and below sparingly** - Only for deeply nested content that needs hierarchical organization
-- Apply appropriate font weights and sizes (e.g., `font-bold` for headlines, `font-medium` for subheadings)
-- Use spacing consistently (`space-y-4`, `space-y-6`, `space-y-8`) to group related content
-
-**Responsive Design:**
-- Design mobile-first with progressive enhancement
-- Use responsive utilities (`sm:`, `md:`, `lg:`, `xl:`) for breakpoint-specific styling
-- Ensure touch targets are at least 44px × 44px for mobile accessibility
-- Test grid layouts across different screen sizes
-
-**Color & Contrast:**
-- Use semantic color tokens (`text-primary`, `bg-secondary`, `border-muted`) for consistency
-- Ensure sufficient contrast ratios (4.5:1 minimum for normal text, 3:1 for large text)
-- Apply hover states and focus indicators for interactive elements
-- Use color to guide user attention and establish visual hierarchy
-
-**Typography:**
-- Maintain readable line lengths (45-75 characters per line)
-- Use appropriate line heights (`leading-tight`, `leading-normal`, `leading-relaxed`)
-- Apply consistent text sizing scale (`text-sm`, `text-base`, `text-lg`, `text-xl`, etc.)
-- Ensure text remains readable at all zoom levels
-
-**Spacing & Layout:**
-- Use consistent spacing scale (4px base unit: `p-4`, `m-6`, `gap-8`)
-- Apply proper whitespace around content blocks for breathing room
-- Use CSS Grid and Flexbox for modern, flexible layouts
-- Maintain visual balance and alignment across elements
-
-**Interactive Elements:**
-- Provide clear hover and focus states for all interactive components
-- Use appropriate cursor styles (`cursor-pointer`, `cursor-not-allowed`)
-- Ensure keyboard navigation works logically through tab order
-- Apply smooth transitions for state changes (`transition-colors`, `transition-all`)
-
-## Installing New shadcn/ui Components
-When a new UI component is needed that's not currently available in `@/components/ui/*`:
-
-**Installation Process:**
-1. **Check if component exists** in the current `@/components/ui/*` directory
-2. **If missing, install it** using the shadcn/ui CLI:
-   ```bash
-   npx shadcn@latest add [component-name]
-   ```
-3. **Common components to consider:**
-   - `accordion` - for collapsible content sections
-   - `tabs` - for content organization
-   - `dialog` - for modal overlays
-   - `dropdown-menu` - for context menus
-   - `select` - for dropdown selections
-   - `textarea` - for multi-line text input
-   - `label` - for form accessibility
-   - `switch` - for toggle controls
-   - `radio-group` - for single-choice selections
-   - `checkbox` - for multi-selection
-
-**After Installation:**
-- Import from `@/components/ui/[component-name]` following the existing pattern
-- Use the component's variants and props as documented
-- Ensure proper accessibility attributes are applied
-- Test the component across different screen sizes
-
-**When to Install vs. When to Build:**
-- **Install shadcn/ui components** for common UI patterns (forms, navigation, feedback)
-- **Build custom components** only for unique, project-specific interactions
-- **Prefer existing components** over custom solutions for consistency
-- **Document any custom components** with clear usage examples
-
-## Routing
-- Use `<Link href="/internal">...</Link>` for **internal** navigation.
-- For **external** URLs or file downloads, use `<a href="https://..." target="_blank" rel="noopener noreferrer">...</a>` or `<a download>` respectively.
-- When combining with UI primitives that support `asChild`, prefer:
-  `<Button asChild><Link href="/path">Label</Link></Button>`.
-- Do **not** nest an `<a>` inside `<Link>` (Link renders an anchor).
-- Provide descriptive, accessible link text.
-
-## Client Boundary
-Add `'use client'` if you import `A` **or** use hooks/handlers/refs (`useState`, `useEffect`, `onClick`, etc.). (Using `Link` alone does not require `'use client'`.)
-
-## Styling & A11y
-- Tailwind classes + design tokens (e.g., `text-primary`, `bg-secondary`, `bg-card`). No external styles.
-- Semantic HTML; labelled controls; keyboard-friendly interactions; logical heading order.
-- Images must have meaningful `alt`. If using `<Image fill>`, include an appropriate `sizes` attribute.
-
-## Naming & Collisions
-- Filename: kebab-case human slug (e.g., `hero-promo.tsx`). **No numeric prefixes.**
-- If the slug exists,think of a new one which still makes sense. Do not rename existing files.
-
-## Animation (reference, don’t duplicate)
-- Use the animation helper `A` from `"@/lib/anim"`.
-- **Do not list enums or prop details here.** Treat `"@/lib/anim"` as the sole source of truth for valid names, triggers, defaults, and prop types.
-- Usage example (pattern only):
-  ```tsx
-  'use client';
-  import { A } from "@/lib/anim";
-  // ...
-  <A name={/* AnimName from lib */} trigger={/* Trigger from lib */} /* optional props */>
-    {/* animated content */}
-  </A>
+  </Animate>
   ```
 - If an animation isn't specified by the design/copy, use the library defaults.
 - If a requested animation name doesn't exist, prefer a graceful default (e.g., fadeIn) and add a terse // TODO: near the copy.
