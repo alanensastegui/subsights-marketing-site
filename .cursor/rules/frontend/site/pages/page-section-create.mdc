@@ -1,0 +1,248 @@
+---
+description: Add/create/insert a section to a page in `app/(site)/**/page.tsx`
+alwaysApply: false
+---
+# Sections — Create Task Recipe
+
+## When to use
+User asks to **add/create/insert** a new section to a page (e.g., “Add a dark hero with parallax to /pricing”).
+
+## Goals
+- Create one self-contained `.tsx` under `/app/(site)/<page>/sections/<slug>.tsx`.
+- Update the page composer to include the new section in explicit order.
+- Follow the **Sections Standards** and **Page Composer Standards**.
+
+## Steps (do, don’t ask)
+1) **Infer slug**
+   - Lowercase → trim → replace spaces/punct/emoji with `-` → collapse repeats → strip leading/trailing hyphens.
+   - If a file with that slug exists, think of another slug that makes sense.
+   - Do **not** rename existing files.
+
+2) **Create file**
+   - Path: `/app/(site)/<page>/sections/<slug>.tsx`
+   - Include the required contract: local `type Copy`, **EDITABLE REGION** `copy` object (`satisfies Copy`), `export const sectionId = "<slug>"`, and `export default function Section()` that reads from `copy`.
+   - Imports allowed only: `react`, `Link` (`next/link`), `Image` (`next/image`), `cn` (`@/lib/cn`), UI primitives from `@/ui/*`, `A` from `@/lib/anim`.
+   - Add `'use client'` **only if** you import `A` or use hooks/handlers/refs. (Using `Link` alone does not require it.)
+
+3) **Populate minimal copy**
+   - Use real-sounding placeholders; keep it brief.
+   - Add terse `// TODO:` for unresolved `href`, image `src`, or asset paths.
+   - Prefer internal links with `<Link>`; external links use `<a target="_blank" rel="noopener noreferrer">`.
+
+4) **Animation**
+   - If animation is requested, wrap elements with `<A ...>` and **reference** `@/lib/anim` for valid names/props (don’t duplicate enums here).
+   - If unspecified or invalid, fall back to a gentle default (e.g., `fadeIn`) and add a `// TODO:`.
+
+5) **Images**
+   - Provide meaningful `alt`.
+   - If using `<Image fill>`, include a `sizes` attribute.
+
+6) **Update page composer**
+   - Open `/app/(site)/<page>/page.tsx`.
+   - Import the section with a readable alias and add it to the `Sections` array at the requested position (append if unspecified).
+   - If `page.tsx` is **missing**, create a minimal composer and **metadata** using `buildMetadata` from `@/lib/seo`.
+
+## Templates (use one; trim unused imports)
+
+**Static (no animation)**
+```tsx
+import * as React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/lib/cn";
+import { Button } from "@/ui/button";
+import { Badge } from "@/ui/badge";
+
+type Copy = {
+  title: string;
+  sub?: string;
+  badge?: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  image?: { src: string; alt: string };
+};
+
+export const sectionId = "<slug>";
+
+// ---- EDITABLE REGION ----
+const copy = {
+  title: "Your headline here",
+  sub: "A short supporting sentence that explains the value.",
+  badge: "New Feature", // TODO: customize or remove
+  primaryCta: { label: "Get started", href: "/signup" }, // TODO: confirm
+  secondaryCta: { label: "Learn more", href: "/docs" }, // TODO: confirm
+  image: { src: "/images/placeholder.png", alt: "Product UI" } // TODO: asset
+} satisfies Copy;
+// ---- /EDITABLE REGION ----
+
+export default function Section() {
+  const c = copy;
+  return (
+    <section className={cn("relative isolate bg-background text-foreground")}>
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+          <div className="space-y-6">
+            {c.badge && (
+              <Badge variant="secondary" className="text-sm">
+                {c.badge}
+              </Badge>
+            )}
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{c.title}</h2>
+            {c.sub && <p className="max-w-prose text-muted-foreground">{c.sub}</p>}
+            <div className="flex flex-wrap gap-4">
+              {c.primaryCta && (
+                <Button asChild>
+                  <Link href={c.primaryCta.href}>{c.primaryCta.label}</Link>
+                </Button>
+              )}
+              {c.secondaryCta && (
+                <Button variant="ghost" asChild>
+                  <Link href={c.secondaryCta.href}>{c.secondaryCta.label}</Link>
+                </Button>
+              )}
+            </div>
+          </div>
+
+          {c.image && (
+            <div className="relative">
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-xl ring-1 ring-border/50">
+                <Image
+                  src={c.image.src}
+                  alt={c.image.alt}
+                  fill
+                  sizes="(min-width:1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+**Animated (parallax/entrance)**
+```tsx
+'use client';
+import * as React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/lib/cn";
+import { Button } from "@/ui/button";
+import { Badge } from "@/ui/badge";
+import { A } from "@/lib/anim";
+
+type Copy = {
+  title: string;
+  sub?: string;
+  badge?: string;
+  ctas?: { label: string; href: string }[];
+  image?: { src: string; alt: string };
+};
+
+export const sectionId = "<slug>";
+
+/* ---- EDITABLE REGION ---- */
+const copy = {
+  title: "Launch faster with polished sections",
+  sub: "Single-file sections with built-in animation and great defaults.",
+  badge: "Launching Soon", // TODO: customize or remove
+  ctas: [
+    { label: "Try it free", href: "/signup" }, // TODO
+    { label: "Watch demo", href: "/#tour" } // TODO
+  ],
+  image: { src: "/images/hero-ui.png", alt: "Product UI" } // TODO
+} satisfies Copy;
+/* ---- /EDITABLE REGION ---- */
+
+export default function Section() {
+  const c = copy;
+  return (
+    <section className={cn("relative isolate bg-neutral-950 text-white")}>
+      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          <A name="fadeIn" as="div" className="space-y-6">
+            {c.badge && (
+              <Badge variant="outline" className="text-sm border-white/20 text-white">
+                {c.badge}
+              </Badge>
+            )}
+            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">{c.title}</h1>
+            {c.sub && <p className="max-w-prose text-neutral-300">{c.sub}</p>}
+            {c.ctas && (
+              <div className="flex flex-wrap gap-4">
+                {c.ctas.map((cta, i) => (
+                  <Button key={i} asChild>
+                    <Link href={cta.href}>{cta.label}</Link>
+                  </Button>
+                ))}
+              </div>
+            )}
+          </A>
+
+          {c.image && (
+            <A name="parallax" trigger="onScroll" durationMs={1200} easing="ease-out" as="div" className="relative">
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-xl ring-1 ring-white/10">
+                <Image
+                  src={c.image.src}
+                  alt={c.image.alt}
+                  fill
+                  sizes="(min-width:1024px) 50vw, 100vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </A>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+**Composer update (insert new section)**
+```tsx
+import HeroPromo from "./sections/<slug>";
+
+export default function Page() {
+  const Sections = [HeroPromo /*, existing sections...*/];
+  return <main>{Sections.map((S, i) => <S key={i} />)}</main>;
+}
+```
+
+**Composer bootstrap (if page.tsx is missing)**
+```tsx
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
+import NewSection from "./sections/<slug>";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Page Title", // TODO
+  description: "One-sentence summary for SEO.", // TODO
+  path: "/<page>", // TODO
+  image: "/og/<page>.png", // TODO
+});
+
+export default function Page() {
+  const Sections = [NewSection];
+  return <main>{Sections.map((S, i) => <S key={i} />)}</main>;
+}
+```
+
+## A11y & hygiene
+- Semantic HTML; meaningful `alt`; logical heading order.
+- Keyboard-friendly controls; adequate hit targets.
+- No `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, or direct `window`/`document` access (beyond `<A>`).
+- No external `<script>`/`<style>`.
+
+## Preflight (before saving)
+- [ ] Allowed imports only; `'use client'` added **iff** needed.
+- [ ] `sectionId` matches filename slug.
+- [ ] `copy` uses `satisfies Copy`.
+- [ ] Images have `alt`; `sizes` set when `fill`.
+- [ ] Links: internal via `<Link>`, external via `<a target="_blank" rel="noopener noreferrer">`.
+- [ ] Page composer import added and placed correctly in `Sections` array (or composer bootstrapped with metadata).
+- [ ] Minimal diffs; run Prettier; no unused imports.

@@ -1,0 +1,78 @@
+---
+description: Base standards for single-file page sections (agent mode)
+globs: app/(site)/**/sections/**/*.tsx
+alwaysApply: false
+---
+# React Sections Builder — Base Standards (Sections)
+
+## Scope
+Applies to any file in `app/(site)/**/sections/` — creation and edits. Task-specific rules (Create/Update) may add steps but must not relax these constraints.
+
+## File Contract (every section file must include)
+- A local `type Copy`.
+- An **EDITABLE REGION** `copy` object using `satisfies Copy`.
+- `export default function Section()` that reads exclusively from `copy`.
+- `export const sectionId = "<slug>"` where `<slug>` === filename (kebab-case).
+
+## Allowed Imports (strict allowlist)
+- `react`
+- `Link` from `"next/link"`  ← **added**
+- `Image` from `"next/image"` (optional)
+- `cn` from `"@/lib/cn"`
+- UI primitives from `"@/ui/*"` (e.g., button, card, accordion)
+- `A` from `"@/lib/anim"`
+Forbidden: `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, direct `window`/`document` access (beyond what `<A>` abstracts), external `<script>`/`<style>`.
+
+## Routing
+- Use `<Link href="/internal">...</Link>` for **internal** navigation.
+- For **external** URLs or file downloads, use `<a href="https://..." target="_blank" rel="noopener noreferrer">...</a>`.
+- When combining with UI primitives that support `asChild`, prefer:
+  `<Button asChild><Link href="/path">Label</Link></Button>`.
+- Do **not** nest an `<a>` inside `<Link>` (Link renders an anchor).
+- Provide descriptive, accessible link text.
+
+## Client Boundary
+Add `'use client'` if you import `A` **or** use hooks/handlers/refs (`useState`, `useEffect`, `onClick`, etc.). (Using `Link` alone does not require `'use client'`.)
+
+## Styling & A11y
+- Tailwind classes + design tokens (e.g., `text-primary`, `bg-elevated`). No external styles.
+- Semantic HTML; labelled controls; keyboard-friendly interactions; logical heading order.
+- Images must have meaningful `alt`. If using `<Image fill>`, include an appropriate `sizes` attribute.
+
+## Naming & Collisions
+- Filename: kebab-case human slug (e.g., `hero-promo.tsx`). **No numeric prefixes.**
+- If the slug exists,think of a new one which still makes sense. Do not rename existing files.
+
+## Animation (reference, don’t duplicate)
+- Use the animation helper `A` from `"@/lib/anim"`.
+- **Do not list enums or prop details here.** Treat `"@/lib/anim"` as the sole source of truth for valid names, triggers, defaults, and prop types.
+- Usage example (pattern only):
+  ```tsx
+  import { A } from "@/lib/anim";
+  // ...
+  <A name={/* AnimName from lib */} trigger={/* Trigger from lib */} /* optional props */>
+    {/* animated content */}
+  </A>
+  ```
+- If an animation isn’t specified by the design/copy, use the library defaults.
+If a requested animation name doesn’t exist, prefer a graceful default (e.g., fadeIn) and add a terse // TODO: near the copy.
+
+## Agent Editing Behavior (Cursor Agent)
+- **Create:** Write new files only under `/app/(site)/<page>/sections/<slug>.tsx`. Add minimal sane copy; include TODOs for unresolved assets/links near the `copy` object. If `<Image fill>` is used, set `sizes`.
+- **Update:** Prefer **minimal diffs**. Modify only the **EDITABLE REGION** unless fixing a11y or contract violations. Preserve the public surface (exports, props). Don’t reorder unrelated imports or code.
+- Perform file edits directly (no conversational output or code fences).
+
+## Diff Hygiene
+- Keep changes atomic and scoped; avoid churn.
+- Preserve formatting; run Prettier. Keep import groupings consistent.
+- Ensure `sectionId` matches the filename slug.
+
+## Preflight Checklist (self-verify before saving)
+- [ ] Only allowlisted imports used (including `Link` where appropriate)
+- [ ] `'use client'` present when needed
+- [ ] `sectionId` === filename slug
+- [ ] `copy` typed with `satisfies Copy`
+- [ ] Alt text present; `sizes` provided when `fill`
+- [ ] Internal links use `<Link>`; external links use `<a target="_blank" rel="noopener noreferrer">`
+- [ ] No forbidden APIs; no external scripts/styles
+- [ ] Keyboard interaction and focus order make sense
