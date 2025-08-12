@@ -1,0 +1,151 @@
+---
+description: Standards for page composers (explicit order, readable aliases, SEO metadata)
+globs: app/(site)/**/page.tsx
+alwaysApply: false
+---
+# Page Composer — explicit order + SEO metadata
+
+## Scope
+Applies to any `page.tsx` inside `app/(site)/**/`. Pages import and render section files from `./sections/*` and define per-page metadata.
+
+## Responsibilities
+- Own the **order** of sections.
+- Keep the page a **server component** (do not add `'use client'` here). Client sections render fine inside.
+- Define **page-level metadata** using the Next.js Metadata API. Prefer static `metadata`; use `generateMetadata` only when values must be computed per-request or per-path.
+
+## Imports
+- Import sections via relative paths with readable aliases.
+```ts
+import HeroPromo from "./sections/hero-promo";
+import FeatureGrid from "./sections/feature-grid";
+```
+- Import React only if needed for types/JSX (Next 15 doesn’t require it for JSX).
+- For metadata typing (optional):
+```ts
+import type { Metadata, ResolvingMetadata } from "next";
+```
+- Avoid wildcard/glob imports and barrels for sections (order must be explicit and visible).
+
+## Composition Pattern (required)
+Compose sections in an explicit array and render them in order.
+```tsx
+export default function Page() {
+  const Sections = [HeroPromo, FeatureGrid /*, ...*/];
+  return (
+    <main>
+      {Sections.map((S, i) => <S key={i} />)}
+    </main>
+  );
+}
+```
+- Use array position to control placement.
+- Do not pass props to sections; each reads local `copy`.
+
+## Metadata (tab title + SEO)
+
+- Use the helper `buildMetadata` from `"@/lib/seo"` for **all** pages. Keep pages as **server components**; do **not** add `'use client'` for metadata.
+- Put site-wide defaults in the nearest `layout.tsx` (`metadataBase`, `title.template`, icons). Per page, call `buildMetadata` with page-specific fields.
+
+**Required per page**
+- `title`: specific and meaningful.
+- `description`: concise, unique (~140–160 chars).
+- `path`: route path starting with `/` (e.g., `/pricing`, `/about`).
+- `image` (recommended): URL(s) for social cards (relative paths OK).
+
+**Notes**
+- **Canonical URL is automatically set** from the `path` parameter via `buildMetadata`.
+- Prefer **relative** URLs for `path` and images; Next resolves them via `metadataBase`.
+- Set `ogType` to `"article"` for blogs/docs; otherwise default is `"website"`.
+- Use `noindex: true` only for gated/duplicate pages.
+
+**Static example**
+```ts
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Pricing",
+  description: "Transparent, flexible plans for teams of any size.",
+  path: "/pricing",
+  image: "/og/pricing.png",
+});
+```
+
+**Dynamic example (slugs)**
+```ts
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
+
+type Props = { params: { slug: string } };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = params;
+  // TODO: replace with real, fast data (cached/SSG if possible)
+  return buildMetadata({
+    title: `Docs – ${slug}`,
+    description: `Documentation for ${slug}.`,
+    path: `/docs/${slug}`,
+    image: `/og/docs/${slug}.png`,
+    ogType: "article",
+  });
+}
+```
+
+## TODO Resolution Steps for Composers
+When adding `// TODO:` comments in page composers, include specific resolution steps:
+
+**Metadata TODOs:**
+- `// TODO: confirm title` → Ask user: "What should the page title be for SEO?"
+- `// TODO: confirm description` → Ask user: "What should the page description be for SEO?"
+- `// TODO: confirm path` → Ask user: "What is the URL path for this page? (e.g., '/pricing', '/about')"
+- `// TODO: confirm image` → Ask user: "What image should be used for social sharing? (or remove if not needed)"
+- `// TODO: confirm ogType` → Ask user: "What Open Graph type? (e.g., 'website', 'article', 'product')"
+
+**Note:** The `path` parameter automatically generates the canonical URL, Open Graph URL, and other URL-based metadata.
+
+**Section Ordering TODOs:**
+- `// TODO: confirm section order` → Ask user: "In what order should the sections appear? (e.g., 'hero first, then features, then pricing')"
+- `// TODO: confirm section placement` → Ask user: "Where should this section be positioned? (e.g., 'after the hero', 'at the bottom', 'between features and pricing')"
+
+**Content TODOs:**
+- `// TODO: confirm page purpose` → Ask user: "What is the main purpose of this page? (e.g., 'landing page', 'documentation', 'pricing')"
+- `// TODO: confirm target audience` → Ask user: "Who is the target audience for this page? (e.g., 'developers', 'business users', 'general public')"
+
+## TODO Resolution Workflow for Composers
+When you encounter uncertainty during composer updates:
+
+1. **Identify what's unclear** (metadata, section order, content strategy, etc.)
+2. **Ask the user a specific question** using the resolution steps above
+3. **Wait for their response** before proceeding
+4. **Update the composer** based on their answer
+5. **Remove the TODO comment** once resolved
+
+**Example Resolution Flow:**
+```
+User: "Add a new pricing section to the homepage"
+You: "I'll add a pricing section to the homepage. Where should it be positioned? (e.g., 'after the hero', 'between features and CTA', 'at the bottom')"
+User: "After the hero section"
+You: "Perfect! I'll place it after the hero. What should the page title be for SEO?"
+User: "Home - Our Platform"
+You: "Great! I'll set the title to 'Home - Our Platform'. What should the page description be?"
+User: "The best platform for teams"
+You: "Perfect! I'll add the pricing section after the hero with the title 'Home - Our Platform' and description 'The best platform for teams'."
+```
+
+## Editing Behavior (Cursor Agent)
+- **Add a section:** add an import and insert its component into the `Sections` array at the requested position (append if unspecified).
+- **Reorder/remove:** only modify the relevant imports and the `Sections` array.
+- **Metadata edits:** if missing, add the minimal static object. If values depend on params/data, introduce `generateMetadata`. The `path` parameter automatically generates canonical URLs and Open Graph URLs. Do not add `'use client'`.
+
+## A11y & Semantics
+- Ensure a single `<main>` landmark per page.
+- Do not wrap individual sections with extra landmarks in the composer—sections manage their own structure.
+
+## Preflight Checklist (before saving)
+- [ ] Page remains a **server component** (no unnecessary `'use client'`).
+- [ ] Imports: readable aliases from `./sections/*`; no globs/barrels.
+- [ ] `Sections` array reflects intended order; only includes valid section components.
+- [ ] Metadata present (static or `generateMetadata`) with `title`, `description`, and `path` (canonical is auto-generated).
+- [ ] Social cards configured (`openGraph`/`twitter`) or intentionally inherited from layout.
+- [ ] URLs resolve via `metadataBase` where applicable.
+- [ ] No unused imports; formatting consistent (run Prettier).

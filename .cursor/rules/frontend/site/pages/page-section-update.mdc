@@ -1,0 +1,186 @@
+---
+description: Update/edit/modify/tweak an existing page section
+globs: app/(site)/**/page.tsx,app/(site)/**/sections/*.tsx
+alwaysApply: false
+---
+# Sections — Update/Enhance Task Recipe (required-by-default)
+
+## When to use
+User asks to change appearance and/or behavior of an existing section (copy, layout tweaks, Tailwind classes, animations, interactivity). When you use this rule set state "I am going to be following the update/enhance task recipe" at the beginning before doing any work.
+
+## Guardrails
+- Keep **stable identity**: same filename and `export const sectionId`.
+- **Allowed imports only**: `react`, `next/link`, `next/image`, `"@/lib/cn"`, `"@/components/ui/*"`, `"@/components/ui/animate"`.
+- Add `'use client'` **iff** you import `Animate` or use hooks/handlers/refs.
+- Maintain semantic HTML/a11y; no forbidden APIs or external scripts/styles.
+
+## Change tiers
+1) **Copy-only** — edit just the **SECTION COPY REGION** values.
+> Use **required fields by default**. Only mark a field optional if the UI conditionally renders it.
+2) **Visual** — Tailwind classes, spacing/typography/colors, grid/flex, reorder existing blocks.
+3) **Behavioral** — event handlers, small client state, `<Animate>` animations, swap/add UI primitives from `"@/components/ui/*"`.
+4) **Structural** — **add fields to the Copy type** and adjust markup.
+
+
+## Steps
+1) Open `/app/(site)/<page>/sections/<slug>.tsx`; confirm `sectionId === "<slug>"`.
+2) Apply the minimal tier needed.
+3) **If changing schema** (Structural):
+   - Update `type Copy` with **required fields** the UI always needs.
+   - Provide sensible defaults in the `copy` object immediately.
+   - If a field is truly conditional in the design, mark it optional and guard rendering.
+4) Keep exports the same (`export default function Section()`), keep `copy` with `satisfies Copy`, remove unused imports.
+5) A11y pass: headings, labels/aria-*, keyboard interactions, focus states; `alt` for images; if `Image fill`, set `sizes`.
+6) Only touch the page composer if explicitly asked to reorder/replace.
+
+## When to Add TODOs
+Add `// TODO:` comments when user requests are unclear or need clarification:
+
+**Vague Layout Requests:**
+- `// TODO: confirm grid layout` → Ask user: "How many columns should this have? (e.g., '2 columns', '3 columns')"
+- `// TODO: confirm spacing` → Ask user: "How much space between elements? (e.g., 'tight', 'comfortable', 'generous')"
+- `// TODO: confirm responsive behavior` → Ask user: "How should this look on mobile vs desktop?"
+
+**Unclear Design Choices (default to theme colors, primary variants, and fade in animations):**
+- `// TODO: confirm color scheme` → Ask user: "What colors should be used? (e.g., 'brand colors', 'neutral', 'specific colors')"
+- `// TODO: confirm component style` → Ask user: "What button/card variant? (e.g., 'primary', 'outline', 'ghost')"
+- `// TODO: confirm animation` → Ask user: "What animation effect? (e.g., 'fade in', 'slide up', 'bounce')"
+
+**Content Ambiguity:**
+- `// TODO: confirm copy` → Ask user: "What should this text say exactly?"
+- `// TODO: confirm CTA` → Ask user: "What should the button say and where should it link?"
+- `// TODO: confirm image` → Ask user: "What image should be used? (describe or provide path)"
+
+## TODO Resolution Workflow
+When you encounter uncertainty during updates:
+
+1. **Identify what's unclear** (layout, design, content, etc.)
+2. **Ask the user a specific question** using the resolution steps above
+3. **Wait for their response** before proceeding
+4. **Update the code** based on their answer
+5. **Remove the TODO comment** once resolved
+
+**Example Resolution Flow:**
+```
+User: "Make the buttons bigger and change the colors"
+You: "I'll make the buttons bigger. For the colors, what color scheme should I use? (e.g., 'brand colors', 'neutral', 'specific colors')"
+User: "Use brand colors"
+You: "Perfect! I'll use brand colors. How much bigger should the buttons be? (e.g., 'slightly larger', 'much larger', 'specific size')"
+User: "Just slightly larger"
+You: "Great! I'll increase the button size slightly and apply brand colors."
+```
+
+## Examples
+
+**A) User says: "Change the hero title to 'AI-Powered Meeting Notes' and make the background dark"**
+```tsx
+// Copy-only change (tier 1)
+const copy = {
+  title: "AI-Powered Meeting Notes", // Changed from "Your headline here"
+  sub: "A short supporting sentence that explains the value.",
+  primaryCta: { label: "Get started", href: "/signup" },
+  secondaryCta: { label: "Learn more", href: "/docs" },
+  image: { src: "/images/placeholder.png", alt: "Product UI" }
+} satisfies Copy;
+
+// Visual change (tier 2) - update background class
+<section className={cn("relative isolate bg-neutral-950 text-white")}> // Changed from bg-background text-foreground
+```
+
+**B) User says: "Add a badge above the title that says 'New Feature' and make the buttons larger"**
+```tsx
+// Structural change (tier 4) - add badge field
+type Copy = {
+  title: string;
+  sub: string;
+  badge: string; // NEW: badge field
+  primaryCta: { label: string; href: string };
+  secondaryCta: { label: string; href: string };
+  image: { src: string; alt: string };
+};
+
+const copy = {
+  title: "Your headline here",
+  sub: "A short supporting sentence that explains the value.",
+  badge: "New Feature", // NEW: added badge text
+  primaryCta: { label: "Get started", href: "/signup" },
+  secondaryCta: { label: "Learn more", href: "/docs" },
+  image: { src: "/images/placeholder.png", alt: "Product UI" }
+} satisfies Copy;
+
+// Add badge display above title
+<Badge variant="secondary" className="text-sm mb-4">
+  {c.badge}
+</Badge>
+
+// Visual change (tier 2) - make buttons larger
+<Button size="lg" asChild> // Added size="lg"
+  <Link href={c.primaryCta.href}>{c.primaryCta.label}</Link>
+</Button>
+```
+
+**C) User says: "Make the image animate in with a fade effect when the page loads"**
+```tsx
+// Behavioral change (tier 3) - add animation
+'use client'; // Required for A component
+import { Animate } from "@/components/ui/animate";
+
+// Wrap image with animation
+<Animate name="fadeIn" as="div" className="relative">
+  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl ring-1 ring-border/50">
+    <Image
+      src={c.image.src}
+      alt={c.image.alt}
+      fill
+      sizes="(min-width:1024px) 50vw, 100vw"
+      className="object-cover"
+    />
+  </div>
+</A>
+```
+
+**D) User says: "Change the layout to 3 columns instead of 2 and add a third CTA button"**
+```tsx
+// Structural change (tier 4) - add third CTA
+type Copy = {
+  title: string;
+  sub: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta: { label: string; href: string };
+  tertiaryCta: { label: string; href: string }; // NEW: third CTA
+  image: { src: string; alt: string };
+};
+
+const copy = {
+  title: "Your headline here",
+  sub: "A short supporting sentence that explains the value.",
+  primaryCta: { label: "Get started", href: "/signup" },
+  secondaryCta: { label: "Learn more", href: "/docs" },
+  tertiaryCta: { label: "Contact sales", href: "/contact" }, // NEW: added third CTA
+  image: { src: "/images/placeholder.png", alt: "Product UI" }
+} satisfies Copy;
+
+// Visual change (tier 2) - update grid to 3 columns
+<div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-3"> // Changed from lg:grid-cols-2
+
+// Add third button
+{c.tertiaryCta && (
+  <Button variant="outline" asChild>
+    <Link href={c.tertiaryCta.href}>{c.tertiaryCta.label}</Link>
+  </Button>
+)}
+```
+
+## Escalate to new section when
+- The purpose/IA changes category (hero ↔ pricing ↔ testimonials).
+- You need imports outside the allowlist or external scripts/styles.
+- Large experimental redesigns (ship `<slug>-alt` and swap via composer).
+
+## Preflight (before saving)
+- [ ] Filename and `sectionId` unchanged; default export still `Section`.
+- [ ] Imports allowlisted; `'use client'` present **iff** needed; no unused imports.
+- [ ] **If schema changed:** new fields are required **unless truly conditional**; `copy` provides defaults and `satisfies Copy`.
+- [ ] A11y verified (roles, labels, keyboard, focus, alt text).
+- [ ] `Image fill` → `sizes` provided.
+- [ ] No forbidden APIs; no external `<script>`/`<style>`.
+- [ ] Page composer untouched unless reorder/replace was requested.

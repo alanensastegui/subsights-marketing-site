@@ -1,0 +1,256 @@
+---
+description: Add/create/insert a section to a page
+globs: app/(site)/**/page.tsx,app/(site)/**/sections/*.tsx
+alwaysApply: false
+---
+# Sections — Create Task Recipe
+
+## When to use
+User asks to **add/create/insert** a new section to a page (e.g., “Add a dark hero with parallax to /pricing”). When you use this rule set state "I am going to be following the create task recipe" at the beginning before doing any work.
+
+## Goals
+- Create one self-contained `.tsx` under `/app/(site)/<page>/sections/<slug>.tsx`.
+- Update the page composer to include the new section in explicit order.
+- Follow the **Sections Standards** and **Page Composer Standards**.
+- Ensure design is consistent across a page (fonts, colors, spacing, etc.). Read one or two other sections to see what the page style is like before beginning work.
+
+## Steps
+1) **Infer slug**
+   - Lowercase → trim → replace spaces/punct/emoji with `-` → collapse repeats → strip leading/trailing hyphens.
+   - If a file with that slug exists, think of another slug that makes sense.
+   - Do **not** rename existing files.
+
+2) **Create file**
+   - Path: `/app/(site)/<page>/sections/<slug>.tsx`
+   - Include the required contract: local `type Copy`, **SECTION COPY REGION** `copy` object (`satisfies Copy`), `export const sectionId = "<slug>"`, and `export default function Section()` that reads from `copy`.
+   - Imports allowed only: `react`, `Link` (`next/link`), `Image` (`next/image`), `cn` (`@/lib/cn`), UI primitives from `@/components/ui/*`, `Animate` from `@/components/ui/animate`.
+       - Add `'use client'` **only if** you import `Animate` or use hooks/handlers/refs. (Using `Link` alone does not require it.)
+
+3) **Populate minimal copy**
+   - Use real-sounding placeholders; keep it brief.
+   - Add terse `// TODO:` for unresolved `href`, image `src`, or asset paths.
+   - **For each TODO, include specific resolution steps:**
+     - `// TODO: confirm href` → Ask user: "What page should this link to?"
+     - `// TODO: confirm image` → Ask user: "What image should be used? (describe or provide path)"
+     - `// TODO: confirm copy` → Ask user: "What should this text say?"
+   - Prefer internal links with `<Link>`; external links use `<a target="_blank" rel="noopener noreferrer">`.
+
+4) **Animation**
+   - If animation is requested, wrap elements with `<Animate ...>` and **reference** `@/components/ui/animate` for valid names/props (don't duplicate enums here).
+   - If unspecified or invalid, fall back to a gentle default (e.g., `fadeIn`) and add a `// TODO:`.
+   - **For animation TODOs, include resolution steps:**
+     - `// TODO: confirm animation` → Ask user: "What animation effect? (e.g., 'fade in', 'slide up', 'bounce')"
+     - `// TODO: confirm timing` → Ask user: "How fast should it animate? (e.g., 'quick', 'medium', 'slow')"
+     - `// TODO: confirm trigger` → Ask user: "When should it animate? (e.g., 'on page load', 'on scroll', 'on hover')"
+
+5) **Images**
+   - Provide meaningful `alt`.
+   - If using `<Image fill>`, include a `sizes` attribute.
+
+6) **Update page composer**
+   - Open `/app/(site)/<page>/page.tsx`.
+   - Import the section with a readable alias and add it to the `Sections` array at the requested position (append if unspecified).
+   - If `page.tsx` is **missing**, create a minimal composer and **metadata** using `buildMetadata` from `@/lib/seo`.
+
+## Templates (use one; trim unused imports)
+
+**Static (no animation)**
+```tsx
+import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/lib/cn";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+type Copy = {
+  title: string;
+  sub?: string;
+  badge?: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  image?: { src: string; alt: string };
+};
+
+export const sectionId = "<slug>";
+
+// ---- SECTION COPY REGION ----
+const copy = {
+  title: "Your headline here", // TODO: confirm headline → Ask user: "What should the main headline say?"
+  sub: "A short supporting sentence that explains the value.", // TODO: confirm subtext → Ask user: "What supporting text should appear below the headline?"
+  badge: "New Feature", // TODO: confirm badge → Ask user: "What should the badge say? (or remove if not needed)"
+  primaryCta: { label: "Get started", href: "/signup" }, // TODO: confirm primary CTA → Ask user: "What should the primary button say and where should it link?"
+  secondaryCta: { label: "Learn more", href: "/docs" }, // TODO: confirm secondary CTA → Ask user: "What should the secondary button say and where should it link?"
+  image: { src: "/images/placeholder.png", alt: "Product UI" } // TODO: confirm image → Ask user: "What image should be used? (describe or provide path)"
+} satisfies Copy;
+// ---- /SECTION COPY REGION ----
+
+export default function Section() {
+  const c = copy;
+  return (
+    <section className={cn("relative isolate bg-background text-foreground")}>
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+          <div className="space-y-6">
+            {c.badge && (
+              <Badge variant="secondary" className="text-sm">
+                {c.badge}
+              </Badge>
+            )}
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">{c.title}</h2>
+            {c.sub && <p className="max-w-prose text-muted-foreground">{c.sub}</p>}
+            <div className="flex flex-wrap gap-4">
+              {c.primaryCta && (
+                <Button asChild>
+                  <Link href={c.primaryCta.href}>{c.primaryCta.label}</Link>
+                </Button>
+              )}
+              {c.secondaryCta && (
+                <Button variant="ghost" asChild>
+                  <Link href={c.secondaryCta.href}>{c.secondaryCta.label}</Link>
+                </Button>
+              )}
+            </div>
+          </div>
+
+          {c.image && (
+            <div className="relative">
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-xl ring-1 ring-border/50">
+                <Image
+                  src={c.image.src}
+                  alt={c.image.alt}
+                  fill
+                  sizes="(min-width:1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+**Animated (parallax/entrance)**
+```tsx
+'use client';
+import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/lib/cn";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Animate } from "@/components/ui/animate";
+
+type Copy = {
+  title: string;
+  sub?: string;
+  badge?: string;
+  ctas?: { label: string; href: string }[];
+  image?: { src: string; alt: string };
+};
+
+export const sectionId = "<slug>";
+
+/* ---- SECTION COPY REGION ---- */
+const copy = {
+  title: "Launch faster with polished sections", // TODO: confirm headline → Ask user: "What should the main headline say?"
+  sub: "Single-file sections with built-in animation and great defaults.", // TODO: confirm subtext → Ask user: "What supporting text should appear below the headline?"
+  badge: "Launching Soon", // TODO: confirm badge → Ask user: "What should the badge say? (or remove if not needed)"
+  ctas: [
+    { label: "Try it free", href: "/signup" }, // TODO: confirm first CTA → Ask user: "What should the first button say and where should it link?"
+    { label: "Watch demo", href: "/#tour" } // TODO: confirm second CTA → Ask user: "What should the second button say and where should it link?"
+  ],
+  image: { src: "/images/hero-ui.png", alt: "Product UI" } // TODO: confirm image → Ask user: "What image should be used? (describe or provide path)"
+} satisfies Copy;
+/* ---- /SECTION COPY REGION ---- */
+
+export default function Section() {
+  const c = copy;
+  return (
+    <section className={cn("relative isolate bg-neutral-950 text-white")}>
+      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          <Animate name="fadeIn" as="div" className="space-y-6">
+            {c.badge && (
+              <Badge variant="outline" className="text-sm border-white/20 text-white">
+                {c.badge}
+              </Badge>
+            )}
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">{c.title}</h2>
+            {c.sub && <p className="max-w-prose text-neutral-300">{c.sub}</p>}
+            {c.ctas && (
+              <div className="flex flex-wrap gap-4">
+                {c.ctas.map((cta, i) => (
+                  <Button key={i} asChild>
+                    <Link href={cta.href}>{cta.label}</Link>
+                  </Button>
+                ))}
+              </div>
+            )}
+          </A>
+
+          {c.image && (
+            <Animate name="parallax" trigger="onScroll" durationMs={1200} easing="ease-out" as="div" className="relative">
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-xl ring-1 ring-white/10">
+                <Image
+                  src={c.image.src}
+                  alt={c.image.alt}
+                  fill
+                  sizes="(min-width:1024px) 50vw, 100vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </A>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+**Composer update (insert new section)**
+```tsx
+import HeroPromo from "./sections/<slug>";
+
+export default function Page() {
+  const Sections = [HeroPromo /*, existing sections...*/];
+  return <main>{Sections.map((S, i) => <S key={i} />)}</main>;
+}
+```
+
+**Composer bootstrap (if page.tsx is missing)**
+```tsx
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
+import NewSection from "./sections/<slug>";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Page Title", // TODO: confirm title → Ask user: "What should the page title be for SEO?"
+  description: "One-sentence summary for SEO.", // TODO: confirm description → Ask user: "What should the page description be for SEO?"
+  path: "/<page>", // TODO: confirm path → Ask user: "What is the URL path for this page?"
+  image: "/og/<page>.png", // TODO: confirm og image → Ask user: "What image should be used for social sharing? (or remove if not needed)"
+});
+
+export default function Page() {
+  const Sections = [NewSection];
+  return <main>{Sections.map((S, i) => <S key={i} />)}</main>;
+}
+```
+
+## A11y & hygiene
+- Semantic HTML; meaningful `alt`; logical heading order.
+- Keyboard-friendly controls; adequate hit targets.
+- No `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, or direct `window`/`document` access (beyond `<Animate>`).
+- No external `<script>`/`<style>`.
+
+## Preflight (before saving)
+- [ ] Allowed imports only; `'use client'` added **iff** needed.
+- [ ] `sectionId` matches filename slug.
+- [ ] `copy` uses `satisfies Copy`.
+- [ ] Images have `alt`; `sizes` set when `fill`.
+- [ ] Links: internal via `<Link>`, external via `<a target="_blank" rel="noopener noreferrer">`.
+- [ ] Page composer import added and placed correctly in `Sections` array (or composer bootstrapped with metadata).
+- [ ] Minimal diffs; run Prettier; no unused imports.
