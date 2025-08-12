@@ -8,6 +8,7 @@ Applies to any file in `app/(site)/**/sections/` — creation and edits. Task-sp
 - A **SECTION COPY REGION** `copy` object using `satisfies Copy`.
 - `export default function Section()` that reads exclusively from `copy`.
 - `export const sectionId = "<slug>"` where `<slug>` === filename (kebab-case).
+- **Consistent heading hierarchy**: Use `h2` for section titles to avoid multiple `h1` tags on multi-section pages.
 
 ## Allowed Imports (strict allowlist)
 - `react`
@@ -22,7 +23,9 @@ Forbidden: `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, dir
 Follow these design principles to create polished, professional sections:
 
 **Visual Hierarchy:**
-- Use consistent heading levels (`h1` → `h2` → `h3`) for content structure
+- **Use `h2` for section titles** - Since sections are components within pages, use `h2` for the main section headline to avoid multiple `h1` tags on multi-section pages
+- **Use `h3` for subsections** - For content within a section (e.g., feature titles, card headers)
+- **Use `h4` and below sparingly** - Only for deeply nested content that needs hierarchical organization
 - Apply appropriate font weights and sizes (e.g., `font-bold` for headlines, `font-medium` for subheadings)
 - Use spacing consistently (`space-y-4`, `space-y-6`, `space-y-8`) to group related content
 
@@ -101,7 +104,7 @@ When a new UI component is needed that's not currently available in `@/ui/*`:
 Add `'use client'` if you import `A` **or** use hooks/handlers/refs (`useState`, `useEffect`, `onClick`, etc.). (Using `Link` alone does not require `'use client'`.)
 
 ## Styling & A11y
-- Tailwind classes + design tokens (e.g., `text-primary`, `bg-elevated`). No external styles.
+- Tailwind classes + design tokens (e.g., `text-primary`, `bg-secondary`, `bg-card`). No external styles.
 - Semantic HTML; labelled controls; keyboard-friendly interactions; logical heading order.
 - Images must have meaningful `alt`. If using `<Image fill>`, include an appropriate `sizes` attribute.
 
@@ -185,6 +188,7 @@ You: "Perfect! I'll implement slideIn from bottom with medium timing on page loa
 - [ ] `'use client'` present when needed
 - [ ] `sectionId` === filename slug
 - [ ] `copy` typed with `satisfies Copy`
+- [ ] **Heading hierarchy consistent**: Use `h2` for section titles, `h3` for subsections
 - [ ] Alt text present; `sizes` provided when `fill`
 - [ ] Internal links use `<Link>`; external links use `<a target="_blank" rel="noopener noreferrer">`
 - [ ] No forbidden APIs; no external scripts/styles

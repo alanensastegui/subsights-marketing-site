@@ -49,10 +49,11 @@ export default function Page() {
 **Required per page**
 - `title`: specific and meaningful.
 - `description`: concise, unique (~140–160 chars).
-- `path`: route path starting with `/` (canonical is derived from this).
+- `path`: route path starting with `/` (e.g., `/pricing`, `/about`).
 - `image` (recommended): URL(s) for social cards (relative paths OK).
 
 **Notes**
+- **Canonical URL is automatically set** from the `path` parameter via `buildMetadata`.
 - Prefer **relative** URLs for `path` and images; Next resolves them via `metadataBase`.
 - Set `ogType` to `"article"` for blogs/docs; otherwise default is `"website"`.
 - Use `noindex: true` only for gated/duplicate pages.
@@ -96,8 +97,11 @@ When adding `// TODO:` comments in page composers, include specific resolution s
 **Metadata TODOs:**
 - `// TODO: confirm title` → Ask user: "What should the page title be for SEO?"
 - `// TODO: confirm description` → Ask user: "What should the page description be for SEO?"
+- `// TODO: confirm path` → Ask user: "What is the URL path for this page? (e.g., '/pricing', '/about')"
 - `// TODO: confirm image` → Ask user: "What image should be used for social sharing? (or remove if not needed)"
 - `// TODO: confirm ogType` → Ask user: "What Open Graph type? (e.g., 'website', 'article', 'product')"
+
+**Note:** The `path` parameter automatically generates the canonical URL, Open Graph URL, and other URL-based metadata.
 
 **Section Ordering TODOs:**
 - `// TODO: confirm section order` → Ask user: "In what order should the sections appear? (e.g., 'hero first, then features, then pricing')"
@@ -131,7 +135,7 @@ You: "Perfect! I'll add the pricing section after the hero with the title 'Home 
 ## Editing Behavior (Cursor Agent)
 - **Add a section:** add an import and insert its component into the `Sections` array at the requested position (append if unspecified).
 - **Reorder/remove:** only modify the relevant imports and the `Sections` array.
-- **Metadata edits:** if missing, add the minimal static object. If values depend on params/data, introduce `generateMetadata`. Do not add `'use client'`.
+- **Metadata edits:** if missing, add the minimal static object. If values depend on params/data, introduce `generateMetadata`. The `path` parameter automatically generates canonical URLs and Open Graph URLs. Do not add `'use client'`.
 
 ## A11y & Semantics
 - Ensure a single `<main>` landmark per page.
@@ -141,7 +145,7 @@ You: "Perfect! I'll add the pricing section after the hero with the title 'Home 
 - [ ] Page remains a **server component** (no unnecessary `'use client'`).
 - [ ] Imports: readable aliases from `./sections/*`; no globs/barrels.
 - [ ] `Sections` array reflects intended order; only includes valid section components.
-- [ ] Metadata present (static or `generateMetadata`) with `title`, `description`, and `alternates.canonical`.
+- [ ] Metadata present (static or `generateMetadata`) with `title`, `description`, and `path` (canonical is auto-generated).
 - [ ] Social cards configured (`openGraph`/`twitter`) or intentionally inherited from layout.
 - [ ] URLs resolve via `metadataBase` where applicable.
 - [ ] No unused imports; formatting consistent (run Prettier).
