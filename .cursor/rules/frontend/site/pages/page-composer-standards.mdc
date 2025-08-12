@@ -149,3 +149,4 @@ You: "Perfect! I'll add the pricing section after the hero with the title 'Home 
 - [ ] Social cards configured (`openGraph`/`twitter`) or intentionally inherited from layout.
 - [ ] URLs resolve via `metadataBase` where applicable.
 - [ ] No unused imports; formatting consistent (run Prettier).
+- [ ] Check for lint and type errors
