@@ -22,7 +22,7 @@ Applies to any file in `app/(site)/**/sections/` — creation and edits. Task-sp
 - import Image from `"next/image"`
 - import { cn } from `"@/lib/cn"`
 - UI primitives from `"@/components/ui/*"` (e.g., button, card, accordion)
-- import { Animate } from `"@/components/ui/animation"`
+- import { Animate } from `"@/components/ui/animate"`
 Forbidden: `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, direct `window`/`document` access (beyond what `<Animate>` abstracts), external `<script>`/`<style>`.
 
 ## Modern Design Principles & Best Practices
@@ -119,12 +119,12 @@ Add `'use client'` if you import `Animate` **or** use hooks/handlers/refs (`useS
 - If the slug exists,think of a new one which still makes sense. Do not rename existing files.
 
 ## Animation (reference, don’t duplicate)
-- Use the animation helper `Animate` from `"@/components/ui/animation"`.
-- **Do not list enums or prop details here.** Treat `"@/components/ui/animation"` as the sole source of truth for valid names, triggers, defaults, and prop types.
+- Use the animation helper `Animate` from `"@/components/ui/animate"`.
+- **Do not list enums or prop details here.** Treat `"@/components/ui/animate"` as the sole source of truth for valid names, triggers, defaults, and prop types.
 - Usage example (pattern only):
   ```tsx
   'use client';
-  import { Animate } from "@/components/ui/animation";
+  import { Animate } from "@/components/ui/animate";
   // ...
   <Animate name={/* AnimName from lib */} trigger={/* Trigger from lib */} /* optional props */>
     {/* animated content */}

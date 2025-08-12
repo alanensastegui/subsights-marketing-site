@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { A } from "@/lib/anim";
+import { Animate } from "@/components/ui/animate";
 
 export default function Home() {
   return (
     <div className="h-full py-20 space-y-20">
       {/* Hero Section */}
-      <A name="fadeIn" trigger="onVisible">
+      <Animate name="fadeIn" trigger="onVisible">
         <section className="text-center space-y-8">
           <h1 className="text-5xl font-bold tracking-tight">
             Transform Your Website Into a<br />
@@ -30,7 +30,7 @@ export default function Home() {
             </Button>
           </div>
         </section>
-      </A>
+      </Animate>
 
       {/* Features Preview */}
       <section className="grid md:grid-cols-3 gap-8">

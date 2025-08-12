@@ -23,7 +23,7 @@ User asks to **add/create/insert** a new section to a page (e.g., “Add a dark 
 2) **Create file**
    - Path: `/app/(site)/<page>/sections/<slug>.tsx`
    - Include the required contract: local `type Copy`, **SECTION COPY REGION** `copy` object (`satisfies Copy`), `export const sectionId = "<slug>"`, and `export default function Section()` that reads from `copy`.
-   - Imports allowed only: `react`, `Link` (`next/link`), `Image` (`next/image`), `cn` (`@/lib/cn`), UI primitives from `@/components/ui/*`, `Animate` from `@/components/ui/animation`.
+   - Imports allowed only: `react`, `Link` (`next/link`), `Image` (`next/image`), `cn` (`@/lib/cn`), UI primitives from `@/components/ui/*`, `Animate` from `@/components/ui/animate`.
        - Add `'use client'` **only if** you import `Animate` or use hooks/handlers/refs. (Using `Link` alone does not require it.)
 
 3) **Populate minimal copy**
@@ -36,7 +36,7 @@ User asks to **add/create/insert** a new section to a page (e.g., “Add a dark 
    - Prefer internal links with `<Link>`; external links use `<a target="_blank" rel="noopener noreferrer">`.
 
 4) **Animation**
-   - If animation is requested, wrap elements with `<Animate ...>` and **reference** `@/components/ui/animation` for valid names/props (don't duplicate enums here).
+   - If animation is requested, wrap elements with `<Animate ...>` and **reference** `@/components/ui/animate` for valid names/props (don't duplicate enums here).
    - If unspecified or invalid, fall back to a gentle default (e.g., `fadeIn`) and add a `// TODO:`.
    - **For animation TODOs, include resolution steps:**
      - `// TODO: confirm animation` → Ask user: "What animation effect? (e.g., 'fade in', 'slide up', 'bounce')"
@@ -140,7 +140,7 @@ import Image from "next/image";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Animate } from "@/components/ui/animation";
+import { Animate } from "@/components/ui/animate";
 
 type Copy = {
   title: string;
