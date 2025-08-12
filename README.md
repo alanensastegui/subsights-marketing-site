@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Subsights Marketing Site
+
+A modern marketing website built with Next.js, featuring a sophisticated demo system for showcasing Subsights chatbot integration capabilities.
+
+## Features
+
+- **Marketing Pages**: Home, About, Pricing, FAQ
+- **Demo System**: Multi-level fallback demo system with comprehensive analytics
+- **Admin Dashboard**: Real-time demo performance monitoring
+- **Modern UI**: Built with Radix UI components and Tailwind CSS
+- **Animation**: Smooth animations powered by Framer Motion
 
 ## Getting Started
 
@@ -16,9 +26,22 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo System
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This site includes a sophisticated demo system that allows prospects to see Subsights chatbot integration in action. For detailed documentation on how the demo system works, see [DEMO_SYSTEM.md](./DEMO_SYSTEM.md).
+
+### Quick Demo Access
+
+- Visit `/demo/[slug]` to see a demo in action
+- Access `/admin` (password: `subsights2025!`) to monitor demo performance
+- Check the demo system documentation for configuration and troubleshooting
+
+## Project Structure
+
+- `app/` - Next.js app router pages and API routes
+- `components/` - Reusable UI components
+- `lib/` - Utility functions and demo system logic
+- `styles/` - Global CSS and theme configuration
 
 ## Learn More
 
@@ -29,8 +52,12 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Netlify
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is configured for Netlify deployment with:
+
+- Security headers via `netlify.toml`
+- Automatic HTTPS redirects
+- Demo system optimization for production
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

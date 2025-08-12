@@ -1,0 +1,25 @@
+export type DemoMode = "proxy" | "iframe" | "default";
+export type FallbackPolicy = "auto" | "force-proxy" | "force-iframe" | "force-default";
+
+export type DemoTarget = {
+    slug: string;
+    url: string;
+    label: string;
+    scriptTag: string;           // Full script tag from sales (e.g., <script src="..." data-workspace="..." data-api-key="..."></script>)
+    // optional controls
+    policy?: FallbackPolicy;     // default: "auto"
+    allowIframe?: boolean;       // override when you *know* iframe is OK
+    timeoutMs?: number;          // fetch timeout for proxy
+    maxHtmlBytes?: number;       // safety cap (e.g., 2_000_000)
+};
+
+export const DEMO_TARGETS: DemoTarget[] = [
+    {
+        slug: "forks",
+        url: "https://www.forkswa.com",
+        label: "Forks, WA",
+        scriptTag: '<script src="https://widget.latest.subsights.com/chatbot.js" data-workspace="I6BHboKbqb" data-api-key="4yO7Z30ZFFZ79w75v5d1VqYhfHX63z44"></script>'
+    },
+];
+
+export const getDemoTarget = (slug: string) => DEMO_TARGETS.find(d => d.slug === slug) ?? null;
