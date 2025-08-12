@@ -87,7 +87,7 @@ export default function AdminPageClient() {
                 </TabsContent>
 
                 <TabsContent value="actions" className="mt-6">
-                    <AdminActionsTab events={events} getSuccessRate={getSuccessRate} />
+                    <AdminActionsTab events={events} />
                 </TabsContent>
             </Tabs>
         </div>

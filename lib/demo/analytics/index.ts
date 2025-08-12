@@ -10,6 +10,14 @@ export { isValidEvent, generateEventId, getSessionId, parseEvent, validateAndTra
 // Constants
 export { FALLBACK_CONSTANTS, FALLBACK_MESSAGES, PERFORMANCE_CONSTANTS } from "./constants";
 
+// Analytics insights
+export {
+    getMostCommonMeaningfulReason,
+    calculateSuccessRate,
+    calculateAverageSuccessRate,
+    getAnalyticsInsights
+} from "./insights";
+
 // Event logger instance
 export const eventLogger = EventLogger.getInstance();
 

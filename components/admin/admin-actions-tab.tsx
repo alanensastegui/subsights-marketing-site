@@ -1,32 +1,20 @@
 import { DEMO_TARGETS } from "@/lib/demo/config";
+import { getMostCommonMeaningfulReason, calculateAverageSuccessRate } from "@/lib/demo/analytics";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { DemoEvent } from "@/lib/demo/analytics";
 
 interface AdminActionsTabProps {
     events: DemoEvent[];
-    getSuccessRate: (slug: string) => number;
 }
 
-export function AdminActionsTab({ events, getSuccessRate }: AdminActionsTabProps) {
+export function AdminActionsTab({ events }: AdminActionsTabProps) {
     const getAverageSuccessRate = () => {
-        if (DEMO_TARGETS.length === 0) return 100;
-        const total = DEMO_TARGETS.reduce((sum, target) => sum + getSuccessRate(target.slug), 0);
-        return Math.round(total / DEMO_TARGETS.length);
+        return calculateAverageSuccessRate(DEMO_TARGETS, events);
     };
 
     const getMostCommonReason = () => {
-        if (events.length === 0) return 'N/A';
-
-        const reasonCounts: Record<string, number> = {};
-        events.forEach(event => {
-            reasonCounts[event.reason] = (reasonCounts[event.reason] || 0) + 1;
-        });
-
-        const sorted = Object.entries(reasonCounts)
-            .sort(([, a], [, b]) => (b as number) - (a as number));
-
-        return sorted[0]?.[0] || 'N/A';
+        return getMostCommonMeaningfulReason(events);
     };
 
     return (
