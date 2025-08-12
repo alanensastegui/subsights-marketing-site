@@ -20,7 +20,7 @@ Applies to any file in `app/(site)/**/sections/` — creation and edits. Task-sp
 - import Link from "next/link"
 - import Image from `"next/image"`
 - import { cn } from `"@/lib/cn"`
-- UI primitives from `"@/ui/*"` (e.g., button, card, accordion)
+- UI primitives from `"@/components/ui/*"` (e.g., button, card, accordion)
 - import { A } from `"@/lib/anim"`
 Forbidden: `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, direct `window`/`document` access (beyond what `<A>` abstracts), external `<script>`/`<style>`.
 
@@ -65,10 +65,10 @@ Follow these design principles to create polished, professional sections:
 - Apply smooth transitions for state changes (`transition-colors`, `transition-all`)
 
 ## Installing New shadcn/ui Components
-When a new UI component is needed that's not currently available in `@/ui/*`:
+When a new UI component is needed that's not currently available in `@/components/ui/*`:
 
 **Installation Process:**
-1. **Check if component exists** in the current `@/ui/*` directory
+1. **Check if component exists** in the current `@/components/ui/*` directory
 2. **If missing, install it** using the shadcn/ui CLI:
    ```bash
    npx shadcn@latest add [component-name]
@@ -86,7 +86,7 @@ When a new UI component is needed that's not currently available in `@/ui/*`:
    - `checkbox` - for multi-selection
 
 **After Installation:**
-- Import from `@/ui/[component-name]` following the existing pattern
+- Import from `@/components/ui/[component-name]` following the existing pattern
 - Use the component's variants and props as documented
 - Ensure proper accessibility attributes are applied
 - Test the component across different screen sizes
@@ -214,7 +214,7 @@ Applies to any file in `app/(site)/**/sections/` — creation and edits. Task-sp
 - import Link from "next/link"
 - import Image from `"next/image"`
 - import { cn } from `"@/lib/cn"`
-- UI primitives from `"@/ui/*"` (e.g., button, card, accordion)
+- UI primitives from `"@/components/ui/*"` (e.g., button, card, accordion)
 - import { A } from `"@/lib/anim"`
 Forbidden: `dangerouslySetInnerHTML`, `eval`, `new Function`, network calls, direct `window`/`document` access (beyond what `<A>` abstracts), external `<script>`/`<style>`.
 
@@ -259,10 +259,10 @@ Follow these design principles to create polished, professional sections:
 - Apply smooth transitions for state changes (`transition-colors`, `transition-all`)
 
 ## Installing New shadcn/ui Components
-When a new UI component is needed that's not currently available in `@/ui/*`:
+When a new UI component is needed that's not currently available in `@/components/ui/*`:
 
 **Installation Process:**
-1. **Check if component exists** in the current `@/ui/*` directory
+1. **Check if component exists** in the current `@/components/ui/*` directory
 2. **If missing, install it** using the shadcn/ui CLI:
    ```bash
    npx shadcn@latest add [component-name]
@@ -280,7 +280,7 @@ When a new UI component is needed that's not currently available in `@/ui/*`:
    - `checkbox` - for multi-selection
 
 **After Installation:**
-- Import from `@/ui/[component-name]` following the existing pattern
+- Import from `@/components/ui/[component-name]` following the existing pattern
 - Use the component's variants and props as documented
 - Ensure proper accessibility attributes are applied
 - Test the component across different screen sizes

@@ -1,15 +1,16 @@
 ---
 description: Update/edit/modify/tweak an existing page section
+globs: app/(site)/**/page.tsx,app/(site)/**/sections/*.tsx
 alwaysApply: false
 ---
 # Sections — Update/Enhance Task Recipe (required-by-default)
 
 ## When to use
-User asks to change appearance and/or behavior of an existing section (copy, layout tweaks, Tailwind classes, animations, interactivity).
+User asks to change appearance and/or behavior of an existing section (copy, layout tweaks, Tailwind classes, animations, interactivity). When you use this rule set state "I am going to be following the update/enhance task recipe" at the beginning before doing any work.
 
 ## Guardrails
 - Keep **stable identity**: same filename and `export const sectionId`.
-- **Allowed imports only**: `react`, `next/link`, `next/image`, `"@/lib/cn"`, `"@/ui/*"`, `"@/lib/anim"`.
+- **Allowed imports only**: `react`, `next/link`, `next/image`, `"@/lib/cn"`, `"@/components/ui/*"`, `"@/lib/anim"`.
 - Add `'use client'` **iff** you import `A` or use hooks/handlers/refs.
 - Maintain semantic HTML/a11y; no forbidden APIs or external scripts/styles.
 
@@ -17,7 +18,7 @@ User asks to change appearance and/or behavior of an existing section (copy, lay
 1) **Copy-only** — edit just the **SECTION COPY REGION** values.
 > Use **required fields by default**. Only mark a field optional if the UI conditionally renders it.
 2) **Visual** — Tailwind classes, spacing/typography/colors, grid/flex, reorder existing blocks.
-3) **Behavioral** — event handlers, small client state, `<A>` animations, swap/add UI primitives from `"@/ui/*"`.
+3) **Behavioral** — event handlers, small client state, `<A>` animations, swap/add UI primitives from `"@/components/ui/*"`.
 4) **Structural** — **add fields to the Copy type** and adjust markup.
 
 

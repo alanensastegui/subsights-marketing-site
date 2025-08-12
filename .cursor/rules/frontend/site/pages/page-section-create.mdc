@@ -1,16 +1,18 @@
 ---
-description: Add/create/insert a section to a page in `app/(site)/**/page.tsx`
+description: Add/create/insert a section to a page
+globs: app/(site)/**/page.tsx,app/(site)/**/sections/*.tsx
 alwaysApply: false
 ---
 # Sections — Create Task Recipe
 
 ## When to use
-User asks to **add/create/insert** a new section to a page (e.g., “Add a dark hero with parallax to /pricing”).
+User asks to **add/create/insert** a new section to a page (e.g., “Add a dark hero with parallax to /pricing”). When you use this rule set state "I am going to be following the create task recipe" at the beginning before doing any work.
 
 ## Goals
 - Create one self-contained `.tsx` under `/app/(site)/<page>/sections/<slug>.tsx`.
 - Update the page composer to include the new section in explicit order.
 - Follow the **Sections Standards** and **Page Composer Standards**.
+- Ensure design is consistent across a page (fonts, colors, spacing, etc.). Read one or two other sections to see what the page style is like before beginning work.
 
 ## Steps
 1) **Infer slug**
@@ -21,7 +23,7 @@ User asks to **add/create/insert** a new section to a page (e.g., “Add a dark 
 2) **Create file**
    - Path: `/app/(site)/<page>/sections/<slug>.tsx`
    - Include the required contract: local `type Copy`, **SECTION COPY REGION** `copy` object (`satisfies Copy`), `export const sectionId = "<slug>"`, and `export default function Section()` that reads from `copy`.
-   - Imports allowed only: `react`, `Link` (`next/link`), `Image` (`next/image`), `cn` (`@/lib/cn`), UI primitives from `@/ui/*`, `A` from `@/lib/anim`.
+   - Imports allowed only: `react`, `Link` (`next/link`), `Image` (`next/image`), `cn` (`@/lib/cn`), UI primitives from `@/components/ui/*`, `A` from `@/lib/anim`.
    - Add `'use client'` **only if** you import `A` or use hooks/handlers/refs. (Using `Link` alone does not require it.)
 
 3) **Populate minimal copy**
@@ -57,8 +59,8 @@ User asks to **add/create/insert** a new section to a page (e.g., “Add a dark 
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { Button } from "@/ui/button";
-import { Badge } from "@/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 type Copy = {
   title: string;
@@ -136,8 +138,8 @@ export default function Section() {
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { Button } from "@/ui/button";
-import { Badge } from "@/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { A } from "@/lib/anim";
 
 type Copy = {
