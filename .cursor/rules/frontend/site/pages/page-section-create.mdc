@@ -12,7 +12,7 @@ User asks to **add/create/insert** a new section to a page (e.g., “Add a dark 
 - Update the page composer to include the new section in explicit order.
 - Follow the **Sections Standards** and **Page Composer Standards**.
 
-## Steps (do, don’t ask)
+## Steps
 1) **Infer slug**
    - Lowercase → trim → replace spaces/punct/emoji with `-` → collapse repeats → strip leading/trailing hyphens.
    - If a file with that slug exists, think of another slug that makes sense.
@@ -20,18 +20,26 @@ User asks to **add/create/insert** a new section to a page (e.g., “Add a dark 
 
 2) **Create file**
    - Path: `/app/(site)/<page>/sections/<slug>.tsx`
-   - Include the required contract: local `type Copy`, **EDITABLE REGION** `copy` object (`satisfies Copy`), `export const sectionId = "<slug>"`, and `export default function Section()` that reads from `copy`.
+   - Include the required contract: local `type Copy`, **SECTION COPY REGION** `copy` object (`satisfies Copy`), `export const sectionId = "<slug>"`, and `export default function Section()` that reads from `copy`.
    - Imports allowed only: `react`, `Link` (`next/link`), `Image` (`next/image`), `cn` (`@/lib/cn`), UI primitives from `@/ui/*`, `A` from `@/lib/anim`.
    - Add `'use client'` **only if** you import `A` or use hooks/handlers/refs. (Using `Link` alone does not require it.)
 
 3) **Populate minimal copy**
    - Use real-sounding placeholders; keep it brief.
    - Add terse `// TODO:` for unresolved `href`, image `src`, or asset paths.
+   - **For each TODO, include specific resolution steps:**
+     - `// TODO: confirm href` → Ask user: "What page should this link to?"
+     - `// TODO: confirm image` → Ask user: "What image should be used? (describe or provide path)"
+     - `// TODO: confirm copy` → Ask user: "What should this text say?"
    - Prefer internal links with `<Link>`; external links use `<a target="_blank" rel="noopener noreferrer">`.
 
 4) **Animation**
-   - If animation is requested, wrap elements with `<A ...>` and **reference** `@/lib/anim` for valid names/props (don’t duplicate enums here).
+   - If animation is requested, wrap elements with `<A ...>` and **reference** `@/lib/anim` for valid names/props (don't duplicate enums here).
    - If unspecified or invalid, fall back to a gentle default (e.g., `fadeIn`) and add a `// TODO:`.
+   - **For animation TODOs, include resolution steps:**
+     - `// TODO: confirm animation` → Ask user: "What animation effect? (e.g., 'fade in', 'slide up', 'bounce')"
+     - `// TODO: confirm timing` → Ask user: "How fast should it animate? (e.g., 'quick', 'medium', 'slow')"
+     - `// TODO: confirm trigger` → Ask user: "When should it animate? (e.g., 'on page load', 'on scroll', 'on hover')"
 
 5) **Images**
    - Provide meaningful `alt`.
@@ -46,7 +54,6 @@ User asks to **add/create/insert** a new section to a page (e.g., “Add a dark 
 
 **Static (no animation)**
 ```tsx
-import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
@@ -64,16 +71,16 @@ type Copy = {
 
 export const sectionId = "<slug>";
 
-// ---- EDITABLE REGION ----
+// ---- SECTION COPY REGION ----
 const copy = {
-  title: "Your headline here",
-  sub: "A short supporting sentence that explains the value.",
-  badge: "New Feature", // TODO: customize or remove
-  primaryCta: { label: "Get started", href: "/signup" }, // TODO: confirm
-  secondaryCta: { label: "Learn more", href: "/docs" }, // TODO: confirm
-  image: { src: "/images/placeholder.png", alt: "Product UI" } // TODO: asset
+  title: "Your headline here", // TODO: confirm headline → Ask user: "What should the main headline say?"
+  sub: "A short supporting sentence that explains the value.", // TODO: confirm subtext → Ask user: "What supporting text should appear below the headline?"
+  badge: "New Feature", // TODO: confirm badge → Ask user: "What should the badge say? (or remove if not needed)"
+  primaryCta: { label: "Get started", href: "/signup" }, // TODO: confirm primary CTA → Ask user: "What should the primary button say and where should it link?"
+  secondaryCta: { label: "Learn more", href: "/docs" }, // TODO: confirm secondary CTA → Ask user: "What should the secondary button say and where should it link?"
+  image: { src: "/images/placeholder.png", alt: "Product UI" } // TODO: confirm image → Ask user: "What image should be used? (describe or provide path)"
 } satisfies Copy;
-// ---- /EDITABLE REGION ----
+// ---- /SECTION COPY REGION ----
 
 export default function Section() {
   const c = copy;
@@ -126,7 +133,6 @@ export default function Section() {
 **Animated (parallax/entrance)**
 ```tsx
 'use client';
-import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
@@ -144,18 +150,18 @@ type Copy = {
 
 export const sectionId = "<slug>";
 
-/* ---- EDITABLE REGION ---- */
+/* ---- SECTION COPY REGION ---- */
 const copy = {
-  title: "Launch faster with polished sections",
-  sub: "Single-file sections with built-in animation and great defaults.",
-  badge: "Launching Soon", // TODO: customize or remove
+  title: "Launch faster with polished sections", // TODO: confirm headline → Ask user: "What should the main headline say?"
+  sub: "Single-file sections with built-in animation and great defaults.", // TODO: confirm subtext → Ask user: "What supporting text should appear below the headline?"
+  badge: "Launching Soon", // TODO: confirm badge → Ask user: "What should the badge say? (or remove if not needed)"
   ctas: [
-    { label: "Try it free", href: "/signup" }, // TODO
-    { label: "Watch demo", href: "/#tour" } // TODO
+    { label: "Try it free", href: "/signup" }, // TODO: confirm first CTA → Ask user: "What should the first button say and where should it link?"
+    { label: "Watch demo", href: "/#tour" } // TODO: confirm second CTA → Ask user: "What should the second button say and where should it link?"
   ],
-  image: { src: "/images/hero-ui.png", alt: "Product UI" } // TODO
+  image: { src: "/images/hero-ui.png", alt: "Product UI" } // TODO: confirm image → Ask user: "What image should be used? (describe or provide path)"
 } satisfies Copy;
-/* ---- /EDITABLE REGION ---- */
+/* ---- /SECTION COPY REGION ---- */
 
 export default function Section() {
   const c = copy;
@@ -220,10 +226,10 @@ import { buildMetadata } from "@/lib/seo";
 import NewSection from "./sections/<slug>";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Page Title", // TODO
-  description: "One-sentence summary for SEO.", // TODO
-  path: "/<page>", // TODO
-  image: "/og/<page>.png", // TODO
+  title: "Page Title", // TODO: confirm title → Ask user: "What should the page title be for SEO?"
+  description: "One-sentence summary for SEO.", // TODO: confirm description → Ask user: "What should the page description be for SEO?"
+  path: "/<page>", // TODO: confirm path → Ask user: "What is the URL path for this page?"
+  image: "/og/<page>.png", // TODO: confirm og image → Ask user: "What image should be used for social sharing? (or remove if not needed)"
 });
 
 export default function Page() {

@@ -90,6 +90,44 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 ```
 
+## TODO Resolution Steps for Composers
+When adding `// TODO:` comments in page composers, include specific resolution steps:
+
+**Metadata TODOs:**
+- `// TODO: confirm title` → Ask user: "What should the page title be for SEO?"
+- `// TODO: confirm description` → Ask user: "What should the page description be for SEO?"
+- `// TODO: confirm image` → Ask user: "What image should be used for social sharing? (or remove if not needed)"
+- `// TODO: confirm ogType` → Ask user: "What Open Graph type? (e.g., 'website', 'article', 'product')"
+
+**Section Ordering TODOs:**
+- `// TODO: confirm section order` → Ask user: "In what order should the sections appear? (e.g., 'hero first, then features, then pricing')"
+- `// TODO: confirm section placement` → Ask user: "Where should this section be positioned? (e.g., 'after the hero', 'at the bottom', 'between features and pricing')"
+
+**Content TODOs:**
+- `// TODO: confirm page purpose` → Ask user: "What is the main purpose of this page? (e.g., 'landing page', 'documentation', 'pricing')"
+- `// TODO: confirm target audience` → Ask user: "Who is the target audience for this page? (e.g., 'developers', 'business users', 'general public')"
+
+## TODO Resolution Workflow for Composers
+When you encounter uncertainty during composer updates:
+
+1. **Identify what's unclear** (metadata, section order, content strategy, etc.)
+2. **Ask the user a specific question** using the resolution steps above
+3. **Wait for their response** before proceeding
+4. **Update the composer** based on their answer
+5. **Remove the TODO comment** once resolved
+
+**Example Resolution Flow:**
+```
+User: "Add a new pricing section to the homepage"
+You: "I'll add a pricing section to the homepage. Where should it be positioned? (e.g., 'after the hero', 'between features and CTA', 'at the bottom')"
+User: "After the hero section"
+You: "Perfect! I'll place it after the hero. What should the page title be for SEO?"
+User: "Home - Our Platform"
+You: "Great! I'll set the title to 'Home - Our Platform'. What should the page description be?"
+User: "The best platform for teams"
+You: "Perfect! I'll add the pricing section after the hero with the title 'Home - Our Platform' and description 'The best platform for teams'."
+```
+
 ## Editing Behavior (Cursor Agent)
 - **Add a section:** add an import and insert its component into the `Sections` array at the requested position (append if unspecified).
 - **Reorder/remove:** only modify the relevant imports and the `Sections` array.

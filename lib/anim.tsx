@@ -1,7 +1,6 @@
 'use client';
 
 import { motion, Variants, Transition } from 'framer-motion';
-import * as React from 'react';
 
 // ============================================================================
 // TYPE DEFINITIONS

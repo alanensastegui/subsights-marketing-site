@@ -14,14 +14,14 @@ User asks to change appearance and/or behavior of an existing section (copy, lay
 - Maintain semantic HTML/a11y; no forbidden APIs or external scripts/styles.
 
 ## Change tiers
-1) **Copy-only** — edit just the **EDITABLE REGION** values.
+1) **Copy-only** — edit just the **SECTION COPY REGION** values.
 > Use **required fields by default**. Only mark a field optional if the UI conditionally renders it.
 2) **Visual** — Tailwind classes, spacing/typography/colors, grid/flex, reorder existing blocks.
 3) **Behavioral** — event handlers, small client state, `<A>` animations, swap/add UI primitives from `"@/ui/*"`.
 4) **Structural** — **add fields to the Copy type** and adjust markup.
 
 
-## Steps (do, don't ask)
+## Steps
 1) Open `/app/(site)/<page>/sections/<slug>.tsx`; confirm `sectionId === "<slug>"`.
 2) Apply the minimal tier needed.
 3) **If changing schema** (Structural):
@@ -31,6 +31,43 @@ User asks to change appearance and/or behavior of an existing section (copy, lay
 4) Keep exports the same (`export default function Section()`), keep `copy` with `satisfies Copy`, remove unused imports.
 5) A11y pass: headings, labels/aria-*, keyboard interactions, focus states; `alt` for images; if `Image fill`, set `sizes`.
 6) Only touch the page composer if explicitly asked to reorder/replace.
+
+## When to Add TODOs
+Add `// TODO:` comments when user requests are unclear or need clarification:
+
+**Vague Layout Requests:**
+- `// TODO: confirm grid layout` → Ask user: "How many columns should this have? (e.g., '2 columns', '3 columns')"
+- `// TODO: confirm spacing` → Ask user: "How much space between elements? (e.g., 'tight', 'comfortable', 'generous')"
+- `// TODO: confirm responsive behavior` → Ask user: "How should this look on mobile vs desktop?"
+
+**Unclear Design Choices (default to theme colors, primary variants, and fade in animations):**
+- `// TODO: confirm color scheme` → Ask user: "What colors should be used? (e.g., 'brand colors', 'neutral', 'specific colors')"
+- `// TODO: confirm component style` → Ask user: "What button/card variant? (e.g., 'primary', 'outline', 'ghost')"
+- `// TODO: confirm animation` → Ask user: "What animation effect? (e.g., 'fade in', 'slide up', 'bounce')"
+
+**Content Ambiguity:**
+- `// TODO: confirm copy` → Ask user: "What should this text say exactly?"
+- `// TODO: confirm CTA` → Ask user: "What should the button say and where should it link?"
+- `// TODO: confirm image` → Ask user: "What image should be used? (describe or provide path)"
+
+## TODO Resolution Workflow
+When you encounter uncertainty during updates:
+
+1. **Identify what's unclear** (layout, design, content, etc.)
+2. **Ask the user a specific question** using the resolution steps above
+3. **Wait for their response** before proceeding
+4. **Update the code** based on their answer
+5. **Remove the TODO comment** once resolved
+
+**Example Resolution Flow:**
+```
+User: "Make the buttons bigger and change the colors"
+You: "I'll make the buttons bigger. For the colors, what color scheme should I use? (e.g., 'brand colors', 'neutral', 'specific colors')"
+User: "Use brand colors"
+You: "Perfect! I'll use brand colors. How much bigger should the buttons be? (e.g., 'slightly larger', 'much larger', 'specific size')"
+User: "Just slightly larger"
+You: "Great! I'll increase the button size slightly and apply brand colors."
+```
 
 ## Examples
 
