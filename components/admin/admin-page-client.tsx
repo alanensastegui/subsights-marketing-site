@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
 import { useAdminAuth, useAdminEvents } from "@/components/admin/hooks";
 import { AdminHeader, AdminTargetsTab, AdminEventsTab, AdminActionsTab } from "@/components/admin";
 
@@ -60,6 +61,7 @@ export default function AdminPageClient() {
     return (
         <div className="py-12 space-y-8">
             <AdminHeader onRefresh={loadEvents} onClearEvents={handleClearEvents} />
+            <Separator />
 
             {/* 
               💡 Tab Variants Demo:
