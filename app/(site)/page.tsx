@@ -1,33 +1,36 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { A } from "@/lib/anim";
 
 export default function Home() {
   return (
     <div className="h-full py-20 space-y-20">
       {/* Hero Section */}
-      <section className="text-center space-y-8">
-        <h1 className="text-5xl font-bold tracking-tight">
-          Transform Your Website Into a<br />
-          <span className="text-primary">Revenue Engine</span>
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Subsights helps you understand your visitors and convert them into customers
-          with intelligent insights and conversion optimization tools.
-        </p>
-        <div className="flex gap-4 justify-center">
-          <Button asChild size="lg">
-            <Link href="/schedule">
-              Schedule Demo
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/demo/acme">
-              Start for free
-            </Link>
-          </Button>
-        </div>
-      </section>
+      <A name="fadeIn" trigger="onVisible">
+        <section className="text-center space-y-8">
+          <h1 className="text-5xl font-bold tracking-tight">
+            Transform Your Website Into a<br />
+            <span className="text-primary">Revenue Engine</span>
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Subsights helps you understand your visitors and convert them into customers
+            with intelligent insights and conversion optimization tools.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Button asChild size="lg">
+              <Link href="/schedule">
+                Schedule Demo
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/demo/acme">
+                Start for free
+              </Link>
+            </Button>
+          </div>
+        </section>
+      </A>
 
       {/* Features Preview */}
       <section className="grid md:grid-cols-3 gap-8">
