@@ -1,56 +1,80 @@
 'use client';
 
 import { Animate } from "@/components/ui/animate";
+import { cn } from "@/lib/cn";
+import { Card, CardContent } from "@/components/ui/card";
 
 type Copy = {
   heading: string;
   challenges: {
     title: string;
+    subtitle: string;
     items: Array<{
       title: string;
       description: string;
       imageEmoji: string;
+      painPoint: string;
     }>;
   };
   solutions: {
     title: string;
+    subtitle: string;
     items: Array<{
       title: string;
       description: string;
       imageEmoji: string;
+      benefit: string;
     }>;
   };
 };
 
 const copy = {
-  heading: "Scale Effortlessly, Reduce Costs",
+  heading: "From Cost Center to Revenue Engine",
   challenges: {
-    title: "Challenges Businesses Face",
+    title: "Before Subsights",
+    subtitle: "Traditional customer service struggles",
     items: [
       {
-        title: "High Customer Service Costs",
-        description: "Traditional support teams require extensive training, work limited hours, and struggle to handle peak demand periods, leading to skyrocketing operational costs.",
-        imageEmoji: "💰",
+        title: "Expensive & Limited Support",
+        description: "High staffing costs, limited hours, and overwhelmed teams during peak times. Customers wait hours for responses.",
+        imageEmoji: "😰",
+        painPoint: "High operational costs",
       },
       {
-        title: "Inconsistent Customer Experience",
-        description: "Human agents provide varying levels of service quality, leading to frustrated customers and missed opportunities for upselling and retention.",
+        title: "Inconsistent & Frustrating Experience",
+        description: "Different agents provide varying service quality. Customers get frustrated and leave without solutions.",
         imageEmoji: "😤",
+        painPoint: "Poor customer satisfaction",
+      },
+      {
+        title: "Missed Revenue Opportunities",
+        description: "Agents miss upsell chances and can't handle multiple conversations simultaneously. Revenue leaks through the cracks.",
+        imageEmoji: "💸",
+        painPoint: "Lost sales opportunities",
       },
     ],
   },
   solutions: {
-    title: "The Subsights Impact",
+    title: "After Subsights",
+    subtitle: "AI-powered customer service excellence",
     items: [
       {
-        title: "24/7 Automated Support",
-        description: "Our AI handles customer inquiries around the clock without breaks, holidays, or overtime costs, providing instant responses at scale.",
+        title: "24/7 Automated Excellence",
+        description: "AI handles unlimited conversations simultaneously, never takes breaks, and provides instant expert responses.",
         imageEmoji: "🤖",
+        benefit: "Significant cost savings",
       },
       {
         title: "Consistent, Expert-Level Service",
-        description: "Every customer interaction receives the same high-quality, knowledgeable response, building trust and improving satisfaction scores.",
+        description: "Every customer gets the same high-quality, knowledgeable experience. No more inconsistent service quality.",
         imageEmoji: "⭐",
+        benefit: "Improved customer satisfaction",
+      },
+      {
+        title: "Revenue Optimization",
+        description: "AI intelligently identifies upsell opportunities, applies strategic discounts, and maximizes every customer interaction.",
+        imageEmoji: "💰",
+        benefit: "Increased conversions",
       },
     ],
   },
@@ -59,28 +83,56 @@ const copy = {
 const GridItem = ({
   title,
   description,
-  imageEmoji
+  imageEmoji,
+  painPoint,
+  benefit,
+  isBefore = false
 }: {
   title: string;
   description: string;
   imageEmoji: string;
+  painPoint?: string;
+  benefit?: string;
+  isBefore?: boolean;
 }) => (
-  <div className="flex items-start gap-4">
-    {/* Left: Image */}
-    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-      <span className="text-xl">{imageEmoji}</span>
-    </div>
+  <Card className={cn(
+    "border-0 transition-all duration-200 hover:scale-[1.02]",
+    isBefore
+      ? "bg-red-500/5 border-red-500/20 hover:bg-red-500/10"
+      : "bg-green-500/5 border-green-500/20 hover:bg-green-500/10"
+  )}>
+    <CardContent className="p-6">
+      <div className="flex items-start gap-4">
+        {/* Left: Image */}
+        <div className={cn(
+          "w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0",
+          isBefore ? "bg-red-500/20" : "bg-green-500/20"
+        )}>
+          <span className="text-xl">{imageEmoji}</span>
+        </div>
 
-    {/* Right: Content */}
-    <div className="flex-1 space-y-4">
-      <h3 className="text-lg font-semibold text-white">
-        {title}
-      </h3>
-      <p className="text-sm text-gray-300 leading-relaxed">
-        {description}
-      </p>
-    </div>
-  </div>
+        {/* Right: Content */}
+        <div className="flex-1 space-y-4">
+          <h3 className="text-lg font-semibold text-white">
+            {title}
+          </h3>
+          <p className="text-sm text-gray-300 leading-relaxed">
+            {description}
+          </p>
+          {(painPoint || benefit) && (
+            <div className={cn(
+              "inline-block px-3 py-1 rounded-full text-xs font-medium",
+              isBefore
+                ? "bg-red-500/20 text-red-300 border border-red-500/30"
+                : "bg-green-500/20 text-green-300 border border-green-500/30"
+            )}>
+              {painPoint || benefit}
+            </div>
+          )}
+        </div>
+      </div>
+    </CardContent>
+  </Card>
 );
 
 export default function ScaleReduceCosts() {
@@ -95,40 +147,54 @@ export default function ScaleReduceCosts() {
 
       {/* 2x2 Grid */}
       <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-        {/* Left Column: Challenges */}
-        <div className="space-y-8">
+        {/* Left Column: Before */}
+        <div className="space-y-6">
           <Animate name="fadeIn" trigger="onVisible" className="mb-6">
-            <h3 className="text-2xl font-semibold text-white">
-              {copy.challenges.title}
-            </h3>
+            <div className="space-y-2">
+              <h3 className="text-2xl font-semibold text-red-400">
+                {copy.challenges.title}
+              </h3>
+              <p className="text-sm text-gray-400">
+                {copy.challenges.subtitle}
+              </p>
+            </div>
           </Animate>
-          <div className="space-y-8">
+          <div className="space-y-6">
             {copy.challenges.items.map((item, index) => (
               <Animate key={index} name="fadeIn" trigger="onVisible">
                 <GridItem
                   title={item.title}
                   description={item.description}
                   imageEmoji={item.imageEmoji}
+                  painPoint={item.painPoint}
+                  isBefore={true}
                 />
               </Animate>
             ))}
           </div>
         </div>
 
-        {/* Right Column: Solutions */}
-        <div className="space-y-8">
+        {/* Right Column: After */}
+        <div className="space-y-6">
           <Animate name="fadeIn" trigger="onVisible" className="mb-6">
-            <h3 className="text-2xl font-semibold text-white">
-              {copy.solutions.title}
-            </h3>
+            <div className="space-y-2">
+              <h3 className="text-2xl font-semibold text-green-400">
+                {copy.solutions.title}
+              </h3>
+              <p className="text-sm text-gray-400">
+                {copy.solutions.subtitle}
+              </p>
+            </div>
           </Animate>
-          <div className="space-y-8">
+          <div className="space-y-6">
             {copy.solutions.items.map((item, index) => (
               <Animate key={index} name="fadeIn" trigger="onVisible">
                 <GridItem
                   title={item.title}
                   description={item.description}
                   imageEmoji={item.imageEmoji}
+                  benefit={item.benefit}
+                  isBefore={false}
                 />
               </Animate>
             ))}
