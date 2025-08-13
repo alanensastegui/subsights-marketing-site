@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Animate } from "@/components/ui/animate";
 import { cn } from "@/lib/cn";
 import { Progress } from "@/components/ui/progress";
+import Image from "next/image";
 
 // ============================================================================
 // TYPES & COPY
@@ -61,10 +62,12 @@ const copy = {
 
 const ChatScreenshot = ({ imageSrc, imageAlt }: { imageSrc: string; imageAlt: string }) => (
   <div className="w-full h-full overflow-hidden shadow-sm">
-    <img
+    <Image
       src={imageSrc}
       alt={imageAlt}
-      className="w-full h-full object-cover rounded-3xl"
+      fill
+      sizes="(min-width: 768px) 50vw, 100vw"
+      className="object-cover rounded-3xl"
     />
   </div>
 );
@@ -162,7 +165,6 @@ export default function StrategicAIPartner() {
   // ============================================================================
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [expandedIndex, setExpandedIndex] = useState(-1);
@@ -194,7 +196,7 @@ export default function StrategicAIPartner() {
 
   // Auto-play functionality for desktop
   useEffect(() => {
-    if (isMobile || !isAutoPlaying) return;
+    if (isMobile) return;
 
     const startAutoPlay = () => {
       autoPlayRef.current = setInterval(() => {
@@ -221,7 +223,7 @@ export default function StrategicAIPartner() {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
       if (progressRef.current) clearInterval(progressRef.current);
     };
-  }, [isMobile, isAutoPlaying]);
+  }, [isMobile]);
 
   // Intersection Observer for mobile animation
   useEffect(() => {

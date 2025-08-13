@@ -3,6 +3,7 @@
 import "@/styles/theme.css";
 import "@/styles/globals.css";
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -228,6 +229,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           src="https://widget.subsights.com/chatbot.js"
           data-workspace="0XvceSLk1j"
           data-api-key="s7qSTe7OKtqvuUoT3q7MWg578XTB1vET"
+          async
         />
       </head>
       <body className="bg-background text-foreground h-full">
@@ -247,7 +249,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           <Animate name="fadeIn" trigger="onLoad">
             <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
               <Link href="/" className="flex items-center">
-                <img src="/images/logo/full-logo.svg" alt="Subsights AI" className="h-12 w-auto" />
+                <Image src="/images/logo/full-logo.svg" alt="Subsights AI" width={120} height={48} className="h-12 w-auto" />
               </Link>
               <DesktopNavigation />
               <MobileNavigation />
@@ -260,7 +262,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           <div className="flex flex-col items-center space-y-6 text-center">
             {/* Logo */}
             <Link href="/" className="flex items-center">
-              <img src="/images/logo/full-logo.svg" alt="Subsights AI" className="h-16 w-auto opacity-80" />
+              <Image src="/images/logo/full-logo.svg" alt="Subsights AI" width={160} height={64} className="h-16 w-auto opacity-80" />
             </Link>
 
             {/* Legal Links */}
