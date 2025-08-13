@@ -15,7 +15,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function Home() {
-  const Sections = [Hero, StrategicAIPartner, UseCases, ScaleReduceCosts, TrustedBy, CustomerQuote, CallToAction];
+  const Sections = [Hero, TrustedBy, StrategicAIPartner, UseCases, ScaleReduceCosts, CustomerQuote, CallToAction];
 
   return (
     <main className="min-h-screen">

@@ -1,34 +1,94 @@
 'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Animate } from "@/components/ui/animate";
+import Image from "next/image";
+import { cn } from "@/lib/cn";
+
+// ============================================================================
+// CONSTANTS
+// ============================================================================
+
+const ANIMATION_SPEED = 1; // px per frame
+
+// ============================================================================
+// TYPES & COPY
+// ============================================================================
 
 type Copy = {
   heading: string;
   logos: Array<{
-    name: string;
-    emoji: string;
+    logoSrc: string;
+    logoAlt: string;
   }>;
 };
 
 const copy = {
   heading: "Trusted By",
   logos: [
-    { name: "TechCorp", emoji: "🔧" },
-    { name: "InnovateLab", emoji: "🚀" },
-    { name: "GlobalSoft", emoji: "🌍" },
-    { name: "FutureTech", emoji: "⚡" },
+    {
+      logoSrc: "/images/client-logos/vsv.avif",
+      logoAlt: "VSV company logo"
+    },
+    {
+      logoSrc: "/images/client-logos/dylan's tours.avif",
+      logoAlt: "Dylan's Tours company logo"
+    },
+    {
+      logoSrc: "/images/client-logos/intrust.avif",
+      logoAlt: "Intrust company logo"
+    },
+    {
+      logoSrc: "/images/client-logos/allied-health.svg",
+      logoAlt: "Allied Health company logo"
+    },
   ],
 } satisfies Copy;
 
+// ============================================================================
+// COMPONENT DEFINITIONS
+// ============================================================================
+
+const LogoItem = ({ logo, index }: { logo: Copy['logos'][0]; index: number }) => (
+  <div
+    key={`${logo.logoSrc}-${index}`}
+    className="flex-shrink-0 text-center w-50"
+  >
+    <div className="h-32 mx-auto flex items-center justify-center">
+      <Image
+        src={logo.logoSrc}
+        alt={logo.logoAlt}
+        width={80}
+        height={80}
+        className={cn(
+          "object-contain h-full w-auto",
+          logo.logoSrc.includes("allied-health") && "grayscale brightness-150 filter"
+        )}
+      />
+    </div>
+  </div>
+);
+
+// ============================================================================
+// MAIN COMPONENT
+// ============================================================================
+
 export default function TrustedBy() {
+  // ============================================================================
+  // STATE
+  // ============================================================================
+
   const [x, setX] = useState(0);
-  const [loopWidth, setLoopWidth] = useState(0); // measured seam distance
+  const [loopWidth, setLoopWidth] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const n = copy.logos.length;
 
+  // ============================================================================
+  // EFFECTS
+  // ============================================================================
+
   // Measure the exact seam: distance from first item in set A to first item in set B.
-  const measure = () => {
+  const measure = useCallback(() => {
     const el = carouselRef.current;
     if (!el || el.children.length < n + 1) return;
 
@@ -47,7 +107,7 @@ export default function TrustedBy() {
       // Keep current scroll consistent with the new seam measurement
       setX((prev) => -(((-prev) % seam)));
     }
-  };
+  }, [n]);
 
   useEffect(() => {
     measure();
@@ -66,8 +126,7 @@ export default function TrustedBy() {
       window.removeEventListener("resize", onResize);
       ro.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [n]);
+  }, [measure]);
 
   // Animation loop
   useEffect(() => {
@@ -78,12 +137,11 @@ export default function TrustedBy() {
       return;
     }
 
-    const speed = 1; // px per frame
     let raf = 0;
 
     const tick = () => {
       setX((prev) => {
-        const next = prev - speed;
+        const next = prev - ANIMATION_SPEED;
         return next <= -loopWidth ? 0 : next;
       });
       raf = requestAnimationFrame(tick);
@@ -92,6 +150,10 @@ export default function TrustedBy() {
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [loopWidth]);
+
+  // ============================================================================
+  // RENDER
+  // ============================================================================
 
   return (
     <Animate name="fadeIn" trigger="onVisible">
@@ -113,18 +175,7 @@ export default function TrustedBy() {
           >
             {/* Double sequence for seamless loop */}
             {[...copy.logos, ...copy.logos].map((logo, i) => (
-              <div
-                key={`${logo.name}-${i}`}
-                className="flex-shrink-0 text-center"
-                style={{ width: 200 }} // keep the old look (but logic is width-agnostic)
-              >
-                <div className="w-32 h-32 mx-auto bg-white/10 rounded-lg flex items-center justify-center border border-white/20">
-                  <span className="text-4xl">{logo.emoji}</span>
-                </div>
-                <p className="text-sm text-gray-400 mt-3 font-medium">
-                  {logo.name}
-                </p>
-              </div>
+              <LogoItem key={`${logo.logoSrc}-${i}`} logo={logo} index={i} />
             ))}
           </div>
 
