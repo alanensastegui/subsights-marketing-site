@@ -164,6 +164,7 @@ export default function StrategicAIPartner() {
   const [isMobile, setIsMobile] = useState(false);
   const [expandedIndex, setExpandedIndex] = useState(-1);
   const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
+  const [isAutoExpanded, setIsAutoExpanded] = useState(false);
 
   // ============================================================================
   // REFS
@@ -227,7 +228,8 @@ export default function StrategicAIPartner() {
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimatedIn) {
           setHasAnimatedIn(true);
-          setExpandedIndex(0);
+          setExpandedIndex(0); // Auto-expand first value prop
+          setIsAutoExpanded(true); // Mark as auto-expanded
         }
       },
       { threshold: 0.1 }
@@ -241,15 +243,18 @@ export default function StrategicAIPartner() {
   useEffect(() => {
     if (!isMobile || expandedIndex < 0) return;
 
-    const valuePropElements = document.querySelectorAll('[data-value-prop]');
-    if (valuePropElements[expandedIndex]) {
-      valuePropElements[expandedIndex].scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest'
-      });
+    // Only scroll when user intentionally expands (not on auto-expand)
+    if (!isAutoExpanded) {
+      const valuePropElements = document.querySelectorAll('[data-value-prop]');
+      if (valuePropElements[expandedIndex]) {
+        valuePropElements[expandedIndex].scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest'
+        });
+      }
     }
-  }, [expandedIndex, isMobile]);
+  }, [expandedIndex, isMobile, isAutoExpanded]);
 
   // ============================================================================
   // EVENT HANDLERS
@@ -259,6 +264,10 @@ export default function StrategicAIPartner() {
     if (isMobile) {
       const newExpandedIndex = expandedIndex === index ? 0 : index;
       setExpandedIndex(newExpandedIndex);
+      // Reset auto-expand flag when user manually interacts
+      if (newExpandedIndex !== 0) {
+        setIsAutoExpanded(false);
+      }
     } else {
       setActiveIndex(index);
       setProgress(0);
