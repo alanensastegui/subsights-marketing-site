@@ -3,6 +3,7 @@
 import { Animate } from "@/components/ui/animate";
 import { cn } from "@/lib/cn";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 type Copy = {
   heading: string;
@@ -44,7 +45,7 @@ const copy = {
         title: "Inconsistent & Frustrating Experience",
         description: "Different agents provide varying service quality. Customers get frustrated and leave without solutions.",
         imageEmoji: "😤",
-        painPoint: "Poor customer satisfaction",
+        painPoint: "Angry customers",
       },
       {
         title: "Missed Revenue Opportunities",
@@ -68,7 +69,7 @@ const copy = {
         title: "Consistent, Expert-Level Service",
         description: "Every customer gets the same high-quality, knowledgeable experience. No more inconsistent service quality.",
         imageEmoji: "⭐",
-        benefit: "Improved customer satisfaction",
+        benefit: "Happy customers",
       },
       {
         title: "Revenue Optimization",
@@ -120,14 +121,17 @@ const GridItem = ({
             {description}
           </p>
           {(painPoint || benefit) && (
-            <div className={cn(
-              "inline-block px-3 py-1 rounded-full text-xs font-medium",
-              isBefore
-                ? "bg-red-500/20 text-red-300 border border-red-500/30"
-                : "bg-green-500/20 text-green-300 border border-green-500/30"
-            )}>
+            <Badge
+              variant="outline"
+              className={cn(
+                "text-xs",
+                isBefore
+                  ? "border-red-500/30 text-red-300 bg-red-500/20"
+                  : "border-green-500/30 text-green-300 bg-green-500/20"
+              )}
+            >
               {painPoint || benefit}
-            </div>
+            </Badge>
           )}
         </div>
       </div>
@@ -145,8 +149,8 @@ export default function ScaleReduceCosts() {
         </h2>
       </Animate>
 
-      {/* 2x2 Grid */}
-      <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+      {/* Desktop: 2x2 Grid */}
+      <div className="hidden md:grid md:grid-cols-2 gap-12 lg:gap-16">
         {/* Left Column: Before */}
         <div className="space-y-6">
           <Animate name="fadeIn" trigger="onVisible" className="mb-6">
@@ -200,6 +204,57 @@ export default function ScaleReduceCosts() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Mobile: Before/After Pairs */}
+      <div className="md:hidden space-y-8">
+        {copy.challenges.items.map((challenge, index) => {
+          const solution = copy.solutions.items[index];
+          return (
+            <div key={index} className="space-y-4">
+              {/* Before Card */}
+              <Animate name="fadeIn" trigger="onVisible">
+                <div className="relative">
+                  <Badge className="absolute -top-3 left-4 bg-red-500 text-white text-xs font-bold">
+                    BEFORE
+                  </Badge>
+                  <GridItem
+                    title={challenge.title}
+                    description={challenge.description}
+                    imageEmoji={challenge.imageEmoji}
+                    painPoint={challenge.painPoint}
+                    isBefore={true}
+                  />
+                </div>
+              </Animate>
+
+              {/* Arrow */}
+              <Animate name="fadeIn" trigger="onVisible">
+                <div className="flex justify-center">
+                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                    <span className="text-white text-sm">↓</span>
+                  </div>
+                </div>
+              </Animate>
+
+              {/* After Card */}
+              <Animate name="fadeIn" trigger="onVisible">
+                <div className="relative">
+                  <Badge className="absolute -top-3 left-4 bg-green-500 text-white text-xs font-bold">
+                    AFTER
+                  </Badge>
+                  <GridItem
+                    title={solution.title}
+                    description={solution.description}
+                    imageEmoji={solution.imageEmoji}
+                    benefit={solution.benefit}
+                    isBefore={false}
+                  />
+                </div>
+              </Animate>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
