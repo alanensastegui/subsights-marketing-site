@@ -20,7 +20,7 @@ const copy = {
   },
   description: "Subsights AI qualifies, guides, and converts your best website visitors; so your team doesn't have to",
   primaryCta: { label: "Get Demo", href: "https://calendly.com/lucas-subsights/subsights-demo" },
-  secondaryCta: { label: "Watch Demo", href: "https://www.youtube.com/watch?v=OlwA_a5CpYQ&list=PLXL5IEY-s71AWou876UpvgX8r0W5B2Whc" },
+  secondaryCta: { label: "Watch Overview", href: "https://www.youtube.com/watch?v=OlwA_a5CpYQ&list=PLXL5IEY-s71AWou876UpvgX8r0W5B2Whc" },
 } satisfies Copy;
 
 export default function Hero() {
@@ -44,10 +44,10 @@ export default function Hero() {
       {/* Call to Action Buttons */}
       <Animate name="fadeIn" trigger="onVisible">
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button size="lg" asChild>
+          <Button size="lg" asChild className="min-w-[140px]">
             <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">{copy.primaryCta.label}</a>
           </Button>
-          <Button variant="outline" size="lg" asChild>
+          <Button variant="outline" size="lg" asChild className="min-w-[140px]">
             <a href={copy.secondaryCta.href} target="_blank" rel="noopener noreferrer">{copy.secondaryCta.label}</a>
           </Button>
         </div>
