@@ -3,15 +3,13 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Animate } from "@/components/ui/animate";
 import { cn } from "@/lib/cn";
+import { Progress } from "@/components/ui/progress";
 
 // ============================================================================
 // TYPES & COPY
 // ============================================================================
 
 type Copy = {
-  icon: {
-    placeholder: string;
-  };
   heading: {
     line1: string;
     line2: string;
@@ -21,33 +19,38 @@ type Copy = {
     title: string;
     subtext: string;
     chatEmoji: string;
+    imageSrc: string;
+    imageAlt: string;
   }>;
 };
 
 const copy = {
-  icon: {
-    placeholder: "🎯",
-  },
   heading: {
-    line1: "Go Beyond Basic Bots.",
-    line2: "Get a Strategic AI Partner.",
+    line1: "Go Beyond Basic Bots",
+    line2: "Get a Strategic AI Partner",
   },
-  description: "Your Subsights assistant is engineered to execute your specific business goals with precision. We deliver results by focusing on three core areas:",
+  description: "Engineered to execute your business goals with precision",
   valuePropositions: [
     {
       title: "Filter & Qualify Every Lead",
       subtext: "Our AI filters for intent, budget, and custom rules, so your sales team only engages with prospects ready to convert.",
       chatEmoji: "🔍",
+      imageSrc: "/images/value-props/filter_lead_example.png",
+      imageAlt: "AI lead filtering and qualification interface showing intent detection and budget analysis",
     },
     {
       title: "Provide Expert, Nuanced Answers",
       subtext: "Go beyond FAQs. Our AI handles complex, multi-step questions with the nuance of a human expert, building customer trust around the clock.",
       chatEmoji: "💬",
+      imageSrc: "/images/value-props/expert_example.png",
+      imageAlt: "AI expert conversation interface showing detailed, nuanced responses to complex questions",
     },
     {
       title: "Drive Revenue & Strategic Goals",
       subtext: "Our AI intelligently upsells services, applies strategic discounts, and guides every user toward your most important business goals.",
       chatEmoji: "💰",
+      imageSrc: "/images/value-props/revenue_example.png",
+      imageAlt: "AI revenue optimization interface showing upsell opportunities and strategic discount applications",
     },
   ],
 } satisfies Copy;
@@ -56,14 +59,29 @@ const copy = {
 // COMPONENT DEFINITIONS
 // ============================================================================
 
-const ChatScreenshot = ({ emoji }: { emoji: string }) => (
-  <div className="w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center">
-    <div className="text-center space-y-4">
-      <div className="text-6xl">{emoji}</div>
-      <div className="text-sm text-gray-500">Chat Screenshot</div>
-    </div>
+const ChatScreenshot = ({ imageSrc, imageAlt }: { imageSrc: string; imageAlt: string }) => (
+  <div className="w-full h-full overflow-hidden shadow-sm">
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      className="w-full h-full object-cover rounded-3xl"
+    />
   </div>
 );
+
+type ValuePropositionProps = {
+  title: string;
+  subtext: string;
+  isActive: boolean;
+  isExpanded: boolean;
+  onClick: () => void;
+  showImage?: boolean;
+  progress: number;
+  isMobile: boolean;
+  imageSrc?: string;
+  imageAlt?: string;
+  index: number;
+};
 
 const ValueProposition = ({
   title,
@@ -72,27 +90,19 @@ const ValueProposition = ({
   isExpanded,
   onClick,
   showImage = false,
-  emoji = "",
   progress,
-  isMobile
-}: {
-  title: string;
-  subtext: string;
-  isActive: boolean;
-  isExpanded: boolean;
-  onClick: () => void;
-  showImage?: boolean;
-  emoji?: string;
-  progress: number;
-  isMobile: boolean;
-}) => (
-  <div className="space-y-4">
-    {/* Divider with loading bar */}
+  isMobile,
+  imageSrc,
+  imageAlt,
+  index
+}: ValuePropositionProps) => (
+  <div className="space-y-4" data-value-prop={index}>
+    {/* Divider with progress bar */}
     <div className="relative h-1 bg-white rounded-full overflow-hidden">
       {isActive && !isMobile && (
-        <div
-          className="absolute top-0 left-0 h-full bg-blue-500 transition-all duration-200 ease-out"
-          style={{ width: `${progress}%` }}
+        <Progress
+          value={progress}
+          className="absolute inset-0 h-full bg-transparent [&>div]:bg-blue-500"
         />
       )}
     </div>
@@ -111,21 +121,29 @@ const ValueProposition = ({
 
       {/* Subtext - always visible on desktop, conditional on mobile */}
       {(isMobile ? isExpanded : true) && (
-        <div className={cn(
-          "transition-all duration-300 ease-in-out",
-          isMobile ? "overflow-hidden" : ""
-        )}>
-          <p className="text-gray-300 text-base leading-relaxed">
-            {subtext}
-          </p>
+        <Animate
+          name="slideUp"
+          trigger="onLoad"
+          durationMs={800}
+          className="overflow-hidden"
+          key={isExpanded ? 'expanded' : 'collapsed'}
+        >
+          <div>
+            <p className="text-gray-300 text-base leading-relaxed">
+              {subtext}
+            </p>
 
-          {/* Mobile: Show image inside each value prop when expanded */}
-          {isMobile && showImage && isExpanded && (
-            <div className="mt-6">
-              <ChatScreenshot emoji={emoji} />
-            </div>
-          )}
-        </div>
+            {/* Mobile: Show image inside each value prop when expanded */}
+            {isMobile && showImage && imageSrc && imageAlt && (
+              <div className="mt-6">
+                <ChatScreenshot
+                  imageSrc={imageSrc}
+                  imageAlt={imageAlt}
+                />
+              </div>
+            )}
+          </div>
+        </Animate>
       )}
     </button>
   </div>
@@ -144,7 +162,7 @@ export default function StrategicAIPartner() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [expandedIndex, setExpandedIndex] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState(-1);
   const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
 
   // ============================================================================
@@ -209,6 +227,7 @@ export default function StrategicAIPartner() {
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimatedIn) {
           setHasAnimatedIn(true);
+          setExpandedIndex(0);
         }
       },
       { threshold: 0.1 }
@@ -218,46 +237,75 @@ export default function StrategicAIPartner() {
     return () => observer.disconnect();
   }, [isMobile, hasAnimatedIn]);
 
+  // Handle scrolling to expanded value prop on mobile
+  useEffect(() => {
+    if (!isMobile || expandedIndex < 0) return;
+
+    const valuePropElements = document.querySelectorAll('[data-value-prop]');
+    if (valuePropElements[expandedIndex]) {
+      valuePropElements[expandedIndex].scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      });
+    }
+  }, [expandedIndex, isMobile]);
+
   // ============================================================================
   // EVENT HANDLERS
   // ============================================================================
 
   const handleValuePropClick = useCallback((index: number) => {
-    console.log('Value prop clicked:', index, 'isMobile:', isMobile); // Debug log
     if (isMobile) {
-      setExpandedIndex(expandedIndex === index ? 0 : index);
+      const newExpandedIndex = expandedIndex === index ? 0 : index;
+      setExpandedIndex(newExpandedIndex);
     } else {
-      console.log('Setting active index to:', index); // Debug log
       setActiveIndex(index);
       setProgress(0);
-      setIsAutoPlaying(false);
-
-      // Resume auto-play after 5 seconds of inactivity
-      setTimeout(() => setIsAutoPlaying(true), 5000);
     }
   }, [isMobile, expandedIndex]);
 
-  // Create stable click handlers for each value proposition
   const createClickHandler = useCallback((index: number) => {
     return () => handleValuePropClick(index);
   }, [handleValuePropClick]);
+
+  // ============================================================================
+  // RENDER HELPERS
+  // ============================================================================
+
+  const renderValueProposition = useCallback((prop: Copy['valuePropositions'][0], index: number) => (
+    <Animate
+      key={index}
+      name="fadeIn"
+      trigger="onVisible"
+      durationMs={600}
+    >
+      <ValueProposition
+        title={prop.title}
+        subtext={prop.subtext}
+        isActive={isMobile ? index === expandedIndex : index === activeIndex}
+        isExpanded={index === expandedIndex}
+        onClick={createClickHandler(index)}
+        showImage={isMobile}
+        progress={progress}
+        isMobile={isMobile}
+        imageSrc={prop.imageSrc}
+        imageAlt={prop.imageAlt}
+        index={index}
+      />
+    </Animate>
+  ), [activeIndex, expandedIndex, createClickHandler, progress, isMobile]);
 
   // ============================================================================
   // RENDER
   // ============================================================================
 
   return (
-    <Animate name="fadeIn" trigger="onVisible">
-      <section ref={sectionRef} className="max-w-7xl mx-auto px-6 py-20">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-8">
-            <div className="w-24 h-24 bg-primary/10 rounded-lg flex items-center justify-center">
-              <span className="text-3xl">{copy.icon.placeholder}</span>
-            </div>
-          </div>
-
-          <div className="space-y-4">
+    <section ref={sectionRef} className="max-w-7xl mx-auto px-6 py-20">
+      {/* Header */}
+      <div className="text-center mb-16">
+        <Animate name="fadeIn" trigger="onVisible" durationMs={600}>
+          <div className="space-y-4 mb-8">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
               {copy.heading.line1}
             </h2>
@@ -265,62 +313,50 @@ export default function StrategicAIPartner() {
               {copy.heading.line2}
             </h2>
           </div>
+        </Animate>
 
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mt-6 leading-relaxed">
+        <Animate name="fadeIn" trigger="onVisible" durationMs={600}>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {copy.description}
           </p>
+        </Animate>
+      </div>
+
+      {/* Desktop Layout */}
+      {!isMobile && (
+        <div className="grid md:grid-cols-[1fr_1.5fr] gap-6 items-stretch">
+          {/* Left: Chat Screenshot */}
+          <div className="sticky top-8 h-full max-w-sm">
+            <Animate
+              name="zoomIn"
+              key={activeIndex}
+              durationMs={150}
+              trigger="onLoad"
+              className="rounded-3xl shadow-2xl shadow-white/60 hover:shadow-2xl hover:shadow-white/70 transition-all duration-300 hover:scale-[1.02]"
+            >
+              <ChatScreenshot
+                imageSrc={copy.valuePropositions[activeIndex].imageSrc}
+                imageAlt={copy.valuePropositions[activeIndex].imageAlt}
+              />
+            </Animate>
+          </div>
+
+          {/* Right: Value Propositions */}
+          <div className="space-y-6">
+            {copy.valuePropositions.map(renderValueProposition)}
+          </div>
         </div>
+      )}
 
-        {/* Desktop Layout */}
-        {!isMobile && (
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Left: Chat Screenshot */}
-            <div className="sticky top-8">
-              <ChatScreenshot emoji={copy.valuePropositions[activeIndex].chatEmoji} />
-            </div>
-
-            {/* Right: Value Propositions */}
-            <div className="space-y-8">
-              {copy.valuePropositions.map((prop, index) => (
-                <ValueProposition
-                  key={index}
-                  title={prop.title}
-                  subtext={prop.subtext}
-                  isActive={index === activeIndex}
-                  isExpanded={true}
-                  onClick={createClickHandler(index)}
-                  progress={progress}
-                  isMobile={isMobile}
-                />
-              ))}
-            </div>
+      {/* Mobile Layout */}
+      {isMobile && (
+        <div className="space-y-8">
+          <div className="space-y-6">
+            {copy.valuePropositions.map(renderValueProposition)}
           </div>
-        )}
-
-        {/* Mobile Layout */}
-        {isMobile && (
-          <div className="space-y-8">
-            {/* Value Propositions with embedded images */}
-            <div className="space-y-6">
-              {copy.valuePropositions.map((prop, index) => (
-                <ValueProposition
-                  key={index}
-                  title={prop.title}
-                  subtext={prop.subtext}
-                  isActive={index === expandedIndex}
-                  isExpanded={index === expandedIndex}
-                  onClick={createClickHandler(index)}
-                  showImage={true}
-                  emoji={prop.chatEmoji}
-                  progress={progress}
-                  isMobile={isMobile}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-      </section>
-    </Animate>
+        </div>
+      )}
+    </section>
   );
 }
 
