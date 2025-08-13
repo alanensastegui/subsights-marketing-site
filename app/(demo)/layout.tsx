@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import "@/styles/theme.css";
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 export default function DemoLayout({ children }: { children: ReactNode }) {
@@ -8,8 +9,8 @@ export default function DemoLayout({ children }: { children: ReactNode }) {
         <html lang="en" className="h-full">
             <body className="bg-background text-foreground flex flex-col h-full">
                 <header className="border-b px-6 py-3 flex items-center justify-between bg-background">
-                    <Link href="/" className="text-lg font-semibold">
-                        subsights
+                    <Link href="/" className="flex items-center">
+                        <Image src="/images/logo/full-logo.svg" alt="Subsights AI" width={80} height={32} className="h-8 w-auto" />
                     </Link>
                     <div className="text-sm text-muted-foreground">
                         Demo Experience
