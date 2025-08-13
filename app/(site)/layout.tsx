@@ -256,8 +256,31 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         </header>
 
         <main className="mx-auto max-w-6xl px-6 pt-20">{children}</main>
-        <footer className="mx-auto max-w-6xl px-6 py-12 text-sm opacity-70">
-          © {new Date().getFullYear()} Subsights
+        <footer className="mx-auto max-w-6xl px-6 py-12">
+          <div className="flex flex-col items-center space-y-6 text-center">
+            {/* Logo */}
+            <Link href="/" className="flex items-center">
+              <img src="/images/logo/full-logo.svg" alt="Subsights AI" className="h-16 w-auto opacity-80" />
+            </Link>
+
+            {/* Legal Links */}
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+              <Link href="/terms" className="hover:text-foreground transition-colors">
+                Terms of Service
+              </Link>
+              <Link href="/privacy" className="hover:text-foreground transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/data-processing" className="hover:text-foreground transition-colors">
+                Data Processing
+              </Link>
+            </div>
+
+            {/* Copyright */}
+            <div className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Subsights AI. All rights reserved.
+            </div>
+          </div>
         </footer>
       </body>
     </html>
