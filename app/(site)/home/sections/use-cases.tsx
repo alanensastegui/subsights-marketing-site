@@ -61,7 +61,7 @@ export default function UseCases() {
             <UseCaseImage emoji={useCase.imageEmoji} />
 
             {/* Right: Content */}
-            <div className="flex-1 space-y-3">
+            <div className="flex-1 space-y-4">
               <h3 className="text-2xl font-semibold text-white">
                 {useCase.title}
               </h3>

@@ -72,7 +72,7 @@ const GridItem = ({
     </div>
 
     {/* Right: Content */}
-    <div className="flex-1 space-y-2">
+    <div className="flex-1 space-y-4">
       <h3 className="text-lg font-semibold text-white">
         {title}
       </h3>
@@ -85,7 +85,7 @@ const GridItem = ({
 
 export default function ScaleReduceCosts() {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20">
+    <section className="max-w-6xl mx-auto px-6 py-20">
       {/* Main Heading */}
       <Animate name="fadeIn" trigger="onVisible" className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">

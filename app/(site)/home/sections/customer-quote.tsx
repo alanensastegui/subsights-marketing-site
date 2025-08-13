@@ -29,9 +29,9 @@ const copy = {
 
 export default function CustomerQuote() {
   return (
-    <section className="max-w-4xl mx-auto px-6 py-20">
+    <section className="max-w-6xl mx-auto px-6 py-20">
       {/* Main Heading */}
-      <Animate name="fadeIn" trigger="onVisible" className="text-center mb-8">
+      <Animate name="fadeIn" trigger="onVisible" className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
           {copy.heading}
         </h2>
@@ -44,9 +44,9 @@ export default function CustomerQuote() {
       <Animate name="fadeIn" trigger="onVisible" className="mb-8">
         <Card className="border-white/10 bg-white/5">
           <CardContent className="p-8 md:p-12">
-            <div className="text-center">
+            <div className="text-center space-y-4">
               {/* Quote Text */}
-              <blockquote className="text-xl md:text-2xl text-white leading-relaxed mb-6 italic">
+              <blockquote className="text-xl md:text-2xl text-white leading-relaxed italic">
                 &ldquo;{copy.quote}&rdquo;
               </blockquote>
 

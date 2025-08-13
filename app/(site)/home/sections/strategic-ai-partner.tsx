@@ -310,7 +310,7 @@ export default function StrategicAIPartner() {
   // ============================================================================
 
   return (
-    <section ref={sectionRef} className="max-w-7xl mx-auto px-6 py-20">
+    <section ref={sectionRef} className="max-w-6xl mx-auto px-6 py-20">
       {/* Header */}
       <div className="text-center mb-16">
         <Animate name="fadeIn" trigger="onVisible" durationMs={600}>
@@ -351,7 +351,7 @@ export default function StrategicAIPartner() {
           </div>
 
           {/* Right: Value Propositions */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             {copy.valuePropositions.map(renderValueProposition)}
           </div>
         </div>
@@ -360,7 +360,7 @@ export default function StrategicAIPartner() {
       {/* Mobile Layout */}
       {isMobile && (
         <div className="space-y-8">
-          <div className="space-y-6">
+          <div className="space-y-8">
             {copy.valuePropositions.map(renderValueProposition)}
           </div>
         </div>
