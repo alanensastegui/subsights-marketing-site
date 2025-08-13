@@ -98,7 +98,10 @@ const ValueProposition = ({
 }: ValuePropositionProps) => (
   <div className="space-y-4" data-value-prop={index}>
     {/* Divider with progress bar */}
-    <div className="relative h-1 bg-white rounded-full overflow-hidden">
+    <div className={cn(
+      "relative h-1 rounded-full overflow-hidden",
+      isActive ? "bg-blue-500" : "bg-white"
+    )}>
       {isActive && !isMobile && (
         <Progress
           value={progress}
