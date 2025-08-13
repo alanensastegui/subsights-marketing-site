@@ -65,9 +65,9 @@ const ChatScreenshot = ({ imageSrc, imageAlt }: { imageSrc: string; imageAlt: st
     <Image
       src={imageSrc}
       alt={imageAlt}
-      fill
-      sizes="(min-width: 768px) 50vw, 100vw"
-      className="object-cover rounded-3xl"
+      width={400}
+      height={300}
+      className="w-full h-full object-cover rounded-3xl"
     />
   </div>
 );
@@ -170,6 +170,7 @@ export default function StrategicAIPartner() {
   const [expandedIndex, setExpandedIndex] = useState(-1);
   const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
   const [isAutoExpanded, setIsAutoExpanded] = useState(false);
+  const [isSectionVisible, setIsSectionVisible] = useState(false);
 
   // ============================================================================
   // REFS
@@ -196,7 +197,7 @@ export default function StrategicAIPartner() {
 
   // Auto-play functionality for desktop
   useEffect(() => {
-    if (isMobile) return;
+    if (isMobile || !isSectionVisible) return;
 
     const startAutoPlay = () => {
       autoPlayRef.current = setInterval(() => {
@@ -223,18 +224,25 @@ export default function StrategicAIPartner() {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
       if (progressRef.current) clearInterval(progressRef.current);
     };
-  }, [isMobile]);
+  }, [isMobile, isSectionVisible]);
 
-  // Intersection Observer for mobile animation
+  // Intersection Observer for section visibility
   useEffect(() => {
-    if (!isMobile || !sectionRef.current) return;
+    if (!sectionRef.current) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasAnimatedIn) {
-          setHasAnimatedIn(true);
-          setExpandedIndex(0); // Auto-expand first value prop
-          setIsAutoExpanded(true); // Mark as auto-expanded
+        if (entry.isIntersecting) {
+          setIsSectionVisible(true);
+
+          // Mobile-specific animation
+          if (isMobile && !hasAnimatedIn) {
+            setHasAnimatedIn(true);
+            setExpandedIndex(0); // Auto-expand first value prop
+            setIsAutoExpanded(true); // Mark as auto-expanded
+          }
+        } else {
+          setIsSectionVisible(false);
         }
       },
       { threshold: 0.1 }
