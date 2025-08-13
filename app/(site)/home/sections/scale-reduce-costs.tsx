@@ -4,6 +4,7 @@ import { Animate } from "@/components/ui/animate";
 import { cn } from "@/lib/cn";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 type Copy = {
   heading: string;
@@ -13,7 +14,8 @@ type Copy = {
     items: Array<{
       title: string;
       description: string;
-      imageEmoji: string;
+      imageSrc: string;
+      imageAlt: string;
       painPoint: string;
     }>;
   };
@@ -23,7 +25,8 @@ type Copy = {
     items: Array<{
       title: string;
       description: string;
-      imageEmoji: string;
+      imageSrc: string;
+      imageAlt: string;
       benefit: string;
     }>;
   };
@@ -38,19 +41,22 @@ const copy = {
       {
         title: "Expensive & Limited Support",
         description: "High staffing costs, limited hours, and overwhelmed teams during peak times. Customers wait hours for responses.",
-        imageEmoji: "😰",
+        imageSrc: "/images/low-battery.svg",
+        imageAlt: "Low battery icon",
         painPoint: "High operational costs",
       },
       {
         title: "Inconsistent & Frustrating Experience",
         description: "Different agents provide varying service quality. Customers get frustrated and leave without solutions.",
-        imageEmoji: "😤",
+        imageSrc: "/images/alert-triangle.svg",
+        imageAlt: "Alert triangle icon",
         painPoint: "Angry customers",
       },
       {
         title: "Missed Revenue Opportunities",
         description: "Agents miss upsell chances and can't handle multiple conversations simultaneously. Revenue leaks through the cracks.",
-        imageEmoji: "💸",
+        imageSrc: "/images/trending-down.svg",
+        imageAlt: "Trending down icon",
         painPoint: "Lost sales opportunities",
       },
     ],
@@ -62,19 +68,22 @@ const copy = {
       {
         title: "24/7 Automated Excellence",
         description: "AI handles unlimited conversations simultaneously, never takes breaks, and provides instant expert responses.",
-        imageEmoji: "🤖",
+        imageSrc: "/images/full-battery.svg",
+        imageAlt: "Full battery icon",
         benefit: "Significant cost savings",
       },
       {
         title: "Consistent, Expert-Level Service",
         description: "Every customer gets the same high-quality, knowledgeable experience. No more inconsistent service quality.",
-        imageEmoji: "⭐",
+        imageSrc: "/images/checkmark-circle.svg",
+        imageAlt: "Check circle icon",
         benefit: "Happy customers",
       },
       {
         title: "Revenue Optimization",
         description: "AI intelligently identifies upsell opportunities, applies strategic discounts, and maximizes every customer interaction.",
-        imageEmoji: "💰",
+        imageSrc: "/images/trending-up.svg",
+        imageAlt: "Trending up icon",
         benefit: "Increased conversions",
       },
     ],
@@ -84,14 +93,16 @@ const copy = {
 const GridItem = ({
   title,
   description,
-  imageEmoji,
+  imageSrc,
+  imageAlt,
   painPoint,
   benefit,
   isBefore = false
 }: {
   title: string;
   description: string;
-  imageEmoji: string;
+  imageSrc: string;
+  imageAlt: string;
   painPoint?: string;
   benefit?: string;
   isBefore?: boolean;
@@ -104,12 +115,18 @@ const GridItem = ({
   )}>
     <CardContent className="p-6">
       <div className="flex items-start gap-4">
-        {/* Left: Image */}
+        {/* Left: Icon */}
         <div className={cn(
           "w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0",
           isBefore ? "bg-red-500/20" : "bg-green-500/20"
         )}>
-          <span className="text-xl">{imageEmoji}</span>
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            width={28}
+            height={28}
+            className="w-7 h-7"
+          />
         </div>
 
         {/* Right: Content */}
@@ -169,7 +186,8 @@ export default function ScaleReduceCosts() {
                 <GridItem
                   title={item.title}
                   description={item.description}
-                  imageEmoji={item.imageEmoji}
+                  imageSrc={item.imageSrc}
+                  imageAlt={item.imageAlt}
                   painPoint={item.painPoint}
                   isBefore={true}
                 />
@@ -196,7 +214,8 @@ export default function ScaleReduceCosts() {
                 <GridItem
                   title={item.title}
                   description={item.description}
-                  imageEmoji={item.imageEmoji}
+                  imageSrc={item.imageSrc}
+                  imageAlt={item.imageAlt}
                   benefit={item.benefit}
                   isBefore={false}
                 />
@@ -221,7 +240,8 @@ export default function ScaleReduceCosts() {
                   <GridItem
                     title={challenge.title}
                     description={challenge.description}
-                    imageEmoji={challenge.imageEmoji}
+                    imageSrc={challenge.imageSrc}
+                    imageAlt={challenge.imageAlt}
                     painPoint={challenge.painPoint}
                     isBefore={true}
                   />
@@ -246,7 +266,8 @@ export default function ScaleReduceCosts() {
                   <GridItem
                     title={solution.title}
                     description={solution.description}
-                    imageEmoji={solution.imageEmoji}
+                    imageSrc={solution.imageSrc}
+                    imageAlt={solution.imageAlt}
                     benefit={solution.benefit}
                     isBefore={false}
                   />

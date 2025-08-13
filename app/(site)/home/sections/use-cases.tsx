@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { Animate } from "@/components/ui/animate";
 
 type Copy = {
@@ -7,34 +8,43 @@ type Copy = {
   useCases: Array<{
     title: string;
     description: string;
-    imageEmoji: string;
+    imageSrc: string;
+    imageAlt: string;
   }>;
 };
 
 const copy = {
-  heading: "Powerful Solutions for Any Business",
+  heading: "Powerful Solutions For Any Business",
   useCases: [
     {
       title: "For Lead Generation",
       description: "Guide users through vast amounts of information, qualify their interests, and seamlessly connect them to the right programs or affiliate links to boost conversions.",
-      imageEmoji: "🛒",
+      imageSrc: "/images/sales-funnel.svg",
+      imageAlt: "Sales funnel icon",
     },
     {
       title: "For Tourism & Hospitality",
       description: "Act as a 24/7 virtual concierge, answering visitor questions, providing expert local recommendations, and assisting with trip planning to enhance the user experience.",
-      imageEmoji: "💻",
+      imageSrc: "/images/map-with-pins.svg",
+      imageAlt: "Map with pins icon",
     },
     {
       title: "For Specialized Services",
       description: "Automate your front-line lead qualification, filtering out-of-scope inquiries and ensuring your sales team only engages with high-quality prospects that fit your niche.",
-      imageEmoji: "⚖️",
+      imageSrc: "/images/suitcase.svg",
+      imageAlt: "Suitcase icon",
     },
   ],
 } satisfies Copy;
 
-const UseCaseImage = ({ emoji }: { emoji: string }) => (
-  <div className="w-20 h-20 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-    <span className="text-3xl">{emoji}</span>
+const UseCaseImage = ({ imageSrc, imageAlt }: { imageSrc: string; imageAlt: string }) => (
+  <div className="w-24 h-24 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+    <Image
+      src={imageSrc}
+      alt={imageAlt}
+      width={70}
+      height={70}
+    />
   </div>
 );
 
@@ -58,7 +68,7 @@ export default function UseCases() {
             className="flex flex-col md:flex-row items-start gap-8"
           >
             {/* Left: Image */}
-            <UseCaseImage emoji={useCase.imageEmoji} />
+            <UseCaseImage imageSrc={useCase.imageSrc} imageAlt={useCase.imageAlt} />
 
             {/* Right: Content */}
             <div className="flex-1 space-y-4">
