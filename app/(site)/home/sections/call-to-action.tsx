@@ -1,12 +1,18 @@
+'use client';
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Animate } from "@/components/ui/animate";
+import { cn } from "@/lib/cn";
+
+type Cta = { label: string; href: string };
 
 type Copy = {
   mainTitle: string;
   subtitle: string;
-  primaryCta: { label: string; href: string };
+  primaryCta: Cta;
   primaryDescription: string;
-  secondaryCta: { label: string; href: string };
+  secondaryCta: Cta;
   secondaryDescription: string;
 };
 
@@ -14,48 +20,54 @@ export const sectionId = "call-to-action";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  mainTitle: "Ready to See Subsights in Action?",
-  subtitle: "Get set up in minutes – no coding required, we handle everything.",
-  primaryCta: { label: "Book Demo", href: "/demo" }, // TODO: confirm href → Ask user: "What page should the Book Demo button link to?"
-  primaryDescription: "See Subsights tailored to your site in a live co-founder walkthrough. Discover potential ROI & get answers (15-30 min)",
-  secondaryCta: { label: "Try For Free", href: "/signup" }, // TODO: confirm href → Ask user: "What page should the Try For Free button link to?"
-  secondaryDescription: "Explore Subsights firsthand, risk-free for 30 days. No credit card, no commitment. Experience the impact yourself."
+  mainTitle: "Start Converting Visitors Today",
+  subtitle: "Get your AI expert live on your website in under 10 minutes",
+  primaryCta: { label: "Get Demo", href: "https://calendly.com/lucas-subsights/subsights-demo" },
+  primaryDescription: "See how Subsights works for your business",
+  secondaryCta: { label: "Try For Free", href: "/pricing" },
+  secondaryDescription: "Start your 30-day free trial. No credit card required"
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
 export default function CallToAction() {
-  const c = copy;
   return (
-    <section className="max-w-4xl mx-auto px-6 py-20 text-center">
-      <div className="space-y-8">
-        {/* Main Title */}
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-          {c.mainTitle}
-        </h2>
+    <section className={cn("relative isolate bg-gradient-to-br from-background via-muted/80 to-muted-foreground/30 rounded-3xl mx-6 my-12")}>
+      <div className="mx-auto max-w-6xl px-6 py-24">
+        <div className="text-center space-y-12">
+          <Animate name="fadeIn" trigger="onVisible" className="space-y-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+              {copy.mainTitle}
+            </h2>
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              {copy.subtitle}
+            </p>
+          </Animate>
 
-        {/* Subtitle */}
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          {c.subtitle}
-        </p>
+          <Animate name="fadeIn" trigger="onVisible" delay={200}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="space-y-4">
+                <Button size="lg" asChild className="w-full">
+                  <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">
+                    {copy.primaryCta.label}
+                  </a>
+                </Button>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {copy.primaryDescription}
+                </p>
+              </div>
 
-        {/* Primary CTA */}
-        <div className="space-y-4">
-          <Button size="lg" asChild>
-            <Link href={c.primaryCta.href}>{c.primaryCta.label}</Link>
-          </Button>
-          <p className="text-sm text-muted-foreground max-w-lg mx-auto">
-            {c.primaryDescription}
-          </p>
-        </div>
-
-        {/* Secondary CTA */}
-        <div className="space-y-4">
-          <Button variant="outline" size="lg" asChild>
-            <Link href={c.secondaryCta.href}>{c.secondaryCta.label}</Link>
-          </Button>
-          <p className="text-sm text-muted-foreground max-w-lg mx-auto">
-            {c.secondaryDescription}
-          </p>
+              <div className="space-y-4">
+                <Button variant="outline" size="lg" asChild className="w-full">
+                  <Link href={copy.secondaryCta.href}>
+                    {copy.secondaryCta.label}
+                  </Link>
+                </Button>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {copy.secondaryDescription}
+                </p>
+              </div>
+            </div>
+          </Animate>
         </div>
       </div>
     </section>
