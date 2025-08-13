@@ -4,9 +4,11 @@ import "@/styles/theme.css";
 import "@/styles/globals.css";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Animate } from "@/components/ui/animate";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,6 +19,14 @@ import {
   type NavItem,
 } from "@/components/ui/navigation-menu";
 
+// Constants
+const SCROLL_THRESHOLD = 100;
+const ORB_CONFIGS = {
+  small: { classes: 'w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48', radius: 120 },
+  medium: { classes: 'w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56', radius: 160 },
+  large: { classes: 'w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72', radius: 200 }
+} as const;
+
 const navItems: (NavItem & { isButton?: boolean })[] = [
   { label: "About", href: "/about" },
   { label: "Case Studies", href: "/case-studies" },
@@ -26,14 +36,14 @@ const navItems: (NavItem & { isButton?: boolean })[] = [
   { label: "Get Demo", href: "https://calendly.com/lucas-subsights/subsights-demo", isButton: true },
 ];
 
-// Floating Orb Component - Simple and Robust
+// Floating Orb Component
 const FloatingOrb = ({
   size,
   blur,
   opacity,
   speed
 }: {
-  size: 'small' | 'medium' | 'large';
+  size: keyof typeof ORB_CONFIGS;
   blur: number;
   opacity: number;
   speed: number;
@@ -42,26 +52,17 @@ const FloatingOrb = ({
   const animationId = useRef<number | null>(null);
   const startTime = useRef<number>(0);
 
-  const sizeMap = {
-    small: { classes: 'w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48', radius: 120 },
-    medium: { classes: 'w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56', radius: 160 },
-    large: { classes: 'w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72', radius: 200 }
-  };
-
-  const { classes, radius } = sizeMap[size];
+  const { classes, radius } = ORB_CONFIGS[size];
 
   useEffect(() => {
     const animate = (currentTime: number) => {
       if (!startTime.current) startTime.current = currentTime;
 
       const elapsed = currentTime - startTime.current;
-      const progress = (elapsed * speed) / 1000; // Convert to seconds
+      const progress = (elapsed * speed) / 1000;
 
-      // Create organic, seemingly random floating motion
-      // Each orb has different patterns with added noise and variation
       let x, y;
       if (size === 'small') {
-        // Small orb: fast, erratic movement with noise
         const baseX = Math.sin(-progress * 0.4) * radius * 0.5;
         const baseY = Math.cos(progress * 0.6) * radius * 0.3;
         const noiseX = Math.sin(progress * 2.1) * radius * 0.15;
@@ -69,7 +70,6 @@ const FloatingOrb = ({
         x = baseX + noiseX;
         y = baseY + noiseY;
       } else if (size === 'medium') {
-        // Medium orb: balanced movement with subtle variation
         const baseX = Math.sin(progress * 0.3) * radius * 0.6;
         const baseY = Math.cos(-progress * 0.5) * radius * 0.4;
         const noiseX = Math.sin(progress * 1.5) * radius * 0.2;
@@ -77,7 +77,6 @@ const FloatingOrb = ({
         x = baseX + noiseX;
         y = baseY + noiseY;
       } else {
-        // Large orb: slow, majestic movement with gentle drift
         const baseX = Math.sin(-progress * 0.2) * radius * 0.7;
         const baseY = Math.cos(-progress * 0.4) * radius * 0.5;
         const driftX = Math.sin(progress * 0.1) * radius * 0.25;
@@ -94,13 +93,12 @@ const FloatingOrb = ({
     };
 
     animationId.current = requestAnimationFrame(animate);
-
     return () => {
       if (animationId.current) {
         cancelAnimationFrame(animationId.current);
       }
     };
-  }, [radius, speed]);
+  }, [radius, speed, size]);
 
   return (
     <div
@@ -115,7 +113,114 @@ const FloatingOrb = ({
   );
 };
 
+// Navigation Components
+const DesktopNavigation = () => (
+  <NavigationMenu className="hidden md:block">
+    <NavigationMenuList>
+      {navItems.map((item) => (
+        'children' in item ? (
+          <NavigationMenuItem key={item.label}>
+            <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                {item.children.map((child) => (
+                  <NavigationMenuLink key={child.label} href={child.href}>
+                    {child.label}
+                  </NavigationMenuLink>
+                ))}
+              </div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        ) : (
+          <NavigationMenuItem key={item.label}>
+            {item.isButton ? (
+              <Button asChild size="sm">
+                <a href={item.href} target="_blank" rel="noopener noreferrer">
+                  {item.label}
+                </a>
+              </Button>
+            ) : (
+              <NavigationMenuLink href={item.href} className={item.className}>
+                {item.label}
+              </NavigationMenuLink>
+            )}
+          </NavigationMenuItem>
+        )
+      ))}
+    </NavigationMenuList>
+  </NavigationMenu>
+);
+
+const MobileNavigation = () => (
+  <Sheet>
+    <SheetTrigger asChild className="md:hidden">
+      <Button variant="ghost" size="sm" className="p-2">
+        <Menu className="h-5 w-5" />
+        <span className="sr-only">Toggle mobile menu</span>
+      </Button>
+    </SheetTrigger>
+    <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+      <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+      <nav className="flex flex-col gap-4 mt-8 px-6">
+        {navItems.map((item) => (
+          <div key={item.label}>
+            {'children' in item ? (
+              <div className="space-y-2">
+                <div className="font-medium text-foreground py-2">{item.label}</div>
+                {item.children.map((child) => (
+                  <Link
+                    key={child.label}
+                    href={child.href}
+                    className="block py-2 pl-4 text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {child.label}
+                  </Link>
+                ))}
+              </div>
+            ) : item.isButton ? (
+              <Button asChild className="w-full">
+                <a href={item.href} target="_blank" rel="noopener noreferrer">
+                  {item.label}
+                </a>
+              </Button>
+            ) : (
+              <Link
+                href={item.href}
+                className="block py-2 text-foreground hover:text-primary transition-colors"
+              >
+                {item.label}
+              </Link>
+            )}
+          </div>
+        ))}
+      </nav>
+    </SheetContent>
+  </Sheet>
+);
+
 export default function SiteLayout({ children }: { children: ReactNode }) {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const isScrollingUp = currentScrollY < lastScrollY;
+      const isScrollingDown = currentScrollY > lastScrollY && currentScrollY > SCROLL_THRESHOLD;
+
+      if (isScrollingUp) {
+        setIsHeaderVisible(true);
+      } else if (isScrollingDown) {
+        setIsHeaderVisible(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
     <html lang="en" className="h-full">
       <head>
@@ -126,77 +231,34 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className="bg-background text-foreground h-full">
-        {/* Global Background Orbs */}
         <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
           <div className="absolute left-[10%] top-[15%]">
-            <FloatingOrb
-              size="large"
-              blur={40}
-              opacity={0.4}
-              speed={1}
-            />
+            <FloatingOrb size="large" blur={40} opacity={0.4} speed={1} />
           </div>
           <div className="absolute right-[20%] top-[25%]">
-            <FloatingOrb
-              size="small"
-              blur={40}
-              opacity={0.4}
-              speed={1.2}
-            />
+            <FloatingOrb size="small" blur={40} opacity={0.4} speed={1.2} />
           </div>
           <div className="absolute left-[40%] top-[40%]">
-            <FloatingOrb
-              size="medium"
-              blur={40}
-              opacity={0.40}
-              speed={1.6}
-            />
+            <FloatingOrb size="medium" blur={40} opacity={0.40} speed={1.6} />
           </div>
         </div>
 
-        <Animate name="fadeIn" trigger="onLoad">
-          <header className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-            <Link href="/" className="flex items-center">
-              <img src="/images/logo/full-logo.svg" alt="Subsights AI" className="h-12 w-auto" />
-            </Link>
-            <NavigationMenu>
-              <NavigationMenuList>
-                {navItems.map((item) => (
-                  'children' in item ? (
-                    <NavigationMenuItem key={item.label}>
-                      <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
-                          {item.children.map((child) => (
-                            <NavigationMenuLink key={child.label} href={child.href}>
-                              {child.label}
-                            </NavigationMenuLink>
-                          ))}
-                        </div>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                  ) : (
-                    <NavigationMenuItem key={item.label}>
-                      {item.isButton ? (
-                        <Button asChild size="sm">
-                          <a href={item.href} target="_blank" rel="noopener noreferrer">
-                            {item.label}
-                          </a>
-                        </Button>
-                      ) : (
-                        <NavigationMenuLink href={item.href} className={item.className}>
-                          {item.label}
-                        </NavigationMenuLink>
-                      )}
-                    </NavigationMenuItem>
-                  )
-                ))}
-              </NavigationMenuList>
-            </NavigationMenu>
-          </header>
-        </Animate>
-        <main className="mx-auto max-w-6xl px-6">{children}</main>
-        <footer className="mx-auto max-w-6xl px-6 py-12 text-sm opacity-70">© {new Date().getFullYear()} Subsights</footer>
+        <header className={`fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40 transition-transform duration-300 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+          <Animate name="fadeIn" trigger="onLoad">
+            <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+              <Link href="/" className="flex items-center">
+                <img src="/images/logo/full-logo.svg" alt="Subsights AI" className="h-12 w-auto" />
+              </Link>
+              <DesktopNavigation />
+              <MobileNavigation />
+            </div>
+          </Animate>
+        </header>
+
+        <main className="mx-auto max-w-6xl px-6 pt-20">{children}</main>
+        <footer className="mx-auto max-w-6xl px-6 py-12 text-sm opacity-70">
+          © {new Date().getFullYear()} Subsights
+        </footer>
       </body>
     </html>
   );
