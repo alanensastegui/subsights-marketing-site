@@ -40,36 +40,39 @@ const UseCaseImage = ({ emoji }: { emoji: string }) => (
 
 export default function UseCases() {
   return (
-    <Animate name="fadeIn" trigger="onVisible">
-      <section className="max-w-6xl mx-auto px-6 py-20">
-        {/* Main Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            {copy.heading}
-          </h2>
-        </div>
+    <section className="max-w-6xl mx-auto px-6 py-20">
+      {/* Main Heading */}
+      <Animate name="fadeIn" trigger="onVisible" className="text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+          {copy.heading}
+        </h2>
+      </Animate>
 
-        {/* Use Cases */}
-        <div className="space-y-12">
-          {copy.useCases.map((useCase, index) => (
-            <div key={index} className="flex flex-col md:flex-row items-start gap-8">
-              {/* Left: Image */}
-              <UseCaseImage emoji={useCase.imageEmoji} />
+      {/* Use Cases */}
+      <div className="space-y-12">
+        {copy.useCases.map((useCase, index) => (
+          <Animate
+            key={index}
+            name="fadeIn"
+            trigger="onVisible"
+            className="flex flex-col md:flex-row items-start gap-8"
+          >
+            {/* Left: Image */}
+            <UseCaseImage emoji={useCase.imageEmoji} />
 
-              {/* Right: Content */}
-              <div className="flex-1 space-y-3">
-                <h3 className="text-2xl font-semibold text-white">
-                  {useCase.title}
-                </h3>
-                <p className="text-lg text-gray-300 leading-relaxed">
-                  {useCase.description}
-                </p>
-              </div>
+            {/* Right: Content */}
+            <div className="flex-1 space-y-3">
+              <h3 className="text-2xl font-semibold text-white">
+                {useCase.title}
+              </h3>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                {useCase.description}
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
-    </Animate>
+          </Animate>
+        ))}
+      </div>
+    </section>
   );
 }
 

@@ -26,20 +26,24 @@ const copy = {
 
 export default function Hero() {
   return (
-    <Animate name="fadeIn" trigger="onVisible">
-      <section className="text-center space-y-8 max-w-4xl mx-auto px-6 py-20">
-        {/* Slogan */}
+    <section className="text-center space-y-8 max-w-4xl mx-auto px-6 py-20">
+      {/* Slogan */}
+      <Animate name="fadeIn" trigger="onVisible">
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
           {copy.slogan.line1}<br />
           {copy.slogan.line2}
         </h2>
+      </Animate>
 
-        {/* Description */}
+      {/* Description */}
+      <Animate name="fadeIn" trigger="onVisible">
         <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
           {copy.description}
         </p>
+      </Animate>
 
-        {/* Call to Action Buttons */}
+      {/* Call to Action Buttons */}
+      <Animate name="fadeIn" trigger="onVisible">
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button size="lg" asChild>
             <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">{copy.primaryCta.label}</a>
@@ -48,8 +52,8 @@ export default function Hero() {
             <a href={copy.secondaryCta.href} target="_blank" rel="noopener noreferrer">{copy.secondaryCta.label}</a>
           </Button>
         </div>
-      </section>
-    </Animate>
+      </Animate>
+    </section>
   );
 }
 

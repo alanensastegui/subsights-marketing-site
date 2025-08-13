@@ -46,7 +46,7 @@ export default function CallToAction() {
           <Animate name="fadeIn" trigger="onVisible" delay={200}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="space-y-4">
-                <Button size="lg" asChild className="w-full">
+                <Button size="lg" asChild>
                   <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">
                     {copy.primaryCta.label}
                   </a>
@@ -57,7 +57,7 @@ export default function CallToAction() {
               </div>
 
               <div className="space-y-4">
-                <Button variant="outline" size="lg" asChild className="w-full">
+                <Button variant="outline" size="lg" asChild>
                   <Link href={copy.secondaryCta.href}>
                     {copy.secondaryCta.label}
                   </Link>

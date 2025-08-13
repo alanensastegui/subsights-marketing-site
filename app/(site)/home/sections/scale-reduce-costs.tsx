@@ -85,53 +85,57 @@ const GridItem = ({
 
 export default function ScaleReduceCosts() {
   return (
-    <Animate name="fadeIn" trigger="onVisible">
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        {/* Main Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            {copy.heading}
-          </h2>
-        </div>
+    <section className="max-w-7xl mx-auto px-6 py-20">
+      {/* Main Heading */}
+      <Animate name="fadeIn" trigger="onVisible" className="text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+          {copy.heading}
+        </h2>
+      </Animate>
 
-        {/* 2x2 Grid */}
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left Column: Challenges */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold text-white mb-6">
+      {/* 2x2 Grid */}
+      <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+        {/* Left Column: Challenges */}
+        <div className="space-y-8">
+          <Animate name="fadeIn" trigger="onVisible" className="mb-6">
+            <h3 className="text-2xl font-semibold text-white">
               {copy.challenges.title}
             </h3>
-            <div className="space-y-8">
-              {copy.challenges.items.map((item, index) => (
-                <GridItem
-                  key={index}
-                  title={item.title}
-                  description={item.description}
-                  imageEmoji={item.imageEmoji}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Right Column: Solutions */}
+          </Animate>
           <div className="space-y-8">
-            <h3 className="text-2xl font-semibold text-white mb-6">
-              {copy.solutions.title}
-            </h3>
-            <div className="space-y-8">
-              {copy.solutions.items.map((item, index) => (
+            {copy.challenges.items.map((item, index) => (
+              <Animate key={index} name="fadeIn" trigger="onVisible">
                 <GridItem
-                  key={index}
                   title={item.title}
                   description={item.description}
                   imageEmoji={item.imageEmoji}
                 />
-              ))}
-            </div>
+              </Animate>
+            ))}
           </div>
         </div>
-      </section>
-    </Animate>
+
+        {/* Right Column: Solutions */}
+        <div className="space-y-8">
+          <Animate name="fadeIn" trigger="onVisible" className="mb-6">
+            <h3 className="text-2xl font-semibold text-white">
+              {copy.solutions.title}
+            </h3>
+          </Animate>
+          <div className="space-y-8">
+            {copy.solutions.items.map((item, index) => (
+              <Animate key={index} name="fadeIn" trigger="onVisible">
+                <GridItem
+                  title={item.title}
+                  description={item.description}
+                  imageEmoji={item.imageEmoji}
+                />
+              </Animate>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
