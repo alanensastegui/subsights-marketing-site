@@ -18,7 +18,7 @@ const navItems: NavItem[] = [
   { label: "Partners", href: "/partners" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },
-  { label: "Schedule Demo", href: "/schedule", className: "rounded-lg px-3 py-2 text-primary-foreground bg-primary" },
+  { label: "Get Demo", href: "https://calendly.com/lucas-subsights/subsights-demo", className: "rounded-lg px-3 py-2 text-primary-foreground bg-primary" },
 ];
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
@@ -26,8 +26,8 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
     <html lang="en" className="h-full">
       <body className="bg-background text-foreground h-full">
         <header className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-semibold">
-            subsights
+          <Link href="/" className="flex items-center">
+            <img src="/images/logo/full-logo.svg" alt="Subsights AI" className="h-12 w-auto" />
           </Link>
           <NavigationMenu>
             <NavigationMenuList>
@@ -47,9 +47,15 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
                   </NavigationMenuItem>
                 ) : (
                   <NavigationMenuItem key={item.label}>
-                    <NavigationMenuLink href={item.href} className={item.className}>
-                      {item.label}
-                    </NavigationMenuLink>
+                    {item.href.startsWith('http') ? (
+                      <a href={item.href} target="_blank" rel="noopener noreferrer" className={item.className}>
+                        {item.label}
+                      </a>
+                    ) : (
+                      <NavigationMenuLink href={item.href} className={item.className}>
+                        {item.label}
+                      </NavigationMenuLink>
+                    )}
                   </NavigationMenuItem>
                 )
               ))}

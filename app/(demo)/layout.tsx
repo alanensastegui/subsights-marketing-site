@@ -8,8 +8,8 @@ export default function DemoLayout({ children }: { children: ReactNode }) {
         <html lang="en" className="h-full">
             <body className="bg-background text-foreground flex flex-col h-full">
                 <header className="border-b px-6 py-3 flex items-center justify-between bg-background">
-                    <Link href="/" className="text-lg font-semibold">
-                        subsights
+                    <Link href="/" className="flex items-center">
+                        <img src="/images/logo/full-logo.svg" alt="Subsights AI" className="h-8 w-auto" />
                     </Link>
                     <div className="text-sm text-muted-foreground">
                         Demo Experience
