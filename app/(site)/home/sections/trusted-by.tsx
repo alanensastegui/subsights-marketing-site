@@ -169,7 +169,7 @@ export default function TrustedBy() {
         <div className="relative overflow-hidden">
           <div
             ref={carouselRef}
-            className="flex items-center gap-16 will-change-transform"
+            className="flex items-center gap-8 md:gap-16 will-change-transform"
             style={{ transform: `translate3d(${x}px, 0, 0)`, transition: "none" }}
             aria-hidden={true}
           >
