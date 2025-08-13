@@ -16,10 +16,10 @@ type Copy = {
 
 const copy = {
   slogan: {
-    line1: "Your Website is Your Front Door.",
-    line2: "We Provide the 24/7 Expert.",
+    line1: "Your Website is Your Front Door",
+    line2: "We Provide the 24/7 Expert",
   },
-  description: "Subsights AI qualifies, guides, and converts your best website visitors —so your team doesn't have to.",
+  description: "Subsights AI qualifies, guides, and converts your best website visitors; so your team doesn't have to",
   primaryCta: { label: "Get Demo", href: "https://calendly.com/lucas-subsights/subsights-demo" },
   secondaryCta: { label: "Watch Demo", href: "https://www.youtube.com/watch?v=OlwA_a5CpYQ&list=PLXL5IEY-s71AWou876UpvgX8r0W5B2Whc" },
 } satisfies Copy;

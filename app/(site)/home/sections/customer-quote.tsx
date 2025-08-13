@@ -18,7 +18,7 @@ type Copy = {
 
 const copy = {
   heading: "Don't Just Take Our Word For It",
-  subheading: "Explore our detailed case studies to see exactly how we partner with businesses to solve complex challenges and drive tangible results.",
+  subheading: "Explore our detailed case studies to see exactly how we partner with businesses to solve complex challenges and drive tangible results",
   quote: "Subsights has been a game-changer. Our AI assistant handles the vast majority of our online inquiries, which has freed up our team to focus on providing exceptional in-person guest services. It's a true extension of our team.",
   attribution: "Intrust Funding Principal",
   cta: {
