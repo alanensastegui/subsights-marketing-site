@@ -100,7 +100,7 @@ const ValueProposition = ({
     {/* Divider with progress bar */}
     <div className={cn(
       "relative h-1 rounded-full overflow-hidden",
-      isActive ? "bg-blue-500" : "bg-white"
+      isActive && isMobile ? "bg-blue-500" : "bg-white"
     )}>
       {isActive && !isMobile && (
         <Progress
@@ -250,10 +250,13 @@ export default function StrategicAIPartner() {
     if (!isAutoExpanded) {
       const valuePropElements = document.querySelectorAll('[data-value-prop]');
       if (valuePropElements[expandedIndex]) {
-        valuePropElements[expandedIndex].scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest'
+        const element = valuePropElements[expandedIndex] as HTMLElement;
+        const elementTop = element.offsetTop;
+        const scrollTop = elementTop - 85
+
+        window.scrollTo({
+          top: scrollTop,
+          behavior: 'smooth'
         });
       }
     }
