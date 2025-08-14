@@ -12,7 +12,7 @@ export type Trigger = 'onLoad' | 'onVisible' | 'onScroll';
 interface AnimationProps {
     name: AnimationName;
     trigger?: Trigger;
-    durationMs?: number;
+    duration?: number;
     className?: string;
     children?: React.ReactNode;
     threshold?: number;
@@ -159,7 +159,7 @@ const createVariants = (name: AnimationName, duration: number, delay: number = 0
 export function Animate({
     name,
     trigger = 'onVisible',
-    durationMs = 700,
+    duration = 700,
     className,
     children,
     threshold = 0.2,
@@ -173,7 +173,7 @@ export function Animate({
     }
 
     // Create animation variants
-    const variants = createVariants(name, durationMs, delay);
+    const variants = createVariants(name, duration, delay);
 
     // Handle different triggers
     if (trigger === 'onLoad') {
@@ -213,7 +213,7 @@ export function Animate({
                 style={{ y: 0 }}
                 whileInView={{ y: [-20, 20] }}
                 transition={{
-                    duration: durationMs / 1000,
+                    duration: duration / 1000,
                     type: 'spring',
                     stiffness: 50
                 }}

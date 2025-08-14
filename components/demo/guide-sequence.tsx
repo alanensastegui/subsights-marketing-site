@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { Animate } from "@/components/ui/animate";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
@@ -36,8 +36,8 @@ const sameOriginDoc = (f: HTMLIFrameElement): Document | null => {
 };
 const arrowClasses = (pos: "top" | "left") =>
   pos === "top"
-    ? "top-full left-1/2 -translate-x-1/2 border-t-8 border-l-8 border-r-8 border-transparent border-t-background"
-    : "left-full top-1/2 -translate-y-1/2 border-l-8 border-t-8 border-b-8 border-transparent border-l-background";
+    ? "top-full left-1/2 -translate-x-1/2 border-t-8 border-l-8 border-r-8 border-transparent border-t-muted/80"
+    : "left-full top-1/2 -translate-y-1/2 border-l-8 border-t-8 border-b-8 border-transparent border-l-muted/80";
 
 export function GuideSequence({
   steps,
@@ -49,6 +49,8 @@ export function GuideSequence({
 }: GuideSequenceProps) {
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [exiting, setExiting] = useState(false);
+  const [positioned, setPositioned] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
   const [pos, setPos] = useState<Pos>({ top: 0, left: 0 });
   const advancedForStepRef = useRef(false);
@@ -123,7 +125,9 @@ export function GuideSequence({
 
         pending.current.set(requestId, finalize);
         try {
-          iframeEl.contentWindow && postToChild(iframeEl.contentWindow, req);
+          if (iframeEl.contentWindow) {
+            postToChild(iframeEl.contentWindow, req);
+          }
         } catch {
           finalize(null);
           return;
@@ -194,6 +198,8 @@ export function GuideSequence({
       left = Math.max(PADDING, left);
       setPos({ top, left });
     }
+
+    setPositioned(true);
   }, [resolveWidgetRect, stepIndex, steps]);
 
   // Initial + re-measure after paint (double RAF)
@@ -274,10 +280,20 @@ export function GuideSequence({
     }
 
     if (stepIndex < steps.length - 1) {
-      setStepIndex((i) => i + 1);
+      setExiting(true);
+      // Let the exit animation complete naturally, then advance
+      setTimeout(() => {
+        setExiting(false);
+        setPositioned(false); // Reset positioning for new step
+        setStepIndex((i) => i + 1);
+      }, 300); // Match the animation duration
     } else {
-      setVisible(false);
-      setTimeout(onComplete, 300);
+      setExiting(true);
+      // Let the exit animation complete, then hide and complete
+      setTimeout(() => {
+        setVisible(false);
+        onComplete();
+      }, 300); // Match the animation duration
     }
   }, [executeAction, onComplete, stepIndex, steps]);
 
@@ -295,8 +311,8 @@ export function GuideSequence({
     const docs = getSameOriginDocs();
     const cleanups: Array<() => void> = [];
     const add = (doc: Document, type: string, handler: EventListener, options?: boolean | AddEventListenerOptions) => {
-      doc.addEventListener(type as any, handler, options);
-      cleanups.push(() => doc.removeEventListener(type as any, handler, options as any));
+      doc.addEventListener(type, handler, options);
+      cleanups.push(() => doc.removeEventListener(type, handler, options));
     };
 
     if (step.ctaButton.action === "click") {
@@ -334,7 +350,7 @@ export function GuideSequence({
         if (!ke.isTrusted) return;
         if (ke.key !== "Enter" || ke.shiftKey || ke.ctrlKey || ke.metaKey || ke.altKey) return;
         const active = (evt.currentTarget as Document).activeElement as Element | null;
-        if ((active as any)?.matches?.(selector)) advance(false);
+        if (active?.matches?.(selector)) advance(false);
       };
       docs.forEach((d) => add(d, "keydown", onEnterKey, true));
     }
@@ -342,35 +358,35 @@ export function GuideSequence({
     return () => { cleanups.forEach((fn) => fn()); };
   }, [mounted, stepIndex, steps, getSameOriginDocs, advance]);
 
-  if (!mounted || !visible || stepIndex >= steps.length) return null;
+  if (!mounted || !visible || !positioned || stepIndex >= steps.length) return null;
 
   const step = steps[stepIndex];
   const wrapperTranslate = step.position === "top" ? "transform -translate-x-1/2" : "transform -translate-y-1/2";
 
   const overlay = (
     <div className="fixed inset-0 pointer-events-none z-[2147483647]">
-      <AnimatePresence mode="wait">
+      {visible && positioned && (
         <div
           ref={wrapperRef}
           className={cn("absolute max-w-sm pointer-events-auto", wrapperTranslate)}
           style={{ top: pos.top, left: pos.left }}
         >
-          <motion.div
-            key={step.id}
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: -20 }}
-            transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 25 }}
-            className="relative bg-background border border-border rounded-lg shadow-lg p-4"
+          <Animate
+            name={exiting ? "bounceOut" : "bounceIn"}
+            trigger="onLoad"
+            duration={300}
+            key={`${step.id}-${exiting ? 'exit' : 'enter'}`}
           >
-            <p className="text-sm text-foreground mb-3">{step.message}</p>
-            <Button size="sm" onClick={nextStep} className="w-full">
-              {step.ctaButton.text}
-            </Button>
-            <div className={cn("absolute", arrowClasses(step.position))} />
-          </motion.div>
+            <div className="relative bg-muted/80 border border-muted-foreground/20 rounded-lg shadow-lg p-4 backdrop-blur-sm">
+              <p className="text-sm text-muted-foreground mb-3">{step.message}</p>
+              <Button size="sm" onClick={nextStep} className="w-full">
+                {step.ctaButton.text}
+              </Button>
+              <div className={cn("absolute", arrowClasses(step.position))} />
+            </div>
+          </Animate>
         </div>
-      </AnimatePresence>
+      )}
     </div>
   );
 

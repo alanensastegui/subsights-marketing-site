@@ -130,7 +130,7 @@ const ValueProposition = ({
         <Animate
           name="slideUp"
           trigger="onLoad"
-          durationMs={800}
+          duration={800}
           className="overflow-hidden"
           key={isExpanded ? 'expanded' : 'collapsed'}
         >
@@ -303,7 +303,7 @@ export default function StrategicAIPartner() {
       key={index}
       name="fadeIn"
       trigger="onVisible"
-      durationMs={600}
+      duration={600}
     >
       <ValueProposition
         title={prop.title}
@@ -329,7 +329,7 @@ export default function StrategicAIPartner() {
     <section ref={sectionRef} className="max-w-6xl mx-auto px-6 py-20">
       {/* Header */}
       <div className="text-center mb-16">
-        <Animate name="fadeIn" trigger="onVisible" durationMs={600}>
+        <Animate name="fadeIn" trigger="onVisible" duration={600}>
           <div className="space-y-4 mb-8">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
               {copy.heading.line1}
@@ -340,7 +340,7 @@ export default function StrategicAIPartner() {
           </div>
         </Animate>
 
-        <Animate name="fadeIn" trigger="onVisible" durationMs={600}>
+        <Animate name="fadeIn" trigger="onVisible" duration={600}>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {copy.description}
           </p>
@@ -355,7 +355,7 @@ export default function StrategicAIPartner() {
             <Animate
               name="zoomIn"
               key={activeIndex}
-              durationMs={150}
+              duration={150}
               trigger="onLoad"
               className="rounded-3xl shadow-2xl shadow-white/60 hover:shadow-2xl hover:shadow-white/70 transition-all duration-300 hover:scale-[1.02]"
             >

@@ -49,7 +49,7 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
   }, [phase, onWelcomeComplete]);
 
   const LoadingContent = () => (
-    <Animate name="scaleIn" trigger="onLoad" durationMs={400}>
+    <Animate name="scaleIn" trigger="onLoad" duration={400}>
       <div className="text-center space-y-6 max-w-lg">
         {/* Enhanced Spinner */}
         <div className="relative">
@@ -82,14 +82,14 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
 
       case 'welcome':
         return (
-          <Animate name="bounceIn" trigger="onLoad" durationMs={500}>
+          <Animate name="bounceIn" trigger="onLoad" duration={500}>
             {baseContent}
           </Animate>
         );
 
       case 'exiting':
         return (
-          <Animate name="bounceOut" trigger="onLoad" durationMs={300}>
+          <Animate name="bounceOut" trigger="onLoad" duration={300}>
             {baseContent}
           </Animate>
         );
