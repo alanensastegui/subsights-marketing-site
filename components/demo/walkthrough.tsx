@@ -46,8 +46,8 @@ const sameOriginDoc = (f: HTMLIFrameElement): Document | null => {
 };
 const arrowClass = (pos: "top" | "left") =>
   pos === "top"
-    ? "top-full left-1/2 -translate-x-1/2 border-t-8 border-l-8 border-r-8 border-transparent border-t-primary/80"
-    : "left-full top-1/2 -translate-y-1/2 border-l-8 border-t-8 border-b-8 border-transparent border-l-primary/80";
+    ? "top-full left-1/2 -translate-x-1/2 border-t-8 border-l-8 border-r-8 border-transparent border-t-gray-200/60"
+    : "left-full top-1/2 -translate-y-1/2 border-l-8 border-t-8 border-b-8 border-transparent border-l-gray-200/60";
 
 /** Find a likely chat container in the current document or any same-origin iframe. */
 function findChatContainer(): Element | null {
