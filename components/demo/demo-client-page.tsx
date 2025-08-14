@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { DemoTarget, getDemoTarget, type DemoMode } from "@/lib/demo/config";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
+import { EstoPhoenixDemo } from "@/components/demo/esto-phoenix-demo";
 import { DemoNotFound } from "@/components/demo/demo-not-found";
 import { DemoOverlay } from "@/components/demo/demo-overlay";
 import { DemoIframe } from "@/components/demo/demo-iframe";
@@ -136,6 +137,8 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
 
   const renderDemoContent = () => {
     if (isDefaultMode) {
+      const demoVariant = target.variant || "default";
+
       return (
         <div className="absolute inset-0 overflow-auto">
           <Animate
@@ -143,10 +146,17 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
             trigger="onLoad"
             duration={800}
           >
-            <DefaultDemo
-              targetLabel={target.label}
-              scriptTag={target.scriptTag}
-            />
+            {demoVariant === "estoPhoenix" ? (
+              <EstoPhoenixDemo
+                targetLabel={target.label}
+                scriptTag={target.scriptTag}
+              />
+            ) : (
+              <DefaultDemo
+                targetLabel={target.label}
+                scriptTag={target.scriptTag}
+              />
+            )}
           </Animate>
         </div>
       );
