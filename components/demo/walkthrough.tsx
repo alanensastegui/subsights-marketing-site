@@ -45,13 +45,6 @@ const clamp = (v: number, min: number, max: number) => Math.min(Math.max(v, min)
 const sameOriginDoc = (f: HTMLIFrameElement): Document | null => {
   try { return f.contentDocument ?? null; } catch { return null; }
 };
-const arrowClass = (pos: "top" | "left" | "bottom") =>
-  pos === "top"
-    ? "top-full left-1/2 -translate-x-1/2 border-t-8 border-l-8 border-r-8 border-transparent border-t-gray-200/60"
-    : pos === "bottom"
-      ? "bottom-full left-1/2 -translate-x-1/2 border-b-8 border-l-8 border-r-8 border-transparent border-b-gray-200/60"
-      : "left-full top-1/2 -translate-y-1/2 border-l-8 border-t-8 border-b-8 border-transparent border-l-gray-200/60";
-
 /** Find a likely chat container in the current document or any same-origin iframe. */
 function findChatContainer(): Element | null {
   const selectors = [
@@ -600,7 +593,6 @@ export function Walkthrough({
                 )}
               </Button>
             </div>
-            <div className={cn("absolute", arrowClass(activePosition))} />
           </div>
         </Animate>
       </div>

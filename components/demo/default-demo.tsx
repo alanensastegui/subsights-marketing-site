@@ -204,7 +204,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                                 </div>
 
                                 <p className="text-center text-muted-foreground text-xs sm:text-sm font-medium">
-                                    Here&apos;s how we fix it
+                                    How we fix it
                                 </p>
 
                                 <Animate name="fadeIn" trigger="onVisible" delay={150}>
@@ -278,7 +278,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                                 </div>
 
                                 <p className="text-center text-muted-foreground text-xs sm:text-sm font-medium">
-                                    Here&apos;s how we fix it
+                                    How we fix it
                                 </p>
 
                                 <Animate name="fadeIn" trigger="onVisible" delay={250}>
@@ -352,7 +352,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                                 </div>
 
                                 <p className="text-center text-muted-foreground text-xs sm:text-sm font-medium">
-                                    Here&apos;s how we fix it
+                                    How we fix it
                                 </p>
 
                                 <Animate name="fadeIn" trigger="onVisible" delay={350}>
