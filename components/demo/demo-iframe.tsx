@@ -19,7 +19,10 @@ export const DemoIframe = forwardRef<HTMLIFrameElement, DemoIframeProps>(
                 ref={ref}
                 src={src}
                 title={title}
-                className="absolute inset-0 w-full h-full border-0"
+                // The background color of the iframe element itself is used as the scrollbar track color
+                // when the loaded content has a transparent background. Setting a default background color
+                // prevents the brand background from showing through.
+                className="absolute inset-0 w-full h-full border-0 bg-white"
                 sandbox={sandbox}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
