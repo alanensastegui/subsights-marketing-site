@@ -96,7 +96,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
                     <p className="text-card-foreground leading-relaxed flex-1">
-                      Visitor centers and web teams can't be everywhere at once, especially during peaks and after hours.
+                      Visitor centers and web teams can&apos;t be everywhere at once, especially during peaks and after hours.
                     </p>
                     <Badge
                       variant="outline"
@@ -124,7 +124,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
                     <p className="text-card-foreground leading-relaxed flex-1">
-                      Information varies across partners and pages; planners bounce when they can't find what they need.
+                      Information varies across partners and pages; planners bounce when they can&apos;t find what they need.
                     </p>
                     <Badge
                       variant="outline"
@@ -185,7 +185,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                     </CardHeader>
                     <CardContent>
                       <p className="text-card-foreground leading-relaxed text-sm sm:text-base">
-                        Visitor centers and web teams can't be everywhere at once, especially during peaks and after hours.
+                        Visitor centers and web teams can&apos;t be everywhere at once, especially during peaks and after hours.
                       </p>
                       <Badge
                         variant="outline"
@@ -259,7 +259,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                     </CardHeader>
                     <CardContent>
                       <p className="text-card-foreground leading-relaxed text-sm sm:text-base">
-                        Information varies across partners and pages; planners bounce when they can't find what they need.
+                        Information varies across partners and pages; planners bounce when they can&apos;t find what they need.
                       </p>
                       <Badge
                         variant="outline"
@@ -299,7 +299,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                     </CardHeader>
                     <CardContent>
                       <p className="text-card-foreground leading-relaxed text-sm sm:text-base">
-                        The assistant speaks in your destination's voice and stays aligned with your official content.
+                        The assistant speaks in your destination&apos;s voice and stays aligned with your official content.
                       </p>
                       <Badge
                         variant="outline"
@@ -459,7 +459,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
                     <p className="text-card-foreground leading-relaxed flex-1">
-                      The assistant speaks in your destination's voice and stays aligned with your official content.
+                      The assistant speaks in your destination&apos;s voice and stays aligned with your official content.
                     </p>
                     <Badge
                       variant="outline"
