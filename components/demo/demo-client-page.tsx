@@ -3,121 +3,199 @@
 import { useEffect, useMemo, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { getDemoTarget, type DemoMode } from "@/lib/demo/config";
+import { DemoTarget, getDemoTarget, type DemoMode } from "@/lib/demo/config";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
 import { DemoNotFound } from "@/components/demo/demo-not-found";
-import { DemoLoading } from "@/components/demo/demo-loading";
+import { DemoOverlay } from "@/components/demo/demo-overlay";
 import { DemoIframe } from "@/components/demo/demo-iframe";
 import { useDemoState, useDemoAnalytics, useDemoModeRouting } from "@/components/demo/hooks";
+import { Animate } from "@/components/ui/animate";
+import { Walkthrough } from "./walkthrough";
 
 interface DemoPageClientProps {
   slug: string;
 }
+
+// Walkthrough configuration - will be updated with target-specific message
+const createWalkthroughSteps = (target: DemoTarget) => [
+  {
+    id: "click-widget",
+    message: "To begin, click on the chat widget below",
+    position: "top" as const,
+    ctaButton: {
+      text: "Click Widget",
+      action: "click" as const,
+      target: ".logo-toggle",
+    },
+  },
+  {
+    id: "send-message",
+    message: "Great! Now let's send a message",
+    position: "left" as const,
+    ctaButton: {
+      text: "Send a message",
+      action: "sendMessage" as const,
+      target: ".chatbot-input",
+      value: target.testMessage,
+    },
+  },
+];
 
 /**
  * Client-side demo host with policy- & query-driven routing between
  * proxy, iframe, and default modes. Designed for clarity and "performant enough".
  */
 function DemoPageClient({ slug }: DemoPageClientProps) {
-  const { mode, isLoading, settledRef, setMode, setIsLoading, markSuccess } = useDemoState(slug);
+  const demoState = useDemoState(slug);
   const { trackView, trackSuccess, logEvent } = useDemoAnalytics(slug);
   const searchParams = useSearchParams();
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const target = useMemo(() => getDemoTarget(slug), [slug]);
 
+  // Set widgetViewState to collapsed when demo page opens
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('widgetViewState', 'chatbot-collapsed');
+    }
+  }, []);
+
   const markSuccessWithAnalytics = useCallback(
     async (successMode: DemoMode) => {
-      // Track successful demo load with performance metrics
       await trackSuccess(slug, successMode);
-
-      // Mark success in state
-      markSuccess(successMode);
+      demoState.markSuccess(successMode);
     },
-    [slug, markSuccess, trackSuccess]
+    [slug, demoState, trackSuccess]
   );
 
   const { tryProxy, tryIframe } = useDemoModeRouting({
     slug,
     target,
-    settledRef,
-    setMode,
-    setIsLoading,
+    settledRef: demoState.settledRef,
+    setMode: demoState.setMode,
+    setIsLoading: demoState.setIsLoading,
     markSuccess: markSuccessWithAnalytics,
     trackView,
     logEvent,
   });
+
+  // Handle forced demo modes
+  const handleForcedMode = useCallback((forceMode: DemoMode) => {
+    switch (forceMode) {
+      case "proxy": {
+        const cleanup = tryProxy();
+        return () => cleanup?.();
+      }
+      case "iframe": {
+        const cleanup = tryIframe();
+        return () => cleanup?.();
+      }
+      case "default": {
+        trackView("default");
+        markSuccessWithAnalytics("default");
+        return () => { };
+      }
+      default:
+        return () => { };
+    }
+  }, [tryProxy, tryIframe, trackView, markSuccessWithAnalytics]);
 
   // Main demo logic: try proxy first, fallback to iframe/default
   useEffect(() => {
     if (!target) return;
 
     // Check for forced mode
-    const forceMode = (searchParams.get("force") as DemoMode | null) ?? null;
+    const forceMode = searchParams.get("force") as DemoMode | null;
     if (forceMode) {
-      switch (forceMode) {
-        case "proxy": {
-          const cleanup = tryProxy();
-          return () => {
-            if (cleanup) cleanup();
-          };
-        }
-        case "iframe": {
-          const cleanup = tryIframe();
-          return () => {
-            if (cleanup) cleanup();
-          };
-        }
-        case "default": {
-          trackView("default");
-          markSuccessWithAnalytics("default");
-          return;
-        }
-      }
+      return handleForcedMode(forceMode);
     }
 
     // Auto mode: try proxy first
     const cleanup = tryProxy();
-    return () => {
-      if (cleanup) cleanup();
-    };
+    return () => cleanup?.();
     // NOTE: searchParams is intentionally read-only (Next provides referential stability)
-  }, [slug, target, searchParams, tryProxy, tryIframe, markSuccessWithAnalytics, trackView]);
+  }, [slug, target, searchParams, tryProxy, handleForcedMode]);
+
+  // Handle guidance completion
+  const handleGuidanceComplete = useCallback(() => {
+    demoState.setShowWalkthrough(false);
+    demoState.setMode("default");
+    demoState.setIsLoading(false);
+    localStorage.setItem('widgetViewState', 'chatbot-collapsed');
+    console.log('[Demo] Guidance sequence completed, switching to default demo mode');
+  }, [demoState]);
 
   if (!target) {
     return <DemoNotFound slug={slug} />;
   }
 
-  const src = mode === "proxy" ? `/api/demo/site/${encodeURIComponent(slug)}` : target.url;
+  const src = demoState.mode === "proxy" ? `/api/demo/site/${encodeURIComponent(slug)}` : target.url;
+  const showOverlay = demoState.isLoading || demoState.showWelcomeOverlay;
+  const isDefaultMode = demoState.mode === "default" && !demoState.isLoading;
 
-  return (
-    <div className="flex-1 min-h-0 flex flex-col" data-testid="demo-page-client">
-      <DemoToolbar label={target.label} originalUrl={target.url} mode={mode} />
-
-      <div className="relative flex-1 min-h-0 overflow-hidden">
-        {mode === "default" && !isLoading ? (
-          <div className="absolute inset-0 overflow-auto">
+  const renderDemoContent = () => {
+    if (isDefaultMode) {
+      return (
+        <div className="absolute inset-0 overflow-auto">
+          <Animate
+            name="fadeIn"
+            trigger="onLoad"
+            duration={800}
+          >
             <DefaultDemo
               targetLabel={target.label}
               scriptTag={target.scriptTag}
             />
-          </div>
-        ) : (
-          <>
-            {isLoading && <DemoLoading />}
-            <DemoIframe
-              key={src} // force remount on src change to reset listeners/load
-              ref={iframeRef}
-              src={src}
-              title={`Demo: ${target.label}`}
-              mode={mode}
-              onLoad={() => {
-                if (mode === "iframe") setIsLoading(false);
-              }}
-            />
-          </>
+          </Animate>
+        </div>
+      );
+    }
+
+    return (
+      <DemoIframe
+        key={src} // force remount on src change to reset listeners/load
+        ref={iframeRef}
+        src={src}
+        title={`Demo: ${target.label}`}
+        mode={demoState.mode}
+        onLoad={() => {
+          if (demoState.mode === "iframe") demoState.setIsLoading(false);
+        }}
+      />
+    );
+  };
+
+  return (
+    <div className="flex-1 min-h-0 flex flex-col" data-testid="demo-page-client">
+      <DemoToolbar
+        label={target.label}
+        originalUrl={target.url}
+        mode={demoState.mode}
+      />
+
+      <div className="relative flex-1 min-h-0 overflow-hidden">
+        {/* Unified Loading/Welcome Overlay - Shows in ALL modes */}
+        {showOverlay && (
+          <DemoOverlay
+            isLoading={demoState.isLoading}
+            onWelcomeComplete={() => {
+              demoState.setShowWelcomeOverlay(false);
+              demoState.setShowWalkthrough(true);
+            }}
+          />
         )}
+
+        {/* Walkthrough - Shows after welcome overlay completes */}
+        {demoState.showWalkthrough && (
+          <Walkthrough
+            steps={createWalkthroughSteps(target)}
+            onComplete={handleGuidanceComplete}
+          />
+        )}
+
+        {/* Demo Content - All modes */}
+        {renderDemoContent()}
       </div>
     </div>
   );

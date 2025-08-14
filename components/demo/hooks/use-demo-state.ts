@@ -1,51 +1,73 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import type { DemoMode } from "@/lib/demo/config";
 
 interface UseDemoStateReturn {
     mode: DemoMode;
     isLoading: boolean;
+    showWelcomeOverlay: boolean;
+    showWalkthrough: boolean;
     settledRef: React.RefObject<boolean>;
     setMode: (mode: DemoMode) => void;
     setIsLoading: (loading: boolean) => void;
     markSuccess: (successMode: DemoMode) => void;
+    setShowWelcomeOverlay: (show: boolean) => void;
+    setShowWalkthrough: (show: boolean) => void;
 }
 
-export function useDemoState(slug: string): UseDemoStateReturn {
-    const [mode, setMode] = useState<DemoMode>("default");
-    const [isLoading, setIsLoading] = useState(true);
-    const settledRef = useRef(false);
+// Initial state constants
+const INITIAL_STATE = {
+    mode: "default" as DemoMode,
+    isLoading: true,
+    showWelcomeOverlay: false,
+    showWalkthrough: false,
+    settled: false,
+};
 
-    // Reset all state when component mounts or slug changes
+export function useDemoState(slug: string): UseDemoStateReturn {
+    const [mode, setMode] = useState<DemoMode>(INITIAL_STATE.mode);
+    const [isLoading, setIsLoading] = useState(INITIAL_STATE.isLoading);
+    const [showWelcomeOverlay, setShowWelcomeOverlay] = useState(INITIAL_STATE.showWelcomeOverlay);
+    const [showWalkthrough, setShowWalkthrough] = useState(INITIAL_STATE.showWalkthrough);
+    const settledRef = useRef(INITIAL_STATE.settled);
+
+    // Reset all state to initial values
+    const resetState = useCallback(() => {
+        setMode(INITIAL_STATE.mode);
+        setIsLoading(INITIAL_STATE.isLoading);
+        setShowWelcomeOverlay(INITIAL_STATE.showWelcomeOverlay);
+        setShowWalkthrough(INITIAL_STATE.showWalkthrough);
+        settledRef.current = INITIAL_STATE.settled;
+    }, []);
+
+    // Reset state when component mounts or slug changes
     useEffect(() => {
-        // Reset to loading state every time component mounts or slug changes
-        setMode("default");
-        setIsLoading(true);
-        settledRef.current = false;
-    }, [slug]);
+        resetState();
+    }, [slug, resetState]);
 
     // Cleanup on unmount
     useEffect(() => {
-        return () => {
-            // Reset all state on unmount
-            setIsLoading(false);
-            setMode("default");
-            settledRef.current = false;
-        };
-    }, []);
+        return resetState;
+    }, [resetState]);
 
-    const markSuccess = (successMode: DemoMode) => {
+    const markSuccess = useCallback((successMode: DemoMode) => {
         if (settledRef.current) return;
+
         settledRef.current = true;
         setIsLoading(false);
+        setShowWelcomeOverlay(true); // Show welcome overlay after loading completes
         setMode(successMode);
-    };
+    }, []);
 
     return {
         mode,
         isLoading,
+        showWelcomeOverlay,
+        showWalkthrough,
         settledRef,
         setMode,
         setIsLoading,
         markSuccess,
+        setShowWelcomeOverlay,
+        setShowWalkthrough,
     };
 }

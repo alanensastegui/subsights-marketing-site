@@ -22,6 +22,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     slug: "new-prospect", 
     url: "https://prospect-site.com", 
     label: "Prospect Company",
+    testMessage: "Hello, I have a question about your services",
     scriptTag: '<script src="https://widget.subsights.com/chatbot.js" data-workspace="YOUR_WORKSPACE_ID" data-api-key="YOUR_API_KEY"></script>'
   },
   // Optional advanced configuration:
@@ -42,6 +43,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
 - `slug`: URL-friendly identifier (e.g., "acme-corp")
 - `url`: Target website URL
 - `label`: Display name for the prospect
+- `testMessage`: Message to send during the demo walkthrough
 - `scriptTag`: Full script tag from a chatbot embedding
 
 **Optional Fields:**
