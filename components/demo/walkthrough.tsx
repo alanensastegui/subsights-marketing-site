@@ -511,6 +511,8 @@ export function Walkthrough({
     ? `Finish Demo${finalRemainingSec != null && finalRemainingSec > 0 ? ` (${finalRemainingSec}s)` : ""}`
     : step.ctaButton.text;
 
+
+
   const handleFinalClick = () => {
     // Cancel both the delay and the ticking timer
     if (finalDelayTimeoutRef.current != null) {
@@ -538,10 +540,35 @@ export function Walkthrough({
         }}
       >
         <Animate name={exiting ? "bounceOut" : "bounceIn"} trigger="onLoad" duration={300} key={animateKey}>
-          <div className="relative bg-muted/80 border border-muted-foreground/20 rounded-lg shadow-lg p-4 backdrop-blur-sm">
-            <p className="text-sm text-muted-foreground mb-3">{message}</p>
-            <Button size="sm" onClick={onClick} className="w-full">
+          <div className="relative bg-primary/30 border border-gray-200/50 rounded-xl shadow-2xl p-6 backdrop-blur-md max-w-xs">
+            {/* Progress indicator for multi-step walkthroughs */}
+            {!isShowingFinal && steps.length > 1 && (
+              <div className="flex items-center gap-2 mb-3">
+                <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                  <div
+                    className="bg-gradient-to-r from-primary to-purple-500 h-1.5 rounded-full transition-all duration-300"
+                    style={{ width: `${((stepIndex + 1) / steps.length) * 100}%` }}
+                  />
+                </div>
+                <span className="text-xs text-foreground dark:text-gray-400 font-medium">
+                  {stepIndex + 1}/{steps.length}
+                </span>
+              </div>
+            )}
+
+            <p className="text-sm text-foreground leading-relaxed mb-4">{message}</p>
+            <Button
+              size="sm"
+              onClick={onClick}
+              className={cn(
+                "w-full font-semibold relative overflow-hidden bg-gradient-to-r from-primary to-purple-600 text-foreground shadow-lg hover:shadow-xl hover:from-primary hover:to-purple-700 transform hover:scale-105 transition-all duration-200 border-0 active:scale-95",
+                !isShowingFinal && "animate-pulse overflow-hidden"
+              )}
+            >
               {buttonText}
+              {!isShowingFinal && (
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_2s_ease-in-out_infinite]" />
+              )}
             </Button>
             <div className={cn("absolute", arrowClass(activePosition))} />
           </div>
