@@ -32,7 +32,7 @@ const createWalkthroughSteps = (target: DemoTarget) => [
   {
     id: "send-message",
     message: "Great! Now let's send a message",
-    position: "left" as const,
+    position: "bottom" as const,
     ctaButton: {
       text: "Send a message",
       action: "sendMessage" as const,

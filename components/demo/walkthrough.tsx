@@ -12,7 +12,7 @@ type Pos = { top: number; left: number };
 interface WalkthroughStep {
   id: string;
   message: string;
-  position: "top" | "left";
+  position: "top" | "left" | "bottom";
   ctaButton: {
     text: string;
     action: "click" | "sendMessage";
@@ -45,10 +45,12 @@ const clamp = (v: number, min: number, max: number) => Math.min(Math.max(v, min)
 const sameOriginDoc = (f: HTMLIFrameElement): Document | null => {
   try { return f.contentDocument ?? null; } catch { return null; }
 };
-const arrowClass = (pos: "top" | "left") =>
+const arrowClass = (pos: "top" | "left" | "bottom") =>
   pos === "top"
     ? "top-full left-1/2 -translate-x-1/2 border-t-8 border-l-8 border-r-8 border-transparent border-t-gray-200/60"
-    : "left-full top-1/2 -translate-y-1/2 border-l-8 border-t-8 border-b-8 border-transparent border-l-gray-200/60";
+    : pos === "bottom"
+      ? "bottom-full left-1/2 -translate-x-1/2 border-b-8 border-l-8 border-r-8 border-transparent border-b-gray-200/60"
+      : "left-full top-1/2 -translate-y-1/2 border-l-8 border-t-8 border-b-8 border-transparent border-l-gray-200/60";
 
 /** Find a likely chat container in the current document or any same-origin iframe. */
 function findChatContainer(): Element | null {
@@ -89,7 +91,7 @@ export function Walkthrough({
   const [exiting, setExiting] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
   const [pos, setPos] = useState<Pos>({ top: 0, left: 0 });
-  const [appliedPosition, setAppliedPosition] = useState<"top" | "left">("top");
+  const [appliedPosition, setAppliedPosition] = useState<"top" | "left" | "bottom">("top");
   const [walkthroughCompleted, setWalkthroughCompleted] = useState(false);
   const [aiMessageReceived, setAiMessageReceived] = useState(false);
 
@@ -218,7 +220,7 @@ export function Walkthrough({
       const step = steps[stepIndex];
       const bubbleRect = wrapperRef.current?.getBoundingClientRect() ?? ({ width: 0, height: 0 } as DOMRect);
 
-      let position: "top" | "left" = overridePosition ?? step.position;
+      let position: "top" | "left" | "bottom" = overridePosition ?? step.position;
 
       // auto-flip on tight space
       const needLeft = bubbleRect.width + OFFSET + PADDING;
@@ -226,7 +228,7 @@ export function Walkthrough({
       const needTop = bubbleRect.height + OFFSET + PADDING;
       const haveTop = rect.top;
 
-      if (position === "left" && haveLeft < needLeft) position = "top";
+      if (position === "left" && haveLeft < needLeft) position = "bottom";
       else if (position === "top" && haveTop < needTop) position = "left";
 
       if (position === "top") {
@@ -234,6 +236,12 @@ export function Walkthrough({
         let top = rect.top - OFFSET - bubbleRect.height;
         left = clamp(left, PADDING + bubbleRect.width / 2, window.innerWidth - PADDING - bubbleRect.width / 2);
         top = Math.max(PADDING, top);
+        setPos({ top, left });
+      } else if (position === "bottom") {
+        let left = rect.left + rect.width / 2;
+        let top = rect.top + rect.height + OFFSET;
+        left = clamp(left, PADDING + bubbleRect.width / 2, window.innerWidth - PADDING - bubbleRect.width / 2);
+        top = clamp(top, PADDING, window.innerHeight - PADDING - bubbleRect.height - 20);
         setPos({ top, left });
       } else {
         let left = rect.left - OFFSET - bubbleRect.width;
@@ -517,7 +525,7 @@ export function Walkthrough({
   const isShowingFinal = walkthroughCompleted && aiMessageReceived;
   const step = steps[stepIndex];
   const activePosition = appliedPosition || (isShowingFinal ? "left" : step.position);
-  const wrapperTranslate = activePosition === "top" ? "transform -translate-x-1/2" : "transform -translate-y-1/2";
+  const wrapperTranslate = activePosition === "top" || activePosition === "bottom" ? "transform -translate-x-1/2" : "transform -translate-y-1/2";
 
   const message = isShowingFinal ? "Click here to finish the demo" : step.message;
 
