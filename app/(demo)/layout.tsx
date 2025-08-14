@@ -9,9 +9,10 @@ export default function DemoLayout({ children }: { children: ReactNode }) {
         <html lang="en" className="h-full">
             <body className="bg-background text-foreground flex flex-col h-full">
                 <header className="border-b px-6 py-3 flex items-center justify-between bg-background">
-                    <Link href="/" className="flex items-center">
+                    {/* TODO: Switch back to internal Link when main site is ready */}
+                    <a href="https://www.subsights.com" className="flex items-center" target="_blank" rel="noopener noreferrer">
                         <Image src="/images/logo/full-logo.svg" alt="Subsights AI" width={80} height={32} className="h-8 w-auto" />
-                    </Link>
+                    </a>
                     <div className="text-sm text-muted-foreground">
                         Demo Experience
                     </div>
@@ -19,7 +20,8 @@ export default function DemoLayout({ children }: { children: ReactNode }) {
                 {children}
                 <footer className="border-t px-6 py-3 text-center text-xs">
                     This is a Subsights demo experience •
-                    <Link href="/" className="hover:underline ml-1">Learn more about Subsights</Link>
+                    {/* TODO: Switch back to internal Link when main site is ready */}
+                    <a href="https://www.subsights.com" className="hover:underline ml-1" target="_blank" rel="noopener noreferrer">Learn more about Subsights</a>
                 </footer>
             </body>
         </html>
