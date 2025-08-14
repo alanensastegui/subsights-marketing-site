@@ -239,7 +239,7 @@ export function Walkthrough({
         setPos({ top, left });
       } else if (position === "bottom") {
         let left = rect.left + rect.width / 2;
-        let top = rect.top + rect.height + OFFSET;
+        let top = rect.top + rect.height -  3 * bubbleRect.height / 2;
         left = clamp(left, PADDING + bubbleRect.width / 2, window.innerWidth - PADDING - bubbleRect.width / 2);
         top = clamp(top, PADDING, window.innerHeight - PADDING - bubbleRect.height - 20);
         setPos({ top, left });
