@@ -28,6 +28,7 @@ interface WalkthroughProps {
   iframeSelector?: string;
   msgNamespace?: string;   // default "subsights:anchor"
   targetOrigin?: string | string[];
+  isDefaultMode?: boolean; // default false
 }
 
 type AnchorReq = { ns: string; type: "GET_RECT"; selector: string; requestId: string };
@@ -82,6 +83,7 @@ export function Walkthrough({
   iframeSelector,
   msgNamespace = "subsights:anchor",
   targetOrigin,
+  isDefaultMode,
 }: WalkthroughProps) {
   const [positioned, setPositioned] = useState(false);
   const [exiting, setExiting] = useState(false);
@@ -522,6 +524,15 @@ export function Walkthrough({
     finalTimerStartedRef.current = true; // prevent later auto-starts
     clearFinalTimer();
     finalAutoClickedRef.current = true;
+
+    // If in default mode, also click the chatbot toggle button
+    if (isDefaultMode) {
+      const chatbotToggle = document.querySelector('.logo-toggle') as HTMLElement;
+      if (chatbotToggle) {
+        chatbotToggle.click();
+      }
+    }
+
     onComplete();
   };
 

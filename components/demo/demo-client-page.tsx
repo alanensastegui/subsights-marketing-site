@@ -191,6 +191,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
           <Walkthrough
             steps={createWalkthroughSteps(target)}
             onComplete={handleGuidanceComplete}
+            isDefaultMode={isDefaultMode}
           />
         )}
 
