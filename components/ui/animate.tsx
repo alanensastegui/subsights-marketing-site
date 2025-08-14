@@ -6,7 +6,7 @@ import { motion, Variants, Transition } from 'framer-motion';
 // TYPE DEFINITIONS
 // ============================================================================
 
-export type AnimationName = 'fadeIn' | 'slideUp' | 'zoomIn' | 'parallax' | 'typewriter' | 'scrollReveal' | 'counter' | 'scaleIn' | 'bounceIn' | 'bounceOut';
+export type AnimationName = 'fadeIn' | 'fadeOut' | 'slideUp' | 'zoomIn' | 'parallax' | 'typewriter' | 'scrollReveal' | 'counter' | 'scaleIn' | 'bounceIn' | 'bounceOut';
 export type Trigger = 'onLoad' | 'onVisible' | 'onScroll';
 
 interface AnimationProps {
@@ -34,6 +34,12 @@ const createVariants = (name: AnimationName, duration: number, delay: number = 0
             return {
                 hidden: { opacity: 0 },
                 visible: { opacity: 1, transition: baseTransition }
+            };
+        case 'fadeOut':
+            // Simple fade out effect - good for subtle content hiding
+            return {
+                hidden: { opacity: 1 },
+                visible: { opacity: 0, transition: baseTransition }
             };
 
         case 'slideUp':

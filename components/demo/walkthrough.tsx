@@ -539,7 +539,7 @@ export function Walkthrough({
           maxWidth: `calc(100vw - ${PADDING * 2}px)`,
         }}
       >
-        <Animate name={exiting ? "bounceOut" : "bounceIn"} trigger="onLoad" duration={300} key={animateKey}>
+        <Animate name={exiting ? "fadeOut" : "fadeIn"} trigger="onLoad" duration={300} key={animateKey}>
           <div className="relative bg-primary/30 border border-gray-200/50 rounded-xl shadow-2xl p-6 backdrop-blur-md max-w-xs">
             {/* Progress indicator for multi-step walkthroughs */}
             {!isShowingFinal && steps.length > 1 && (
