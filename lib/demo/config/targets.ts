@@ -22,6 +22,13 @@ export const DEMO_TARGETS: DemoTarget[] = [
         testMessage: "Hi, where can I get a Very Important Twilighter ticket?",
         scriptTag: '<script src="https://widget.latest.subsights.com/chatbot.js" data-workspace="I6BHboKbqb" data-api-key="4yO7Z30ZFFZ79w75v5d1VqYhfHX63z44"></script>',
     },
+    {
+        slug: "seattle-chamber",
+        url: "https://www.seattlechamber.com/",
+        label: "Seattle Chamber",
+        testMessage: "Hi, I want to open up a coffee shop in Seattle. What do I need to do?",
+        scriptTag: '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="9l1V6iBeIO9Rhmo9ILRsP9Rq7xtwvj2u"></script>',
+    },
 ];
 
 export const getDemoTarget = (slug: string) => DEMO_TARGETS.find(d => d.slug === slug) ?? null;
