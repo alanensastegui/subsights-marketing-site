@@ -38,7 +38,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
         url: "https://www.estophoenix.com",
         label: "Esto Phoenix",
         testMessage: "Hi, I'm interested in learning more about your services",
-        scriptTag: '<script src="https://widget.subsights.com/chatbot.js" data-workspace="esto-phoenix" data-api-key="esto-phoenix-key"></script>',
+        scriptTag: '<script src="https://widget.latest.subsights.com/chatbot.js" data-workspace="I6BHboKbqb" data-api-key="4yO7Z30ZFFZ79w75v5d1VqYhfHX63z44"></script>',
         variant: "estoPhoenix",
     },
 ];

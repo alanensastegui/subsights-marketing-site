@@ -62,7 +62,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                 <span className="block text-[#561f37]">AI-Powered Future</span>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-[#7cdede] max-w-4xl mx-auto leading-relaxed px-2">
-                This is a demonstration of how Subsights transforms your website into a 24/7 expert that qualifies, guides, and converts visitors.
+                This is a demonstration of how Subsights greets travelers, answers with local expertise, and routes them to stays, experiences, and events.
               </p>
             </Animate>
           </section>
@@ -74,7 +74,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                 The Problems We Solve
               </h2>
               <p className="text-base sm:text-lg text-[#7cdede] mb-6 sm:mb-8">
-                Traditional customer service is broken
+                Old support models can&apos;t keep up with today&apos;s traveler.
               </p>
             </Animate>
 
@@ -92,17 +92,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                         className="w-8 h-8"
                       />
                     </div>
-                    <CardTitle className="text-[#FFFF00] text-xl font-bold drop-shadow-sm">Expensive & Limited Support</CardTitle>
+                    <CardTitle className="text-[#FFFF00] text-xl font-bold drop-shadow-sm">Limited Hours & Staffing</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
                     <p className="text-card-foreground leading-relaxed flex-1">
-                      High staffing costs, limited hours, and overwhelmed teams during peak times. Customers wait hours for responses.
+                      Visitor centers and web teams can't be everywhere at once, especially during peaks and after hours.
                     </p>
                     <Badge
                       variant="outline"
                       className="mt-4 border-red-500/30 text-[#FFFF00] bg-red-500/20 text-xs font-bold"
                     >
-                      High operational costs
+                      Limited coverage
                     </Badge>
                   </CardContent>
                 </Card>
@@ -120,17 +120,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                         className="w-8 h-8"
                       />
                     </div>
-                    <CardTitle className="text-[#FFFF00] text-xl font-bold drop-shadow-sm">Inconsistent Experience</CardTitle>
+                    <CardTitle className="text-[#FFFF00] text-xl font-bold drop-shadow-sm">Inconsistent Answers</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
                     <p className="text-card-foreground leading-relaxed flex-1">
-                      Different agents provide varying service quality. Customers get frustrated and leave without solutions.
+                      Information varies across partners and pages; planners bounce when they can't find what they need.
                     </p>
                     <Badge
                       variant="outline"
                       className="mt-4 border-red-500/30 text-[#FFFF00] bg-red-500/20 text-xs font-bold"
                     >
-                      Angry customers
+                      Information gaps
                     </Badge>
                   </CardContent>
                 </Card>
@@ -148,17 +148,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                         className="w-8 h-8"
                       />
                     </div>
-                    <CardTitle className="text-[#FFFF00] text-xl font-bold drop-shadow-sm">Missed Revenue</CardTitle>
+                    <CardTitle className="text-[#FFFF00] text-xl font-bold drop-shadow-sm">Leaky Demand</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
                     <p className="text-card-foreground leading-relaxed flex-1">
-                      Agents miss upsell chances and can&apos;t handle multiple conversations simultaneously. Revenue leaks through the cracks.
+                      Trip planners drift to OTAs or competitor destinations before they discover your itineraries and partners.
                     </p>
                     <Badge
                       variant="outline"
                       className="mt-4 border-red-500/30 text-[#FFFF00] bg-red-500/20 text-xs font-bold"
                     >
-                      Lost sales opportunities
+                      Lost visitors
                     </Badge>
                   </CardContent>
                 </Card>
@@ -181,17 +181,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           className="w-6 h-6 sm:w-8 sm:h-8"
                         />
                       </div>
-                      <CardTitle className="text-[#FFFF00] text-lg sm:text-xl font-bold drop-shadow-sm">Expensive & Limited Support</CardTitle>
+                      <CardTitle className="text-[#FFFF00] text-lg sm:text-xl font-bold drop-shadow-sm">Limited Hours & Staffing</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-card-foreground leading-relaxed text-sm sm:text-base">
-                        High staffing costs, limited hours, and overwhelmed teams during peak times. Customers wait hours for responses.
+                        Visitor centers and web teams can't be everywhere at once, especially during peaks and after hours.
                       </p>
                       <Badge
                         variant="outline"
                         className="mt-3 sm:mt-4 border-red-500/30 text-[#FFFF00] bg-red-500/20 text-xs font-bold"
                       >
-                        High operational costs
+                        Limited coverage
                       </Badge>
                     </CardContent>
                   </Card>
@@ -221,17 +221,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           className="w-6 h-6 sm:w-8 sm:h-8"
                         />
                       </div>
-                      <CardTitle className="text-green-300 text-lg sm:text-xl">24/7 Automated Excellence</CardTitle>
+                      <CardTitle className="text-green-300 text-lg sm:text-xl">Always-On Coverage</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-card-foreground leading-relaxed text-sm sm:text-base">
-                        AI handles unlimited conversations simultaneously, never takes breaks, and provides instant expert responses.
+                        Every visitor gets instant, expert help, 24/7, at any volume and in any season.
                       </p>
                       <Badge
                         variant="outline"
                         className="mt-3 sm:mt-4 border-green-500/40 text-green-300 bg-green-500/25 text-xs"
                       >
-                        Significant cost savings
+                        Unlimited availability
                       </Badge>
                     </CardContent>
                   </Card>
@@ -255,17 +255,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           className="w-6 h-6 sm:w-8 sm:h-8"
                         />
                       </div>
-                      <CardTitle className="text-[#FFFF00] text-lg sm:text-xl font-bold drop-shadow-sm">Inconsistent Experience</CardTitle>
+                      <CardTitle className="text-[#FFFF00] text-lg sm:text-xl font-bold drop-shadow-sm">Inconsistent Answers</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-card-foreground leading-relaxed text-sm sm:text-base">
-                        Different agents provide varying service quality. Customers get frustrated and leave without solutions.
+                        Information varies across partners and pages; planners bounce when they can't find what they need.
                       </p>
                       <Badge
                         variant="outline"
                         className="mt-3 sm:mt-4 border-red-500/30 text-[#FFFF00] bg-red-500/20 text-xs font-bold"
                       >
-                        Angry customers
+                        Information gaps
                       </Badge>
                     </CardContent>
                   </Card>
@@ -295,17 +295,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           className="w-6 h-6 sm:w-8 sm:h-8"
                         />
                       </div>
-                      <CardTitle className="text-green-300 text-lg sm:text-xl">Consistent, Expert-Level Service</CardTitle>
+                      <CardTitle className="text-green-300 text-lg sm:text-xl">Consistent, Brand-Safe Guidance</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-card-foreground leading-relaxed text-sm sm:text-base">
-                        Every customer gets the same high-quality, knowledgeable experience. No more inconsistent service quality.
+                        The assistant speaks in your destination's voice and stays aligned with your official content.
                       </p>
                       <Badge
                         variant="outline"
                         className="mt-3 sm:mt-4 border-green-500/40 text-green-300 bg-green-500/25 text-xs"
                       >
-                        Happy customers
+                        Brand consistency
                       </Badge>
                     </CardContent>
                   </Card>
@@ -329,17 +329,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           className="w-6 h-6 sm:w-8 sm:h-8"
                         />
                       </div>
-                      <CardTitle className="text-[#FFFF00] text-lg sm:text-xl font-bold drop-shadow-sm">Missed Revenue</CardTitle>
+                      <CardTitle className="text-[#FFFF00] text-lg sm:text-xl font-bold drop-shadow-sm">Leaky Demand</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-card-foreground leading-relaxed text-sm sm:text-base">
-                        Agents miss upsell chances and can&apos;t handle multiple conversations simultaneously. Revenue leaks through the cracks.
+                        Trip planners drift to OTAs or competitor destinations before they discover your itineraries and partners.
                       </p>
                       <Badge
                         variant="outline"
                         className="mt-3 sm:mt-4 border-red-500/30 text-[#FFFF00] bg-red-500/20 text-xs font-bold"
                       >
-                        Lost sales opportunities
+                        Lost visitors
                       </Badge>
                     </CardContent>
                   </Card>
@@ -369,17 +369,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           className="w-6 h-6 sm:w-8 sm:h-8"
                         />
                       </div>
-                      <CardTitle className="text-green-300 text-lg sm:text-xl">Revenue Optimization</CardTitle>
+                      <CardTitle className="text-green-300 text-lg sm:text-xl">Demand Captured & Routed</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-card-foreground leading-relaxed text-sm sm:text-base">
-                        AI intelligently identifies upsell opportunities, applies strategic discounts, and maximizes every customer interaction.
+                        Subsights guides planners to priority actions; lodging pages, deals, partner listings, and themed itineraries.
                       </p>
                       <Badge
                         variant="outline"
                         className="mt-3 sm:mt-4 border-green-500/40 text-green-300 bg-green-500/25 text-xs"
                       >
-                        Increased conversions
+                        Increased visitation
                       </Badge>
                     </CardContent>
                   </Card>
@@ -427,17 +427,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                         className="w-8 h-8"
                       />
                     </div>
-                    <CardTitle className="text-green-300 text-xl">24/7 Automated Excellence</CardTitle>
+                    <CardTitle className="text-green-300 text-xl">Always-On Coverage</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
                     <p className="text-card-foreground leading-relaxed flex-1">
-                      AI handles unlimited conversations simultaneously, never takes breaks, and provides instant expert responses.
+                      Every visitor gets instant, expert help, 24/7, at any volume and in any season.
                     </p>
                     <Badge
                       variant="outline"
                       className="mt-4 border-green-500/40 text-green-300 bg-green-500/25 text-xs"
                     >
-                      Significant cost savings
+                      Unlimited availability
                     </Badge>
                   </CardContent>
                 </Card>
@@ -455,17 +455,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                         className="w-8 h-8"
                       />
                     </div>
-                    <CardTitle className="text-green-300 text-xl">Consistent, Expert-Level Service</CardTitle>
+                    <CardTitle className="text-green-300 text-xl">Consistent, Brand-Safe Guidance</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
                     <p className="text-card-foreground leading-relaxed flex-1">
-                      Every customer gets the same high-quality, knowledgeable experience. No more inconsistent service quality.
+                      The assistant speaks in your destination's voice and stays aligned with your official content.
                     </p>
                     <Badge
                       variant="outline"
                       className="mt-4 border-green-500/40 text-green-300 bg-green-500/25 text-xs"
                     >
-                      Happy customers
+                      Brand consistency
                     </Badge>
                   </CardContent>
                 </Card>
@@ -483,17 +483,17 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                         className="w-8 h-8"
                       />
                     </div>
-                    <CardTitle className="text-green-300 text-xl">Revenue Optimization</CardTitle>
+                    <CardTitle className="text-green-300 text-xl">Demand Captured & Routed</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
                     <p className="text-card-foreground leading-relaxed flex-1">
-                      AI intelligently identifies upsell opportunities, applies strategic discounts, and maximizes every customer interaction.
+                      Subsights guides planners to priority actions; lodging pages, deals, partner listings, and themed itineraries.
                     </p>
                     <Badge
                       variant="outline"
                       className="mt-4 border-green-500/40 text-green-300 bg-green-500/25 text-xs"
                     >
-                      Increased conversions
+                      Increased visitation
                     </Badge>
                   </CardContent>
                 </Card>
@@ -508,7 +508,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                 Who We Are
               </h2>
               <p className="text-lg sm:text-xl text-[#7cdede] max-w-3xl mx-auto px-2">
-                Subsights AI is your strategic partner for website conversion optimization
+                Subsights AI is your strategic partner for converting trip planners and driving visitation.
               </p>
             </Animate>
 
@@ -519,8 +519,8 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                     <div className="flex items-start gap-3 sm:gap-4">
                       <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#561f37]/10 rounded-xl flex items-center justify-center flex-shrink-0">
                         <Image
-                          src="/images/sales-funnel.svg"
-                          alt="Sales funnel icon representing lead qualification"
+                          src="/images/suitcase.svg"
+                          alt="Suitcase icon representing business solutions"
                           width={32}
                           height={32}
                           className="w-6 h-6 sm:w-8 sm:h-8"
@@ -528,10 +528,10 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2 sm:mb-3">
-                          Filter & Qualify Every Lead
+                          Qualify Trip Intent & Route to Partners
                         </h3>
                         <p className="text-[#7cdede] leading-relaxed text-sm sm:text-base">
-                          Our AI filters for intent, budget, and custom rules, so your sales team only engages with prospects ready to convert.
+                          Our AI gauges timing, interests, and budget, then routes planners to the right stays, experiences, neighborhoods, and events.
                         </p>
                       </div>
                     </div>
@@ -550,10 +550,10 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2 sm:mb-3">
-                          Provide Expert, Nuanced Answers
+                          Provide Expert, On-Brand Local Answers
                         </h3>
                         <p className="text-[#7cdede] leading-relaxed text-sm sm:text-base">
-                          Go beyond FAQs. Our AI handles complex, multi-step questions with the nuance of a human expert, building customer trust around the clock.
+                          Our AI answers complex planning in your brand voice, deep-links to the right page or event, and updates hourly via sitemap sync.
                         </p>
                       </div>
                     </div>
@@ -563,8 +563,8 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                     <div className="flex items-start gap-3 sm:gap-4">
                       <div className="h-12 w-12 sm:h-16 sm:w-16 bg-[#561f37]/10 rounded-xl flex items-center justify-center flex-shrink-0">
                         <Image
-                          src="/images/suitcase.svg"
-                          alt="Suitcase icon representing business solutions"
+                          src="/images/sales-funnel.svg"
+                          alt="Sales funnel icon representing lead qualification"
                           width={32}
                           height={32}
                           className="w-6 h-6 sm:w-8 sm:h-8"
@@ -572,10 +572,10 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2 sm:mb-3">
-                          Drive Revenue & Strategic Goals
+                          Drive Visitation & Strategic Objectives
                         </h3>
                         <p className="text-[#7cdede] leading-relaxed text-sm sm:text-base">
-                          Our AI intelligently upsells services, applies strategic discounts, and guides every user toward your most important business goals.
+                          Our AI captures post-click demand, drives referrals, itinerary views, and bookings, and nudges shoulder-season travel and feeder markets.
                         </p>
                       </div>
                     </div>
@@ -673,10 +673,10 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                 <div className="text-center space-y-8 sm:space-y-12">
                   <Animate name="fadeIn" trigger="onVisible">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
-                      Ready to Transform Your Website?
+                      Ready to Drive Visitation?
                     </h2>
                     <p className="text-lg sm:text-xl text-[#7cdede] max-w-3xl mx-auto px-2">
-                      Join forward-thinking businesses already converting visitors with Subsights AI
+                      Join DMOs guiding planners to stays, experiences, and events—automatically, 24/7
                     </p>
                   </Animate>
 
