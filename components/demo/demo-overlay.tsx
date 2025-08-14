@@ -42,7 +42,7 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
       setTimeout(() => {
         setPhase('exiting');
         setTimeout(() => {
-          onWelcomeComplete(); // Welcome overlay completed, transition to guide
+          onWelcomeComplete();
         }, 300);
       }, TIMING.WELCOME_DISPLAY);
     }
@@ -103,8 +103,8 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
   const getOverlayOpacity = () => {
     switch (phase) {
       case 'loading': return 1;
-      case 'transitioning': return 0.8;
-      case 'welcome': return 0.8;
+      case 'transitioning': return 0.95;
+      case 'welcome': return 0.95;
       case 'exiting': return 0;
       default: return 1;
     }
@@ -122,7 +122,7 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
 
   return (
     <motion.div
-      className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50"
+      className="absolute inset-0 bg-background/90 backdrop-blur-sm flex items-center justify-center z-50"
       initial={{ opacity: 1 }}
       animate={{ opacity: getOverlayOpacity() }}
       transition={{ duration: TIMING.ANIMATION_DURATION }}

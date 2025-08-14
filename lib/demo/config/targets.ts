@@ -5,6 +5,7 @@ export type DemoTarget = {
     slug: string;
     url: string;
     label: string;
+    testMessage: string;        // test message to send to the chatbot
     scriptTag: string;           // Full script tag from sales (e.g., <script src="..." data-workspace="..." data-api-key="..."></script>)
     // optional controls
     policy?: FallbackPolicy;     // default: "auto"
@@ -18,7 +19,8 @@ export const DEMO_TARGETS: DemoTarget[] = [
         slug: "forks",
         url: "https://www.forkswa.com",
         label: "Forks, WA",
-        scriptTag: '<script src="https://widget.latest.subsights.com/chatbot.js" data-workspace="I6BHboKbqb" data-api-key="4yO7Z30ZFFZ79w75v5d1VqYhfHX63z44"></script>'
+        testMessage: "Hi, where can I get a Very Important Twilighter ticket?",
+        scriptTag: '<script src="https://widget.latest.subsights.com/chatbot.js" data-workspace="I6BHboKbqb" data-api-key="4yO7Z30ZFFZ79w75v5d1VqYhfHX63z44"></script>',
     },
 ];
 

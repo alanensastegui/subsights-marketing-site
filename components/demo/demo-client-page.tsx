@@ -3,21 +3,22 @@
 import { useEffect, useMemo, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { getDemoTarget, type DemoMode } from "@/lib/demo/config";
+import { DemoTarget, getDemoTarget, type DemoMode } from "@/lib/demo/config";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
 import { DemoNotFound } from "@/components/demo/demo-not-found";
 import { DemoOverlay } from "@/components/demo/demo-overlay";
 import { DemoIframe } from "@/components/demo/demo-iframe";
-import { GuideSequence } from "@/components/demo/guide-sequence";
 import { useDemoState, useDemoAnalytics, useDemoModeRouting } from "@/components/demo/hooks";
+import { Animate } from "@/components/ui/animate";
+import { Walkthrough } from "./walkthrough";
 
 interface DemoPageClientProps {
   slug: string;
 }
 
-// Guide sequence configuration
-const GUIDE_STEPS = [
+// Walkthrough configuration - will be updated with target-specific message
+const createWalkthroughSteps = (target: DemoTarget) => [
   {
     id: "click-widget",
     message: "To begin, click on the chat widget below",
@@ -33,10 +34,10 @@ const GUIDE_STEPS = [
     message: "Great! Now let's send a message",
     position: "left" as const,
     ctaButton: {
-      text: "Send 'Hello'",
+      text: "Send a message",
       action: "sendMessage" as const,
       target: ".chatbot-input",
-      value: "Hello",
+      value: target.testMessage,
     },
   },
 ];
@@ -52,6 +53,13 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const target = useMemo(() => getDemoTarget(slug), [slug]);
+
+  // Set widgetViewState to collapsed when demo page opens
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('widgetViewState', 'chatbot-collapsed');
+    }
+  }, []);
 
   const markSuccessWithAnalytics = useCallback(
     async (successMode: DemoMode) => {
@@ -109,6 +117,15 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     // NOTE: searchParams is intentionally read-only (Next provides referential stability)
   }, [slug, target, searchParams, tryProxy, handleForcedMode]);
 
+  // Handle guidance completion
+  const handleGuidanceComplete = useCallback(() => {
+    demoState.setShowWalkthrough(false);
+    demoState.setMode("default");
+    demoState.setIsLoading(false);
+    localStorage.setItem('widgetViewState', 'chatbot-collapsed');
+    console.log('[Demo] Guidance sequence completed, switching to default demo mode');
+  }, [demoState]);
+
   if (!target) {
     return <DemoNotFound slug={slug} />;
   }
@@ -121,10 +138,16 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     if (isDefaultMode) {
       return (
         <div className="absolute inset-0 overflow-auto">
-          <DefaultDemo
-            targetLabel={target.label}
-            scriptTag={target.scriptTag}
-          />
+          <Animate
+            name="fadeIn"
+            trigger="onLoad"
+            duration={800}
+          >
+            <DefaultDemo
+              targetLabel={target.label}
+              scriptTag={target.scriptTag}
+            />
+          </Animate>
         </div>
       );
     }
@@ -158,16 +181,16 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
             isLoading={demoState.isLoading}
             onWelcomeComplete={() => {
               demoState.setShowWelcomeOverlay(false);
-              demoState.setShowGuideSequence(true);
+              demoState.setShowWalkthrough(true);
             }}
           />
         )}
 
-        {/* Guide Sequence - Shows after welcome overlay completes */}
-        {demoState.showGuideSequence && (
-          <GuideSequence
-            steps={GUIDE_STEPS}
-            onComplete={() => demoState.setShowGuideSequence(false)}
+        {/* Walkthrough - Shows after welcome overlay completes */}
+        {demoState.showWalkthrough && (
+          <Walkthrough
+            steps={createWalkthroughSteps(target)}
+            onComplete={handleGuidanceComplete}
           />
         )}
 
