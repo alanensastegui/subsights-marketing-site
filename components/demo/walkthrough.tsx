@@ -70,7 +70,7 @@ function findChatContainer(): Element | null {
         const el = doc.querySelector(s);
         if (el) return el;
       }
-    } catch {}
+    } catch { }
   }
   return null;
 }
@@ -162,7 +162,11 @@ export function Walkthrough({
           resolve(r);
         };
         pending.current.set(requestId, finalize);
-        try { iframeEl.contentWindow && postToChild(iframeEl.contentWindow, req); }
+        try {
+          if (iframeEl.contentWindow) {
+            postToChild(iframeEl.contentWindow, req);
+          }
+        }
         catch { finalize(null); return; }
         const t = setTimeout(() => { if (pending.current.has(requestId)) finalize(null); }, timeoutMs);
       });
@@ -455,21 +459,21 @@ export function Walkthrough({
 
     if (step.ctaButton.action === "click") {
       const onClick: EventListener = (e) => {
-        if (!(e as any).isTrusted) return;
+        if (!(e as Event & { isTrusted?: boolean }).isTrusted) return;
         const target = e.target as Element | null;
         if (target?.closest(selector)) advance(false);
       };
       docs.forEach((d) => add(d, "click", onClick, true));
     } else if (step.ctaButton.action === "sendMessage") {
       const onSubmit: EventListener = (e) => {
-        if (!(e as any).isTrusted) return;
+        if (!(e as Event & { isTrusted?: boolean }).isTrusted) return;
         const form = e.target as Element | null;
         if (form?.querySelector(selector)) advance(false);
       };
       docs.forEach((d) => add(d, "submit", onSubmit, true));
 
       const onClickSubmit: EventListener = (e) => {
-        if (!(e as any).isTrusted) return;
+        if (!(e as Event & { isTrusted?: boolean }).isTrusted) return;
         const t = e.target as Element | null;
         const btn = t?.closest(".chatbot-submit");
         if (!btn) return;

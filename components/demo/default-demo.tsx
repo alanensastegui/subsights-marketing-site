@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Animate } from "@/components/ui/animate";
-import { cn } from "@/lib/cn";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 
@@ -12,14 +11,12 @@ interface DefaultDemoProps {
     scriptTag?: string;
 }
 
-export function DefaultDemo({ targetLabel, scriptTag }: DefaultDemoProps) {
-    const [widgetStatus, setWidgetStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
+export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
     const mountedRef = useRef(false);
 
     useEffect(() => {
         if (scriptTag && !mountedRef.current) {
             mountedRef.current = true;
-            setWidgetStatus('loading');
 
             try {
                 // Create a temporary container to parse the script tag
@@ -34,18 +31,11 @@ export function DefaultDemo({ targetLabel, scriptTag }: DefaultDemoProps) {
                     newScript.setAttribute('data-workspace', scriptElement.getAttribute('data-workspace') || '');
                     newScript.setAttribute('data-api-key', scriptElement.getAttribute('data-api-key') || '');
 
-                    // Handle script load events
-                    newScript.onload = () => setWidgetStatus('loaded');
-                    newScript.onerror = () => setWidgetStatus('error');
-
                     // Append the script to the document head
                     document.head.appendChild(newScript);
-                } else {
-                    setWidgetStatus('error');
                 }
             } catch (error) {
                 console.error('Failed to load widget:', error);
-                setWidgetStatus('error');
             }
         }
     }, [scriptTag]);
@@ -160,7 +150,7 @@ export function DefaultDemo({ targetLabel, scriptTag }: DefaultDemoProps) {
                                     </CardHeader>
                                     <CardContent className="flex-1 flex flex-col">
                                         <p className="text-card-foreground leading-relaxed flex-1">
-                                            Agents miss upsell chances and can't handle multiple conversations simultaneously. Revenue leaks through the cracks.
+                                            Agents miss upsell chances and can&apos;t handle multiple conversations simultaneously. Revenue leaks through the cracks.
                                         </p>
                                         <Badge
                                             variant="outline"
@@ -214,7 +204,7 @@ export function DefaultDemo({ targetLabel, scriptTag }: DefaultDemoProps) {
                                 </div>
 
                                 <p className="text-center text-muted-foreground text-sm font-medium">
-                                    Here's how we fix it
+                                    Here&apos;s how we fix it
                                 </p>
 
                                 <Animate name="fadeIn" trigger="onVisible" delay={150}>
@@ -288,7 +278,7 @@ export function DefaultDemo({ targetLabel, scriptTag }: DefaultDemoProps) {
                                 </div>
 
                                 <p className="text-center text-muted-foreground text-sm font-medium">
-                                    Here's how we fix it
+                                    Here&apos;s how we fix it
                                 </p>
 
                                 <Animate name="fadeIn" trigger="onVisible" delay={250}>
@@ -341,7 +331,7 @@ export function DefaultDemo({ targetLabel, scriptTag }: DefaultDemoProps) {
                                         </CardHeader>
                                         <CardContent>
                                             <p className="text-card-foreground leading-relaxed">
-                                                Agents miss upsell chances and can't handle multiple conversations simultaneously. Revenue leaks through the cracks.
+                                                Agents miss upsell chances and can&apos;t handle multiple conversations simultaneously. Revenue leaks through the cracks.
                                             </p>
                                             <Badge
                                                 variant="outline"
@@ -362,7 +352,7 @@ export function DefaultDemo({ targetLabel, scriptTag }: DefaultDemoProps) {
                                 </div>
 
                                 <p className="text-center text-muted-foreground text-sm font-medium">
-                                    Here's how we fix it
+                                    Here&apos;s how we fix it
                                 </p>
 
                                 <Animate name="fadeIn" trigger="onVisible" delay={350}>
@@ -416,7 +406,7 @@ export function DefaultDemo({ targetLabel, scriptTag }: DefaultDemoProps) {
                                     </div>
                                 </div>
                                 <p className="text-lg text-muted-foreground mb-8">
-                                    Here's how we fix it
+                                    Here&apos;s how we fix it
                                 </p>
                             </div>
                         </Animate>
@@ -609,7 +599,7 @@ export function DefaultDemo({ targetLabel, scriptTag }: DefaultDemoProps) {
                                                 <div className="w-20 h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1">
                                                     <Image
                                                         src="/images/client-logos/dylan's tours.avif"
-                                                        alt="Dylan's Tours company logo"
+                                                        alt="Dylan&apos;s Tours company logo"
                                                         width={72}
                                                         height={72}
                                                         className="w-full h-full object-contain"
@@ -629,7 +619,7 @@ export function DefaultDemo({ targetLabel, scriptTag }: DefaultDemoProps) {
 
                                         <div className="text-center p-6 bg-foreground/5 rounded-xl border border-foreground/10">
                                             <blockquote className="text-card-foreground italic leading-relaxed">
-                                                "Subsights has been a game-changer. Our AI assistant handles the vast majority of our online inquiries, which has freed up our team to focus on providing exceptional in-person guest services."
+                                                &ldquo;Subsights has been a game-changer. Our AI assistant handles the vast majority of our online inquiries, which has freed up our team to focus on providing exceptional in-person guest services.&rdquo;
                                             </blockquote>
                                             <cite className="text-foreground font-medium not-italic mt-4 block">
                                                 — Intrust Funding Principal
