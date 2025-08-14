@@ -140,25 +140,24 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       const demoVariant = target.variant || "default";
 
       return (
-        <div className="absolute inset-0 overflow-auto">
-          <Animate
-            name="fadeIn"
-            trigger="onLoad"
-            duration={800}
-          >
-            {demoVariant === "estoPhoenix" ? (
-              <EstoPhoenixDemo
-                targetLabel={target.label}
-                scriptTag={target.scriptTag}
-              />
-            ) : (
-              <DefaultDemo
-                targetLabel={target.label}
-                scriptTag={target.scriptTag}
-              />
-            )}
-          </Animate>
-        </div>
+        <Animate
+          className="absolute inset-0"
+          name="fadeIn"
+          trigger="onLoad"
+          duration={800}
+        >
+          {demoVariant === "estoPhoenix" ? (
+            <EstoPhoenixDemo
+              targetLabel={target.label}
+              scriptTag={target.scriptTag}
+            />
+          ) : (
+            <DefaultDemo
+              targetLabel={target.label}
+              scriptTag={target.scriptTag}
+            />
+          )}
+        </Animate>
       );
     }
 

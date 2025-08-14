@@ -44,7 +44,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
 
 
   return (
-    <div className="min-h-full flex flex-col bg-gradient-to-br from-[#d87651] via-[#c86a4a] via-30% to-[#561f37]">
+    <div className="min-h-full flex flex-col bg-gradient-to-br from-[#d87651] via-[#c86a4a] via-30% to-[#561f37] overflow-auto h-full">
       {/* Demo Content */}
       <div className="flex-1">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16 space-y-12 sm:space-y-20">
