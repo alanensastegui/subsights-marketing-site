@@ -20,6 +20,7 @@ type Copy = {
   logos: Array<{
     logoSrc: string;
     logoAlt: string;
+    websiteUrl: string;
   }>;
 };
 
@@ -28,19 +29,23 @@ const copy = {
   logos: [
     {
       logoSrc: "/images/client-logos/vsv.avif",
-      logoAlt: "VSV company logo"
+      logoAlt: "VSV company logo",
+      websiteUrl: "https://visitsunvalley.com"
     },
     {
       logoSrc: "/images/client-logos/dylan's tours.avif",
-      logoAlt: "Dylan's Tours company logo"
+      logoAlt: "Dylan's Tours company logo",
+      websiteUrl: "https://www.dylanstours.com/"
     },
     {
       logoSrc: "/images/client-logos/intrust.avif",
-      logoAlt: "Intrust company logo"
+      logoAlt: "Intrust company logo",
+      websiteUrl: "https://intrustfunding.com/"
     },
     {
       logoSrc: "/images/client-logos/allied-health.svg",
-      logoAlt: "Allied Health company logo"
+      logoAlt: "Allied Health company logo",
+      websiteUrl: "https://www.allalliedhealthschools.com/"
     },
   ],
 } satisfies Copy;
@@ -55,16 +60,24 @@ const LogoItem = ({ logo, index }: { logo: Copy['logos'][0]; index: number }) =>
     className="flex-shrink-0 text-center w-50"
   >
     <div className="h-32 mx-auto flex items-center justify-center">
-      <Image
-        src={logo.logoSrc}
-        alt={logo.logoAlt}
-        width={80}
-        height={80}
-        className={cn(
-          "object-contain h-full w-auto",
-          logo.logoSrc.includes("allied-health") && "grayscale brightness-150 filter"
-        )}
-      />
+      <a
+        href={logo.websiteUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
+        aria-label={`Visit ${logo.logoAlt.replace(' company logo', '')} website`}
+      >
+        <Image
+          src={logo.logoSrc}
+          alt={logo.logoAlt}
+          width={80}
+          height={80}
+          className={cn(
+            "object-contain h-full w-auto",
+            logo.logoSrc.includes("allied-health") && "grayscale brightness-150 filter"
+          )}
+        />
+      </a>
     </div>
   </div>
 );
