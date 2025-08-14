@@ -8,11 +8,12 @@ import { cn } from "@/lib/cn";
 
 type Rect = { top: number; left: number; width: number; height: number };
 type Pos = { top: number; left: number };
+type BubblePosition = "top" | "left" | "bottom";
 
 interface WalkthroughStep {
   id: string;
   message: string;
-  position: "top" | "left" | "bottom";
+  position: BubblePosition;
   ctaButton: {
     text: string;
     action: "click" | "sendMessage";
@@ -84,7 +85,7 @@ export function Walkthrough({
   const [exiting, setExiting] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
   const [pos, setPos] = useState<Pos>({ top: 0, left: 0 });
-  const [appliedPosition, setAppliedPosition] = useState<"top" | "left" | "bottom">("top");
+  const [appliedPosition, setAppliedPosition] = useState<BubblePosition>("top");
   const [walkthroughCompleted, setWalkthroughCompleted] = useState(false);
   const [aiMessageReceived, setAiMessageReceived] = useState(false);
 
@@ -206,14 +207,14 @@ export function Walkthrough({
 
   // ----- positioning (steps + final) -----
   const positionBubble = useCallback(
-    async (overridePosition?: "top" | "left") => {
+    async (overridePosition?: BubblePosition) => {
       const rect = await resolveWidgetRect();
       if (!rect) return;
 
       const step = steps[stepIndex];
       const bubbleRect = wrapperRef.current?.getBoundingClientRect() ?? ({ width: 0, height: 0 } as DOMRect);
 
-      let position: "top" | "left" | "bottom" = overridePosition ?? step.position;
+      let position: BubblePosition = overridePosition ?? step.position;
 
       // auto-flip on tight space
       const needLeft = bubbleRect.width + OFFSET + PADDING;
@@ -232,7 +233,10 @@ export function Walkthrough({
         setPos({ top, left });
       } else if (position === "bottom") {
         let left = rect.left + rect.width / 2;
-        let top = rect.top + rect.height -  3 * bubbleRect.height / 2;
+        // Use smaller offset on mobile devices
+        const isMobile = window.innerWidth < 768; // Standard mobile breakpoint
+        const bottomOffset = isMobile ? bubbleRect.height : 3 * bubbleRect.height / 2;
+        let top = rect.top + rect.height - bottomOffset;
         left = clamp(left, PADDING + bubbleRect.width / 2, window.innerWidth - PADDING - bubbleRect.width / 2);
         top = clamp(top, PADDING, window.innerHeight - PADDING - bubbleRect.height - 20);
         setPos({ top, left });
@@ -250,7 +254,7 @@ export function Walkthrough({
     [resolveWidgetRect, stepIndex, steps]
   );
 
-  const schedulePosition = useCallback((override?: "top" | "left") => {
+  const schedulePosition = useCallback((override?: BubblePosition) => {
     positionBubble(override);
     requestAnimationFrame(() => requestAnimationFrame(() => positionBubble(override)));
   }, [positionBubble]);
@@ -258,18 +262,18 @@ export function Walkthrough({
   const isFinal = walkthroughCompleted && aiMessageReceived;
 
   useEffect(() => {
-    schedulePosition(isFinal ? "left" : undefined);
+    schedulePosition(isFinal ? "bottom" : undefined);
   }, [stepIndex, isFinal, schedulePosition]);
 
   useEffect(() => {
-    const onResize = () => schedulePosition(isFinal ? "left" : undefined);
+    const onResize = () => schedulePosition(isFinal ? "bottom" : undefined);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, [schedulePosition, isFinal]);
 
   useEffect(() => {
     const id = setInterval(() => {
-      if (crossOriginActive.current) schedulePosition(isFinal ? "left" : undefined);
+      if (crossOriginActive.current) schedulePosition(isFinal ? "bottom" : undefined);
     }, 500);
     return () => clearInterval(id);
   }, [schedulePosition, isFinal]);
