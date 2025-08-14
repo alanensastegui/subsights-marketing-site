@@ -281,6 +281,17 @@ export function Walkthrough({
     }
   }, []);
 
+  // Helper function to handle chatbot toggle in default mode
+  const handleChatbotToggle = useCallback(() => {
+    if (isDefaultMode) {
+      const chatbotToggle = document.querySelector('.logo-toggle') as HTMLElement;
+
+      if (chatbotToggle) {
+        chatbotToggle.click();
+      }
+    }
+  }, [isDefaultMode]);
+
   // Smooth first-second UX: fixed 1s cadence after showing the initial seconds
   const startFinalTimer = useCallback((ms: number) => {
     if (finalTimeoutRef.current != null || finalTimerStartedRef.current) return;
@@ -301,6 +312,8 @@ export function Walkthrough({
       if (remaining <= 0) {
         if (!finalAutoClickedRef.current) {
           finalAutoClickedRef.current = true;
+          // Handle chatbot toggle in default mode before completing
+          handleChatbotToggle();
           onComplete();
         }
         clearFinalTimer();
@@ -312,7 +325,7 @@ export function Walkthrough({
 
     // first decrement ~1s after number appears
     finalTimeoutRef.current = window.setTimeout(tick, 1000);
-  }, [clearFinalTimer, onComplete]);
+  }, [clearFinalTimer, onComplete, handleChatbotToggle]);
 
   // ----- detect first AI message (compute reading time only) -----
   useEffect(() => {
@@ -525,13 +538,8 @@ export function Walkthrough({
     clearFinalTimer();
     finalAutoClickedRef.current = true;
 
-    // If in default mode, also click the chatbot toggle button
-    if (isDefaultMode) {
-      const chatbotToggle = document.querySelector('.logo-toggle') as HTMLElement;
-      if (chatbotToggle) {
-        chatbotToggle.click();
-      }
-    }
+    // Handle chatbot toggle in default mode
+    handleChatbotToggle();
 
     onComplete();
   };
@@ -568,19 +576,22 @@ export function Walkthrough({
             )}
 
             <p className="text-sm text-foreground leading-relaxed mb-4">{message}</p>
-            <Button
-              size="sm"
-              onClick={onClick}
-              className={cn(
-                "w-full font-semibold relative overflow-hidden bg-gradient-to-r from-primary to-purple-600 text-foreground shadow-lg hover:shadow-xl hover:from-primary hover:to-purple-700 transform hover:scale-105 transition-all duration-200 border-0 active:scale-95",
-                !isShowingFinal && "animate-pulse overflow-hidden"
-              )}
-            >
-              {buttonText}
-              {!isShowingFinal && (
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_2s_ease-in-out_infinite]" />
-              )}
-            </Button>
+            <div className={cn(isShowingFinal && "flex justify-center")}>
+              <Button
+                size="sm"
+                onClick={onClick}
+                className={cn(
+                  "font-semibold relative overflow-hidden bg-gradient-to-r from-primary to-purple-600 text-foreground shadow-lg hover:shadow-xl hover:from-primary hover:to-purple-700 transform hover:scale-105 transition-all duration-200 border-0 active:scale-95",
+                  isShowingFinal ? "w-36" : "w-full",
+                  !isShowingFinal && "animate-pulse overflow-hidden"
+                )}
+              >
+                {buttonText}
+                {!isShowingFinal && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_2s_ease-in-out_infinite]" />
+                )}
+              </Button>
+            </div>
             <div className={cn("absolute", arrowClass(activePosition))} />
           </div>
         </Animate>
