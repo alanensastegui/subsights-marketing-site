@@ -14,7 +14,7 @@ type OverlayPhase = 'loading' | 'transitioning' | 'welcome' | 'exiting';
 // Animation timing constants
 const TIMING = {
   TRANSITION_DELAY: 300,
-  WELCOME_DISPLAY: 3500,
+  WELCOME_DISPLAY: 3000,
   EXIT_DELAY: 300,
   ANIMATION_DURATION: 0.3,
 } as const;
@@ -36,12 +36,14 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
     }
   }, [isLoading, phase]);
 
-  // Show welcome for specified duration, then exit
+  // Show welcome, then exit
   useEffect(() => {
     if (phase === 'welcome') {
       setTimeout(() => {
         setPhase('exiting');
-        setTimeout(onWelcomeComplete, TIMING.EXIT_DELAY);
+        setTimeout(() => {
+          onWelcomeComplete(); // Welcome overlay completed, transition to guide
+        }, 300);
       }, TIMING.WELCOME_DISPLAY);
     }
   }, [phase, onWelcomeComplete]);

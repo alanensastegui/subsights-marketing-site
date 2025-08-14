@@ -9,11 +9,37 @@ import { DefaultDemo } from "@/components/demo/default-demo";
 import { DemoNotFound } from "@/components/demo/demo-not-found";
 import { DemoOverlay } from "@/components/demo/demo-overlay";
 import { DemoIframe } from "@/components/demo/demo-iframe";
+import { GuideSequence } from "@/components/demo/guide-sequence";
 import { useDemoState, useDemoAnalytics, useDemoModeRouting } from "@/components/demo/hooks";
 
 interface DemoPageClientProps {
   slug: string;
 }
+
+// Guide sequence configuration
+const GUIDE_STEPS = [
+  {
+    id: "click-widget",
+    message: "To begin, click on the chat widget below",
+    position: "top" as const,
+    ctaButton: {
+      text: "Click Widget",
+      action: "click" as const,
+      target: ".logo-toggle",
+    },
+  },
+  {
+    id: "send-message",
+    message: "Great! Now let's send a message",
+    position: "left" as const,
+    ctaButton: {
+      text: "Send 'Hello'",
+      action: "sendMessage" as const,
+      target: ".chatbot-input",
+      value: "Hello",
+    },
+  },
+];
 
 /**
  * Client-side demo host with policy- & query-driven routing between
@@ -130,7 +156,18 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         {showOverlay && (
           <DemoOverlay
             isLoading={demoState.isLoading}
-            onWelcomeComplete={() => demoState.setShowWelcomeOverlay(false)}
+            onWelcomeComplete={() => {
+              demoState.setShowWelcomeOverlay(false);
+              demoState.setShowGuideSequence(true);
+            }}
+          />
+        )}
+
+        {/* Guide Sequence - Shows after welcome overlay completes */}
+        {demoState.showGuideSequence && (
+          <GuideSequence
+            steps={GUIDE_STEPS}
+            onComplete={() => demoState.setShowGuideSequence(false)}
           />
         )}
 
