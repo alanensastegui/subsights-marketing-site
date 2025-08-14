@@ -38,7 +38,7 @@ type AnchorRes = { ns: string; type: "RECT"; requestId: string; rect: Rect | nul
 const OFFSET = 20;
 const PADDING = 8;
 const READ_WPM = 200;
-const CAP_MS = 30_000;    // max countdown 30s
+const CAP_MS = 60_000;    // max countdown 60s
 const FINAL_DELAY_MS = 3_000; // wait 3s after ai message received before showing final bubble
 const TIMER_DELAY_MS = 3_000;   // wait 3s after final bubble shows before starting timer
 
@@ -216,14 +216,11 @@ export function Walkthrough({
 
       let position: BubblePosition = overridePosition ?? step.position;
 
-      // auto-flip on tight space
+      // auto-flip on tight left space
       const needLeft = bubbleRect.width + OFFSET + PADDING;
       const haveLeft = rect.left;
-      const needTop = bubbleRect.height + OFFSET + PADDING;
-      const haveTop = rect.top;
 
       if (position === "left" && haveLeft < needLeft) position = "bottom";
-      else if (position === "top" && haveTop < needTop) position = "left";
 
       if (position === "top") {
         let left = rect.left + rect.width / 2;
@@ -262,18 +259,18 @@ export function Walkthrough({
   const isFinal = walkthroughCompleted && aiMessageReceived;
 
   useEffect(() => {
-    schedulePosition(isFinal ? "bottom" : undefined);
+    schedulePosition(isFinal ? "top" : undefined);
   }, [stepIndex, isFinal, schedulePosition]);
 
   useEffect(() => {
-    const onResize = () => schedulePosition(isFinal ? "bottom" : undefined);
+    const onResize = () => schedulePosition(isFinal ? "top" : undefined);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, [schedulePosition, isFinal]);
 
   useEffect(() => {
     const id = setInterval(() => {
-      if (crossOriginActive.current) schedulePosition(isFinal ? "bottom" : undefined);
+      if (crossOriginActive.current) schedulePosition(isFinal ? "top" : undefined);
     }, 500);
     return () => clearInterval(id);
   }, [schedulePosition, isFinal]);
@@ -359,7 +356,7 @@ export function Walkthrough({
 
           const text = aiEl.textContent ?? "";
           const words = toWordCount(text);
-          const rawMs = Math.ceil((words / READ_WPM) * 60_000);
+          const rawMs = Math.ceil((words / READ_WPM) * 60_000) * 3 / 2;
 
           window.setTimeout(() => {
             finalPlannedMsRef.current = Math.min(rawMs, CAP_MS); // store for later
@@ -524,11 +521,11 @@ export function Walkthrough({
   const activePosition = appliedPosition || (isShowingFinal ? "left" : step.position);
   const wrapperTranslate = activePosition === "top" || activePosition === "bottom" ? "transform -translate-x-1/2" : "transform -translate-y-1/2";
 
-  const message = isShowingFinal ? "Click here to finish the demo" : step.message;
+  const message = isShowingFinal ? "Perfect! You've completed the walkthrough. The widget will close automatically, but you can reopen it anytime by clicking the logo." : step.message;
 
   // Show countdown ONLY after the 5s delay has elapsed (i.e., after timer actually started).
   const buttonText = isShowingFinal
-    ? `Finish Demo${finalRemainingSec != null && finalRemainingSec > 0 ? ` (${finalRemainingSec}s)` : ""}`
+    ? `Finish${finalRemainingSec != null && finalRemainingSec > 0 ? ` (${finalRemainingSec}s)` : ""}`
     : step.ctaButton.text;
 
 
@@ -556,15 +553,14 @@ export function Walkthrough({
     <div className="fixed inset-0 pointer-events-none z-[2147483647]">
       <div
         ref={wrapperRef}
-        className={cn("absolute max-w-sm pointer-events-auto", wrapperTranslate)}
+        className={cn("absolute max-w-lg pointer-events-auto", wrapperTranslate)}
         style={{
           top: pos.top,
           left: pos.left,
-          maxWidth: `calc(100vw - ${PADDING * 2}px)`,
         }}
       >
         <Animate name={exiting ? "fadeOut" : "fadeIn"} trigger="onLoad" duration={300} key={animateKey}>
-          <div className="relative bg-primary/30 border border-gray-200/50 rounded-xl shadow-2xl p-6 backdrop-blur-md max-w-xs">
+          <div className="relative bg-primary/40 border border-gray-200/50 rounded-xl shadow-2xl p-6 backdrop-blur-md max-w-md">
             {/* Progress indicator for multi-step walkthroughs */}
             {!isShowingFinal && steps.length > 1 && (
               <div className="flex items-center gap-2 mb-3">
@@ -580,14 +576,14 @@ export function Walkthrough({
               </div>
             )}
 
-            <p className="text-sm text-foreground leading-relaxed mb-4">{message}</p>
+            <p className="text-sm text-foreground leading-relaxed mb-4 text-center">{message}</p>
             <div className={cn(isShowingFinal && "flex justify-center")}>
               <Button
                 size="sm"
                 onClick={onClick}
                 className={cn(
                   "font-semibold relative overflow-hidden bg-gradient-to-r from-primary to-purple-600 text-foreground shadow-lg hover:shadow-xl hover:from-primary hover:to-purple-700 transform hover:scale-105 transition-all duration-200 border-0 active:scale-95",
-                  isShowingFinal ? "w-36" : "w-full",
+                  isShowingFinal ? "w-48" : "w-full",
                   !isShowingFinal && "animate-pulse overflow-hidden"
                 )}
               >
