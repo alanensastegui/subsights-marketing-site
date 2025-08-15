@@ -63,7 +63,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-[#F5E6D3] max-w-4xl mx-auto leading-relaxed px-2">
                 {/* This is a demonstration of how Subsights greets travelers, answers with local expertise, and routes them to stays, experiences, and events. */}
-                Subsights greets travelers, answers with local insight, and routes to stays, experiences, events.
+                Subsights greets travelers, answers with local insight, and routes to stays, experiences, events
               </p>
             </Animate>
           </section>
@@ -75,7 +75,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                 The Problems We Solve
               </h2>
               <p className="text-base sm:text-lg text-[#F5E6D3] mb-6 sm:mb-8">
-                Old support models can&apos;t keep up with today&apos;s traveler.
+                Old support models can&apos;t keep up with today&apos;s traveler
               </p>
             </Animate>
 
@@ -509,7 +509,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                 Who We Are
               </h2>
               <p className="text-lg sm:text-xl text-[#F5E6D3] max-w-3xl mx-auto px-2">
-                Subsights AI is your strategic partner for converting trip planners and driving visitation.
+                Subsights AI is your strategic partner for converting trip planners and driving visitation
               </p>
             </Animate>
 

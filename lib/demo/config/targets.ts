@@ -34,7 +34,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
         variant: "default",
     },
     {
-        slug: "phoenix",
+        slug: "phoenix-2025",
         url: "https://www.subsights.com",
         label: "Phoenix",
         testMessage: "Hi, I'm interested in learning more about your services",
