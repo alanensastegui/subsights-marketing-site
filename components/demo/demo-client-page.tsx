@@ -197,7 +197,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         mode={demoState.mode}
       />
 
-      <div className="relative flex-1 min-h-0 overflow-hidden">
+      <div id="subsights-demo-page-content" className="relative flex-1 min-h-0 overflow-hidden">
         {/* Unified Loading/Welcome Overlay - Shows in ALL modes */}
         {showOverlay && (
           <DemoOverlay
