@@ -22,10 +22,10 @@ interface DemoPageClientProps {
 const createWalkthroughSteps = (target: DemoTarget) => [
   {
     id: "click-widget",
-    message: "To begin, click on the chat widget below",
+    message: "To begin, click the chat widget below",
     position: "top" as const,
     ctaButton: {
-      text: "Click Widget",
+      text: "Click the Widget",
       action: "click" as const,
       target: ".logo-toggle",
     },
@@ -54,6 +54,12 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const target = useMemo(() => getDemoTarget(slug), [slug]);
+
+  // Memoize the allowSkip value since it won't change during component lifecycle
+  const allowSkip = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return localStorage.getItem(`${slug}WalkthroughComplete`) === 'true';
+  }, [slug]);
 
   // Set widgetViewState to collapsed when demo page opens
   useEffect(() => {
@@ -120,12 +126,15 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
 
   // Handle guidance completion
   const handleGuidanceComplete = useCallback(() => {
+    // Store walkthrough completion status for this specific demo
+    localStorage.setItem(`${slug}WalkthroughComplete`, 'true');
+
     demoState.setShowWalkthrough(false);
     demoState.setMode("default");
     demoState.setIsLoading(false);
     localStorage.setItem('widgetViewState', 'chatbot-collapsed');
     console.log('[Demo] Guidance sequence completed, switching to default demo mode');
-  }, [demoState]);
+  }, [demoState, slug]);
 
   if (!target) {
     return <DemoNotFound slug={slug} />;
@@ -196,11 +205,13 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         )}
 
         {/* Walkthrough - Shows after welcome overlay completes */}
+        {/* allowSkip is true when user has previously completed this demo's walkthrough */}
         {demoState.showWalkthrough && (
           <Walkthrough
             steps={createWalkthroughSteps(target)}
             onComplete={handleGuidanceComplete}
             isDefaultMode={isDefaultMode}
+            allowSkip={allowSkip}
           />
         )}
 
