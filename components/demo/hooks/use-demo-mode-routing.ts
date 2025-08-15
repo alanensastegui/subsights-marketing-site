@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { FALLBACK_CONSTANTS } from "@/lib/demo";
-import type { DemoMode } from "@/lib/demo/config";
+import type { DemoMode, DemoTarget } from "@/lib/demo/config";
 import type { FallbackReason } from "@/lib/demo/analytics";
 
 interface ProbeResponse {
@@ -11,7 +11,7 @@ interface ProbeResponse {
 
 interface UseDemoModeRoutingProps {
     slug: string;
-    target: { allowIframe?: boolean } | null;
+    target: DemoTarget | null;
     settledRef: React.RefObject<boolean>;
     setMode: (mode: DemoMode) => void;
     setIsLoading: (loading: boolean) => void;

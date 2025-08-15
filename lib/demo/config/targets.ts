@@ -1,5 +1,5 @@
 export type DemoMode = "proxy" | "iframe" | "default";
-export type FallbackPolicy = "auto" | "force-proxy" | "force-iframe" | "force-default";
+export type DemoPolicy = "auto" | DemoMode;
 export type DemoVariant = "default" | "estoPhoenix";
 
 export type DemoTarget = {
@@ -10,7 +10,7 @@ export type DemoTarget = {
     scriptTag: string;           // Full script tag from sales (e.g., <script src="..." data-workspace="..." data-api-key="..."></script>)
     variant?: DemoVariant;      // demo variant - defaults to "default" if not specified
     // optional controls
-    policy?: FallbackPolicy;     // default: "auto"
+    policy?: DemoPolicy;     // default: "auto"
     allowIframe?: boolean;       // override when you *know* iframe is OK
     timeoutMs?: number;          // fetch timeout for proxy
     maxHtmlBytes?: number;       // safety cap (e.g., 2_000_000)
@@ -34,12 +34,13 @@ export const DEMO_TARGETS: DemoTarget[] = [
         variant: "default",
     },
     {
-        slug: "esto-phoenix",
-        url: "https://www.estophoenix.com",
-        label: "Esto Phoenix",
+        slug: "phoenix",
+        url: "https://www.subsights.com",
+        label: "Phoenix",
         testMessage: "Hi, I'm interested in learning more about your services",
         scriptTag: '<script src="https://widget.latest.subsights.com/chatbot.js" data-workspace="I6BHboKbqb" data-api-key="4yO7Z30ZFFZ79w75v5d1VqYhfHX63z44"></script>',
         variant: "estoPhoenix",
+        policy: "default",
     },
 ];
 

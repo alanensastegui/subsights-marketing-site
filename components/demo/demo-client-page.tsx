@@ -118,6 +118,11 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       return handleForcedMode(forceMode);
     }
 
+    // Handle policy-driven mode
+    if (target.policy && target.policy !== "auto") {
+      return handleForcedMode(target.policy);
+    }
+
     // Auto mode: try proxy first
     const cleanup = tryProxy();
     return () => cleanup?.();
