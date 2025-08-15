@@ -31,7 +31,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     url: "https://secure-site.com", 
     label: "Secure Company",
     scriptTag: '<script src="https://widget.subsights.com/chatbot.js" data-workspace="YOUR_WORKSPACE_ID" data-api-key="YOUR_API_KEY"></script>',
-    policy: "force-default",        // Skip proxy/iframe attempts
+    policy: "default",        // Skip proxy/iframe attempts
     allowIframe: false,             // Don't try iframe mode
     timeoutMs: 8000,               // Custom timeout
     maxHtmlBytes: 1_000_000        // Custom size limit
@@ -62,9 +62,9 @@ export const DEMO_TARGETS: DemoTarget[] = [
 ### Fallback Policies
 
 - `"auto"` (default) - Try proxy → iframe → default
-- `"force-proxy"` - Only try proxy mode
-- `"force-iframe"` - Only try iframe mode  
-- `"force-default"` - Skip to branded demo
+- `"proxy"` - Force proxy mode
+- `"iframe"` - Force iframe mode
+- `"default"` - Force default demo mode
 
 ## Admin Interface
 

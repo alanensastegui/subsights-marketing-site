@@ -9,6 +9,8 @@ import { cn } from "@/lib/cn";
 type Rect = { top: number; left: number; width: number; height: number };
 type Pos = { top: number; left: number };
 type BubblePosition = "top" | "left" | "bottom";
+type Hole = { x: number; y: number; r: number };
+type Box = { top: number; left: number; width: number; height: number };
 
 interface WalkthroughStep {
   id: string;
@@ -30,6 +32,7 @@ interface WalkthroughProps {
   msgNamespace?: string;   // default "subsights:anchor"
   targetOrigin?: string | string[];
   isDefaultMode?: boolean; // default false
+  allowSkip?: boolean; // default false - allows skipping the walkthrough if previously completed
 }
 
 type AnchorReq = { ns: string; type: "GET_RECT"; selector: string; requestId: string };
@@ -80,6 +83,7 @@ export function Walkthrough({
   msgNamespace = "subsights:anchor",
   targetOrigin,
   isDefaultMode,
+  allowSkip = false,
 }: WalkthroughProps) {
   const [positioned, setPositioned] = useState(false);
   const [exiting, setExiting] = useState(false);
@@ -102,6 +106,60 @@ export function Walkthrough({
   const crossOriginActive = useRef(false);
   const advancedForStepRef = useRef(false);
   const pending = useRef(new Map<string, (r: Rect | null) => void>());
+
+  const [parentBox, setParentBox] = useState<Box | null>(null);
+  const [logoHole, setLogoHole] = useState<Hole | null>(null);
+
+  const updateBlurGeometry = useCallback(() => {
+    const parent = document.getElementById("subsights-demo-page-content");
+    const parentRect = parent?.getBoundingClientRect() ?? null;
+    if (parentRect) {
+      setParentBox({
+        top: parentRect.top,
+        left: parentRect.left,
+        width: parentRect.width,
+        height: parentRect.height,
+      });
+    } else {
+      setParentBox(null);
+    }
+  
+    const toggle = document.querySelector(".logo-toggle") as HTMLElement | null;
+    if (toggle && parentRect) {
+      const tr = toggle.getBoundingClientRect();
+      // center of toggle in *viewport* coords
+      const cx = tr.left + tr.width / 2;
+      const cy = tr.top + tr.height / 2;
+      // convert to *veil-local* coords (veil is fixed at parentRect.top/left)
+      const localX = cx - parentRect.left;
+      const localY = cy - parentRect.top;
+  
+      const r = Math.max(tr.width, tr.height) / 2 + 12; // padding around the toggle
+      setLogoHole({ x: localX, y: localY, r });
+    } else {
+      setLogoHole(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!(isDefaultMode && stepIndex === 0)) return;
+  
+    const onScrollOrResize = () => updateBlurGeometry();
+    updateBlurGeometry();
+  
+    // Update on resize and scroll (any scrollable ancestor)
+    window.addEventListener("resize", onScrollOrResize);
+    window.addEventListener("scroll", onScrollOrResize, true);
+  
+    // Lightweight polling in case of CSS transitions/animations moving things
+    const id = window.setInterval(updateBlurGeometry, 250);
+  
+    return () => {
+      window.removeEventListener("resize", onScrollOrResize);
+      window.removeEventListener("scroll", onScrollOrResize, true);
+      window.clearInterval(id);
+    };
+  }, [isDefaultMode, stepIndex, updateBlurGeometry]);
 
   // ----- cross-window RECT replies -----
   useEffect(() => {
@@ -549,8 +607,35 @@ export function Walkthrough({
   const onClick = isShowingFinal ? handleFinalClick : nextStep;
   const animateKey = isShowingFinal ? `final-${exiting ? "exit" : "enter"}` : `${step.id}-${exiting ? "exit" : "enter"}`;
 
+  const blurMask =
+    logoHole
+      ? `radial-gradient(circle at ${logoHole.x}px ${logoHole.y}px, transparent ${logoHole.r}px, black ${logoHole.r + 1}px)`
+      : undefined;
+
+  const blurLayer = (
+    !allowSkip &&
+    isDefaultMode &&
+    stepIndex === 0 &&
+    parentBox && (
+      <div
+        aria-hidden
+        className="fixed pointer-events-none backdrop-blur-md bg-black/20 transition-opacity duration-200"
+        style={{
+          top: parentBox.top,
+          left: parentBox.left,
+          width: parentBox.width,
+          height: parentBox.height,
+          // Punch a hole where the toggle is
+          WebkitMaskImage: blurMask, // Safari/WebKit
+          maskImage: blurMask,       // Chromium/Firefox (mask-image support varies; WebKit line handles Safari)
+        }}
+      />
+    )
+  );
+
   const overlay = (
     <div className="fixed inset-0 pointer-events-none z-[2147483647]">
+      {blurLayer}
       <div
         ref={wrapperRef}
         className={cn("absolute max-w-lg pointer-events-auto", wrapperTranslate)}
@@ -563,7 +648,7 @@ export function Walkthrough({
           <div className="relative bg-primary/40 border border-gray-200/50 rounded-xl shadow-2xl p-6 backdrop-blur-md max-w-md">
             {/* Progress indicator for multi-step walkthroughs */}
             {!isShowingFinal && steps.length > 1 && (
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2 mb-1">
                 <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
                   <div
                     className="bg-gradient-to-r from-primary to-purple-500 h-1.5 rounded-full transition-all duration-300"
@@ -576,7 +661,20 @@ export function Walkthrough({
               </div>
             )}
 
-            <p className="text-sm text-foreground leading-relaxed mb-4 text-center">{message}</p>
+            <p className="text-sm text-foreground leading-relaxed mb-2 text-center">{message}</p>
+            {/* Skip button - only show when allowSkip is true and not in final state */}
+            {allowSkip && !isShowingFinal && (
+              <div className="flex justify-center mb-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={onComplete}
+                  className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Skip walkthrough
+                </Button>
+              </div>
+            )}
             <div className={cn(isShowingFinal && "flex justify-center")}>
               <Button
                 size="sm"

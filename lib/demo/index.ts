@@ -11,4 +11,4 @@ export * from "./html";
 export { createPerformanceMonitor, getPerformanceBudget } from "./analytics/performance";
 
 // Additional type exports for completeness
-export type { FallbackPolicy } from "./config";
+export type { DemoPolicy } from "./config";

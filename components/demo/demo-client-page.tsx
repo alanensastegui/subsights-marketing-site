@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { DemoTarget, getDemoTarget, type DemoMode } from "@/lib/demo/config";
 import { DemoToolbar } from "@/components/demo/demo-toolbar";
 import { DefaultDemo } from "@/components/demo/default-demo";
+import { EstoPhoenixDemo } from "@/components/demo/esto-phoenix-demo";
 import { DemoNotFound } from "@/components/demo/demo-not-found";
 import { DemoOverlay } from "@/components/demo/demo-overlay";
 import { DemoIframe } from "@/components/demo/demo-iframe";
@@ -21,10 +22,10 @@ interface DemoPageClientProps {
 const createWalkthroughSteps = (target: DemoTarget) => [
   {
     id: "click-widget",
-    message: "To begin, click on the chat widget below",
+    message: "To begin, click the chat widget below",
     position: "top" as const,
     ctaButton: {
-      text: "Click Widget",
+      text: "Click the Widget",
       action: "click" as const,
       target: ".logo-toggle",
     },
@@ -53,6 +54,12 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const target = useMemo(() => getDemoTarget(slug), [slug]);
+
+  // Memoize the allowSkip value since it won't change during component lifecycle
+  const allowSkip = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return localStorage.getItem(`${slug}WalkthroughComplete`) === 'true';
+  }, [slug]);
 
   // Set widgetViewState to collapsed when demo page opens
   useEffect(() => {
@@ -111,6 +118,11 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       return handleForcedMode(forceMode);
     }
 
+    // Handle policy-driven mode
+    if (target.policy && target.policy !== "auto") {
+      return handleForcedMode(target.policy);
+    }
+
     // Auto mode: try proxy first
     const cleanup = tryProxy();
     return () => cleanup?.();
@@ -119,12 +131,15 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
 
   // Handle guidance completion
   const handleGuidanceComplete = useCallback(() => {
+    // Store walkthrough completion status for this specific demo
+    localStorage.setItem(`${slug}WalkthroughComplete`, 'true');
+
     demoState.setShowWalkthrough(false);
     demoState.setMode("default");
     demoState.setIsLoading(false);
     localStorage.setItem('widgetViewState', 'chatbot-collapsed');
     console.log('[Demo] Guidance sequence completed, switching to default demo mode');
-  }, [demoState]);
+  }, [demoState, slug]);
 
   if (!target) {
     return <DemoNotFound slug={slug} />;
@@ -136,19 +151,27 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
 
   const renderDemoContent = () => {
     if (isDefaultMode) {
+      const demoVariant = target.variant || "default";
+
       return (
-        <div className="absolute inset-0 overflow-auto">
-          <Animate
-            name="fadeIn"
-            trigger="onLoad"
-            duration={800}
-          >
+        <Animate
+          className="absolute inset-0"
+          name="fadeIn"
+          trigger="onLoad"
+          duration={800}
+        >
+          {demoVariant === "estoPhoenix" ? (
+            <EstoPhoenixDemo
+              targetLabel={target.label}
+              scriptTag={target.scriptTag}
+            />
+          ) : (
             <DefaultDemo
               targetLabel={target.label}
               scriptTag={target.scriptTag}
             />
-          </Animate>
-        </div>
+          )}
+        </Animate>
       );
     }
 
@@ -174,7 +197,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         mode={demoState.mode}
       />
 
-      <div className="relative flex-1 min-h-0 overflow-hidden">
+      <div id="subsights-demo-page-content" className="relative flex-1 min-h-0 overflow-hidden">
         {/* Unified Loading/Welcome Overlay - Shows in ALL modes */}
         {showOverlay && (
           <DemoOverlay
@@ -187,11 +210,13 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         )}
 
         {/* Walkthrough - Shows after welcome overlay completes */}
+        {/* allowSkip is true when user has previously completed this demo's walkthrough */}
         {demoState.showWalkthrough && (
           <Walkthrough
             steps={createWalkthroughSteps(target)}
             onComplete={handleGuidanceComplete}
             isDefaultMode={isDefaultMode}
+            allowSkip={allowSkip}
           />
         )}
 

@@ -42,7 +42,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
 
 
     return (
-        <div className="min-h-full flex flex-col bg-gradient-to-br from-background via-muted to-ring">
+        <div className="min-h-full flex flex-col bg-gradient-to-br from-background via-muted to-ring overflow-auto h-full">
             {/* Demo Content */}
             <div className="flex-1">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16 space-y-12 sm:space-y-20">
