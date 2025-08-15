@@ -38,7 +38,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
         url: "https://www.subsights.com",
         label: "Phoenix",
         testMessage: "Hi, I'm interested in learning more about your services",
-        scriptTag: '<script src="https://widget.latest.subsights.com/chatbot.js" data-workspace="I6BHboKbqb" data-api-key="4yO7Z30ZFFZ79w75v5d1VqYhfHX63z44"></script>',
+        scriptTag: '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="m8CbV0kVKAgdDF7CYZPLdLKNWO24asBD"></script>',
         variant: "estoPhoenix",
         policy: "default",
     },
