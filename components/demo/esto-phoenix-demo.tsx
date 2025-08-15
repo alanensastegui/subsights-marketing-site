@@ -58,11 +58,12 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                 <span className="relative z-10 drop-shadow-[0_0_8px_rgba(34,197,94,0.5)]">Demo Mode Active</span>
               </Badge>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-tight">
-                Welcome to Your
-                <span className="block text-[#561f37]">AI-Powered Future</span>
+                Hello DMO Leaders
+                <span className="block text-[#561f37]">Need help getting around?</span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-[#7cdede] max-w-4xl mx-auto leading-relaxed px-2">
-                This is a demonstration of how Subsights greets travelers, answers with local expertise, and routes them to stays, experiences, and events.
+              <p className="text-lg sm:text-xl md:text-2xl text-[#F5E6D3] max-w-4xl mx-auto leading-relaxed px-2">
+                {/* This is a demonstration of how Subsights greets travelers, answers with local expertise, and routes them to stays, experiences, and events. */}
+                Subsights greets travelers, answers with local insight, and routes to stays, experiences, events.
               </p>
             </Animate>
           </section>
@@ -73,7 +74,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
                 The Problems We Solve
               </h2>
-              <p className="text-base sm:text-lg text-[#7cdede] mb-6 sm:mb-8">
+              <p className="text-base sm:text-lg text-[#F5E6D3] mb-6 sm:mb-8">
                 Old support models can&apos;t keep up with today&apos;s traveler.
               </p>
             </Animate>
@@ -205,7 +206,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                   </div>
                 </div>
 
-                <p className="text-center text-[#7cdede] text-xs sm:text-sm font-medium">
+                <p className="text-center text-[#F5E6D3] text-xs sm:text-sm font-medium">
                   How we fix it
                 </p>
 
@@ -279,7 +280,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                   </div>
                 </div>
 
-                <p className="text-center text-[#7cdede] text-xs sm:text-sm font-medium">
+                <p className="text-center text-[#F5E6D3] text-xs sm:text-sm font-medium">
                   How we fix it
                 </p>
 
@@ -353,7 +354,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                   </div>
                 </div>
 
-                <p className="text-center text-[#7cdede] text-xs sm:text-sm font-medium">
+                <p className="text-center text-[#F5E6D3] text-xs sm:text-sm font-medium">
                   How we fix it
                 </p>
 
@@ -407,7 +408,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                     </svg>
                   </div>
                 </div>
-                <p className="text-lg text-[#7cdede] mb-8">
+                <p className="text-lg text-[#F5E6D3] mb-8">
                   Here&apos;s how we fix it
                 </p>
               </div>
@@ -507,7 +508,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
                 Who We Are
               </h2>
-              <p className="text-lg sm:text-xl text-[#7cdede] max-w-3xl mx-auto px-2">
+              <p className="text-lg sm:text-xl text-[#F5E6D3] max-w-3xl mx-auto px-2">
                 Subsights AI is your strategic partner for converting trip planners and driving visitation.
               </p>
             </Animate>
@@ -530,7 +531,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                         <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2 sm:mb-3">
                           Qualify Trip Intent & Route to Partners
                         </h3>
-                        <p className="text-[#7cdede] leading-relaxed text-sm sm:text-base">
+                        <p className="text-[#F5E6D3] leading-relaxed text-sm sm:text-base">
                           Our AI gauges timing, interests, and budget, then routes planners to the right stays, experiences, neighborhoods, and events.
                         </p>
                       </div>
@@ -552,7 +553,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                         <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2 sm:mb-3">
                           Provide Expert, On-Brand Local Answers
                         </h3>
-                        <p className="text-[#7cdede] leading-relaxed text-sm sm:text-base">
+                        <p className="text-[#F5E6D3] leading-relaxed text-sm sm:text-base">
                           Our AI answers complex planning in your brand voice, deep-links to the right page or event, and updates hourly via sitemap sync.
                         </p>
                       </div>
@@ -574,7 +575,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                         <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2 sm:mb-3">
                           Drive Visitation & Strategic Objectives
                         </h3>
-                        <p className="text-[#7cdede] leading-relaxed text-sm sm:text-base">
+                        <p className="text-[#F5E6D3] leading-relaxed text-sm sm:text-base">
                           Our AI captures post-click demand, drives referrals, itinerary views, and bookings, and nudges shoulder-season travel and feeder markets.
                         </p>
                       </div>
@@ -675,7 +676,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
                       Ready to Drive Visitation?
                     </h2>
-                    <p className="text-lg sm:text-xl text-[#7cdede] max-w-3xl mx-auto px-2">
+                    <p className="text-lg sm:text-xl text-[#F5E6D3] max-w-3xl mx-auto px-2">
                       Join DMOs guiding planners to stays, experiences, and events—automatically, 24/7
                     </p>
                   </Animate>
@@ -686,16 +687,16 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                         <Button size="lg" className="mx-auto min-w-[140px] w-full sm:w-auto bg-[#561f37] hover:bg-[#561f37]/90">
                           Schedule Call
                         </Button>
-                        <p className="text-xs sm:text-sm text-[#7cdede] leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[#F5E6D3] leading-relaxed">
                           Book a personalized consultation to discuss your specific needs
                         </p>
                       </div>
 
                       <div className="space-y-3 sm:space-y-4">
-                        <Button variant="outline" size="lg" className="mx-auto min-w-[140px] w-full sm:w-auto bg-[#7cdede] text-[#561f37] border-[#7cdede] hover:bg-[#7cdede]/90 hover:text-[#561f37]">
+                        <Button variant="outline" size="lg" className="mx-auto min-w-[140px] w-full sm:w-auto bg-[#F5E6D3] text-[#561f37] border-[#F5E6D3] hover:bg-[#F5E6D3]/90 hover:text-[#561f37]">
                           Start Free Trial
                         </Button>
-                        <p className="text-xs sm:text-sm text-[#7cdede] leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[#F5E6D3] leading-relaxed">
                           Try Subsights free for 30 days. No credit card required
                         </p>
                       </div>
