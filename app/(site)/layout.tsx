@@ -225,6 +225,21 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="h-full">
       <head>
+        <link rel="icon" href="/images/logo/small-logo.svg" type="image/svg+xml" />
+        <link rel="shortcut icon" href="/images/logo/small-logo.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/images/logo/small-logo.svg" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/images/logo/small-logo.svg" />
+        <meta property="og:image:width" content="500" />
+        <meta property="og:image:height" content="500" />
+        <meta property="og:image:alt" content="Subsights AI Logo" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:image" content="/images/logo/small-logo.svg" />
+
         <script
           src="https://widget.subsights.com/chatbot.js"
           data-workspace="0XvceSLk1j"

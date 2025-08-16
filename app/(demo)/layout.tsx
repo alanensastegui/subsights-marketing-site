@@ -3,6 +3,28 @@ import "@/styles/theme.css";
 // import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    icons: {
+        icon: '/images/logo/small-logo.svg',
+        shortcut: '/images/logo/small-logo.svg',
+        apple: '/images/logo/small-logo.svg',
+    },
+    openGraph: {
+        images: [
+            {
+                url: '/images/logo/small-logo.svg',
+                width: 500,
+                height: 500,
+                alt: 'Subsights AI Logo',
+            },
+        ],
+    },
+    twitter: {
+        images: ['/images/logo/small-logo.svg'],
+    },
+};
 
 export default function DemoLayout({ children }: { children: ReactNode }) {
     return (
