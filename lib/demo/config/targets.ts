@@ -37,7 +37,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
         slug: "phoenix-2025",
         url: "https://www.subsights.com",
         label: "Phoenix",
-        testMessage: "Hi, I'm interested in learning more about your services",
+        testMessage: "Hi, what are some good AI sessions I could attend this week?",
         scriptTag: '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="m8CbV0kVKAgdDF7CYZPLdLKNWO24asBD"></script>',
         variant: "estoPhoenix",
         policy: "default",

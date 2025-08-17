@@ -668,7 +668,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
           </section>
 
           {/* 4. CALL TO ACTION SECTION */}
-          <section className="py-12 sm:py-20">
+          <section className="pt-12 sm:pt-20">
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
               <div className="relative isolate bg-gradient-to-br from-[#d87651] via-[#c86a4a] via-30% to-[#561f37] rounded-2xl sm:rounded-3xl p-8 sm:p-20">
                 <div className="text-center space-y-8 sm:space-y-12">
@@ -704,6 +704,20 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                   </Animate>
                 </div>
               </div>
+              <Animate name="fadeIn" trigger="onVisible" delay={400}>
+                    <div className="pt-6 sm:pt-8">
+                      <p className="text-sm sm:text-base text-[#F5E6D3] leading-relaxed max-w-3xl mx-auto">
+                        Got thoughts or ideas? We'd love to hear them — just drop us a note at{' '}
+                        <a
+                          href="mailto:team@subsights.com"
+                          className="text-[#FFFF00] hover:text-[#FFFF00]/80 underline transition-colors"
+                        >
+                          team@subsights.com
+                        </a>
+                        . We'll be keeping an eye on the chatbot all week and tuning it up as we learn from your questions.
+                      </p>
+                    </div>
+                  </Animate>
             </div>
           </section>
         </div>
