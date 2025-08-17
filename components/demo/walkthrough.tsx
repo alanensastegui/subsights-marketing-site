@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 import { Animate } from "@/components/ui/animate";
 import { Button } from "@/components/ui/button";
@@ -41,9 +41,9 @@ type AnchorRes = { ns: string; type: "RECT"; requestId: string; rect: Rect | nul
 const OFFSET = 20;
 const PADDING = 8;
 const READ_WPM = 200;
-const CAP_MS = 60_000;    // max countdown 60s
-const FINAL_DELAY_MS = 3_000; // wait 3s after ai message received before showing final bubble
-const TIMER_DELAY_MS = 3_000;   // wait 3s after final bubble shows before starting timer
+const CAP_MS = 60_000;
+const FINAL_DELAY_MS = 3_000;
+const TIMER_DELAY_MS = 3_000;
 
 const clamp = (v: number, min: number, max: number) => Math.min(Math.max(v, min), max);
 const sameOriginDoc = (f: HTMLIFrameElement): Document | null => {
@@ -94,13 +94,13 @@ export function Walkthrough({
   const [aiMessageReceived, setAiMessageReceived] = useState(false);
 
   // Final/countdown state & refs
-  const [finalRemainingSec, setFinalRemainingSec] = useState<number | null>(null); // null until timer starts (after delay)
+  const [finalRemainingSec, setFinalRemainingSec] = useState<number | null>(null);
   const finalDeadlineRef = useRef<number | null>(null);
-  const finalTimeoutRef = useRef<number | null>(null);      // per-second tick
-  const finalDelayTimeoutRef = useRef<number | null>(null); // initial 5s delay
+  const finalTimeoutRef = useRef<number | null>(null);
+  const finalDelayTimeoutRef = useRef<number | null>(null);
   const finalAutoClickedRef = useRef(false);
   const finalTimerStartedRef = useRef(false);
-  const finalPlannedMsRef = useRef<number | null>(null);    // reading time (capped), computed from AI msg
+  const finalPlannedMsRef = useRef<number | null>(null);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const crossOriginActive = useRef(false);
@@ -127,14 +127,11 @@ export function Walkthrough({
     const toggle = document.querySelector(".logo-toggle") as HTMLElement | null;
     if (toggle && parentRect) {
       const tr = toggle.getBoundingClientRect();
-      // center of toggle in *viewport* coords
       const cx = tr.left + tr.width / 2;
       const cy = tr.top + tr.height / 2;
-      // convert to *veil-local* coords (veil is fixed at parentRect.top/left)
       const localX = cx - parentRect.left;
       const localY = cy - parentRect.top;
-  
-      const r = Math.max(tr.width, tr.height) / 2 + 12; // padding around the toggle
+      const r = Math.max(tr.width, tr.height) / 2 + 12;
       setLogoHole({ x: localX, y: localY, r });
     } else {
       setLogoHole(null);
@@ -147,11 +144,8 @@ export function Walkthrough({
     const onScrollOrResize = () => updateBlurGeometry();
     updateBlurGeometry();
   
-    // Update on resize and scroll (any scrollable ancestor)
     window.addEventListener("resize", onScrollOrResize);
     window.addEventListener("scroll", onScrollOrResize, true);
-  
-    // Lightweight polling in case of CSS transitions/animations moving things
     const id = window.setInterval(updateBlurGeometry, 250);
   
     return () => {
@@ -288,9 +282,8 @@ export function Walkthrough({
         setPos({ top, left });
       } else if (position === "bottom") {
         let left = rect.left + rect.width / 2;
-        // Use smaller offset on mobile devices
-        const isMobile = window.innerWidth < 768; // Standard mobile breakpoint
-        const bottomOffset = isMobile ? bubbleRect.height : 3 * bubbleRect.height / 2;
+        const isMobile = window.innerWidth < 768;
+        const bottomOffset = isMobile ? bubbleRect.height : (3 * bubbleRect.height) / 2;
         let top = rect.top + rect.height - bottomOffset;
         left = clamp(left, PADDING + bubbleRect.width / 2, window.innerWidth - PADDING - bubbleRect.width / 2);
         top = clamp(top, PADDING, window.innerHeight - PADDING - bubbleRect.height - 20);
@@ -333,6 +326,17 @@ export function Walkthrough({
     return () => clearInterval(id);
   }, [schedulePosition, isFinal]);
 
+  // ----- CHANGE (2): do the very first geometry + position in a layout effect (pre-paint) -----
+  useLayoutEffect(() => {
+    if (isDefaultMode && stepIndex === 0) {
+      updateBlurGeometry();
+    }
+    // Position bubble ASAP; even if the bubble isn't mounted yet,
+    // we compute with zero-size and correct on the next RAF.
+    positionBubble(isFinal ? "top" : undefined);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stepIndex, isFinal]); // rely on stable callbacks
+
   // ----- countdown helpers (minimal renders) -----
   const clearFinalTimer = useCallback(() => {
     if (finalTimeoutRef.current != null) {
@@ -345,14 +349,12 @@ export function Walkthrough({
   const handleChatbotToggle = useCallback(() => {
     if (isDefaultMode) {
       const chatbotToggle = document.querySelector('.logo-toggle') as HTMLElement;
-
       if (chatbotToggle) {
         chatbotToggle.click();
       }
     }
   }, [isDefaultMode]);
 
-  // Smooth first-second UX: fixed 1s cadence after showing the initial seconds
   const startFinalTimer = useCallback((ms: number) => {
     if (finalTimeoutRef.current != null || finalTimerStartedRef.current) return;
     finalTimerStartedRef.current = true;
@@ -360,7 +362,6 @@ export function Walkthrough({
     const capped = Math.min(ms, CAP_MS);
     finalDeadlineRef.current = Date.now() + capped;
 
-    // Show initial seconds immediately (e.g., "12s")
     setFinalRemainingSec(Math.ceil(capped / 1000));
 
     const tick = () => {
@@ -372,18 +373,15 @@ export function Walkthrough({
       if (remaining <= 0) {
         if (!finalAutoClickedRef.current) {
           finalAutoClickedRef.current = true;
-          // Handle chatbot toggle in default mode before completing
           handleChatbotToggle();
           onComplete();
         }
         clearFinalTimer();
         return;
       }
-      // fixed 1s cadence avoids “fast first second”
       finalTimeoutRef.current = window.setTimeout(tick, 1000);
     };
 
-    // first decrement ~1s after number appears
     finalTimeoutRef.current = window.setTimeout(tick, 1000);
   }, [clearFinalTimer, onComplete, handleChatbotToggle]);
 
@@ -417,8 +415,7 @@ export function Walkthrough({
           const rawMs = Math.ceil((words / READ_WPM) * 60_000) * 3 / 2;
 
           window.setTimeout(() => {
-            finalPlannedMsRef.current = Math.min(rawMs, CAP_MS); // store for later
-            // final bubble can show when timeout is hit
+            finalPlannedMsRef.current = Math.min(rawMs, CAP_MS);
             setAiMessageReceived(true);
           }, FINAL_DELAY_MS);
           return;
@@ -433,13 +430,11 @@ export function Walkthrough({
   // ----- start the timer 5s AFTER the final bubble is shown -----
   useEffect(() => {
     if (!isFinal || !positioned) return;
-
-    // avoid duplicate delays
     if (finalDelayTimeoutRef.current != null || finalTimerStartedRef.current) return;
 
     finalDelayTimeoutRef.current = window.setTimeout(() => {
       finalDelayTimeoutRef.current = null;
-      const planned = finalPlannedMsRef.current ?? CAP_MS; // fallback if text missing
+      const planned = finalPlannedMsRef.current ?? CAP_MS;
       startFinalTimer(planned);
     }, TIMER_DELAY_MS);
 
@@ -572,35 +567,35 @@ export function Walkthrough({
   // ----- render gates -----
   if (stepIndex >= steps.length && !walkthroughCompleted) return null;
   if (walkthroughCompleted && !aiMessageReceived) return null;
-  if (!positioned) return null;
+  // CHANGE (1): DO NOT return early when not positioned — we want the veil up immediately
+  // if (!positioned) return null;
 
   const isShowingFinal = walkthroughCompleted && aiMessageReceived;
   const step = steps[stepIndex];
   const activePosition = appliedPosition || (isShowingFinal ? "left" : step.position);
-  const wrapperTranslate = activePosition === "top" || activePosition === "bottom" ? "transform -translate-x-1/2" : "transform -translate-y-1/2";
+  const wrapperTranslate =
+    activePosition === "top" || activePosition === "bottom"
+      ? "transform -translate-x-1/2"
+      : "transform -translate-y-1/2";
 
-  const message = isShowingFinal ? "Perfect! You've completed the walkthrough. The widget will close automatically, but you can reopen it anytime by clicking the logo." : step.message;
+  const message = isShowingFinal
+    ? "Perfect! You've completed the walkthrough. The widget will close automatically, but you can reopen it anytime by clicking the logo."
+    : step.message;
 
   // Show countdown ONLY after the 5s delay has elapsed (i.e., after timer actually started).
   const buttonText = isShowingFinal
     ? `Finish${finalRemainingSec != null && finalRemainingSec > 0 ? ` (${finalRemainingSec}s)` : ""}`
     : step.ctaButton.text;
 
-
-
   const handleFinalClick = () => {
-    // Cancel both the delay and the ticking timer
     if (finalDelayTimeoutRef.current != null) {
       clearTimeout(finalDelayTimeoutRef.current);
       finalDelayTimeoutRef.current = null;
     }
-    finalTimerStartedRef.current = true; // prevent later auto-starts
+    finalTimerStartedRef.current = true;
     clearFinalTimer();
     finalAutoClickedRef.current = true;
-
-    // Handle chatbot toggle in default mode
     handleChatbotToggle();
-
     onComplete();
   };
 
@@ -612,41 +607,39 @@ export function Walkthrough({
       ? `radial-gradient(circle at ${logoHole.x}px ${logoHole.y}px, transparent ${logoHole.r}px, black ${logoHole.r + 1}px)`
       : undefined;
 
-  const blurLayer = (
-    !allowSkip &&
-    isDefaultMode &&
-    stepIndex === 0 &&
-    parentBox && (
+  // CHANGE (1): Veil renders immediately (fallback to full viewport until measured)
+  const showBlur = !allowSkip && isDefaultMode && stepIndex === 0;
+  const veil = showBlur ? (
+    <div
+      aria-hidden
+      className="fixed pointer-events-none transition-opacity duration-200 z-[2147483647]"
+      style={{ inset: 0 as any }}
+    >
       <div
-        aria-hidden
-        className="fixed pointer-events-none backdrop-blur-md bg-black/20 transition-opacity duration-200"
+        className="absolute pointer-events-none backdrop-blur-md bg-black/20"
         style={{
-          top: parentBox.top,
-          left: parentBox.left,
-          width: parentBox.width,
-          height: parentBox.height,
-          // Punch a hole where the toggle is
-          WebkitMaskImage: blurMask, // Safari/WebKit
-          maskImage: blurMask,       // Chromium/Firefox (mask-image support varies; WebKit line handles Safari)
+          top: parentBox?.top ?? 0,
+          left: parentBox?.left ?? 0,
+          width: parentBox?.width ?? window.innerWidth,
+          height: parentBox?.height ?? window.innerHeight,
+          WebkitMaskImage: blurMask,
+          maskImage: blurMask,
+          willChange: "backdrop-filter",
         }}
       />
-    )
-  );
+    </div>
+  ) : null;
 
-  const overlay = (
+  // Bubble is still gated on 'positioned' so it shows in-place
+  const bubble = positioned ? (
     <div className="fixed inset-0 pointer-events-none z-[2147483647]">
-      {blurLayer}
       <div
         ref={wrapperRef}
         className={cn("absolute max-w-lg pointer-events-auto", wrapperTranslate)}
-        style={{
-          top: pos.top,
-          left: pos.left,
-        }}
+        style={{ top: pos.top, left: pos.left }}
       >
         <Animate name={exiting ? "fadeOut" : "fadeIn"} trigger="onLoad" duration={300} key={animateKey}>
           <div className="relative bg-primary/40 border border-gray-200/50 rounded-xl shadow-2xl p-6 backdrop-blur-md max-w-md">
-            {/* Progress indicator for multi-step walkthroughs */}
             {!isShowingFinal && steps.length > 1 && (
               <div className="flex items-center gap-2 mb-1">
                 <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
@@ -662,7 +655,7 @@ export function Walkthrough({
             )}
 
             <p className="text-sm text-foreground leading-relaxed mb-2 text-center">{message}</p>
-            {/* Skip button - only show when allowSkip is true and not in final state */}
+
             {allowSkip && !isShowingFinal && (
               <div className="flex justify-center mb-2">
                 <Button
@@ -675,6 +668,7 @@ export function Walkthrough({
                 </Button>
               </div>
             )}
+
             <div className={cn(isShowingFinal && "flex justify-center")}>
               <Button
                 size="sm"
@@ -695,7 +689,14 @@ export function Walkthrough({
         </Animate>
       </div>
     </div>
-  );
+  ) : null;
 
-  return createPortal(overlay, document.body);
+  // CHANGE (1): Return both layers; veil first-paints, bubble arrives when positioned
+  return createPortal(
+    <>
+      {veil}
+      {bubble}
+    </>,
+    document.body
+  );
 }
