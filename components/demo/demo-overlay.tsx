@@ -279,7 +279,7 @@ export function DemoOverlay({ isLoading, onWelcomeComplete, slug }: DemoOverlayP
               className="bg-background/80 backdrop-blur-sm border-border/50 hover:bg-background/90 text-muted-foreground hover:text-foreground transition-all duration-200 shadow-lg hover:shadow-xl px-6 py-2 rounded-full border-2 hover:border-primary/30 hover:bg-primary/5"
               aria-label="Skip welcome sequence and go directly to demo"
             >
-              <span className="text-sm font-medium">Skip to Demo</span>
+              <span className="text-sm font-medium">Skip</span>
             </Button>
           </motion.div>
         </motion.div>
