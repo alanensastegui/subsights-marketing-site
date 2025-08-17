@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import { Animate } from "@/components/ui/animate";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 import SpacePortal, { type SpacePortalPhase } from "./demo-space-portal";
 
 interface DemoOverlayProps {
   isLoading: boolean;
   onWelcomeComplete: () => void;
+  slug: string;
 }
 
 type OverlayPhase = 'loading' | 'transitioning' | 'welcome' | 'preparing' | 'exiting';
@@ -24,12 +26,21 @@ const TIMING = {
 // Welcome content
 const WELCOME_COPY = {
   title: "Welcome to Your Subsights Demo",
-  description: "Get ready to explore AI-powered customer service",
+  description: "Get ready to explore AI-powered customer service that qualifies leads, provides expert answers, and drives revenue 24/7",
 } as const;
 
-export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) {
+export function DemoOverlay({ isLoading, onWelcomeComplete, slug }: DemoOverlayProps) {
   const [phase, setPhase] = useState<OverlayPhase>('loading');
   const [portalPhase, setPortalPhase] = useState<SpacePortalPhase>('idle');
+  const [hasSeenWelcome, setHasSeenWelcome] = useState(false);
+
+  // Check if user has seen welcome before
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const welcomeSeen = localStorage.getItem(`${slug}DemoWelcomeSeen`) === 'true';
+      setHasSeenWelcome(welcomeSeen);
+    }
+  }, [slug]);
 
   // Transition from loading to welcome when demo finishes loading
   useEffect(() => {
@@ -45,6 +56,11 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
   // Show welcome, then prepare, then exit
   useEffect(() => {
     if (phase === 'welcome') {
+      // Mark that user has seen the welcome
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(`${slug}DemoWelcomeSeen`, 'true');
+      }
+
       setTimeout(() => {
         setPhase('preparing');
         setPortalPhase('preparing');
@@ -60,7 +76,14 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
         }, TIMING.PREPARING_DISPLAY);
       }, TIMING.WELCOME_DISPLAY);
     }
-  }, [phase, onWelcomeComplete]);
+  }, [phase, onWelcomeComplete, slug]);
+
+  const handleSkip = () => {
+    // Add a small delay to make the skip feel more intentional
+    setTimeout(() => {
+      onWelcomeComplete();
+    }, 100);
+  };
 
   const LoadingContent = () => (
     <Animate name="scaleIn" trigger="onLoad" duration={400}>
@@ -230,6 +253,37 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
           <WelcomeContent phase={phase} />
         )}
       </motion.div>
+
+      {/* Skip Button - Only show if user has seen welcome before and not in loading/transitioning phases */}
+      {hasSeenWelcome && phase !== 'loading' && phase !== 'transitioning' && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.3 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+        >
+          <motion.div
+            animate={{
+              boxShadow: [
+                "0 4px 20px rgba(0, 0, 0, 0.1)",
+                "0 8px 30px rgba(0, 0, 0, 0.15)",
+                "0 4px 20px rgba(0, 0, 0, 0.1)"
+              ]
+            }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleSkip}
+              className="bg-background/80 backdrop-blur-sm border-border/50 hover:bg-background/90 text-muted-foreground hover:text-foreground transition-all duration-200 shadow-lg hover:shadow-xl px-6 py-2 rounded-full border-2 hover:border-primary/30 hover:bg-primary/5"
+              aria-label="Skip welcome sequence and go directly to demo"
+            >
+              <span className="text-sm font-medium">Skip to Demo</span>
+            </Button>
+          </motion.div>
+        </motion.div>
+      )}
     </motion.div>
   );
 }

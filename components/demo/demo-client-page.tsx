@@ -206,6 +206,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
               demoState.setShowWelcomeOverlay(false);
               demoState.setShowWalkthrough(true);
             }}
+            slug={slug}
           />
         )}
 
