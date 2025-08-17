@@ -24,7 +24,7 @@ const TIMING = {
 // Welcome content
 const WELCOME_COPY = {
   title: "Welcome to Your Subsights Demo",
-  description: "Get ready to explore AI-powered customer service that qualifies leads, provides expert answers, and drives revenue 24/7",
+  description: "Get ready to explore AI-powered customer service",
 } as const;
 
 export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) {
