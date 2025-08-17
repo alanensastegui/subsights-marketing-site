@@ -48,7 +48,6 @@ const TAU = Math.PI * 2;
 const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const easeInQuad = (t: number) => t * t;
-const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
 function createSeededRNG(seed: number) {
   // mulberry32 (deterministic)
@@ -180,8 +179,8 @@ function HyperspaceCanvas({ phase, intensity = "full" }: { phase: SpacePortalPha
     const targetH = Math.round(height * dpr);
     if (canvas.width !== targetW || canvas.height !== targetH) {
       canvas.width = targetW; canvas.height = targetH;
-      (canvas.style as any).width = `${width}px`;
-      (canvas.style as any).height = `${height}px`;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
     }
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -250,7 +249,7 @@ function HyperspaceCanvas({ phase, intensity = "full" }: { phase: SpacePortalPha
       if (s.z <= zCull) recycled = true;
 
       // project new position (if recycled we'll respawn below)
-      let curr = project(s.x, s.y, s.z, cx, cy, f);
+      const curr = project(s.x, s.y, s.z, cx, cy, f);
 
       // off-screen padding check
       if (!recycled) {
@@ -400,9 +399,9 @@ function EnergyParticles({ phase, count = 28 }: { phase: SpacePortalPhase; count
       {(phase === "preparing" || phase === "idle") && (
         <motion.div className="absolute inset-0 flex items-center justify-center" animate={ringControls}>
           <div className="relative">
-            {particles.map((p, i) => (
+            {particles.map((p) => (
               <motion.div
-                key={i}
+                key={`particle-${p.angle}-${p.radius}`}
                 className="absolute rounded-full bg-primary shadow-[0_0_12px_rgba(var(--primary),0.65)]"
                 style={{
                   width: 6 * p.scale,
@@ -423,36 +422,7 @@ function EnergyParticles({ phase, count = 28 }: { phase: SpacePortalPhase; count
   );
 }
 
-function LightRays({ phase }: { phase: SpacePortalPhase }) {
-  const rays = 7;
-  const rng = useMemo(() => createSeededRNG(7), []);
-  const specs = useMemo(() => Array.from({ length: rays }).map((_, i) => ({
-    angle: rng() * 360,
-    left: `${rng() * 100}%`,
-    top: `${rng() * 100}%`,
-    delay: rng() * 0.6,
-    length: 180 + rng() * 180,
-  })), [rng]);
 
-  return (
-    <AnimatePresence>
-      {phase === "jumping" && (
-        <div className="absolute inset-0 pointer-events-none">
-          {specs.map((s, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-px bg-gradient-to-b from-transparent via-primary to-transparent"
-              style={{ left: s.left, top: s.top, height: s.length, transform: `rotate(${s.angle}deg)` }}
-              initial={{ opacity: 0, scaleY: 0 }}
-              animate={{ opacity: [0, 1, 0], scaleY: [0, 1.2, 0] }}
-              transition={{ duration: 0.9, delay: s.delay, repeat: Infinity, ease: "easeInOut" }}
-            />
-          ))}
-        </div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 function JumpFlash({ phase, onEnd }: { phase: SpacePortalPhase; onEnd?: () => void }) {
   return (

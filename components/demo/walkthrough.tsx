@@ -613,7 +613,7 @@ export function Walkthrough({
     <div
       aria-hidden
       className="fixed pointer-events-none transition-opacity duration-200 z-[2147483647]"
-      style={{ inset: 0 as any }}
+      style={{ inset: 0 }}
     >
       <div
         className="absolute pointer-events-none backdrop-blur-md bg-black/20"
