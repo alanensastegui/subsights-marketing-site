@@ -3,18 +3,20 @@
 import { useState, useEffect } from "react";
 import { Animate } from "@/components/ui/animate";
 import { motion } from "framer-motion";
+import SpacePortal, { type SpacePortalPhase } from "./demo-space-portal";
 
 interface DemoOverlayProps {
   isLoading: boolean;
   onWelcomeComplete: () => void;
 }
 
-type OverlayPhase = 'loading' | 'transitioning' | 'welcome' | 'exiting';
+type OverlayPhase = 'loading' | 'transitioning' | 'welcome' | 'preparing' | 'exiting';
 
 // Animation timing constants
 const TIMING = {
   TRANSITION_DELAY: 300,
   WELCOME_DISPLAY: 3000,
+  PREPARING_DISPLAY: 2500, // Time to show "Prepare for launch..."
   EXIT_DELAY: 300,
   ANIMATION_DURATION: 0.3,
 } as const;
@@ -27,23 +29,35 @@ const WELCOME_COPY = {
 
 export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) {
   const [phase, setPhase] = useState<OverlayPhase>('loading');
+  const [portalPhase, setPortalPhase] = useState<SpacePortalPhase>('idle');
 
   // Transition from loading to welcome when demo finishes loading
   useEffect(() => {
     if (!isLoading && phase === 'loading') {
       setPhase('transitioning');
-      setTimeout(() => setPhase('welcome'), TIMING.TRANSITION_DELAY);
+      setTimeout(() => {
+        setPhase('welcome');
+        setPortalPhase('idle'); // Portal shows idle effect during welcome
+      }, TIMING.TRANSITION_DELAY);
     }
   }, [isLoading, phase]);
 
-  // Show welcome, then exit
+  // Show welcome, then prepare, then exit
   useEffect(() => {
     if (phase === 'welcome') {
       setTimeout(() => {
-        setPhase('exiting');
+        setPhase('preparing');
+        setPortalPhase('preparing');
         setTimeout(() => {
-          onWelcomeComplete();
-        }, 300);
+          setPhase('exiting');
+          setPortalPhase('jumping');
+          setTimeout(() => {
+            setPortalPhase('cooldown');
+            setTimeout(() => {
+              onWelcomeComplete();
+            }, 600); // Cooldown duration
+          }, 2000); // Jump duration
+        }, TIMING.PREPARING_DISPLAY);
       }, TIMING.WELCOME_DISPLAY);
     }
   }, [phase, onWelcomeComplete]);
@@ -71,8 +85,33 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
   const WelcomeContent = ({ phase }: { phase: OverlayPhase }) => {
     const baseContent = (
       <div className="text-center space-y-4 max-w-lg">
-        <h1 className="text-3xl font-bold text-foreground">{WELCOME_COPY.title}</h1>
-        <p className="text-lg text-muted-foreground">{WELCOME_COPY.description}</p>
+        <motion.h1
+          className="text-3xl font-bold text-foreground"
+          animate={{
+            textShadow: [
+              "0 0 5px var(--primary)",
+              "0 0 15px var(--primary)",
+              "0 0 5px var(--primary)"
+            ]
+          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {WELCOME_COPY.title}
+        </motion.h1>
+        <motion.p
+          className="text-lg text-muted-foreground"
+          animate={{
+            opacity: [1, 0.8, 1],
+            textShadow: [
+              "0 0 2px var(--muted-foreground)",
+              "0 0 8px var(--muted-foreground)",
+              "0 0 2px var(--muted-foreground)"
+            ]
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {WELCOME_COPY.description}
+        </motion.p>
       </div>
     );
 
@@ -87,11 +126,48 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
           </Animate>
         );
 
+      case 'preparing':
+        return (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10"
+          >
+            <div className="text-center space-y-4 max-w-lg">
+              <motion.h1
+                className="text-3xl font-bold text-foreground"
+                animate={{
+                  textShadow: [
+                    "0 0 5px var(--primary)",
+                    "0 0 15px var(--primary)"
+                  ]
+                }}
+                transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
+              >
+                Prepare for Launch
+              </motion.h1>
+              <motion.p
+                className="text-lg text-muted-foreground"
+                animate={{ opacity: [1, 0.7, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                Initiating space-time transition sequence
+              </motion.p>
+            </div>
+          </motion.div>
+        );
+
       case 'exiting':
         return (
-          <Animate name="bounceOut" trigger="onLoad" duration={300}>
-            {baseContent}
-          </Animate>
+          <motion.div
+            initial={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10"
+          >
+            {/* No text content - just let the portal effect be the focus */}
+          </motion.div>
         );
 
       default:
@@ -103,9 +179,10 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
   const getOverlayOpacity = () => {
     switch (phase) {
       case 'loading': return 1;
-      case 'transitioning': return 0.95;
-      case 'welcome': return 0.95;
-      case 'exiting': return 0;
+      case 'transitioning': return 1;
+      case 'welcome': return 1;
+      case 'preparing': return 1;
+      case 'exiting': return 1; // Keep overlay visible during portal effect
       default: return 1;
     }
   };
@@ -115,7 +192,8 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
       case 'loading': return { opacity: 1, scale: 1 };
       case 'transitioning': return { opacity: 0, scale: 0.95 };
       case 'welcome': return { opacity: 1, scale: 1 };
-      case 'exiting': return { opacity: 0, scale: 0.95 };
+      case 'preparing': return { opacity: 1, scale: 1 };
+      case 'exiting': return { opacity: 1, scale: 1 }; // Keep content visible for portal effect
       default: return { opacity: 1, scale: 1 };
     }
   };
@@ -131,10 +209,20 @@ export function DemoOverlay({ isLoading, onWelcomeComplete }: DemoOverlayProps) 
       aria-live="polite"
       data-testid="demo-overlay"
     >
+      {/* Space Portal Effect - Always present, different phases for different overlay states */}
+      <SpacePortal
+        phase={portalPhase}
+        intensity="full"
+        onJumpEnd={() => {
+          // Portal jump animation completed
+        }}
+      />
+
       <motion.div
         initial={{ opacity: 1, scale: 1 }}
         animate={getContentState()}
         transition={{ duration: TIMING.ANIMATION_DURATION }}
+        className="relative z-10"
       >
         {phase === 'loading' ? (
           <LoadingContent />
