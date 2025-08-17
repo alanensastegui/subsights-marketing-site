@@ -705,19 +705,19 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                 </div>
               </div>
               <Animate name="fadeIn" trigger="onVisible" delay={400}>
-                    <div className="pt-6 sm:pt-8">
-                      <p className="text-sm sm:text-base text-[#F5E6D3] leading-relaxed max-w-3xl mx-auto">
-                        Got thoughts or ideas? We'd love to hear them — just drop us a note at{' '}
-                        <a
-                          href="mailto:team@subsights.com"
-                          className="text-[#FFFF00] hover:text-[#FFFF00]/80 underline transition-colors"
-                        >
-                          team@subsights.com
-                        </a>
-                        . We'll be keeping an eye on the chatbot all week and tuning it up as we learn from your questions.
-                      </p>
-                    </div>
-                  </Animate>
+                <div className="pt-6 sm:pt-8">
+                  <p className="text-sm sm:text-base text-[#F5E6D3] leading-relaxed max-w-3xl mx-auto">
+                    Got thoughts or ideas? We&apos;d love to hear them — just drop us a note at{' '}
+                    <a
+                      href="mailto:team@subsights.com"
+                      className="text-[#FFFF00] hover:text-[#FFFF00]/80 underline transition-colors"
+                    >
+                      team@subsights.com
+                    </a>
+                    . We&apos;ll be keeping an eye on the chatbot all week and tuning it up as we learn from your questions.
+                  </p>
+                </div>
+              </Animate>
             </div>
           </section>
         </div>
