@@ -8,7 +8,7 @@ export function FloatingShareButton() {
   const [shareStatus, setShareStatus] = useState<'idle' | 'sharing' | 'copied' | 'error'>('idle');
   const [isVisible, setIsVisible] = useState(false);
 
-  const shareUrl = "https://www.subsights.com/phoenix-2025";
+  const shareUrl = "https://www.subsights.com/demo/phoenix-2025";
 
   // Animate in after a short delay
   useEffect(() => {
