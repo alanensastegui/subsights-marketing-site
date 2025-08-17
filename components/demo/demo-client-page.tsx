@@ -13,6 +13,7 @@ import { DemoIframe } from "@/components/demo/demo-iframe";
 import { useDemoState, useDemoAnalytics, useDemoModeRouting } from "@/components/demo/hooks";
 import { Animate } from "@/components/ui/animate";
 import { Walkthrough } from "./walkthrough";
+import { FloatingShareButton } from "./floating-share-button";
 
 interface DemoPageClientProps {
   slug: string;
@@ -224,6 +225,11 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         {/* Demo Content - All modes */}
         {renderDemoContent()}
       </div>
+
+      {/* Floating Share Button - Only show after walkthrough is complete */}
+      {!demoState.showWalkthrough && !showOverlay && (
+        <FloatingShareButton />
+      )}
     </div>
   );
 }

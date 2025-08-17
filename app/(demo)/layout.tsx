@@ -43,7 +43,7 @@ export default function DemoLayout({ children }: { children: ReactNode }) {
                 <footer className="border-t px-6 py-3 text-center text-xs">
                     This is a Subsights demo experience •
                     {/* TODO: Switch back to internal Link when main site is ready */}
-                    <a href="https://www.subsights.com" className="hover:underline ml-1" target="_blank" rel="noopener noreferrer">Learn more about Subsights</a>
+                    <a href="https://www.subsights.com" className="hover:underline ml-1" target="_blank" rel="noopener noreferrer">Learn more</a>
                 </footer>
             </body>
         </html>
