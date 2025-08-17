@@ -59,7 +59,7 @@ function createSeededRNG(seed: number) {
   };
 }
 
-function useResizeObserver<T extends HTMLElement | HTMLCanvasElement>(ref: React.RefObject<T>) {
+function useResizeObserver<T extends HTMLElement>(ref: React.RefObject<T | null>) {
   const [rect, setRect] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
   useEffect(() => {
     const el = ref.current as HTMLElement | null;
