@@ -13,7 +13,7 @@ export const sectionId = "hero";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Subsights is bringing clarity back to customer conversations",
+  title: "Subsights is bringing trust back to chatbots",
   productScreenshot: {
     posterJpg: "/images/product-screenshots/conversations-graph.png",
     ariaLabel:
@@ -58,7 +58,7 @@ function ProductScreenshot(props: {
             relative z-[1] isolate overflow-hidden rounded-xl shadow-2xl
             ring-1 ring-black/5 dark:ring-white/5 origin-top will-change-[transform]
             tilt-3d hover:rotate-y-[-24deg] hover:rotate-x-[9deg] hover:rotate-z-[4deg] hover:translate-y-[5%] hover:scale-[0.96]
-            transform-style-3d transition-transform duration-600 ease-in-out
+            transition-transform duration-600 ease-in-out
             shadow-white/75
           "
         >

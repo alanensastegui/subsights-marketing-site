@@ -450,13 +450,10 @@
       COMPONENTS LAYER
       - Lightweight 3D tilt helper (kept from your original file, improved)
       ========================================================================== */
-@layer components {
 
-  /* --- 3D tilt helper (avoids transform utility collisions) --- */
-  .tilt-3d {
-    transform: translateZ(0) rotateY(25deg) rotateX(10deg) translateY(5%) scale(0.96);
-    transform-style: preserve-3d;
-    will-change: transform;
-    transition: transform .6s ease;
-  }
+@utility tilt-3d {
+  transform: translateZ(0) rotateY(25deg) rotateX(10deg) translateY(5%) scale(.96);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform .6s ease;
 }

@@ -47,10 +47,6 @@ export default function Section() {
       className="max-w-6xl mx-auto px-6 py-20"
     >
       <div className="space-y-16">
-        <h2 id="about-team" className="sr-only">
-          Our team
-        </h2>
-
         {/* Two-column layout above team pictures */}
         <Animate name="fadeIn" trigger="onVisible">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
