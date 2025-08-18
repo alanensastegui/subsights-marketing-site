@@ -211,25 +211,11 @@ export default function FAQListClient({
                               </div>
                             </div>
                           </AccordionTrigger>
-                          <AccordionContent className="px-6 pb-4">
+                          <AccordionContent className="px-6">
                             <div className="prose prose-invert max-w-none">
                               <p className="text-gray-300 leading-relaxed whitespace-pre-line">
                                 {highlight(faq.answer, searchQuery)}
                               </p>
-                              <div className="mt-3">
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    const url = new URL(window.location.href);
-                                    url.hash = faq.id;
-                                    navigator.clipboard.writeText(url.toString());
-                                  }}
-                                  className="text-xs text-gray-400 hover:text-white underline"
-                                  aria-label={`Copy link to ${faq.question}`}
-                                >
-                                  Copy link
-                                </button>
-                              </div>
                             </div>
                           </AccordionContent>
                         </AccordionItem>
