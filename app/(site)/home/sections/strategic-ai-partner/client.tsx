@@ -34,7 +34,7 @@ const ChatScreenshot = memo(function ChatScreenshot({
           className="
             relative z-[1] isolate overflow-hidden rounded-3xl shadow-2xl shadow-white/60 
             ring-1 ring-black/5 dark:ring-white/5 origin-top will-change-[transform]
-            tilt-3d md:translate-y-[-5%] md:hover:rotate-y-[0deg] md:hover:rotate-x-[0deg] md:hover:rotate-z-[0deg] md:hover:translate-y-[-5%] md:hover:scale-[1]
+            md:tilt-3d md:translate-y-[-5%] md:hover:rotate-y-[0deg] md:hover:rotate-x-[0deg] md:hover:rotate-z-[0deg] md:hover:translate-y-[-5%] md:hover:scale-[1]
             md:transform-style-3d md:transition-transform md:duration-600 md:ease-in-out
             hover:shadow-2xl hover:shadow-white/70
           "
