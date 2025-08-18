@@ -1,269 +1,108 @@
-'use client';
+// Animate.tsx (Tailwind + CSS scroll-driven animations; no Framer Motion)
+import { cn } from "@/lib/cn";
+import * as React from "react";
 
-import { motion, Variants, Transition } from 'framer-motion';
+export type AnimationName =
+    | "fadeIn"
+    | "fadeOut"
+    | "slideUp"
+    | "zoomIn"
+    | "parallax"
+    | "typewriter"
+    | "scrollReveal"
+    | "scaleIn"
+    | "bounceIn"
+    | "bounceOut";
 
-// ============================================================================
-// TYPE DEFINITIONS
-// ============================================================================
-
-export type AnimationName = 'fadeIn' | 'fadeOut' | 'slideUp' | 'zoomIn' | 'parallax' | 'typewriter' | 'scrollReveal' | 'counter' | 'scaleIn' | 'bounceIn' | 'bounceOut';
-export type Trigger = 'onLoad' | 'onVisible' | 'onScroll';
+export type Trigger = "onLoad" | "onVisible" | "onScroll";
 
 interface AnimationProps {
     name: AnimationName;
     trigger?: Trigger;
-    duration?: number;
+    duration?: number;   // ms
+    delay?: number;      // ms
+    threshold?: number;  // 0..1 -> used to shape animation-range for onVisible
+    rootMargin?: string; // maps to view-timeline-inset (e.g., "0 0 20% 0")
     className?: string;
     children?: React.ReactNode;
-    threshold?: number;
-    rootMargin?: string;
-    delay?: number;
     disabled?: boolean;
+    as?: keyof React.JSX.IntrinsicElements;
 }
 
-// ============================================================================
-// ANIMATION VARIANTS
-// ============================================================================
-
-const createVariants = (name: AnimationName, duration: number, delay: number = 0): Variants => {
-    const baseTransition: Transition = { duration: duration / 1000, delay: delay / 1000 };
-
-    switch (name) {
-        case 'fadeIn':
-            // Simple fade in effect - good for subtle content reveals
-            return {
-                hidden: { opacity: 0 },
-                visible: { opacity: 1, transition: baseTransition }
-            };
-        case 'fadeOut':
-            // Simple fade out effect - good for subtle content hiding
-            return {
-                hidden: { opacity: 1 },
-                visible: { opacity: 0, transition: baseTransition }
-            };
-
-        case 'slideUp':
-            // Slide up from below with fade - good for cards and content blocks
-            return {
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: baseTransition }
-            };
-
-        case 'zoomIn':
-            // Subtle scale from 95% to 100% - good for professional, understated effects
-            return {
-                hidden: { opacity: 0, scale: 0.95 },
-                visible: { opacity: 1, scale: 1, transition: baseTransition }
-            };
-
-        case 'parallax':
-            // Parallax scrolling effect - good for background elements
-            return {
-                hidden: { y: 0 },
-                visible: { y: 0, transition: baseTransition }
-            };
-
-        case 'typewriter':
-            // Text reveal effect - good for headlines and important text
-            return {
-                hidden: { width: 0 },
-                visible: {
-                    width: '100%',
-                    transition: {
-                        ...baseTransition,
-                        duration: (duration / 1000) * 2 // Typewriter effect takes longer
-                    }
-                }
-            };
-
-        case 'scrollReveal':
-            // 3D scroll reveal with rotation - good for dramatic content reveals
-            return {
-                hidden: { opacity: 0, y: 50, rotateX: 15 },
-                visible: {
-                    opacity: 1,
-                    y: 0,
-                    rotateX: 0,
-                    transition: { ...baseTransition, type: 'spring', stiffness: 100 }
-                }
-            };
-
-        case 'counter':
-            // Bouncy scale effect - good for numbers and statistics
-            return {
-                hidden: { opacity: 0, scale: 0.8 },
-                visible: {
-                    opacity: 1,
-                    scale: 1,
-                    transition: { ...baseTransition, type: 'spring', bounce: 0.4 }
-                }
-            };
-
-        case 'scaleIn':
-            // Smooth scale with spring physics - good for overlays and content reveals
-            return {
-                hidden: { opacity: 0, scale: 0.95 },
-                visible: {
-                    opacity: 1,
-                    scale: 1,
-                    transition: {
-                        ...baseTransition,
-                        type: 'spring',
-                        stiffness: 200,
-                        damping: 20
-                    }
-                }
-            };
-
-        case 'bounceIn':
-            // Bouncy entrance with scale and upward movement - good for welcome messages and highlights
-            return {
-                hidden: { opacity: 0, scale: 0.8, y: 20 },
-                visible: {
-                    opacity: 1,
-                    scale: 1,
-                    y: 0,
-                    transition: {
-                        ...baseTransition,
-                        type: 'spring',
-                        stiffness: 300,
-                        damping: 25,
-                        bounce: 0.2
-                    }
-                }
-            };
-
-        case 'bounceOut':
-            // Smooth exit with scale and upward movement - good for content dismissals
-            return {
-                hidden: { opacity: 1, scale: 1, y: 0 },
-                visible: {
-                    opacity: 0,
-                    scale: 0.95,
-                    y: -10,
-                    transition: {
-                        ...baseTransition,
-                        type: 'spring',
-                        stiffness: 400,
-                        damping: 30
-                    }
-                }
-            };
-
-        default:
-            return {
-                hidden: { opacity: 0 },
-                visible: { opacity: 1, transition: baseTransition }
-            };
-    }
+const CLASS_MAP: Record<AnimationName, string> = {
+    fadeIn: "anim-fade-in",
+    fadeOut: "anim-fade-out",
+    slideUp: "anim-slide-up",
+    zoomIn: "anim-zoom-in",
+    parallax: "anim-parallax-y",
+    typewriter: "anim-typewriter",
+    scrollReveal: "anim-reveal-3d",
+    scaleIn: "anim-scale-in",
+    bounceIn: "anim-bounce-in",
+    bounceOut: "anim-bounce-out",
 };
 
-// ============================================================================
-// MAIN COMPONENT
-// ============================================================================
+const TRIGGER_MAP: Record<Trigger, string> = {
+    onLoad: "",
+    onVisible: "on-visible",
+    onScroll: "on-scroll",
+};
 
 export function Animate({
     name,
-    trigger = 'onVisible',
-    duration = 700,
+    trigger = "onVisible",
+    duration = 1700,
+    delay = 0,
+    threshold = 0.3,
+    rootMargin,
     className,
     children,
-    threshold = 0.2,
-    rootMargin = '0px',
-    delay = 0,
-    disabled = false
+    disabled = false,
+    as = "div",
 }: AnimationProps) {
-    // Early return if disabled
-    if (disabled) {
-        return <>{children}</>;
+    if (disabled) return <>{children}</>;
+
+    const BaseTag = as as React.ElementType;
+
+    const animClass = CLASS_MAP[name] ?? "";
+    let triggerClass = TRIGGER_MAP[trigger] ?? "";
+
+    // Parallax only makes sense with onScroll; coerce if needed
+    if (name === "parallax") triggerClass = "on-scroll";
+
+    // "Out" animations work best tied to exit of the view timeline
+    const needsExitRange =
+        (name === "fadeOut" || name === "bounceOut") && trigger !== "onLoad";
+    const exitRangeClass = needsExitRange ? "[animation-range:exit_0%_exit_100%]" : "";
+
+    // Per-instance style overrides
+    const style: (React.CSSProperties & Record<string, string | number>) = {};
+
+    if (delay) style.animationDelay = `${delay}ms`;
+
+    if (name === "typewriter") {
+        // typewriter keyframes use a CSS var for duration (keeps steps timing correct)
+        style["--tw-typewriter"] = `${duration}ms`;
+        // Optional: you can set steps via style["--tw-steps"] = 24;
+    } else if (duration) {
+        style.animationDuration = `${duration}ms`;
     }
 
-    // Create animation variants
-    const variants = createVariants(name, duration, delay);
-
-    // Handle different triggers
-    if (trigger === 'onLoad') {
-        return (
-            <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={variants}
-                className={className}
-            >
-                {children}
-            </motion.div>
-        );
+    if (trigger === "onVisible") {
+        const coverPct = Math.max(0, Math.min(100, Math.round(threshold * 100)));
+        // Override default range from the .on-visible helper
+        style.animationRange = `entry 0% cover ${coverPct}%`;
+        if (rootMargin && rootMargin !== "0px") {
+            // Interpreted as view-timeline-inset (top right bottom left)
+            style.viewTimelineInset = rootMargin;
+        }
     }
 
-    if (trigger === 'onVisible') {
-        return (
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{
-                    amount: threshold,
-                    margin: rootMargin,
-                    once: true // Only animate once
-                }}
-                variants={variants}
-                className={className}
-            >
-                {children}
-            </motion.div>
-        );
-    }
+    const classes = cn(className, animClass, triggerClass, exitRangeClass)
 
-    if (trigger === 'onScroll' && name === 'parallax') {
-        return (
-            <motion.div
-                style={{ y: 0 }}
-                whileInView={{ y: [-20, 20] }}
-                transition={{
-                    duration: duration / 1000,
-                    type: 'spring',
-                    stiffness: 50
-                }}
-                className={className}
-            >
-                {children}
-            </motion.div>
-        );
-    }
-
-    // Fallback for unsupported combinations
     return (
-        <div className={className}>
+        <BaseTag className={classes} style={style}>
             {children}
-        </div>
+        </BaseTag>
     );
 }
-
-// ============================================================================
-// EXPORT UTILITIES
-// ============================================================================
-
-// Utility function to check if animations are supported
-export const isAnimationSupported = (): boolean => {
-    if (typeof window === 'undefined') return false;
-
-    // Check for Framer Motion support
-    try {
-        return typeof motion !== 'undefined';
-    } catch {
-        return false;
-    }
-};
-
-// Utility function to disable animations globally (for accessibility)
-export const disableAnimationsGlobally = (): void => {
-    if (typeof document !== 'undefined') {
-        document.documentElement.style.setProperty('--a-disabled', 'true');
-    }
-};
-
-// Utility function to enable animations globally
-export const enableAnimationsGlobally = (): void => {
-    if (typeof document !== 'undefined') {
-        document.documentElement.style.removeProperty('--a-disabled');
-    }
-};

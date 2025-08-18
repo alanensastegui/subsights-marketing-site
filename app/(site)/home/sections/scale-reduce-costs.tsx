@@ -1,5 +1,3 @@
-'use client';
-
 import { Animate } from "@/components/ui/animate";
 import { cn } from "@/lib/cn";
 import { Card, CardContent } from "@/components/ui/card";

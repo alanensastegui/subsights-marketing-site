@@ -1,73 +1,117 @@
+/* =============================================================================
+   IMPORTS
+   ========================================================================== */
 @import "tailwindcss";
 @import "tw-animate-css";
+/* optional: third-party animation utilities */
 
-@custom-variant dark (&:is(.dark *));
 
+/* =============================================================================
+      CUSTOM VARIANTS
+      - Keep Tailwind's built-in dark: working, but also expose a CSS variant
+      - Using :where() helps keep specificity low
+      ========================================================================== */
+@custom-variant dark (&:where(.dark &, .dark *));
+
+
+/* =============================================================================
+      THEME TOKEN MAPPINGS (Tailwind v4 @theme inline)
+      - Maps semantic Tailwind tokens (bg-background, text-foreground, etc.)
+      - Radius scale derived from --radius
+      ========================================================================== */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
+
+/* =============================================================================
+      DESIGN TOKENS (CSS Custom Properties)
+      - Defaults (:root) and dark scheme overrides (.dark)
+      - Values preserved from your original file
+      ========================================================================== */
 :root {
   --radius: 0.625rem;
+
   --background: #0E086A;
   --foreground: #ffffff;
+
   --card: #1a1a8a;
   --card-foreground: #ffffff;
+
   --popover: #1a1a8a;
   --popover-foreground: #ffffff;
+
   --primary: #1F2BF3;
   --primary-foreground: #ffffff;
+
   --secondary: #1a1b8a;
   --secondary-foreground: #ffffff;
+
   --muted: #1a1a8a;
   --muted-foreground: #b3b3ff;
+
   --accent: #1a1a8a;
   --accent-foreground: #ffffff;
+
   --destructive: #ef4444;
+
   --border: #2a2a9a;
   --input: #2a2a9a;
   --ring: #1F2BF3;
+
   --chart-1: #ef4444;
   --chart-2: #fbbf24;
   --chart-3: #f59e0b;
   --chart-4: #d97706;
   --chart-5: #b45309;
+
   --sidebar: #1a1a8a;
   --sidebar-foreground: #ffffff;
   --sidebar-primary: #1F2BF3;
@@ -76,32 +120,46 @@
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #2a2a9a;
   --sidebar-ring: #1F2BF3;
+
+  /* Improves native form & scrollbar colors for dark UI */
+  color-scheme: dark;
 }
 
+/* Same values as :root (kept for future theming changes) */
 .dark {
   --background: #0E086A;
   --foreground: #ffffff;
+
   --card: #1a1a8a;
   --card-foreground: #ffffff;
+
   --popover: #1a1a8a;
   --popover-foreground: #ffffff;
+
   --primary: #1F2BF3;
   --primary-foreground: #ffffff;
-  --secondary: #1a1a8a;
+
+  --secondary: #1a1b8a;
   --secondary-foreground: #ffffff;
+
   --muted: #1a1a8a;
   --muted-foreground: #b3b3ff;
+
   --accent: #1a1a8a;
   --accent-foreground: #ffffff;
+
   --destructive: #ef4444;
+
   --border: #2a2a9a;
   --input: #2a2a9a;
   --ring: #1F2BF3;
+
   --chart-1: #ef4444;
   --chart-2: #fbbf24;
   --chart-3: #f59e0b;
   --chart-4: #d97706;
   --chart-5: #b45309;
+
   --sidebar: #1a1a8a;
   --sidebar-foreground: #ffffff;
   --sidebar-primary: #1F2BF3;
@@ -110,35 +168,296 @@
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #2a2a9a;
   --sidebar-ring: #1F2BF3;
+
+  color-scheme: dark;
 }
 
+
+/* =============================================================================
+      BASE LAYER
+      ========================================================================== */
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+
+  *,
+  ::before,
+  ::after {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
   }
 
   body {
     @apply bg-background text-foreground;
+    @apply outline-ring/50;
+    @apply antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 35%, transparent);
+    color: var(--primary-foreground);
   }
 }
 
+
+/* =============================================================================
+      KEYFRAMES
+      - Existing shimmer and a small set of handy motion keyframes
+      - Names chosen to avoid clashes with third-party animation imports
+      ========================================================================== */
 @keyframes shimmer {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-100%)
   }
 
   100% {
-    transform: translateX(100%);
+    transform: translateX(100%)
   }
 }
 
+/* Scroll/visibility-friendly motion set */
+@keyframes kf-fade-in {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes kf-fade-out {
+  from {
+    opacity: 1
+  }
+
+  to {
+    opacity: 0
+  }
+}
+
+@keyframes kf-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+@keyframes kf-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(.95)
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1)
+  }
+}
+
+@keyframes kf-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(.95)
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.02)
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1)
+  }
+}
+
+@keyframes kf-bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(.8)
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.03)
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1)
+  }
+}
+
+@keyframes kf-bounce-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1)
+  }
+
+  20% {
+    opacity: 1;
+    transform: translateY(-10px) scale(.98)
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(.95)
+  }
+}
+
+@keyframes kf-scroll-reveal {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(15deg) translateY(50px)
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0) translateY(0)
+  }
+}
+
+@keyframes kf-parallax-y {
+  from {
+    transform: translateY(-20px)
+  }
+
+  to {
+    transform: translateY(20px)
+  }
+}
+
+@keyframes kf-typewriter {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
+}
+
+@keyframes kf-caret-blink {
+
+  0%,
+  49% {
+    opacity: 1
+  }
+
+  50%,
+  100% {
+    opacity: 0
+  }
+}
+
+
+/* =============================================================================
+      UTILITIES LAYER
+      - Small helpers for scroll-driven animations (no JS)
+      - Works great with Tailwind's motion-safe: variant
+      ========================================================================== */
+@layer utilities {
+
+  /* Run animation as element becomes visible in viewport */
+  .on-visible {
+    animation-timeline: view();
+    /* Start at first entry, finish once ~30% is covered */
+    animation-range: entry 0% cover 30%;
+  }
+
+  /* Adjust when the visibility trigger starts (like rootMargin) */
+  .view-inset-none {
+    view-timeline-inset: 0
+  }
+
+  .view-inset-20b {
+    view-timeline-inset: 0 0 20% 0
+  }
+
+  /* shrink bottom edge */
+
+  /* Drive animation by the page scroll instead of element's visibility */
+  .on-scroll {
+    animation-timeline: scroll(root);
+  }
+
+  /* Ready-made shorthand classes you can compose with Tailwind: */
+  .anim-fade-in {
+    animation: kf-fade-in 700ms ease-out both
+  }
+
+  .anim-fade-out {
+    animation: kf-fade-out 500ms ease-in both
+  }
+
+  .anim-slide-up {
+    animation: kf-slide-up 700ms ease-out both
+  }
+
+  .anim-zoom-in {
+    animation: kf-zoom-in 700ms ease-out both
+  }
+
+  .anim-scale-in {
+    animation: kf-scale-in 600ms ease-out both
+  }
+
+  .anim-bounce-in {
+    animation: kf-bounce-in 700ms ease-out both
+  }
+
+  .anim-bounce-out {
+    animation: kf-bounce-out 500ms ease-in both
+  }
+
+  .anim-reveal-3d {
+    animation: kf-scroll-reveal 800ms ease-out both
+  }
+
+  .anim-parallax-y {
+    animation: kf-parallax-y 1s linear both
+  }
+
+  /* timeline-normalized */
+  .anim-typewriter {
+    animation: kf-typewriter var(--tw-typewriter, 1.4s) steps(var(--tw-steps, 24), end) both
+  }
+
+  /* Caret for typewriter (opt-in via ::after on a wrapper) */
+  .caret-blink::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    margin-left: 0.25ch;
+    background: currentColor;
+    animation: kf-caret-blink 1s steps(1, end) infinite;
+    vertical-align: top;
+  }
+}
+
+
+/* =============================================================================
+      COMPONENTS LAYER
+      - Lightweight 3D tilt helper (kept from your original file, improved)
+      ========================================================================== */
 @layer components {
 
   /* --- 3D tilt helper (avoids transform utility collisions) --- */
   .tilt-3d {
     transform: translateZ(0) rotateY(25deg) rotateX(10deg) translateY(5%) scale(0.96);
     transform-style: preserve-3d;
-    transition: 0.6s ease all;
+    will-change: transform;
+    transition: transform .6s ease;
   }
 
   .tilt-3d:hover {

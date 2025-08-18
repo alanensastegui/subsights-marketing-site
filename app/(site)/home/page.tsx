@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import Hero from "./sections/hero";
-import StrategicAIPartner from "./sections/strategic-ai-partner";
+import StrategicAIPartner from "./sections/strategic-ai-partner/server";
 import UseCases from "./sections/use-cases";
 import ScaleReduceCosts from "./sections/scale-reduce-costs";
 import TrustedBy from "./sections/trusted-by";
