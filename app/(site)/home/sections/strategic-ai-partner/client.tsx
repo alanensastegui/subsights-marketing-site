@@ -27,15 +27,28 @@ const ChatScreenshot = memo(function ChatScreenshot({
   imageAlt: string;
 }) {
   return (
-    <div className="w-full h-full overflow-hidden shadow-sm">
-      <Image
-        src={imageSrc}
-        alt={imageAlt}
-        width={400}
-        height={300}
-        className="w-full h-full object-cover rounded-3xl"
-        priority
-      />
+    <div className="w-full h-full shadow-sm">
+      {/* 3D stage (perspective lives on the parent) */}
+      <div className="relative w-full h-full [perspective:1600px]">
+        <div
+          className="
+            relative z-[1] isolate overflow-hidden rounded-3xl shadow-2xl shadow-white/60 
+            ring-1 ring-black/5 dark:ring-white/5 origin-top will-change-[transform]
+            tilt-3d md:translate-y-[-5%] md:hover:rotate-y-[0deg] md:hover:rotate-x-[0deg] md:hover:rotate-z-[0deg] md:hover:translate-y-[-5%] md:hover:scale-[1]
+            md:transform-style-3d md:transition-transform md:duration-600 md:ease-in-out
+            hover:shadow-2xl hover:shadow-white/70
+          "
+        >
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            width={400}
+            height={300}
+            className="w-full h-full object-cover backface-hidden"
+            priority
+          />
+        </div>
+      </div>
     </div>
   );
 });
@@ -265,7 +278,6 @@ export default function StrategicAIPartnerClient({ valuePropositions }: Props) {
               key={activeIndex}
               duration={150}
               trigger="onLoad"
-              className="rounded-3xl shadow-2xl shadow-white/60 hover:shadow-2xl hover:shadow-white/70 transition-all duration-300 hover:scale-[1.02]"
             >
               <ChatScreenshot
                 imageSrc={valuePropositions[activeIndex].imageSrc}

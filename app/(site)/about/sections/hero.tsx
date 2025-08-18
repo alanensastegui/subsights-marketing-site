@@ -57,7 +57,9 @@ function ProductScreenshot(props: {
           className="
             relative z-[1] isolate overflow-hidden rounded-xl shadow-2xl
             ring-1 ring-black/5 dark:ring-white/5 origin-top will-change-[transform]
-            tilt-3d shadow-white/75
+            tilt-3d hover:rotate-y-[-24deg] hover:rotate-x-[9deg] hover:rotate-z-[4deg] hover:translate-y-[5%] hover:scale-[0.96]
+            transform-style-3d transition-transform duration-600 ease-in-out
+            shadow-white/75
           "
         >
           <Image
