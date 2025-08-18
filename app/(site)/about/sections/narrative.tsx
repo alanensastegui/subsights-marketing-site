@@ -1,5 +1,3 @@
-'use client';
-
 import { Animate } from "@/components/ui/animate";
 
 type Copy = {
