@@ -11,6 +11,8 @@ import {
 import { Search, MessageCircle, X } from "lucide-react";
 import { getCategories, groupByCategory, highlight, type FAQ } from "./faq-utils";
 import { getMeta } from "./meta";
+import FAQAccordionList from "./faq-accordion-list";
+import FAQCategoryHeader from "./faq-category-header";
 
 type ControlledProps = {
   searchQuery?: string;
@@ -177,54 +179,22 @@ export default function FAQListClient({
       {(searchQuery || selectedCategory) && (
         filtered.length > 0 ? (
           <div className="max-w-4xl mx-auto">
-            {Object.entries(grouped).map(([category, faqs]) => {
-              const meta = getMeta(category);
-              return (
-                <div key={category} className="mb-8">
-                  <Animate name="fadeIn" trigger="onVisible">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className={`p-2 rounded-lg ${meta.bgClass}`}>
-                        <meta.Icon className="w-4 h-4" />
-                      </div>
-                      <h3 className="text-2xl font-semibold text-white">{category}</h3>
-                      <Badge variant="outline" className="ml-auto text-sm">
-                        {faqs.length} question{faqs.length !== 1 ? "s" : ""}
-                      </Badge>
-                    </div>
-                  </Animate>
+            {Object.entries(grouped).map(([category, faqs]) => (
+              <div key={category} className="mb-8">
+                <FAQCategoryHeader
+                  category={category}
+                  faqCount={faqs.length}
+                />
 
-                  <Accordion type="single" collapsible className="space-y-4" value={openedId} onValueChange={setOpenedId}>
-                    {faqs.map((faq, i) => (
-                      <Animate key={faq.id} name="fadeIn" trigger="onVisible" delay={i * 50}>
-                        <AccordionItem value={faq.id} className="border-white/10 bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors">
-                          <AccordionTrigger className="px-6 py-4 text-left hover:no-underline group">
-                            <div className="flex items-start gap-4 w-full">
-                              <div className="flex-1">
-                                <h4 className="text-lg font-medium text-white group-hover:text-blue-300 transition-colors">
-                                  {highlight(faq.question, searchQuery)}
-                                </h4>
-                              </div>
-                              <div className="flex-shrink-0">
-                                <Badge variant="outline" className={`text-xs ${getMeta(faq.category).badgeClass}`}>
-                                  {faq.category}
-                                </Badge>
-                              </div>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-6">
-                            <div className="prose prose-invert max-w-none">
-                              <p className="text-gray-300 leading-relaxed whitespace-pre-line">
-                                {highlight(faq.answer, searchQuery)}
-                              </p>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Animate>
-                    ))}
-                  </Accordion>
-                </div>
-              );
-            })}
+                <FAQAccordionList
+                  faqs={faqs}
+                  searchQuery={searchQuery}
+                  openedId={openedId}
+                  onValueChange={setOpenedId}
+                  highlight={highlight}
+                />
+              </div>
+            ))}
           </div>
         ) : (
           <Animate name="fadeIn" trigger="onVisible">
