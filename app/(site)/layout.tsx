@@ -5,7 +5,7 @@ import "@/styles/globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Animate } from "@/components/ui/animate";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
@@ -21,7 +21,6 @@ import {
 } from "@/components/ui/navigation-menu";
 
 // Constants
-const SCROLL_THRESHOLD = 100;
 const ORB_CONFIGS = {
   small: { classes: 'w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48', radius: 120 },
   medium: { classes: 'w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56', radius: 160 },
@@ -200,27 +199,6 @@ const MobileNavigation = () => (
 );
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isScrollingUp = currentScrollY < lastScrollY;
-      const isScrollingDown = currentScrollY > lastScrollY && currentScrollY > SCROLL_THRESHOLD;
-
-      if (isScrollingUp) {
-        setIsHeaderVisible(true);
-      } else if (isScrollingDown) {
-        setIsHeaderVisible(false);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
 
   return (
     <html lang="en" className="h-full">
@@ -260,7 +238,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
 
-        <header className={`fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40 transition-transform duration-300 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+        <header className="sticky top-0 z-50 border-b border-border/40  backdrop-blur-md shadow-sm transition-[background,backdrop-filter,box-shadow] duration-200 ease-out hover:bg-background/98 hover:backdrop-blur-2xl hover:shadow-lg [animation:header-fade-in_linear_both] [animation-timeline:scroll(root)] [animation-range:0_100px] supports-[animation-timeline:scroll(root)]:animate-none">
           <Animate name="fadeIn" trigger="onLoad">
             <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
               <Link href="/" className="flex items-center">
