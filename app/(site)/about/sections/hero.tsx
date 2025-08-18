@@ -26,18 +26,18 @@ export default function Section() {
   const c = copy;
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20">
-      <Animate name="fadeIn" trigger="onVisible">
-        <h1 className="text-center text-4xl md:text-6xl font-semibold tracking-tight">
-          {c.title}
-        </h1>
-      </Animate>
+    <section className="max-w-6xl mx-auto px-6 py-20">
+      <div className="space-y-8">
+        <Animate name="fadeIn" trigger="onVisible">
+          <h1 className="text-center text-4xl md:text-6xl font-semibold tracking-tight">
+            {c.title}
+          </h1>
+        </Animate>
 
-      <Animate name="zoomIn" trigger="onVisible">
-        <div className="mt-10">
+        <Animate name="zoomIn" trigger="onVisible">
           <ProductScreenshot {...c.productScreenshot} />
-        </div>
-      </Animate>
+        </Animate>
+      </div>
     </section>
   );
 }
