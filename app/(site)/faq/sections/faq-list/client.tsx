@@ -5,9 +5,7 @@ import { Animate } from "@/components/ui/animate";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Accordion, AccordionContent, AccordionItem, AccordionTrigger,
-} from "@/components/ui/accordion";
+
 import { Search, MessageCircle, X } from "lucide-react";
 import { getCategories, groupByCategory, highlight, type FAQ } from "./faq-utils";
 import { getMeta } from "./meta";

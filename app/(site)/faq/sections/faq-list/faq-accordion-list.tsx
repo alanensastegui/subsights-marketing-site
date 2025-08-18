@@ -17,7 +17,7 @@ export default function FAQAccordionList({
   searchQuery = "",
   openedId,
   onValueChange,
-  highlight = (text, query) => text,
+  highlight = (text) => text,
   delayOffset = 0
 }: FAQAccordionListProps) {
   return (
