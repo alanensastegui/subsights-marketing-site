@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import FAQListClient from "./client";
 import type { FAQ } from "./faq-utils";
 
@@ -15,14 +15,6 @@ export default function FAQShell({ copy, children }: Props) {
     [searchQuery, selectedCategory]
   );
 
-  useEffect(() => {
-    const el = document.getElementById("faq-server");
-    if (!el) return;
-    el.toggleAttribute("hidden", overlayActive);
-    el.setAttribute("aria-hidden", String(overlayActive));
-    el.toggleAttribute("inert", overlayActive);
-  }, [overlayActive]);
-
   return (
     <section className="max-w-6xl mx-auto px-6 py-16">
       <FAQListClient
@@ -32,7 +24,7 @@ export default function FAQShell({ copy, children }: Props) {
         onSearchChange={setSearchQuery}
         onCategoryChange={setSelectedCategory}
       />
-      {children}
+      {!overlayActive && children}
     </section>
   );
 }
