@@ -17,6 +17,11 @@ import {
   type NavItem,
 } from "@/components/ui/navigation-menu";
 import FloatingOrbs from "@/components/layout/floating-orbs";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { PageViewTracker } from "@/components/analytics/page-view-tracker";
+import { DevAnalyticsDashboard } from "@/components/analytics/dev-analytics-dashboard";
+import { ConsentBanner } from "@/components/analytics/consent-banner";
+import { AnalyticsProvider } from "@/lib/analytics/context";
 
 const navItems: (NavItem & { isButton?: boolean })[] = [
   { label: "About", href: "/about" },
@@ -147,57 +152,69 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className="bg-background text-foreground h-full">
-        <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
-          <div className="absolute left-[10%] top-[15%]">
-            <FloatingOrbs size="large" blur={40} opacity={0.4} speed={1} />
+        <AnalyticsProvider>
+          <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
+            <div className="absolute left-[10%] top-[15%]">
+              <FloatingOrbs size="large" blur={40} opacity={0.4} speed={1} />
+            </div>
+            <div className="absolute right-[20%] top-[25%]">
+              <FloatingOrbs size="small" blur={40} opacity={0.4} speed={1.2} />
+            </div>
+            <div className="absolute left-[40%] top-[40%]">
+              <FloatingOrbs size="medium" blur={40} opacity={0.40} speed={1.6} />
+            </div>
           </div>
-          <div className="absolute right-[20%] top-[25%]">
-            <FloatingOrbs size="small" blur={40} opacity={0.4} speed={1.2} />
-          </div>
-          <div className="absolute left-[40%] top-[40%]">
-            <FloatingOrbs size="medium" blur={40} opacity={0.40} speed={1.6} />
-          </div>
-        </div>
 
-        <header className="sticky top-0 z-50 border-b border-border/40  backdrop-blur-md shadow-sm transition-[background,backdrop-filter,box-shadow] duration-200 ease-out hover:backdrop-blur-xl hover:shadow-lg [animation:header-fade-in_linear_both] [animation-timeline:scroll(root)] [animation-range:0_100px] supports-[animation-timeline:scroll(root)]:animate-none">
-          <Animate name="fadeIn" trigger="onLoad">
-            <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+          <header className="sticky top-0 z-50 border-b border-border/40  backdrop-blur-md shadow-sm transition-[background,backdrop-filter,box-shadow] duration-200 ease-out hover:backdrop-blur-xl hover:shadow-lg [animation:header-fade-in_linear_both] [animation-timeline:scroll(root)] [animation-range:0_100px] supports-[animation-timeline:scroll(root)]:animate-none">
+            <Animate name="fadeIn" trigger="onLoad">
+              <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+                <Link href="/" className="flex items-center">
+                  <Image src="/images/logo/full-logo.svg" alt="Subsights AI" width={120} height={48} className="h-12 w-auto" />
+                </Link>
+                <DesktopNavigation />
+                <MobileNavigation />
+              </div>
+            </Animate>
+          </header>
+
+          <main className="mx-auto max-w-6xl px-6 pt-20">{children}</main>
+          <footer className="mx-auto max-w-6xl px-6 py-12">
+            <div className="flex flex-col items-center space-y-6 text-center">
+              {/* Logo */}
               <Link href="/" className="flex items-center">
-                <Image src="/images/logo/full-logo.svg" alt="Subsights AI" width={120} height={48} className="h-12 w-auto" />
+                <Image src="/images/logo/full-logo.svg" alt="Subsights AI" width={160} height={64} className="h-16 w-auto opacity-80" />
               </Link>
-              <DesktopNavigation />
-              <MobileNavigation />
-            </div>
-          </Animate>
-        </header>
 
-        <main className="mx-auto max-w-6xl px-6 pt-20">{children}</main>
-        <footer className="mx-auto max-w-6xl px-6 py-12">
-          <div className="flex flex-col items-center space-y-6 text-center">
-            {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <Image src="/images/logo/full-logo.svg" alt="Subsights AI" width={160} height={64} className="h-16 w-auto opacity-80" />
-            </Link>
+              {/* Legal Links */}
+              <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+                <Link href="/terms" className="hover:text-foreground transition-colors">
+                  Terms of Service
+                </Link>
+                <Link href="/privacy" className="hover:text-foreground transition-colors">
+                  Privacy Policy
+                </Link>
+                <Link href="/data-processing" className="hover:text-foreground transition-colors">
+                  Data Processing
+                </Link>
+              </div>
 
-            {/* Legal Links */}
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-              <Link href="/terms" className="hover:text-foreground transition-colors">
-                Terms of Service
-              </Link>
-              <Link href="/privacy" className="hover:text-foreground transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/data-processing" className="hover:text-foreground transition-colors">
-                Data Processing
-              </Link>
+              {/* Copyright */}
+              <div className="text-sm text-muted-foreground">
+                © {new Date().getFullYear()} Subsights AI. All rights reserved.
+              </div>
             </div>
+          </footer>
 
-            {/* Copyright */}
-            <div className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Subsights AI. All rights reserved.
-            </div>
-          </div>
-        </footer>
+          {/* Google Analytics Script Loader */}
+          <GoogleAnalytics />
+          <PageViewTracker />
+
+          {/* Development Analytics Dashboard */}
+          <DevAnalyticsDashboard />
+
+          {/* Consent Banner */}
+          <ConsentBanner />
+        </AnalyticsProvider>
       </body>
     </html>
   );
