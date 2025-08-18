@@ -11,7 +11,7 @@ User asks to change appearance and/or behavior of an existing section (copy, lay
 ## Guardrails
 - Keep **stable identity**: same filename and `export const sectionId`.
 - **Allowed imports only**: `react`, `next/link`, `next/image`, `"@/lib/cn"`, `"@/components/ui/*"`, `"@/components/ui/animate"`.
-- Add `'use client'` **iff** you import `Animate` or use hooks/handlers/refs.
+- Add `'use client'` **iff** you or use hooks/handlers/refs.
 - Maintain semantic HTML/a11y; no forbidden APIs or external scripts/styles.
 
 ## Change tiers
@@ -122,7 +122,6 @@ const copy = {
 **C) User says: "Make the image animate in with a fade effect when the page loads"**
 ```tsx
 // Behavioral change (tier 3) - add animation
-'use client'; // Required for A component
 import { Animate } from "@/components/ui/animate";
 
 // Wrap image with animation
