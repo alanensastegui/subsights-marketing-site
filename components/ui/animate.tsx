@@ -14,6 +14,8 @@ export type AnimationName =
     | "bounceIn"
     | "bounceOut";
 
+// TODO: Triggers do not work since the class changed its
+// internal implementation to pure css. Need to fix this.
 export type Trigger = "onLoad" | "onVisible" | "onScroll";
 
 interface AnimationProps {

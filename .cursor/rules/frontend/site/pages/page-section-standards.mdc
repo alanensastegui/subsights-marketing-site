@@ -106,8 +106,59 @@ When a new UI component is needed that's not currently available in `@/component
 - Do **not** nest an `<a>` inside `<Link>` (Link renders an anchor).
 - Provide descriptive, accessible link text.
 
-## Client Boundary
-Add `'use client'` if you import `Animate` **or** use hooks/handlers/refs (`useState`, `useEffect`, `onClick`, etc.). (Using `Link` alone does not require `'use client'`.)
+## Server-Side Rendering & Client Boundaries
+
+### Core Principle: Text Content Renders on Server for SEO
+All text content (headings, descriptions, copy) must render on the server for optimal SEO. Interactive elements and client-side functionality should be separated into client components.
+
+### File Structure Pattern
+When a section requires client-side functionality, use this two-file pattern:
+
+1. **`<slug>.tsx` (Server Component)** - Contains all text content and SEO-visible elements
+   - No `'use client'` directive
+   - Imports and renders the client component
+   - Passes copy data as props to client component
+   - Example: `strategic-ai-partner/server.tsx`
+
+2. **`<slug>-client.tsx` (Client Component)** - Contains interactive elements and client-side logic
+   - Has `'use client'` directive
+   - Receives copy data as props from server component
+   - Handles state, effects, event handlers, and DOM interactions
+   - Example: `strategic-ai-partner/client.tsx`
+
+### When to Use This Pattern
+- **Use two-file pattern** when you need: `useState`, `useEffect`, `onClick`, `useRef`, or `window`/`document` access
+- **Use single server file** when you only need: static content, `Link`, `Image`, or basic UI components
+
+### Implementation Guidelines
+- **Server component** should contain all headings, descriptions, and static text content
+- **Client component** should receive copy data as props, not import copy directly
+- **Copy data** flows from server → client, never the reverse
+- **SEO-critical content** (headings, meta descriptions) must be in server component
+- **Interactive elements** (buttons, forms, animations) go in client component
+
+### Example Structure
+```tsx
+// server.tsx (Server Component)
+import { copy, sectionId } from "./copy";
+import SectionClient from "./client";
+
+export default function Section() {
+  return (
+    <section id={sectionId}>
+      <h2>{copy.heading}</h2>
+      <p>{copy.description}</p>
+      <SectionClient data={copy.interactiveData} />
+    </section>
+  );
+}
+
+// client.tsx (Client Component)
+"use client";
+export default function SectionClient({ data }) {
+  // Interactive logic here
+}
+```
 
 ## Styling & A11y
 - Tailwind classes + design tokens (e.g., `text-primary`, `bg-secondary`, `bg-card`). No external styles.
