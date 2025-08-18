@@ -1,6 +1,7 @@
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
 import { cva } from "class-variance-authority"
 import { ChevronDownIcon } from "lucide-react"
+import Link from "next/link"
 
 import { cn } from "@/lib/cn"
 
@@ -122,8 +123,27 @@ function NavigationMenuViewport({
 
 function NavigationMenuLink({
   className,
+  href,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Link>) {
+}: React.ComponentProps<typeof NavigationMenuPrimitive.Link> & { href?: string }) {
+  // If href is provided and it's an internal link, use Next.js Link
+  if (href && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+    // Filter out Radix-specific props that aren't compatible with Next.js Link
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { onSelect, ...linkProps } = props;
+    return (
+      <Link
+        href={href}
+        className={cn(
+          "data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 [&_svg:not([class*='text-'])]:text-muted-foreground flex flex-col gap-1 rounded-sm p-2 text-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4",
+          className
+        )}
+        {...linkProps}
+      />
+    )
+  }
+
+  // For external links or no href, use the original Radix component
   return (
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"
