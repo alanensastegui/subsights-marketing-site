@@ -60,7 +60,7 @@ export default function Section() {
   return (
     <section
       aria-labelledby="about-news"
-      className="max-w-5xl mx-auto px-6 py-20"
+      className="max-w-5xl mx-auto px-6 py-12"
     >
       <div className="space-y-8">
         <Animate name="fadeIn" trigger="onVisible">

@@ -138,7 +138,7 @@ export default function Section({ searchParams }: Props) {
 
   return (
     <section className="relative isolate text-foreground">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <div className="text-center space-y-6 mb-12">
           <Animate name="fadeIn" trigger="onVisible">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">{c.title}</h2>

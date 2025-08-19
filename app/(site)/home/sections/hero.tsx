@@ -23,7 +23,7 @@ const copy = {
 
 export default function Hero() {
   return (
-    <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-20">
+    <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-12">
       {/* Slogan */}
       <Animate name="fadeIn" trigger="onVisible">
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">

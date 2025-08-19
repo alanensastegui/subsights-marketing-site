@@ -29,7 +29,7 @@ export default function Hero() {
   const c = copy;
   return (
     <section className="relative isolate text-foreground">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="mx-auto max-w-4xl text-center">
           <Animate name="fadeIn" trigger="onVisible" className="space-y-6">
             {c.badge && (

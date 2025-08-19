@@ -7,7 +7,7 @@ export { sectionId };
 
 export default function StrategicAIPartner() {
   return (
-    <section id={sectionId} className="max-w-6xl mx-auto px-6 py-20">
+    <section id={sectionId} className="max-w-6xl mx-auto px-6 py-12">
       {/* ======= SEO-visible header (SSR text) ======= */}
       <div className="text-center mb-16">
         <div className="space-y-4 mb-8">

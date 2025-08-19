@@ -44,7 +44,7 @@ export default function Section() {
   return (
     <section
       aria-labelledby="about-team"
-      className="max-w-6xl mx-auto px-6 py-20"
+      className="max-w-6xl mx-auto px-6 py-12"
     >
       <div className="space-y-16">
         {/* Two-column layout above team pictures */}
