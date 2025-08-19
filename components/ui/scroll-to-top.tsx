@@ -49,7 +49,7 @@ export function ScrollToTop({ className }: ScrollToTopProps) {
         "fixed right-6 top-12 z-40 h-12 w-12 rounded-full shadow-lg transition-all duration-300 ease-in-out",
         "backdrop-blur-lg border-border/50 hover:card",
         "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-        "shadow-[0_0_30px_rgba(31,43,243,0.35)] hover:shadow-[0_0_40px_rgba(31,43,243,0.7)]",
+        "shadow-[0_0_30px_color-mix(in_srgb,var(--ring)_35%,_transparent)] hover:shadow-[0_0_40px_color-mix(in_srgb,var(--ring)_70%,_transparent)]",
         isVisible
           ? "opacity-100 translate-y-0 pointer-events-auto"
           : "opacity-0 translate-y-4 pointer-events-none",
