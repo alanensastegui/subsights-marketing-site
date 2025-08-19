@@ -181,8 +181,11 @@ export default function Section({ searchParams }: Props) {
     dollars: number;
     cents: number;
   }) => {
-    if (price.dollars === 0 && price.cents === 0) return "Custom";
-    return `$${price.dollars}${price.cents > 0 ? `.${price.cents.toString().padStart(2, "0")}` : ""}`;
+    if (price.dollars === 0 && price.cents === 0) return { dollars: "Custom", cents: "" };
+    return {
+      dollars: `$${price.dollars}`,
+      cents: price.cents > 0 ? `.${price.cents.toString().padStart(2, "0")}` : ""
+    };
   };
 
   const getCurrentPrice = (plan: Copy["plans"][0]) => {
@@ -192,12 +195,12 @@ export default function Section({ searchParams }: Props) {
   const getPriceUnit = (plan: Copy["plans"][0]) => {
     if (plan.enterprise) return "";
     if (plan.free) return "for 30 days";
-    return isAnnual ? "/year" : "/month";
+    return "/month";
   };
 
   const getPriceDisplay = (plan: Copy["plans"][0]) => {
-    if (plan.free) return "$0";
-    if (plan.enterprise) return "Custom";
+    if (plan.free) return { dollars: "$0", cents: "" };
+    if (plan.enterprise) return { dollars: "Custom", cents: "" };
     const price = getCurrentPrice(plan);
     return formatPrice(price);
   };
@@ -222,6 +225,17 @@ export default function Section({ searchParams }: Props) {
         <Animate name="fadeIn" trigger="onVisible">
           <PricingToggle isAnnual={isAnnual} />
         </Animate>
+
+        {/* Annual Billing Disclaimer - Always reserve space */}
+        <div className="text-center mb-8 h-6">
+          {isAnnual && (
+            <Animate name="fadeIn" trigger="onVisible">
+              <p className="text-sm text-muted-foreground">
+                Pay once a year, enjoy the savings—monthly price shown for easy comparison
+              </p>
+            </Animate>
+          )}
+        </div>
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
@@ -257,8 +271,13 @@ export default function Section({ searchParams }: Props) {
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
                     <div className="text-center mb-2">
-                      <div className="text-4xl font-bold tracking-tight text-foreground">
-                        {getPriceDisplay(plan)}
+                      <div className="text-4xl font-bold tracking-tight text-foreground flex items-baseline justify-center">
+                        <span>{getPriceDisplay(plan).dollars}</span>
+                        {getPriceDisplay(plan).cents && (
+                          <span className="text-2xl font-medium text-muted-foreground ml-0.5">
+                            {getPriceDisplay(plan).cents}
+                          </span>
+                        )}
                       </div>
                       <div className="text-sm text-muted-foreground mt-1 h-5 flex items-center justify-center">
                         {priceUnit || " "}
@@ -271,7 +290,7 @@ export default function Section({ searchParams }: Props) {
                         <div className="text-center">
                           <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-50 text-green-700 border border-green-200">
                             <Sparkles className="w-4 h-4 mr-1" />
-                            Save 2 months
+                            2 months free
                           </div>
                         </div>
                       )}
