@@ -103,26 +103,26 @@ export default function FAQListClient({
 
   return (
     <div className="mb-8">
-      <div className="max-w-4xl mx-auto space-y-8 mb-8">
+      <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8 mb-8">
         <Animate name="fadeIn" trigger="onVisible">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
             <Input
               type="text"
               placeholder="Search questions and answers..."
               value={searchQuery}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 pr-4 py-3 text-lg border-white/10 bg-white/5 text-white placeholder:text-gray-400 focus:border-white/20 focus:ring-white/20"
+              className="pl-9 sm:pl-10 pr-4 py-2.5 sm:py-3 text-base sm:text-lg border-white/10 bg-white/5 text-white placeholder:text-gray-400 focus:border-white/20 focus:ring-white/20"
               aria-label="Search FAQs"
             />
           </div>
         </Animate>
 
         <Animate name="fadeIn" trigger="onVisible" delay={100}>
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
             <Badge
               variant="outline"
-              className={`cursor-pointer transition-all hover:scale-105 ${selectedCategory === null
+              className={`cursor-pointer transition-all hover:scale-105 text-xs sm:text-sm ${selectedCategory === null
                 ? "bg-white/10 text-white border-white/20"
                 : "bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white"
                 }`}
@@ -138,13 +138,13 @@ export default function FAQListClient({
                 <Badge
                   key={c}
                   variant="outline"
-                  className={`cursor-pointer transition-all hover:scale-105 flex items-center gap-2 ${active
+                  className={`cursor-pointer transition-all hover:scale-105 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm ${active
                     ? meta.badgeClass
                     : "bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white"
                     }`}
                   onClick={() => setCategory(c)}
                 >
-                  <meta.Icon className="w-4 h-4" />
+                  <meta.Icon className="w-3 h-3 sm:w-4 sm:h-4" />
                   {c}
                 </Badge>
               );
@@ -154,8 +154,8 @@ export default function FAQListClient({
 
         {(searchQuery || selectedCategory) && filtered.length > 0 && (
           <Animate name="fadeIn" trigger="onVisible" delay={200}>
-            <div className="text-center space-y-2">
-              <p className="text-gray-400">
+            <div className="text-center space-y-3">
+              <p className="text-gray-400 text-sm sm:text-base">
                 Found {filtered.length} result{filtered.length !== 1 ? "s" : ""}
                 {searchQuery && ` for "${searchQuery}"`}
                 {selectedCategory && ` in ${selectedCategory}`}
@@ -164,9 +164,9 @@ export default function FAQListClient({
                 variant="outline"
                 size="sm"
                 onClick={clearFilters}
-                className="border-white/20 bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white hover:border-white/30 transition-all"
+                className="border-white/20 bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white hover:border-white/30 transition-all text-xs sm:text-sm"
               >
-                <X className="h-3 w-3" />
+                <X className="h-3 w-3 sm:h-4 sm:w-4" />
                 Clear filters
               </Button>
             </div>
@@ -196,17 +196,17 @@ export default function FAQListClient({
           </div>
         ) : (
           <Animate name="fadeIn" trigger="onVisible">
-            <div className="text-center py-12">
-              <MessageCircle className="w-16 h-16 text-gray-500 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-400 mb-2">No results found</h3>
-              <p className="text-gray-500 mb-4">Try adjusting your search terms or category filter</p>
+            <div className="text-center py-8 sm:py-12">
+              <MessageCircle className="w-12 h-12 sm:w-16 sm:h-16 text-gray-500 mx-auto mb-3 sm:mb-4" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-400 mb-2">No results found</h3>
+              <p className="text-gray-500 mb-4 text-sm sm:text-base">Try adjusting your search terms or category filter</p>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={clearFilters}
-                className="border-white/20 bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white hover:border-white/30 transition-all"
+                className="border-white/20 bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white hover:border-white/30 transition-all text-xs sm:text-sm"
               >
-                <X className="h-3 w-3" />
+                <X className="h-3 w-3 sm:h-4 sm:w-4" />
                 Clear filters
               </Button>
             </div>

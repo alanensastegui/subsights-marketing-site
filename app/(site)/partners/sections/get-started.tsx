@@ -47,16 +47,16 @@ const copy = {
 export default function GetStarted() {
   const c = copy;
   return (
-    <section className="max-w-6xl mx-auto px-6 py-12">
+    <section className="max-w-6xl mx-auto px-6 py-8 sm:py-12">
       {/* Main Heading */}
-      <Animate name="fadeIn" trigger="onVisible" className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+      <Animate name="fadeIn" trigger="onVisible" className="text-center mb-12 sm:mb-16">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
           {c.title}
         </h2>
       </Animate>
 
       {/* Steps */}
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         {c.steps.map((step, index) => (
           <Animate
             key={index}
@@ -65,24 +65,24 @@ export default function GetStarted() {
             delay={index * 100}
           >
             <Card className="transition-all duration-300 hover:scale-105 hover:shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-6">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
                   {/* Step Number and Icon */}
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center relative">
-                      <step.icon className="w-8 h-8 text-primary" />
-                      <div className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold">
+                  <div className="flex-shrink-0 flex justify-center sm:justify-start">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center relative">
+                      <step.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+                      <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold">
                         {step.number}
                       </div>
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2">
+                  <div className="flex-1 text-center sm:text-left">
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2">
                       {step.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                       {step.description}
                     </p>
                   </div>
@@ -94,8 +94,8 @@ export default function GetStarted() {
       </div>
 
       {/* Call to Action Button */}
-      <Animate name="fadeIn" trigger="onVisible" delay={300} className="text-center mt-12">
-        <Button size="lg" asChild className="min-w-[180px]" variant="outline">
+      <Animate name="fadeIn" trigger="onVisible" delay={300} className="text-center mt-10 sm:mt-12">
+        <Button size="lg" asChild className="w-full sm:w-auto min-w-[180px]" variant="outline">
           <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
             {c.primaryCta.label}
           </a>

@@ -16,7 +16,7 @@ export default function FAQShell({ copy, children }: Props) {
   );
 
   return (
-    <section className="max-w-6xl mx-auto px-6 py-16">
+    <section className="max-w-6xl mx-auto px-6 py-12 sm:py-16">
       <FAQListClient
         copy={copy}
         searchQuery={searchQuery}

@@ -39,23 +39,23 @@ export default function FAQAccordionList({
             value={faq.id}
             className="border-white/10 bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors"
           >
-            <AccordionTrigger className="px-6 py-4 text-left hover:no-underline group">
-              <div className="flex items-start gap-4 w-full">
-                <div className="flex-1">
-                  <h4 className="text-lg font-medium text-white group-hover:text-muted-foreground transition-colors">
+            <AccordionTrigger className="px-4 sm:px-6 py-3 sm:py-4 text-left hover:no-underline group">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 w-full">
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-base sm:text-lg font-medium text-white group-hover:text-muted-foreground transition-colors break-words leading-relaxed">
                     {highlight(faq.question, searchQuery)}
                   </h4>
                 </div>
-                <div className="flex-shrink-0">
-                  <span className={`text-xs px-2 py-1 rounded border ${getMeta(faq.category).badgeClass}`}>
+                <div className="flex-shrink-0 self-start sm:self-auto">
+                  <span className={`text-xs px-2 py-1 rounded border ${getMeta(faq.category).badgeClass} whitespace-nowrap`}>
                     {faq.category}
                   </span>
                 </div>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="px-6">
+            <AccordionContent className="px-4 sm:px-6 pb-4 sm:pb-6">
               <div className="prose prose-invert max-w-none">
-                <p className="text-gray-300 leading-relaxed whitespace-pre-line">
+                <p className="text-gray-300 leading-relaxed whitespace-pre-line text-sm sm:text-base">
                   {highlight(faq.answer, searchQuery)}
                 </p>
               </div>
