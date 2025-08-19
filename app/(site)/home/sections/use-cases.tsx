@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Funnel, MapPin, Briefcase } from "lucide-react";
 import { Animate } from "@/components/ui/animate";
 
 type Copy = {
@@ -6,8 +6,7 @@ type Copy = {
   useCases: Array<{
     title: string;
     description: string;
-    imageSrc: string;
-    imageAlt: string;
+    icon: React.ComponentType<{ className?: string }>;
   }>;
 };
 
@@ -17,32 +16,24 @@ const copy = {
     {
       title: "For Lead Generation",
       description: "Guide users through vast amounts of information, qualify their interests, and seamlessly connect them to the right programs or affiliate links to boost conversions.",
-      imageSrc: "/images/sales-funnel.svg",
-      imageAlt: "Sales funnel icon",
+      icon: Funnel,
     },
     {
       title: "For Tourism & Hospitality",
       description: "Act as a 24/7 virtual concierge, answering visitor questions, providing expert local recommendations, and assisting with trip planning to enhance the user experience.",
-      imageSrc: "/images/map-with-pins.svg",
-      imageAlt: "Map with pins icon",
+      icon: MapPin,
     },
     {
       title: "For Specialized Services",
       description: "Automate your front-line lead qualification, filtering out-of-scope inquiries and ensuring your sales team only engages with high-quality prospects that fit your niche.",
-      imageSrc: "/images/suitcase.svg",
-      imageAlt: "Suitcase icon",
+      icon: Briefcase,
     },
   ],
 } satisfies Copy;
 
-const UseCaseImage = ({ imageSrc, imageAlt }: { imageSrc: string; imageAlt: string }) => (
+const UseCaseIcon = ({ Icon }: { Icon: React.ComponentType<{ className?: string }> }) => (
   <div className="w-24 h-24 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-    <Image
-      src={imageSrc}
-      alt={imageAlt}
-      width={70}
-      height={70}
-    />
+    <Icon className="w-12 h-12 text-primary" />
   </div>
 );
 
@@ -65,8 +56,8 @@ export default function UseCases() {
             trigger="onVisible"
             className="flex flex-col md:flex-row items-start gap-8"
           >
-            {/* Left: Image */}
-            <UseCaseImage imageSrc={useCase.imageSrc} imageAlt={useCase.imageAlt} />
+            {/* Left: Icon */}
+            <UseCaseIcon Icon={useCase.icon} />
 
             {/* Right: Content */}
             <div className="flex-1 space-y-4">

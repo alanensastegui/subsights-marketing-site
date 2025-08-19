@@ -1,4 +1,3 @@
-import "@/styles/theme.css";
 import "@/styles/globals.css";
 import Link from "next/link";
 import Image from "next/image";
