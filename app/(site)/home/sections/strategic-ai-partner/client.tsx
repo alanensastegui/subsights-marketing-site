@@ -84,7 +84,7 @@ const ValueProposition = ({
     {/* Divider with progress bar */}
     <div
       className={cn(
-        "relative h-1 rounded-full overflow-hidden",
+        "relative h-0.25 rounded-none overflow-hidden",
         isActive && isMobile ? "bg-primary" : "bg-white"
       )}
     >
@@ -93,7 +93,7 @@ const ValueProposition = ({
           // Prevent noisy console warnings if hydration starts mid-animation
           suppressHydrationWarning
           value={progress}
-          className="absolute inset-0 h-full bg-transparent [&>div]:bg-primary"
+          className="absolute inset-0 h-0.5 bg-transparent [&>div]:bg-primary rounded-none"
         />
       )}
     </div>
