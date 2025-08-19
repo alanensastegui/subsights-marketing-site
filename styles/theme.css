@@ -1,40 +1,40 @@
 :root {
-    /* Custom Dark Blue Theme */
-    --background: #0E086A;
-    --foreground: #ffffff;
+    /* Updated to match new black theme */
+    --background: #000000;
+    --foreground: #f3f4f6;
 
     --muted: #1a1a8a;
     --muted-foreground: #b3b3ff;
 
     --primary: #1F2BF3;
-    --primary-foreground: #ffffff;
+    --primary-foreground: #f3f4f6;
 
-    --secondary: #1a1a8a;
-    --secondary-foreground: #ffffff;
+    --secondary: #1a1b8a;
+    --secondary-foreground: #f3f4f6;
 
     --border: #2a2a9a;
     --input: #2a2a9a;
     --ring: #1F2BF3;
 
     /* Card colors for better contrast */
-    --card: #1a1a8a;
-    --card-foreground: #ffffff;
+    --card: #0e0e20;
+    --card-foreground: #f3f4f6;
 
     /* Accent colors */
     --accent: #1a1a8a;
-    --accent-foreground: #ffffff;
+    --accent-foreground: #f3f4f6;
 }
 
 .dark {
-    /* Keep the same colors for dark mode since we want the dark blue theme */
-    --background: #0E086A;
-    --foreground: #ffffff;
+    /* Updated to match new black theme */
+    --background: #000000;
+    --foreground: #f3f4f6;
     --primary: #1F2BF3;
-    --primary-foreground: #ffffff;
+    --primary-foreground: #f3f4f6;
 
-    --card: #1a1a8a;
-    --card-foreground: #ffffff;
+    --card: #0e0e20;
+    --card-foreground: #f3f4f6;
 
     --accent: #1a1a8a;
-    --accent-foreground: #ffffff;
+    --accent-foreground: #f3f4f6;
 }

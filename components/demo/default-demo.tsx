@@ -42,7 +42,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
 
 
     return (
-        <div className="min-h-full flex flex-col bg-gradient-to-br from-background via-muted to-ring overflow-auto h-full">
+        <div className="min-h-full flex flex-col bg-gradient-to-br from-background via-muted/80 to-muted/30 overflow-auto h-full">
             {/* Demo Content */}
             <div className="flex-1">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16 space-y-12 sm:space-y-20">
@@ -667,7 +667,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                     {/* 4. CALL TO ACTION SECTION */}
                     <section className="py-12 sm:py-20">
                         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                            <div className="relative isolate bg-gradient-to-br from-background via-muted/80 to-muted-foreground/30 rounded-2xl sm:rounded-3xl p-8 sm:p-20">
+                            <div className="relative isolate bg-gradient-to-br from-background via-muted/80 to-muted/30 rounded-2xl sm:rounded-3xl p-8 sm:p-20">
                                 <div className="text-center space-y-8 sm:space-y-12">
                                     <Animate name="fadeIn" trigger="onVisible">
                                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
