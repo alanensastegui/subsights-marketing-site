@@ -193,8 +193,8 @@ export default function TrustedBy() {
           </div>
 
           {/* Edge gradients */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0E086A] via-[#0E086A]/50 to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0E086A] via-[#0E086A]/50 to-transparent pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background via-background/50 to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background via-background/50 to-transparent pointer-events-none" />
         </div>
       </section>
     </Animate>

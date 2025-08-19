@@ -29,7 +29,7 @@ const copy = {
 
 export default function CallToAction() {
   return (
-    <section className={cn("relative isolate bg-gradient-to-br from-background via-muted/80 to-muted-foreground/30 rounded-3xl mx-6 my-12")}>
+    <section className={cn("relative isolate bg-gradient-to-br from-background via-muted/80 to-muted/30 rounded-3xl mx-6 my-12")}>
       <div className="mx-auto max-w-6xl px-6 py-20">
         <div className="text-center space-y-12">
           <Animate name="fadeIn" trigger="onVisible" className="space-y-6">
