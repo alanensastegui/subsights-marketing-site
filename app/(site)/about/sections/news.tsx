@@ -19,32 +19,7 @@ export const sectionId = "news";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "News",
-  items: [
-    {
-      title: "New feature: Automated conversation summarization now available",
-      url: "/news/auto-summarization",
-      dateISO: "2024-01-15",
-      author: "Alan Ensastegui",
-      imageSrc: "/images/news/auto-summarization.jpg",
-      imageAlt: "AI conversation summarization interface"
-    },
-    {
-      title: "Customer spotlight: How VSV improved response times by 80%",
-      url: "/news/vsv-case-study",
-      dateISO: "2024-01-10",
-      author: "Lucas Cairns",
-      imageSrc: "/images/news/vsv-success.jpg",
-      imageAlt: "VSV customer success metrics dashboard"
-    },
-    {
-      title: "Subsights reaches 100+ active users milestone",
-      url: "/news/user-milestone",
-      dateISO: "2024-01-05",
-      author: "Ryan Buchmayer",
-      imageSrc: "/images/news/milestone-celebration.jpg",
-      imageAlt: "Subsights team celebrating user milestone"
-    }
-  ],
+  items: [] as Copy["items"],
   seeMoreUrl: "/now"
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
