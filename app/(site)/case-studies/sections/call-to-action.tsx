@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Animate } from "@/components/ui/animate";
 import { cn } from "@/lib/cn";
+import { CALENDLY_URL } from "@/lib/config";
 
 type Copy = {
   title: string;
@@ -19,7 +20,7 @@ const copy = {
   title: "Ready to See Similar Results?",
   subtitle: "Join the growing list of satisfied customers",
   description: "Get a personalized demo of how Subsights AI can transform your customer service operations and deliver measurable improvements in efficiency, satisfaction, and cost savings.",
-  primaryCta: { label: "Get Demo", href: "https://calendly.com/lucas-subsights/subsights-demo" },
+  primaryCta: { label: "Get Demo", href: CALENDLY_URL },
   secondaryCta: { label: "Try For Free", href: "/pricing" },
   benefits: [
     "Free 30-minute consultation",
@@ -34,7 +35,7 @@ export default function CallToAction() {
   const c = copy;
   return (
     <section className={cn("relative isolate bg-gradient-to-br from-background via-muted/80 to-muted/30 rounded-3xl mx-6 my-12")}>
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="text-center space-y-12">
           <Animate name="fadeIn" trigger="onVisible" className="space-y-6">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">

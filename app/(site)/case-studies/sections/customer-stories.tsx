@@ -26,7 +26,7 @@ export default function CustomerStories() {
   const stories = getAllCaseStudies();
 
   return (
-    <section id="customer-stories" className="relative isolate py-20">
+    <section id="customer-stories" className="relative isolate py-12">
       <div className="mx-auto max-w-6xl px-6">
         <Animate name="fadeIn" trigger="onVisible" className="mx-auto max-w-4xl text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">

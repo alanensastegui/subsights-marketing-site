@@ -1,5 +1,6 @@
 import { Animate } from "@/components/ui/animate";
 import { Button } from "@/components/ui/button";
+import { CALENDLY_URL } from "@/lib/config";
 
 type Copy = {
   slogan: {
@@ -17,13 +18,13 @@ const copy = {
     line2: "We Provide the 24/7 Expert",
   },
   description: "Subsights AI qualifies, guides, and converts your best website visitors; so your team doesn't have to",
-  primaryCta: { label: "Get Demo", href: "https://calendly.com/lucas-subsights/subsights-demo" },
+  primaryCta: { label: "Get Demo", href: CALENDLY_URL },
   secondaryCta: { label: "Watch Overview", href: "https://www.youtube.com/watch?v=OlwA_a5CpYQ&list=PLXL5IEY-s71AWou876UpvgX8r0W5B2Whc" },
 } satisfies Copy;
 
 export default function Hero() {
   return (
-    <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-20">
+    <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-12">
       {/* Slogan */}
       <Animate name="fadeIn" trigger="onVisible">
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
