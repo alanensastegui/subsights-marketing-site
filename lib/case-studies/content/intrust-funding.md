@@ -16,7 +16,7 @@ overview:
 # How Intrust Funding Filters Noise & Drives High-Quality Leads with Subsights AI
 
 - **Dramatically Increased Sales Efficiency**
-- Higher Quality Lead Generation
+- **Higher Quality Lead Generation**
 - **24/7 Automated Lead Filtering**
 
 See how a specialized lender automated their lead qualification process to eliminate noise, save countless hours for their sales team, and engage exclusively with high-intent investors.

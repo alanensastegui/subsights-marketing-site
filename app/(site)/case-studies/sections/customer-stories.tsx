@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Animate } from "@/components/ui/animate";
 import { cn } from "@/lib/cn";
 import { getAllCaseStudies } from "@/lib/case-studies";
@@ -44,20 +43,37 @@ export default function CustomerStories() {
                 <CardHeader className="pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
                     <div className="relative w-24 h-24 rounded-lg overflow-hidden flex items-center justify-center p-2 flex-shrink-0">
-                      <Image
-                        src={story.logo}
-                        alt={`${story.company} logo`}
-                        width={48}
-                        height={48}
-                        className={cn(
-                          "object-contain w-full h-full",
-                          story.logo.includes("allied-health") && "grayscale brightness-150 filter"
-                        )}
-                      />
+                      <a
+                        href={story.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+                        aria-label={`Visit ${story.company} website`}
+                      >
+                        <Image
+                          src={story.logo}
+                          alt={`${story.company} logo`}
+                          width={48}
+                          height={48}
+                          className={cn(
+                            "object-contain w-full h-full",
+                            story.logo.includes("allied-health") && "grayscale brightness-150 filter"
+                          )}
+                        />
+                      </a>
                       {/* TODO: Get proper color logos for all clients so we can apply grayscale filter universally */}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <CardTitle className="text-lg sm:text-xl break-words">{story.company}</CardTitle>
+                      <a
+                        href={story.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block hover:text-primary-foreground transition-colors"
+                      >
+                        <CardTitle className="text-lg sm:text-xl break-words hover:text-primary-foreground transition-colors">
+                          {story.company}
+                        </CardTitle>
+                      </a>
                       <Badge variant="outline" className="text-xs mt-1">
                         {story.industry}
                       </Badge>
@@ -115,11 +131,26 @@ export default function CustomerStories() {
 
                 </CardContent>
                 <CardFooter className="pt-4 border-t border-border">
-                  <Button asChild size="sm" variant="outline" className="w-full sm:w-auto">
-                    <Link href={`/case-studies/${story.slug}`}>
-                      Read Full Case Study
-                    </Link>
-                  </Button>
+                  <Link
+                    href={`/case-studies/${story.slug}`}
+                    className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary/80 transition-colors font-medium group/link w-full sm:w-auto justify-center sm:justify-start"
+                  >
+                    Read Full Case Study
+                    <svg
+                      className="w-4 h-4 transition-transform group-hover/link:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </Link>
                 </CardFooter>
               </Card>
             </Animate>

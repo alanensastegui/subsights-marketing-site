@@ -5,6 +5,7 @@ import { getAllCaseStudySlugs, getCaseStudyBySlug } from "@/lib/case-studies";
 import CaseStudyHero from "./sections/hero";
 import CaseStudyContent from "./sections/content";
 import CaseStudyMetrics from "./sections/metrics";
+import CaseStudyTestimonial from "./sections/testimonial";
 import CallToAction from "./sections/call-to-action";
 
 type Props = {
@@ -49,6 +50,7 @@ export default async function CaseStudyPage({ params }: Props) {
     () => <CaseStudyHero caseStudy={caseStudy} />,
     () => <CaseStudyContent caseStudy={caseStudy} />,
     () => <CaseStudyMetrics caseStudy={caseStudy} />,
+    () => <CaseStudyTestimonial caseStudy={caseStudy} />,
     () => <CallToAction caseStudy={caseStudy} />,
   ];
 
