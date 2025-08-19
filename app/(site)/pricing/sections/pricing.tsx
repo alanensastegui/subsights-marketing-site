@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/cn";
+import { APP_URL, CALENDLY_URL } from "@/lib/config";
 import { Sparkles, RefreshCw, CreditCard } from "lucide-react";
 import { Animate } from "@/components/ui/animate";
 import PricingToggle from "./pricing-client";
@@ -15,16 +16,15 @@ type Copy = {
     free: boolean;
     enterprise: boolean;
     monthly_price: {
-      id: string | null;
+      id: string;
       dollars: number;
       cents: number;
     };
     annual_price: {
-      id: string | null;
+      id: string;
       dollars: number;
       cents: number;
     };
-    cta: { label: string; variant?: "default" | "outline" };
     featured?: boolean;
   }[];
 };
@@ -38,70 +38,100 @@ const copy = {
   plans: [
     {
       name: "Free Trial",
-      sort_price: 0,
+      sort_price: 0.0,
       features: [
-        "30 days of Professional access",
-        "All Professional features included",
-        "No credit card required",
-        "Cancel anytime"
+        "30 Day Free Trial",
+        "Professional Tier Access",
+        "No Payment Information Required",
       ],
       free: true,
       enterprise: false,
-      monthly_price: { id: "price_free_trial", dollars: 0, cents: 0 },
-      annual_price: { id: "price_free_trial", dollars: 0, cents: 0 },
-      cta: { label: "Start Free Trial" }
-    },
-    {
-      name: "Starter",
-      sort_price: 29,
-      features: [
-        "Up to 10,000 monthly visitors",
-        "Basic analytics",
-        "Email support",
-        "1 website"
-      ],
-      free: false,
-      enterprise: false,
-      monthly_price: { id: "price_starter_monthly", dollars: 29, cents: 0 },
-      annual_price: { id: "price_starter_annual", dollars: 290, cents: 0 },
-      cta: { label: "Get Started" }
+      monthly_price: {
+        id: "price_1RWNJsHSlLIGGSTujoK9WPEG",
+        dollars: 0,
+        cents: 0,
+      },
+      annual_price: {
+        id: "price_1RWNJsHSlLIGGSTujoK9WPEG",
+        dollars: 0,
+        cents: 0,
+      },
     },
     {
       name: "Professional",
-      sort_price: 99,
+      sort_price: 149.0,
       features: [
-        "Up to 100,000 monthly visitors",
-        "Advanced analytics & insights",
-        "A/B testing",
-        "Priority support",
-        "Up to 5 websites",
-        "Custom targeting"
+        "600 conversations per month",
+        "1 seat",
+        "1 chatbot",
+        "Fully managed support",
+        "$0.40 per excess conversation",
       ],
       free: false,
       enterprise: false,
-      monthly_price: { id: "price_professional_monthly", dollars: 99, cents: 0 },
-      annual_price: { id: "price_professional_annual", dollars: 990, cents: 0 },
-      cta: { label: "Get Started" },
-      featured: true
+      monthly_price: {
+        id: "price_1RWNJsHSlLIGGSTujoK9WPEG",
+        dollars: 149,
+        cents: 0,
+      },
+      annual_price: {
+        id: "price_1RWNJsHSlLIGGSTujoK9WPEG",
+        dollars: 124,
+        cents: 17,
+      },
+    },
+    {
+      name: "Professional+",
+      sort_price: 279.0,
+      features: [
+        "2,200 conversations per month",
+        "3 seats",
+        "2 chatbots",
+        "all integrations",
+        "all analytics",
+        "2 custom reports",
+        "Website AI SEO Audit",
+        "24/7 fully managed priority support",
+        "$0.20 per excess conversation",
+      ],
+      free: false,
+      enterprise: false,
+      monthly_price: {
+        id: "price_1RWNMtHSlLIGGSTuYFXrQJ07",
+        dollars: 279,
+        cents: 0,
+      },
+      annual_price: {
+        id: "price_1RWNMtHSlLIGGSTuYFXrQJ07",
+        dollars: 232,
+        cents: 50,
+      },
+      featured: true,
     },
     {
       name: "Enterprise",
-      sort_price: 999,
+      sort_price: 500.0,
       features: [
-        "Unlimited visitors",
-        "Full feature access",
-        "Dedicated support",
-        "Unlimited websites",
-        "Custom integrations",
-        "SLA guarantee"
+        "Fully tailored solution based on your specific requirements",
+        "Scalable number of chatbots and conversation limits",
+        "Deep or bespoke integrations with your existing systems",
+        "Website AI SEO Audit",
+        "24/7 fully managed priority support",
       ],
       free: false,
       enterprise: true,
-      monthly_price: { id: null, dollars: 0, cents: 0 },
-      annual_price: { id: null, dollars: 0, cents: 0 },
-      cta: { label: "Contact Sales", variant: "outline" }
-    }
-  ]
+      monthly_price: {
+        id: "price_1R8y7THSlLIGGSTufPNlJek0",
+        dollars: 500,
+        cents: 0,
+      },
+      annual_price: {
+        id: "price_1R8y7THSlLIGGSTufPNlJek0",
+        dollars: 416,
+        cents: 67,
+      },
+    },
+  ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
@@ -114,19 +144,22 @@ export default function Section({ searchParams }: Props) {
   const isAnnual = searchParams?.billing !== "monthly";
 
   const generateAppUrl = (plan: Copy["plans"][0]) => {
-    const baseUrl = "https://app.subsights.com";
-
+    const baseUrl = `${APP_URL}/auth/signup`;
     if (plan.free) {
       const params = new URLSearchParams({ is_free_trial: "true" });
       return `${baseUrl}?${params.toString()}`;
     }
 
     if (plan.enterprise) {
-      return "https://calendly.com/lucas-subsights/subsights-demo";
+      return CALENDLY_URL;
     }
 
     const priceId = isAnnual ? plan.annual_price.id : plan.monthly_price.id;
-    if (!priceId) return baseUrl;
+
+    if (!priceId) {
+      throw new Error("Price ID is required");
+    }
+
     const params = new URLSearchParams({ price_id: priceId });
     return `${baseUrl}?${params.toString()}`;
   };
@@ -143,9 +176,13 @@ export default function Section({ searchParams }: Props) {
     return `Choose ${plan.name}`;
   };
 
-  const formatPrice = (price: { id: string | null; dollars: number; cents: number }) => {
+  const formatPrice = (price: {
+    id: string | null;
+    dollars: number;
+    cents: number;
+  }) => {
     if (price.dollars === 0 && price.cents === 0) return "Custom";
-    return `$${price.dollars}${price.cents > 0 ? `.${price.cents.toString().padStart(2, '0')}` : ''}`;
+    return `$${price.dollars}${price.cents > 0 ? `.${price.cents.toString().padStart(2, "0")}` : ""}`;
   };
 
   const getCurrentPrice = (plan: Copy["plans"][0]) => {
@@ -170,7 +207,9 @@ export default function Section({ searchParams }: Props) {
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <div className="text-center space-y-6 mb-12">
           <Animate name="fadeIn" trigger="onVisible">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">{c.title}</h2>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+              {c.title}
+            </h2>
           </Animate>
           <Animate name="fadeIn" trigger="onVisible">
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -190,18 +229,25 @@ export default function Section({ searchParams }: Props) {
             const priceUnit = getPriceUnit(plan);
 
             return (
-              <Animate key={index} name="fadeIn" trigger="onVisible" delay={index * 100}>
+              <Animate
+                key={index}
+                name="fadeIn"
+                trigger="onVisible"
+                delay={index * 100}
+              >
                 <Card
                   className={cn(
                     "relative w-56 mx-auto transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col h-full",
                     plan.featured
                       ? "border-2 border-primary shadow-lg ring-4 ring-primary/10"
-                      : "shadow-md hover:border-primary/20"
+                      : "shadow-md hover:border-primary/20",
                   )}
                 >
                   <CardHeader className="pb-0">
                     <div className="h-12 flex flex-col justify-center">
-                      <CardTitle className="text-xl font-bold tracking-tight mb-2">{plan.name}</CardTitle>
+                      <CardTitle className="text-xl font-bold tracking-tight mb-2">
+                        {plan.name}
+                      </CardTitle>
                       {plan.featured && (
                         <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
                           Most Popular
@@ -237,9 +283,9 @@ export default function Section({ searchParams }: Props) {
                         "w-full mb-3 font-semibold transition-all duration-200",
                         plan.featured
                           ? "bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl"
-                          : "hover:scale-105"
+                          : "hover:scale-105",
                       )}
-                      variant={plan.cta.variant || (plan.featured ? "default" : "outline")}
+                      variant={plan.featured ? "default" : "outline"}
                       asChild
                       aria-label={`Select ${plan.name} ${plan.enterprise ? "" : isAnnual ? "annual" : "monthly"} plan`}
                       data-analytics={`pricing_cta_${plan.name.toLowerCase()}_${plan.enterprise ? "custom" : isAnnual ? "annual" : "monthly"}`}
@@ -271,8 +317,12 @@ export default function Section({ searchParams }: Props) {
                     <ul className="space-y-3 text-sm flex-1">
                       {plan.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-start">
-                          <span className="text-green-500 mr-2 mt-0.5 flex-shrink-0">✓</span>
-                          <span className="text-muted-foreground leading-relaxed">{feature}</span>
+                          <span className="text-green-500 mr-2 mt-0.5 flex-shrink-0">
+                            ✓
+                          </span>
+                          <span className="text-muted-foreground leading-relaxed">
+                            {feature}
+                          </span>
                         </li>
                       ))}
                     </ul>

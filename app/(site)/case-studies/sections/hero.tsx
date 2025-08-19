@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Animate } from "@/components/ui/animate";
+import { CALENDLY_URL } from "@/lib/config";
 
 type Copy = {
   title: string;
@@ -20,7 +21,7 @@ const copy = {
   subtitle: "See how Subsights AI transforms business operations",
   description: "We partner with businesses across diverse industries to filter noise, enhance customer experiences, and drive strategic goals. See how a Subsights AI assistant can become a true extension of your team.",
   badge: "Customer Success",
-  primaryCta: { label: "Get Your Demo", href: "https://calendly.com/lucas-subsights/subsights-demo" },
+  primaryCta: { label: "Get Your Demo", href: CALENDLY_URL },
   secondaryCta: { label: "View All Stories", href: "#customer-stories" },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----

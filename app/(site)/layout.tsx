@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
+import { CALENDLY_URL } from "@/lib/config";
 import { Animate } from "@/components/ui/animate";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
@@ -24,7 +25,7 @@ const navItems: (NavItem & { isButton?: boolean })[] = [
   { label: "Partners", href: "/partners" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },
-  { label: "Get Demo", href: "https://calendly.com/lucas-subsights/subsights-demo", isButton: true },
+  { label: "Get Demo", href: CALENDLY_URL, isButton: true },
 ];
 
 // Navigation Components
