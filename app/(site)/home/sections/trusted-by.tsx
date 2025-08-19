@@ -64,7 +64,7 @@ const LogoItem = ({ logo, index }: { logo: Copy['logos'][0]; index: number }) =>
         href={logo.websiteUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="block transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
+        className="block transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
         aria-label={`Visit ${logo.logoAlt.replace(' company logo', '')} website`}
       >
         <Image

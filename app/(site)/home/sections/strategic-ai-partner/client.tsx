@@ -85,7 +85,7 @@ const ValueProposition = ({
     <div
       className={cn(
         "relative h-1 rounded-full overflow-hidden",
-        isActive && isMobile ? "bg-blue-500" : "bg-white"
+        isActive && isMobile ? "bg-primary" : "bg-white"
       )}
     >
       {isActive && !isMobile && (
@@ -93,7 +93,7 @@ const ValueProposition = ({
           // Prevent noisy console warnings if hydration starts mid-animation
           suppressHydrationWarning
           value={progress}
-          className="absolute inset-0 h-full bg-transparent [&>div]:bg-blue-500"
+          className="absolute inset-0 h-full bg-transparent [&>div]:bg-primary"
         />
       )}
     </div>
@@ -103,7 +103,7 @@ const ValueProposition = ({
       onClick={onClick}
       className={cn(
         "text-left w-full transition-colors duration-200 cursor-pointer p-4 rounded-lg hover:bg-white/5",
-        isActive ? "text-blue-500" : "text-white"
+        isActive ? "text-primary" : "text-white"
       )}
       type="button"
     >

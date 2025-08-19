@@ -582,7 +582,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                             </Animate>
 
                             <Animate name="fadeIn" trigger="onVisible" delay={200}>
-                                <Card className="border-blue-500/20 bg-blue-500/5 p-4 sm:p-8">
+                                <Card className="border-primary/20 bg-primary/5 p-4 sm:p-8">
                                     <div className="space-y-4 sm:space-y-6">
                                         <div className="text-center">
                                             <h4 className="text-lg sm:text-xl font-semibold text-foreground mb-3 sm:mb-4">Trusted By Industry Leaders</h4>
@@ -591,7 +591,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                                                     href="https://visitsunvalley.com"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                                    className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                                                     aria-label="Visit VSV website"
                                                 >
                                                     <Image
@@ -606,7 +606,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                                                     href="https://www.dylanstours.com/"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                                    className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                                                     aria-label="Visit Dylan's Tours website"
                                                 >
                                                     <Image
@@ -621,7 +621,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                                                     href="https://intrustfunding.com/"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                                    className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                                                     aria-label="Visit Intrust website"
                                                 >
                                                     <Image
@@ -636,7 +636,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                                                     href="https://www.allalliedhealthschools.com/"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                                    className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                                                     aria-label="Visit Allied Health website"
                                                 >
                                                     <Image
