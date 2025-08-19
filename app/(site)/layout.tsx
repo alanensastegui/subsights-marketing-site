@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { CALENDLY_URL } from "@/lib/config";
 import { Animate } from "@/components/ui/animate";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import {
   NavigationMenu,
@@ -19,107 +19,136 @@ import {
 } from "@/components/ui/navigation-menu";
 import FloatingOrbs from "@/components/layout/floating-orbs";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { getAllCaseStudies } from "@/lib/case-studies";
 
-const navItems: (NavItem & { isButton?: boolean })[] = [
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Partners", href: "/partners" },
-  { label: "About", href: "/about" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Get Demo", href: CALENDLY_URL, isButton: true },
-];
+function buildNavigationItems() {
+  const caseStudies = getAllCaseStudies();
+
+  const caseStudiesNavItem: NavItem = {
+    label: "Case Studies",
+    children: [
+      { label: "All Case Studies", href: "/case-studies" },
+      ...caseStudies.map(study => ({
+        label: study.company,
+        href: `/case-studies/${study.slug}`
+      }))
+    ]
+  };
+
+  return [
+    caseStudiesNavItem,
+    { label: "Pricing", href: "/pricing" },
+    { label: "Partners", href: "/partners" },
+    { label: "About", href: "/about" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Get Demo", href: CALENDLY_URL, isButton: true },
+  ] as (NavItem & { isButton?: boolean })[];
+}
 
 // Navigation Components
-const DesktopNavigation = () => (
-  <NavigationMenu className="hidden md:block">
-    <NavigationMenuList>
-      {navItems.map((item) => (
-        'children' in item ? (
-          <NavigationMenuItem key={item.label}>
-            <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
-                {item.children.map((child) => (
-                  <NavigationMenuLink
-                    key={child.label}
-                    href={child.href}
-                    className="block w-full rounded-md p-3 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
-                    {child.label}
-                  </NavigationMenuLink>
-                ))}
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        ) : (
-          <NavigationMenuItem key={item.label}>
-            {item.isButton ? (
-              <Button asChild size="sm">
-                <a href={item.href} target="_blank" rel="noopener noreferrer">
-                  {item.label}
-                </a>
-              </Button>
-            ) : (
-              <NavigationMenuLink
-                href={item.href}
-                className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-              >
-                {item.label}
-              </NavigationMenuLink>
-            )}
-          </NavigationMenuItem>
-        )
-      ))}
-    </NavigationMenuList>
-  </NavigationMenu>
-);
+const DesktopNavigation = () => {
+  const navItems = buildNavigationItems();
 
-const MobileNavigation = () => (
-  <Sheet>
-    <SheetTrigger asChild className="md:hidden">
-      <Button variant="ghost" size="sm" className="p-2">
-        <Menu className="h-5 w-5" />
-        <span className="sr-only">Toggle mobile menu</span>
-      </Button>
-    </SheetTrigger>
-    <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-      <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-      <nav className="flex flex-col gap-4 mt-8 px-6">
+  return (
+    <NavigationMenu className="hidden md:block">
+      <NavigationMenuList>
         {navItems.map((item) => (
-          <div key={item.label}>
-            {'children' in item ? (
-              <div className="space-y-2">
-                <div className="font-medium text-foreground py-2">{item.label}</div>
-                {item.children.map((child) => (
-                  <Link
-                    key={child.label}
-                    href={child.href}
-                    className="block py-2 pl-4 text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {child.label}
-                  </Link>
-                ))}
-              </div>
-            ) : item.isButton ? (
-              <Button asChild className="w-full">
-                <a href={item.href} target="_blank" rel="noopener noreferrer">
+          'children' in item ? (
+            <NavigationMenuItem key={item.label}>
+              <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                  {item.children.map((child) => (
+                    <NavigationMenuLink
+                      key={child.label}
+                      href={child.href}
+                      className="block w-full rounded-md p-3 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      {child.label}
+                    </NavigationMenuLink>
+                  ))}
+                </div>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          ) : (
+            <NavigationMenuItem key={item.label}>
+              {item.isButton ? (
+                <Button asChild size="sm">
+                  <a href={item.href} target="_blank" rel="noopener noreferrer">
+                    {item.label}
+                  </a>
+                </Button>
+              ) : (
+                <NavigationMenuLink
+                  href={item.href}
+                  className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                >
                   {item.label}
-                </a>
-              </Button>
-            ) : (
-              <Link
-                href={item.href}
-                className="block py-2 text-foreground hover:text-primary transition-colors"
-              >
-                {item.label}
-              </Link>
-            )}
-          </div>
+                </NavigationMenuLink>
+              )}
+            </NavigationMenuItem>
+          )
         ))}
-      </nav>
-    </SheetContent>
-  </Sheet>
-);
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+};
+
+const MobileNavigation = () => {
+  const navItems = buildNavigationItems();
+
+  return (
+    <Sheet>
+      <SheetTrigger asChild className="md:hidden">
+        <Button variant="ghost" size="sm" className="p-2">
+          <Menu className="h-5 w-5" />
+          <span className="sr-only">Toggle mobile menu</span>
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+        <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+        <nav className="flex flex-col gap-4 mt-8 px-6">
+          {navItems.map((item) => (
+            <div key={item.label}>
+              {'children' in item ? (
+                <div className="space-y-2">
+                  <div className="font-medium text-foreground py-2">{item.label}</div>
+                  {item.children.map((child) => (
+                    <SheetClose asChild key={child.label}>
+                      <Link
+                        href={child.href}
+                        className="block py-2 pl-4 text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {child.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+                </div>
+              ) : item.isButton ? (
+                <SheetClose asChild>
+                  <Button asChild className="w-full">
+                    <a href={item.href} target="_blank" rel="noopener noreferrer">
+                      {item.label}
+                    </a>
+                  </Button>
+                </SheetClose>
+              ) : (
+                <SheetClose asChild>
+                  <Link
+                    href={item.href}
+                    className="block py-2 text-foreground hover:text-primary transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                </SheetClose>
+              )}
+            </div>
+          ))}
+        </nav>
+      </SheetContent>
+    </Sheet>
+  );
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subsights.com'),
