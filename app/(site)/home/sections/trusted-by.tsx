@@ -93,6 +93,7 @@ export default function TrustedBy() {
 
   const [x, setX] = useState(0);
   const [loopWidth, setLoopWidth] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const n = copy.logos.length;
 
@@ -154,7 +155,8 @@ export default function TrustedBy() {
 
     const tick = () => {
       setX((prev) => {
-        const next = prev - ANIMATION_SPEED;
+        const currentSpeed = isHovered ? 0 : ANIMATION_SPEED;
+        const next = prev - currentSpeed;
         return next <= -loopWidth ? 0 : next;
       });
       raf = requestAnimationFrame(tick);
@@ -162,7 +164,7 @@ export default function TrustedBy() {
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [loopWidth]);
+  }, [loopWidth, isHovered]);
 
   // ============================================================================
   // RENDER
@@ -179,7 +181,11 @@ export default function TrustedBy() {
         </div>
 
         {/* Carousel */}
-        <div className="relative overflow-hidden">
+        <div
+          className="relative overflow-hidden"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <div
             ref={carouselRef}
             className="flex items-center gap-8 md:gap-16 will-change-transform"
