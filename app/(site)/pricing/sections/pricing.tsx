@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/cn";
@@ -25,7 +24,7 @@ type Copy = {
       dollars: number;
       cents: number;
     };
-    cta: { label: string; href: string; variant?: "default" | "outline" };
+    cta: { label: string; variant?: "default" | "outline" };
     featured?: boolean;
   }[];
 };
@@ -48,9 +47,9 @@ const copy = {
       ],
       free: true,
       enterprise: false,
-      monthly_price: { id: null, dollars: 0, cents: 0 },
-      annual_price: { id: null, dollars: 0, cents: 0 },
-      cta: { label: "Start Free Trial", href: "/signup" }
+      monthly_price: { id: "price_free_trial", dollars: 0, cents: 0 },
+      annual_price: { id: "price_free_trial", dollars: 0, cents: 0 },
+      cta: { label: "Start Free Trial" }
     },
     {
       name: "Starter",
@@ -63,9 +62,9 @@ const copy = {
       ],
       free: false,
       enterprise: false,
-      monthly_price: { id: null, dollars: 29, cents: 0 },
-      annual_price: { id: null, dollars: 290, cents: 0 },
-      cta: { label: "Get Started", href: "/signup" }
+      monthly_price: { id: "price_starter_monthly", dollars: 29, cents: 0 },
+      annual_price: { id: "price_starter_annual", dollars: 290, cents: 0 },
+      cta: { label: "Get Started" }
     },
     {
       name: "Professional",
@@ -80,9 +79,9 @@ const copy = {
       ],
       free: false,
       enterprise: false,
-      monthly_price: { id: null, dollars: 99, cents: 0 },
-      annual_price: { id: null, dollars: 990, cents: 0 },
-      cta: { label: "Get Started", href: "/signup" },
+      monthly_price: { id: "price_professional_monthly", dollars: 99, cents: 0 },
+      annual_price: { id: "price_professional_annual", dollars: 990, cents: 0 },
+      cta: { label: "Get Started" },
       featured: true
     },
     {
@@ -100,7 +99,7 @@ const copy = {
       enterprise: true,
       monthly_price: { id: null, dollars: 0, cents: 0 },
       annual_price: { id: null, dollars: 0, cents: 0 },
-      cta: { label: "Contact Sales", href: "/contact", variant: "outline" }
+      cta: { label: "Contact Sales", variant: "outline" }
     }
   ]
 } satisfies Copy;
@@ -113,6 +112,36 @@ type Props = {
 export default function Section({ searchParams }: Props) {
   const c = copy;
   const isAnnual = searchParams?.billing !== "monthly";
+
+  const generateAppUrl = (plan: Copy["plans"][0]) => {
+    const baseUrl = "https://app.subsights.com";
+
+    if (plan.free) {
+      const params = new URLSearchParams({ is_free_trial: "true" });
+      return `${baseUrl}?${params.toString()}`;
+    }
+
+    if (plan.enterprise) {
+      return "https://calendly.com/lucas-subsights/subsights-demo";
+    }
+
+    const priceId = isAnnual ? plan.annual_price.id : plan.monthly_price.id;
+    if (!priceId) return baseUrl;
+    const params = new URLSearchParams({ price_id: priceId });
+    return `${baseUrl}?${params.toString()}`;
+  };
+
+  const getButtonText = (plan: Copy["plans"][0]) => {
+    if (plan.free) {
+      return "Start Free Trial";
+    }
+
+    if (plan.enterprise) {
+      return "Contact Sales";
+    }
+
+    return `Choose ${plan.name}`;
+  };
 
   const formatPrice = (price: { id: string | null; dollars: number; cents: number }) => {
     if (price.dollars === 0 && price.cents === 0) return "Custom";
@@ -215,15 +244,13 @@ export default function Section({ searchParams }: Props) {
                       aria-label={`Select ${plan.name} ${plan.enterprise ? "" : isAnnual ? "annual" : "monthly"} plan`}
                       data-analytics={`pricing_cta_${plan.name.toLowerCase()}_${plan.enterprise ? "custom" : isAnnual ? "annual" : "monthly"}`}
                     >
-                      <Link href={plan.cta.href}>
-                        {plan.free
-                          ? "Start Free Trial"
-                          : plan.enterprise
-                            ? "Contact Sales"
-                            : plan.name === "Professional"
-                              ? "Choose Professional"
-                              : `Choose ${plan.name}`}
-                      </Link>
+                      <a
+                        href={generateAppUrl(plan)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {getButtonText(plan)}
+                      </a>
                     </Button>
 
                     {/* Risk reducers directly under the CTA */}
