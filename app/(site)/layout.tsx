@@ -18,6 +18,7 @@ import {
   type NavItem,
 } from "@/components/ui/navigation-menu";
 import FloatingOrbs from "@/components/layout/floating-orbs";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
 
 const navItems: (NavItem & { isButton?: boolean })[] = [
   { label: "Case Studies", href: "/case-studies" },
@@ -192,6 +193,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         </header>
 
         <main className="mx-auto max-w-6xl px-6 pt-20">{children}</main>
+        <ScrollToTop />
         <footer className="mx-auto max-w-6xl px-6 py-12">
           <div className="flex flex-col items-center space-y-6 text-center">
             {/* Logo */}
