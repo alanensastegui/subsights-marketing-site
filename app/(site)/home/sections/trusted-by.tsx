@@ -64,7 +64,7 @@ const LogoItem = ({ logo, index }: { logo: Copy['logos'][0]; index: number }) =>
         href={logo.websiteUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="block transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
+        className="block transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
         aria-label={`Visit ${logo.logoAlt.replace(' company logo', '')} website`}
       >
         <Image
@@ -193,8 +193,8 @@ export default function TrustedBy() {
           </div>
 
           {/* Edge gradients */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0E086A] via-[#0E086A]/50 to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0E086A] via-[#0E086A]/50 to-transparent pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background via-background/50 to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background via-background/50 to-transparent pointer-events-none" />
         </div>
       </section>
     </Animate>

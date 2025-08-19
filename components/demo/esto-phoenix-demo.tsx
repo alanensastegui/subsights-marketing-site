@@ -594,7 +594,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           href="https://visitsunvalley.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                          className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                           aria-label="Visit VSV website"
                         >
                           <Image
@@ -609,7 +609,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           href="https://www.dylanstours.com/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                          className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                           aria-label="Visit Dylan's Tours website"
                         >
                           <Image
@@ -624,7 +624,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           href="https://intrustfunding.com/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                          className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                           aria-label="Visit Intrust website"
                         >
                           <Image
@@ -639,7 +639,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           href="https://www.allalliedhealthschools.com/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                          className="w-16 h-16 sm:w-20 sm:h-20 bg-foreground/10 rounded-lg flex items-center justify-center p-1 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                           aria-label="Visit Allied Health website"
                         >
                           <Image

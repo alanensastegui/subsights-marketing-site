@@ -24,7 +24,7 @@ User asks to **add/create/insert** a new section to a page (e.g., “Add a dark 
    - Path: `/app/(site)/<page>/sections/<slug>.tsx`
    - Include the required contract: local `type Copy`, **SECTION COPY REGION** `copy` object (`satisfies Copy`), `export const sectionId = "<slug>"`, and `export default function Section()` that reads from `copy`.
    - Imports allowed only: `react`, `Link` (`next/link`), `Image` (`next/image`), `cn` (`@/lib/cn`), UI primitives from `@/components/ui/*`, `Animate` from `@/components/ui/animate`.
-       - Add `'use client'` **only if** you import `Animate` or use hooks/handlers/refs. (Using `Link` alone does not require it.)
+       - Add `'use client'` **only if** you use hooks/handlers/refs. (Using `Link` alone does not require it.)
 
 3) **Populate minimal copy**
    - Use real-sounding placeholders; keep it brief.
@@ -134,7 +134,6 @@ export default function Section() {
 
 **Animated (parallax/entrance)**
 ```tsx
-'use client';
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/cn";

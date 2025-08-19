@@ -42,7 +42,7 @@ export default function FAQAccordionList({
             <AccordionTrigger className="px-6 py-4 text-left hover:no-underline group">
               <div className="flex items-start gap-4 w-full">
                 <div className="flex-1">
-                  <h4 className="text-lg font-medium text-white group-hover:text-blue-300 transition-colors">
+                  <h4 className="text-lg font-medium text-white group-hover:text-muted-foreground transition-colors">
                     {highlight(faq.question, searchQuery)}
                   </h4>
                 </div>

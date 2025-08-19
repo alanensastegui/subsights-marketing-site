@@ -174,7 +174,6 @@ export default function SectionClient({ data }) {
 - **Do not list enums or prop details here.** Treat `"@/components/ui/animate"` as the sole source of truth for valid names, triggers, defaults, and prop types.
 - Usage example (pattern only):
   ```tsx
-  'use client';
   import { Animate } from "@/components/ui/animate";
   // ...
   <Animate name={/* AnimName from lib */} trigger={/* Trigger from lib */} /* optional props */>
