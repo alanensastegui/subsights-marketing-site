@@ -143,24 +143,20 @@ export default function Section({ searchParams }: Props) {
   const c = copy;
   const isAnnual = searchParams?.billing !== "monthly";
 
-  const generateAppUrl = (plan: Copy["plans"][0]) => {
-    const baseUrl = `${APP_URL}/auth/signup`;
-    if (plan.free) {
-      const params = new URLSearchParams({ is_free_trial: "true" });
-      return `${baseUrl}?${params.toString()}`;
-    }
-
+  const generateSignUpUrl = (plan: Copy["plans"][0]) => {
     if (plan.enterprise) {
       return CALENDLY_URL;
     }
 
+    const baseUrl = `${APP_URL}/auth/signup`;
     const priceId = isAnnual ? plan.annual_price.id : plan.monthly_price.id;
 
     if (!priceId) {
       throw new Error("Price ID is required");
     }
 
-    const params = new URLSearchParams({ price_id: priceId });
+    const params = new URLSearchParams({ price_id: priceId, is_free_trial: plan.free.toString() });
+    
     return `${baseUrl}?${params.toString()}`;
   };
 
@@ -310,7 +306,7 @@ export default function Section({ searchParams }: Props) {
                       data-analytics={`pricing_cta_${plan.name.toLowerCase()}_${plan.enterprise ? "custom" : isAnnual ? "annual" : "monthly"}`}
                     >
                       <a
-                        href={generateAppUrl(plan)}
+                        href={generateSignUpUrl(plan)}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
