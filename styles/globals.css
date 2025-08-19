@@ -196,6 +196,13 @@
     @apply antialiased;
   }
 
+  /* Respect reduced motion while enabling smooth in-page anchor scrolling */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth
+    }
+  }
+
   ::selection {
     background: color-mix(in oklab, var(--primary) 35%, transparent);
     color: var(--primary-foreground);
@@ -443,6 +450,102 @@
     animation: kf-caret-blink 1s steps(1, end) infinite;
     vertical-align: top;
   }
+}
+
+/* =============================================================================
+      CASE STUDY CONTENT STYLING
+      ========================================================================== */
+.case-study-content {
+  @apply text-foreground;
+}
+
+.case-study-content h1 {
+  @apply text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-6 text-foreground;
+}
+
+.case-study-content h2 {
+  @apply text-3xl md:text-4xl font-bold tracking-tight mb-4 mt-8 text-primary;
+}
+
+.case-study-content h3 {
+  @apply text-2xl font-semibold tracking-tight mb-3 mt-6 text-primary;
+}
+
+.case-study-content h4 {
+  @apply text-xl font-semibold tracking-tight mb-2 mt-4 text-primary;
+}
+
+.case-study-content p {
+  @apply text-base md:text-lg leading-relaxed mb-4 text-foreground;
+}
+
+.case-study-content ul {
+  @apply list-disc list-inside mb-4 space-y-2 text-muted-foreground;
+}
+
+.case-study-content ol {
+  @apply list-decimal list-inside mb-4 space-y-2 text-muted-foreground;
+}
+
+.case-study-content li {
+  @apply text-base md:text-lg leading-relaxed text-foreground;
+}
+
+.case-study-content strong {
+  @apply font-semibold text-muted-foreground;
+}
+
+.case-study-content em {
+  @apply italic text-muted-foreground;
+}
+
+.case-study-content blockquote {
+  @apply border-l-4 border-primary pl-6 py-2 my-6 bg-muted/30 rounded-r-lg;
+}
+
+.case-study-content blockquote p {
+  @apply text-base md:text-lg font-medium text-foreground mb-2 leading-relaxed;
+}
+
+.case-study-content blockquote footer {
+  @apply text-sm text-muted-foreground;
+}
+
+.case-study-content a {
+  @apply text-primary hover:text-primary/80 underline underline-offset-2 transition-colors;
+}
+
+.case-study-content code {
+  @apply bg-muted px-2 py-1 rounded text-sm font-mono text-foreground;
+}
+
+.case-study-content pre {
+  @apply bg-muted p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.case-study-content pre code {
+  @apply bg-transparent p-0;
+}
+
+.case-study-content hr {
+  @apply border-border my-8;
+}
+
+.case-study-content table {
+  @apply w-full border-collapse mb-4;
+}
+
+.case-study-content th,
+.case-study-content td {
+  @apply border border-border px-4 py-2 text-left;
+}
+
+.case-study-content th {
+  @apply bg-muted font-semibold text-foreground;
+}
+
+.case-study-content td {
+  @apply text-muted-foreground;
 }
 
 

@@ -1,0 +1,21 @@
+import { Animate } from "@/components/ui/animate";
+import type { CaseStudy } from "@/lib/case-studies";
+
+interface Props {
+  caseStudy: CaseStudy;
+}
+
+export default function CaseStudyContent({ caseStudy }: Props) {
+  return (
+    <section className="relative isolate py-20">
+      <div className="mx-auto max-w-4xl px-6">
+        <Animate name="fadeIn" trigger="onVisible">
+          <div
+            className="case-study-content"
+            dangerouslySetInnerHTML={{ __html: caseStudy.htmlContent }}
+          />
+        </Animate>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,53 @@
+import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
+import { Animate } from "@/components/ui/animate";
+import { cn } from "@/lib/cn";
+import type { CaseStudy } from "@/lib/case-studies";
+
+interface Props {
+  caseStudy: CaseStudy;
+}
+
+export default function CaseStudyHero({ caseStudy }: Props) {
+  return (
+    <section className="relative isolate py-20">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-4xl text-center">
+          <Animate name="fadeIn" trigger="onVisible" className="space-y-8">
+            {/* Company Logo */}
+            <div className="flex justify-center">
+              <div className="relative w-32 h-32 rounded-xl overflow-hidden bg-muted/50 shadow-lg flex items-center justify-center p-4">
+                <Image
+                  src={caseStudy.logo}
+                  alt={`${caseStudy.company} logo`}
+                  width={64}
+                  height={64}
+                  className={cn(
+                    "object-contain w-full h-full",
+                    caseStudy.logo.includes("allied-health") && "grayscale brightness-150 filter"
+                  )}
+                />
+                {/* TODO: Get proper color logos for all clients so we can apply grayscale filter universally */}
+              </div>
+            </div>
+
+            {/* Industry Badge */}
+            <Badge variant="outline" className="text-sm">
+              {caseStudy.industry}
+            </Badge>
+
+            {/* Company Name */}
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+              {caseStudy.company}
+            </h1>
+
+            {/* Brief Tagline */}
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              Transforming {caseStudy.industry.toLowerCase()} through AI-powered solutions
+            </p>
+          </Animate>
+        </div>
+      </div>
+    </section>
+  );
+}
