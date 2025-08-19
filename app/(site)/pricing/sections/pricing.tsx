@@ -70,12 +70,12 @@ const copy = {
       free: false,
       enterprise: false,
       monthly_price: {
-        id: "price_1Rlg1ALBwjY0mWjvoASzYgKk",
+        id: "price_1RWMgmLBwjY0mWjvWBn3bbaM",
         dollars: 149,
         cents: 0,
       },
       annual_price: {
-        id: "price_1RWMgmLBwjY0mWjvWBn3bbaM",
+        id: "price_1Rlg1ALBwjY0mWjvoASzYgKk",
         dollars: 124,
         cents: 17,
       },
@@ -97,12 +97,12 @@ const copy = {
       free: false,
       enterprise: false,
       monthly_price: {
-        id: "price_1Rlg1eLBwjY0mWjv0ju095LY",
+        id: "price_1RWMinLBwjY0mWjvNsqW5b0B",
         dollars: 279,
         cents: 0,
       },
       annual_price: {
-        id: "price_1RWMinLBwjY0mWjvNsqW5b0B",
+        id: "price_1Rlg1eLBwjY0mWjv0ju095LY",
         dollars: 232,
         cents: 50,
       },
