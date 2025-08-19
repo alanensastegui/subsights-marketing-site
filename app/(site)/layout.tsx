@@ -20,10 +20,10 @@ import {
 import FloatingOrbs from "@/components/layout/floating-orbs";
 
 const navItems: (NavItem & { isButton?: boolean })[] = [
-  { label: "About", href: "/about" },
   { label: "Case Studies", href: "/case-studies" },
-  { label: "Partners", href: "/partners" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Partners", href: "/partners" },
+  { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
   { label: "Get Demo", href: CALENDLY_URL, isButton: true },
 ];
@@ -201,13 +201,13 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
 
             {/* Legal Links */}
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-              <Link href="/terms" className="hover:text-foreground transition-colors">
+              <Link href="/legal/terms" className="hover:text-foreground transition-colors">
                 Terms of Service
               </Link>
-              <Link href="/privacy" className="hover:text-foreground transition-colors">
+              <Link href="/legal/privacy" className="hover:text-foreground transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/data-processing" className="hover:text-foreground transition-colors">
+              <Link href="/legal/data-processing" className="hover:text-foreground transition-colors">
                 Data Processing
               </Link>
             </div>
