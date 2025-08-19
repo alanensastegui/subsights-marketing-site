@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Animate } from "@/components/ui/animate";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
@@ -119,6 +120,34 @@ const MobileNavigation = () => (
   </Sheet>
 );
 
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subsights.com'),
+  title: {
+    template: '%s | Subsights AI',
+    default: 'Subsights AI - AI-Powered Website Conversion',
+  },
+  description: 'Transform your website with AI-powered conversion tools. Increase leads, bookings, and revenue automatically.',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.subsights.com',
+    siteName: 'Subsights AI',
+    images: [
+      {
+        url: '/images/logo/small-logo.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Subsights AI Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@subsights',
+    images: ['/images/logo/small-logo.svg'],
+  },
+};
+
 export default function SiteLayout({ children }: { children: ReactNode }) {
 
   return (
@@ -128,16 +157,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         <link rel="shortcut icon" href="/images/logo/small-logo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/images/logo/small-logo.svg" />
 
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="/images/logo/small-logo.svg" />
-        <meta property="og:image:width" content="500" />
-        <meta property="og:image:height" content="500" />
-        <meta property="og:image:alt" content="Subsights AI Logo" />
 
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:image" content="/images/logo/small-logo.svg" />
 
         <script
           src="https://widget.subsights.com/chatbot.js"
