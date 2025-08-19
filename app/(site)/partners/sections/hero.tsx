@@ -1,5 +1,6 @@
 import { Animate } from "@/components/ui/animate";
 import { Button } from "@/components/ui/button";
+import { PARTNERSHIP_URL } from "@/lib/config";
 
 type Copy = {
   title: string;
@@ -13,7 +14,7 @@ export const sectionId = "hero";
 const copy = {
   title: "Grow Your Agency with the Subsights AI Partner Program",
   subtitle: "Turn your client relationships into long-term recurring revenue. Offer a cutting-edge AI chatbot solution and earn generous, multi-year commissions.",
-  primaryCta: { label: "Become a Partner", href: "https://www.subsights.com/partners/apply" }
+  primaryCta: { label: "Become a Partner", href: PARTNERSHIP_URL }
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

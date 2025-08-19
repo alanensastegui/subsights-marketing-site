@@ -20,5 +20,8 @@ export const getAppUrl = () => {
 // Calendly demo URL - can be overridden with NEXT_PUBLIC_CALENDLY_URL
 export const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/lucas-subsights/subsights-demo";
 
+// Partnership application URL - can be overridden with NEXT_PUBLIC_PARTNERSHIP_URL
+export const PARTNERSHIP_URL = process.env.NEXT_PUBLIC_PARTNERSHIP_URL || "https://form.typeform.com/to/pZT6QBsv";
+
 // Export the resolved URL for use in components
 export const APP_URL = getAppUrl();

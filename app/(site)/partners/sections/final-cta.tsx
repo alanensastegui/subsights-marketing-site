@@ -1,6 +1,7 @@
 import { Animate } from "@/components/ui/animate";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
+import { PARTNERSHIP_URL } from "@/lib/config";
 
 type Copy = {
   title: string;
@@ -14,7 +15,7 @@ export const sectionId = "final-cta";
 const copy = {
   title: "Ready to Grow Together?",
   subtitle: "Join a partner program that values your expertise and rewards your efforts for the long term.",
-  primaryCta: { label: "Apply Today", href: "https://www.subsights.com/partners/apply" }
+  primaryCta: { label: "Apply Today", href: PARTNERSHIP_URL }
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

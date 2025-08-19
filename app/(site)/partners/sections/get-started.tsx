@@ -2,6 +2,7 @@ import { Animate } from "@/components/ui/animate";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, UserPlus, TrendingUp } from "lucide-react";
+import { PARTNERSHIP_URL } from "@/lib/config";
 
 type Copy = {
   title: string;
@@ -19,7 +20,7 @@ export const sectionId = "get-started";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "Get Started in 3 Simple Steps",
-  primaryCta: { label: "Get Started", href: "https://www.subsights.com/partners/apply" },
+  primaryCta: { label: "Get Started", href: PARTNERSHIP_URL },
   steps: [
     {
       number: 1,
