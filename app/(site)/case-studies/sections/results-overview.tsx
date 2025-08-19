@@ -65,7 +65,7 @@ export default function ResultsOverview() {
         <div className="grid gap-8 md:grid-cols-2">
           {c.highlights.map((highlight, index) => (
             <Animate key={index} name="fadeIn" trigger="onVisible" delay={index * 100}>
-              <Card className="border-l-4 border-l-primary">
+              <Card className="border-l-4 border-l-primary transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 <CardHeader>
                   <div className="flex items-center gap-3">
                     {(() => {
