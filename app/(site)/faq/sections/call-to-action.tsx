@@ -1,6 +1,5 @@
 import { Animate } from "@/components/ui/animate";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 type Copy = {
   message: string;
@@ -17,7 +16,7 @@ const copy = {
   message: "Still have questions? We're here to help.",
   cta: {
     label: "Contact Support",
-    href: "/schedule",
+    href: "mailto:support@subsights.com?subject=FAQ%20Support%20Request",
   },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -35,7 +34,9 @@ export default function CallToAction() {
 
         <Animate name="fadeIn" trigger="onVisible" delay={200}>
           <Button asChild size="lg">
-            <Link href={c.cta.href}>{c.cta.label}</Link>
+            <a href={c.cta.href} target="_blank" rel="noopener noreferrer">
+              {c.cta.label}
+            </a>
           </Button>
         </Animate>
       </div>
