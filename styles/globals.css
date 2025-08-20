@@ -79,26 +79,26 @@
 :root {
   --radius: 0.625rem;
 
-  --background: #0E086A;
-  --foreground: #ffffff;
+  --background: #000000;
+  --foreground: #f3f4f6;
 
-  --card: #1a1a8a;
-  --card-foreground: #ffffff;
+  --card: #0e0e20;
+  --card-foreground: #f3f4f6;
 
   --popover: #1a1a8a;
-  --popover-foreground: #ffffff;
+  --popover-foreground: #f3f4f6;
 
   --primary: #1F2BF3;
-  --primary-foreground: #ffffff;
+  --primary-foreground: #f3f4f6;
 
   --secondary: #1a1b8a;
-  --secondary-foreground: #ffffff;
+  --secondary-foreground: #f3f4f6;
 
   --muted: #1a1a8a;
   --muted-foreground: #b3b3ff;
 
   --accent: #1a1a8a;
-  --accent-foreground: #ffffff;
+  --accent-foreground: #f3f4f6;
 
   --destructive: #ef4444;
 
@@ -113,11 +113,11 @@
   --chart-5: #b45309;
 
   --sidebar: #1a1a8a;
-  --sidebar-foreground: #ffffff;
+  --sidebar-foreground: #f3f4f6;
   --sidebar-primary: #1F2BF3;
-  --sidebar-primary-foreground: #ffffff;
+  --sidebar-primary-foreground: #f3f4f6;
   --sidebar-accent: #1a1a8a;
-  --sidebar-accent-foreground: #ffffff;
+  --sidebar-accent-foreground: #f3f4f6;
   --sidebar-border: #2a2a9a;
   --sidebar-ring: #1F2BF3;
 
@@ -127,26 +127,26 @@
 
 /* Same values as :root (kept for future theming changes) */
 .dark {
-  --background: #0E086A;
-  --foreground: #ffffff;
+  --background: #000000;
+  --foreground: #f3f4f6;
 
-  --card: #1a1a8a;
-  --card-foreground: #ffffff;
+  --card: #0e0e20;
+  --card-foreground: #f3f4f6;
 
   --popover: #1a1a8a;
-  --popover-foreground: #ffffff;
+  --popover-foreground: #f3f4f6;
 
   --primary: #1F2BF3;
-  --primary-foreground: #ffffff;
+  --primary-foreground: #f3f4f6;
 
   --secondary: #1a1b8a;
-  --secondary-foreground: #ffffff;
+  --secondary-foreground: #f3f4f6;
 
   --muted: #1a1a8a;
   --muted-foreground: #b3b3ff;
 
   --accent: #1a1a8a;
-  --accent-foreground: #ffffff;
+  --accent-foreground: #f3f4f6;
 
   --destructive: #ef4444;
 
@@ -161,11 +161,11 @@
   --chart-5: #b45309;
 
   --sidebar: #1a1a8a;
-  --sidebar-foreground: #ffffff;
+  --sidebar-foreground: #f3f4f6;
   --sidebar-primary: #1F2BF3;
-  --sidebar-primary-foreground: #ffffff;
+  --sidebar-primary-foreground: #f3f4f6;
   --sidebar-accent: #1a1a8a;
-  --sidebar-accent-foreground: #ffffff;
+  --sidebar-accent-foreground: #f3f4f6;
   --sidebar-border: #2a2a9a;
   --sidebar-ring: #1F2BF3;
 
@@ -194,6 +194,13 @@
     @apply bg-background text-foreground;
     @apply outline-ring/50;
     @apply antialiased;
+  }
+
+  /* Respect reduced motion while enabling smooth in-page anchor scrolling */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth
+    }
   }
 
   ::selection {
@@ -443,6 +450,207 @@
     animation: kf-caret-blink 1s steps(1, end) infinite;
     vertical-align: top;
   }
+}
+
+/* =============================================================================
+      CASE STUDY CONTENT STYLING
+      ========================================================================== */
+.case-study-content {
+  @apply text-foreground;
+}
+
+/* =============================================================================
+      LEGAL CONTENT STYLING
+      ========================================================================== */
+.legal-content {
+  @apply text-foreground max-w-none;
+}
+
+.legal-content h1 {
+  @apply text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8 text-foreground border-b border-border/50 pb-4;
+}
+
+.legal-content h2 {
+  @apply text-2xl md:text-3xl font-bold tracking-tight mb-6 mt-12 text-foreground;
+}
+
+.legal-content h3 {
+  @apply text-xl md:text-2xl font-semibold tracking-tight mb-4 mt-8 text-foreground;
+}
+
+.legal-content h4 {
+  @apply text-lg md:text-xl font-semibold tracking-tight mb-3 mt-6 text-foreground;
+}
+
+.legal-content p {
+  @apply text-base md:text-lg leading-7 mb-6 text-foreground/80;
+}
+
+.legal-content ul {
+  @apply list-disc list-outside mb-6 space-y-3 text-foreground/80 pl-6;
+}
+
+.legal-content ol {
+  @apply list-decimal list-outside mb-6 space-y-3 text-foreground/80 pl-6;
+}
+
+.legal-content li {
+  @apply text-base md:text-lg leading-7 text-foreground/80 mb-1;
+}
+
+.legal-content li>ul,
+.legal-content li>ol {
+  @apply mt-3 mb-0;
+}
+
+.legal-content strong {
+  @apply font-semibold text-foreground;
+}
+
+.legal-content em {
+  @apply italic text-foreground/70;
+}
+
+.legal-content blockquote {
+  @apply border-l-4 border-primary/60 pl-6 py-4 my-8 bg-muted/20 rounded-r-lg;
+}
+
+.legal-content blockquote p {
+  @apply text-base md:text-lg font-medium text-foreground mb-2 leading-7;
+}
+
+.legal-content blockquote footer {
+  @apply text-sm text-foreground/70;
+}
+
+.legal-content a {
+  @apply text-primary hover:text-primary/80 underline underline-offset-2 transition-colors;
+}
+
+.legal-content code {
+  @apply bg-muted/50 px-2 py-1 rounded text-sm font-mono text-foreground;
+}
+
+.legal-content pre {
+  @apply bg-muted/50 p-6 rounded-lg overflow-x-auto mb-6 border border-border/50;
+}
+
+.legal-content pre code {
+  @apply bg-transparent p-0;
+}
+
+.legal-content hr {
+  @apply border-border/50 my-12;
+}
+
+.legal-content table {
+  @apply w-full border-collapse mb-8 border border-border/50 rounded-lg overflow-hidden;
+}
+
+.legal-content th,
+.legal-content td {
+  @apply border-b border-border/50 px-6 py-4 text-left;
+}
+
+.legal-content th {
+  @apply bg-muted/30 font-semibold text-foreground;
+}
+
+.legal-content td {
+  @apply text-foreground/80;
+}
+
+.legal-content tr:last-child td {
+  @apply border-b-0;
+}
+
+.case-study-content h1 {
+  @apply text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-6 text-foreground;
+}
+
+.case-study-content h2 {
+  @apply text-3xl md:text-4xl font-bold tracking-tight mb-4 mt-8 text-primary;
+}
+
+.case-study-content h3 {
+  @apply text-2xl font-semibold tracking-tight mb-3 mt-6 text-primary;
+}
+
+.case-study-content h4 {
+  @apply text-xl font-semibold tracking-tight mb-2 mt-4 text-primary;
+}
+
+.case-study-content p {
+  @apply text-base md:text-lg leading-relaxed mb-4 text-foreground;
+}
+
+.case-study-content ul {
+  @apply list-disc list-outside mb-4 space-y-2 text-muted-foreground pl-6;
+}
+
+.case-study-content ol {
+  @apply list-decimal list-outside mb-4 space-y-2 text-muted-foreground pl-6;
+}
+
+.case-study-content li {
+  @apply text-base md:text-lg leading-relaxed text-foreground;
+}
+
+.case-study-content strong {
+  @apply font-semibold text-muted-foreground;
+}
+
+.case-study-content em {
+  @apply italic text-muted-foreground;
+}
+
+.case-study-content blockquote {
+  @apply border-l-4 border-primary pl-6 py-2 my-6 bg-muted/30 rounded-r-lg;
+}
+
+.case-study-content blockquote p {
+  @apply text-base md:text-lg font-medium text-foreground mb-2 leading-relaxed;
+}
+
+.case-study-content blockquote footer {
+  @apply text-sm text-muted-foreground;
+}
+
+.case-study-content a {
+  @apply text-primary hover:text-primary/80 underline underline-offset-2 transition-colors;
+}
+
+.case-study-content code {
+  @apply bg-muted px-2 py-1 rounded text-sm font-mono text-foreground;
+}
+
+.case-study-content pre {
+  @apply bg-muted p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.case-study-content pre code {
+  @apply bg-transparent p-0;
+}
+
+.case-study-content hr {
+  @apply border-border my-8;
+}
+
+.case-study-content table {
+  @apply w-full border-collapse mb-4;
+}
+
+.case-study-content th,
+.case-study-content td {
+  @apply border border-border px-4 py-2 text-left;
+}
+
+.case-study-content th {
+  @apply bg-muted font-semibold text-foreground;
+}
+
+.case-study-content td {
+  @apply text-muted-foreground;
 }
 
 

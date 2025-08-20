@@ -64,7 +64,7 @@ const LogoItem = ({ logo, index }: { logo: Copy['logos'][0]; index: number }) =>
         href={logo.websiteUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="block transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
+        className="block transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
         aria-label={`Visit ${logo.logoAlt.replace(' company logo', '')} website`}
       >
         <Image
@@ -93,6 +93,7 @@ export default function TrustedBy() {
 
   const [x, setX] = useState(0);
   const [loopWidth, setLoopWidth] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const n = copy.logos.length;
 
@@ -154,7 +155,8 @@ export default function TrustedBy() {
 
     const tick = () => {
       setX((prev) => {
-        const next = prev - ANIMATION_SPEED;
+        const currentSpeed = isHovered ? 0 : ANIMATION_SPEED;
+        const next = prev - currentSpeed;
         return next <= -loopWidth ? 0 : next;
       });
       raf = requestAnimationFrame(tick);
@@ -162,7 +164,7 @@ export default function TrustedBy() {
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [loopWidth]);
+  }, [loopWidth, isHovered]);
 
   // ============================================================================
   // RENDER
@@ -170,7 +172,7 @@ export default function TrustedBy() {
 
   return (
     <Animate name="fadeIn" trigger="onVisible">
-      <section className="max-w-6xl mx-auto px-6 py-20">
+      <section className="max-w-6xl mx-auto px-6 py-12">
         {/* Heading */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -179,7 +181,11 @@ export default function TrustedBy() {
         </div>
 
         {/* Carousel */}
-        <div className="relative overflow-hidden">
+        <div
+          className="relative overflow-hidden"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <div
             ref={carouselRef}
             className="flex items-center gap-8 md:gap-16 will-change-transform"
@@ -193,8 +199,8 @@ export default function TrustedBy() {
           </div>
 
           {/* Edge gradients */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0E086A] via-[#0E086A]/50 to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0E086A] via-[#0E086A]/50 to-transparent pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background via-background/50 to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background via-background/50 to-transparent pointer-events-none" />
         </div>
       </section>
     </Animate>

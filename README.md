@@ -26,6 +26,35 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Environment Configuration
+
+The app URL is configurable via environment variables to support different deployment environments:
+
+### Environment Variables
+
+- `NEXT_PUBLIC_APP_URL` - Override the default app URL (optional)
+- `NEXT_PUBLIC_CALENDLY_URL` - Override the default Calendly demo URL (optional)
+
+### Default URLs by Environment
+
+- **Development**: `http://localhost:4000`
+- **Production**: `https://app.subsights.com`
+- **Preview/Staging**: `https://app.latest.subsights.com`
+
+### Netlify Deployment
+
+For Netlify deployments, you can set environment variables in the Netlify dashboard:
+- Go to Site settings > Environment variables
+- Add `NEXT_PUBLIC_APP_URL` with the appropriate URL for each environment
+
+### Local Development
+
+Create a `.env.local` file in the root directory to override URLs:
+```
+NEXT_PUBLIC_APP_URL=http://localhost:4000
+NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-custom-link
+```
+
 ## Demo System
 
 This site includes a sophisticated demo system that allows prospects to see Subsights chatbot integration in action. For detailed documentation on how the demo system works, see [DEMO_SYSTEM.md](./DEMO_SYSTEM.md).

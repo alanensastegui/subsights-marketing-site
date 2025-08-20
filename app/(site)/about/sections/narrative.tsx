@@ -24,7 +24,7 @@ export default function Section() {
   return (
     <section
       aria-labelledby="about-narrative"
-      className="max-w-6xl mx-auto px-6 py-20"
+      className="max-w-6xl mx-auto px-6 py-12"
     >
       <div className="space-y-12">
         <h2 id="about-narrative" className="sr-only">

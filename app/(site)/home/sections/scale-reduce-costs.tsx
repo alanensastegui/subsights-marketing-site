@@ -156,7 +156,7 @@ const GridItem = ({
 
 export default function ScaleReduceCosts() {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-20">
+    <section className="max-w-6xl mx-auto px-6 py-12">
       {/* Main Heading */}
       <Animate name="fadeIn" trigger="onVisible" className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -249,7 +249,7 @@ export default function ScaleReduceCosts() {
               {/* Arrow */}
               <Animate name="fadeIn" trigger="onVisible">
                 <div className="flex justify-center">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                     <span className="text-white text-sm">↓</span>
                   </div>
                 </div>
