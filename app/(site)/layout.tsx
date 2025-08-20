@@ -26,6 +26,7 @@ import { ConsentBanner } from "@/lib/analytics/components/consent-banner";
 import { AnalyticsProvider } from "@/lib/analytics/context";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { getAllCaseStudies } from "@/lib/case-studies";
+import { AutoButtonTracking } from "@/lib/analytics/components/auto-button-tracking";
 
 function buildNavigationItems() {
   const caseStudies = getAllCaseStudies();
@@ -261,13 +262,12 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           <GoogleAnalytics />
           <Suspense fallback={null}>
             <PageViewTracker />
+            <ConsentBanner />
+            <AutoButtonTracking />
           </Suspense>
 
           {/* Development Analytics Dashboard */}
           <DevAnalyticsDashboard />
-
-          {/* Consent Banner */}
-          <ConsentBanner />
         </AnalyticsProvider>
       </body>
     </html>
