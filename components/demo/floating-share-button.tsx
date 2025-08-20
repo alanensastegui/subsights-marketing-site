@@ -8,7 +8,8 @@ export function FloatingShareButton() {
   const [shareStatus, setShareStatus] = useState<'idle' | 'sharing' | 'copied' | 'error'>('idle');
   const [isVisible, setIsVisible] = useState(false);
 
-  const shareUrl = "https://www.subsights.com/demo/phoenix-2025";
+  // Use the current URL instead of hardcoded path
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '/';
 
   // Animate in after a short delay
   useEffect(() => {
@@ -23,8 +24,8 @@ export function FloatingShareButton() {
       // Try Web Share API first (mobile-friendly)
       if (navigator.share) {
         await navigator.share({
-          title: 'Subsights Demo - Phoenix 2025',
-          text: 'Check this out to help you get around the conference and Phoenix!',
+          title: 'Subsights AI',
+          text: 'Check this out to help you get around!',
           url: shareUrl,
         });
         setShareStatus('idle');
