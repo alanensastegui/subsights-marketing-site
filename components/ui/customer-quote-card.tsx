@@ -13,7 +13,7 @@ interface CustomerQuoteCardProps {
 export function CustomerQuoteCard({ testimonial, className }: CustomerQuoteCardProps) {
   return (
     <Card className={cn(
-      "group border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 h-full flex flex-col",
+      "group border-white/10 bg-white/5 hover:bg-white/10 transition-colors duration-300 hover:shadow-xl hover:shadow-primary/10 h-full flex flex-col will-change-transform",
       className
     )}>
       <CardContent className="p-6 sm:p-8 flex flex-col h-full">
@@ -37,7 +37,7 @@ export function CustomerQuoteCard({ testimonial, className }: CustomerQuoteCardP
                 href={testimonial.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+                className="block transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg will-change-transform"
                 aria-label={`Visit ${testimonial.company} website`}
               >
                 <Image
