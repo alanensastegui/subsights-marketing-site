@@ -68,9 +68,10 @@ const DesktopNavigation = () => {
                     <NavigationMenuLink
                       key={child.label}
                       href={child.href}
-                      className="block w-full rounded-md p-3 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      className="group relative block w-full rounded-lg p-3 text-sm font-medium leading-none no-underline outline-none transition-all duration-200 ease-out hover:bg-primary/80 hover:text-foreground focus:bg-primary/10 focus:text-foreground hover:scale-[1.02] hover:shadow-sm"
                     >
-                      {child.label}
+                      <span className="relative z-10">{child.label}</span>
+                      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
                     </NavigationMenuLink>
                   ))}
                 </div>
@@ -87,7 +88,7 @@ const DesktopNavigation = () => {
               ) : (
                 <NavigationMenuLink
                   href={item.href}
-                  className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                  className="group relative inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-accent/80 hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 hover:scale-[1.02] hover:shadow-sm"
                 >
                   {item.label}
                 </NavigationMenuLink>
@@ -111,7 +112,7 @@ const MobileNavigation = () => {
           <span className="sr-only">Toggle mobile menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+      <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-transparent backdrop-blur-xl border-l border-border/50">
         <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
         <nav className="flex flex-col gap-4 mt-8 px-6">
           {navItems.map((item) => (
@@ -142,7 +143,7 @@ const MobileNavigation = () => {
                 <SheetClose asChild>
                   <Link
                     href={item.href}
-                    className="block py-2 text-foreground hover:text-primary transition-colors"
+                    className="group relative block py-2 text-foreground hover:text-foreground transition-all duration-200 ease-out rounded-lg hover:bg-primary/10"
                   >
                     {item.label}
                   </Link>
