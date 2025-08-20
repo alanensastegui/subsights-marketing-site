@@ -24,6 +24,7 @@ export default function StrategicAIPartner() {
       </div>
 
       {/* ======= Interactive area (SSR + hydrated) ======= */}
+      {/* TODO: Fix SEO - Value prop text needs to be SSR rendered for SEO friendliness */}
       <StrategicAIPartnerClient valuePropositions={copy.valuePropositions} />
     </section>
   );
