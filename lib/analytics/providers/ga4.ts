@@ -5,8 +5,8 @@ import { analyticsEventQueue } from "../event-queue";
 // Extend Window interface for Google Analytics
 declare global {
   interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer: unknown[];
+    gtag: Gtag.Gtag;
   }
 }
 
@@ -52,8 +52,8 @@ export class GoogleAnalytics implements Analytics {
     try {
       // Set up dataLayer and gtag function
       window.dataLayer = window.dataLayer || [];
-      function gtag(...args: any[]) {
-        window.dataLayer.push(arguments);
+      function gtag(...args: Parameters<Gtag.Gtag>) {
+        window.dataLayer.push(args);
       }
 
       // Initialize gtag
@@ -111,7 +111,7 @@ export class GoogleAnalytics implements Analytics {
    * Call gtag function, queue if not ready
    */
   private call(fn: () => void): void {
-    if (this.ready && typeof window !== "undefined" && (window as any).gtag) {
+    if (this.ready && typeof window !== "undefined" && typeof window.gtag === 'function') {
       fn();
     } else {
       this.queue.push(fn);
@@ -138,10 +138,10 @@ export class GoogleAnalytics implements Analytics {
    * Get gtag function safely
    */
   private getGtag(): typeof gtag | null {
-    if (typeof window === "undefined" || !(window as any).gtag) {
+    if (typeof window === "undefined" || typeof window.gtag !== 'function') {
       return null;
     }
-    return (window as any).gtag;
+    return window.gtag;
   }
 
   async trackPageView(event: PageViewEvent): Promise<void> {

@@ -3,6 +3,12 @@
 // ============================================================================
 
 import { ANALYTICS_CONFIG } from '@/lib/analytics/config';
+import type { Analytics, CustomEvent } from '@/lib/analytics/types';
+
+// Extend Window interface for analytics
+interface WindowWithAnalytics extends Window {
+  __analytics?: Pick<Analytics, 'trackEvent'>;
+}
 
 type WebVitalMetric = {
   id: string;
@@ -26,9 +32,9 @@ export function reportWebVitals(metric: WebVitalMetric) {
   }
 
   // Send to analytics if available
-  if (typeof window !== 'undefined' && (window as any).__analytics) {
+  if (typeof window !== 'undefined' && (window as WindowWithAnalytics).__analytics) {
     try {
-      (window as any).__analytics.trackEvent({
+      const webVitalsEvent: CustomEvent = {
         event_name: "web_vital",
         event_category: "performance",
         event_label: metric.name,
@@ -41,7 +47,9 @@ export function reportWebVitals(metric: WebVitalMetric) {
           metric_delta: metric.delta,
           metric_navigation_type: metric.navigationType,
         },
-      });
+      };
+
+      (window as WindowWithAnalytics).__analytics!.trackEvent(webVitalsEvent);
     } catch (error) {
       console.error('Failed to report web vital:', error);
     }

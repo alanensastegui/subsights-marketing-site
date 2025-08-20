@@ -49,6 +49,15 @@ export interface ExceptionParameters {
   component?: string;
 }
 
+export interface WebVitalsParameters {
+  metric_id: string;
+  metric_name: string;
+  metric_value: number;
+  metric_rating: string;
+  metric_delta: number;
+  metric_navigation_type?: string;
+}
+
 export interface PageViewEvent {
   page_title: string;
   page_location: string;
@@ -61,7 +70,7 @@ export interface CustomEvent {
   event_category: string;
   event_label?: string;
   value?: number;
-  custom_parameters?: ButtonClickParameters | LinkClickParameters | FormParameters | ScrollParameters;
+  custom_parameters?: ButtonClickParameters | LinkClickParameters | FormParameters | ScrollParameters | WebVitalsParameters;
 }
 
 export interface ConversionEvent {

@@ -20,7 +20,7 @@ export class ConsoleAnalytics implements Analytics {
     this.updateConsent = this.updateConsent.bind(this);
   }
 
-  private logWithStyle(emoji: string, title: string, data: any, eventType: string): void {
+  private logWithStyle(emoji: string, title: string, data: Record<string, unknown>, eventType: string): void {
     this.eventCount++;
     const timestamp = new Date().toLocaleTimeString();
 

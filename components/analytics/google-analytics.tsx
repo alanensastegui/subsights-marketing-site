@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { GA_MEASUREMENT_ID, ANALYTICS_CONFIG, RUNTIME } from "@/lib/analytics/config";
+import { GA_MEASUREMENT_ID, RUNTIME } from "@/lib/analytics/config";
 
 // ============================================================================
 // GOOGLE ANALYTICS COMPONENT

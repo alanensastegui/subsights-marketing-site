@@ -2,12 +2,20 @@
 
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { X, BarChart3, Eye, MousePointer, DollarSign, Clock, AlertTriangle, User, Globe, Shield, CheckSquare } from "lucide-react";
 import { isConsentRequired, getConsentState } from "@/lib/analytics/consent";
 import { RUNTIME } from "@/lib/analytics/config";
 import { analyticsEventQueue } from "@/lib/analytics/event-queue";
+
+// Event queue item type (matching the one in event-queue.ts)
+type EventQueueItem = {
+  type: string;
+  data: Record<string, unknown>;
+  timestamp: string;
+  eventCount: number;
+};
 
 // ============================================================================
 // DEVELOPMENT ANALYTICS DASHBOARD
@@ -17,7 +25,7 @@ interface AnalyticsEvent {
   id: string;
   type: string;
   timestamp: Date;
-  data: any;
+  data: Record<string, unknown>;
   url: string;
   userAgent: string;
 }
@@ -36,7 +44,7 @@ export function DevAnalyticsDashboard() {
 
   useEffect(() => {
     // Register with event queue instead of window events
-    const handleAnalyticsEvent = (eventDetail: any) => {
+    const handleAnalyticsEvent = (eventDetail: EventQueueItem) => {
       const newEvent: AnalyticsEvent = {
         id: crypto.randomUUID(),
         type: eventDetail.type,

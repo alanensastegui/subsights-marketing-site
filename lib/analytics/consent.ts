@@ -2,7 +2,7 @@
 // CONSENT MANAGEMENT
 // ============================================================================
 
-import { ANALYTICS_CONFIG } from "./config";
+
 
 export type ConsentType = "analytics" | "advertising" | "functional";
 

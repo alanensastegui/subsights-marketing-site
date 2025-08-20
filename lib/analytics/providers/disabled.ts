@@ -1,4 +1,4 @@
-import type { Analytics, PageViewEvent, CustomEvent, ConversionEvent, UserTimingEvent, ExceptionEvent } from "../types";
+import type { Analytics } from "../types";
 
 // ============================================================================
 // DISABLED ANALYTICS PROVIDER
@@ -20,35 +20,35 @@ export class DisabledAnalytics implements Analytics {
     this.setUserId = this.setUserId.bind(this);
     this.updateConsent = this.updateConsent.bind(this);
   }
-  async trackPageView(_event: PageViewEvent): Promise<void> {
+  async trackPageView(): Promise<void> {
     // No-op
   }
 
-  async trackEvent(_event: CustomEvent): Promise<void> {
+  async trackEvent(): Promise<void> {
     // No-op
   }
 
-  async trackConversion(_event: ConversionEvent): Promise<void> {
+  async trackConversion(): Promise<void> {
     // No-op
   }
 
-  async trackTiming(_event: UserTimingEvent): Promise<void> {
+  async trackTiming(): Promise<void> {
     // No-op
   }
 
-  async trackException(_event: ExceptionEvent): Promise<void> {
+  async trackException(): Promise<void> {
     // No-op
   }
 
-  async setUserProperty(_name: string, _value: string): Promise<void> {
+  async setUserProperty(): Promise<void> {
     // No-op
   }
 
-  async setUserId(_userId: string): Promise<void> {
+  async setUserId(): Promise<void> {
     // No-op
   }
 
-  updateConsent(_granted: boolean): void {
+  updateConsent(): void {
     // No-op
   }
 }
