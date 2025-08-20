@@ -34,7 +34,6 @@ export function getAllCaseStudies(): CaseStudyOverview[] {
 export async function getCaseStudyBySlug(slug: string): Promise<CaseStudy | null> {
   try {
     const fullPath = path.join(caseStudiesDirectory, `${slug}.md`);
-    console.log('fullPath', fullPath);
 
     if (!fs.existsSync(fullPath)) {
       return null;
