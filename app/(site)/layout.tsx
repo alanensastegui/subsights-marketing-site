@@ -24,7 +24,7 @@ import { PageViewTracker } from "@/components/analytics/page-view-tracker";
 import { DevAnalyticsDashboard } from "@/components/analytics/dev-analytics-dashboard";
 import { ConsentBanner } from "@/components/analytics/consent-banner";
 import { AnalyticsProvider } from "@/lib/analytics/context";
-import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { getAllCaseStudies } from "@/lib/case-studies";
 
 function buildNavigationItems() {
