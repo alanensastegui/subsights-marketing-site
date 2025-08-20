@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { CALENDLY_URL } from "@/lib/config";
 import { Animate } from "@/components/ui/animate";
@@ -258,7 +259,9 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
 
           {/* Google Analytics Script Loader */}
           <GoogleAnalytics />
-          <PageViewTracker />
+          <Suspense fallback={null}>
+            <PageViewTracker />
+          </Suspense>
 
           {/* Development Analytics Dashboard */}
           <DevAnalyticsDashboard />
