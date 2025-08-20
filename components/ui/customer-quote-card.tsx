@@ -18,12 +18,14 @@ export function CustomerQuoteCard({ testimonial, className }: CustomerQuoteCardP
     )}>
       <CardContent className="p-6 sm:p-8 flex flex-col h-full">
         {/* Quote Content */}
-        <div className="space-y-4 sm:space-y-6 flex flex-col h-full">
+        <div className="flex flex-col h-full">
           {/* Quote Text */}
-          <blockquote className="text-base sm:text-lg md:text-xl text-white leading-relaxed italic relative flex-1 flex items-center text-left">
-            <span className="absolute -top-1 sm:-top-2 -left-1 sm:-left-2 text-2xl sm:text-4xl text-muted-foreground font-serif">&ldquo;</span>
-            {testimonial.quote}
-            <span className="absolute -bottom-1 sm:-bottom-2 -right-1 sm:-right-2 text-2xl sm:text-4xl text-muted-foreground font-serif">&rdquo;</span>
+          <blockquote className="text-lg sm:text-xl md:text-2xl text-white/95 leading-relaxed font-medium relative flex-1 pt-8 pb-8">
+            <span className="absolute -top-1 sm:-top-2 -left-1 sm:-left-2 text-3xl sm:text-5xl text-muted-foreground/80 font-serif leading-none">&ldquo;</span>
+            <div className="pr-10 pl-2">
+              {testimonial.quote}
+            </div>
+            <span className="absolute -bottom-2 sm:-bottom-3 -right-1 sm:-right-2 text-3xl sm:text-5xl text-muted-foreground/80 font-serif leading-none">&rdquo;</span>
           </blockquote>
         </div>
       </CardContent>
