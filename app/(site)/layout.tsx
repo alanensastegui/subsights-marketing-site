@@ -19,10 +19,10 @@ import {
   type NavItem,
 } from "@/components/ui/navigation-menu";
 import FloatingOrbs from "@/components/layout/floating-orbs";
-import { GoogleAnalytics } from "@/components/analytics/google-analytics";
-import { PageViewTracker } from "@/components/analytics/page-view-tracker";
-import { DevAnalyticsDashboard } from "@/components/analytics/dev-analytics-dashboard";
-import { ConsentBanner } from "@/components/analytics/consent-banner";
+import { GoogleAnalytics } from "@/lib/analytics/components/google-analytics";
+import { PageViewTracker } from "@/lib/analytics/components/page-view-tracker";
+import { DevAnalyticsDashboard } from "@/lib/analytics/components/dev-analytics-dashboard";
+import { ConsentBanner } from "@/lib/analytics/components/consent-banner";
 import { AnalyticsProvider } from "@/lib/analytics/context";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { getAllCaseStudies } from "@/lib/case-studies";
