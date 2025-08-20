@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useAnalytics } from "@/lib/analytics";
+import { useAnalytics, useAnalyticsEnabled } from "@/lib/analytics";
 import type { ButtonClickParameters, ConversionParameters } from "@/lib/analytics";
 
 // ---- Config ------------------------------------------------------------
@@ -41,6 +41,7 @@ type AnyEl = HTMLElement & {
 
 export function AutoButtonTracking() {
   const analytics = useAnalytics();
+  const isAnalyticsEnabled = useAnalyticsEnabled();
 
   // Create wrapper functions that match the expected interface
   const trackButtonClick = (name: string, page?: string, ctx?: Record<string, unknown>) => {
@@ -72,8 +73,7 @@ export function AutoButtonTracking() {
   };
 
   const isEnabled = () => {
-    // For now, assume enabled - this can be enhanced with consent checking
-    return true;
+    return isAnalyticsEnabled;
   };
 
   // Keep latest funcs w/o re-binding listeners
