@@ -204,50 +204,40 @@ export default function Section({ searchParams }: Props) {
   return (
     <section className="relative isolate text-foreground">
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-        <div className="text-center space-y-6 mb-12">
-          <Animate name="fadeIn" trigger="onVisible">
+        <Animate name="fadeInStagger" trigger="onVisible">
+          <div className="animate-item text-center space-y-6 mb-12">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
               {c.title}
             </h2>
-          </Animate>
-          <Animate name="fadeIn" trigger="onVisible">
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {c.subtitle}
             </p>
-          </Animate>
-        </div>
+          </div>
 
-        {/* Pricing Toggle */}
-        <Animate name="fadeIn" trigger="onVisible">
-          <PricingToggle isAnnual={isAnnual} />
-        </Animate>
+          {/* Pricing Toggle */}
+          <div className="animate-item">
+            <PricingToggle isAnnual={isAnnual} />
+          </div>
 
-        {/* Annual Billing Disclaimer - Always reserve space */}
-        <div className="text-center mb-8 h-6">
-          {isAnnual && (
-            <Animate name="fadeIn" trigger="onVisible">
-              <p className="text-sm text-muted-foreground">
+          {/* Annual Billing Disclaimer - Always reserve space */}
+          <div className="text-center mb-8 h-6">
+            {isAnnual && (
+              <p className="animate-item text-sm text-muted-foreground">
                 Pay once a year, enjoy the savings—monthly price shown for easy comparison
               </p>
-            </Animate>
-          )}
-        </div>
+            )}
+          </div>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {c.plans.map((plan, index) => {
-            const priceUnit = getPriceUnit(plan);
+          {/* Pricing Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            {c.plans.map((plan, index) => {
+              const priceUnit = getPriceUnit(plan);
 
-            return (
-              <Animate
-                key={index}
-                name="fadeIn"
-                trigger="onVisible"
-                delay={index * 100}
-              >
+              return (
                 <Card
+                  key={index}
                   className={cn(
-                    "relative w-56 mx-auto transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col h-full",
+                    "animate-item relative w-56 mx-auto transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col h-full",
                     plan.featured
                       ? "border-2 border-primary shadow-lg ring-4 ring-primary/10"
                       : "shadow-md hover:border-primary/20",
@@ -343,10 +333,10 @@ export default function Section({ searchParams }: Props) {
                     </ul>
                   </CardContent>
                 </Card>
-              </Animate>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        </Animate>
       </div>
     </section>
   );
