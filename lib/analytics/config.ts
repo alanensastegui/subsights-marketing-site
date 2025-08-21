@@ -10,15 +10,8 @@ export type RuntimeEnvironment = "local" | "preview" | "staging" | "prod";
 export const RUNTIME: RuntimeEnvironment =
   (process.env.NEXT_PUBLIC_RUNTIME_ENV as RuntimeEnvironment) ?? "local";
 
-// Environment-specific Google Analytics Measurement IDs
-const GA_MEASUREMENT_IDS = {
-  local: undefined,
-  preview: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_PREVIEW,
-  staging: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_STAGING,
-  prod: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_PROD,
-} as const;
-
-export const GA_MEASUREMENT_ID = GA_MEASUREMENT_IDS[RUNTIME];
+// Single GA Measurement ID. Provide it only in environments where you want GA enabled.
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 // Analytics configuration based on runtime and region
 export const ANALYTICS_CONFIG = {

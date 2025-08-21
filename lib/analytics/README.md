@@ -12,10 +12,8 @@ The system automatically detects your runtime environment and configures analyti
 # Runtime Environment (auto-detected, can be overridden)
 NEXT_PUBLIC_RUNTIME_ENV=local|preview|staging|prod
 
-# Google Analytics Measurement IDs (environment-specific)
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PREVIEW=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_STAGING=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PROD=G-XXXXXXXXXX
+# Google Analytics Measurement ID (set only in envs where GA should run)
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 ### 2. Verify Installation
@@ -243,10 +241,8 @@ console.log(`Queue: ${status.queueLength} events, ${status.listenerCount} listen
 # Runtime Environment
 NEXT_PUBLIC_RUNTIME_ENV=local|preview|staging|prod
 
-# Google Analytics (environment-specific)
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PREVIEW=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_STAGING=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PROD=G-XXXXXXXXXX
+# Google Analytics (single var; leave unset in envs you don't want GA)
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 ### Analytics Configuration

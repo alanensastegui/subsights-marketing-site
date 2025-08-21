@@ -318,10 +318,8 @@ Component Mount → Analytics Hook → Provider Methods → Event Processing
 # Runtime Environment
 NEXT_PUBLIC_RUNTIME_ENV=local|preview|staging|prod
 
-# Google Analytics Measurement IDs
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PREVIEW=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_STAGING=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PROD=G-XXXXXXXXXX
+# Google Analytics Measurement ID (set only in envs where GA should run)
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 ### 2. Environment-specific Behavior
