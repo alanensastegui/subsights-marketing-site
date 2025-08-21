@@ -155,33 +155,36 @@ const GridItem = ({
 );
 
 export default function ScaleReduceCosts() {
+  // TODO: Improve animations by using fadeInStagger for grouped elements
+
   return (
     <section className="max-w-6xl mx-auto px-6 py-12">
-      {/* Main Heading */}
-      <Animate name="fadeIn" trigger="onVisible" className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-          {copy.heading}
-        </h2>
-      </Animate>
+      <Animate name="fadeIn" trigger="onVisible">
+        {/* Main Heading */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            {copy.heading}
+          </h2>
+        </div>
 
-      {/* Desktop: 2x2 Grid */}
-      <div className="hidden md:grid md:grid-cols-2 gap-12 lg:gap-16">
-        {/* Left Column: Before */}
-        <div className="space-y-6">
-          <Animate name="fadeIn" trigger="onVisible" className="mb-6">
-            <div className="space-y-2">
-              <h3 className="text-2xl font-semibold text-red-400">
-                {copy.challenges.title}
-              </h3>
-              <p className="text-sm text-gray-400">
-                {copy.challenges.subtitle}
-              </p>
-            </div>
-          </Animate>
+        {/* Desktop: 2x2 Grid */}
+        <div className="hidden md:grid md:grid-cols-2 gap-12 lg:gap-16">
+          {/* Left Column: Before */}
           <div className="space-y-6">
-            {copy.challenges.items.map((item, index) => (
-              <Animate key={index} name="fadeIn" trigger="onVisible">
+            <div className="mb-6">
+              <div className="space-y-2">
+                <h3 className="text-2xl font-semibold text-red-400">
+                  {copy.challenges.title}
+                </h3>
+                <p className="text-sm text-gray-400">
+                  {copy.challenges.subtitle}
+                </p>
+              </div>
+            </div>
+            <div className="space-y-6">
+              {copy.challenges.items.map((item, index) => (
                 <GridItem
+                  key={index}
                   title={item.title}
                   description={item.description}
                   imageSrc={item.imageSrc}
@@ -189,27 +192,26 @@ export default function ScaleReduceCosts() {
                   painPoint={item.painPoint}
                   isBefore={true}
                 />
-              </Animate>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Column: After */}
-        <div className="space-y-6">
-          <Animate name="fadeIn" trigger="onVisible" className="mb-6">
-            <div className="space-y-2">
-              <h3 className="text-2xl font-semibold text-green-400">
-                {copy.solutions.title}
-              </h3>
-              <p className="text-sm text-gray-400">
-                {copy.solutions.subtitle}
-              </p>
+              ))}
             </div>
-          </Animate>
+          </div>
+
+          {/* Right Column: After */}
           <div className="space-y-6">
-            {copy.solutions.items.map((item, index) => (
-              <Animate key={index} name="fadeIn" trigger="onVisible">
+            <div className="mb-6">
+              <div className="space-y-2">
+                <h3 className="text-2xl font-semibold text-green-400">
+                  {copy.solutions.title}
+                </h3>
+                <p className="text-sm text-gray-400">
+                  {copy.solutions.subtitle}
+                </p>
+              </div>
+            </div>
+            <div className="space-y-6">
+              {copy.solutions.items.map((item, index) => (
                 <GridItem
+                  key={index}
                   title={item.title}
                   description={item.description}
                   imageSrc={item.imageSrc}
@@ -217,20 +219,18 @@ export default function ScaleReduceCosts() {
                   benefit={item.benefit}
                   isBefore={false}
                 />
-              </Animate>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Mobile: Before/After Pairs */}
-      <div className="md:hidden space-y-8">
-        {copy.challenges.items.map((challenge, index) => {
-          const solution = copy.solutions.items[index];
-          return (
-            <div key={index} className="space-y-4">
-              {/* Before Card */}
-              <Animate name="fadeIn" trigger="onVisible">
+        {/* Mobile: Before/After Pairs */}
+        <div className="md:hidden space-y-8">
+          {copy.challenges.items.map((challenge, index) => {
+            const solution = copy.solutions.items[index];
+            return (
+              <div key={index} className="space-y-4">
+                {/* Before Card */}
                 <div className="relative">
                   <Badge className="absolute -top-3 left-4 bg-red-500 text-white text-xs font-bold">
                     BEFORE
@@ -244,19 +244,15 @@ export default function ScaleReduceCosts() {
                     isBefore={true}
                   />
                 </div>
-              </Animate>
 
-              {/* Arrow */}
-              <Animate name="fadeIn" trigger="onVisible">
+                {/* Arrow */}
                 <div className="flex justify-center">
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                     <span className="text-white text-sm">↓</span>
                   </div>
                 </div>
-              </Animate>
 
-              {/* After Card */}
-              <Animate name="fadeIn" trigger="onVisible">
+                {/* After Card */}
                 <div className="relative">
                   <Badge className="absolute -top-3 left-4 bg-green-500 text-white text-xs font-bold">
                     AFTER
@@ -270,11 +266,11 @@ export default function ScaleReduceCosts() {
                     isBefore={false}
                   />
                 </div>
-              </Animate>
-            </div>
-          );
-        })}
-      </div>
+              </div>
+            );
+          })}
+        </div>
+      </Animate>
     </section>
   );
 }

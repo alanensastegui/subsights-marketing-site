@@ -51,30 +51,28 @@ export default function TrustedBy() {
   const vsvTestimonial = getTestimonialById("visit-sun-valley");
 
   return (
-    <Animate name="fadeIn" trigger="onVisible">
-      <section className="max-w-6xl mx-auto px-6 py-12">
+    <section className="max-w-6xl mx-auto px-6 py-12">
+      <Animate name="fadeInStagger" trigger="onVisible">
         {/* Heading */}
-        <div className="text-center mb-16">
+        <div className="animate-item text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
             {copy.heading}
           </h2>
         </div>
 
         {/* Carousel */}
-        <div className="mb-16">
+        <div className="animate-item mb-16">
           <TrustedByCarousel logos={copy.logos} />
         </div>
 
         {/* VSV Testimonial */}
         {vsvTestimonial && (
-          <Animate name="fadeIn" trigger="onVisible" delay={200}>
-            <div className="max-w-4xl mx-auto">
-              <CustomerQuoteCard testimonial={vsvTestimonial} />
-            </div>
-          </Animate>
+          <div className="animate-item max-w-4xl mx-auto">
+            <CustomerQuoteCard testimonial={vsvTestimonial} />
+          </div>
         )}
-      </section>
-    </Animate>
+      </Animate>
+    </section>
   );
 }
 
