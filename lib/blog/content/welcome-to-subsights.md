@@ -2,13 +2,28 @@
 slug: welcome-to-subsights
 title: "Welcome to the Subsights Blog"
 date: "2025-01-01"
-excerpt: "Introducing the Subsights blog where we share updates and insights on AI-powered customer engagement."
+excerpt: "Introducing the Subsights blog where we share updates, experiments, and lessons learned building AI for customer support."
 ---
 
-We're excited to launch the Subsights blog! This space is where our team will document what we're learning as we build tools that help support teams understand their customers through data.
+Launching a product is the easy part; iterating in public is where the real work begins. We created the Subsights blog to document that journey and share the ideas that keep us up at night. Expect thoughtful essays, technical deep dives, and candid stories about what it takes to build useful AI.
 
-We'll share deep dives into the product decisions behind Subsights, tips for getting the most out of the platform, and candid stories from the journey of building an AI company. Expect long-form posts, interviews with early adopters, and occasional experiments with new technologies.
+## Why a Blog?
 
-The broader AI ecosystem is evolving at a breathtaking pace, and we'll explore how those advances translate to practical value for service teams. From new language models to emerging best practices, we aim to distill the noise into actionable insights.
+Most of our conversations with customers happen one-on-one. Those chats are invaluable, but they don't scale. A blog gives us a home for the patterns we see across teams, the experiments that succeed (and the ones that don't), and the product decisions that shape Subsights. If you're curious about how AI is changing support or just like peeking behind the curtain, you're in the right place.
 
-Thank you for joining us. Subscribe to stay in the loop, and let us know what topics you'd like to see covered. We're just getting started.
+## What We'll Cover
+
+Our posts will range from high level strategy to low level implementation details:
+
+- Feature announcements with context on the problems they solve.
+- Best practices for weaving AI into existing workflows.
+- Reflections on ethics, data stewardship, and model evaluation.
+- Lessons learned shipping fast in a rapidly changing ecosystem.
+
+We'll also invite customers and partners to contribute guest pieces. The goal is to create a library of practical knowledge for anyone building or operating AI‑powered support.
+
+## Stay in Touch
+
+We want this to be a conversation. Reach out on social, send us an email, or meet the team at one of our monthly office hours. Let us know what you'd like to read about and how we can make Subsights more helpful for your customers.
+
+Thanks for stopping by—we're just getting started.
