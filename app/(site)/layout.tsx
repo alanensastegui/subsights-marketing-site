@@ -27,6 +27,7 @@ import { AnalyticsProvider } from "@/lib/analytics/context";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import { AutoButtonTracking } from "@/lib/analytics/components/auto-button-tracking";
+import { ApolloTracker } from "@/components/layout/apollo-tracker";
 
 function buildNavigationItems() {
   const caseStudies = getAllCaseStudies();
@@ -206,9 +207,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         <link rel="icon" href="/images/logo/small-logo.svg" type="image/svg+xml" />
         <link rel="shortcut icon" href="/images/logo/small-logo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/images/logo/small-logo.svg" />
-
-
-
+        <ApolloTracker appId={process.env.NEXT_PUBLIC_APOLLO_APP_ID} />
         <script
           src="https://widget.subsights.com/chatbot.js"
           data-workspace="0XvceSLk1j"
