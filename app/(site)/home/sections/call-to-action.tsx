@@ -44,7 +44,14 @@ export default function CallToAction() {
 
           <div className="animate-item grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="space-y-4">
-              <Button size="lg" asChild className="min-w-[140px]">
+              <Button
+                size="lg"
+                asChild
+                className="min-w-[140px]"
+                data-analytics-id="home_cta_demo"
+                data-analytics-name="Get Demo (Home CTA)"
+                data-analytics-context='{"source":"home_call_to_action","section":"call-to-action"}'
+              >
                 <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">
                   {copy.primaryCta.label}
                 </a>

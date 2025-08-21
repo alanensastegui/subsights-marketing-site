@@ -51,7 +51,13 @@ export default function Hero() {
             </div>
 
             <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg">
+              <Button
+                asChild
+                size="lg"
+                data-analytics-id="case_studies_hero_demo"
+                data-analytics-name="Get Demo (Case Studies Hero)"
+                data-analytics-context='{"source":"case_studies_hero","section":"hero"}'
+              >
                 <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
                   {c.primaryCta.label}
                 </a>

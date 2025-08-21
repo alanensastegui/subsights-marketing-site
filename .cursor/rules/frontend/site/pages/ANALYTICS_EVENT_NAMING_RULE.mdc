@@ -1,0 +1,76 @@
+---
+description: Analytics Event ID and Name Guidelines
+alwaysApply: false
+---
+# Cursor Rule: Analytics Event ID and Name Guidelines
+
+This rule defines how to name analytics data attributes used by the site-wide auto button tracker.
+
+## Scope
+- Applies to any interactive element that should be tracked by `AutoButtonTracking`.
+- Use these attributes on the element that carries `data-slot="button"` (our `Button` component or its `asChild` anchor).
+
+## Attributes
+- `data-analytics-id`: Stable, machine-friendly ID
+- `data-analytics-name`: Human-readable label
+- `data-analytics-context`: Small JSON string with structured params
+
+## ID Guidelines (`data-analytics-id`)
+- Format: lowercase snake_case
+- Pattern: `[surface]_[action][_variant][_qualifiers]`
+- Allowed chars: `[a-z0-9_]`; keep ≤ 64 chars
+- Must be stable across copy changes; do not include display text
+
+### Common surfaces
+- `nav_desktop`, `nav_mobile`
+- `home_hero`, `home_call_to_action`
+- `case_studies_hero`, `case_studies_call_to_action`, `case_study_call_to_action`
+- `pricing_cta_{plan_key}_{billing}`
+
+### Common actions
+- `demo`, `signup`, `contact_sales`, `learn_more`
+
+### Dynamics
+- Pricing: `pricing_cta_{plan_key}_{billing}`
+  - `plan_key`: stable snake_case key (e.g., `professional_plus`)
+  - `billing`: `annual` | `monthly` | `custom`
+- A/B variants: append `_v{n}` or `_variant_{key}`
+- Locale: append `_en`, `_es` if needed
+
+## Name Guidelines (`data-analytics-name`)
+- Format: `{Action Label} (Surface Label)`
+- Human-friendly and short; do not encode technical params (put in context)
+- Examples:
+  - `Get Demo (Nav)` / `Get Demo (Nav Mobile)`
+  - `Get Demo (Home Hero)` / `Get Demo (Home CTA)`
+  - `Get Demo (Case Studies Hero)` / `Get Demo (Case Studies CTA)`
+  - `Get Demo (Case Study CTA)`
+  - Pricing: `{Plan Name} (Pricing)` (e.g., `Professional (Pricing)`)
+
+## Context Guidelines (`data-analytics-context`)
+- JSON string; concise and structured
+- Common fields:
+  - `source`: stable surface key (e.g., `pricing`, `home_hero`)
+  - `section`: semantic area (e.g., `hero`, `call-to-action`)
+  - `plan`: snake_case plan key for pricing
+  - `billing`: `annual` | `monthly` | `custom`
+  - Optional: `variant`, `ab_test`, `ab_group`, `locale`
+- Example:
+```json
+{"source":"pricing","section":"pricing","plan":"professional","billing":"annual"}
+```
+
+## Do / Don’t
+- Do keep IDs immutable across copy tweaks
+- Do keep Names readable; parameters live in `data-analytics-context`
+- Don’t include spaces/punctuation or copy text in IDs
+- Don’t duplicate parameters in the Name if they’re already in Context
+
+## Implementation Notes
+- Our auto-tracker reads:
+  - `data-analytics-id` → `button_id`
+  - `data-analytics-name` → event label
+  - `data-analytics-context` (JSON) → merged into event context
+- Buttons should render with `data-slot="button"` (handled by our `Button` component)
+
+

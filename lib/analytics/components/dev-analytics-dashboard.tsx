@@ -70,10 +70,14 @@ export function DevAnalyticsDashboard() {
   }, []);
 
   const updateStats = (eventType: string) => {
-    setStats(prev => ({
-      ...prev,
-      [eventType]: prev[eventType as keyof typeof prev] + 1,
-    }));
+    setStats(prev => {
+      if (!(eventType in prev)) {
+        // Ignore event types that aren't tracked in the summary (e.g., "consent")
+        return prev;
+      }
+      const current = (prev as Record<string, number>)[eventType] ?? 0;
+      return { ...prev, [eventType]: current + 1 } as typeof prev;
+    });
   };
 
   const clearEvents = () => {
