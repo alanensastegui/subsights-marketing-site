@@ -38,13 +38,12 @@ export default function Section() {
       className="max-w-5xl mx-auto px-6 py-12"
     >
       <div className="space-y-8">
-        <Animate name="fadeIn" trigger="onVisible">
-          <h2 id="about-news" className="text-2xl font-semibold tracking-tight">
+        <Animate name="fadeInStagger" trigger="onVisible">
+          <h2 id="about-news" className="animate-item text-2xl font-semibold tracking-tight">
             {c.title}
           </h2>
-        </Animate>
-        <Animate name="fadeIn" trigger="onVisible">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div className="animate-item grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {c.items.slice(0, 3).map((item) => (
               <article key={item.url} className="group">
                 <a href={item.url} className="block space-y-4">
@@ -80,6 +79,7 @@ export default function Section() {
             ))}
           </div>
         </Animate>
+
         {c.items.length > 3 && (
           <div className="mt-4">
             <a className="text-sm underline underline-offset-4" href={c.seeMoreUrl}>
