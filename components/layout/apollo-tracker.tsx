@@ -1,3 +1,5 @@
+"use client";
+
 import Script from "next/script";
 
 declare global {
@@ -19,12 +21,10 @@ export function ApolloTracker({ appId }: ApolloTrackerProps) {
   return (
     <Script
       id="apollo-tracker"
-      src={APOLLO_TRACKER_SRC}
+      src={`${APOLLO_TRACKER_SRC}?nocache=${Math.random().toString(36).substring(7)}`}
       strategy="afterInteractive"
       onLoad={() => {
-        if (window.trackingFunctions) {
-          window.trackingFunctions.onLoad({ appId });
-        }
+        window.trackingFunctions!.onLoad({ appId });
       }}
     />
   );
