@@ -19,7 +19,7 @@ overview:
 - **24/7 Global Service & Lead Capture**
 - **Increased Revenue via Strategic Upselling**
 
-See how Subsights’ AI assistant helps Allied Health Schools guide users through complex choices to effectively drive revenue & generate high-quality leads.
+See how Subsights' AI assistant helps Dylan's Tours guide users through complex choices to effectively drive revenue & generate high-quality leads.
 
 ## The Challenge: A 24/7 Global Customer Base & Complex Inquiries
 

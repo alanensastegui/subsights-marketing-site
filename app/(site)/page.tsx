@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Home - Subsights AI",
-  description: "Your Website is Your Front Door. We Provide the 24/7 Expert. Subsights AI qualifies, guides, and converts your best website visitors.",
+  description: "The AI-Native Chatbot for Your Website. Subsights AI qualifies, guides, and converts your best website visitors so your team doesn't have to.",
   path: "/",
 });
 

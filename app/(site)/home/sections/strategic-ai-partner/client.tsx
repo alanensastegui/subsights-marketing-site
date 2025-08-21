@@ -102,8 +102,7 @@ const ValueProposition = ({
     <button
       onClick={onClick}
       className={cn(
-        "text-left w-full transition-colors duration-200 cursor-pointer p-4 rounded-lg hover:bg-white/5",
-        isActive ? "text-primary" : "text-white"
+        "text-left w-full transition-colors duration-200 cursor-pointer p-4 rounded-lg hover:bg-white/5 text-foreground",
       )}
       type="button"
     >

@@ -21,7 +21,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     slug: "forks",
     url: "https://www.forkswa.com",
     label: "Forks, WA",
-    testMessage: "Hi, where can I find a good",
+    testMessage: "Hi, where can I find a good place to eat?",
     scriptTag:
       '<script src="https://widget.latest.subsights.com/chatbot.js" data-workspace="I6BHboKbqb" data-api-key="4yO7Z30ZFFZ79w75v5d1VqYhfHX63z44"></script>',
     variant: "default",

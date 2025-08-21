@@ -124,7 +124,7 @@ export function DevAnalyticsDashboard() {
   return (
     <>
       {/* Floating Toggle Button */}
-      <div className="fixed top-4 right-4 z-50">
+      <div className="fixed top-4 left-4 z-50">
         <Button
           onClick={() => setIsVisible(!isVisible)}
           size="sm"
@@ -136,7 +136,7 @@ export function DevAnalyticsDashboard() {
 
       {/* Dashboard Panel */}
       {isVisible && (
-        <div className="fixed top-20 right-4 z-50 w-96 max-h-96 bg-background border border-border rounded-lg shadow-xl overflow-hidden">
+        <div className="fixed top-20 left-4 z-50 w-96 max-h-96 bg-background border border-border rounded-lg shadow-xl overflow-hidden">
           <div className="flex items-center justify-between p-4 border-b border-border">
             <div className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5 text-blue-500" />

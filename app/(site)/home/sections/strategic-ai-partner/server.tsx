@@ -11,10 +11,10 @@ export default function StrategicAIPartner() {
       {/* ======= SEO-visible header (SSR text) ======= */}
       <div className="text-center mb-16">
         <div className="space-y-4 mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground/95">
             {copy.heading.line1}
           </h2>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground inline-block bg-gradient-to-r from-muted/80 via-muted/20 to-muted/80 px-4 py-2 rounded-lg backdrop-blur-sm">
             {copy.heading.line2}
           </h2>
         </div>
@@ -24,6 +24,7 @@ export default function StrategicAIPartner() {
       </div>
 
       {/* ======= Interactive area (SSR + hydrated) ======= */}
+      {/* TODO: Fix SEO - Value prop text needs to be SSR rendered for SEO friendliness */}
       <StrategicAIPartnerClient valuePropositions={copy.valuePropositions} />
     </section>
   );
