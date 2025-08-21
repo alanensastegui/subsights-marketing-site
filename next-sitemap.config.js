@@ -10,5 +10,10 @@ module.exports = {
   transform: async (config, path) => ({ loc: path }),
   // Exclude sensitive/non-indexable routes
   exclude: ['/api/*', '/admin', '/demo/*'],
-  // No additionalPaths needed when pages are static/SSG
+  // Manually include dynamic pages
+  additionalPaths: async (config) => [
+    // These are dynamic pages, so we need to manually include them.
+    await config.transform(config, '/pricing'),
+    await config.transform(config, '/partners'),
+  ],
 }
