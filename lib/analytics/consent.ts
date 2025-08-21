@@ -13,7 +13,7 @@ export interface ConsentState {
   timestamp: number;
 }
 
-const CONSENT_STORAGE_KEY = "analytics_consent";
+export const CONSENT_STORAGE_KEY = "analytics_consent";
 
 /**
  * Get current consent state from localStorage
