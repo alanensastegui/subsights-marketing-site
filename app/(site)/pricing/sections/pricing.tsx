@@ -156,7 +156,7 @@ export default function Section({ searchParams }: Props) {
     }
 
     const params = new URLSearchParams({ price_id: priceId, is_free_trial: plan.free.toString() });
-    
+
     return `${baseUrl}?${params.toString()}`;
   };
 
@@ -259,7 +259,7 @@ export default function Section({ searchParams }: Props) {
                         {plan.name}
                       </CardTitle>
                       {plan.featured && (
-                        <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+                        <div className="w-fit px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
                           Most Popular
                         </div>
                       )}
