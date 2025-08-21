@@ -22,23 +22,19 @@ export default function Hero() {
   const c = copy;
   return (
     <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-12">
-      {/* Main Title */}
-      <Animate name="fadeIn" trigger="onVisible">
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+      <Animate name="fadeInStagger" trigger="onVisible">
+        {/* Main Title */}
+        <h2 className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8">
           {c.title}
         </h2>
-      </Animate>
 
-      {/* Subtitle */}
-      <Animate name="fadeIn" trigger="onVisible">
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+        {/* Subtitle */}
+        <p className="animate-item text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
           {c.subtitle}
         </p>
-      </Animate>
 
-      {/* Call to Action Button */}
-      <Animate name="fadeIn" trigger="onVisible">
-        <div className="flex justify-center">
+        {/* Call to Action Button */}
+        <div className="animate-item flex justify-center">
           <Button size="lg" asChild className="min-w-[180px]">
             <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
               {c.primaryCta.label}

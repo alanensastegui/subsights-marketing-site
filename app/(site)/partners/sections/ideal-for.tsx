@@ -30,26 +30,21 @@ export default function IdealFor() {
   const c = copy;
   return (
     <section className="max-w-6xl mx-auto px-6 py-12">
-      {/* Main Heading */}
-      <Animate name="fadeIn" trigger="onVisible" className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-          {c.title}
-        </h2>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          {c.subtitle}
-        </p>
-      </Animate>
+      <Animate name="fadeInStagger" trigger="onVisible">
+        {/* Main Heading */}
+        <div className="animate-item text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            {c.title}
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            {c.subtitle}
+          </p>
+        </div>
 
-      {/* Professionals Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {c.professionals.map((professional, index) => (
-          <Animate
-            key={index}
-            name="fadeIn"
-            trigger="onVisible"
-            delay={index * 100}
-          >
-            <Card className="h-full transition-all duration-300 hover:scale-105 hover:shadow-lg">
+        {/* Professionals Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {c.professionals.map((professional, index) => (
+            <Card key={index} className="animate-item h-full transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <CardContent className="p-6 text-center">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <professional.icon className="w-6 h-6 text-primary" />
@@ -59,9 +54,9 @@ export default function IdealFor() {
                 </h3>
               </CardContent>
             </Card>
-          </Animate>
-        ))}
-      </div>
+          ))}
+        </div>
+      </Animate>
     </section>
   );
 }

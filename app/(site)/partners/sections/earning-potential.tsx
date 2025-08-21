@@ -57,24 +57,24 @@ export default function EarningPotential({ searchParams }: Props) {
 
   return (
     <section className="max-w-6xl mx-auto px-6 py-12">
-      {/* Main Heading */}
-      <Animate name="fadeIn" trigger="onVisible" className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-          {c.title}
-        </h2>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          {c.subtitle}
-        </p>
-      </Animate>
+      <Animate name="fadeInStagger" trigger="onVisible">
+        {/* Main Heading */}
+        <div className="animate-item text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            {c.title}
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            {c.subtitle}
+          </p>
+        </div>
 
-      {/* Toggle */}
-      <Animate name="fadeIn" trigger="onVisible">
-        <EarningToggle isFoundersClub={isFoundersClub} />
-      </Animate>
+        {/* Toggle */}
+        <div className="animate-item">
+          <EarningToggle isFoundersClub={isFoundersClub} />
+        </div>
 
-      {/* Commission Table */}
-      <Animate name="fadeIn" trigger="onVisible" delay={100}>
-        <Card className={`h-full transition-all duration-300 hover:scale-105 hover:shadow-lg max-w-2xl mx-auto ${activeTier.featured ? 'ring-2 ring-primary/20 shadow-lg' : ''
+        {/* Commission Table */}
+        <Card className={`animate-item h-full transition-all duration-300 hover:scale-105 hover:shadow-lg max-w-2xl mx-auto ${activeTier.featured ? 'ring-2 ring-primary/20 shadow-lg' : ''
           }`}>
           <CardHeader className="text-center pb-6">
             <div className="flex items-center justify-center gap-3 mb-2">
