@@ -9,25 +9,23 @@ export default function FAQServerContent({ copy }: { copy: { faqs: FAQ[] } }) {
 
   return (
     <div id="faq-server" className="max-w-4xl mx-auto faq-server-content">
-      {categories.map((category, categoryIndex) => {
-        const faqs = grouped[category];
-        return (
-          <Animate key={category} name="fadeIn" trigger="onVisible" delay={categoryIndex * 100}>
-            <div className="mb-8">
+      <Animate name="fadeInStagger" trigger="onVisible">
+        {categories.map((category) => {
+          const faqs = grouped[category];
+          return (
+            <div key={category} className="animate-item mb-8">
               <FAQCategoryHeader
                 category={category}
                 faqCount={faqs.length}
-                delay={categoryIndex * 100 + 50}
               />
 
               <FAQAccordionList
                 faqs={faqs}
-                delayOffset={categoryIndex * 100 + 100}
               />
             </div>
-          </Animate>
-        );
-      })}
+          );
+        })}
+      </Animate>
     </div>
   );
 }
