@@ -43,7 +43,14 @@ export default function Hero() {
       {/* Call to Action Buttons */}
       <Animate name="fadeIn" trigger="onVisible">
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button size="lg" asChild className="min-w-[140px]">
+          <Button
+            size="lg"
+            asChild
+            className="min-w-[140px]"
+            data-analytics-id="home_hero_demo"
+            data-analytics-name="Get Demo (Home Hero)"
+            data-analytics-context='{"source":"home_hero","section":"hero"}'
+          >
             <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">{copy.primaryCta.label}</a>
           </Button>
           <Button variant="outline" size="lg" asChild className="min-w-[140px]">

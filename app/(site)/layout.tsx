@@ -80,7 +80,13 @@ const DesktopNavigation = () => {
           ) : (
             <NavigationMenuItem key={item.label}>
               {item.isButton ? (
-                <Button asChild size="sm">
+                <Button
+                  asChild
+                  size="sm"
+                  data-analytics-id="nav_desktop_demo"
+                  data-analytics-name="Get Demo (Nav)"
+                  data-analytics-context='{"source":"nav_desktop","location":"header"}'
+                >
                   <a href={item.href} target="_blank" rel="noopener noreferrer">
                     {item.label}
                   </a>
@@ -133,7 +139,13 @@ const MobileNavigation = () => {
                 </div>
               ) : item.isButton ? (
                 <SheetClose asChild>
-                  <Button asChild className="w-full">
+                  <Button
+                    asChild
+                    className="w-full"
+                    data-analytics-id="nav_mobile_demo"
+                    data-analytics-name="Get Demo (Nav Mobile)"
+                    data-analytics-context='{"source":"nav_mobile","location":"sheet"}'
+                  >
                     <a href={item.href} target="_blank" rel="noopener noreferrer">
                       {item.label}
                     </a>

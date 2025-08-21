@@ -52,7 +52,14 @@ export default function CallToAction() {
           <Animate name="fadeIn" trigger="onVisible" delay={200}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="space-y-4">
-                <Button size="lg" asChild className="min-w-[140px]">
+                <Button
+                  size="lg"
+                  asChild
+                  className="min-w-[140px]"
+                  data-analytics-id="case_studies_cta_demo"
+                  data-analytics-name="Get Demo (Case Studies CTA)"
+                  data-analytics-context='{"source":"case_studies_call_to_action","section":"call-to-action"}'
+                >
                   <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
                     {c.primaryCta.label}
                   </a>

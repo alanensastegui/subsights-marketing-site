@@ -143,6 +143,15 @@ export default function Section({ searchParams }: Props) {
   const c = copy;
   const isAnnual = searchParams?.billing !== "monthly";
 
+  const toPlanKey = (name: string) => {
+    return name
+      .toLowerCase()
+      .replace(/\+/g, " plus ")
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/_+/g, "_")
+      .replace(/^_+|_+$/g, "");
+  };
+
   const generateSignUpUrl = (plan: Copy["plans"][0]) => {
     if (plan.enterprise) {
       return CALENDLY_URL;
@@ -156,7 +165,7 @@ export default function Section({ searchParams }: Props) {
     }
 
     const params = new URLSearchParams({ price_id: priceId, is_free_trial: plan.free.toString() });
-    
+
     return `${baseUrl}?${params.toString()}`;
   };
 
@@ -303,7 +312,14 @@ export default function Section({ searchParams }: Props) {
                       variant={plan.featured ? "default" : "outline"}
                       asChild
                       aria-label={`Select ${plan.name} ${plan.enterprise ? "" : isAnnual ? "annual" : "monthly"} plan`}
-                      data-analytics={`pricing_cta_${plan.name.toLowerCase()}_${plan.enterprise ? "custom" : isAnnual ? "annual" : "monthly"}`}
+                      data-analytics-id={`pricing_cta_${toPlanKey(plan.name)}_${plan.enterprise ? "custom" : isAnnual ? "annual" : "monthly"}`}
+                      data-analytics-name={`${plan.name} (Pricing)`}
+                      data-analytics-context={JSON.stringify({
+                        source: "pricing",
+                        section: "pricing",
+                        plan: toPlanKey(plan.name),
+                        billing: plan.enterprise ? "custom" : isAnnual ? "annual" : "monthly",
+                      })}
                     >
                       <a
                         href={generateSignUpUrl(plan)}

@@ -29,7 +29,14 @@ export default function CallToAction({ caseStudy }: Props) {
           <Animate name="fadeIn" trigger="onVisible" delay={200}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="space-y-4">
-                <Button size="lg" asChild className="min-w-[140px]">
+                <Button
+                  size="lg"
+                  asChild
+                  className="min-w-[140px]"
+                  data-analytics-id="case_study_cta_demo"
+                  data-analytics-name="Get Demo (Case Study CTA)"
+                  data-analytics-context='{"source":"case_study_call_to_action","section":"call-to-action"}'
+                >
                   <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                     Get Your Demo
                   </a>
