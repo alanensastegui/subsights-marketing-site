@@ -37,20 +37,20 @@ export default function CallToAction() {
     <section className={cn("relative isolate bg-gradient-to-br from-background via-muted/80 to-muted/30 rounded-3xl mx-6 my-12")}>
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="text-center space-y-12">
-          <Animate name="fadeIn" trigger="onVisible" className="space-y-6">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-              {c.title}
-            </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              {c.subtitle}
-            </p>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {c.description}
-            </p>
-          </Animate>
+          <Animate name="fadeInStagger" trigger="onVisible">
+            <div className="animate-item space-y-6 mb-12">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                {c.title}
+              </h2>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                {c.subtitle}
+              </p>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                {c.description}
+              </p>
+            </div>
 
-          <Animate name="fadeIn" trigger="onVisible" delay={200}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="animate-item grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
               <div className="space-y-4">
                 <Button
                   size="lg"
@@ -80,10 +80,8 @@ export default function CallToAction() {
                 </p>
               </div>
             </div>
-          </Animate>
 
-          <Animate name="fadeIn" trigger="onVisible" delay={400}>
-            <div className="grid gap-4 md:grid-cols-2 md:gap-8 max-w-2xl mx-auto">
+            <div className="animate-item grid gap-4 md:grid-cols-2 md:gap-8 max-w-2xl mx-auto">
               {c.benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center gap-3 text-left">
                   <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>

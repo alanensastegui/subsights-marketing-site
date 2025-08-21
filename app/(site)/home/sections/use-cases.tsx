@@ -40,37 +40,34 @@ const UseCaseIcon = ({ Icon }: { Icon: React.ComponentType<{ className?: string 
 export default function UseCases() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-12">
-      {/* Main Heading */}
-      <Animate name="fadeIn" trigger="onVisible" className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-          {copy.heading}
-        </h2>
-      </Animate>
+      <Animate name="fadeInStagger" trigger="onVisible">
+        {/* Main Heading */}
+        <div className="animate-item text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            {copy.heading}
+          </h2>
+        </div>
 
-      {/* Use Cases */}
-      <div className="space-y-12">
-        {copy.useCases.map((useCase, index) => (
-          <Animate
-            key={index}
-            name="fadeIn"
-            trigger="onVisible"
-            className="flex flex-col md:flex-row items-start gap-8"
-          >
-            {/* Left: Icon */}
-            <UseCaseIcon Icon={useCase.icon} />
+        {/* Use Cases */}
+        <div className="space-y-12">
+          {copy.useCases.map((useCase, index) => (
+            <div key={index} className="animate-item flex flex-col md:flex-row items-start gap-8">
+              {/* Left: Icon */}
+              <UseCaseIcon Icon={useCase.icon} />
 
-            {/* Right: Content */}
-            <div className="flex-1 space-y-4">
-              <h3 className="text-2xl font-semibold text-white">
-                {useCase.title}
-              </h3>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                {useCase.description}
-              </p>
+              {/* Right: Content */}
+              <div className="flex-1 space-y-4">
+                <h3 className="text-2xl font-semibold text-white">
+                  {useCase.title}
+                </h3>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  {useCase.description}
+                </p>
+              </div>
             </div>
-          </Animate>
-        ))}
-      </div>
+          ))}
+        </div>
+      </Animate>
     </section>
   );
 }

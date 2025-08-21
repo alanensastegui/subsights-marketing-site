@@ -28,14 +28,14 @@ export default function Section() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-12">
       <div className="space-y-8">
-        <Animate name="fadeIn" trigger="onVisible">
-          <h1 className="text-center text-4xl md:text-5xl font-semibold tracking-tight">
+        <Animate name="fadeInStagger" trigger="onVisible">
+          <h1 className="animate-item text-center text-4xl md:text-5xl font-semibold tracking-tight mb-8">
             {c.title}
           </h1>
-        </Animate>
 
-        <Animate name="zoomIn" trigger="onVisible">
-          <ProductScreenshot {...c.productScreenshot} />
+          <div className="animate-item">
+            <ProductScreenshot {...c.productScreenshot} />
+          </div>
         </Animate>
       </div>
     </section>

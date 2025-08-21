@@ -32,49 +32,47 @@ export default function CallToAction() {
   return (
     <section className={cn("relative isolate bg-gradient-to-br from-background via-muted/80 to-muted/30 rounded-3xl mx-6 my-12")}>
       <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="text-center space-y-12">
-          <Animate name="fadeIn" trigger="onVisible" className="space-y-6">
+        <Animate name="fadeInStagger" trigger="onVisible" className="text-center space-y-12">
+          <div className="animate-item space-y-6">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
               {copy.mainTitle}
             </h2>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {copy.subtitle}
             </p>
-          </Animate>
+          </div>
 
-          <Animate name="fadeIn" trigger="onVisible" delay={200}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="space-y-4">
-                <Button
-                  size="lg"
-                  asChild
-                  className="min-w-[140px]"
-                  data-analytics-id="home_cta_demo"
-                  data-analytics-name="Get Demo (Home CTA)"
-                  data-analytics-context='{"source":"home_call_to_action","section":"call-to-action"}'
-                >
-                  <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">
-                    {copy.primaryCta.label}
-                  </a>
-                </Button>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {copy.primaryDescription}
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <Button variant="outline" size="lg" asChild className="min-w-[140px]">
-                  <Link href={copy.secondaryCta.href}>
-                    {copy.secondaryCta.label}
-                  </Link>
-                </Button>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {copy.secondaryDescription}
-                </p>
-              </div>
+          <div className="animate-item grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="space-y-4">
+              <Button
+                size="lg"
+                asChild
+                className="min-w-[140px]"
+                data-analytics-id="home_cta_demo"
+                data-analytics-name="Get Demo (Home CTA)"
+                data-analytics-context='{"source":"home_call_to_action","section":"call-to-action"}'
+              >
+                <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">
+                  {copy.primaryCta.label}
+                </a>
+              </Button>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {copy.primaryDescription}
+              </p>
             </div>
-          </Animate>
-        </div>
+
+            <div className="space-y-4">
+              <Button variant="outline" size="lg" asChild className="min-w-[140px]">
+                <Link href={copy.secondaryCta.href}>
+                  {copy.secondaryCta.label}
+                </Link>
+              </Button>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {copy.secondaryDescription}
+              </p>
+            </div>
+          </div>
+        </Animate>
       </div>
     </section>
   );

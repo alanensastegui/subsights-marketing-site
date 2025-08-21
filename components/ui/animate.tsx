@@ -4,6 +4,7 @@ import * as React from "react";
 
 export type AnimationName =
     | "fadeIn"
+    | "fadeInStagger"
     | "fadeOut"
     | "slideUp"
     | "zoomIn"
@@ -33,6 +34,7 @@ interface AnimationProps {
 
 const CLASS_MAP: Record<AnimationName, string> = {
     fadeIn: "anim-fade-in",
+    fadeInStagger: "staggered-fade-in",
     fadeOut: "anim-fade-out",
     slideUp: "anim-slide-up",
     zoomIn: "anim-zoom-in",
@@ -100,7 +102,7 @@ export function Animate({
         }
     }
 
-    const classes = cn(className, animClass, triggerClass, exitRangeClass)
+    const classes = cn(className, animClass, triggerClass, exitRangeClass);
 
     return (
         <BaseTag className={classes} style={style}>

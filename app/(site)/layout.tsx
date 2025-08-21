@@ -18,7 +18,7 @@ import {
   NavigationMenuLink,
   type NavItem,
 } from "@/components/ui/navigation-menu";
-import FloatingOrbs from "@/components/layout/floating-orbs";
+import FloatingOrb from "@/components/layout/floating-orb";
 import { GoogleAnalytics } from "@/lib/analytics/components/google-analytics";
 import { PageViewTracker } from "@/lib/analytics/components/page-view-tracker";
 import { DevAnalyticsDashboard } from "@/lib/analytics/components/dev-analytics-dashboard";
@@ -220,21 +220,27 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         <AnalyticsProvider>
           <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
             <div className="absolute left-[10%] top-[15%]">
-              <FloatingOrbs size="large" blur={40} opacity={0.4} speed={1} />
+              <FloatingOrb size="large" blur={40} opacity={0.4} speed={1} />
             </div>
             <div className="absolute right-[20%] top-[25%]">
-              <FloatingOrbs size="small" blur={40} opacity={0.4} speed={1.2} />
+              <FloatingOrb size="small" blur={40} opacity={0.4} speed={1.1} />
             </div>
             <div className="absolute left-[40%] top-[40%]">
-              <FloatingOrbs size="medium" blur={40} opacity={0.40} speed={1.6} />
+              <FloatingOrb size="medium" blur={40} opacity={0.40} speed={1.2} />
             </div>
           </div>
 
           <header className="sticky top-0 z-50 border-b border-border/40  backdrop-blur-md shadow-sm transition-[background,backdrop-filter,box-shadow] duration-200 ease-out hover:backdrop-blur-xl hover:shadow-lg [animation:header-fade-in_linear_both] [animation-timeline:scroll(root)] [animation-range:0_100px] supports-[animation-timeline:scroll(root)]:animate-none">
             <Animate name="fadeIn" trigger="onLoad">
               <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-                <Link href="/" className="flex items-center">
-                  <Image src="/images/logo/full-logo.svg" alt="Subsights AI" width={120} height={48} className="h-12 w-auto" />
+                <Link href="/" className="flex items-center group rounded-lg transition-colors duration-150 ease-out hover:bg-white/10">
+                  <Image
+                    src="/images/logo/full-logo.svg"
+                    alt="Subsights AI"
+                    width={120}
+                    height={48}
+                    className="h-12 w-auto"
+                  />
                 </Link>
                 <DesktopNavigation />
                 <MobileNavigation />
@@ -247,8 +253,14 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           <footer className="mx-auto max-w-6xl px-6 py-12">
             <div className="flex flex-col items-center space-y-6 text-center">
               {/* Logo */}
-              <Link href="/" className="flex items-center">
-                <Image src="/images/logo/full-logo.svg" alt="Subsights AI" width={160} height={64} className="h-16 w-auto opacity-80" />
+              <Link href="/" className="flex items-center group rounded-lg transition-colors duration-150 ease-out hover:bg-white/10">
+                <Image
+                  src="/images/logo/full-logo.svg"
+                  alt="Subsights AI"
+                  width={160}
+                  height={64}
+                  className="h-16 w-auto opacity-80 hover:opacity-100"
+                />
               </Link>
 
               {/* Legal Links */}

@@ -25,21 +25,23 @@ export default function FinalCta() {
     <section className={cn("relative isolate bg-gradient-to-br from-background via-muted/80 to-muted/30 rounded-3xl mx-6 my-12")}>
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="text-center space-y-8">
-          <Animate name="fadeIn" trigger="onVisible" className="space-y-6">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-              {c.title}
-            </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              {c.subtitle}
-            </p>
-          </Animate>
+          <Animate name="fadeInStagger" trigger="onVisible">
+            <div className="animate-item space-y-6 mb-8">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                {c.title}
+              </h2>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                {c.subtitle}
+              </p>
+            </div>
 
-          <Animate name="fadeIn" trigger="onVisible" delay={200}>
-            <Button size="lg" asChild className="min-w-[180px]">
-              <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
-                {c.primaryCta.label}
-              </a>
-            </Button>
+            <div className="animate-item">
+              <Button size="lg" asChild className="min-w-[180px]">
+                <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
+                  {c.primaryCta.label}
+                </a>
+              </Button>
+            </div>
           </Animate>
         </div>
       </div>
