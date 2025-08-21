@@ -18,7 +18,7 @@ import {
   NavigationMenuLink,
   type NavItem,
 } from "@/components/ui/navigation-menu";
-import FloatingOrbs from "@/components/layout/floating-orbs";
+import FloatingOrb from "@/components/layout/floating-orb";
 import { GoogleAnalytics } from "@/lib/analytics/components/google-analytics";
 import { PageViewTracker } from "@/lib/analytics/components/page-view-tracker";
 import { DevAnalyticsDashboard } from "@/lib/analytics/components/dev-analytics-dashboard";
@@ -207,13 +207,13 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         <AnalyticsProvider>
           <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
             <div className="absolute left-[10%] top-[15%]">
-              <FloatingOrbs size="large" blur={40} opacity={0.4} speed={1} />
+              <FloatingOrb size="large" blur={40} opacity={0.4} speed={1} />
             </div>
             <div className="absolute right-[20%] top-[25%]">
-              <FloatingOrbs size="small" blur={40} opacity={0.4} speed={1.2} />
+              <FloatingOrb size="small" blur={40} opacity={0.4} speed={1.1} />
             </div>
             <div className="absolute left-[40%] top-[40%]">
-              <FloatingOrbs size="medium" blur={40} opacity={0.40} speed={1.6} />
+              <FloatingOrb size="medium" blur={40} opacity={0.40} speed={1.2} />
             </div>
           </div>
 
