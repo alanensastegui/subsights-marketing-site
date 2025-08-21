@@ -47,9 +47,9 @@ export default function Section() {
       className="max-w-6xl mx-auto px-6 py-12"
     >
       <div className="space-y-16">
-        {/* Two-column layout above team pictures */}
-        <Animate name="fadeIn" trigger="onVisible">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <Animate name="fadeInStagger" trigger="onVisible">
+          {/* Two-column layout above team pictures */}
+          <div className="animate-item grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
             {/* Left column - Large lead text */}
             <div className="space-y-6">
               <p className="text-2xl md:text-3xl font-medium leading-relaxed text-foreground">
@@ -66,13 +66,11 @@ export default function Section() {
               ))}
             </div>
           </div>
-        </Animate>
 
-        {/* Team pictures */}
-        <Animate name="fadeIn" trigger="onVisible">
+          {/* Team pictures */}
           <ul
             role="list"
-            className="grid grid-cols-1 gap-10 sm:grid-cols-3"
+            className="animate-item grid grid-cols-1 gap-10 sm:grid-cols-3"
           >
             {c.members.map((p) => (
               <li key={p.name} className="flex flex-col items-center text-center">

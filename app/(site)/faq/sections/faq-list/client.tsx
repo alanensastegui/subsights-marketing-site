@@ -104,8 +104,8 @@ export default function FAQListClient({
   return (
     <div className="mb-8">
       <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8 mb-8">
-        <Animate name="fadeIn" trigger="onVisible">
-          <div className="relative">
+        <Animate name="fadeInStagger" trigger="onVisible">
+          <div className="animate-item relative mb-8">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
             <Input
               type="text"
@@ -116,10 +116,8 @@ export default function FAQListClient({
               aria-label="Search FAQs"
             />
           </div>
-        </Animate>
 
-        <Animate name="fadeIn" trigger="onVisible" delay={100}>
-          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
+          <div className="animate-item flex flex-wrap gap-2 sm:gap-3 justify-center">
             <Badge
               variant="outline"
               className={`cursor-pointer transition-all hover:scale-105 text-xs sm:text-sm ${selectedCategory === null
@@ -176,24 +174,26 @@ export default function FAQListClient({
 
       {(searchQuery || selectedCategory) && (
         filtered.length > 0 ? (
-          <div className="max-w-4xl mx-auto">
-            {Object.entries(grouped).map(([category, faqs]) => (
-              <div key={category} className="mb-8">
-                <FAQCategoryHeader
-                  category={category}
-                  faqCount={faqs.length}
-                />
+          <Animate name="fadeInStagger" trigger="onVisible">
+            <div className="max-w-4xl mx-auto">
+              {Object.entries(grouped).map(([category, faqs]) => (
+                <div key={category} className="animate-item mb-8">
+                  <FAQCategoryHeader
+                    category={category}
+                    faqCount={faqs.length}
+                  />
 
-                <FAQAccordionList
-                  faqs={faqs}
-                  searchQuery={searchQuery}
-                  openedId={openedId}
-                  onValueChange={setOpenedId}
-                  highlight={highlight}
-                />
-              </div>
-            ))}
-          </div>
+                  <FAQAccordionList
+                    faqs={faqs}
+                    searchQuery={searchQuery}
+                    openedId={openedId}
+                    onValueChange={setOpenedId}
+                    highlight={highlight}
+                  />
+                </div>
+              ))}
+            </div>
+          </Animate>
         ) : (
           <Animate name="fadeIn" trigger="onVisible">
             <div className="text-center py-8 sm:py-12">

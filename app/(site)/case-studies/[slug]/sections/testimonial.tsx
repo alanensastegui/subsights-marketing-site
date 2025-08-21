@@ -29,17 +29,19 @@ export default function CaseStudyTestimonial({ caseStudy }: Props) {
   return (
     <section className="relative isolate py-16 sm:py-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
-        <Animate name="fadeIn" trigger="onVisible" className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            {copy.heading}
-          </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            {copy.subheading.replace('{company}', caseStudy.company)}
-          </p>
-        </Animate>
+        <Animate name="fadeInStagger" trigger="onVisible">
+          <div className="text-center mb-12">
+            <h2 className="animate-item text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              {copy.heading}
+            </h2>
+            <p className="animate-item text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+              {copy.subheading.replace('{company}', caseStudy.company)}
+            </p>
+          </div>
 
-        <Animate name="fadeIn" trigger="onVisible" delay={200}>
-          <CustomerQuoteCard testimonial={testimonial} />
+          <div className="animate-item">
+            <CustomerQuoteCard testimonial={testimonial} />
+          </div>
         </Animate>
       </div>
     </section>

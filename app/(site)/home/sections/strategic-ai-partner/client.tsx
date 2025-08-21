@@ -245,21 +245,20 @@ export default function StrategicAIPartnerClient({ valuePropositions }: Props) {
   // ===== RENDER HELPERS =====
   const renderValueProposition = useCallback(
     (prop: ValueProp, index: number) => (
-      <Animate key={index} name="fadeIn" trigger="onVisible" duration={600}>
-        <ValueProposition
-          title={prop.title}
-          subtext={prop.subtext}
-          isActive={isMobile ? index === expandedIndex : index === activeIndex}
-          isExpanded={index === expandedIndex}
-          onClick={createClickHandler(index)}
-          showImage={isMobile}
-          progress={progress}
-          isMobile={isMobile}
-          imageSrc={prop.imageSrc}
-          imageAlt={prop.imageAlt}
-          index={index}
-        />
-      </Animate>
+      <ValueProposition
+        key={index}
+        title={prop.title}
+        subtext={prop.subtext}
+        isActive={isMobile ? index === expandedIndex : index === activeIndex}
+        isExpanded={index === expandedIndex}
+        onClick={createClickHandler(index)}
+        showImage={isMobile}
+        progress={progress}
+        isMobile={isMobile}
+        imageSrc={prop.imageSrc}
+        imageAlt={prop.imageAlt}
+        index={index}
+      />
     ),
     [activeIndex, expandedIndex, createClickHandler, progress, isMobile]
   );
@@ -267,39 +266,36 @@ export default function StrategicAIPartnerClient({ valuePropositions }: Props) {
   // ===== RENDER =====
   return (
     <div ref={sectionRef}>
-      {/* Desktop Layout */}
-      {!isMobile && (
-        <div className="grid md:grid-cols-[1fr_1.5fr] gap-6 items-stretch">
-          {/* Left: Chat Screenshot */}
-          <div className="sticky top-8 h-full max-w-sm">
-            <Animate
-              name="zoomIn"
-              key={activeIndex}
-              duration={150}
-              trigger="onLoad"
-            >
+      {/* TODO: Improve animations by using fadeInStagger for grouped elements */}
+
+      <Animate name="fadeIn" trigger="onVisible">
+        {/* Desktop Layout */}
+        {!isMobile && (
+          <div className="grid md:grid-cols-[1fr_1.5fr] gap-6 items-stretch">
+            {/* Left: Chat Screenshot */}
+            <div className="sticky top-8 h-full max-w-sm">
               <ChatScreenshot
                 imageSrc={valuePropositions[activeIndex].imageSrc}
                 imageAlt={valuePropositions[activeIndex].imageAlt}
               />
-            </Animate>
-          </div>
+            </div>
 
-          {/* Right: Value Propositions */}
-          <div className="space-y-8">
-            {valuePropositions.map(renderValueProposition)}
+            {/* Right: Value Propositions */}
+            <div className="space-y-8">
+              {valuePropositions.map(renderValueProposition)}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Mobile Layout */}
-      {isMobile && (
-        <div className="space-y-8">
+        {/* Mobile Layout */}
+        {isMobile && (
           <div className="space-y-8">
-            {valuePropositions.map(renderValueProposition)}
+            <div className="space-y-8">
+              {valuePropositions.map(renderValueProposition)}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </Animate>
     </div>
   );
 }

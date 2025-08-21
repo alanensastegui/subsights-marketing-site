@@ -27,19 +27,19 @@ export default function CustomerStories() {
   return (
     <section id="customer-stories" className="relative isolate py-12">
       <div className="mx-auto max-w-6xl px-6">
-        <Animate name="fadeIn" trigger="onVisible" className="mx-auto max-w-4xl text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            {c.title}
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            {c.subtitle}
-          </p>
-        </Animate>
+        <Animate name="fadeInStagger" trigger="onVisible">
+          <div className="animate-item mx-auto max-w-4xl text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              {c.title}
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              {c.subtitle}
+            </p>
+          </div>
 
-        <div className="grid gap-6 md:gap-8 md:grid-cols-2 items-stretch">
-          {stories.map((story, index) => (
-            <Animate key={story.slug} name="fadeIn" trigger="onVisible" delay={index * 100}>
-              <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
+          <div className="grid gap-6 md:gap-8 md:grid-cols-2 items-stretch">
+            {stories.map((story) => (
+              <Card key={story.slug} className="animate-item h-full overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
                 <CardHeader className="pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
                     <div className="relative w-24 h-24 rounded-lg overflow-hidden flex items-center justify-center p-2 flex-shrink-0">
@@ -153,9 +153,9 @@ export default function CustomerStories() {
                   </Link>
                 </CardFooter>
               </Card>
-            </Animate>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Animate>
       </div>
     </section>
   );

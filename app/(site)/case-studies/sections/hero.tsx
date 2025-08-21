@@ -32,25 +32,25 @@ export default function Hero() {
     <section className="relative isolate text-foreground">
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="mx-auto max-w-4xl text-center">
-          <Animate name="fadeIn" trigger="onVisible" className="space-y-6">
-            {c.badge && (
-              <Badge variant="secondary" className="text-sm">
-                {c.badge}
-              </Badge>
-            )}
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              {c.title}
-            </h1>
-            <h2 className="text-xl font-semibold text-muted-foreground">
-              {c.subtitle}
-            </h2>
-            <p className="max-w-3xl mx-auto text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-              {c.description}
-            </p>
-          </Animate>
+          <Animate name="fadeInStagger" trigger="onVisible">
+            <div className="animate-item space-y-6">
+              {c.badge && (
+                <Badge variant="secondary" className="text-sm">
+                  {c.badge}
+                </Badge>
+              )}
+              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                {c.title}
+              </h1>
+              <h2 className="text-xl font-semibold text-muted-foreground">
+                {c.subtitle}
+              </h2>
+              <p className="max-w-3xl mx-auto text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
+                {c.description}
+              </p>
+            </div>
 
-          <Animate name="fadeIn" trigger="onVisible" delay={200}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg">
                 <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
                   {c.primaryCta.label}

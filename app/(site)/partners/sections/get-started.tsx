@@ -48,23 +48,16 @@ export default function GetStarted() {
   const c = copy;
   return (
     <section className="max-w-6xl mx-auto px-6 py-8 sm:py-12">
-      {/* Main Heading */}
-      <Animate name="fadeIn" trigger="onVisible" className="text-center mb-12 sm:mb-16">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
+      <Animate name="fadeInStagger" trigger="onVisible">
+        {/* Main Heading */}
+        <h2 className="animate-item text-center mb-12 sm:mb-16 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
           {c.title}
         </h2>
-      </Animate>
 
-      {/* Steps */}
-      <div className="space-y-6 sm:space-y-8">
-        {c.steps.map((step, index) => (
-          <Animate
-            key={index}
-            name="fadeIn"
-            trigger="onVisible"
-            delay={index * 100}
-          >
-            <Card className="transition-all duration-300 hover:scale-105 hover:shadow-lg">
+        {/* Steps */}
+        <div className="space-y-6 sm:space-y-8">
+          {c.steps.map((step, index) => (
+            <Card key={index} className="animate-item transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <CardContent className="p-4 sm:p-6">
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
                   {/* Step Number and Icon */}
@@ -89,17 +82,17 @@ export default function GetStarted() {
                 </div>
               </CardContent>
             </Card>
-          </Animate>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      {/* Call to Action Button */}
-      <Animate name="fadeIn" trigger="onVisible" delay={300} className="text-center mt-10 sm:mt-12">
-        <Button size="lg" asChild className="w-full sm:w-auto min-w-[180px]" variant="outline">
-          <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
-            {c.primaryCta.label}
-          </a>
-        </Button>
+        {/* Call to Action Button */}
+        <div className="animate-item text-center mt-10 sm:mt-12">
+          <Button size="lg" asChild className="w-full sm:w-auto min-w-[180px]" variant="outline">
+            <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
+              {c.primaryCta.label}
+            </a>
+          </Button>
+        </div>
       </Animate>
     </section>
   );

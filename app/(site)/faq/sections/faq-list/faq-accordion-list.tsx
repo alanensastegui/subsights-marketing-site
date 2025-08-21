@@ -9,7 +9,6 @@ interface FAQAccordionListProps {
   openedId?: string;
   onValueChange?: (value: string | undefined) => void;
   highlight?: (text: string, query: string) => React.ReactNode;
-  delayOffset?: number;
 }
 
 export default function FAQAccordionList({
@@ -18,26 +17,21 @@ export default function FAQAccordionList({
   openedId,
   onValueChange,
   highlight = (text) => text,
-  delayOffset = 0
 }: FAQAccordionListProps) {
   return (
-    <Accordion
-      type="single"
-      collapsible
-      className="space-y-4"
-      value={openedId}
-      onValueChange={onValueChange}
-    >
-      {faqs.map((faq, i) => (
-        <Animate
-          key={faq.id}
-          name="fadeIn"
-          trigger="onVisible"
-          delay={delayOffset + i * 50}
-        >
+    <Animate name="fadeInStagger" trigger="onVisible">
+      <Accordion
+        type="single"
+        collapsible
+        className="space-y-4"
+        value={openedId}
+        onValueChange={onValueChange}
+      >
+        {faqs.map((faq) => (
           <AccordionItem
+            key={faq.id}
             value={faq.id}
-            className="border-white/10 bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors"
+            className="animate-item border-b-0 bg-white/5 rounded-lg overflow-hidden hover:bg-white/10 transition-colors"
           >
             <AccordionTrigger className="px-4 sm:px-6 py-3 sm:py-4 text-left hover:no-underline group">
               <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 w-full">
@@ -61,8 +55,8 @@ export default function FAQAccordionList({
               </div>
             </AccordionContent>
           </AccordionItem>
-        </Animate>
-      ))}
-    </Accordion>
+        ))}
+      </Accordion>
+    </Animate>
   );
 }

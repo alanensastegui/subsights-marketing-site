@@ -30,27 +30,25 @@ export default function Section() {
         <h2 id="about-narrative" className="sr-only">
           Our approach
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left column - Large lead text */}
-          <Animate name="fadeIn" trigger="onVisible">
-            <div className="space-y-6">
+        <Animate name="fadeInStagger" trigger="onVisible">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left column - Large lead text */}
+            <div className="animate-item space-y-6">
               <p className="text-2xl md:text-3xl font-medium leading-relaxed text-foreground">
                 {c.lead}
               </p>
             </div>
-          </Animate>
 
-          {/* Right column - Paragraphs */}
-          <Animate name="fadeIn" trigger="onVisible">
-            <div className="space-y-6">
+            {/* Right column - Paragraphs */}
+            <div className="animate-item space-y-6">
               {c.paragraphs.map((paragraph, i) => (
                 <p key={i} className="text-lg leading-relaxed text-muted-foreground">
                   {paragraph}
                 </p>
               ))}
             </div>
-          </Animate>
-        </div>
+          </div>
+        </Animate>
       </div>
     </section>
   );
