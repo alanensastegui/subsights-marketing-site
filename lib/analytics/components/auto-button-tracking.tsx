@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useAnalytics, useAnalyticsEnabled } from "@/lib/analytics";
+import { useAnalytics } from "@/lib/analytics";
 import type { ButtonClickParameters, ConversionParameters } from "@/lib/analytics";
 
 // ---- Config ------------------------------------------------------------
@@ -41,7 +41,6 @@ type AnyEl = HTMLElement & {
 
 export function AutoButtonTracking() {
   const analytics = useAnalytics();
-  const isAnalyticsEnabled = useAnalyticsEnabled();
 
   // Create wrapper functions that match the expected interface
   const trackButtonClick = (name: string, page?: string, ctx?: Record<string, unknown>) => {
@@ -72,15 +71,10 @@ export function AutoButtonTracking() {
     });
   };
 
-  const isEnabled = () => {
-    return isAnalyticsEnabled;
-  };
-
   // Keep latest funcs w/o re-binding listeners
-  const ref = React.useRef({ trackButtonClick, trackConversion, isEnabled });
+  const ref = React.useRef({ trackButtonClick, trackConversion });
   ref.current.trackButtonClick = trackButtonClick;
   ref.current.trackConversion = trackConversion;
-  ref.current.isEnabled = isEnabled;
 
   // True per-element dedupe
   const lastFireMap = React.useRef(new WeakMap<HTMLElement, number>()).current;
@@ -113,11 +107,6 @@ export function AutoButtonTracking() {
       const now = Date.now();
       if (now - lastT < DEDUPE_WINDOW_MS) return;
       lastFireMap.set(el, now);
-
-      // Consent gate (provider may also no-op)
-      try {
-        if (typeof ref.current.isEnabled === "function" && !ref.current.isEnabled()) return;
-      } catch { /* noop */ }
 
       const page = el.dataset.analyticsPage || buildPageFromLocation(location);
       const name = inferName(el);
