@@ -9,9 +9,9 @@ export default function CaseStudyContent({ caseStudy }: Props) {
   return (
     <section className="relative isolate py-12">
       <div className="mx-auto max-w-4xl px-6">
-        <Animate name="fadeIn" trigger="onVisible">
+        <Animate name="fadeInStagger" trigger="onVisible">
           <div
-            className="case-study-content"
+            className="animate-item case-study-content"
             dangerouslySetInnerHTML={{ __html: caseStudy.htmlContent }}
           />
         </Animate>

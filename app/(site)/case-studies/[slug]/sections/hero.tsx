@@ -13,9 +13,9 @@ export default function CaseStudyHero({ caseStudy }: Props) {
     <section className="relative isolate py-12">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-4xl text-center">
-          <Animate name="fadeIn" trigger="onVisible" className="space-y-8">
+          <Animate name="fadeInStagger" trigger="onVisible">
             {/* Company Logo */}
-            <div className="flex justify-center">
+            <div className="animate-item flex justify-center mb-8">
               <div className="relative w-32 h-32 rounded-xl overflow-hidden bg-muted/50 shadow-lg flex items-center justify-center p-4">
                 <Image
                   src={caseStudy.logo}
@@ -32,17 +32,17 @@ export default function CaseStudyHero({ caseStudy }: Props) {
             </div>
 
             {/* Industry Badge */}
-            <Badge variant="outline" className="text-sm">
+            <Badge variant="outline" className="text-sm animate-item mb-8">
               {caseStudy.industry}
             </Badge>
 
             {/* Company Name */}
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+            <h1 className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8">
               {caseStudy.company}
             </h1>
 
             {/* Brief Tagline */}
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            <p className="animate-item text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               Transforming {caseStudy.industry.toLowerCase()} through AI-powered solutions
             </p>
           </Animate>
