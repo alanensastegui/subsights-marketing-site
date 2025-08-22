@@ -9,6 +9,7 @@ import PricingToggle from "./pricing-client";
 type Copy = {
   title: string;
   subtitle: string;
+  annualDisclaimer: string;
   plans: {
     name: string;
     sort_price: number;
@@ -33,8 +34,9 @@ export const sectionId = "pricing";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Simple, Transparent Pricing",
-  subtitle: "Choose the plan that fits your business needs",
+  title: "Simple, transparent pricing",
+  subtitle: "Choose the plan that fits your business",
+  annualDisclaimer: "Billed annually; price shown per month for comparison.",
   plans: [
     {
       name: "Free Trial",
@@ -232,7 +234,7 @@ export default function Section({ searchParams }: Props) {
           <div className="text-center mb-8 h-6">
             {isAnnual && (
               <p className="animate-item text-sm text-muted-foreground">
-                Pay once a year, enjoy the savings—monthly price shown for easy comparison
+                {c.annualDisclaimer}
               </p>
             )}
           </div>
