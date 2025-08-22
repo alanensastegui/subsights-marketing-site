@@ -5,7 +5,8 @@ import EarningToggle from "./earning-toggle";
 
 type Copy = {
   title: string;
-  subtitle: string;
+  subtitleTop: string;
+  subtitleBottom: string;
   tiers: Array<{
     name: string;
     description: string;
@@ -27,7 +28,8 @@ export const sectionId = "earning-potential";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "Your earning potential",
-  subtitle: "A structure that rewards loyalty. Early partners benefit from exclusive Founders Club rates.",
+  subtitleTop: "A structure that rewards loyalty",
+  subtitleBottom: "Early partners benefit from exclusive Founders Club rates",
   tiers: [
     {
       name: "Founders Club",
@@ -63,9 +65,10 @@ export default function EarningPotential({ searchParams }: Props) {
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
             {c.title}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            {c.subtitle}
-          </p>
+          <div className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p>{c.subtitleTop}</p>
+            <p className="mt-2">{c.subtitleBottom}</p>
+          </div>
         </div>
 
         {/* Toggle */}
