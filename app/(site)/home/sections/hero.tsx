@@ -25,7 +25,7 @@ const copy = {
     mobile: "Subsights is the system that streamlines support, lead qualification, and revenue growth.",
     desktop: "Meet the system that streamlines support, lead qualification, and revenue growth.",
   },
-  primaryCta: { label: "Get Demo", href: CALENDLY_URL },
+  primaryCta: { label: "Book Demo", href: CALENDLY_URL },
   secondaryCta: { label: "Watch Overview", href: "https://www.youtube.com/watch?v=OlwA_a5CpYQ&list=PLXL5IEY-s71AWou876UpvgX8r0W5B2Whc" },
 } satisfies Copy;
 
@@ -55,7 +55,7 @@ export default function Hero() {
 
         {/* Description */}
         <div className="w-full flex justify-center md:justify-start">
-          <p className="animate-item text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8 break-normal max-w-lg text-center md:text-left">
+          <p className="animate-item text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8 break-normal max-w-md text-center md:text-left">
             <span className="block md:hidden">{copy.description.mobile}</span>
             <span className="hidden md:block">{copy.description.desktop}</span>
           </p>
@@ -68,7 +68,7 @@ export default function Hero() {
             asChild
             className="min-w-[140px]"
             data-analytics-id="home_hero_demo"
-            data-analytics-name="Get Demo (Home Hero)"
+            data-analytics-name="Book Demo (Home Hero)"
             data-analytics-context='{"source":"home_hero","section":"hero"}'
           >
             <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">{copy.primaryCta.label}</a>

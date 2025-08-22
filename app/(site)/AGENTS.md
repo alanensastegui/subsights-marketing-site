@@ -28,7 +28,7 @@ Use these attributes on the element that has `data-slot="button"` (this includes
 - **`data-analytics-name`** --- Human label
   - format: `{Action Label} (Surface Label)`
   - keep short; don't encode params (put those in context)
-  - examples: `Get Demo (Nav)`, `Get Demo (Home Hero)`, `Professional (Pricing)`
+  - examples: `Book Demo (Nav)`, `Book Demo (Home Hero)`, `Professional (Pricing)`
 
 - **`data-analytics-context`** --- Small JSON string with structured params
   - common fields: `source` (e.g., `pricing`, `home_hero`), `section` (e.g., `hero`, `call-to-action`), `plan`, `billing`, optional `variant`, `ab_test`, `ab_group`, `locale`

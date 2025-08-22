@@ -55,7 +55,7 @@ export default function Hero() {
                 asChild
                 size="lg"
                 data-analytics-id="case_studies_hero_demo"
-                data-analytics-name="Get Demo (Case Studies Hero)"
+                data-analytics-name="Book Demo (Case Studies Hero)"
                 data-analytics-context='{"source":"case_studies_hero","section":"hero"}'
               >
                 <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
