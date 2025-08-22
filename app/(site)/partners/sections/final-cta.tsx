@@ -13,8 +13,8 @@ export const sectionId = "final-cta";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Ready to Grow Together?",
-  subtitle: "Join a partner program that values your expertise and rewards your efforts for the long term.",
+  title: "Ready to grow together?",
+  subtitle: "Join a program that values your expertise and rewards long-term relationships",
   primaryCta: { label: "Apply Today", href: PARTNERSHIP_URL }
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----

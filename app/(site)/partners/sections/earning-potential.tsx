@@ -26,12 +26,12 @@ export const sectionId = "earning-potential";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Your Earning Potential",
+  title: "Your earning potential",
   subtitle: "A structure that rewards loyalty. Early partners benefit from exclusive Founders Club rates.",
   tiers: [
     {
       name: "Founders Club",
-      description: "Exclusive rates for our first 25 partners",
+      description: "Premium rates (first 25 partners)",
       featured: true,
       commissionRates: [
         { plan: "Monthly Plan", year1to2: "25%", year3plus: "15%" },
@@ -40,7 +40,7 @@ const copy = {
     },
     {
       name: "Standard Partner",
-      description: "Great rates for all partners",
+      description: "Great rates for all",
       commissionRates: [
         { plan: "Monthly Plan", year1to2: "20%", year3plus: "5%" },
         { plan: "Annual Plan", year1to2: "25%", year3plus: "10%" },
