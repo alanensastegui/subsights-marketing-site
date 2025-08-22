@@ -14,17 +14,17 @@ const copy = {
   heading: "Works across your business",
   useCases: [
     {
-      title: "For Lead Generation",
+      title: "For lead generation",
       description: "Route interest, qualify fit, and hand off warm leads—seamlessly.",
       icon: Funnel,
     },
     {
-      title: "For Tourism & Hospitality",
+      title: "For tourism & hospitality",
       description: "Act as a 24/7 concierge with trusted, local recommendations and frictionless bookings.",
       icon: MapPin,
     },
     {
-      title: "For Specialized Services",
+      title: "For specialized services",
       description: "Screen out-of-scope inquiries and keep your team focused on high-value prospects.",
       icon: Briefcase,
     },

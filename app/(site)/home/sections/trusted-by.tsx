@@ -17,7 +17,7 @@ type Copy = {
 };
 
 const copy = {
-  heading: "Trusted By",
+  heading: "Trusted by",
   logos: [
     {
       logoSrc: "/images/client-logos/vsv.avif",

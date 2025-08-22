@@ -31,13 +31,13 @@ type Copy = {
 };
 
 const copy = {
-  heading: "From Cost Center to Revenue Engine",
+  heading: "From cost center to revenue engine",
   challenges: {
     title: "Before Subsights",
     subtitle: "Traditional support, typical problems",
     items: [
       {
-        title: "Expensive & Limited Support",
+        title: "Expensive & limited support",
         description: "High staffing costs, fixed hours, and overwhelmed teams at peak times. Customers wait; costs rise.",
         imageSrc: "/images/low-battery.svg",
         imageAlt: "Low battery icon",
@@ -64,21 +64,21 @@ const copy = {
     subtitle: "AI-powered customer service excellence",
     items: [
       {
-        title: "24/7 Automated Excellence",
+        title: "24/7 automated excellence",
         description: "Handle unlimited conversations in parallel with instant, expert responses—no breaks, no queues.",
         imageSrc: "/images/full-battery.svg",
         imageAlt: "Full battery icon",
         benefit: "Lower costs",
       },
       {
-        title: "Consistent, Expert-Level Service",
+        title: "Consistent, expert-level service",
         description: "Every customer gets the same high-quality, accurate guidance—every time.",
         imageSrc: "/images/checkmark-circle.svg",
         imageAlt: "Check circle icon",
         benefit: "Happier customers",
       },
       {
-        title: "Revenue Optimization",
+        title: "Revenue optimization",
         description: "Detect intent, surface upsells, and apply targeted discounts to maximize every interaction.",
         imageSrc: "/images/trending-up.svg",
         imageAlt: "Trending up icon",

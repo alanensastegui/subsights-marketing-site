@@ -13,7 +13,7 @@ export type Copy = {
 
 export const strategicCopy: Copy = {
   heading: {
-    line1: "Go Beyond Basic Bots",
+    line1: "Go beyond basic bots",
     line2: "Get a Strategic AI Partner",
   },
   description: "Engineered to execute your business goals with precision",
