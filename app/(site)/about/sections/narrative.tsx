@@ -9,11 +9,11 @@ export const sectionId = "narrative";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  lead: "We’re crafting an AI teammate that answers clearly and acts reliably. Momentum, not noise",
+  lead: "We’re crafting the AI teammate that answers clearly and acts reliably. Momentum, not noise",
   paragraphs: [
-    "We built Subsights out of frustration with the tools that were supposed to help. Chatbots had become clunky, impersonal, and more of a burden than a benefit—leaving teams to chase noise instead of focusing on real opportunities. We wanted to create something different. Something that felt less like a bot and more like a teammate, always ready to help.",
-    "What started as a simple website assistant has since grown into a powerful platform that learns your business inside and out. Subsights becomes your site’s “Expert Brain,” answering questions with accuracy, guiding visitors at the right moment, and seamlessly connecting them to your team when it matters most.",
-    "Today, businesses across industries—from local tour operators to private lenders—use Subsights to filter out distractions, save hours of repetitive work, and capture high-intent leads they might otherwise lose. Subsights helps them focus on what they do best: serving their customers and growing their business.",
+    "We built Subsights because the tools meant to help started getting in the way. Chatbots became clunky, generic, noisy. We made a teammate instead—fast, useful, and easy to trust.",
+    "It began as a lightweight site assistant. It’s now a platform that learns your business end-to-end. An expert brain for your website: answers with precision, guides at the right moment, and hands off to your team when it matters.",
+    "Teams across industries—from local tour operators to private lenders—use Subsights to cut noise, reclaim hours, and convert high-intent leads they’d otherwise miss. Focus stays where it should: serving customers and growing the business.",
   ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
