@@ -409,7 +409,7 @@ export default function DiagonalPointer({
     return () => {
       if (scheduleComputeRef.current != null) cancelAnimationFrame(scheduleComputeRef.current);
       window.removeEventListener("resize", onResize);
-      if (recomputeOnScroll) window.removeEventListener("scroll", onResize as any);
+      if (recomputeOnScroll) window.removeEventListener("scroll", onResize);
       if (mo) mo.disconnect();
       ro.disconnect();
     };

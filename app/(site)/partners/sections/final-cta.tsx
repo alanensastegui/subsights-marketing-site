@@ -19,20 +19,19 @@ const copy = {
 // ---- /SECTION COPY REGION ----
 
 export default function FinalCta() {
-  const c = copy;
   return (
     <section className="relative isolate px-6 py-12 max-w-6xl">
-    <Animate name="fadeInStagger" trigger="onVisible">
-      <Cta
-        copy={copy}
-        analyticsContext="partners_final_cta"
-        classes={{
-          title: "animate-item",
-          primaryButton: "animate-item",
-          secondaryButton: "animate-item",
-        }}
-      />
-    </Animate>
-  </section>
+      <Animate name="fadeInStagger" trigger="onVisible">
+        <Cta
+          copy={copy}
+          analyticsContext="partners_final_cta"
+          classes={{
+            title: "animate-item",
+            primaryButton: "animate-item",
+            secondaryButton: "animate-item",
+          }}
+        />
+      </Animate>
+    </section>
   );
 }
