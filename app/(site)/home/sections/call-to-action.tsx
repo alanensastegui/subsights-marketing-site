@@ -19,12 +19,12 @@ export const sectionId = "call-to-action";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  mainTitle: "Start Converting Visitors Today",
-  subtitle: "Get your AI expert live on your website in under 10 minutes",
+  mainTitle: "Get started in minutes",
+  subtitle: "Go live on your site in under 10 minutes.",
   primaryCta: { label: "Get Demo", href: CALENDLY_URL },
-  primaryDescription: "See how Subsights works for your business",
+  primaryDescription: "See Subsights in action for your team",
   secondaryCta: { label: "Try For Free", href: "/pricing" },
-  secondaryDescription: "Start your 30-day free trial. No credit card required"
+  secondaryDescription: "30-day trial · No credit card"
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

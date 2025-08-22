@@ -4,14 +4,16 @@ import { CALENDLY_URL } from "@/lib/config";
 
 type Copy = {
   slogan: string;
-  description: string;
+  descriptionTop: string;
+  descriptionBottom: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
 };
 
 const copy = {
-  slogan: "The AI-Native Chatbot for Your Website",
-  description: "Subsights AI qualifies, guides, and converts your best website visitors; so your team doesn't have to",
+  slogan: "The AI teammate for your website",
+  descriptionTop: "Meet the AI teammate for modern websites.",
+  descriptionBottom: "Turn traffic into qualified pipeline and revenue automatically.",
   primaryCta: { label: "Get Demo", href: CALENDLY_URL },
   secondaryCta: { label: "Watch Overview", href: "https://www.youtube.com/watch?v=OlwA_a5CpYQ&list=PLXL5IEY-s71AWou876UpvgX8r0W5B2Whc" },
 } satisfies Copy;
@@ -27,7 +29,8 @@ export default function Hero() {
 
         {/* Description */}
         <p className="animate-item text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
-          {copy.description}
+          <span className="block">{copy.descriptionTop}</span>
+          <span className="block">{copy.descriptionBottom}</span>
         </p>
 
         {/* Call to Action Buttons */}

@@ -19,27 +19,27 @@ export const strategicCopy: Copy = {
   description: "Engineered to execute your business goals with precision",
   valuePropositions: [
     {
-      title: "Filter & Qualify Every Lead",
+      title: "Qualify every lead",
       subtext:
-        "Our AI filters for intent, budget, and custom rules, so your sales team only engages with prospects ready to convert.",
+        "Filter by intent, budget, and custom rules so sales only sees prospects ready to buy.",
       chatEmoji: "🔍",
       imageSrc: "/images/value-props/filter_lead_example.png",
       imageAlt:
         "AI lead filtering and qualification interface showing intent detection and budget analysis",
     },
     {
-      title: "Provide Expert, Nuanced Answers",
+      title: "Provide real answers",
       subtext:
-        "Go beyond FAQs. Our AI handles complex, multi-step questions with the nuance of a human expert, building customer trust around the clock.",
+        "Go far beyond FAQs. Tackle multi-step, nuanced questions with the clarity of a human expert.",
       chatEmoji: "💬",
       imageSrc: "/images/value-props/expert_example.png",
       imageAlt:
         "AI expert conversation interface showing detailed, nuanced responses to complex questions",
     },
     {
-      title: "Drive Revenue & Strategic Goals",
+      title: "Drive outcomes",
       subtext:
-        "Our AI intelligently upsells services, applies strategic discounts, and guides every user toward your most important business goals.",
+        "Guide users to the right plan, booking, or product. Suggest upsells and apply targeted incentives.",
       chatEmoji: "💰",
       imageSrc: "/images/value-props/revenue_example.png",
       imageAlt:
