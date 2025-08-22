@@ -106,7 +106,10 @@ const ValueProposition = ({
       )}
       type="button"
     >
-      <h3 className="text-xl font-semibold mb-3">{title}</h3>
+      <h3 className={cn(
+        "text-xl font-semibold mb-3",
+        isActive ? "text-muted-foreground" : "text-foreground"
+      )}>{title}</h3>
 
       {/* Subtext - always visible on desktop, conditional on mobile */}
       {(isMobile ? isExpanded : true) && (
