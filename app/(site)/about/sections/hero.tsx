@@ -33,9 +33,9 @@ export default function Section() {
             {c.title}
           </h1>
 
-          <div className="animate-item">
+          {/* <div className="animate-item">
             <ProductScreenshot {...c.productScreenshot} />
-          </div>
+          </div> */}
         </Animate>
       </div>
     </section>
