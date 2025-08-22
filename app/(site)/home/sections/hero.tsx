@@ -1,40 +1,68 @@
 import { Animate } from "@/components/ui/animate";
 import { Button } from "@/components/ui/button";
 import { CALENDLY_URL } from "@/lib/config";
+import DiagonalPointer from "@/components/ui/diagonal-pointer";
 
 type Copy = {
-  slogan: string;
-  descriptionTop: string;
-  descriptionBottom: string;
+  slogan: {
+    mobile: string;
+    desktop: string;
+  };
+  description: {
+    mobile: string;
+    desktop: string;
+  };
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
 };
 
 const copy = {
-  slogan: "The AI teammate for your website",
-  descriptionTop: "Meet the AI teammate for modern websites",
-  descriptionBottom: "Turn traffic into qualified pipeline and revenue automatically",
+  slogan: {
+    mobile: "Meet your AI teammate",
+    desktop: "Subsights is the AI teammate for modern websites"
+  },
+  description: {
+    mobile: "Subsights is the system that streamlines support, lead qualification, and revenue growth.",
+    desktop: "Meet the system that streamlines support, lead qualification, and revenue growth.",
+  },
   primaryCta: { label: "Get Demo", href: CALENDLY_URL },
   secondaryCta: { label: "Watch Overview", href: "https://www.youtube.com/watch?v=OlwA_a5CpYQ&list=PLXL5IEY-s71AWou876UpvgX8r0W5B2Whc" },
 } satisfies Copy;
 
 export default function Hero() {
   return (
-    <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-12">
+    <section className="text-center md:text-left space-y-8 max-w-6xl mx-auto px-6 py-12 relative">
+      <DiagonalPointer
+        anchorSelector="#home-hero-title"
+        targetSelector="#subsights-chatbot"
+        targetAnchor="top"
+        targetOffsetPx={0}
+        extendToViewport
+        recomputeOnScroll={false}
+        freezeAfterTarget
+        renderOnlyWhenTargetPresent
+        stopShortPx={32}
+        className="text-foreground"
+        strokeDasharray="1 8"
+        containerClassName="-z-10 hidden md:block"
+      />
       {/* Slogan */}
       <Animate name="fadeInStagger" trigger="onVisible">
-        <h2 className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8">
-          {copy.slogan}
+        <h2 id="home-hero-title" className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8 max-w-2xl text-center md:text-left">
+          <span className="block md:hidden">{copy.slogan.mobile}</span>
+          <span className="hidden md:block">{copy.slogan.desktop}</span>
         </h2>
 
         {/* Description */}
-        <p className="animate-item text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
-          <span className="block">{copy.descriptionTop}</span>
-          <span className="block">{copy.descriptionBottom}</span>
-        </p>
+        <div className="w-full flex justify-center md:justify-start">
+          <p className="animate-item text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8 break-normal max-w-lg text-center md:text-left">
+            <span className="block md:hidden">{copy.description.mobile}</span>
+            <span className="hidden md:block">{copy.description.desktop}</span>
+          </p>
+        </div>
 
         {/* Call to Action Buttons */}
-        <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center md:items-start">
           <Button
             size="lg"
             asChild
