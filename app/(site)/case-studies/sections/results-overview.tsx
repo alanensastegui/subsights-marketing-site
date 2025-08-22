@@ -17,26 +17,26 @@ export const sectionId = "results-overview";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Why Businesses Choose Subsights AI",
-  subtitle: "The key advantages that set our AI platform apart from traditional customer service",
+  title: "Why teams choose Subsights",
+  subtitle: "The advantages that set us apart",
   highlights: [
     {
-      title: "24/7 Availability",
-      description: "Never miss a customer inquiry, regardless of time zone or business hours.",
+      title: "Always on",
+      description: "Instant, expert responses at any hour. No queues.",
       icon: Globe2
     },
     {
-      title: "Instant Scalability",
-      description: "Handle traffic spikes without hiring additional staff or experiencing delays.",
+      title: "Scale instantly",
+      description: "Handle traffic spikes in parallel without adding headcount.",
       icon: TrendingUp
     },
     {
-      title: "Consistent Quality",
-      description: "Every customer receives the same high-quality service, every time.",
+      title: "Consistent by design",
+      description: "Every customer gets the same high-quality answer, every time.",
       icon: Sparkles
     },
     {
-      title: "Multi-Language Support",
+      title: "Multilingual by default",
       description: "Serve customers in their preferred language with native-level fluency.",
       icon: Languages
     }

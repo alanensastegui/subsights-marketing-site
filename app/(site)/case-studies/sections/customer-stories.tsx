@@ -15,8 +15,8 @@ export const sectionId = "customer-stories";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Customer Success Stories",
-  subtitle: "See how we've helped businesses transform their customer service",
+  title: "Customer stories",
+  subtitle: "Real teams. Real impact.",
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

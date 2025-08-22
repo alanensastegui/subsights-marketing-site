@@ -7,7 +7,6 @@ import { CALENDLY_URL } from "@/lib/config";
 type Copy = {
   title: string;
   subtitle: string;
-  description: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
   benefits: string[];
@@ -17,16 +16,15 @@ export const sectionId = "call-to-action";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Ready to See Similar Results?",
+  title: "Ready to see similar results?",
   subtitle: "Join the growing list of satisfied customers",
-  description: "Get a personalized demo of how Subsights AI can transform your customer service operations and deliver measurable improvements in efficiency, satisfaction, and cost savings.",
   primaryCta: { label: "Get Demo", href: CALENDLY_URL },
   secondaryCta: { label: "Try For Free", href: "/pricing" },
   benefits: [
     "Free 30-minute consultation",
-    "Customized demo for your industry",
-    "ROI calculation for your business",
-    "Implementation timeline and roadmap"
+    "A demo tailored to your industry",
+    "ROI snapshot for your business",
+    "Implementation timeline and rollout plan"
   ]
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -44,9 +42,6 @@ export default function CallToAction() {
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 {c.subtitle}
-              </p>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {c.description}
               </p>
             </div>
 

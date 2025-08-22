@@ -17,12 +17,12 @@ export const sectionId = "hero";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Proven Results for Businesses Like Yours",
-  subtitle: "See how Subsights AI transforms business operations",
-  description: "We partner with businesses across diverse industries to filter noise, enhance customer experiences, and drive strategic goals. See how a Subsights AI assistant can become a true extension of your team.",
+  title: "Proven results across industries",
+  subtitle: "See how teams transform their customer experience with Subsights",
+  description: "We partner with finance, travel, education, and more. Subsights cuts through noise, guides customers with expert clarity, and advances the right opportunities—24/7",
   badge: "Customer Success",
   primaryCta: { label: "Get Your Demo", href: CALENDLY_URL },
-  secondaryCta: { label: "View All Stories", href: "#customer-stories" },
+  secondaryCta: { label: "View Customer Stories", href: "#customer-stories" },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
