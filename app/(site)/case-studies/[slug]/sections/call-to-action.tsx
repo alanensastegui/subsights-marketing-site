@@ -2,14 +2,32 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Animate } from "@/components/ui/animate";
 import { cn } from "@/lib/cn";
-import type { CaseStudy } from "@/lib/case-studies";
 import { CALENDLY_URL } from "@/lib/config";
 
-interface Props {
-  caseStudy: CaseStudy;
-}
+type Copy = {
+  title: string;
+  subtitle?: string;
+  primaryCta: { label: string; href: string };
+  primaryNote?: string;
+  secondaryCta: { label: string; href: string };
+  secondaryNote?: string;
+};
 
-export default function CallToAction({ caseStudy }: Props) {
+export const sectionId = "call-to-action";
+
+// ---- SECTION COPY REGION ----
+const copy = {
+  title: "Ready to see similar results?",
+  subtitle: "Join the growing list of satisfied customers",
+  primaryCta: { label: "Get Your Demo", href: CALENDLY_URL },
+  primaryNote: "See how Subsights works for your business",
+  secondaryCta: { label: "View All Case Studies", href: "/case-studies" },
+  secondaryNote: "Explore more customer success stories",
+} satisfies Copy;
+// ---- /SECTION COPY REGION ----
+
+export default function CallToAction() {
+  const c = copy;
   return (
     <section className={cn("relative isolate bg-gradient-to-br from-background via-muted/80 to-muted/30 rounded-3xl mx-6 my-12")}>
       <div className="mx-auto max-w-6xl px-6 py-12">
@@ -17,13 +35,10 @@ export default function CallToAction({ caseStudy }: Props) {
           <Animate name="fadeInStagger" trigger="onVisible">
             <div className="animate-item space-y-6 mb-12">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                Ready to See Similar Results?
+                {c.title}
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Join {caseStudy.company} and other satisfied customers
-              </p>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Get a personalized demo of how Subsights AI can transform your {caseStudy.industry.toLowerCase()} business and deliver measurable improvements in efficiency, satisfaction, and cost savings.
+                {c.subtitle}
               </p>
             </div>
 
@@ -37,23 +52,23 @@ export default function CallToAction({ caseStudy }: Props) {
                   data-analytics-name="Get Demo (Case Study CTA)"
                   data-analytics-context='{"source":"case_study_call_to_action","section":"call-to-action"}'
                 >
-                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                    Get Your Demo
+                  <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
+                    {c.primaryCta.label}
                   </a>
                 </Button>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  See how Subsights works for your business
+                  {c.primaryNote}
                 </p>
               </div>
 
               <div className="space-y-4">
                 <Button variant="outline" size="lg" asChild className="min-w-[140px]">
-                  <Link href="/case-studies">
-                    View All Case Studies
+                  <Link href={c.secondaryCta.href}>
+                    {c.secondaryCta.label}
                   </Link>
                 </Button>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Explore more customer success stories
+                  {c.secondaryNote}
                 </p>
               </div>
             </div>
