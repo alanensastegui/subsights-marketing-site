@@ -20,7 +20,7 @@ export const sectionId = "call-to-action";
 // ---- SECTION COPY REGION ----
 const copy = {
   mainTitle: "Get started in minutes",
-  subtitle: "Go live on your site in under 10 minutes.",
+  subtitle: "Go live on your site in under 10 minutes",
   primaryCta: { label: "Get Demo", href: CALENDLY_URL },
   primaryDescription: "See Subsights in action for your team",
   secondaryCta: { label: "Try For Free", href: "/pricing" },
