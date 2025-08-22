@@ -11,7 +11,7 @@ export const sectionId = "team";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  lead: "Every detail matters to us",
+  lead: "Every detail matters",
   paragraphs: [
     "Subsights is founder-led and hands-on—a team of friends, engineers, and business strategists who obsess over fast execution and fine details. We work closely together, combining technical rigor with creative problem-solving, and we bring that same energy to every customer partnership. When you work with Subsights, you’re not getting a faceless platform—you’re working directly with the people building it, committed to making sure it delivers real results for your business.",
   ],

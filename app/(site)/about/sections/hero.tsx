@@ -13,7 +13,7 @@ export const sectionId = "hero";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Subsights is bringing trust back to chatbots",
+  title: "Trust, built in",
   productScreenshot: {
     posterJpg: "/images/product-screenshots/conversations-graph.png",
     ariaLabel:

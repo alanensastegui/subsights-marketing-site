@@ -9,7 +9,7 @@ export const sectionId = "narrative";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  lead: "We’re crafting an AI assistant that brings focus back to your team and results back to your business",
+  lead: "We’re crafting an AI teammate that answers clearly and acts reliably. Momentum, not noise.",
   paragraphs: [
     "We built Subsights out of frustration with the tools that were supposed to help. Chatbots had become clunky, impersonal, and more of a burden than a benefit—leaving teams to chase noise instead of focusing on real opportunities. We wanted to create something different. Something that felt less like a bot and more like a teammate, always ready to help.",
     "What started as a simple website assistant has since grown into a powerful platform that learns your business inside and out. Subsights becomes your site’s “Expert Brain,” answering questions with accuracy, guiding visitors at the right moment, and seamlessly connecting them to your team when it matters most.",
