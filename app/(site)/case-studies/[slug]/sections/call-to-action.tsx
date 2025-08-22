@@ -1,16 +1,12 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Cta } from "@/components/ui/cta";
 import { Animate } from "@/components/ui/animate";
-import { cn } from "@/lib/cn";
 import { CALENDLY_URL } from "@/lib/config";
 
 type Copy = {
   title: string;
   subtitle?: string;
-  primaryCta: { label: string; href: string };
-  primaryNote?: string;
-  secondaryCta: { label: string; href: string };
-  secondaryNote?: string;
+  primaryCta: { label: string; href: string; external: boolean };
+  secondaryCta: { label: string; href: string; external: boolean };
 };
 
 export const sectionId = "call-to-action";
@@ -19,62 +15,25 @@ export const sectionId = "call-to-action";
 const copy = {
   title: "Ready to see similar results?",
   subtitle: "Join the growing list of satisfied customers",
-  primaryCta: { label: "Get Your Demo", href: CALENDLY_URL },
-  primaryNote: "See how Subsights works for your business",
-  secondaryCta: { label: "View All Case Studies", href: "/case-studies" },
-  secondaryNote: "Explore more customer success stories",
+  primaryCta: { label: "Book Demo", href: CALENDLY_URL, external: true },
+  secondaryCta: { label: "Start Free", href: "/pricing", external: false },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
 export default function CallToAction() {
-  const c = copy;
   return (
-    <section className={cn("relative isolate bg-gradient-to-br from-background via-muted/80 to-muted/30 rounded-3xl mx-6 my-12")}>
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="text-center space-y-12">
-          <Animate name="fadeInStagger" trigger="onVisible">
-            <div className="animate-item space-y-6 mb-12">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                {c.title}
-              </h2>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                {c.subtitle}
-              </p>
-            </div>
-
-            <div className="animate-item grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="space-y-4">
-                <Button
-                  size="lg"
-                  asChild
-                  className="min-w-[140px]"
-                  data-analytics-id="case_study_cta_demo"
-                  data-analytics-name="Get Demo (Case Study CTA)"
-                  data-analytics-context='{"source":"case_study_call_to_action","section":"call-to-action"}'
-                >
-                  <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
-                    {c.primaryCta.label}
-                  </a>
-                </Button>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {c.primaryNote}
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <Button variant="outline" size="lg" asChild className="min-w-[140px]">
-                  <Link href={c.secondaryCta.href}>
-                    {c.secondaryCta.label}
-                  </Link>
-                </Button>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {c.secondaryNote}
-                </p>
-              </div>
-            </div>
-          </Animate>
-        </div>
-      </div>
+    <section className="relative isolate px-6 py-12 max-w-6xl">
+      <Animate name="fadeInStagger" trigger="onVisible">
+        <Cta
+          copy={copy}
+          analyticsContext="case_study_cta"
+          classes={{
+            title: "animate-item",
+            primaryButton: "animate-item",
+            secondaryButton: "animate-item",
+          }}
+        />
+      </Animate>
     </section>
   );
 }
