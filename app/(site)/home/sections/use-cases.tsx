@@ -11,7 +11,7 @@ type Copy = {
 };
 
 const copy = {
-  heading: "Works across your business",
+  heading: "Made for your business",
   useCases: [
     {
       title: "For lead generation",
