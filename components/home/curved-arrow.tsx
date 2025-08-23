@@ -38,7 +38,7 @@ type Line = { x1: number; y1: number; x2: number; y2: number };
 const clamp = (v: number, min: number, max: number) =>
   v < min ? min : v > max ? max : v;
 
-export default function DiagonalPointer({
+export default function CurvedArrow({
   anchorSelector,
   anchorSide = "right",
   startOffsetPx = 8,
@@ -475,7 +475,7 @@ export default function DiagonalPointer({
               orient="auto-start-reverse"
             >
               {/* NOTE: kept the exact path data to avoid any visual changes */}
-              <path d="M 1.5 0.8 L 6 3 L 1.5 5.2 L 4.6 3 L" fill="currentColor" />
+              <path d="M 1.5 0.8 L 6 3 L 1.5 5.2 L 4.6 3" fill="currentColor" />
             </marker>
           </defs>
 

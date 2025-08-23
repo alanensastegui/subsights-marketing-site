@@ -1,7 +1,7 @@
 import { Animate } from "@/components/ui/animate";
 import { Button } from "@/components/ui/button";
 import { CALENDLY_URL } from "@/lib/config";
-import DiagonalPointer from "@/components/home/diagonal-pointer";
+import CurvedArrow from "@/components/home/curved-arrow";
 
 type Copy = {
   slogan: {
@@ -32,7 +32,7 @@ const copy = {
 export default function Hero() {
   return (
     <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-12 relative">
-      <DiagonalPointer
+      <CurvedArrow
         anchorSelector="#home-hero-title"
         targetSelector=".logo-toggle"
         targetAnchor="top"
