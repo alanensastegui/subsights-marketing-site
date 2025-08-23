@@ -31,7 +31,7 @@ const copy = {
 
 export default function Hero() {
   return (
-    <section className="text-center md:text-left space-y-8 max-w-6xl mx-auto px-6 py-12 relative">
+    <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-12 relative">
       <DiagonalPointer
         anchorSelector="#home-hero-title"
         targetSelector="#subsights-chatbot"
@@ -48,21 +48,21 @@ export default function Hero() {
       />
       {/* Slogan */}
       <Animate name="fadeInStagger" trigger="onVisible">
-        <h2 id="home-hero-title" className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8 max-w-2xl text-center md:text-left">
+        <h2 id="home-hero-title" className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-4 max-w-2xl text-center mx-auto">
           <span className="block md:hidden">{copy.slogan.mobile}</span>
           <span className="hidden md:block">{copy.slogan.desktop}</span>
         </h2>
 
         {/* Description */}
-        <div className="w-full flex justify-center md:justify-start">
-          <p className="animate-item text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8 break-normal max-w-md text-center md:text-left">
+        <div className="w-full flex justify-center">
+          <p className="animate-item text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8 break-normal max-w-md text-center mx-auto">
             <span className="block md:hidden">{copy.description.mobile}</span>
             <span className="hidden md:block">{copy.description.desktop}</span>
           </p>
         </div>
 
         {/* Call to Action Buttons */}
-        <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center md:items-start">
+        <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button
             size="lg"
             asChild
