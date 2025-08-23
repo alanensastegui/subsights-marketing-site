@@ -1,6 +1,7 @@
 import { Cta } from "@/components/ui/cta";
 import { Animate } from "@/components/ui/animate";
 import { CALENDLY_URL } from "@/lib/config";
+import { getFreeTrialUrl } from "@/lib/subscriptions";
 
 type Copy = {
   title: string;
@@ -16,7 +17,7 @@ const copy = {
   title: "Ready to see similar results?",
   subtitle: "Join the growing list of satisfied customers",
   primaryCta: { label: "Book Demo", href: CALENDLY_URL, external: true },
-  secondaryCta: { label: "Start Free", href: "/pricing", external: false },
+  secondaryCta: { label: "Start Free", href: getFreeTrialUrl(), external: true },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import { Animate } from "@/components/ui/animate";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
+import { getFreeTrialUrl } from "@/lib/subscriptions";
 
 interface EstoPhoenixDemoProps {
   targetLabel: string;
@@ -693,8 +694,10 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                       </div>
 
                       <div className="space-y-3 sm:space-y-4">
-                        <Button variant="outline" size="lg" className="mx-auto min-w-[140px] w-full sm:w-auto bg-[#F5E6D3] text-[#561f37] border-[#F5E6D3] hover:bg-[#F5E6D3]/90 hover:text-[#561f37]">
-                          Start Free Trial
+                        <Button variant="outline" size="lg" className="mx-auto min-w-[140px] w-full sm:w-auto bg-[#F5E6D3] text-[#561f37] border-[#F5E6D3] hover:bg-[#F5E6D3]/90 hover:text-[#561f37]" asChild>
+                          <a href={getFreeTrialUrl()} target="_blank" rel="noopener noreferrer">
+                            Start Free Trial
+                          </a>
                         </Button>
                         <p className="text-xs sm:text-sm text-[#F5E6D3] leading-relaxed">
                           Try Subsights free for 30 days. No credit card required

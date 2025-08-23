@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/cn";
-import { APP_URL, CALENDLY_URL } from "@/lib/config";
+import { getSignupUrl, type PlanId } from "@/lib/subscriptions";
 import { Sparkles, RefreshCw, CreditCard } from "lucide-react";
 import { Animate } from "@/components/ui/animate";
 import PricingToggle from "./pricing-client";
@@ -11,18 +11,17 @@ type Copy = {
   subtitle: string;
   annualDisclaimer: string;
   plans: {
+    key: PlanId;
     name: string;
     sort_price: number;
     features: string[];
     free: boolean;
     enterprise: boolean;
     monthly_price: {
-      id: string;
       dollars: number;
       cents: number;
     };
     annual_price: {
-      id: string;
       dollars: number;
       cents: number;
     };
@@ -39,6 +38,7 @@ const copy = {
   annualDisclaimer: "Billed annually; price shown per month for comparison.",
   plans: [
     {
+      key: "free_trial",
       name: "Free Trial",
       sort_price: 0.0,
       features: [
@@ -49,17 +49,16 @@ const copy = {
       free: true,
       enterprise: false,
       monthly_price: {
-        id: "price_1RWMgmLBwjY0mWjvWBn3bbaM",
         dollars: 0,
         cents: 0,
       },
       annual_price: {
-        id: "price_1RWMgmLBwjY0mWjvWBn3bbaM",
         dollars: 0,
         cents: 0,
       },
     },
     {
+      key: "professional",
       name: "Professional",
       sort_price: 149.0,
       features: [
@@ -72,17 +71,16 @@ const copy = {
       free: false,
       enterprise: false,
       monthly_price: {
-        id: "price_1RWMgmLBwjY0mWjvWBn3bbaM",
         dollars: 149,
         cents: 0,
       },
       annual_price: {
-        id: "price_1Rlg1ALBwjY0mWjvoASzYgKk",
         dollars: 124,
         cents: 17,
       },
     },
     {
+      key: "professional_plus",
       name: "Professional+",
       sort_price: 279.0,
       features: [
@@ -99,18 +97,17 @@ const copy = {
       free: false,
       enterprise: false,
       monthly_price: {
-        id: "price_1RWMinLBwjY0mWjvNsqW5b0B",
         dollars: 279,
         cents: 0,
       },
       annual_price: {
-        id: "price_1Rlg1eLBwjY0mWjv0ju095LY",
         dollars: 232,
         cents: 50,
       },
       featured: true,
     },
     {
+      key: "enterprise",
       name: "Enterprise",
       sort_price: 500.0,
       features: [
@@ -123,12 +120,10 @@ const copy = {
       free: false,
       enterprise: true,
       monthly_price: {
-        id: "",
         dollars: 500,
         cents: 0,
       },
       annual_price: {
-        id: "",
         dollars: 416,
         cents: 67,
       },
@@ -155,20 +150,11 @@ export default function Section({ searchParams }: Props) {
   };
 
   const generateSignUpUrl = (plan: Copy["plans"][0]) => {
-    if (plan.enterprise) {
-      return CALENDLY_URL;
-    }
-
-    const baseUrl = `${APP_URL}/auth/signup`;
-    const priceId = isAnnual ? plan.annual_price.id : plan.monthly_price.id;
-
-    if (!priceId) {
-      throw new Error("Price ID is required");
-    }
-
-    const params = new URLSearchParams({ price_id: priceId, is_free_trial: plan.free.toString() });
-
-    return `${baseUrl}?${params.toString()}`;
+    return getSignupUrl({
+      plan: plan.key,
+      cycle: isAnnual ? "annual" : "monthly",
+      isFreeTrial: plan.free,
+    });
   };
 
   const getButtonText = (plan: Copy["plans"][0]) => {
@@ -184,7 +170,6 @@ export default function Section({ searchParams }: Props) {
   };
 
   const formatPrice = (price: {
-    id: string | null;
     dollars: number;
     cents: number;
   }) => {
