@@ -1,14 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Animate } from "@/components/ui/animate";
 import { CALENDLY_URL } from "@/lib/config";
 
 type Copy = {
   title: string;
   subtitle: string;
-  description: string;
-  badge: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
 };
@@ -17,12 +14,10 @@ export const sectionId = "hero";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Proven results across industries",
-  subtitle: "See how teams transform their customer experience with Subsights",
-  description: "We partner with finance, travel, education, and more. Subsights cuts through noise, guides customers with expert clarity, and advances the right opportunities—24/7",
-  badge: "Customer Success",
-  primaryCta: { label: "Get Your Demo", href: CALENDLY_URL },
-  secondaryCta: { label: "View Customer Stories", href: "#customer-stories" },
+  title: "Meet the teams who serve customers 24/7",
+  subtitle: "Subsights powers consistent answers, faster routing, and better outcomes",
+  primaryCta: { label: "Book Demo", href: CALENDLY_URL },
+  secondaryCta: { label: "View Case Studies", href: "#customer-stories" },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
@@ -34,20 +29,12 @@ export default function Hero() {
         <div className="mx-auto max-w-4xl text-center">
           <Animate name="fadeInStagger" trigger="onVisible">
             <div className="animate-item space-y-6">
-              {c.badge && (
-                <Badge variant="secondary" className="text-sm">
-                  {c.badge}
-                </Badge>
-              )}
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
                 {c.title}
               </h1>
-              <h2 className="text-xl font-semibold text-muted-foreground">
+              <h2 className="text-xl font-semibold text-muted-foreground mb-8">
                 {c.subtitle}
               </h2>
-              <p className="max-w-3xl mx-auto text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-                {c.description}
-              </p>
             </div>
 
             <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center">
