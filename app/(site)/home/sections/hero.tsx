@@ -34,7 +34,7 @@ export default function Hero() {
     <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-12 relative">
       <DiagonalPointer
         anchorSelector="#home-hero-title"
-        targetSelector="#subsights-chatbot"
+        targetSelector=".logo-toggle"
         targetAnchor="top"
         targetOffsetPx={0}
         extendToViewport
@@ -66,7 +66,7 @@ export default function Hero() {
           <Button
             size="lg"
             asChild
-            className="min-w-[140px]"
+            className="min-w-[140px] z-0"
             data-analytics-id="home_hero_demo"
             data-analytics-name="Book Demo (Home Hero)"
             data-analytics-context='{"source":"home_hero","section":"hero"}'
