@@ -44,7 +44,7 @@ export default function Hero() {
         stopShortPx={32}
         className="text-foreground"
         strokeDasharray="1 8"
-        containerClassName="-z-10 hidden md:block"
+        containerClassName="-z-10"
       />
       {/* Slogan */}
       <Animate name="fadeInStagger" trigger="onVisible">
