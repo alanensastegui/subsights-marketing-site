@@ -247,7 +247,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
             </Animate>
           </header>
 
-          <main className="mx-auto max-w-6xl px-6 pt-20">{children}</main>
+          <main className="mx-auto max-w-6xl px-6 pt-14">{children}</main>
           <ScrollToTop />
           <footer className="mx-auto max-w-6xl px-6 py-12">
             <div className="flex flex-col items-center space-y-6 text-center">

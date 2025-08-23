@@ -31,7 +31,7 @@ const copy = {
 
 export default function Hero() {
   return (
-    <section className="text-center space-y-8 max-w-6xl mx-auto px-6 pt-6 pb-12 relative">
+    <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-12 relative">
       <CurvedArrow
         anchorSelector="#home-hero-title"
         targetSelector=".logo-toggle"

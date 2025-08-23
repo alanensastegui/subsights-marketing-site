@@ -29,12 +29,14 @@ export default function Hero() {
         <div className="mx-auto max-w-4xl text-center">
           <Animate name="fadeInStagger" trigger="onVisible">
             <div className="animate-item space-y-6">
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-4 max-w-2xl text-center mx-auto">
                 {c.title}
               </h1>
-              <h2 className="text-xl font-semibold text-muted-foreground mb-8">
-                {c.subtitle}
-              </h2>
+              <div className="w-full flex justify-center">
+                <h2 className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8 break-normal max-w-md text-center mx-auto">
+                  {c.subtitle}
+                </h2>
+              </div>
             </div>
 
             <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center">

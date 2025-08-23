@@ -19,7 +19,7 @@ export default function Stats() {
             </div>
             <StatCounter
               target={25000}
-              durationMs={5000}
+              durationMs={2500}
               label="messages answered"
               className="animate-item"
               suffix="+"
