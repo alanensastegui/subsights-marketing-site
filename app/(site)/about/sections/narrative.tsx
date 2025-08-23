@@ -11,7 +11,7 @@ export const sectionId = "narrative";
 const copy = {
   lead: "We’re crafting the AI teammate that answers clearly and acts reliably. Momentum, not noise",
   paragraphs: [
-    "We built Subsights because the tools meant to help started getting in the way. Chatbots became clunky, generic, noisy. We made a teammate instead—fast, useful, and easy to trust.",
+    "We built Subsights because the tools meant to help started getting in the way. Website chatbots became clunky, generic, noisy. We made a teammate instead—fast, useful, and easy to trust.",
     "It began as a lightweight site assistant. It’s now a platform that learns your business end-to-end. An expert brain for your website: answers with precision, guides at the right moment, and hands off to your team when it matters.",
     "Teams across industries—from local tour operators to private lenders—use Subsights to cut noise, reclaim hours, and convert high-intent leads they’d otherwise miss. Focus stays where it should: serving customers and growing the business.",
   ],
