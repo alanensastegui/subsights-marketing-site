@@ -43,7 +43,7 @@ export default function Hero() {
         recomputeOnScrollView
         stopShortPx={32}
         className="text-foreground"
-        strokeDasharray="1 8"
+        strokeDasharray="4 8"
         containerClassName="-z-10"
       />
       {/* Slogan */}
