@@ -2,7 +2,7 @@
 // WEB VITALS REPORTING
 // ============================================================================
 
-import { ANALYTICS_CONFIG } from '@/lib/analytics/config';
+import { ANALYTICS_CONFIG, isDevelopment } from '@/lib/analytics/config';
 import type { Analytics, CustomEvent } from '@/lib/analytics/types';
 
 // Extend Window interface for analytics
@@ -56,7 +56,7 @@ export function reportWebVitals(metric: WebVitalMetric) {
   }
 
   // Also log to console in development
-  if (process.env.NODE_ENV === 'development') {
+  if (isDevelopment) {
     console.log('Web Vital:', {
       name: metric.name,
       value: metric.value,

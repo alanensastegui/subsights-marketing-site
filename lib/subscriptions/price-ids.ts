@@ -1,7 +1,7 @@
-import type { Environment } from "./types";
+import type { RuntimeEnvironment } from "@/lib/env";
 
 // Hardcoded Stripe Price IDs per environment
-export const PRICE_IDS: Record<Environment, {
+export const PRICE_IDS: Record<RuntimeEnvironment, {
   free_trial: string;
   professional: { monthly: string; annual: string };
   professional_plus: { monthly: string; annual: string };
@@ -28,7 +28,7 @@ export const PRICE_IDS: Record<Environment, {
       annual: "price_1Rlg1eLBwjY0mWjv0ju095LY",
     },
   },
-  production: {
+  prod: {
     free_trial: "price_1RWMgmLBwjY0mWjvWBn3bbaM",
     professional: {
       monthly: "price_1RWMgmLBwjY0mWjvWBn3bbaM",

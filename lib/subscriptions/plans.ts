@@ -1,10 +1,10 @@
 import { APP_URL, CALENDLY_URL } from "../config";
 import { PRICE_IDS } from "./price-ids";
-import { getEnvironment } from "./env";
+import { RUNTIME } from "../env";
 import type { BillingCycle, PlanId } from "./types";
 
 export const getPriceId = (plan: PlanId, cycle: BillingCycle = "monthly"): string => {
-  const env = getEnvironment();
+  const env = RUNTIME;
   if (plan === "enterprise") {
     throw new Error("Enterprise plan does not have a Stripe price ID");
   }
@@ -36,6 +36,5 @@ export const getSignupUrl = (options: { plan: PlanId; cycle: BillingCycle; isFre
 export const getFreeTrialUrl = (): string => getSignupUrl({ plan: "free_trial", cycle: "monthly" });
 
 export const getAllResolvedPriceIds = () => {
-  const env = getEnvironment();
-  return PRICE_IDS[env];
+  return PRICE_IDS[RUNTIME];
 };
