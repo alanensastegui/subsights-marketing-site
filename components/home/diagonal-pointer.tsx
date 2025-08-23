@@ -11,7 +11,7 @@ type Props = {
   containerClassName?: string;
   showEndpoints?: boolean;
   extendToViewport?: boolean;
-  recomputeOnScroll?: boolean;
+  recomputeOnScrollView?: boolean;
   targetSelector?: string;
   targetAnchor?:
   | "center"
@@ -47,7 +47,7 @@ export default function DiagonalPointer({
   containerClassName,
   showEndpoints = false,
   extendToViewport = true,
-  recomputeOnScroll = false,
+  recomputeOnScrollView = false,
   targetSelector,
   targetAnchor = "center",
   targetOffsetPx = 0,
@@ -68,6 +68,7 @@ export default function DiagonalPointer({
     anchorSide,
     startOffsetPx,
     extendToViewport,
+    recomputeOnScrollView,
     targetSelector,
     targetAnchor,
     targetOffsetPx,
@@ -82,6 +83,7 @@ export default function DiagonalPointer({
     anchorSide,
     startOffsetPx,
     extendToViewport,
+    recomputeOnScrollView,
     targetSelector,
     targetAnchor,
     targetOffsetPx,
@@ -120,12 +122,12 @@ export default function DiagonalPointer({
 
   const compute = React.useCallback(() => {
     const cfg = cfgRef.current;
-    if (cfg.freezeAfterTarget && isFrozenRef.current) return;
+    if (cfg.freezeAfterTarget && isFrozenRef.current && !cfg.recomputeOnScrollView) return;
 
     const container = containerRef.current;
     if (!container) return;
 
-    // Measure the host (offsetParent is a reliable “hero” for absolute children)
+    // Measure the host (offsetParent is a reliable "hero" for absolute children)
     const hostEl = (container.offsetParent as HTMLElement | null) || container.parentElement || container;
     const hostRect = hostEl.getBoundingClientRect();
     const baseWidth = Math.max(0, Math.floor(hostRect.width));
@@ -164,6 +166,21 @@ export default function DiagonalPointer({
         startX = anchorRect.left + anchorRect.width / 2 - hostRect.left;
         startY = anchorRect.bottom - hostRect.top + cfg.startOffsetPx;
         break;
+    }
+
+    // Check if starting point is outside viewport bounds
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const startXInViewport = startX + hostRect.left;
+    const startYInViewport = startY + hostRect.top;
+
+    // If starting point is outside viewport, don't render
+    if (startXInViewport < 0 || startXInViewport > viewportWidth ||
+      startYInViewport < 0 || startYInViewport > viewportHeight) {
+      setSvgSizeIfChanged(baseWidth, baseHeight);
+      setLineIfChanged(null);
+      setPathIfChanged(null);
+      return;
     }
 
     // Clamp into base bounds first
@@ -399,8 +416,20 @@ export default function DiagonalPointer({
     // Window listeners
     const onResize = scheduleCompute;
     window.addEventListener("resize", onResize);
-    if (recomputeOnScroll) {
-      window.addEventListener("scroll", onResize, { passive: true });
+    let onScroll: ((e: Event) => void) | null = null;
+    if (recomputeOnScrollView) {
+      onScroll = () => {
+        const anchorEl = document.querySelector(anchorSelector) as HTMLElement | null;
+        if (!anchorEl) return;
+        const r = anchorEl.getBoundingClientRect();
+        const inViewport =
+          r.bottom >= 0 &&
+          r.right >= 0 &&
+          r.top <= window.innerHeight &&
+          r.left <= window.innerWidth;
+        if (inViewport) scheduleCompute();
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
     }
 
     // Initial compute
@@ -409,11 +438,11 @@ export default function DiagonalPointer({
     return () => {
       if (scheduleComputeRef.current != null) cancelAnimationFrame(scheduleComputeRef.current);
       window.removeEventListener("resize", onResize);
-      if (recomputeOnScroll) window.removeEventListener("scroll", onResize);
+      if (onScroll) window.removeEventListener("scroll", onScroll);
       if (mo) mo.disconnect();
       ro.disconnect();
     };
-  }, [anchorSelector, targetSelector, recomputeOnScroll, freezeAfterTarget, scheduleCompute]);
+  }, [anchorSelector, targetSelector, recomputeOnScrollView, freezeAfterTarget, scheduleCompute]);
 
   const { width, height } = svgSize;
 

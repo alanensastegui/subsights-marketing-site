@@ -1,7 +1,7 @@
 import { Animate } from "@/components/ui/animate";
 import { Button } from "@/components/ui/button";
 import { CALENDLY_URL } from "@/lib/config";
-import DiagonalPointer from "@/components/ui/diagonal-pointer";
+import DiagonalPointer from "@/components/home/diagonal-pointer";
 
 type Copy = {
   slogan: {
@@ -38,9 +38,9 @@ export default function Hero() {
         targetAnchor="top"
         targetOffsetPx={0}
         extendToViewport
-        recomputeOnScroll={false}
         freezeAfterTarget
         renderOnlyWhenTargetPresent
+        recomputeOnScrollView
         stopShortPx={32}
         className="text-foreground"
         strokeDasharray="1 8"
