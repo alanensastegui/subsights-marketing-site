@@ -11,11 +11,11 @@ type Copy = {
   subtitle: string;
 };
 
-export const sectionId = "customer-stories";
+export const sectionId = "case-studies";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Customer stories",
+  title: "Case studies",
   subtitle: "Real teams. Real impact.",
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -25,7 +25,7 @@ export default function CustomerStories() {
   const stories = getAllCaseStudies();
 
   return (
-    <section id="customer-stories" className="relative isolate py-12">
+    <section id="case-studies" className="relative isolate py-12">
       <div className="mx-auto max-w-6xl px-6">
         <Animate name="fadeInStagger" trigger="onVisible">
           <div className="animate-item mx-auto max-w-4xl text-center mb-16">
