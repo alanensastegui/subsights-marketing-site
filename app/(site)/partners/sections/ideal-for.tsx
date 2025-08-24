@@ -15,8 +15,8 @@ export const sectionId = "ideal-for";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Ideal for Professionals Who Advise Businesses",
-  subtitle: "If you help businesses grow, you're a perfect fit. Our partners include:",
+  title: "Built for professionals who advise businesses",
+  subtitle: "Made for the teams behind modern businesses—builders, marketers, advisors",
   professionals: [
     { title: "Web Designers & Developers", icon: Palette },
     { title: "Digital Marketing Agencies", icon: Megaphone },

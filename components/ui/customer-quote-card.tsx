@@ -22,7 +22,7 @@ export function CustomerQuoteCard({ testimonial, className }: CustomerQuoteCardP
           {/* Quote Text */}
           <blockquote className="text-lg sm:text-xl md:text-2xl text-white/95 leading-relaxed font-medium relative flex-1 pt-8 pb-8">
             <span className="absolute -top-1 sm:-top-2 -left-1 sm:-left-2 text-3xl sm:text-5xl text-muted-foreground/80 font-serif leading-none">&ldquo;</span>
-            <div className="pr-10 pl-2">
+            <div className="pr-2 sm:pr-10 pl-2">
               {testimonial.quote}
             </div>
             <span className="absolute -bottom-2 sm:-bottom-3 -right-1 sm:-right-2 text-3xl sm:text-5xl text-muted-foreground/80 font-serif leading-none">&rdquo;</span>

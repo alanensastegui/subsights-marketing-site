@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { GA_MEASUREMENT_ID, RUNTIME } from "@/lib/analytics/config";
+import { GA_MEASUREMENT_ID, isDevelopment } from "@/lib/analytics/config";
 
 // ============================================================================
 // GOOGLE ANALYTICS COMPONENT
@@ -7,7 +7,7 @@ import { GA_MEASUREMENT_ID, RUNTIME } from "@/lib/analytics/config";
 
 export function GoogleAnalytics() {
   // Only load Google Analytics when measurement ID is available and not in development
-  if (!GA_MEASUREMENT_ID || RUNTIME === "local") {
+  if (!GA_MEASUREMENT_ID || isDevelopment) {
     return null;
   }
 

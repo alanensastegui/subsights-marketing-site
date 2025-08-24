@@ -11,7 +11,7 @@ import type {
   UserTimingEvent,
   ExceptionEvent,
 } from "./types";
-import { ANALYTICS_CONFIG, RUNTIME } from "./config";
+import { ANALYTICS_CONFIG, RUNTIME, isDevelopment } from "./config";
 import { GoogleAnalytics } from "./providers/ga4";
 import { ConsoleAnalytics } from "./providers/console";
 import { DisabledAnalytics } from "./providers/disabled";
@@ -39,7 +39,7 @@ function resolveProviderName(): ProviderName {
   }
 
   // Local development uses console analytics regardless of consent for DX
-  if (RUNTIME === "local") {
+  if (isDevelopment) {
     return "console";
   }
 

@@ -1,14 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Animate } from "@/components/ui/animate";
 import { CALENDLY_URL } from "@/lib/config";
 
 type Copy = {
   title: string;
   subtitle: string;
-  description: string;
-  badge: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
 };
@@ -17,12 +14,10 @@ export const sectionId = "hero";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Proven Results for Businesses Like Yours",
-  subtitle: "See how Subsights AI transforms business operations",
-  description: "We partner with businesses across diverse industries to filter noise, enhance customer experiences, and drive strategic goals. See how a Subsights AI assistant can become a true extension of your team.",
-  badge: "Customer Success",
-  primaryCta: { label: "Get Your Demo", href: CALENDLY_URL },
-  secondaryCta: { label: "View All Stories", href: "#customer-stories" },
+  title: "Meet the teams who serve customers 24/7",
+  subtitle: "Subsights powers consistent answers, faster routing, and better outcomes",
+  primaryCta: { label: "Book Demo", href: CALENDLY_URL },
+  secondaryCta: { label: "View Case Studies", href: "#customer-stories" },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
@@ -34,20 +29,14 @@ export default function Hero() {
         <div className="mx-auto max-w-4xl text-center">
           <Animate name="fadeInStagger" trigger="onVisible">
             <div className="animate-item space-y-6">
-              {c.badge && (
-                <Badge variant="secondary" className="text-sm">
-                  {c.badge}
-                </Badge>
-              )}
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-4 max-w-2xl text-center mx-auto">
                 {c.title}
               </h1>
-              <h2 className="text-xl font-semibold text-muted-foreground">
-                {c.subtitle}
-              </h2>
-              <p className="max-w-3xl mx-auto text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-                {c.description}
-              </p>
+              <div className="w-full flex justify-center">
+                <h2 className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8 break-normal max-w-md text-center mx-auto">
+                  {c.subtitle}
+                </h2>
+              </div>
             </div>
 
             <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center">
@@ -55,7 +44,7 @@ export default function Hero() {
                 asChild
                 size="lg"
                 data-analytics-id="case_studies_hero_demo"
-                data-analytics-name="Get Demo (Case Studies Hero)"
+                data-analytics-name="Book Demo (Case Studies Hero)"
                 data-analytics-context='{"source":"case_studies_hero","section":"hero"}'
               >
                 <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">

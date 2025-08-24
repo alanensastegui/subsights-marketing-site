@@ -14,8 +14,8 @@ type Copy = {
 };
 
 const copy = {
-  heading: "Don't Just Take Our Word For It",
-  subheading: "See how businesses across industries are transforming their customer experience with Subsights AI",
+  heading: "Loved by teams across industries",
+  subheading: "Teams everywhere use Subsights to deliver instant, consistent service that converts",
   cta: {
     text: "View All Case Studies",
     link: "/case-studies",

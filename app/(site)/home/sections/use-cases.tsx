@@ -11,21 +11,21 @@ type Copy = {
 };
 
 const copy = {
-  heading: "Powerful Solutions For Any Business",
+  heading: "Made for your business",
   useCases: [
     {
-      title: "For Lead Generation",
-      description: "Guide users through vast amounts of information, qualify their interests, and seamlessly connect them to the right programs or affiliate links to boost conversions.",
+      title: "For lead generation",
+      description: "Route interest, qualify fit, and hand off warm leads—seamlessly.",
       icon: Funnel,
     },
     {
-      title: "For Tourism & Hospitality",
-      description: "Act as a 24/7 virtual concierge, answering visitor questions, providing expert local recommendations, and assisting with trip planning to enhance the user experience.",
+      title: "For tourism & hospitality",
+      description: "Act as a 24/7 concierge with trusted, local recommendations and frictionless bookings.",
       icon: MapPin,
     },
     {
-      title: "For Specialized Services",
-      description: "Automate your front-line lead qualification, filtering out-of-scope inquiries and ensuring your sales team only engages with high-quality prospects that fit your niche.",
+      title: "For specialized services",
+      description: "Screen out-of-scope inquiries and keep your team focused on high-value prospects.",
       icon: Briefcase,
     },
   ],

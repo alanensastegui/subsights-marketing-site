@@ -12,8 +12,8 @@ export const sectionId = "hero";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Grow Your Agency with the Subsights AI Partner Program",
-  subtitle: "Turn your client relationships into long-term recurring revenue. Offer a cutting-edge AI chatbot solution and earn generous, multi-year commissions.",
+  title: "Subsights Partner Program",
+  subtitle: "Deliver an AI teammate to your clients and earn recurring commissions",
   primaryCta: { label: "Become a Partner", href: PARTNERSHIP_URL }
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----

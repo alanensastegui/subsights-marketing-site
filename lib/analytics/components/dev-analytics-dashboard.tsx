@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { X, BarChart3, Eye, MousePointer, DollarSign, Clock, AlertTriangle, User, Globe, Shield, CheckSquare } from "lucide-react";
 import { isConsentRequired, getConsentState } from "@/lib/analytics/consent";
-import { RUNTIME } from "@/lib/analytics/config";
+import { RUNTIME, isDevelopment } from "@/lib/analytics/config";
 import { analyticsEventQueue } from "@/lib/analytics/event-queue";
 
 // Event queue item type (matching the one in event-queue.ts)
@@ -117,7 +117,7 @@ export function DevAnalyticsDashboard() {
   };
 
   // Only show in development
-  if (process.env.NODE_ENV !== "development") {
+  if (!isDevelopment) {
     return null;
   }
 

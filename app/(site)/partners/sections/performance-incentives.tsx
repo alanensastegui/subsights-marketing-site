@@ -17,24 +17,24 @@ export const sectionId = "performance-incentives";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Plus, All Partners Get Performance Incentives",
-  subtitle: "Unlock even more revenue with bonuses that reward you for bringing in high-quality, long-term clients.",
+  title: "Performance incentives for every partner",
+  subtitle: "Bonuses that reward high-quality, long-term clients",
   incentives: [
     {
       title: "Sign-Up Bonus",
-      description: "A one-time bonus for every new client who signs up for an annual plan.",
+      description: "One-time bonus for each new client on an annual plan.",
       amount: "$100–$200",
       icon: Gift,
     },
     {
       title: "Volume Milestones",
-      description: "An annual bonus that grows as you refer more customers throughout the year.",
+      description: "Annual bonus that scales with the number of customers you refer.",
       amount: "Up to $2,000",
       icon: Target,
     },
     {
       title: "Retention Kicker",
-      description: "Earn an additional 2% on all your commissions for the year if your overall client churn rate is below 5%.",
+      description: "Earn an extra 2% for the year when portfolio churn stays under 5%.",
       amount: "+2% on Everything",
       icon: Award,
     },

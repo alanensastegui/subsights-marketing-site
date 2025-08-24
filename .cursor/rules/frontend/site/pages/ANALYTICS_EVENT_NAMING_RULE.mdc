@@ -41,10 +41,10 @@ This rule defines how to name analytics data attributes used by the site-wide au
 - Format: `{Action Label} (Surface Label)`
 - Human-friendly and short; do not encode technical params (put in context)
 - Examples:
-  - `Get Demo (Nav)` / `Get Demo (Nav Mobile)`
-  - `Get Demo (Home Hero)` / `Get Demo (Home CTA)`
-  - `Get Demo (Case Studies Hero)` / `Get Demo (Case Studies CTA)`
-  - `Get Demo (Case Study CTA)`
+  - `Book Demo (Nav)` / `Book Demo (Nav Mobile)`
+  - `Book Demo (Home Hero)` / `Book Demo (Home CTA)`
+  - `Book Demo (Case Studies Hero)` / `Book Demo (Case Studies CTA)`
+  - `Book Demo (Case Study CTA)`
   - Pricing: `{Plan Name} (Pricing)` (e.g., `Professional (Pricing)`)
 
 ## Context Guidelines (`data-analytics-context`)

@@ -15,21 +15,21 @@ export const sectionId = "why-partner";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Why Partner with Subsights?",
+  title: "Why partner with Subsights?",
   benefits: [
     {
-      title: "Generous Multi-Year Revenue",
-      description: "Earn substantial recurring commissions for the life of your client's subscription, with rates designed to reward long-term relationships.",
+      title: "Multi-year revenue",
+      description: "Substantial recurring commissions on every client.",
       icon: DollarSign,
     },
     {
-      title: "Exclusive Founders Club",
-      description: "Be one of our first 25 partners and lock in premium, higher-tier commission rates for life, ensuring you benefit most from our growth.",
+      title: "Founders Club",
+      description: "First 25 partners lock premium, lifetime rates.",
       icon: Star,
     },
     {
-      title: "Performance Bonuses",
-      description: "Unlock annual bonuses for volume and high retention, plus a sign-up bonus of up to $200 for new annual plans.",
+      title: "Performance bonuses",
+      description: "Sign-up bonus on new annual plans, volume milestones, and a retention kicker.",
       icon: Award,
     },
   ],

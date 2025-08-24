@@ -13,9 +13,9 @@ export const sectionId = "call-to-action";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  message: "Still have questions? We're here to help.",
+  message: "Still have questions?",
   cta: {
-    label: "Contact Support",
+    label: "Contact support",
     href: "mailto:support@subsights.com?subject=FAQ%20Support%20Request",
   },
 } satisfies Copy;

@@ -13,8 +13,8 @@ type Copy = {
 };
 
 const copy = {
-  heading: "In Their Own Words",
-  subheading: "Hear directly from {company} about their experience with Subsights AI",
+  heading: "In their words",
+  subheading: "How {company} runs customer experience with Subsights.",
 } satisfies Copy;
 
 export default function CaseStudyTestimonial({ caseStudy }: Props) {

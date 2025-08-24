@@ -9,8 +9,8 @@ export const sectionId = "hero";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Frequently Asked Questions",
-  description: "Find answers to common questions about Subsights",
+  title: "Frequently asked questions",
+  description: "Quick answers about Subsights",
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

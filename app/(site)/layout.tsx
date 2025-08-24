@@ -49,7 +49,7 @@ function buildNavigationItems() {
     { label: "Partners", href: "/partners" },
     { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
-    { label: "Get Demo", href: CALENDLY_URL, isButton: true },
+    { label: "Book Demo", href: CALENDLY_URL, isButton: true },
   ] as (NavItem & { isButton?: boolean })[];
 }
 
@@ -86,7 +86,7 @@ const DesktopNavigation = () => {
                   asChild
                   size="sm"
                   data-analytics-id="nav_desktop_demo"
-                  data-analytics-name="Get Demo (Nav)"
+                  data-analytics-name="Book Demo (Nav)"
                   data-analytics-context='{"source":"nav_desktop","location":"header"}'
                 >
                   <a href={item.href} target="_blank" rel="noopener noreferrer">
@@ -145,7 +145,7 @@ const MobileNavigation = () => {
                     asChild
                     className="w-full"
                     data-analytics-id="nav_mobile_demo"
-                    data-analytics-name="Get Demo (Nav Mobile)"
+                    data-analytics-name="Book Demo (Nav Mobile)"
                     data-analytics-context='{"source":"nav_mobile","location":"sheet"}'
                   >
                     <a href={item.href} target="_blank" rel="noopener noreferrer">
@@ -247,7 +247,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
             </Animate>
           </header>
 
-          <main className="mx-auto max-w-6xl px-6 pt-20">{children}</main>
+          <main className="mx-auto max-w-6xl px-6 pt-14">{children}</main>
           <ScrollToTop />
           <footer className="mx-auto max-w-6xl px-6 py-12">
             <div className="flex flex-col items-center space-y-6 text-center">
