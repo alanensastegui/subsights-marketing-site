@@ -14,20 +14,20 @@ type Props = {
   recomputeOnScrollView?: boolean;
   targetSelector?: string;
   targetAnchor?:
-  | "center"
-  | "top-left"
-  | "top"
-  | "top-right"
-  | "right"
-  | "bottom-right"
-  | "bottom"
-  | "bottom-left"
-  | "left";
+    | "center"
+    | "top-left"
+    | "top"
+    | "top-right"
+    | "right"
+    | "bottom-right"
+    | "bottom"
+    | "bottom-left"
+    | "left";
   targetOffsetPx?: number;
   stopShortPx?: number;
   freezeAfterTarget?: boolean;
   renderOnlyWhenTargetPresent?: boolean;
-  strokeDasharray?: string;
+  strokeDasharray?: string; // intentionally ignored to preserve current look (solid when idle)
   curveStyle?: "none" | "auto";
   curveAmplitudePx?: number;
 };
@@ -38,7 +38,14 @@ type Line = { x1: number; y1: number; x2: number; y2: number };
 const clamp = (v: number, min: number, max: number) =>
   v < min ? min : v > max ? max : v;
 
-export default function CurvedArrow({
+// Animation timings preserved exactly
+const ENTER_MS = 420;
+const EXIT_MS = 340;
+
+// Small constant used for marker refX (same value as before: 6 - 0.6)
+const MARKER_REFX = 5.4;
+
+function CurvedArrowInner({
   anchorSelector,
   anchorSide = "right",
   startOffsetPx = 8,
@@ -54,7 +61,6 @@ export default function CurvedArrow({
   stopShortPx = 0,
   freezeAfterTarget = false,
   renderOnlyWhenTargetPresent = false,
-  strokeDasharray,
   curveStyle = "auto",
   curveAmplitudePx,
 }: Props) {
@@ -62,7 +68,7 @@ export default function CurvedArrow({
   const scheduleComputeRef = React.useRef<number | null>(null);
   const isFrozenRef = React.useRef<boolean>(false);
 
-  // Keep a single “live config” ref so compute() never closes over stale props.
+  // Live config to avoid stale closures in compute()
   const cfgRef = React.useRef({
     anchorSelector,
     anchorSide,
@@ -94,11 +100,35 @@ export default function CurvedArrow({
     curveAmplitudePx,
   };
 
+  // Geometry produced by compute()
   const [svgSize, setSvgSize] = React.useState<Size>({ width: 0, height: 0 });
   const [line, setLine] = React.useState<Line | null>(null);
   const [pathD, setPathD] = React.useState<string | null>(null);
 
-  // Stable, URL-safe marker id (avoids hydration/randomness issues).
+  // Animation state machine
+  type Phase = "hidden" | "entering" | "visible" | "exiting";
+  const [phase, setPhase] = React.useState<Phase>("hidden");
+
+  // Render commit (what the DOM currently shows) — grouped to avoid extra renders
+  const [renderGeom, setRenderGeom] = React.useState<{
+    size: Size;
+    line: Line | null;
+    pathD: string | null;
+  }>({ size: { width: 0, height: 0 }, line: null, pathD: null });
+
+  // Single ref setter for either line or path
+  const shapeRef = React.useRef<SVGPathElement | SVGLineElement | null>(null);
+  const setShapeRef = React.useCallback(
+    (el: SVGPathElement | SVGLineElement | null) => {
+      shapeRef.current = el;
+    },
+    []
+  );
+
+  const cleanupTransitionRef = React.useRef<(() => void) | null>(null);
+  const transitionFallbackTimerRef = React.useRef<number | null>(null);
+
+  // Stable, URL-safe marker id
   const rawId = React.useId();
   const arrowId = React.useMemo(
     () => `dp-arrow-${rawId.replace(/[^a-zA-Z0-9_-]/g, "")}`,
@@ -106,12 +136,17 @@ export default function CurvedArrow({
   );
 
   const setSvgSizeIfChanged = React.useCallback((w: number, h: number) => {
-    setSvgSize((prev) => (prev.width !== w || prev.height !== h ? { width: w, height: h } : prev));
+    setSvgSize((prev) =>
+      prev.width !== w || prev.height !== h ? { width: w, height: h } : prev
+    );
   }, []);
   const setLineIfChanged = React.useCallback((next: Line | null) => {
     setLine((prev) => {
       if (!prev || !next) return next;
-      return (prev.x1 !== next.x1 || prev.y1 !== next.y1 || prev.x2 !== next.x2 || prev.y2 !== next.y2)
+      return prev.x1 !== next.x1 ||
+        prev.y1 !== next.y1 ||
+        prev.x2 !== next.x2 ||
+        prev.y2 !== next.y2
         ? next
         : prev;
     });
@@ -128,15 +163,20 @@ export default function CurvedArrow({
     if (!container) return;
 
     // Measure the host (offsetParent is a reliable "hero" for absolute children)
-    const hostEl = (container.offsetParent as HTMLElement | null) || container.parentElement || container;
+    const hostEl =
+      (container.offsetParent as HTMLElement | null) ||
+      container.parentElement ||
+      container;
     const hostRect = hostEl.getBoundingClientRect();
     const baseWidth = Math.max(0, Math.floor(hostRect.width));
     const baseHeight = Math.max(0, Math.floor(hostRect.height));
     if (baseWidth === 0 || baseHeight === 0) return;
 
-    const anchor = document.querySelector(cfg.anchorSelector) as HTMLElement | null;
+    const anchor = document.querySelector(cfg.anchorSelector) as
+      | HTMLElement
+      | null;
 
-    // If no anchor, we size the svg to host and render nothing (unchanged behavior).
+    // If no anchor, size the svg to host and render nothing (unchanged behavior).
     if (!anchor) {
       setSvgSizeIfChanged(baseWidth, baseHeight);
       setLineIfChanged(null);
@@ -168,15 +208,17 @@ export default function CurvedArrow({
         break;
     }
 
-    // Check if starting point is outside viewport bounds
+    // If starting point is outside viewport, don't render
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     const startXInViewport = startX + hostRect.left;
     const startYInViewport = startY + hostRect.top;
-
-    // If starting point is outside viewport, don't render
-    if (startXInViewport < 0 || startXInViewport > viewportWidth ||
-      startYInViewport < 0 || startYInViewport > viewportHeight) {
+    if (
+      startXInViewport < 0 ||
+      startXInViewport > viewportWidth ||
+      startYInViewport < 0 ||
+      startYInViewport > viewportHeight
+    ) {
       setSvgSizeIfChanged(baseWidth, baseHeight);
       setLineIfChanged(null);
       setPathIfChanged(null);
@@ -196,7 +238,9 @@ export default function CurvedArrow({
     let targetEl: HTMLElement | null = null;
 
     if (cfg.targetSelector) {
-      targetEl = document.querySelector(cfg.targetSelector) as HTMLElement | null;
+      targetEl = document.querySelector(cfg.targetSelector) as
+        | HTMLElement
+        | null;
 
       if (!targetEl && cfg.renderOnlyWhenTargetPresent) {
         setSvgSizeIfChanged(baseWidth, baseHeight);
@@ -216,21 +260,37 @@ export default function CurvedArrow({
             ty = tr.top + tr.height / 2;
             break;
           case "top-left":
-            tx = tr.left; ty = tr.top; break;
+            tx = tr.left;
+            ty = tr.top;
+            break;
           case "top":
-            tx = tr.left + tr.width / 2; ty = tr.top; break;
+            tx = tr.left + tr.width / 2;
+            ty = tr.top;
+            break;
           case "top-right":
-            tx = tr.right; ty = tr.top; break;
+            tx = tr.right;
+            ty = tr.top;
+            break;
           case "right":
-            tx = tr.right; ty = tr.top + tr.height / 2; break;
+            tx = tr.right;
+            ty = tr.top + tr.height / 2;
+            break;
           case "bottom-right":
-            tx = tr.right; ty = tr.bottom; break;
+            tx = tr.right;
+            ty = tr.bottom;
+            break;
           case "bottom":
-            tx = tr.left + tr.width / 2; ty = tr.bottom; break;
+            tx = tr.left + tr.width / 2;
+            ty = tr.bottom;
+            break;
           case "bottom-left":
-            tx = tr.left; ty = tr.bottom; break;
+            tx = tr.left;
+            ty = tr.bottom;
+            break;
           case "left":
-            tx = tr.left; ty = tr.top + tr.height / 2; break;
+            tx = tr.left;
+            ty = tr.top + tr.height / 2;
+            break;
         }
 
         targetX = tx - hostRect.left + cfg.targetOffsetPx;
@@ -240,15 +300,36 @@ export default function CurvedArrow({
           const edgeShift = cfg.stopShortPx;
           const cornerShift = cfg.stopShortPx / Math.SQRT2;
           switch (cfg.targetAnchor) {
-            case "top-left": targetX -= cornerShift; targetY -= cornerShift; break;
-            case "top": targetY -= edgeShift; break;
-            case "top-right": targetX += cornerShift; targetY -= cornerShift; break;
-            case "right": targetX += edgeShift; break;
-            case "bottom-right": targetX += cornerShift; targetY += cornerShift; break;
-            case "bottom": targetY += edgeShift; break;
-            case "bottom-left": targetX -= cornerShift; targetY += cornerShift; break;
-            case "left": targetX -= edgeShift; break;
-            case "center": break;
+            case "top-left":
+              targetX -= cornerShift;
+              targetY -= cornerShift;
+              break;
+            case "top":
+              targetY -= edgeShift;
+              break;
+            case "top-right":
+              targetX += cornerShift;
+              targetY -= cornerShift;
+              break;
+            case "right":
+              targetX += edgeShift;
+              break;
+            case "bottom-right":
+              targetX += cornerShift;
+              targetY += cornerShift;
+              break;
+            case "bottom":
+              targetY += edgeShift;
+              break;
+            case "bottom-left":
+              targetX -= cornerShift;
+              targetY += cornerShift;
+              break;
+            case "left":
+              targetX -= edgeShift;
+              break;
+            case "center":
+              break;
           }
         }
       }
@@ -257,8 +338,12 @@ export default function CurvedArrow({
     let dx = targetX - startX;
     let dy = targetY - startY;
 
-    const extWidth = cfg.extendToViewport ? Math.ceil(Math.max(baseWidth, targetX)) : baseWidth;
-    const extHeight = cfg.extendToViewport ? Math.ceil(Math.max(baseHeight, targetY)) : baseHeight;
+    const extWidth = cfg.extendToViewport
+      ? Math.ceil(Math.max(baseWidth, targetX))
+      : baseWidth;
+    const extHeight = cfg.extendToViewport
+      ? Math.ceil(Math.max(baseHeight, targetY))
+      : baseHeight;
 
     // Re-clamp start into extended bounds
     startX = clamp(startX, 0, extWidth);
@@ -308,7 +393,7 @@ export default function CurvedArrow({
     setSvgSizeIfChanged(extWidth, extHeight);
     setLineIfChanged({ x1: startX, y1: startY, x2: endX, y2: endY });
 
-    // Curved path (same look; just compute+commit with change checks)
+    // Curved path (same look)
     if (cfg.curveStyle !== "none") {
       const dxCurve = endX - startX;
       const dyCurve = endY - startY;
@@ -317,15 +402,16 @@ export default function CurvedArrow({
       if (dist > 0) {
         const nx = -dyCurve / dist;
         const ny = dxCurve / dist;
-        // Make it curvier by default but keep within view via clamping below
-        const baseAmp = cfg.curveAmplitudePx ?? (() => {
-          const maxByDist = dist * 0.5; // more pronounced baseline curvature
-          const maxByBox = Math.min(extWidth, extHeight) * 0.5; // scale to viewport/host
-          return Math.max(24, Math.min(240, Math.min(maxByDist, maxByBox)));
-        })();
+
+        const baseAmp =
+          cfg.curveAmplitudePx ??
+          (() => {
+            const maxByDist = dist * 0.5;
+            const maxByBox = Math.min(extWidth, extHeight) * 0.5;
+            return Math.max(24, Math.min(240, Math.min(maxByDist, maxByBox)));
+          })();
         const sign = -1;
 
-        // Shift control points to 1/3 and 2/3 along the path for a smoother arc
         const baseC1x = startX + dxCurve * 0.1;
         const baseC1y = startY + dyCurve * 0.1;
         const baseC2x = startX + dxCurve * 0.67;
@@ -365,7 +451,9 @@ export default function CurvedArrow({
         const c2x = baseC2x + nx * amp * sign;
         const c2y = baseC2y + ny * amp * sign;
 
-        setPathIfChanged(`M ${startX} ${startY} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${endX} ${endY}`);
+        setPathIfChanged(
+          `M ${startX} ${startY} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${endX} ${endY}`
+        );
       } else {
         setPathIfChanged(null);
       }
@@ -378,30 +466,29 @@ export default function CurvedArrow({
     }
   }, [setSvgSizeIfChanged, setLineIfChanged, setPathIfChanged]);
 
-  // Schedule compute on next animation frame (shared handler)
+  // RAF-throttled scheduler (deduped)
   const scheduleCompute = React.useCallback(() => {
     if (scheduleComputeRef.current != null) cancelAnimationFrame(scheduleComputeRef.current);
     scheduleComputeRef.current = requestAnimationFrame(compute);
   }, [compute]);
 
-  // Use layout effect so first paint already has the correct geometry (less flicker)
+  // Setup observers & listeners
   React.useLayoutEffect(() => {
     const ro = new ResizeObserver(scheduleCompute);
     const container = containerRef.current;
-
     if (container) ro.observe(container);
 
-    // Observe anchor if present
     const anchor = document.querySelector(anchorSelector) as HTMLElement | null;
     if (anchor) ro.observe(anchor);
 
-    // Optionally observe the target element (when we have a selector)
     let mo: MutationObserver | null = null;
     const maybeHookTarget = () => {
       if (!targetSelector) return;
       const t = document.querySelector(targetSelector) as HTMLElement | null;
       if (t) {
-        try { ro.observe(t); } catch { }
+        try {
+          ro.observe(t);
+        } catch {}
         scheduleCompute();
         if (freezeAfterTarget && mo) mo.disconnect();
       }
@@ -409,6 +496,7 @@ export default function CurvedArrow({
 
     if (targetSelector) {
       mo = new MutationObserver(maybeHookTarget);
+      // childList only, subtree = true (attributes not needed)
       mo.observe(document.documentElement, { childList: true, subtree: true });
       maybeHookTarget();
     }
@@ -416,6 +504,7 @@ export default function CurvedArrow({
     // Window listeners
     const onResize = scheduleCompute;
     window.addEventListener("resize", onResize);
+
     let onScroll: ((e: Event) => void) | null = null;
     if (recomputeOnScrollView) {
       onScroll = () => {
@@ -444,22 +533,174 @@ export default function CurvedArrow({
     };
   }, [anchorSelector, targetSelector, recomputeOnScrollView, freezeAfterTarget, scheduleCompute]);
 
-  const { width, height } = svgSize;
+  // Derived visibility from current compute
+  const hasComputedGeom = svgSize.width > 0 && svgSize.height > 0 && !!line;
+
+  // Phase transitions & committing geometry to the DOM-facing state
+  React.useEffect(() => {
+    if (cleanupTransitionRef.current) {
+      cleanupTransitionRef.current();
+      cleanupTransitionRef.current = null;
+    }
+
+    if (hasComputedGeom) {
+      if (phase === "hidden" || phase === "exiting") {
+        setRenderGeom({ size: svgSize, line, pathD });
+        setPhase("entering");
+        return;
+      }
+      if (phase === "visible" || phase === "entering") {
+        // update without re-triggering animation
+        setRenderGeom((prev) => {
+          const sizeChanged =
+            prev.size.width !== svgSize.width || prev.size.height !== svgSize.height;
+          const lineChanged =
+            !prev.line ||
+            !line ||
+            prev.line.x1 !== line.x1 ||
+            prev.line.y1 !== line.y1 ||
+            prev.line.x2 !== line.x2 ||
+            prev.line.y2 !== line.y2;
+          const pathChanged = prev.pathD !== pathD;
+          if (!sizeChanged && !lineChanged && !pathChanged) return prev;
+          return { size: svgSize, line, pathD };
+        });
+      }
+    } else {
+      if (phase === "visible" || phase === "entering") {
+        setPhase("exiting");
+      } else if (phase !== "exiting") {
+        setRenderGeom({ size: { width: 0, height: 0 }, line: null, pathD: null });
+        setPhase("hidden");
+      }
+    }
+  }, [hasComputedGeom, svgSize, line, pathD, phase]);
+
+  // Stroke-dash animation (identical look; pathLength=1)
+  React.useEffect(() => {
+    const el = shapeRef.current as SVGPathElement | SVGLineElement | null;
+    if (!el) return;
+
+    // Clean any previous listeners/timers
+    if (cleanupTransitionRef.current) {
+      cleanupTransitionRef.current();
+      cleanupTransitionRef.current = null;
+    }
+    if (transitionFallbackTimerRef.current != null) {
+      clearTimeout(transitionFallbackTimerRef.current);
+      transitionFallbackTimerRef.current = null;
+    }
+
+    const onTransitionEnd = (e: Event) => {
+      const te = e as unknown as TransitionEvent;
+      if (te.propertyName !== "stroke-dashoffset") return;
+
+      if (phase === "entering") {
+        el.style.transition = "none";
+        el.style.strokeDashoffset = "0";
+        el.style.strokeDasharray = "none"; // solid when idle
+        // force reflow
+        void el.getBoundingClientRect();
+        try {
+          el.setAttribute("marker-end", `url(#${arrowId})`);
+        } catch {}
+        setPhase("visible");
+        if (transitionFallbackTimerRef.current != null) {
+          clearTimeout(transitionFallbackTimerRef.current);
+          transitionFallbackTimerRef.current = null;
+        }
+      } else if (phase === "exiting") {
+        setPhase("hidden");
+        setRenderGeom({ size: { width: 0, height: 0 }, line: null, pathD: null });
+        if (transitionFallbackTimerRef.current != null) {
+          clearTimeout(transitionFallbackTimerRef.current);
+          transitionFallbackTimerRef.current = null;
+        }
+      }
+    };
+
+    if (phase === "entering") {
+      try {
+        el.removeAttribute("marker-end");
+      } catch {}
+      el.style.transition = "none";
+      el.style.strokeDasharray = "1";
+      el.style.strokeDashoffset = "1";
+      requestAnimationFrame(() => {
+        void el.getBoundingClientRect();
+        el.style.transition = `stroke-dashoffset ${ENTER_MS}ms ease-out`;
+        el.style.strokeDashoffset = "0";
+      });
+      el.addEventListener("transitionend", onTransitionEnd);
+      cleanupTransitionRef.current = () => el.removeEventListener("transitionend", onTransitionEnd);
+
+      transitionFallbackTimerRef.current = window.setTimeout(() => {
+        onTransitionEnd(
+          new TransitionEvent("transitionend", { propertyName: "stroke-dashoffset" })
+        );
+      }, ENTER_MS + 60);
+    } else if (phase === "exiting") {
+      try {
+        el.removeAttribute("marker-end");
+      } catch {}
+      el.style.transition = "none";
+      el.style.strokeDasharray = "1";
+      el.style.strokeDashoffset = "0";
+      requestAnimationFrame(() => {
+        void el.getBoundingClientRect();
+        el.style.transition = `stroke-dashoffset ${EXIT_MS}ms ease-in`;
+        el.style.strokeDashoffset = "1";
+      });
+      el.addEventListener("transitionend", onTransitionEnd);
+      cleanupTransitionRef.current = () => el.removeEventListener("transitionend", onTransitionEnd);
+
+      transitionFallbackTimerRef.current = window.setTimeout(() => {
+        onTransitionEnd(
+          new TransitionEvent("transitionend", { propertyName: "stroke-dashoffset" })
+        );
+      }, EXIT_MS + 60);
+    } else if (phase === "visible") {
+      el.style.transition = "none";
+      el.style.strokeDasharray = "none";
+      el.style.strokeDashoffset = "0";
+      try {
+        el.setAttribute("marker-end", `url(#${arrowId})`);
+      } catch {}
+    }
+
+    return () => {
+      if (cleanupTransitionRef.current) {
+        cleanupTransitionRef.current();
+        cleanupTransitionRef.current = null;
+      }
+      if (transitionFallbackTimerRef.current != null) {
+        clearTimeout(transitionFallbackTimerRef.current);
+        transitionFallbackTimerRef.current = null;
+      }
+    };
+  }, [phase, arrowId]);
+
+  // Render values derived from committed geometry
+  const { size: renderSize, line: renderLine, pathD: renderPathD } = renderGeom;
+  const renderWidth = phase === "hidden" ? 0 : renderSize.width;
+  const renderHeight = phase === "hidden" ? 0 : renderSize.height;
+  const activeLine = phase === "hidden" ? null : renderLine;
+  const activePathD = phase === "hidden" ? null : renderPathD;
 
   return (
     <div
       ref={containerRef}
       className={`pointer-events-none absolute left-0 top-0 ${containerClassName ?? ""}`}
-      style={{ width, height }}
+      style={{ width: renderWidth, height: renderHeight }}
+      aria-hidden="true"
     >
-      {width > 0 && height > 0 && line && (
+      {renderWidth > 0 && renderHeight > 0 && activeLine && (
         <svg
           className={className}
           width="100%"
           height="100%"
-          viewBox={`0 0 ${width} ${height}`}
+          viewBox={`0 0 ${renderWidth} ${renderHeight}`}
           preserveAspectRatio="none"
-          aria-hidden="true"
           role="presentation"
           style={{ overflow: "visible" }}
         >
@@ -467,48 +708,62 @@ export default function CurvedArrow({
             <marker
               id={arrowId}
               viewBox="0 0 6 6"
-              refX="6"
+              refX={MARKER_REFX}
               refY="3"
               markerWidth="13"
               markerHeight="13"
               markerUnits="strokeWidth"
               orient="auto-start-reverse"
             >
-              {/* NOTE: kept the exact path data to avoid any visual changes */}
+              {/* exact path, unchanged */}
               <path d="M 1.5 0.8 L 6 3 L 1.5 5.2 L 4.6 3" fill="currentColor" />
             </marker>
           </defs>
 
-          {pathD && curveStyle !== "none" ? (
+          {activePathD && curveStyle !== "none" ? (
             <path
-              d={pathD}
+              ref={setShapeRef}
+              d={activePathD}
               fill="none"
               stroke="currentColor"
               strokeWidth={strokeWidth}
-              strokeLinecap="round"
+              strokeLinecap={phase === "visible" ? "butt" : "round"}
               vectorEffect="non-scaling-stroke"
-              {...(strokeDasharray ? { strokeDasharray } : {})}
-              markerEnd={`url(#${arrowId})`}
+              pathLength={1}
+              style={{ willChange: "stroke-dashoffset" }}
+              {...(phase === "visible" ? { markerEnd: `url(#${arrowId})` } : {})}
             />
           ) : (
             <line
-              x1={line.x1}
-              y1={line.y1}
-              x2={line.x2}
-              y2={line.y2}
+              ref={setShapeRef}
+              x1={activeLine.x1}
+              y1={activeLine.y1}
+              x2={activeLine.x2}
+              y2={activeLine.y2}
               stroke="currentColor"
               strokeWidth={strokeWidth}
-              strokeLinecap="round"
+              strokeLinecap={phase === "visible" ? "butt" : "round"}
               vectorEffect="non-scaling-stroke"
-              {...(strokeDasharray ? { strokeDasharray } : {})}
-              markerEnd={`url(#${arrowId})`}
+              pathLength={1}
+              style={{ willChange: "stroke-dashoffset" }}
+              {...(phase === "visible" ? { markerEnd: `url(#${arrowId})` } : {})}
             />
           )}
 
           {showEndpoints && (
             <>
-              <circle cx={line.x1} cy={line.y1} r={Math.max(2, strokeWidth * 0.9)} fill="currentColor" />
-              <circle cx={line.x2} cy={line.y2} r={Math.max(2, strokeWidth * 0.9)} fill="currentColor" />
+              <circle
+                cx={activeLine.x1}
+                cy={activeLine.y1}
+                r={Math.max(2, strokeWidth * 0.9)}
+                fill="currentColor"
+              />
+              <circle
+                cx={activeLine.x2}
+                cy={activeLine.y2}
+                r={Math.max(2, strokeWidth * 0.9)}
+                fill="currentColor"
+              />
             </>
           )}
         </svg>
@@ -516,3 +771,7 @@ export default function CurvedArrow({
     </div>
   );
 }
+
+// Prevent unnecessary re-renders from parents when props are unchanged
+const CurvedArrow = React.memo(CurvedArrowInner);
+export default CurvedArrow;
