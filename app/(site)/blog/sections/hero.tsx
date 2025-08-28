@@ -9,7 +9,6 @@ export const sectionId = "hero";
 type Copy = {
   title: string;
   subtitle: string;
-  description: string;
   badge: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
@@ -17,12 +16,10 @@ type Copy = {
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Insights & Updates",
-  subtitle: "The latest from the Subsights team",
-  description:
-    "Deep dives on new features, practical guidance on AI, and stories from the front lines of customer support innovation.",
+  title: "Practical AI for support",
+  subtitle: "Guides, updates, and stories from the Subsights team",
   badge: "Blog",
-  primaryCta: { label: "Get Your Demo", href: CALENDLY_URL },
+  primaryCta: { label: "Book Demo", href: CALENDLY_URL },
   secondaryCta: { label: "Read Posts", href: "#posts" },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -40,15 +37,12 @@ export default function Hero() {
                   {c.badge}
                 </Badge>
               )}
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
                 {c.title}
               </h1>
-              <h2 className="text-xl font-semibold text-muted-foreground">
+              <h2 className="text-xl md:text-2xl text-muted-foreground">
                 {c.subtitle}
               </h2>
-              <p className="max-w-3xl mx-auto text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-                {c.description}
-              </p>
             </div>
             <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center">
               <Button
