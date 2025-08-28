@@ -37,7 +37,7 @@ const copy = {
     },
     {
       title: "Multilingual by default",
-      description: "Serve customers in their preferred language with native-level fluency.",
+      description: "Support customers in their preferred language with native-level fluency.",
       icon: Languages
     }
   ]

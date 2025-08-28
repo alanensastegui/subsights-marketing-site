@@ -14,7 +14,7 @@ export const sectionId = "hero";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Meet the teams who serve customers 24/7",
+  title: "Meet the teams who support customers 24/7",
   subtitle: "Subsights powers consistent answers, faster routing, and better outcomes",
   primaryCta: { label: "Book Demo", href: CALENDLY_URL },
   secondaryCta: { label: "View Case Studies", href: "#customer-stories" },
