@@ -51,7 +51,7 @@ export default async function CaseStudyPage({ params }: Props) {
     () => <CaseStudyContent caseStudy={caseStudy} />,
     () => <CaseStudyMetrics caseStudy={caseStudy} />,
     () => <CaseStudyTestimonial caseStudy={caseStudy} />,
-    () => <CallToAction caseStudy={caseStudy} />,
+    () => <CallToAction />,
   ];
 
   return (

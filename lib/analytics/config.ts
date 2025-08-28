@@ -3,12 +3,10 @@
 // ============================================================================
 
 import { isConsentRequired, getConsentState } from "./consent";
+import { RUNTIME, isPreview, isProd, isDevelopment } from "../env";
+export { RUNTIME, isPreview, isProd, isDevelopment };
 
-export type RuntimeEnvironment = "local" | "preview" | "staging" | "prod";
-
-// Runtime environment detection with fallback to local
-export const RUNTIME: RuntimeEnvironment =
-  (process.env.NEXT_PUBLIC_RUNTIME_ENV as RuntimeEnvironment) ?? "local";
+export type RuntimeEnvironment = "development" | "preview" | "prod";
 
 // Single GA Measurement ID. Provide it only in environments where you want GA enabled.
 export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
@@ -18,14 +16,14 @@ export const ANALYTICS_CONFIG = {
   // Enable analytics based on region and consent requirements
   enabled: shouldEnableAnalytics(),
 
-  // Use Google Analytics in staging/prod, console in preview
-  provider: RUNTIME === "preview" ? "console" : "ga4",
+  // Use Google Analytics in prod, console provider otherwise
+  provider: isProd ? "ga4" : "console",
 
   // Sampling rates for different environments
   sampling: {
-    pageViews: RUNTIME === "prod" ? 1.0 : 1.0, // 100% in all envs
-    events: RUNTIME === "prod" ? 1.0 : 1.0,     // 100% in all envs
-    webVitals: RUNTIME === "prod" ? 0.1 : 1.0,  // 10% in prod, 100% elsewhere
+    pageViews: isProd ? 1.0 : 1.0, // 100% in all envs
+    events: isProd ? 1.0 : 1.0,     // 100% in all envs
+    webVitals: isProd ? 0.1 : 1.0,  // 10% in prod, 100% elsewhere
   },
 
   // Consent mode configuration
@@ -50,7 +48,7 @@ export const ANALYTICS_CONFIG = {
  */
 function shouldEnableAnalytics(): boolean {
   // Development: Always use console analytics
-  if (RUNTIME === "local") return false;
+  if (isDevelopment) return false;
 
   // Check if consent is required for this region
   const consentRequired = isConsentRequired();
@@ -78,13 +76,3 @@ function hasValidConsent(): boolean {
     return false;
   }
 }
-
-// Validation helpers
-export const isValidRuntime = (env: string): env is RuntimeEnvironment => {
-  return ["local", "preview", "staging", "prod"].includes(env);
-};
-
-export const isProduction = RUNTIME === "prod";
-export const isDevelopment = RUNTIME === "local";
-export const isPreview = RUNTIME === "preview";
-export const isStaging = RUNTIME === "staging";
