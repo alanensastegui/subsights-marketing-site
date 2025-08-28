@@ -1,7 +1,7 @@
 ---
 slug: welcome-to-subsights
 title: "Welcome to the Subsights Blog"
-date: "2025-01-01"
+date: "2025-08-28"
 excerpt: "Introducing the Subsights blog where we share updates, experiments, and lessons learned building AI for customer support."
 ---
 
@@ -17,13 +17,12 @@ Our posts will range from high level strategy to low level implementation detail
 
 - Feature announcements with context on the problems they solve.
 - Best practices for weaving AI into existing workflows.
-- Reflections on ethics, data stewardship, and model evaluation.
 - Lessons learned shipping fast in a rapidly changing ecosystem.
 
 We'll also invite customers and partners to contribute guest pieces. The goal is to create a library of practical knowledge for anyone building or operating AI‑powered support.
 
 ## Stay in Touch
 
-We want this to be a conversation. Reach out on social, send us an email, or meet the team at one of our monthly office hours. Let us know what you'd like to read about and how we can make Subsights more helpful for your customers.
+We want this to be a conversation. Reach out on [social](https://www.linkedin.com/company/subsights/) or send us an [email](mailto:team@subsights.com). Let us know what you'd like to read about and how we can make Subsights more helpful for your customers.
 
 Thanks for stopping by—we're just getting started.
