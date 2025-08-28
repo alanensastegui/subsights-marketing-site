@@ -27,6 +27,7 @@ import { AnalyticsProvider } from "@/lib/analytics/context";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import { AutoButtonTracking } from "@/lib/analytics/components/auto-button-tracking";
+import { ApolloTracker } from "@/components/layout/apollo-tracker";
 
 function buildNavigationItems() {
   const caseStudies = getAllCaseStudies();
@@ -49,7 +50,7 @@ function buildNavigationItems() {
     { label: "About", href: "/about" },
     { label: "Blog", href: "/blog" },
     { label: "FAQ", href: "/faq" },
-    { label: "Get Demo", href: CALENDLY_URL, isButton: true },
+    { label: "Book Demo", href: CALENDLY_URL, isButton: true },
   ] as (NavItem & { isButton?: boolean })[];
 }
 
@@ -86,7 +87,7 @@ const DesktopNavigation = () => {
                   asChild
                   size="sm"
                   data-analytics-id="nav_desktop_demo"
-                  data-analytics-name="Get Demo (Nav)"
+                  data-analytics-name="Book Demo (Nav)"
                   data-analytics-context='{"source":"nav_desktop","location":"header"}'
                 >
                   <a href={item.href} target="_blank" rel="noopener noreferrer">
@@ -145,7 +146,7 @@ const MobileNavigation = () => {
                     asChild
                     className="w-full"
                     data-analytics-id="nav_mobile_demo"
-                    data-analytics-name="Get Demo (Nav Mobile)"
+                    data-analytics-name="Book Demo (Nav Mobile)"
                     data-analytics-context='{"source":"nav_mobile","location":"sheet"}'
                   >
                     <a href={item.href} target="_blank" rel="noopener noreferrer">
@@ -207,9 +208,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         <link rel="icon" href="/images/logo/small-logo.svg" type="image/svg+xml" />
         <link rel="shortcut icon" href="/images/logo/small-logo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/images/logo/small-logo.svg" />
-
-
-
+        <ApolloTracker appId={process.env.NEXT_PUBLIC_APOLLO_APP_ID} />
         <script
           src="https://widget.subsights.com/chatbot.js"
           data-workspace="0XvceSLk1j"
@@ -249,7 +248,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
             </Animate>
           </header>
 
-          <main className="mx-auto max-w-6xl px-6 pt-20">{children}</main>
+          <main className="mx-auto max-w-6xl px-6 pt-14">{children}</main>
           <ScrollToTop />
           <footer className="mx-auto max-w-6xl px-6 py-12">
             <div className="flex flex-col items-center space-y-6 text-center">

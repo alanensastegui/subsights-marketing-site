@@ -39,7 +39,7 @@ The app URL is configurable via environment variables to support different deplo
 
 - **Development**: `http://localhost:4000`
 - **Production**: `https://app.subsights.com`
-- **Preview/Staging**: `https://app.latest.subsights.com`
+- **Preview**: `https://app.latest.subsights.com`
 
 ### Netlify Deployment
 

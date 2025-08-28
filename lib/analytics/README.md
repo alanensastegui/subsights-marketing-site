@@ -10,12 +10,10 @@ The system automatically detects your runtime environment and configures analyti
 
 ```bash
 # Runtime Environment (auto-detected, can be overridden)
-NEXT_PUBLIC_RUNTIME_ENV=local|preview|staging|prod
+NEXT_PUBLIC_ENV=development|preview|prod
 
-# Google Analytics Measurement IDs (environment-specific)
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PREVIEW=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_STAGING=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PROD=G-XXXXXXXXXX
+# Google Analytics Measurement ID (set only in envs where GA should run)
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 ### 2. Verify Installation
@@ -41,8 +39,8 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID_PROD=G-XXXXXXXXXX
 - **Production Mode**: Google Analytics 4 with consent mode
 
 ### Environment-Aware Behavior
-- **Local Development**: Console analytics with development dashboard
-- **Preview/Staging**: Console analytics for testing
+- **Development**: Console analytics with development dashboard
+- **Preview**: Console analytics for testing
 - **Production**: Google Analytics with optimized sampling and consent mode
 
 ## 🏗️ Architecture
@@ -241,12 +239,10 @@ console.log(`Queue: ${status.queueLength} events, ${status.listenerCount} listen
 
 ```bash
 # Runtime Environment
-NEXT_PUBLIC_RUNTIME_ENV=local|preview|staging|prod
+NEXT_PUBLIC_ENV=development|preview|prod
 
-# Google Analytics (environment-specific)
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PREVIEW=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_STAGING=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PROD=G-XXXXXXXXXX
+# Google Analytics (single var; leave unset in envs you don't want GA)
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 ### Analytics Configuration

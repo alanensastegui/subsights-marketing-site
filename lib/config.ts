@@ -1,20 +1,16 @@
-// App URL configuration based on environment
+import { isProd, isPreview, isDevelopment } from "@/lib/env";
+
 export const getAppUrl = () => {
-  // Check for explicit environment variable first
   if (process.env.NEXT_PUBLIC_APP_URL) {
     return process.env.NEXT_PUBLIC_APP_URL;
   }
 
-  // Fallback based on NODE_ENV
-  switch (process.env.NODE_ENV) {
-    case "development":
-      return "http://localhost:4000";
-    case "production":
-      return "https://app.subsights.com";
-    default:
-      // For preview deployments (like Netlify previews)
-      return "https://app.latest.subsights.com";
-  }
+  if (isDevelopment) return "http://localhost:4000";
+  if (isProd) return "https://app.subsights.com";
+  if (isPreview) return "https://app.latest.subsights.com";
+
+  // Fallback to development
+  return "http://localhost:4000";
 };
 
 // Calendly demo URL - can be overridden with NEXT_PUBLIC_CALENDLY_URL

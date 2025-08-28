@@ -19,25 +19,25 @@ export const sectionId = "get-started";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Get Started in 3 Simple Steps",
+  title: "Get started in three steps",
   primaryCta: { label: "Get Started", href: PARTNERSHIP_URL },
   steps: [
     {
       number: 1,
-      title: "Join for Free",
-      description: "Sign up in minutes through our simple online application. There's no cost or commitment.",
+      title: "Join for free",
+      description: "Apply in minutes. No fees. No commitment.",
       icon: UserPlus,
     },
     {
       number: 2,
-      title: "Register a Referral",
-      description: "Use our dedicated Partner Portal to easily register new clients you're introducing to Subsights AI. Our deal protection ensures you get credit for your leads.",
+      title: "Register a referral",
+      description: "Add leads in the Partner Portal. Deal protection included.",
       icon: CheckCircle,
     },
     {
       number: 3,
-      title: "Earn Long-Term Commissions",
-      description: "After a 3-month stability period, you'll start earning recurring commissions—paid out monthly like clockwork—for the life of that customer's account.",
+      title: "Earn long-term commissions",
+      description: "After a 3-month stability period, receive monthly payouts for the life of the account.",
       icon: TrendingUp,
     },
   ],

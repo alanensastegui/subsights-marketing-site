@@ -68,7 +68,7 @@ function createAnalyticsProvider(): Analytics {
   }
 
   // Development: Always use console analytics
-  if (RUNTIME === "local") {
+  if (isDevelopment) {
     return new ConsoleAnalytics();
   }
 
@@ -200,11 +200,11 @@ function checkIfEEA(): boolean {
 ```typescript
 export const ANALYTICS_CONFIG = {
   enabled: shouldEnableAnalytics(),
-  provider: RUNTIME === "preview" ? "console" : "ga4",
+  provider: isProd ? "ga4" : "console",
   sampling: {
-    pageViews: RUNTIME === "prod" ? 1.0 : 1.0,
-    events: RUNTIME === "prod" ? 1.0 : 1.0,
-    webVitals: RUNTIME === "prod" ? 0.1 : 1.0,
+    pageViews: isProd ? 1.0 : 1.0,
+    events: isProd ? 1.0 : 1.0,
+    webVitals: isProd ? 0.1 : 1.0,
   },
   consentMode: {
     default: { ad_storage: "denied", analytics_storage: "denied" },
@@ -316,19 +316,16 @@ Component Mount → Analytics Hook → Provider Methods → Event Processing
 
 ```bash
 # Runtime Environment
-NEXT_PUBLIC_RUNTIME_ENV=local|preview|staging|prod
+NEXT_PUBLIC_ENV=development|preview|prod
 
-# Google Analytics Measurement IDs
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PREVIEW=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_STAGING=G-XXXXXXXXXX
-NEXT_PUBLIC_GA_MEASUREMENT_ID_PROD=G-XXXXXXXXXX
+# Google Analytics Measurement ID (set only in envs where GA should run)
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 ### 2. Environment-specific Behavior
 
-- **Local:** Console analytics with development dashboard
-- **Preview:** Console analytics for testing
-- **Staging:** Google Analytics with full tracking
+- **Development:** Console analytics with development dashboard
+- **Preview:** Google Analytics with full tracking
 - **Production:** Google Analytics with optimized sampling
 
 ## Integration Points
