@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Animate } from "@/components/ui/animate";
 import { CALENDLY_URL } from "@/lib/config";
 
+export const sectionId = "hero";
+
 type Copy = {
   title: string;
   subtitle: string;
@@ -10,14 +12,12 @@ type Copy = {
   secondaryCta: { label: string; href: string };
 };
 
-export const sectionId = "hero";
-
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Meet the teams who support customers 24/7",
-  subtitle: "Subsights powers consistent answers, faster routing, and better outcomes",
+  title: "Latest from Subsights",
+  subtitle: "Clear guides, product updates, and field notes from the team",
   primaryCta: { label: "Book Demo", href: CALENDLY_URL },
-  secondaryCta: { label: "View Case Studies", href: "#customer-stories" },
+  secondaryCta: { label: "Read Posts", href: "#posts" },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
@@ -38,23 +38,20 @@ export default function Hero() {
                 </h2>
               </div>
             </div>
-
             <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 asChild
                 size="lg"
-                data-analytics-id="case_studies_hero_demo"
-                data-analytics-name="Book Demo (Case Studies Hero)"
-                data-analytics-context='{"source":"case_studies_hero","section":"hero"}'
+                data-analytics-id="blog_hero_demo"
+                data-analytics-name="Get Demo (Blog Hero)"
+                data-analytics-context='{"source":"blog_hero","section":"hero"}'
               >
                 <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
                   {c.primaryCta.label}
                 </a>
               </Button>
               <Button variant="outline" asChild size="lg">
-                <Link href={c.secondaryCta.href}>
-                  {c.secondaryCta.label}
-                </Link>
+                <Link href={c.secondaryCta.href}>{c.secondaryCta.label}</Link>
               </Button>
             </div>
           </Animate>

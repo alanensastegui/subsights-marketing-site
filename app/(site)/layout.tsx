@@ -48,6 +48,7 @@ function buildNavigationItems() {
     { label: "Pricing", href: "/pricing" },
     { label: "Partners", href: "/partners" },
     { label: "About", href: "/about" },
+    { label: "Blog", href: "/blog" },
     { label: "FAQ", href: "/faq" },
     { label: "Book Demo", href: CALENDLY_URL, isButton: true },
   ] as (NavItem & { isButton?: boolean })[];

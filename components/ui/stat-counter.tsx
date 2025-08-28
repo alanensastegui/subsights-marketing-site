@@ -152,7 +152,7 @@ export function StatCounter({
       if (runRef.current === runId) runRef.current = null;
       cancelAnimationFrame(raf);
     };
-  }, [hasStarted]); // <- no isComplete/target/duration in deps; one run
+  }, [hasStarted, durationMs, from, target]); // include key inputs; internal refs prevent unnecessary reruns
 
   return (
     <div ref={containerRef} className={cn("flex flex-col items-center", className)}>
