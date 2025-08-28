@@ -15,7 +15,7 @@ type Copy = {
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "Practical AI for support",
-  subtitle: "Guides, updates, and stories from the Subsights team",
+  subtitle: "Clear guides, product updates, and field notes from the team",
   primaryCta: { label: "Book Demo", href: CALENDLY_URL },
   secondaryCta: { label: "Read Posts", href: "#posts" },
 } satisfies Copy;

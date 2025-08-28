@@ -6,18 +6,12 @@ import { Animate } from "@/components/ui/animate";
 import { cn } from "@/lib/cn";
 import { getAllCaseStudies } from "@/lib/case-studies";
 
-type Copy = {
-  title: string;
-  subtitle: string;
-};
+type Copy = {};
 
 export const sectionId = "case-studies";
 
 // ---- SECTION COPY REGION ----
-const copy = {
-  title: "Case studies",
-  subtitle: "Real teams. Real impact.",
-} satisfies Copy;
+const copy = {} satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
 export default function CustomerStories() {
@@ -28,14 +22,6 @@ export default function CustomerStories() {
     <section id="case-studies" className="relative isolate py-12">
       <div className="mx-auto max-w-6xl px-6">
         <Animate name="fadeInStagger" trigger="onVisible">
-          <div className="animate-item mx-auto max-w-4xl text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              {c.title}
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              {c.subtitle}
-            </p>
-          </div>
 
           <div className="grid gap-6 md:gap-8 md:grid-cols-2 items-stretch">
             {stories.map((story) => (
