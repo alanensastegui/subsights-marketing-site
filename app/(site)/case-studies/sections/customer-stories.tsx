@@ -6,7 +6,7 @@ import { Animate } from "@/components/ui/animate";
 import { cn } from "@/lib/cn";
 import { getAllCaseStudies } from "@/lib/case-studies";
 
-type Copy = {};
+type Copy = Record<string, never>;
 
 export const sectionId = "case-studies";
 
@@ -15,7 +15,7 @@ const copy = {} satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
 export default function CustomerStories() {
-  const c = copy;
+  void copy;
   const stories = getAllCaseStudies();
 
   return (

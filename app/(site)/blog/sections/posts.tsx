@@ -5,14 +5,14 @@ import { getAllPosts } from "@/lib/blog";
 
 export const sectionId = "posts";
 
-type Copy = {};
+type Copy = Record<string, never>;
 
 // ---- SECTION COPY REGION ----
 const copy = {} satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
 export default function Posts() {
-  const c = copy;
+  void copy;
   const posts = getAllPosts();
 
   return (
