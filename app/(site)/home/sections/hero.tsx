@@ -2,6 +2,7 @@ import { Animate } from "@/components/ui/animate";
 import { ButtonDuo } from "@/components/ui/button-duo";
 import CurvedArrow from "@/components/home/curved-arrow";
 import Link from "next/link";
+import { getFreeTrialUrl } from "@/lib/subscriptions";
 
 type Copy = {
   slogan: {
@@ -26,7 +27,7 @@ const copy = {
     desktop: "Meet the system that streamlines support, lead qualification, and revenue growth.",
   },
   primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
-  secondaryCta: { label: "Watch Overview", href: "https://www.youtube.com/watch?v=OlwA_a5CpYQ&list=PLXL5IEY-s71AWou876UpvgX8r0W5B2Whc" },
+  secondaryCta: { label: "Start Free", href: getFreeTrialUrl() },
 } satisfies Copy;
 
 export default function Hero() {
@@ -74,8 +75,8 @@ export default function Hero() {
               size: "lg",
               dataAttributes: {
                 "data-analytics-id": "home_hero_demo",
-                "data-analytics-name": "Email My Demo (Home Hero Duo)",
-                "data-analytics-context": '{"source":"home_hero","section":"hero","variant":"duo"}',
+                "data-analytics-name": "Email My Demo (Home Hero)",
+                "data-analytics-context": '{"source":"home_hero","section":"hero"}',
               },
             }}
             secondary={{
@@ -88,9 +89,9 @@ export default function Hero() {
               variant: "outline",
               size: "lg",
               dataAttributes: {
-                "data-analytics-id": "home_hero_watch_duo",
-                "data-analytics-name": "Watch Overview (Home Hero Duo)",
-                "data-analytics-context": '{"source":"home_hero","section":"hero","variant":"duo"}',
+                "data-analytics-id": "home_hero_start_free",
+                "data-analytics-name": "Start Free (Home Hero)",
+                "data-analytics-context": '{"source":"home_hero","section":"hero"}',
               },
             }}
             gap="md"
