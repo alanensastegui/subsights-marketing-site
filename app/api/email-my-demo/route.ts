@@ -20,8 +20,9 @@ export async function POST(req: Request) {
       const contentParts: string[] = [
         "New demo request:",
         `• Name: ${data.firstName} ${data.lastName}`,
-        `• Company: ${data.company}`,
-        `• Website: ${data.website}`,
+        `• Email: ${data.email}`,
+        `• Company: ${data.company ?? "—"}`,
+        `• Website: ${data.website ?? "—"}`,
         `• Marketing Opt-In: ${data.marketingOptIn ? "Yes" : "No"}`,
       ];
       if (!isProd) {

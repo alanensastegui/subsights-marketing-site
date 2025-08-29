@@ -8,11 +8,21 @@ export function normalizeWebsite(value: unknown) {
   return hasScheme ? trimmed : `https://${trimmed}`;
 }
 
+function emptyStringToUndefined(value: unknown) {
+  if (typeof value !== "string") return value;
+  const trimmed = value.trim();
+  return trimmed === "" ? undefined : trimmed;
+}
+
 export const EmailMyDemoSchema = z.object({
   firstName: z.string().min(1, "Required"),
   lastName: z.string().min(1, "Required"),
-  company: z.string().min(1, "Required"),
-  website: z.preprocess(normalizeWebsite, z.url("Enter a valid URL (e.g., https://example.com)")),
+  email: z.string().min(1, "Required").email("Enter a valid email (e.g., you@example.com)"),
+  company: z.preprocess(emptyStringToUndefined, z.string().min(1, "Required").optional()),
+  website: z.preprocess(
+    (v) => normalizeWebsite(emptyStringToUndefined(v)),
+    z.url("Enter a valid URL (e.g., https://example.com)").optional()
+  ),
   marketingOptIn: z.boolean().optional().default(false),
 });
 

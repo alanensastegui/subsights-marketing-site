@@ -46,6 +46,7 @@ export default function Section() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [marketingOptIn, setMarketingOptIn] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,6 +55,7 @@ export default function Section() {
     firstName?: string;
     lastName?: string;
     company?: string;
+    email?: string;
     website?: string;
   }>({});
 
@@ -62,13 +64,14 @@ export default function Section() {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setErrors({});
-    const result = EmailMyDemoSchema.safeParse({ firstName, lastName, company, website, marketingOptIn });
+    const result = EmailMyDemoSchema.safeParse({ firstName, lastName, company, email, website, marketingOptIn });
     if (!result.success) {
       const tree = z.treeifyError(result.error);
       setErrors({
         firstName: tree.properties?.firstName?.errors?.[0],
         lastName: tree.properties?.lastName?.errors?.[0],
         company: tree.properties?.company?.errors?.[0],
+        email: tree.properties?.email?.errors?.[0],
         website: tree.properties?.website?.errors?.[0],
       });
       return;
@@ -88,6 +91,7 @@ export default function Section() {
             firstName: serverTree.properties.firstName?.errors?.[0],
             lastName: serverTree.properties.lastName?.errors?.[0],
             company: serverTree.properties.company?.errors?.[0],
+            email: serverTree.properties.email?.errors?.[0],
             website: serverTree.properties.website?.errors?.[0],
           });
         }
@@ -133,11 +137,13 @@ export default function Section() {
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
                       <label htmlFor="firstName" className="text-sm font-medium">
-                        First name
+                        First name <span className="text-destructive" aria-hidden>*</span>
                       </label>
                       <Input
                         id="firstName"
                         name="firstName"
+                        required
+                        aria-required="true"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         placeholder="John"
@@ -152,11 +158,13 @@ export default function Section() {
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="lastName" className="text-sm font-medium">
-                        Last name
+                        Last name <span className="text-destructive" aria-hidden>*</span>
                       </label>
                       <Input
                         id="lastName"
                         name="lastName"
+                        required
+                        aria-required="true"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         placeholder="Smith"
@@ -169,6 +177,30 @@ export default function Section() {
                         </p>
                       )}
                     </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium">
+                      Email <span className="text-destructive" aria-hidden>*</span>
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      inputMode="email"
+                      required
+                      aria-required="true"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="you@company.com"
+                      aria-invalid={errors.email ? true : undefined}
+                      aria-describedby={errors.email ? "email-error" : undefined}
+                    />
+                    {errors.email && (
+                      <p id="email-error" className="text-sm text-destructive">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
