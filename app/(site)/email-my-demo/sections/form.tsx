@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { z } from "zod";
 import Link from "next/link";
 import { Animate } from "@/components/ui/animate";
+import { EmailMyDemoSchema } from "./form-schema";
 import {
   Card,
   CardHeader,
@@ -16,22 +17,6 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-
-function normalizeWebsite(value: unknown) {
-  if (typeof value !== "string") return value;
-  const trimmed = value.trim();
-  if (!trimmed) return trimmed;
-  const hasScheme = /^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(trimmed);
-  return hasScheme ? trimmed : `https://${trimmed}`;
-}
-
-const FormSchema = z.object({
-  firstName: z.string().min(1, "Required"),
-  lastName: z.string().min(1, "Required"),
-  company: z.string().min(1, "Required"),
-  website: z.preprocess(normalizeWebsite, z.url("Enter a valid URL (e.g., https://example.com)")),
-  marketingOptIn: z.boolean(),
-});
 
 type Copy = {
   title: string;
@@ -77,7 +62,7 @@ export default function Section() {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setErrors({});
-    const result = FormSchema.safeParse({ firstName, lastName, company, website, marketingOptIn });
+    const result = EmailMyDemoSchema.safeParse({ firstName, lastName, company, website, marketingOptIn });
     if (!result.success) {
       const tree = z.treeifyError(result.error);
       setErrors({
@@ -90,7 +75,24 @@ export default function Section() {
     }
     try {
       setIsSubmitting(true);
-      await new Promise((resolve) => setTimeout(resolve, 700));
+      const res = await fetch("/api/email-my-demo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(result.data),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        const serverTree = body?.errors as { properties?: Record<string, { errors?: string[] }> } | undefined;
+        if (serverTree?.properties) {
+          setErrors({
+            firstName: serverTree.properties.firstName?.errors?.[0],
+            lastName: serverTree.properties.lastName?.errors?.[0],
+            company: serverTree.properties.company?.errors?.[0],
+            website: serverTree.properties.website?.errors?.[0],
+          });
+        }
+        return;
+      }
       setSubmitted(true);
     } finally {
       setIsSubmitting(false);
