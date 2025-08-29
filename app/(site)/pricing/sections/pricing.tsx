@@ -199,7 +199,7 @@ export default function Section({ searchParams }: Props) {
 
   return (
     <section className="relative isolate text-foreground">
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+      <div className="mx-auto max-w-7xl">
         <Animate name="fadeInStagger" trigger="onVisible">
           <div className="animate-item text-center space-y-6 mb-12">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
@@ -225,7 +225,7 @@ export default function Section({ searchParams }: Props) {
           </div>
 
           {/* Pricing Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {c.plans.map((plan, index) => {
               const priceUnit = getPriceUnit(plan);
 
@@ -233,7 +233,7 @@ export default function Section({ searchParams }: Props) {
                 <Card
                   key={index}
                   className={cn(
-                    "animate-item relative w-56 mx-auto transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col h-full",
+                    "animate-item relative w-full max-w-72 mx-auto transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col h-full",
                     plan.featured
                       ? "border-2 border-primary shadow-lg ring-4 ring-primary/10"
                       : "shadow-md hover:border-primary/20",
