@@ -33,7 +33,7 @@ export default function CallToAction() {
         </Animate>
 
         <Animate name="fadeIn" trigger="onVisible" delay={200}>
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="w-full sm:w-fit">
             <a href={c.cta.href} target="_blank" rel="noopener noreferrer">
               {c.cta.label}
             </a>

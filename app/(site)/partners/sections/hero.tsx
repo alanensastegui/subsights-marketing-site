@@ -35,7 +35,7 @@ export default function Hero() {
 
         {/* Call to Action Button */}
         <div className="animate-item flex justify-center">
-          <Button size="lg" asChild className="min-w-[180px]">
+          <Button size="lg" asChild className="w-full sm:w-fit">
             <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
               {c.primaryCta.label}
             </a>

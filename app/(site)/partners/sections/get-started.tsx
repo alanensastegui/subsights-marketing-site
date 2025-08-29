@@ -87,7 +87,7 @@ export default function GetStarted() {
 
         {/* Call to Action Button */}
         <div className="animate-item text-center mt-10 sm:mt-12">
-          <Button size="lg" asChild className="w-full sm:w-auto min-w-[180px]" variant="outline">
+          <Button size="lg" asChild className="w-full sm:w-fit" variant="outline">
             <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
               {c.primaryCta.label}
             </a>
