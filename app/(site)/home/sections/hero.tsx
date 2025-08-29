@@ -1,6 +1,6 @@
 import { Animate } from "@/components/ui/animate";
 import { ButtonDuo } from "@/components/ui/button-duo";
-import { CALENDLY_URL } from "@/lib/config";
+import Link from "next/link";
 import CurvedArrow from "@/components/home/curved-arrow";
 
 type Copy = {
@@ -25,7 +25,7 @@ const copy = {
     mobile: "Subsights is the system that streamlines support, lead qualification, and revenue growth.",
     desktop: "Meet the system that streamlines support, lead qualification, and revenue growth.",
   },
-  primaryCta: { label: "Book Demo", href: CALENDLY_URL },
+  primaryCta: { label: "Get Demo", href: "/get-demo" },
   secondaryCta: { label: "Watch Overview", href: "https://www.youtube.com/watch?v=OlwA_a5CpYQ&list=PLXL5IEY-s71AWou876UpvgX8r0W5B2Whc" },
 } satisfies Copy;
 
@@ -66,15 +66,11 @@ export default function Hero() {
           <ButtonDuo
             primary={{
               asChild: true,
-              children: (
-                <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">
-                  {copy.primaryCta.label}
-                </a>
-              ),
+              children: <Link href={copy.primaryCta.href}>{copy.primaryCta.label}</Link>,
               size: "lg",
               dataAttributes: {
                 "data-analytics-id": "home_hero_demo_duo",
-                "data-analytics-name": "Book Demo (Home Hero Duo)",
+                "data-analytics-name": "Get Demo (Home Hero Duo)",
                 "data-analytics-context": '{"source":"home_hero","section":"hero","variant":"duo"}',
               },
             }}

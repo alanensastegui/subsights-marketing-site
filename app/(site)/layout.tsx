@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
-import { CALENDLY_URL } from "@/lib/config";
 import { Animate } from "@/components/ui/animate";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
@@ -50,7 +49,7 @@ function buildNavigationItems() {
     { label: "About", href: "/about" },
     { label: "Blog", href: "/blog" },
     { label: "FAQ", href: "/faq" },
-    { label: "Book Demo", href: CALENDLY_URL, isButton: true },
+    { label: "Get Demo", href: "/get-demo", isButton: true },
   ] as (NavItem & { isButton?: boolean })[];
 }
 
@@ -87,12 +86,10 @@ const DesktopNavigation = () => {
                   asChild
                   size="sm"
                   data-analytics-id="nav_desktop_demo"
-                  data-analytics-name="Book Demo (Nav)"
+                  data-analytics-name="Get Demo (Nav)"
                   data-analytics-context='{"source":"nav_desktop","location":"header"}'
                 >
-                  <a href={item.href} target="_blank" rel="noopener noreferrer">
-                    {item.label}
-                  </a>
+                  <Link href={item.href}>{item.label}</Link>
                 </Button>
               ) : (
                 <NavigationMenuLink
@@ -146,12 +143,10 @@ const MobileNavigation = () => {
                     asChild
                     className="w-full"
                     data-analytics-id="nav_mobile_demo"
-                    data-analytics-name="Book Demo (Nav Mobile)"
+                    data-analytics-name="Get Demo (Nav Mobile)"
                     data-analytics-context='{"source":"nav_mobile","location":"sheet"}'
                   >
-                    <a href={item.href} target="_blank" rel="noopener noreferrer">
-                      {item.label}
-                    </a>
+                    <Link href={item.href}>{item.label}</Link>
                   </Button>
                 </SheetClose>
               ) : (
