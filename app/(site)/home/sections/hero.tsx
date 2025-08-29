@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { Animate } from "@/components/ui/animate";
 import { ButtonDuo } from "@/components/ui/button-duo";
-import { CALENDLY_URL } from "@/lib/config";
 import CurvedArrow from "@/components/home/curved-arrow";
 
 type Copy = {
@@ -19,14 +19,19 @@ type Copy = {
 const copy = {
   slogan: {
     mobile: "Meet your AI teammate",
-    desktop: "Subsights is the AI teammate for modern websites"
+    desktop: "Subsights is the AI teammate for modern websites",
   },
   description: {
-    mobile: "Subsights is the system that streamlines support, lead qualification, and revenue growth.",
-    desktop: "Meet the system that streamlines support, lead qualification, and revenue growth.",
+    mobile:
+      "Subsights is the system that streamlines support, lead qualification, and revenue growth.",
+    desktop:
+      "Meet the system that streamlines support, lead qualification, and revenue growth.",
   },
-  primaryCta: { label: "Book Demo", href: CALENDLY_URL },
-  secondaryCta: { label: "Watch Overview", href: "https://www.youtube.com/watch?v=OlwA_a5CpYQ&list=PLXL5IEY-s71AWou876UpvgX8r0W5B2Whc" },
+  primaryCta: { label: "Get Demo", href: "/get-demo" },
+  secondaryCta: {
+    label: "Watch Overview",
+    href: "https://www.youtube.com/watch?v=OlwA_a5CpYQ&list=PLXL5IEY-s71AWou876UpvgX8r0W5B2Whc",
+  },
 } satisfies Copy;
 
 export default function Hero() {
@@ -48,7 +53,10 @@ export default function Hero() {
       />
       {/* Slogan */}
       <Animate name="fadeInStagger" trigger="onVisible">
-        <h2 id="home-hero-title" className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-4 max-w-2xl text-center mx-auto">
+        <h2
+          id="home-hero-title"
+          className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-4 max-w-2xl text-center mx-auto"
+        >
           <span className="block md:hidden">{copy.slogan.mobile}</span>
           <span className="hidden md:block">{copy.slogan.desktop}</span>
         </h2>
@@ -67,21 +75,24 @@ export default function Hero() {
             primary={{
               asChild: true,
               children: (
-                <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">
-                  {copy.primaryCta.label}
-                </a>
+                <Link href={copy.primaryCta.href}>{copy.primaryCta.label}</Link>
               ),
               size: "lg",
               dataAttributes: {
                 "data-analytics-id": "home_hero_demo_duo",
-                "data-analytics-name": "Book Demo (Home Hero Duo)",
-                "data-analytics-context": '{"source":"home_hero","section":"hero","variant":"duo"}',
+                "data-analytics-name": "Get Demo (Home Hero Duo)",
+                "data-analytics-context":
+                  '{"source":"home_hero","section":"hero","variant":"duo"}',
               },
             }}
             secondary={{
               asChild: true,
               children: (
-                <a href={copy.secondaryCta.href} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={copy.secondaryCta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {copy.secondaryCta.label}
                 </a>
               ),
@@ -90,7 +101,8 @@ export default function Hero() {
               dataAttributes: {
                 "data-analytics-id": "home_hero_watch_duo",
                 "data-analytics-name": "Watch Overview (Home Hero Duo)",
-                "data-analytics-context": '{"source":"home_hero","section":"hero","variant":"duo"}',
+                "data-analytics-context":
+                  '{"source":"home_hero","section":"hero","variant":"duo"}',
               },
             }}
             gap="md"

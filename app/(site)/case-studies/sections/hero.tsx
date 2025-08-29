@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ButtonDuo } from "@/components/ui/button-duo";
 import { Animate } from "@/components/ui/animate";
-import { CALENDLY_URL } from "@/lib/config";
 
 type Copy = {
   title: string;
@@ -15,8 +14,9 @@ export const sectionId = "hero";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "Meet the teams who support customers 24/7",
-  subtitle: "Subsights powers consistent answers, faster routing, and better outcomes",
-  primaryCta: { label: "Book Demo", href: CALENDLY_URL },
+  subtitle:
+    "Subsights powers consistent answers, faster routing, and better outcomes",
+  primaryCta: { label: "Get Demo", href: "/get-demo" },
   secondaryCta: { label: "View Case Studies", href: "#customer-stories" },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -44,20 +44,23 @@ export default function Hero() {
                 primary={{
                   asChild: true,
                   children: (
-                    <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
-                      {c.primaryCta.label}
-                    </a>
+                    <Link href={c.primaryCta.href}>{c.primaryCta.label}</Link>
                   ),
                   size: "lg",
                   dataAttributes: {
                     "data-analytics-id": "case_studies_hero_demo",
-                    "data-analytics-name": "Book Demo (Case Studies Hero)",
-                    "data-analytics-context": '{"source":"case_studies_hero","section":"hero"}',
+                    "data-analytics-name": "Get Demo (Case Studies Hero)",
+                    "data-analytics-context":
+                      '{"source":"case_studies_hero","section":"hero"}',
                   },
                 }}
                 secondary={{
                   asChild: true,
-                  children: <Link href={c.secondaryCta.href}>{c.secondaryCta.label}</Link>,
+                  children: (
+                    <Link href={c.secondaryCta.href}>
+                      {c.secondaryCta.label}
+                    </Link>
+                  ),
                   variant: "outline",
                   size: "lg",
                 }}
