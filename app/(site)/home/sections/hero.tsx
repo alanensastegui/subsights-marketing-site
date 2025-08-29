@@ -64,7 +64,6 @@ export default function Hero() {
         {/* Call to Action Buttons */}
         <div className="animate-item">
           <ButtonDuo
-            classNames={{ wrapper: "sm:w-fit mx-auto" }}
             primary={{
               asChild: true,
               children: (

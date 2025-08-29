@@ -69,7 +69,7 @@ export function ButtonDuo({
   classNames,
 }: ButtonDuoProps) {
   const wrapperClasses = cn(
-    "grid grid-cols-1 items-stretch",
+    "grid grid-cols-1 items-stretch sm:w-fit mx-auto",
     gapClassMap[gap],
     colsAtBreakpointMap[stackAt],
     className,

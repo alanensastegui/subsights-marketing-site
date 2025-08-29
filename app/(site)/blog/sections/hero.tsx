@@ -40,7 +40,6 @@ export default function Hero() {
             </div>
             <div className="animate-item">
               <ButtonDuo
-                classNames={{ wrapper: "sm:w-fit mx-auto" }}
                 primary={{
                   asChild: true,
                   children: (
