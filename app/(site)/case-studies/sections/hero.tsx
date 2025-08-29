@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { ButtonDuo } from "@/components/ui/button-duo";
 import { Animate } from "@/components/ui/animate";
 import { CALENDLY_URL } from "@/lib/config";
 
@@ -39,23 +39,33 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                asChild
-                size="lg"
-                data-analytics-id="case_studies_hero_demo"
-                data-analytics-name="Book Demo (Case Studies Hero)"
-                data-analytics-context='{"source":"case_studies_hero","section":"hero"}'
-              >
-                <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
-                  {c.primaryCta.label}
-                </a>
-              </Button>
-              <Button variant="outline" asChild size="lg">
-                <Link href={c.secondaryCta.href}>
-                  {c.secondaryCta.label}
-                </Link>
-              </Button>
+            <div className="animate-item">
+              <ButtonDuo
+                classNames={{ wrapper: "sm:w-fit mx-auto" }}
+                primary={{
+                  asChild: true,
+                  children: (
+                    <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
+                      {c.primaryCta.label}
+                    </a>
+                  ),
+                  size: "lg",
+                  dataAttributes: {
+                    "data-analytics-id": "case_studies_hero_demo",
+                    "data-analytics-name": "Book Demo (Case Studies Hero)",
+                    "data-analytics-context": '{"source":"case_studies_hero","section":"hero"}',
+                  },
+                }}
+                secondary={{
+                  asChild: true,
+                  children: <Link href={c.secondaryCta.href}>{c.secondaryCta.label}</Link>,
+                  variant: "outline",
+                  size: "lg",
+                }}
+                gap="md"
+                stackAt="sm"
+                fullWidthMobile
+              />
             </div>
           </Animate>
         </div>

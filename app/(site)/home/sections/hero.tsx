@@ -1,5 +1,5 @@
 import { Animate } from "@/components/ui/animate";
-import { Button } from "@/components/ui/button";
+import { ButtonDuo } from "@/components/ui/button-duo";
 import { CALENDLY_URL } from "@/lib/config";
 import CurvedArrow from "@/components/home/curved-arrow";
 
@@ -62,20 +62,42 @@ export default function Hero() {
         </div>
 
         {/* Call to Action Buttons */}
-        <div className="animate-item flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button
-            size="lg"
-            asChild
-            className="min-w-[140px] z-0"
-            data-analytics-id="home_hero_demo"
-            data-analytics-name="Book Demo (Home Hero)"
-            data-analytics-context='{"source":"home_hero","section":"hero"}'
-          >
-            <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">{copy.primaryCta.label}</a>
-          </Button>
-          <Button variant="outline" size="lg" asChild className="min-w-[140px]">
-            <a href={copy.secondaryCta.href} target="_blank" rel="noopener noreferrer">{copy.secondaryCta.label}</a>
-          </Button>
+        <div className="animate-item">
+          <ButtonDuo
+            classNames={{ wrapper: "sm:w-fit mx-auto" }}
+            primary={{
+              asChild: true,
+              children: (
+                <a href={copy.primaryCta.href} target="_blank" rel="noopener noreferrer">
+                  {copy.primaryCta.label}
+                </a>
+              ),
+              size: "lg",
+              dataAttributes: {
+                "data-analytics-id": "home_hero_demo_duo",
+                "data-analytics-name": "Book Demo (Home Hero Duo)",
+                "data-analytics-context": '{"source":"home_hero","section":"hero","variant":"duo"}',
+              },
+            }}
+            secondary={{
+              asChild: true,
+              children: (
+                <a href={copy.secondaryCta.href} target="_blank" rel="noopener noreferrer">
+                  {copy.secondaryCta.label}
+                </a>
+              ),
+              variant: "outline",
+              size: "lg",
+              dataAttributes: {
+                "data-analytics-id": "home_hero_watch_duo",
+                "data-analytics-name": "Watch Overview (Home Hero Duo)",
+                "data-analytics-context": '{"source":"home_hero","section":"hero","variant":"duo"}',
+              },
+            }}
+            gap="md"
+            stackAt="sm"
+            fullWidthMobile
+          />
         </div>
       </Animate>
     </section>

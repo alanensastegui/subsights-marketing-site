@@ -48,7 +48,7 @@ export default function CustomerQuote() {
 
         {/* Call to Action */}
         <div className="animate-item text-center">
-          <Button asChild size="lg" className="px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg">
+          <Button asChild size="lg" className="w-fit">
             <Link href={copy.cta.link}>
               {copy.cta.text}
             </Link>
