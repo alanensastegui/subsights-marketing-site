@@ -108,8 +108,8 @@ const GridItem = ({
   <Card className={cn(
     "border-0 transition-all duration-200 hover:scale-[1.02]",
     isBefore
-      ? "bg-red-500/5 border-red-500/20 hover:bg-red-500/10"
-      : "bg-green-500/5 border-green-500/20 hover:bg-green-500/10"
+      ? "bg-red-500/20 border-red-500/20 hover:bg-red-500/30"
+      : "bg-green-500/20 border-green-500/20 hover:bg-green-500/30"
   )}>
     <CardContent className="p-6">
       <div className="flex items-start gap-4">
