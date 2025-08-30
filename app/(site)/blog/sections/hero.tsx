@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ButtonDuo } from "@/components/ui/button-duo";
 import { Animate } from "@/components/ui/animate";
-import { CALENDLY_URL } from "@/lib/config";
 
 export const sectionId = "hero";
 
@@ -16,7 +15,7 @@ type Copy = {
 const copy = {
   title: "Latest from Subsights",
   subtitle: "Clear guides, product updates, and field notes from the team",
-  primaryCta: { label: "Book Demo", href: CALENDLY_URL },
+  primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
   secondaryCta: { label: "Read Posts", href: "#posts" },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -43,9 +42,9 @@ export default function Hero() {
                 primary={{
                   asChild: true,
                   children: (
-                    <a href={c.primaryCta.href} target="_blank" rel="noopener noreferrer">
+                    <Link href={c.primaryCta.href}>
                       {c.primaryCta.label}
-                    </a>
+                    </Link>
                   ),
                   size: "lg",
                   dataAttributes: {

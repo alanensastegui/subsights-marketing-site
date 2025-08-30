@@ -12,7 +12,7 @@ export const metadata: Metadata = buildMetadata({
 export default function BlogPage() {
   const Sections = [Hero, Posts];
   return (
-    <main className="min-h-screen">
+    <main>
       {Sections.map((S, i) => (
         <S key={i} />
       ))}
