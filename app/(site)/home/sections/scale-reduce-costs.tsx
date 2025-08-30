@@ -1,3 +1,4 @@
+import React from "react";
 import { Animate } from "@/components/ui/animate";
 import { cn } from "@/lib/cn";
 import { Card, CardContent } from "@/components/ui/card";
@@ -106,12 +107,12 @@ const GridItem = ({
   isBefore?: boolean;
 }) => (
   <Card className={cn(
-    "border-0 transition-all duration-200 hover:scale-[1.02]",
+    "h-full border-0 transition-all duration-200 hover:scale-[1.02]",
     isBefore
       ? "bg-red-500/20 border-red-500/20 hover:bg-red-500/30"
       : "bg-green-500/20 border-green-500/20 hover:bg-green-500/30"
   )}>
-    <CardContent className="p-6">
+    <CardContent className="h-full p-6">
       <div className="flex items-start gap-4">
         {/* Left: Icon */}
         <div className={cn(
@@ -167,65 +168,67 @@ export default function ScaleReduceCosts() {
           </h2>
         </div>
 
-        {/* Desktop: 2x2 Grid */}
-        <div className="hidden md:grid md:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left Column: Before */}
-          <div className="space-y-6">
-            <div className="mb-6">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-semibold text-red-400">
-                  {copy.challenges.title}
-                </h3>
-                <p className="text-sm text-gray-400">
-                  {copy.challenges.subtitle}
-                </p>
-              </div>
-            </div>
-            <div className="space-y-6">
-              {copy.challenges.items.map((item, index) => (
-                <GridItem
-                  key={index}
-                  title={item.title}
-                  description={item.description}
-                  imageSrc={item.imageSrc}
-                  imageAlt={item.imageAlt}
-                  painPoint={item.painPoint}
-                  isBefore={true}
-                />
-              ))}
-            </div>
+        {/* Desktop: Paired rows with arrows between columns */}
+        <div className="hidden sm:grid grid-cols-[1fr_auto_1fr] gap-x-2 lg:gap-x-4 gap-y-12 lg:gap-y-16">
+          {/* Headings Row */}
+          <div className="space-y-2">
+            <h3 className="text-2xl font-semibold text-red-400">
+              {copy.challenges.title}
+            </h3>
+            <p className="text-sm text-gray-400">
+              {copy.challenges.subtitle}
+            </p>
+          </div>
+          <div />
+          <div className="space-y-2">
+            <h3 className="text-2xl font-semibold text-green-400">
+              {copy.solutions.title}
+            </h3>
+            <p className="text-sm text-gray-400">
+              {copy.solutions.subtitle}
+            </p>
           </div>
 
-          {/* Right Column: After */}
-          <div className="space-y-6">
-            <div className="mb-6">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-semibold text-green-400">
-                  {copy.solutions.title}
-                </h3>
-                <p className="text-sm text-gray-400">
-                  {copy.solutions.subtitle}
-                </p>
-              </div>
-            </div>
-            <div className="space-y-6">
-              {copy.solutions.items.map((item, index) => (
-                <GridItem
-                  key={index}
-                  title={item.title}
-                  description={item.description}
-                  imageSrc={item.imageSrc}
-                  imageAlt={item.imageAlt}
-                  benefit={item.benefit}
-                  isBefore={false}
-                />
-              ))}
-            </div>
-          </div>
+          {/* Paired rows */}
+          {copy.challenges.items.map((challenge, index) => {
+            const solution = copy.solutions.items[index];
+            return (
+              <React.Fragment key={`row-${index}`}>
+                <div key={`left-${index}`} className="self-stretch h-full">
+                  <GridItem
+                    title={challenge.title}
+                    description={challenge.description}
+                    imageSrc={challenge.imageSrc}
+                    imageAlt={challenge.imageAlt}
+                    painPoint={challenge.painPoint}
+                    isBefore={true}
+                  />
+                </div>
+
+                {/* Center arrow (decorative - matches mobile, points right) */}
+                <div key={`arrow-${index}`} className="flex items-center justify-center">
+                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                    <span className="text-white text-sm" aria-hidden="true">→</span>
+                  </div>
+                </div>
+
+                <div key={`right-${index}`} className="self-stretch h-full">
+                  <GridItem
+                    title={solution.title}
+                    description={solution.description}
+                    imageSrc={solution.imageSrc}
+                    imageAlt={solution.imageAlt}
+                    benefit={solution.benefit}
+                    isBefore={false}
+                  />
+                </div>
+              </React.Fragment>
+            );
+          })}
         </div>
 
         {/* Mobile: Before/After Pairs */}
-        <div className="md:hidden space-y-8">
+        <div className="sm:hidden space-y-8">
           {copy.challenges.items.map((challenge, index) => {
             const solution = copy.solutions.items[index];
             return (
