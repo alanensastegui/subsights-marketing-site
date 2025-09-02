@@ -5,6 +5,10 @@ const BlogPostSchema = z.object({
   title: z.string(),
   date: z.string(),
   excerpt: z.string(),
+  author: z.object({
+    name: z.string(),
+    image: z.string(),
+  }),
 });
 
 export type BlogPostOverview = z.infer<typeof BlogPostSchema>;

@@ -2,7 +2,10 @@
 slug: ai-concierge-for-dmos
 title: "Designing the AI Concierge for DMOs"
 date: "2025-09-01"
-excerpt: "Visitors don’t need another bot; they need a local that happens to be software—confident, seasonal, and grounded in the page they’re on. Design for movement and trust, and every answer becomes a next step."
+excerpt: "Visitors don't need another bot; they need a local that happens to be software—confident, seasonal, and grounded in the page they're on. Design for movement and trust, and every answer becomes a next step."
+author:
+  name: "Alan"
+  image: "/images/team-headshots/alan.avif"
 ---
 
 Visitors don’t arrive with perfect itineraries. They arrive with half-formed plans, a few screenshots, and weather that might change tomorrow. Your job is to help them decide, quickly and confidently. Software can do a lot here. The trick is making it feel local.

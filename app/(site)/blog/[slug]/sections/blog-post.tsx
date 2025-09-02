@@ -1,4 +1,5 @@
 import { Animate } from "@/components/ui/animate";
+import Image from "next/image";
 import type { BlogPost } from "@/lib/blog";
 
 interface BlogPostSectionProps {
@@ -25,10 +26,30 @@ export default function BlogPostSection({ post }: BlogPostSectionProps) {
         <Animate name="fadeInStagger" trigger="onVisible">
           <div className="animate-item space-y-4 text-center mb-12">
             <h2 className="text-4xl font-bold tracking-tight">{post.title}</h2>
-            <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
-              <span>{new Date(post.date).toLocaleDateString()}</span>
-              <span>•</span>
-              <span>{readTime} min read</span>
+            <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground/80">
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-muted-foreground/20">
+                  <Image
+                    src={post.author.image}
+                    alt={`${post.author.name}'s profile picture`}
+                    width={24}
+                    height={24}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <span className="font-medium text-foreground/90">{post.author.name}</span>
+              </div>
+              <div className="w-1 h-1 rounded-full bg-muted-foreground/40"></div>
+              <span className="font-mono text-xs tracking-wide">{(() => {
+                const [year, month, day] = post.date.split('-').map(Number);
+                return new Date(year, month - 1, day).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                });
+              })()}</span>
+              <div className="w-1 h-1 rounded-full bg-muted-foreground/40"></div>
+              <span className="font-mono text-xs tracking-wide">{readTime} min read</span>
             </div>
           </div>
           <div

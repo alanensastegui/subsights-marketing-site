@@ -3,6 +3,9 @@ slug: welcome-to-subsights
 title: "Welcome to the Subsights Blog"
 date: "2025-08-28"
 excerpt: "Introducing the Subsights blog where we share updates, experiments, and lessons learned building AI for customer support."
+author:
+  name: "Alan Ensastegui"
+  image: "/images/team-headshots/alan.avif"
 ---
 
 Launching a product is the easy part; iterating in public is where the real work begins. We created the Subsights blog to document that journey and share the ideas that keep us up at night. Expect thoughtful essays, technical deep dives, and candid stories about what it takes to build useful AI.
