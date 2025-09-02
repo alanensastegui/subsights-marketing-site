@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
-import { Animate } from "@/components/ui/animate";
+import BlogPostSection from "./sections/blog-post";
+import BlogCtaSection from "./sections/blog-cta";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -37,22 +38,8 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <main className="min-h-screen">
-      <section className="relative isolate py-12">
-        <div className="mx-auto max-w-4xl px-6">
-          <Animate name="fadeInStagger" trigger="onVisible">
-            <div className="animate-item space-y-4 text-center mb-12">
-              <h1 className="text-4xl font-bold tracking-tight">{post.title}</h1>
-              <p className="text-sm text-muted-foreground">
-                {new Date(post.date).toLocaleDateString()}
-              </p>
-            </div>
-            <div
-              className="animate-item case-study-content"
-              dangerouslySetInnerHTML={{ __html: post.htmlContent }}
-            />
-          </Animate>
-        </div>
-      </section>
+      <BlogPostSection post={post} />
+      <BlogCtaSection />
     </main>
   );
 }
