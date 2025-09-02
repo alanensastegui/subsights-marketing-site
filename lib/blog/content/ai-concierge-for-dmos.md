@@ -51,7 +51,7 @@ Destinations breathe. The “right” answer in July is wrong in January. We tre
 
 People plan in their own words. The concierge picks up the visitor’s language and replies in it—no settings, no flags.
 
-81% of people in the world do not speak English. The bar is simple: a visitor’s experience shouldn’t be worse because they don’t speak English. The concierge can speak dozens.
+[81% of people in the world do not speak English](https://www.cia.gov/the-world-factbook/countries/world/#people-and-society). The bar is simple: a visitor’s experience shouldn’t be worse because they don’t speak English. The concierge can speak dozens.
 
 ## **Handoff that earns goodwill**
 
