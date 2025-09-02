@@ -17,7 +17,7 @@ A good test: if a local reads an answer and nods, you’re close. If they squint
 
 ## **Form before flourish**
 
-Chat looks simple. It isn’t. Unbounded text gives visitors infinite ways to ask for help, and infinite opportunities to drift. We add form through context and short, purposeful turns. The goal isn’t to constrain; it’s to set the banks of the river so the current actually moves.
+Chat looks simple. It isn’t. Unbounded text gives visitors infinite ways to ask for help, and infinite opportunities to drift. We add form through context and a multi-agent architecture—a quiet division of labor where small specialists help compose the reply. The goal isn’t to constrain; it’s to set the banks of the river so the current actually moves.
 
 Soon, we’re adding viewport awareness. The concierge can peek at what’s on the visitor’s screen—the headline they’re reading, the section they’ve scrolled to, the labels on the page—and fold that into its answer. It means fewer generic replies and more “I see you’re on Getting Around; here’s tonight’s tram schedule and the last service notice.” It also means we don’t repeat what the page already says; we build on it.
 

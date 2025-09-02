@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
 import BlogPostSection from "./sections/blog-post";
+import BlogCtaSection from "./sections/blog-cta";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -35,13 +36,10 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  const Sections = [BlogPostSection];
-
   return (
     <main className="min-h-screen">
-      {Sections.map((S, i) => (
-        <S key={i} post={post} />
-      ))}
+      <BlogPostSection post={post} />
+      <BlogCtaSection />
     </main>
   );
 }
