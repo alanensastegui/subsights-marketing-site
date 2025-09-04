@@ -64,7 +64,7 @@ export default function BlogPostSection({ post }: BlogPostSectionProps) {
                   <li key={i}>
                     <a
                       href={`/api/download-link/${post.slug}/${d.filename}`}
-                      className="text-primary underline underline-offset-4"
+                      className="text-foreground underline underline-offset-4"
                       rel="noopener noreferrer"
                     >
                       {d.title || d.filename}

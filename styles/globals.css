@@ -628,15 +628,15 @@
 }
 
 .case-study-content h2 {
-  @apply text-3xl md:text-4xl font-bold tracking-tight mb-4 mt-8 text-primary;
+  @apply text-3xl md:text-4xl font-bold tracking-tight mb-4 mt-8 text-foreground;
 }
 
 .case-study-content h3 {
-  @apply text-2xl font-semibold tracking-tight mb-3 mt-6 text-primary;
+  @apply text-2xl font-semibold tracking-tight mb-3 mt-6 text-foreground;
 }
 
 .case-study-content h4 {
-  @apply text-xl font-semibold tracking-tight mb-2 mt-4 text-primary;
+  @apply text-xl font-semibold tracking-tight mb-2 mt-4 text-foreground;
 }
 
 .case-study-content p {
@@ -676,7 +676,7 @@
 }
 
 .case-study-content a {
-  @apply text-primary hover:text-primary/80 underline underline-offset-2 transition-colors;
+  @apply text-foreground hover:text-foreground/80 underline underline-offset-2 transition-colors;
 }
 
 .case-study-content code {
