@@ -124,6 +124,8 @@ Here’s an example:
 * *What: Questions not related to Seattle, its events, or its attractions.*  
 * *Action: Do not provide information. Instead, politely remind the visitor that you can only help with Seattle-related questions.*
 
+These examples show the idea: every type of request gets its own recipe, so the AI knows what it’s handling and how to respond. With even a handful of clear workflows, your agent shifts from improvising to following a reliable playbook.
+
 The examples above are simplified. In a real prompt, each Action should name the exact [tool](https://openai.github.io/openai-agents-python/tools/) and spell out how to use it. Consider **workflow C**: instead of a vague instruction, you’d tell the agent to reach for \`calendar\_lookup\` and explain exactly how to apply it.
 
 *C. Broad Event Inquiries*
