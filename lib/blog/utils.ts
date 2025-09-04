@@ -1,8 +1,11 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeExternalLinks from "rehype-external-links";
+import rehypeStringify from "rehype-stringify";
 import type { BlogPost, BlogPostOverview } from "./types";
 import { BlogPostSchema } from "./types";
 
@@ -43,8 +46,13 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       return null;
     }
     const frontMatter = validationResult.data;
-    const processedContent = await remark().use(html).process(content);
-    const htmlContent = processedContent.toString();
+    const processedContent = await unified()
+      .use(remarkParse)
+      .use(remarkRehype)
+      .use(rehypeExternalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] })
+      .use(rehypeStringify)
+      .process(content);
+    const htmlContent = String(processedContent);
     return {
       ...frontMatter,
       content,
