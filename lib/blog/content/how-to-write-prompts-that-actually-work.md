@@ -77,7 +77,7 @@ Notice how this defines a persona. Clear, specific, repeatable. That’s what an
 
 When I was in 5th grade, my teacher gave us the “Exact Instructions Challenge.” The assignment was simple: write directions for making a peanut butter and jelly sandwich.
 
-We thought it would be easy. But the moment someone tried to follow our instructions, chaos broke out. No one said to open the jar. No one said to hold the knife. Without those steps, the process quickly fell apart and we were [tortured with a frustrating watching experience](https://www.youtube.com/shorts/CM9JIVG6SQk).
+We thought it would be easy. But the moment our teacher tried to follow our instructions, chaos broke out. No one said to open the jar. No one said to hold the knife. Without those steps, the process quickly fell apart and we were [tortured with a frustrating watching experience](https://www.youtube.com/shorts/CM9JIVG6SQk).
 
 That lesson stuck with me. What feels obvious in your head isn’t always obvious to someone else. And the same is true with AI.
 
