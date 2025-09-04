@@ -21,7 +21,9 @@ Yet AI is surging. [IDC projects $307B in enterprise spend for 2025](https://inf
 
 So should you add AI to your site? Probably. If you get 1,000+ monthly visitors, an agent can lighten your inbox, guide your visitors, and gently move them into your funnel. But only if it’s done right.
 
-Doing it right begins with the prompt. There’s no single perfect prompt, but there are reliable strategies. At Subsights, we spent long nights wrestling with LLMs, watching them get “almost right” again and again until we got them to “just right”. This guide is what’s worked; our way of moving from almost, to answers you actually want.
+Doing it right begins with the prompt. There’s no single perfect prompt, but there are reliable strategies. At Subsights, we spent long nights wrestling with LLMs, watching them get “almost right” again and again until we got them to “just right”.
+
+This guide is what’s worked for us. And now, it's what we deliver to our clients: AI agents that feel like a real extension of the team. Clear, dependable, and always ready with the right answer.
 
 At the end, we also include a free template and checklist to help you apply these lessons in your prompts.
 
@@ -251,4 +253,4 @@ Prompts are a lever you can use to turn magic into craft. By giving your agent a
 
 Done right, the AI becomes part of your voice, your brand, your way of guiding visitors toward something better.
 
-Here at [Subsights AI](https://www.subsights.com), we take these lessons and put them into practice. We design and manage AI chatbots for websites that build trust, reflect your brand, and guide visitors with care. If you’re looking for a chatbot, our team of prompt wizards would be glad to craft a solution that feels exceptional from the very first interaction.  
+Here at [Subsights AI](https://www.subsights.com), we take these lessons and put them into practice. You don’t need to spend late nights wrestling with prompts or learning to be a prompt engineer, that’s our job. We design and manage AI agents for websites that build trust, reflect your brand, and guide visitors with care. If you’d rather skip the trial-and-error and have an agent that works from day one, our team of prompt wizards can craft it for you.
