@@ -126,7 +126,7 @@ Here’s an example:
 
 These examples show the idea: every type of request gets its own recipe, so the AI knows what it’s handling and how to respond. With even a handful of clear workflows, your agent shifts from improvising to following a reliable playbook.
 
-The examples above are simplified. In a real prompt, each Action should name the exact [tool](https://openai.github.io/openai-agents-python/tools/) and spell out how to use it. Consider **workflow C**: instead of a vague instruction, you’d tell the agent to reach for \`calendar\_lookup\` and explain exactly how to apply it.
+In practice, though, you’ll want to take things a step further. Each Action should name the exact [tool](https://openai.github.io/openai-agents-python/tools/) and spell out how to use it. Consider **workflow C**: in practice you should have a tool for calendar lookups and you would explain to the agent exactly how to apply it.
 
 *C. Broad Event Inquiries*
 
@@ -142,7 +142,7 @@ Think of it this way: a weak workflow tells the AI what outcome you want. A stro
 
 By naming the tool and giving clear instructions, you strip away ambiguity. You prevent the AI from falling back on its training data, guessing steps, or drifting into hallucination. The clearer the recipe, the more consistent the results.
 
-At [Subsights](https://www.subsights.com), we go one step further. We use a multi-agent architecture: one agent gathers the data, while another shapes it into a final response.
+At [Subsights](https://www.subsights.com), we go even further. We use a multi-agent architecture: one agent gathers the data, while another shapes it into a final response. This allows the workflow to become:
 
 *C. Broad Event Inquiries*
 
