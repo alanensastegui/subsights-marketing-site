@@ -56,6 +56,24 @@ export default function BlogPostSection({ post }: BlogPostSectionProps) {
             className="animate-item case-study-content"
             dangerouslySetInnerHTML={{ __html: post.htmlContent }}
           />
+          {post.downloads && post.downloads.length > 0 && (
+            <div className="animate-item mt-12 border-t pt-8">
+              <h3 className="text-lg font-semibold mb-4">Downloads</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                {post.downloads.map((d, i) => (
+                  <li key={i}>
+                    <a
+                      href={`/api/download-link/${post.slug}/${d.filename}`}
+                      className="text-primary underline underline-offset-4"
+                      rel="noopener noreferrer"
+                    >
+                      {d.title || d.filename}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </Animate>
       </div>
     </section>

@@ -206,3 +206,25 @@ This project is configured for Netlify deployment with:
 - Demo system optimization for production
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Secure Blog Downloads
+
+Place downloadable assets under `public/blog-downloads/<slug>/<filename>`.
+
+In the blog post frontmatter (`lib/blog/content/<slug>.md`), add an optional `downloads` array:
+
+```
+downloads:
+  - filename: guide.pdf
+    title: Prompting Guide (PDF)
+```
+
+The blog page renders short-lived signed links automatically.
+
+Required env var (server-only):
+
+```
+DOWNLOADS_HMAC_SECRET=replace-with-strong-random
+```
+
+Route: `/api/download/[slug]/[filename]?exp=<unix>&sig=<hmac>`
