@@ -1,11 +1,16 @@
 ---
 slug: how-to-write-prompts-that-actually-work
-title: "Website AI Chatbots: How to Write Prompts That Actually Work"
+title: "Website AI Chatbots: How to Write Prompts That Actually Work (Free Template)"
 date: "2025-09-03"
-excerpt: "AI chatbots can transform your website—but only if they're done right. Learn the proven strategies for writing prompts that turn 'almost right' into 'just right', from mission clarity to workflow design."
+excerpt: "AI chatbots can transform your website—but only if they're done right. Learn the proven strategies for writing prompts that turn 'almost right' into 'just right', from mission clarity to workflow design. Free template and checklist included."
 author:
   name: "Alan Ensastegui"
   image: "/images/team-headshots/alan.avif"
+downloads:
+  - filename: template.pdf
+    title: Free Template
+  - filename: checklist.pdf
+    title: Free Checklist
 ---
 
 AI can feel like magic. Type a few words, and from the ether arrives text, images, or videos. Sometimes it’s perfect. Often, it’s just close.
@@ -17,6 +22,8 @@ Yet AI is surging. [IDC projects $307B in enterprise spend for 2025](https://inf
 So should you add AI to your site? Probably. If you get 1,000+ monthly visitors, an agent can lighten your inbox, guide your visitors, and gently move them into your funnel. But only if it’s done right.
 
 Doing it right begins with the prompt. There’s no single perfect prompt, but there are reliable strategies. At Subsights, we spent long nights wrestling with LLMs, watching them get “almost right” again and again until we got them to “just right”. This guide is what’s worked; our way of moving from almost, to answers you actually want.
+
+At the end, we also include a free template and checklist to help you apply these lessons in your prompts.
 
 ## Mission & priorities
 
