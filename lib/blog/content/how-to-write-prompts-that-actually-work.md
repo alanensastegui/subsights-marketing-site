@@ -151,7 +151,7 @@ At [Subsights](https://www.subsights.com), we go even further. We use a multi-ag
 
 Splitting the roles makes each instruction sharper. The first agent doesn’t have to worry about tone or polish, just finding the right information. The second agent doesn’t have to worry about where the information came from; only how to communicate it well.
 
-The lesson is simple: the more direct and focused your instructions, the easier it is for AI to follow them faithfully and the more you save yourself from frustration.
+The lesson is simple: the more direct and focused your instructions, the easier it is for AI to follow them faithfully and you save yourself from a headache.
 
 How to write:
 
