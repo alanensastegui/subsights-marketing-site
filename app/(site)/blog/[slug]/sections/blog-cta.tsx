@@ -1,6 +1,5 @@
 import { Cta } from "@/components/ui/cta";
 import { Animate } from "@/components/ui/animate";
-import { CALENDLY_URL } from "@/lib/config";
 import { getFreeTrialUrl } from "@/lib/subscriptions";
 
 type Copy = {
@@ -15,7 +14,7 @@ export const sectionId = "blog-cta";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "Make every visit count.",
-  primaryCta: { label: "Book Demo", href: CALENDLY_URL, external: true },
+  primaryCta: { label: "Email My Demo", href: "/email-my-demo", external: false },
   secondaryCta: { label: "Start Free", href: getFreeTrialUrl(), external: true },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
