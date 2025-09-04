@@ -1,6 +1,6 @@
 ---
 slug: how-to-write-prompts-that-actually-work
-title: "Website AI Chatbots: How to Write Prompts That Actually Work (Free Template)"
+title: "Website AI Agents: How to Write Prompts That Actually Work (Free Template)"
 date: "2025-09-03"
 excerpt: "AI chatbots can transform your website—but only if they're done right. Learn the proven strategies for writing prompts that turn 'almost right' into 'just right', from mission clarity to workflow design. Free template and checklist included."
 author:
