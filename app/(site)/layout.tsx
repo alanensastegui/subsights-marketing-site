@@ -44,6 +44,7 @@ function buildNavigationItems() {
 
   return [
     caseStudiesNavItem,
+    { label: "Features", href: "/features" },
     { label: "Pricing", href: "/pricing" },
     { label: "Partners", href: "/partners" },
     { label: "About", href: "/about" },
