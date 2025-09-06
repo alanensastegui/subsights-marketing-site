@@ -27,7 +27,7 @@ export default function FeaturesGrid() {
                       })()}
                     </div>
                   </div>
-                  <CardTitle className="text-2xl font-semibold group-hover:text-primary transition-colors">
+                  <CardTitle className="text-2xl font-semibold">
                     <Link
                       href={`/features/${feature.id}`}
                       className="hover:text-primary transition-colors"
