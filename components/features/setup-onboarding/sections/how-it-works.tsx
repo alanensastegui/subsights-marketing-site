@@ -109,7 +109,7 @@ export default function HowItWorks() {
         });
       },
       {
-        threshold: 1, // Trigger when 100% of the element is visible
+        threshold: 0.5, // Trigger when 100% of the element is visible
         rootMargin: '0px 0px -10% 0px' // Start playing when entire card is in view
       }
     );
