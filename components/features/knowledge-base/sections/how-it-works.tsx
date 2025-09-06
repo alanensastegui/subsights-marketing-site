@@ -135,7 +135,7 @@ export default function HowItWorks() {
               {/* Features List */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {method.features.map((feature, featureIndex) => (
-                  <Card key={featureIndex} className="group hover:bg-card/80 hover:border-border/70 transition-all duration-200 overflow-hidden">
+                  <Card key={featureIndex} className="group hover:bg-card/80 hover:border-border/70 transition-all duration-300 overflow-hidden md:scale-95 md:hover:scale-105 hover:shadow-lg transform-gpu will-change-transform">
                     <CardHeader className="flex flex-row items-center gap-3">
                       <div className="inline-flex items-center justify-center w-8 h-8 rounded-md bg-primary/10 border border-primary/20 flex-shrink-0">
                         <feature.icon className="w-4 h-4 text-primary" />

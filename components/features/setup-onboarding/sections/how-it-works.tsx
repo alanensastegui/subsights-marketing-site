@@ -141,7 +141,7 @@ export default function HowItWorks() {
           {c.steps.map((step, index) => (
             <div key={step.number} className="animate-item">
               <div
-                className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-card to-card/80 border-primary/20 shadow-xl shadow-primary/5 backdrop-blur-sm transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-primary/10 hover:scale-102 will-change-transform"
+                className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-card to-card/80 border-primary/20 shadow-xl shadow-primary/5 backdrop-blur-sm transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-primary/10 hover:scale-102 will-change-transform transform-gpu"
                 data-video-index={index}
               >
                 {/* Video Preview */}
@@ -230,7 +230,7 @@ export default function HowItWorks() {
           <div className="lg:col-span-3 lg:sticky lg:top-8 lg:h-fit">
             <div
               key={selectedStep}
-              className="relative aspect-video w-full overflow-hidden rounded-2xl ring-1 ring-white/20 shadow-2xl bg-background/20 backdrop-blur-2xl transition-all duration-500 ease-in-out animate-in fade-in-0 slide-in-from-right-4 will-change-transform"
+              className="relative aspect-video w-full overflow-hidden rounded-2xl ring-1 ring-white/20 shadow-2xl bg-background/20 backdrop-blur-2xl transition-all duration-500 ease-in-out animate-in fade-in-0 slide-in-from-right-4 will-change-transform transform-gpu"
             >
               {/* Skeleton placeholder */}
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-muted-foreground animate-pulse rounded-2xl" />

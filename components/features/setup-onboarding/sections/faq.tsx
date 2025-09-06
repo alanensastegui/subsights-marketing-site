@@ -53,7 +53,7 @@ export default function FAQ() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border border-border/50 rounded-lg overflow-hidden hover:border-border transition-colors duration-200 last:border-b"
+                className="border border-border/50 rounded-lg overflow-hidden hover:border-border transition-colors duration-200 last:border-b transform-gpu"
               >
                 <AccordionTrigger className="px-6 py-4 text-left hover:no-underline group">
                   <h3 className="text-lg font-semibold text-foreground group-hover:text-muted-foreground transition-colors">
