@@ -71,7 +71,7 @@ export default function MobileNavigation({ navItems }: MobileNavigationProps) {
                               {item.mainItem.label}
                             </Link>
                           </SheetClose>
-                          <Separator className="my-3 mx-2 bg-foreground/80" />
+                          <Separator className="my-3 mx-2 bg-foreground/20" />
                         </>
                       )}
                       {item.children.map((child, index) => (
