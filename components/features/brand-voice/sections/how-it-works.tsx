@@ -31,7 +31,7 @@ const copy = {
   subtitle: "From crafting the perfect teammate to designing a seamless brand experience—all with enterprise-grade reliability.",
   methods: [
     {
-      title: "Craft the perfect Teammate for any goal",
+      title: "Craft the perfect AI teammate for any goal",
       description: "Every business is different. Define your AI's role in plain language, and let the platform handle the rest.",
       icon: Brain,
       features: [
