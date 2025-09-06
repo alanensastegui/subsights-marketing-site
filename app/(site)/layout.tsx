@@ -4,19 +4,9 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import { Button } from "@/components/ui/button";
 import { Animate } from "@/components/ui/animate";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuLink,
-  type NavItem,
-} from "@/components/ui/navigation-menu";
+import MobileNavigation from "@/components/layout/mobile-navigation";
+import DesktopNavigation from "@/components/layout/desktop-navigation";
 import FloatingOrb from "@/components/layout/floating-orb";
 import { GoogleAnalytics } from "@/lib/analytics/components/google-analytics";
 import { PageViewTracker } from "@/lib/analytics/components/page-view-tracker";
@@ -24,10 +14,11 @@ import { DevAnalyticsDashboard } from "@/lib/analytics/components/dev-analytics-
 import { ConsentBanner } from "@/lib/analytics/components/consent-banner";
 import { AnalyticsProvider } from "@/lib/analytics/context";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
-import { getAllCaseStudies } from "@/lib/case-studies";
-import { getAllFeatureMetadata } from "@/lib/features/registry";
 import { AutoButtonTracking } from "@/lib/analytics/components/auto-button-tracking";
 import { ApolloTracker } from "@/components/layout/apollo-tracker";
+import { getAllCaseStudies } from "@/lib/case-studies";
+import { getAllFeatureMetadata } from "@/lib/features/registry";
+import type { NavItem } from "@/components/ui/navigation-menu";
 
 function buildNavigationItems() {
   const caseStudies = getAllCaseStudies();
@@ -35,24 +26,20 @@ function buildNavigationItems() {
 
   const caseStudiesNavItem: NavItem = {
     label: "Case Studies",
-    children: [
-      { label: "All Case Studies", href: "/case-studies" },
-      ...caseStudies.map(study => ({
-        label: study.company,
-        href: `/case-studies/${study.slug}`
-      }))
-    ]
+    mainItem: { label: "All Case Studies", href: "/case-studies" },
+    children: caseStudies.map(study => ({
+      label: study.company,
+      href: `/case-studies/${study.slug}`
+    }))
   };
 
   const featuresNavItem: NavItem = {
     label: "Features",
-    children: [
-      { label: "All Features", href: "/features" },
-      ...features.map(feature => ({
-        label: feature.title,
-        href: `/features/${feature.id}`
-      }))
-    ]
+    mainItem: { label: "All Features", href: "/features" },
+    children: features.map(feature => ({
+      label: feature.title,
+      href: `/features/${feature.id}`
+    }))
   };
 
   return [
@@ -67,123 +54,6 @@ function buildNavigationItems() {
   ] as (NavItem & { isButton?: boolean })[];
 }
 
-// Navigation Components
-const DesktopNavigation = () => {
-  const navItems = buildNavigationItems();
-
-  return (
-    <NavigationMenu className="hidden md:block">
-      <NavigationMenuList>
-        {navItems.map((item) => (
-          'children' in item ? (
-            <NavigationMenuItem key={item.label}>
-              <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
-                  {item.children.map((child) => (
-                    <NavigationMenuLink
-                      key={child.label}
-                      href={child.href}
-                      className="group relative block w-full rounded-lg p-3 text-sm font-medium leading-none no-underline outline-none transition-all duration-200 ease-out hover:bg-primary/80 hover:text-foreground focus:bg-primary/10 focus:text-foreground hover:scale-[1.02] hover:shadow-sm"
-                    >
-                      <span className="relative z-10">{child.label}</span>
-                      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-                    </NavigationMenuLink>
-                  ))}
-                </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          ) : (
-            <NavigationMenuItem key={item.label}>
-              {item.isButton ? (
-                <Button
-                  asChild
-                  size="sm"
-                  data-analytics-id="nav_desktop_demo"
-                  data-analytics-name="Email My Demo (Nav)"
-                  data-analytics-context='{"source":"nav_desktop","location":"header"}'
-                >
-                  <Link href={item.href}>
-                    {item.label}
-                  </Link>
-                </Button>
-              ) : (
-                <NavigationMenuLink
-                  href={item.href}
-                  className="group relative inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-accent/80 hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 hover:scale-[1.02] hover:shadow-sm"
-                >
-                  {item.label}
-                </NavigationMenuLink>
-              )}
-            </NavigationMenuItem>
-          )
-        ))}
-      </NavigationMenuList>
-    </NavigationMenu>
-  );
-};
-
-const MobileNavigation = () => {
-  const navItems = buildNavigationItems();
-
-  return (
-    <Sheet>
-      <SheetTrigger asChild className="md:hidden">
-        <Button variant="ghost" size="sm" className="p-2">
-          <Menu className="h-5 w-5" />
-          <span className="sr-only">Toggle mobile menu</span>
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-transparent backdrop-blur-xl border-l border-border/50">
-        <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-        <nav className="flex flex-col gap-4 mt-8 px-6">
-          {navItems.map((item) => (
-            <div key={item.label}>
-              {'children' in item ? (
-                <div className="space-y-2">
-                  <div className="font-medium text-foreground py-2">{item.label}</div>
-                  {item.children.map((child) => (
-                    <SheetClose asChild key={child.label}>
-                      <Link
-                        href={child.href}
-                        className="block py-2 pl-4 text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {child.label}
-                      </Link>
-                    </SheetClose>
-                  ))}
-                </div>
-              ) : item.isButton ? (
-                <SheetClose asChild>
-                  <Button
-                    asChild
-                    className="w-full"
-                    data-analytics-id="nav_mobile_demo"
-                    data-analytics-name="Email My Demo (Nav Mobile)"
-                    data-analytics-context='{"source":"nav_mobile","location":"sheet"}'
-                  >
-                    <Link href={item.href}>
-                      {item.label}
-                    </Link>
-                  </Button>
-                </SheetClose>
-              ) : (
-                <SheetClose asChild>
-                  <Link
-                    href={item.href}
-                    className="group relative block py-2 text-foreground hover:text-foreground transition-all duration-200 ease-out rounded-lg hover:bg-primary/10"
-                  >
-                    {item.label}
-                  </Link>
-                </SheetClose>
-              )}
-            </div>
-          ))}
-        </nav>
-      </SheetContent>
-    </Sheet>
-  );
-};
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subsights.com'),
@@ -212,6 +82,8 @@ export const metadata: Metadata = {
     images: ['/images/logo/small-logo.svg'],
   },
 };
+
+const navItems = buildNavigationItems();
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
@@ -254,8 +126,8 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
                     className="h-12 w-auto"
                   />
                 </Link>
-                <DesktopNavigation />
-                <MobileNavigation />
+                <DesktopNavigation navItems={navItems} />
+                <MobileNavigation navItems={navItems} />
               </div>
             </Animate>
           </header>

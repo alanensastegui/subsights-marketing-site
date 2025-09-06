@@ -182,6 +182,10 @@ export interface SimpleNavItem {
 
 export interface DropdownNavItem {
   label: string;
+  mainItem?: {
+    label: string;
+    href: string;
+  };
   children: {
     label: string;
     href: string;
