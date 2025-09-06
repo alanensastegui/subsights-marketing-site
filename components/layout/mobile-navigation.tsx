@@ -37,7 +37,7 @@ export default function MobileNavigation({ navItems }: MobileNavigationProps) {
           <span className="sr-only">Toggle mobile menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-transparent backdrop-blur-xl overflow-y-auto z-[10000000] border-l-0">
+      <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-transparent backdrop-blur-xl overflow-y-auto scrollbar-hide z-[10000000] border-l-0">
         <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
         <nav className="flex flex-col gap-4 mt-8 px-6 pb-8">
           {navItems.map((item) => (
