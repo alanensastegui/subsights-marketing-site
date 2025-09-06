@@ -146,7 +146,7 @@ export default function HowItWorks() {
               >
                 {/* Video Preview */}
                 <div className="px-6 pt-6">
-                  <div className="relative rounded-xl overflow-hidden bg-muted/50 border border-border/50 shadow-inner group/video">
+                  <div className="relative aspect-video w-full overflow-hidden rounded-2xl ring-1 ring-white/20 shadow-2xl bg-background/20 backdrop-blur-2xl group/video">
                     <VideoPlayer
                       src={step.videoSrc}
                       className="w-full h-auto"
@@ -230,10 +230,10 @@ export default function HowItWorks() {
           <div className="lg:col-span-3 lg:sticky lg:top-8 lg:h-fit">
             <div
               key={selectedStep}
-              className="relative rounded-lg overflow-hidden bg-muted/50 border transition-all duration-500 ease-in-out animate-in fade-in-0 slide-in-from-right-4 will-change-transform"
+              className="relative aspect-video w-full overflow-hidden rounded-2xl ring-1 ring-white/20 shadow-2xl bg-background/20 backdrop-blur-2xl transition-all duration-500 ease-in-out animate-in fade-in-0 slide-in-from-right-4 will-change-transform"
             >
               {/* Skeleton placeholder */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-muted-foreground animate-pulse rounded-lg" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-muted-foreground animate-pulse rounded-2xl" />
 
               {selectedStep !== null && (
                 <VideoPlayer
