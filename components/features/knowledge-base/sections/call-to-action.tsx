@@ -22,7 +22,7 @@ const copy = {
 
 export default function CallToAction() {
   return (
-    <section className="relative isolate px-6 py-12 max-w-5xl mx-auto">
+    <section className="relative isolate px-6 py-12 max-w-6xl mx-auto">
       <Animate name="fadeInStagger" trigger="onVisible">
         <Cta
           copy={copy}
