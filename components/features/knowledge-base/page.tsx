@@ -1,5 +1,6 @@
 import Hero from "./sections/hero";
 import VideoDemo from "./sections/video-demo";
+import HowItWorks from "./sections/how-it-works";
 import CallToAction from "./sections/call-to-action";
 
 export default function KnowledgeBasePage() {
@@ -7,6 +8,7 @@ export default function KnowledgeBasePage() {
   const Sections = [
     Hero,
     VideoDemo,
+    HowItWorks,
     CallToAction,
   ];
 

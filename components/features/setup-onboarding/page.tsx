@@ -1,5 +1,6 @@
 import Hero from "./sections/hero";
 import VideoDemo from "./sections/video-demo";
+import HowItWorks from "./sections/how-it-works";
 import CallToAction from "./sections/call-to-action";
 
 const EffortlessSetupOnboardingPage = () => {
@@ -7,6 +8,7 @@ const EffortlessSetupOnboardingPage = () => {
   const Sections = [
     Hero,
     VideoDemo,
+    HowItWorks,
     CallToAction,
   ];
 
