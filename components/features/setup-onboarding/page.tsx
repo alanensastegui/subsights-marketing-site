@@ -1,9 +1,13 @@
-import Placeholder from "./sections/placeholder";
+import Hero from "./sections/hero";
+import VideoDemo from "./sections/video-demo";
+import CallToAction from "./sections/call-to-action";
 
 const EffortlessSetupOnboardingPage = () => {
   // Custom page layout for setup & onboarding feature
   const Sections = [
-    Placeholder,
+    Hero,
+    VideoDemo,
+    CallToAction,
   ];
 
   return (

@@ -16,7 +16,7 @@ export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
   },
   'brand-voice': {
     id: 'brand-voice',
-    title: 'Brand & voice',
+    title: 'Brand & Voice',
     description: 'Voice, tone, and UI. Dialed to your brand.',
   },
 };
@@ -86,8 +86,8 @@ export async function getFeaturePackage(id: FeatureName): Promise<FeaturePackage
  * Get feature metadata by id
  * Returns metadata from central registry
  */
-export function getFeatureMetadata(id: FeatureName): FeatureMetadata | null {
-  return featureMetadata[id] || null;
+export function getFeatureMetadata(id: FeatureName): FeatureMetadata {
+  return featureMetadata[id];
 }
 
 /**
