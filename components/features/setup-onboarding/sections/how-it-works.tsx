@@ -150,7 +150,7 @@ export default function HowItWorks() {
                     <VideoPlayer
                       src={step.videoSrc}
                       className="w-full h-auto"
-                      autoPlay={false}
+                      autoPlay={true}
                       muted
                       loop={false}
                       playsInline
