@@ -48,7 +48,12 @@ export default function Hero() {
                 <Link href={c.primaryCta.href}>
                   {c.primaryCta.label}
                 </Link>
-              )
+              ),
+              dataAttributes: {
+                "data-analytics-id": "setup_onboarding_hero_demo",
+                "data-analytics-name": "Email My Demo (Setup Onboarding Hero)",
+                "data-analytics-context": '{"source":"setup_onboarding_hero","section":"hero"}',
+              },
             }}
             secondary={{
               asChild: true,
@@ -57,7 +62,12 @@ export default function Hero() {
                 <a href={c.secondaryCta.href} target="_blank" rel="noopener noreferrer">
                   {c.secondaryCta.label}
                 </a>
-              )
+              ),
+              dataAttributes: {
+                "data-analytics-id": "setup_onboarding_hero_start_free",
+                "data-analytics-name": "Start Free Trial (Setup Onboarding Hero)",
+                "data-analytics-context": '{"source":"setup_onboarding_hero","section":"hero"}',
+              },
             }}
           />
         </div>
