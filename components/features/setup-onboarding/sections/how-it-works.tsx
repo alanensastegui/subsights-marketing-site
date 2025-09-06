@@ -163,8 +163,8 @@ export default function HowItWorks() {
                   <div className="flex items-start gap-4">
                     {/* Step Number */}
                     <div className="flex-shrink-0">
-                      <div className="w-14 h-14 rounded-2xl border-2 flex items-center justify-center bg-gradient-to-br from-primary to-primary/80 border-primary/50 shadow-lg shadow-primary/20">
-                        <span className="text-lg font-bold text-primary-foreground">
+                      <div className="w-12 h-12 rounded-full border flex items-center justify-center bg-gradient-to-br from-primary/20 to-primary/30 border-primary/50 shadow-md">
+                        <span className="text-lg font-bold text-foreground">
                           {step.number}
                         </span>
                       </div>
