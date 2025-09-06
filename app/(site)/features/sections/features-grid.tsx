@@ -1,23 +1,11 @@
 import { Animate } from "@/components/ui/animate";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getAllFeatureMetadata } from "@/lib/features/registry";
 import { iconMap } from "@/lib/features/registry";
 
-type Copy = {
-  heading: string;
-  description: string;
-};
-
 export const sectionId = "features-grid";
-
-// ---- SECTION COPY REGION ----
-const copy = {
-  heading: "Built for outcomes",
-  description: "Fast, focused, and quietly powerful",
-} satisfies Copy;
-// ---- /SECTION COPY REGION ----
 
 export default async function FeaturesGrid() {
   const features = await getAllFeatureMetadata();
@@ -25,22 +13,12 @@ export default async function FeaturesGrid() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-12">
       <Animate name="fadeInStagger" trigger="onVisible">
-        {/* Grid Header */}
-        <div className="text-center mb-16">
-          <h2 className="animate-item text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            {copy.heading}
-          </h2>
-          <p className="animate-item text-lg text-muted-foreground max-w-2xl mx-auto">
-            {copy.description}
-          </p>
-        </div>
-
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature) => (
             <div key={feature.id} className="animate-item">
-              <Card className="group h-full hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 hover:border-primary/20">
-                <CardHeader className="pb-4">
+              <Card className="group h-full hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 hover:border-primary/20 flex flex-col">
+                <CardHeader className="pb-4 flex-1">
                   <div className="flex items-start justify-between mb-3">
                     <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mb-2">
                       {(() => {
@@ -65,7 +43,7 @@ export default async function FeaturesGrid() {
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="pt-0">
+                <CardFooter className="pt-0 mt-auto">
                   {/* Learn More Link */}
                   <Link
                     href={`/features/${feature.id}`}
@@ -77,7 +55,7 @@ export default async function FeaturesGrid() {
                     Learn more
                     <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover/link:translate-x-1" />
                   </Link>
-                </CardContent>
+                </CardFooter>
               </Card>
             </div>
           ))}

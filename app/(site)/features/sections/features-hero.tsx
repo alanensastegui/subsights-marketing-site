@@ -11,8 +11,8 @@ type Copy = {
 };
 
 const copy = {
-  heading: "Everything your AI teammate needs, built in",
-  description: "Set outcomes, plug in your knowledge, and let Subsights handle the rest",
+  heading: "Built for outcomes",
+  description: "Features that power your Subsights teammate—so every visit counts",
   primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
   secondaryCta: { label: "Start Free", href: getFreeTrialUrl() },
 } satisfies Copy;
@@ -28,7 +28,7 @@ export default function FeaturesHero() {
 
         {/* Description */}
         <div className="animate-item w-full flex justify-center">
-          <p className="max-w-xl animate-item text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8 break-normal text-center">
+          <p className="max-w-lg animate-item text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8 break-normal text-center">
             {copy.description}
           </p>
         </div>
