@@ -1,6 +1,7 @@
 import { Cta } from "@/components/ui/cta";
 import { Animate } from "@/components/ui/animate";
 import { getFreeTrialUrl } from "@/lib/subscriptions";
+import { getFeatureMetadata } from "@/lib/features";
 
 type Copy = {
   title: string;
@@ -11,8 +12,9 @@ type Copy = {
 export const sectionId = "call-to-action";
 
 // ---- SECTION COPY REGION ----
+const featureMetadata = getFeatureMetadata('setup-onboarding');
 const copy = {
-  title: "Ready to get started?",
+  title: featureMetadata.ctaTitle,
   primaryCta: { label: "Email My Demo", href: "/email-my-demo", external: false },
   secondaryCta: { label: "Start Free Trial", href: getFreeTrialUrl(), external: true },
 } satisfies Copy;
@@ -20,7 +22,7 @@ const copy = {
 
 export default function CallToAction() {
   return (
-    <section className="relative isolate px-6 py-12 max-w-5xl mx-auto">
+    <section className="relative isolate px-6 py-12 max-w-6xl mx-auto">
       <Animate name="fadeInStagger" trigger="onVisible">
         <Cta
           copy={copy}

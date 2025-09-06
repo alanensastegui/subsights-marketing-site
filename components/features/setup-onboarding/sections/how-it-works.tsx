@@ -23,7 +23,7 @@ export const sectionId = "how-it-works";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "How it works",
-  subtitle: "Sign up today. Go live in four steps.",
+  subtitle: "Sign up today. Go live in four steps",
   steps: [
     {
       number: "01",

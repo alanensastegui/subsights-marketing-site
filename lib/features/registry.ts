@@ -8,16 +8,19 @@ export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
     id: 'setup-onboarding',
     title: 'Setup & Onboarding',
     description: 'No code required. Real results on day one',
+    ctaTitle: 'Get value on day one.',
   },
   'knowledge-base': {
     id: 'knowledge-base',
     title: 'Knowledge Base',
     description: 'You decide what\'s in scope. We answer from it',
+    ctaTitle: 'Ready to get started?',
   },
   'brand-voice': {
     id: 'brand-voice',
     title: 'Brand & Voice',
     description: 'Voice, tone, and UI. Dialed to your brand',
+    ctaTitle: 'Ready to get started?',
   },
 };
 
