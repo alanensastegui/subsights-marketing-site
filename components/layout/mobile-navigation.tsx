@@ -66,7 +66,7 @@ export default function MobileNavigation({ navItems }: MobileNavigationProps) {
                           <SheetClose asChild>
                             <Link
                               href={item.mainItem.href}
-                              className="block py-2.5 pl-6 pr-2 text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-200 ease-out transform hover:translate-x-1"
+                              className="block py-2.5 pl-6 pr-2 text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-200 ease-out transform hover:translate-x-1"
                             >
                               {item.mainItem.label}
                             </Link>
@@ -78,7 +78,7 @@ export default function MobileNavigation({ navItems }: MobileNavigationProps) {
                         <SheetClose asChild key={child.label}>
                           <Link
                             href={child.href}
-                            className="block py-2.5 pl-6 pr-2 text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-200 ease-out transform hover:translate-x-1"
+                            className="block py-2.5 pl-6 pr-2 text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-200 ease-out transform hover:translate-x-1"
                             style={{
                               animationDelay: expandedItems.has(item.label) ? `${index * 50}ms` : '0ms'
                             }}
