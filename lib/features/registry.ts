@@ -1,16 +1,20 @@
 import type { ComponentType } from "react";
 import type { FeatureMetadata, FeatureName, FeaturePackage } from "./types";
-import { Rocket } from "lucide-react";
+import { Rocket, BookOpen, Palette } from "lucide-react";
 
 // Map feature names to their icon components
 export const iconMap: Record<FeatureName, ComponentType<{ className?: string }>> = {
-  'effortless-setup-onboarding': Rocket,
+  'setup-onboarding': Rocket,
+  'knowledge-base': BookOpen,
+  'brand-voice': Palette,
 };
 
 // Registry of feature packages
 // Each key is the feature name, value is a dynamic import
 const featurePackages: Record<FeatureName, () => Promise<FeaturePackage>> = {
-  'effortless-setup-onboarding': async () => (await import('@/components/features/effortless-setup-onboarding')).default,
+  'setup-onboarding': async () => (await import('@/components/features/setup-onboarding')).default,
+  'knowledge-base': async () => (await import('@/components/features/knowledge-base')).default,
+  'brand-voice': async () => (await import('@/components/features/brand-voice')).default,
 };
 
 // Cache for loaded packages to avoid re-importing

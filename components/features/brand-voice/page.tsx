@@ -1,7 +1,7 @@
 import Placeholder from "./sections/placeholder";
 
-export default function EffortlessSetupOnboardingPage() {
-  // Custom page layout for setup & onboarding feature
+export default function BrandPage() {
+  // Custom page layout for brand feature
   const Sections = [
     Placeholder,
   ];
