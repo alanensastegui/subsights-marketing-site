@@ -23,7 +23,7 @@ export const sectionId = "how-it-works";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "How it works",
-  subtitle: "Go from sign-up to a live AI teammate in four simple steps—fast, clear, done.",
+  subtitle: "Sign up today. Go live in four steps.",
   steps: [
     {
       number: "01",
