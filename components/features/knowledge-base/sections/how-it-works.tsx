@@ -21,7 +21,7 @@ const copy = {
   subtitle: "Multiple ways to build your knowledge base—choose what works best for your content and workflow.",
   methods: [
     {
-      title: "Train from Your Website",
+      title: "Train from your website",
       icon: Globe,
       features: [
         "Sitemap (Recommended): Add your entire sitemap at once, or train the AI on specific branches",
@@ -31,7 +31,7 @@ const copy = {
       ]
     },
     {
-      title: "Direct File Uploads",
+      title: "Direct file uploads",
       icon: FileText,
       features: [
         "Upload .pdf, .md, or .txt files directly to the knowledge base",
@@ -41,7 +41,7 @@ const copy = {
       ]
     },
     {
-      title: "Manual Text Input",
+      title: "Manual text input",
       icon: PenTool,
       features: [
         "Simple Text: Create topics with headers and body content",
