@@ -79,8 +79,8 @@ export async function getFeatureMetadata(id: FeatureName): Promise<FeatureMetada
 
   try {
     // Load only the metadata, not the full package
-    const module = await import(`@/components/features/${id}`);
-    const metadata = module.metadata;
+    const featureModule = await import(`@/components/features/${id}`);
+    const metadata = featureModule.metadata;
 
     // Cache the metadata
     metadataCache.set(id, metadata);

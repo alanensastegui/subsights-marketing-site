@@ -1,5 +1,5 @@
 import { Animate } from "@/components/ui/animate";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getAllFeatureMetadata } from "@/lib/features/registry";
