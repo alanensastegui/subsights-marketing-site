@@ -13,7 +13,7 @@ export const sectionId = "call-to-action";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Ready to see similar results?",
+  title: "Ready for similar results?",
   subtitle: "Join the growing list of satisfied customers",
   primaryCta: { label: "Email My Demo", href: "/email-my-demo", external: false },
   secondaryCta: { label: "Start Free", href: getFreeTrialUrl(), external: true },
