@@ -2,6 +2,25 @@ import type { ComponentType } from "react";
 import type { FeatureMetadata, FeatureName, FeaturePackage } from "./types";
 import { Rocket, BookOpen, Palette } from "lucide-react";
 
+// Central metadata registry
+export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
+  'setup-onboarding': {
+    id: 'setup-onboarding',
+    title: 'Setup & Onboarding',
+    description: 'No code required. Real results on day one.',
+  },
+  'knowledge-base': {
+    id: 'knowledge-base',
+    title: 'Knowledge Base',
+    description: 'You decide what\'s in scope. We answer from it.',
+  },
+  'brand-voice': {
+    id: 'brand-voice',
+    title: 'Brand & voice',
+    description: 'Voice, tone, and UI. Dialed to your brand.',
+  },
+};
+
 // Map feature names to their icon components
 export const iconMap: Record<FeatureName, ComponentType<{ className?: string }>> = {
   'setup-onboarding': Rocket,
@@ -10,30 +29,31 @@ export const iconMap: Record<FeatureName, ComponentType<{ className?: string }>>
 };
 
 // Registry of feature packages
-// Each key is the feature name, value is a dynamic import
+// Constructs packages using centralized metadata and dynamic Page imports
 const featurePackages: Record<FeatureName, () => Promise<FeaturePackage>> = {
-  'setup-onboarding': async () => (await import('@/components/features/setup-onboarding')).default,
-  'knowledge-base': async () => (await import('@/components/features/knowledge-base')).default,
-  'brand-voice': async () => (await import('@/components/features/brand-voice')).default,
+  'setup-onboarding': async () => ({
+    metadata: featureMetadata['setup-onboarding'],
+    Page: (await import('@/components/features/setup-onboarding')).default,
+  }),
+  'knowledge-base': async () => ({
+    metadata: featureMetadata['knowledge-base'],
+    Page: (await import('@/components/features/knowledge-base')).default,
+  }),
+  'brand-voice': async () => ({
+    metadata: featureMetadata['brand-voice'],
+    Page: (await import('@/components/features/brand-voice')).default,
+  }),
 };
 
 // Cache for loaded packages to avoid re-importing
 const packageCache = new Map<FeatureName, FeaturePackage>();
 
-// Cache for metadata to avoid loading full packages when only metadata is needed
-const metadataCache = new Map<FeatureName, FeatureMetadata>();
-
 /**
  * Get all feature metadata (for the grid page)
- * Uses caching for better performance
+ * Returns metadata from central registry
  */
-export async function getAllFeatureMetadata(): Promise<FeatureMetadata[]> {
-  const ids = getAllFeatureIds();
-  const metadataPromises = ids.map(id => getFeatureMetadata(id));
-  const results = await Promise.all(metadataPromises);
-
-  // Filter out null results (shouldn't happen in normal operation)
-  return results.filter((metadata): metadata is FeatureMetadata => metadata !== null);
+export function getAllFeatureMetadata(): FeatureMetadata[] {
+  return Object.values(featureMetadata);
 }
 
 /**
@@ -63,32 +83,11 @@ export async function getFeaturePackage(id: FeatureName): Promise<FeaturePackage
 }
 
 /**
- * Get feature metadata by id (without loading the full package)
- * Uses separate metadata cache for better performance
+ * Get feature metadata by id
+ * Returns metadata from central registry
  */
-export async function getFeatureMetadata(id: FeatureName): Promise<FeatureMetadata | null> {
-  // Return cached metadata if available
-  if (metadataCache.has(id)) {
-    return metadataCache.get(id)!;
-  }
-
-  const loadPackage = featurePackages[id];
-  if (!loadPackage) {
-    return null;
-  }
-
-  try {
-    // Load only the metadata, not the full package
-    const featureModule = await import(`@/components/features/${id}`);
-    const metadata = featureModule.metadata;
-
-    // Cache the metadata
-    metadataCache.set(id, metadata);
-    return metadata;
-  } catch (error) {
-    console.error(`Failed to load feature metadata for id "${id}":`, error);
-    return null;
-  }
+export function getFeatureMetadata(id: FeatureName): FeatureMetadata | null {
+  return featureMetadata[id] || null;
 }
 
 /**

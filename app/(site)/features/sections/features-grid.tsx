@@ -7,8 +7,8 @@ import { iconMap } from "@/lib/features/registry";
 
 export const sectionId = "features-grid";
 
-export default async function FeaturesGrid() {
-  const features = await getAllFeatureMetadata();
+export default function FeaturesGrid() {
+  const features = getAllFeatureMetadata();
 
   return (
     <section className="max-w-6xl mx-auto px-6 py-12">

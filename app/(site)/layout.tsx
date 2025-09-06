@@ -2,8 +2,8 @@ import "@/styles/globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
-import type { Metadata } from "next";
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Animate } from "@/components/ui/animate";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet";
@@ -25,11 +25,13 @@ import { ConsentBanner } from "@/lib/analytics/components/consent-banner";
 import { AnalyticsProvider } from "@/lib/analytics/context";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { getAllCaseStudies } from "@/lib/case-studies";
+import { getAllFeatureMetadata } from "@/lib/features/registry";
 import { AutoButtonTracking } from "@/lib/analytics/components/auto-button-tracking";
 import { ApolloTracker } from "@/components/layout/apollo-tracker";
 
 function buildNavigationItems() {
   const caseStudies = getAllCaseStudies();
+  const features = getAllFeatureMetadata();
 
   const caseStudiesNavItem: NavItem = {
     label: "Case Studies",
@@ -42,9 +44,20 @@ function buildNavigationItems() {
     ]
   };
 
+  const featuresNavItem: NavItem = {
+    label: "Features",
+    children: [
+      { label: "All Features", href: "/features" },
+      ...features.map(feature => ({
+        label: feature.title,
+        href: `/features/${feature.id}`
+      }))
+    ]
+  };
+
   return [
     caseStudiesNavItem,
-    { label: "Features", href: "/features" },
+    featuresNavItem,
     { label: "Pricing", href: "/pricing" },
     { label: "Partners", href: "/partners" },
     { label: "About", href: "/about" },
@@ -201,7 +214,6 @@ export const metadata: Metadata = {
 };
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
-
   return (
     <html lang="en" className="h-full">
       <head>
