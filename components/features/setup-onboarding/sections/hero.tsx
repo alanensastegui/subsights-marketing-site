@@ -37,7 +37,7 @@ export default function Hero() {
         </p>
 
         {/* Call to Action Buttons */}
-        <div className="animate-item flex justify-center">
+        <div className="animate-item">
           <ButtonDuo
             stackAt="sm"
             fullWidthMobile={true}
