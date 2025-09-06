@@ -1,36 +1,35 @@
-import { Cta } from "@/components/ui/cta";
 import { Animate } from "@/components/ui/animate";
+import { Cta } from "@/components/ui/cta";
 import { getFreeTrialUrl } from "@/lib/subscriptions";
 
 type Copy = {
   title: string;
-  subtitle?: string;
-  primaryCta: { label: string; href: string; external: boolean };
+  primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string; external: boolean };
 };
 
-export const sectionId = "call-to-action";
+export const sectionId = "features-cta";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Ready for similar results?",
-  subtitle: "Join the growing list of satisfied customers",
-  primaryCta: { label: "Email My Demo", href: "/email-my-demo", external: false },
+  title: "Make every visit count.",
+  primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
   secondaryCta: { label: "Start Free", href: getFreeTrialUrl(), external: true },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
-export default function CallToAction() {
+export default function FeaturesCta() {
   return (
-    <section className="relative isolate px-6 py-12 max-w-6xl">
+    <section className="max-w-5xl mx-auto px-6 py-12">
       <Animate name="fadeInStagger" trigger="onVisible">
         <Cta
           copy={copy}
-          analyticsContext="case_study_cta"
+          analyticsContext="features_cta"
+          className="flex-col text-center space-y-8"
           classes={{
             title: "animate-item",
             primaryButton: "animate-item",
-            secondaryButton: "animate-item",
+            secondaryButton: "animate-item"
           }}
         />
       </Animate>
