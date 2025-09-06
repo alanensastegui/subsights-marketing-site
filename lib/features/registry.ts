@@ -7,17 +7,17 @@ export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
   'setup-onboarding': {
     id: 'setup-onboarding',
     title: 'Setup & Onboarding',
-    description: 'No code required. Real results on day one.',
+    description: 'No code required. Real results on day one',
   },
   'knowledge-base': {
     id: 'knowledge-base',
     title: 'Knowledge Base',
-    description: 'You decide what\'s in scope. We answer from it.',
+    description: 'You decide what\'s in scope. We answer from it',
   },
   'brand-voice': {
     id: 'brand-voice',
     title: 'Brand & Voice',
-    description: 'Voice, tone, and UI. Dialed to your brand.',
+    description: 'Voice, tone, and UI. Dialed to your brand',
   },
 };
 

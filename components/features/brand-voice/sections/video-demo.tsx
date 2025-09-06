@@ -11,8 +11,8 @@ export const sectionId = "video-demo";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "See it in action",
-  subtitle: "Watch how our AI adapts to your brand voice, tone, and style for consistent, on-brand interactions.",
+  title: "Make it yours",
+  subtitle: "Your AI teammate should feel native to your brand—not an add-on. Set the voice, tone, and behavior, match the look, and define guardrails so every interaction is on-brand and unmistakably yours.",
   videoId: "w0KNGqvUFSI",
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -20,24 +20,26 @@ const copy = {
 export default function VideoDemo() {
   const c = copy;
   return (
-    <section className="relative isolate px-6 py-16 max-w-6xl mx-auto">
+    <section className="relative isolate px-6 py-16 max-w-7xl mx-auto">
       <Animate name="fadeInStagger" trigger="onVisible">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="animate-item text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            {c.title}
-          </h2>
-          <p className="animate-item text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            {c.subtitle}
-          </p>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+          {/* Text Content - Left Side */}
+          <div className="lg:col-span-2 space-y-6">
+            <h2 className="animate-item text-3xl md:text-4xl font-bold tracking-tight">
+              {c.title}
+            </h2>
+            <p className="animate-item text-lg text-muted-foreground leading-relaxed">
+              {c.subtitle}
+            </p>
+          </div>
 
-        {/* Video Container */}
-        <div className="animate-item">
-          <YoutubeEmbed
-            videoId={c.videoId}
-            title="Brand & Voice Demo"
-          />
+          {/* Video Container - Right Side */}
+          <div className="lg:col-span-3 animate-item">
+            <YoutubeEmbed
+              videoId={c.videoId}
+              title="Brand & Voice Demo"
+            />
+          </div>
         </div>
       </Animate>
     </section>
