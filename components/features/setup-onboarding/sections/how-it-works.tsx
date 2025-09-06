@@ -34,7 +34,7 @@ const copy = {
     {
       number: "02",
       title: "Set the voice",
-      description: "Use natural language to set tone, behavior, and guardrails; match colors, logos, and icons so it feels unmistakingly yours.",
+      description: "Use natural language to set tone, behavior, and guardrails; match colors, and logos so it feels unmistakingly yours.",
       videoSrc: "/features/editing-behavior.mp4"
     },
     {

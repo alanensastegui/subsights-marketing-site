@@ -12,7 +12,7 @@ export const sectionId = "video-demo";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "Answers you can trust",
-  subtitle: "Your AI teammate is only as good as what it knows. Take full control of its knowledge base so you can be confident every answer stays accurate and up to date",
+  subtitle: "Your AI teammate is only as good as what it knows. Take full control of its knowledge base so you can be confident every answer stays accurate and up to date.",
   videoId: "nwFlzhBB_gI",
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
