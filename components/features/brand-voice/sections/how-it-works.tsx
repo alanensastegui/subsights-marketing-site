@@ -1,7 +1,7 @@
 import { Animate } from "@/components/ui/animate";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import VideoPlayer from "@/components/ui/video-player";
-import { Brain, Palette, Settings, Target, MessageSquare, Zap, Users, BarChart3, Shield, Headphones } from "lucide-react";
+import { Brain, Palette, Settings, Target, MessageSquare, Zap, Users, BarChart3, Shield, Headphones, Paintbrush, Wrench, Cog } from "lucide-react";
 
 type Feature = {
   title: string;
@@ -12,6 +12,7 @@ type Feature = {
 
 type Method = {
   title: string;
+  description: string;
   features: Feature[];
   icon: React.ComponentType<{ className?: string }>;
 };
@@ -30,72 +31,75 @@ const copy = {
   subtitle: "From crafting the perfect teammate to designing a seamless brand experience—all with enterprise-grade reliability.",
   methods: [
     {
-      title: "Craft the Perfect Teammate for Any Goal",
+      title: "Craft the perfect Teammate for any goal",
+      description: "Every business is different. Define your AI's role in plain language, and let the platform handle the rest.",
       icon: Brain,
       features: [
         {
-          title: "Sales Qualifier",
-          description: "Act like an entry-level account executive, screen prospects, and send detailed summaries to your sales team.",
+          title: "24/7 sales qualifier",
+          description: "Have your AI act like an entry-level account executive. Screen prospects with targeted questions and deliver a warm, qualified lead summary to your sales team.",
           icon: Target,
           videoSrc: "/features/add-sitemap.mp4"
         },
         {
-          title: "Support Agent",
-          description: "Handle repetitive questions while learning from conversations and building its own knowledge base.",
+          title: "Self-improving support agent",
+          description: "Offload repetitive questions. Your AI builds and updates its own knowledge base, adds quick links, and escalates only when it's truly needed.",
           icon: MessageSquare,
           videoSrc: "/features/add-sitemap.mp4"
         },
         {
-          title: "Digital Concierge",
-          description: "Proactively suggest relevant information and guide users to time-sensitive tasks.",
+          title: "Proactive digital concierge",
+          description: "Go beyond Q&A. Suggest events, highlight timely offers, and guide visitors through tasks that add value to their journey.",
           icon: Zap,
           videoSrc: "/features/add-sitemap.mp4"
         }
       ]
     },
     {
-      title: "Design a Seamless, On-Brand Experience",
+      title: "Design a seamless, on-brand experience",
+      description: "Make your AI Teammate feel like it's always been part of your site with powerful, easy-to-use visual controls.",
       icon: Palette,
       features: [
         {
-          title: "Brand Colors",
-          description: "Precise control over hex codes for every element—header, send button, message bubbles, and link colors.",
-          icon: Palette,
+          title: "Brand colors",
+          description: "Adjust headers, buttons, message bubbles, and links to match your palette.",
+          icon: Paintbrush,
           videoSrc: "/features/add-sitemap.mp4"
         },
         {
-          title: "Your Logo",
-          description: "Upload your company logo or custom icon to appear in the header and as the chat avatar.",
+          title: "Logo and icons",
+          description: "Upload your logo or custom icon to appear in the header and avatar.",
           icon: Users,
           videoSrc: "/features/add-sitemap.mp4"
         },
         {
-          title: "Header & Initial State",
-          description: "Customize welcome text and choose whether the chatbot starts open or collapsed.",
+          title: "Header & start state",
+          description: "Customize welcome text and decide if chat opens by default or stays collapsed.",
           icon: BarChart3,
           videoSrc: "/features/add-sitemap.mp4"
         }
       ]
     },
     {
-      title: "Advanced Customization & Reliability Testing",
+      title: "Advanced customization & reliability testing",
+      description: "For complex or mission-critical workflows, extend beyond self-service with expert support.",
       icon: Settings,
       features: [
         {
-          title: "Managed Workflow Design",
-          description: "Our team works directly with you to configure sophisticated, multi-step logic for complex integrations.",
-          icon: Settings,
+          title: "Custom workflow design",
+          description: "Configure multi-step conversation logic with prompts tailored to your business.",
+          icon: Wrench,
           videoSrc: "/features/add-sitemap.mp4"
         },
         {
-          title: "Reliability Testing",
-          description: "Simulate hundreds of interactions to rigorously test AI performance for crucial conversation flows.",
+          title: "Reliability testing",
+          description: "Simulate hundreds of interactions to ensure accuracy and consistency at scale.",
           icon: Shield,
           videoSrc: "/features/add-sitemap.mp4"
         },
         {
-          title: "Enterprise Support",
-          description: "Fully hands-on service for mission-critical workflows that require zero failure tolerance.",
+          title: "Hands-on partnership",
+          description: "Collaborate with our team for setup, fine-tuning, and ongoing improvements.",
           icon: Headphones,
           videoSrc: "/features/add-sitemap.mp4"
         }
@@ -125,11 +129,14 @@ export default function HowItWorks() {
           {c.methods.map((method, index) => (
             <div key={method.title} className="animate-item">
               {/* Method Header */}
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-start gap-4 mb-8">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex-shrink-0">
                   <method.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-2xl font-semibold tracking-tight text-foreground">{method.title}</h3>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-semibold tracking-tight text-foreground mb-2">{method.title}</h3>
+                  <p className="text-base text-muted-foreground leading-relaxed max-w-md">{method.description}</p>
+                </div>
               </div>
 
               {/* Features List */}
