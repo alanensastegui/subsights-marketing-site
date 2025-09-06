@@ -1,5 +1,6 @@
 import Hero from "./sections/hero";
 import VideoDemo from "./sections/video-demo";
+import ValueProp from "./sections/value-prop";
 import HowItWorks from "./sections/how-it-works";
 import CallToAction from "./sections/call-to-action";
 
@@ -8,6 +9,7 @@ export default function KnowledgeBasePage() {
   const Sections = [
     Hero,
     VideoDemo,
+    ValueProp,
     HowItWorks,
     CallToAction,
   ];

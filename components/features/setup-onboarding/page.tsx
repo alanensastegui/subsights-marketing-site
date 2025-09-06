@@ -1,5 +1,5 @@
 import Hero from "./sections/hero";
-import QuickSetup from "./sections/quick-setup";
+import QuickSetup from "./sections/value-prop";
 import VideoDemo from "./sections/video-demo";
 import HowItWorks from "./sections/how-it-works";
 import FAQ from "./sections/faq";
