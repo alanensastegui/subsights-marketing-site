@@ -43,8 +43,8 @@ function buildNavigationItems() {
   };
 
   return [
-    caseStudiesNavItem,
     featuresNavItem,
+    caseStudiesNavItem,
     { label: "Pricing", href: "/pricing" },
     { label: "Partners", href: "/partners" },
     { label: "About", href: "/about" },
