@@ -28,19 +28,19 @@ const copy = {
     {
       number: "01",
       title: "Build the brain",
-      description: "Upload files, connect your sitemap, or paste text. You control what your AI teammate knows, so answers stay accurate and up to date.",
+      description: "Power your AI Teammate with the knowledge it needs. Upload files, link your sitemap, or add text to build a knowledge base you can trust.",
       videoSrc: "/features/add-sitemap.mp4"
     },
     {
       number: "02",
       title: "Set the voice",
-      description: "Use natural language to set tone, behavior, and guardrails; match colors, and logos so it feels unmistakingly yours.",
+      description: "Make your AI Teammate unmistakeably yours. Define its behavior in plain English and customize every detail to match your brand.",
       videoSrc: "/features/editing-behavior.mp4"
     },
     {
       number: "03",
       title: "Wire your workflow",
-      description: "Send handoffs and alerts to your teams and get daily summaries to keep everyone aligned.",
+      description: "Turn conversations into action. Trigger emails, updates, and summaries right when your team needs them.",
       videoSrc: "/features/configuring-reports.mp4"
     },
     {
@@ -150,7 +150,7 @@ export default function HowItWorks() {
                     <VideoPlayer
                       src={step.videoSrc}
                       className="w-full h-auto"
-                      autoPlay={true}
+                      autoPlay
                       muted
                       loop={false}
                       playsInline

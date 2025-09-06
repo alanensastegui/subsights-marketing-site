@@ -21,12 +21,12 @@ const copy = {
       description: "Spin up your AI Teammate and start engaging customers right away."
     },
     {
-      title: "No setup hurdles",
-      description: "Zero complex configuration, no custom code."
+      title: "No technical hurdles",
+      description: "Skip the complexity. No custom code or heavy configuration required."
     },
     {
-      title: "A partner on call",
-      description: "Every plan includes hands-on support whenever you need it."
+      title: "Support when you need it",
+      description: "Get hands-on support included with every plan—whenever you need it."
     }
   ]
 } satisfies Copy;
