@@ -2,15 +2,20 @@
 
 import { useState, useRef } from "react";
 
+interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
+  hoverToPlay?: boolean;
+}
+
 export default function VideoPlayer({
   onEnded,
   onLoadStart,
   onPlay,
   onPause,
   onTimeUpdate,
+  hoverToPlay = false,
   ...videoProps
-}: React.VideoHTMLAttributes<HTMLVideoElement>) {
-  const [isPlaying, setIsPlaying] = useState(true);
+}: VideoPlayerProps) {
+  const [isPlaying, setIsPlaying] = useState(videoProps.autoPlay ?? false);
   const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -56,8 +61,28 @@ export default function VideoPlayer({
     onTimeUpdate?.(event);
   };
 
+  const handleMouseEnter = () => {
+    if (hoverToPlay && videoRef.current) {
+      console.log("Playing video");
+      videoRef.current.play().catch(() => {
+        // Silently handle autoplay restrictions
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverToPlay && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0; // Reset to beginning
+    }
+  };
+
   return (
-    <div className="relative group">
+    <div
+      className="relative group"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <video
         ref={videoRef}
         {...videoProps}

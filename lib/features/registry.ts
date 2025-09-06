@@ -13,7 +13,7 @@ export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
   'knowledge-base': {
     id: 'knowledge-base',
     title: 'Knowledge Base',
-    description: 'You decide what\'s in scope. We answer from it',
+    description: 'Define what\'s in scope. Your AI Teammate responds with accuracy',
     ctaTitle: 'Ready to get started?',
   },
   'brand-voice': {

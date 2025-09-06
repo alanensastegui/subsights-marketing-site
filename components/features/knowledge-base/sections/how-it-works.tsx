@@ -1,9 +1,18 @@
 import { Animate } from "@/components/ui/animate";
-import { Globe, FileText, PenTool } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import VideoPlayer from "@/components/ui/video-player";
+import { Globe, FileText, PenTool, Map, Link, Search, RefreshCw, Upload, Shield, Type, HelpCircle, Edit3, Briefcase } from "lucide-react";
+
+type Feature = {
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  videoSrc: string;
+};
 
 type Method = {
   title: string;
-  features: string[];
+  features: Feature[];
   icon: React.ComponentType<{ className?: string }>;
 };
 
@@ -18,36 +27,78 @@ export const sectionId = "how-it-works";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "How it works",
-  subtitle: "Multiple ways to build your knowledge base—choose what works best for your content and workflow.",
+  subtitle: "Build your knowledge base with flexible options designed for different workflows",
   methods: [
     {
       title: "Train from your website",
       icon: Globe,
       features: [
-        "Sitemap (Recommended): Add your entire sitemap at once, or train the AI on specific branches",
-        "Single URL: Paste URLs directly for key pages you want to include",
-        "Website Crawl: Start on a source page and index all reachable sub-pages",
-        "Auto-refresh every 24 hours with training cut-off dates for content control"
+        {
+          title: "Sitemap (recommended)",
+          description: "Add your entire sitemap or select branches.",
+          icon: Map,
+          videoSrc: "/features/add-sitemap.mp4"
+        },
+        {
+          title: "Single URL",
+          description: "Include key pages one by one.",
+          icon: Link,
+          videoSrc: "/features/add-sitemap.mp4"
+        },
+        {
+          title: "Auto-refresh",
+          description: "Content stays current with daily updates and cut-off dates for control.",
+          icon: RefreshCw,
+          videoSrc: "/features/add-sitemap.mp4"
+        }
       ]
     },
     {
       title: "Direct file uploads",
       icon: FileText,
       features: [
-        "Upload .pdf, .md, or .txt files directly to the knowledge base",
-        "Perfect for internal price lists and detailed product manuals",
-        "Ideal for marketing one-pagers not on your public site",
-        "Secure file storage with full control over content access"
+        {
+          title: "Supported formats",
+          description: "PDF, Markdown, and text files.",
+          icon: Upload,
+          videoSrc: "/features/add-sitemap.mp4"
+        },
+        {
+          title: "Use cases",
+          description: "Price lists, product manuals, marketing one-pagers.",
+          icon: Briefcase,
+          videoSrc: "/features/add-sitemap.mp4"
+        },
+        {
+          title: "Secure storage",
+          description: "Full control over access and visibility.",
+          icon: Shield,
+          videoSrc: "/features/add-sitemap.mp4"
+        }
       ]
     },
     {
       title: "Manual text input",
       icon: PenTool,
       features: [
-        "Simple Text: Create topics with headers and body content",
-        "Perfect for company boilerplate or specific policy details",
-        "Q&A Pairs: Input questions with exact answers for consistent responses",
-        "Quick additions for specific directives and custom knowledge"
+        {
+          title: "Simple text",
+          description: "Create topics with headers and body content.",
+          icon: Type,
+          videoSrc: "/features/add-sitemap.mp4"
+        },
+        {
+          title: "Q&A pairs",
+          description: "Define questions with exact answers for consistent responses.",
+          icon: HelpCircle,
+          videoSrc: "/features/add-sitemap.mp4"
+        },
+        {
+          title: "Quick edits",
+          description: "Add specific directives or custom knowledge on the fly.",
+          icon: Edit3,
+          videoSrc: "/features/add-sitemap.mp4"
+        }
       ]
     }
   ]
@@ -71,29 +122,50 @@ export default function HowItWorks() {
 
         {/* Methods List */}
         <div className="space-y-16">
-          {c.methods.map((method) => (
+          {c.methods.map((method, index) => (
             <div key={method.title} className="animate-item">
-              <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
-                {/* Icon and Title */}
-                <div className="flex items-center gap-4 lg:w-80 lg:flex-shrink-0">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-primary/10 border border-primary/20">
-                    <method.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-semibold tracking-tight lg:text-xl">{method.title}</h3>
+              {/* Method Header */}
+              <div className="flex items-center gap-4 mb-8">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex-shrink-0">
+                  <method.icon className="w-6 h-6 text-primary" />
                 </div>
-
-                {/* Features List */}
-                <div className="flex-1">
-                  <ul className="space-y-4">
-                    {method.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <div className="w-2 h-2 rounded-full bg-primary/60 mt-2 flex-shrink-0" />
-                        <span className="text-base text-muted-foreground leading-relaxed">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <h3 className="text-2xl font-semibold tracking-tight text-foreground">{method.title}</h3>
               </div>
+
+              {/* Features List */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {method.features.map((feature, featureIndex) => (
+                  <Card key={featureIndex} className="group hover:bg-card/80 hover:border-border/70 transition-all duration-200 overflow-hidden">
+                    <CardHeader className="flex flex-row items-center gap-3">
+                      <div className="inline-flex items-center justify-center w-8 h-8 rounded-md bg-primary/10 border border-primary/20 flex-shrink-0">
+                        <feature.icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <CardTitle className="text-sm font-semibold text-foreground">{feature.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-3">{feature.description}</p>
+                      {/* Video Preview */}
+                      <div className="relative aspect-video w-full overflow-hidden rounded-md ring-1 ring-border/50 bg-background/20">
+                        <VideoPlayer
+                          src={feature.videoSrc}
+                          className="w-full h-auto opacity-100 transition-opacity duration-300"
+                          autoPlay={false}
+                          muted
+                          loop={false}
+                          playsInline
+                          hoverToPlay
+                        />
+
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Subtle Divider */}
+              {index < c.methods.length - 1 && (
+                <div className="mt-16 h-px bg-gradient-to-r from-transparent via-border/30 to-transparent" />
+              )}
             </div>
           ))}
         </div>
