@@ -49,7 +49,7 @@ const copy = {
           title: "Single URL",
           description: "Include key pages one by one.",
           icon: Link,
-          videoSrc: "/features/add-sitemap.mp4"
+          videoSrc: "/features/single-url.mp4"
         },
         {
           title: "Auto-refresh",
@@ -68,7 +68,7 @@ const copy = {
           title: "Supported formats",
           description: "PDF, Markdown, and text files.",
           icon: Upload,
-          videoSrc: "/features/add-sitemap.mp4"
+          videoSrc: "/features/file-upload.mp4"
         },
         {
           title: "Use cases",
@@ -93,13 +93,13 @@ const copy = {
           title: "Simple text",
           description: "Create topics with headers and body content.",
           icon: Type,
-          videoSrc: "/features/add-sitemap.mp4"
+          videoSrc: "/features/text-sources.mp4"
         },
         {
           title: "Q&A pairs",
           description: "Define questions with exact answers for consistent responses.",
           icon: HelpCircle,
-          videoSrc: "/features/add-sitemap.mp4"
+          videoSrc: "/features/qa-pairs.mp4"
         },
         {
           title: "Quick edits",
@@ -155,6 +155,8 @@ export default function HowItWorks() {
                   loop={false}
                   playsInline
                   autoPlay={featureIndex === activeIndex}
+                  restartOnAutoPause
+                  autoplayThreshold={0.9}
                   onEnded={() => {
                     if (features.length > 1) {
                       const nextIndex = (featureIndex + 1) % features.length;

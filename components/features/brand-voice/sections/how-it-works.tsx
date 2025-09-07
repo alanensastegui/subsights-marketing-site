@@ -154,6 +154,8 @@ export default function HowItWorks() {
                   loop={false}
                   playsInline
                   autoPlay={featureIndex === activeIndex}
+                  restartOnAutoPause
+                  autoplayThreshold={0.9}
                   onEnded={() => {
                     if (features.length > 1) {
                       const nextIndex = (featureIndex + 1) % features.length;
