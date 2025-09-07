@@ -60,4 +60,4 @@ We launch with the right constraints, then make incremental changes visible and 
 ## The Takeaway
 Flowchart bots react. Generic AI improvises. Brittle custom builds ossify.
 
-The Subsights Expert Teammate listens between the lines, executes your playbook with a dependable workflow, and drives measurable results. If you're serious about turning your website into a revenue engine, don't ship another chatbot. Build your Expert Teammate with [Subsights](https://www.subsights.com/demo).
+The Subsights Expert Teammate listens between the lines, executes your playbook with a dependable workflow, and drives measurable results. If you're serious about turning your website into a revenue engine, don't ship another chatbot. Build your Expert Teammate with [Subsights](https://www.subsights.com/email-my-demo).
