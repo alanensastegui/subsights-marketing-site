@@ -29,10 +29,10 @@ There’s a better approach: strong guardrails informed by real context.
 The Subsights Expert Teammate combines two opinionated pieces:
 
 1. **Your Business Playbook.**  
-   We codify the non-negotiables — pricing tiers, shipping rules, qualification criteria. Clear boundaries that align every response with the way you run the business.
+   We codify the non-negotiables — pricing tiers, shipping rules, qualification criteria. Clear boundaries that align every response with the way you run the business. See how [All Allied Health Schools](https://www.subsights.com/case-studies/all-allied-health-schools) uses this approach to qualify leads.
 
-2. **The AI’s Reasoning Engine.**  
-   A small team of specialized agents interprets messy, human questions and selects the right play. Not generic chatter — disciplined execution of your playbook, conversation by conversation.
+2. **The AI's Reasoning Engine.**  
+   A small team of specialized agents interprets messy, human questions and selects the right play. Not generic chatter — disciplined execution of your playbook, conversation by conversation. See how [Dylan's Tours](https://www.subsights.com/case-studies/dylans-tours) uses this approach to handle complex travel inquiries and drive revenue through strategic upselling.
 
 Vision with constraints. Flexibility without drift.
 
@@ -60,4 +60,4 @@ We launch with the right constraints, then make incremental changes visible and 
 ## The Takeaway
 Flowchart bots react. Generic AI improvises. Brittle custom builds ossify.
 
-The Subsights Expert Teammate listens between the lines, executes your playbook with a dependable workflow, and drives measurable results. If you’re serious about turning your website into a revenue engine, don’t ship another chatbot. Build your Expert Teammate with [Subsights](https://www.subsights.com).
+The Subsights Expert Teammate listens between the lines, executes your playbook with a dependable workflow, and drives measurable results. If you're serious about turning your website into a revenue engine, don't ship another chatbot. Build your Expert Teammate with [Subsights](https://www.subsights.com/demo).
