@@ -21,13 +21,16 @@ export default function VideoPlayer({
   const containerRef = useRef<HTMLDivElement>(null);
   const wasAutoPausedRef = useRef(false);
   const hasBeenSeenRef = useRef(false);
+  const wasManuallyPausedRef = useRef(false);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
+        wasManuallyPausedRef.current = true;
       } else {
         videoRef.current.play();
+        wasManuallyPausedRef.current = false;
       }
       setIsPlaying(!isPlaying);
     }
@@ -35,6 +38,7 @@ export default function VideoPlayer({
 
   const handlePlay = (event: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     setIsPlaying(true);
+    wasManuallyPausedRef.current = false;
     onPlay?.(event);
   };
 
@@ -50,6 +54,7 @@ export default function VideoPlayer({
   const handleLoadStart = (event: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     setProgress(0);
     setIsPlaying(!!videoProps.autoPlay);
+    wasManuallyPausedRef.current = false;
     onLoadStart?.(event);
   };
 
@@ -97,7 +102,8 @@ export default function VideoPlayer({
               // Video came back into view and was auto-paused - resume
               videoRef.current.play();
               wasAutoPausedRef.current = false;
-            } else if (isVisible && !isPlaying && videoProps.autoPlay) {
+            } else if (isVisible && !isPlaying && videoProps.autoPlay && !wasManuallyPausedRef.current) {
+              // Only auto-play if the video wasn't manually paused
               videoRef.current.play();
               setIsPlaying(true);
             }
