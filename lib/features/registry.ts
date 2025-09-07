@@ -19,7 +19,7 @@ export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
   'brand-voice': {
     id: 'brand-voice',
     title: 'Brand & Voice',
-    description: 'Voice, tone, and UI. Dialed to your brand',
+    description: 'Voice, tone, and design. Dialed to your brand',
     ctaTitle: 'Make the experience yours.',
   },
 };
