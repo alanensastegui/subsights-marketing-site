@@ -220,7 +220,7 @@ export default function HowItWorks() {
 
               {/* Subtle Divider */}
               {index < c.methods.length - 1 && (
-                <div className="mt-16 h-px bg-gradient-to-r from-transparent via-border/30 to-transparent" />
+                <div className="mt-16 h-px bg-gradient-to-r from-transparent via-border/70 to-transparent" />
               )}
             </div>
           ))}
