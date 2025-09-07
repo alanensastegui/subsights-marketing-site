@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   hoverToPlay?: boolean;
   restartOnAutoPause?: boolean;
+  autoplayThreshold?: number;
 }
 
 export default function VideoPlayer({
@@ -15,6 +16,7 @@ export default function VideoPlayer({
   onTimeUpdate,
   hoverToPlay = false,
   restartOnAutoPause = false,
+  autoplayThreshold = 0.2,
   ...videoProps
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(videoProps.autoPlay ?? false);
@@ -121,7 +123,7 @@ export default function VideoPlayer({
         });
       },
       {
-        threshold: 0.2,
+        threshold: autoplayThreshold,
         rootMargin: '0px'
       }
     );
@@ -131,7 +133,7 @@ export default function VideoPlayer({
     return () => {
       observer.disconnect();
     };
-  }, [isPlaying, videoProps.autoPlay, restartOnAutoPause]);
+  }, [isPlaying, videoProps.autoPlay, restartOnAutoPause, autoplayThreshold]);
 
   return (
     <div
