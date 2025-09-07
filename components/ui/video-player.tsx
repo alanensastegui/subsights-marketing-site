@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 
 interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   hoverToPlay?: boolean;
+  restartOnAutoPause?: boolean;
 }
 
 export default function VideoPlayer({
@@ -13,6 +14,7 @@ export default function VideoPlayer({
   onPause,
   onTimeUpdate,
   hoverToPlay = false,
+  restartOnAutoPause = false,
   ...videoProps
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(videoProps.autoPlay ?? false);
@@ -98,6 +100,10 @@ export default function VideoPlayer({
               // Video went out of view and is playing - auto-pause
               videoRef.current.pause();
               wasAutoPausedRef.current = true;
+              // Restart from beginning if restartOnAutoPause is enabled
+              if (restartOnAutoPause) {
+                videoRef.current.currentTime = 0;
+              }
             } else if (isVisible && wasAutoPausedRef.current && !isPlaying) {
               // Video came back into view and was auto-paused - resume
               videoRef.current.play();
@@ -125,7 +131,7 @@ export default function VideoPlayer({
     return () => {
       observer.disconnect();
     };
-  }, [isPlaying, videoProps.autoPlay]);
+  }, [isPlaying, videoProps.autoPlay, restartOnAutoPause]);
 
   return (
     <div
