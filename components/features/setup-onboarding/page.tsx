@@ -12,7 +12,7 @@ const EffortlessSetupOnboardingPage = () => {
     VideoDemo,
     QuickSetup,
     HowItWorks,
-    FAQ,
+    // FAQ,
     CallToAction,
   ];
 
