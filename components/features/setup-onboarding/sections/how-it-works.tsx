@@ -1,15 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Animate } from "@/components/ui/animate";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import VideoPlayer from "@/components/ui/video-player";
+import type { FeatureName } from "@/lib/features/types";
 
 type Step = {
   number: string;
   title: string;
   description: string;
   videoSrc: string;
+  featureSlug?: FeatureName;
 };
 
 type Copy = {
@@ -29,13 +32,15 @@ const copy = {
       number: "01",
       title: "Build the brain",
       description: "Power your AI Teammate with the knowledge it needs. Upload files, link your sitemap, or add text to build a knowledge base you can trust.",
-      videoSrc: "/features/add-sitemap.mp4"
+      videoSrc: "/features/add-sitemap.mp4",
+      featureSlug: "knowledge-base"
     },
     {
       number: "02",
       title: "Set the voice",
       description: "Make your AI Teammate unmistakeably yours. Define its behavior in plain English and customize every detail to match your brand.",
-      videoSrc: "/features/editing-behavior.mp4"
+      videoSrc: "/features/editing-behavior.mp4",
+      featureSlug: "brand-voice"
     },
     {
       number: "03",
@@ -216,6 +221,32 @@ export default function HowItWorks() {
                             <CardDescription className={classes.description}>
                               {step.description}
                             </CardDescription>
+                            {isSelected && step.featureSlug && (
+                              <div className="mt-4 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-200">
+                                <Link
+                                  href={`/features/${step.featureSlug}`}
+                                  className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-all duration-300 ease-out"
+                                >
+                                  <span className="relative">
+                                    Learn more about {step.title.toLowerCase()}
+                                    <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300 ease-out"></span>
+                                  </span>
+                                  <svg
+                                    className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M9 5l7 7-7 7"
+                                    />
+                                  </svg>
+                                </Link>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </CardHeader>
