@@ -5,7 +5,7 @@ import { Animate } from "@/components/ui/animate";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import VideoPlayer from "@/components/ui/video-player";
 import Carousel, { CarouselItem } from "@/components/ui/carousel";
-import { Globe, FileText, PenTool, Map, Link, RefreshCw, Upload, Shield, Type, HelpCircle, Edit3, Briefcase } from "lucide-react";
+import { Globe, FileText, PenTool, Map, Link, RefreshCw, Upload, Shield, Type, HelpCircle, Edit3, Briefcase, ToggleLeft } from "lucide-react";
 
 type Feature = {
   title: string;
@@ -40,28 +40,28 @@ const copy = {
       icon: Globe,
       features: [
         {
-          title: "Sitemap (recommended)",
-          description: "Add your entire sitemap or select branches.",
+          title: "Sitemap",
+          description: "Import your entire sitemap or select branches with cut-off dates for control. Updates sync every hour — the fastest way to keep content current.",
           icon: Map,
           videoSrc: "/features/add-sitemap.mp4"
         },
         {
           title: "Single URL",
-          description: "Include key pages one by one.",
+          description: "Add important pages individually. Updates sync weekly.",
           icon: Link,
           videoSrc: "/features/single-url.mp4"
         },
         {
-          title: "Auto-refresh",
-          description: "Content stays current with daily updates and cut-off dates for control.",
-          icon: RefreshCw,
-          videoSrc: "/features/add-sitemap.mp4"
-        }
+          title: "One-click control",
+          description: "Include or exclude single URLs from your teammate's knowledge instantly.",
+          icon: ToggleLeft,
+          videoSrc: "/features/toggle-data-source.mp4"
+        },
       ]
     },
     {
       title: "Direct file uploads",
-      description: "Upload documents, manuals, and reference materials directly to create a searchable knowledge repository.",
+      description: "Upload documents and manuals that fuel your teammate’s responses, from price lists to product guides.",
       icon: FileText,
       features: [
         {
@@ -71,41 +71,35 @@ const copy = {
           videoSrc: "/features/file-upload.mp4"
         },
         {
-          title: "Use cases",
-          description: "Price lists, product manuals, marketing one-pagers.",
-          icon: Briefcase,
-          videoSrc: "/features/add-sitemap.mp4"
+          title: "One-click control",
+          description: "Include or exclude specific files from your teammate's knowledge instantly.",
+          icon: ToggleLeft,
+          videoSrc: "/features/toggle-data-source.mp4"
         },
-        {
-          title: "Secure storage",
-          description: "Full control over access and visibility.",
-          icon: Shield,
-          videoSrc: "/features/add-sitemap.mp4"
-        }
       ]
     },
     {
       title: "Manual text input",
-      description: "Create custom knowledge entries with structured content, Q&A pairs, and specific directives for your AI teammate.",
+      description: "Add knowledge directly with structured content, Q&A pairs, and specific directives.",
       icon: PenTool,
       features: [
         {
           title: "Simple text",
-          description: "Create topics with headers and body content.",
+          description: "Write topics with a title and supporting content.",
           icon: Type,
           videoSrc: "/features/text-sources.mp4"
         },
         {
           title: "Q&A pairs",
-          description: "Define questions with exact answers for consistent responses.",
+          description: "Set questions with exact answers for consistent responses.",
           icon: HelpCircle,
           videoSrc: "/features/qa-pairs.mp4"
         },
         {
-          title: "Quick edits",
-          description: "Add specific directives or custom knowledge on the fly.",
-          icon: Edit3,
-          videoSrc: "/features/add-sitemap.mp4"
+          title: "One-click control",
+          description: "Include or exclude single entries from your teammate's knowledge instantly.",
+          icon: ToggleLeft,
+          videoSrc: "/features/toggle-data-source.mp4"
         }
       ]
     }
