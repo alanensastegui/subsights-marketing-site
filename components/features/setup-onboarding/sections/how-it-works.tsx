@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Animate } from "@/components/ui/animate";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -97,37 +97,6 @@ export default function HowItWorks() {
     setSelectedStep(prev => (prev + 1) % c.steps.length);
   };
 
-  // Intersection Observer for mobile video auto-play
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const video = entry.target.querySelector('video') as HTMLVideoElement;
-
-          if (entry.isIntersecting && video) {
-            // Video comes into view - try to play
-            video.play().catch(() => {
-              // If auto-play fails (mobile restriction), silently fail
-              console.log('Auto-play blocked on mobile');
-            });
-          }
-        });
-      },
-      {
-        threshold: 0.5, // Trigger when 100% of the element is visible
-        rootMargin: '0px 0px -10% 0px' // Start playing when entire card is in view
-      }
-    );
-
-    // Observe all video containers
-    const videoContainers = document.querySelectorAll('[data-video-index]');
-    videoContainers.forEach(container => observer.observe(container));
-
-    return () => {
-      videoContainers.forEach(container => observer.unobserve(container));
-    };
-  }, []);
-
   return (
     <section className="relative isolate px-6 py-16 max-w-6xl mx-auto">
       <Animate name="fadeInStagger" trigger="onVisible">
@@ -143,11 +112,10 @@ export default function HowItWorks() {
 
         {/* Mobile Steps - All Expanded Layout */}
         <div className="lg:hidden space-y-8">
-          {c.steps.map((step, index) => (
+          {c.steps.map((step) => (
             <div key={step.number} className="animate-item">
               <div
                 className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-card to-card/80 border-primary/20 shadow-xl shadow-primary/5 backdrop-blur-sm transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-primary/10 hover:scale-102 will-change-transform transform-gpu"
-                data-video-index={index}
               >
                 {/* Video Preview */}
                 <div className="px-6 pt-6">

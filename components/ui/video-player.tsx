@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   hoverToPlay?: boolean;
@@ -18,6 +18,9 @@ export default function VideoPlayer({
   const [isPlaying, setIsPlaying] = useState(videoProps.autoPlay ?? false);
   const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const wasAutoPausedRef = useRef(false);
+  const hasBeenSeenRef = useRef(false);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -77,8 +80,48 @@ export default function VideoPlayer({
     }
   };
 
+  // Intersection Observer for viewport-based auto-pause/resume
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const isVisible = entry.isIntersecting;
+
+          if (videoRef.current) {
+            if (!isVisible && isPlaying && hasBeenSeenRef.current) {
+              // Video went out of view and is playing - auto-pause
+              videoRef.current.pause();
+              wasAutoPausedRef.current = true;
+            } else if (isVisible && wasAutoPausedRef.current && !isPlaying) {
+              // Video came back into view and was auto-paused - resume
+              videoRef.current.play();
+              wasAutoPausedRef.current = false;
+            }
+          }
+
+          if (isVisible) {
+            hasBeenSeenRef.current = true;
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px'
+      }
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isPlaying, videoProps.autoPlay]);
+
   return (
     <div
+      ref={containerRef}
       className="relative group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

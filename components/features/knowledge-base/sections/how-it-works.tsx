@@ -1,7 +1,7 @@
 import { Animate } from "@/components/ui/animate";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import VideoPlayer from "@/components/ui/video-player";
-import { Globe, FileText, PenTool, Map, Link, Search, RefreshCw, Upload, Shield, Type, HelpCircle, Edit3, Briefcase } from "lucide-react";
+import { Globe, FileText, PenTool, Map, Link, RefreshCw, Upload, Shield, Type, HelpCircle, Edit3, Briefcase } from "lucide-react";
 
 type Feature = {
   title: string;

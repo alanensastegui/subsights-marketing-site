@@ -1,7 +1,7 @@
 import { Animate } from "@/components/ui/animate";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import VideoPlayer from "@/components/ui/video-player";
-import { Brain, Palette, Settings, Target, MessageSquare, Zap, Users, BarChart3, Shield, Headphones, Paintbrush, Wrench, Cog } from "lucide-react";
+import { Brain, Palette, Settings, Target, MessageSquare, Zap, Users, BarChart3, Shield, Headphones, Paintbrush, Wrench } from "lucide-react";
 
 type Feature = {
   title: string;
