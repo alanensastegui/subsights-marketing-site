@@ -49,7 +49,7 @@ export default function VideoPlayer({
 
   const handleLoadStart = (event: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     setProgress(0);
-    setIsPlaying(true);
+    setIsPlaying(!!videoProps.autoPlay);
     onLoadStart?.(event);
   };
 
@@ -66,7 +66,6 @@ export default function VideoPlayer({
 
   const handleMouseEnter = () => {
     if (hoverToPlay && videoRef.current) {
-      console.log("Playing video");
       videoRef.current.play().catch(() => {
         // Silently handle autoplay restrictions
       });
@@ -98,6 +97,9 @@ export default function VideoPlayer({
               // Video came back into view and was auto-paused - resume
               videoRef.current.play();
               wasAutoPausedRef.current = false;
+            } else if (isVisible && !isPlaying && videoProps.autoPlay) {
+              videoRef.current.play();
+              setIsPlaying(true);
             }
           }
 
