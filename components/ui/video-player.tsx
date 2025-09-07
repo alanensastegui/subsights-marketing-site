@@ -17,15 +17,19 @@ export default function VideoPlayer({
   hoverToPlay = false,
   restartOnAutoPause = false,
   autoplayThreshold = 0.2,
+  muted,
   ...videoProps
 }: VideoPlayerProps) {
-  const [isPlaying, setIsPlaying] = useState(videoProps.autoPlay ?? false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const wasAutoPausedRef = useRef(false);
   const hasBeenSeenRef = useRef(false);
   const wasManuallyPausedRef = useRef(false);
+
+  // Treat autoPlay as intent, not a native prop; do not forward it to <video>
+  const { autoPlay: shouldAutoPlay, ...restVideoProps } = videoProps;
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -57,7 +61,6 @@ export default function VideoPlayer({
 
   const handleLoadStart = (event: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     setProgress(0);
-    setIsPlaying(!!videoProps.autoPlay);
     wasManuallyPausedRef.current = false;
     onLoadStart?.(event);
   };
@@ -110,7 +113,7 @@ export default function VideoPlayer({
               // Video came back into view and was auto-paused - resume
               videoRef.current.play();
               wasAutoPausedRef.current = false;
-            } else if (isVisible && !isPlaying && videoProps.autoPlay && !wasManuallyPausedRef.current) {
+            } else if (isVisible && !isPlaying && shouldAutoPlay && !wasManuallyPausedRef.current) {
               // Only auto-play if the video wasn't manually paused
               videoRef.current.play();
               setIsPlaying(true);
@@ -133,7 +136,7 @@ export default function VideoPlayer({
     return () => {
       observer.disconnect();
     };
-  }, [isPlaying, videoProps.autoPlay, restartOnAutoPause, autoplayThreshold]);
+  }, [isPlaying, shouldAutoPlay, restartOnAutoPause, autoplayThreshold]);
 
   return (
     <div
@@ -144,7 +147,8 @@ export default function VideoPlayer({
     >
       <video
         ref={videoRef}
-        {...videoProps}
+        {...restVideoProps}
+        muted={muted ?? (shouldAutoPlay ? true : undefined)}
         onPlay={handlePlay}
         onPause={handlePause}
         onTimeUpdate={handleTimeUpdate}
