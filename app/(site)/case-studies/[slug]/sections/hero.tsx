@@ -11,7 +11,7 @@ interface Props {
 export default function CaseStudyHero({ caseStudy }: Props) {
   return (
     <section className="relative isolate py-12">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-2xl px-6">
         <div className="mx-auto max-w-4xl text-center">
           <Animate name="fadeInStagger" trigger="onVisible">
             {/* Company Logo */}
