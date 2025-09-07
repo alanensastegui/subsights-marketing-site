@@ -5,7 +5,7 @@ import { Animate } from "@/components/ui/animate";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import VideoPlayer from "@/components/ui/video-player";
 import Carousel, { CarouselItem } from "@/components/ui/carousel";
-import { Brain, Palette, Settings, Users, BarChart3, Shield, Headphones, Paintbrush, Wrench, Hand, Wand2, Sliders } from "lucide-react";
+import { Brain, Palette, Users, BarChart3, Paintbrush, Hand, Wand2, Sliders } from "lucide-react";
 
 type Feature = {
   title: string;
@@ -83,31 +83,6 @@ const copy = {
           videoSrc: "/features/edit-colors.mp4"
         }
       ]
-    },
-    {
-      title: "Advanced customization & reliability testing",
-      description: "For complex or mission-critical workflows, extend beyond self-service with expert support.",
-      icon: Settings,
-      features: [
-        {
-          title: "Custom workflow design",
-          description: "Configure multi-step conversation logic with prompts tailored to your business.",
-          icon: Wrench,
-          videoSrc: "/features/add-sitemap.mp4"
-        },
-        {
-          title: "Reliability testing",
-          description: "Simulate hundreds of interactions to ensure accuracy and consistency at scale.",
-          icon: Shield,
-          videoSrc: "/features/add-sitemap.mp4"
-        },
-        {
-          title: "Hands-on partnership",
-          description: "Collaborate with our team for setup, fine-tuning, and ongoing improvements.",
-          icon: Headphones,
-          videoSrc: "/features/add-sitemap.mp4"
-        }
-      ]
     }
   ]
 } satisfies Copy;
@@ -178,7 +153,7 @@ export default function HowItWorks() {
     );
   }, [c.methods, currentFeatures, createCarouselItems]);
   return (
-    <section className="relative isolate px-6 py-16 max-w-6xl mx-auto">
+    <section className="relative isolate px-6 py-12 max-w-6xl mx-auto">
       <Animate name="fadeInStagger" trigger="onVisible">
         {/* Section Header */}
         <div className="mb-16">

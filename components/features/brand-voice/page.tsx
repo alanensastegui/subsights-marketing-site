@@ -2,6 +2,7 @@ import Hero from "./sections/hero";
 import VideoDemo from "./sections/video-demo";
 import ValueProp from "./sections/value-prop";
 import HowItWorks from "./sections/how-it-works";
+import HandsOnSupport from "./sections/hands-on-support";
 import CallToAction from "./sections/call-to-action";
 
 export default function BrandPage() {
@@ -11,6 +12,7 @@ export default function BrandPage() {
     VideoDemo,
     ValueProp,
     HowItWorks,
+    HandsOnSupport,
     CallToAction,
   ];
 
