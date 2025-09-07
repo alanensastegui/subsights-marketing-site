@@ -5,7 +5,7 @@ import { Animate } from "@/components/ui/animate";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import VideoPlayer from "@/components/ui/video-player";
 import Carousel, { CarouselItem } from "@/components/ui/carousel";
-import { Brain, Palette, Settings, Target, MessageSquare, Zap, Users, BarChart3, Shield, Headphones, Paintbrush, Wrench } from "lucide-react";
+import { Brain, Palette, Settings, Users, BarChart3, Shield, Headphones, Paintbrush, Wrench, Hand, Wand2, Sliders } from "lucide-react";
 
 type Feature = {
   title: string;
@@ -32,55 +32,55 @@ export const sectionId = "how-it-works";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "How it works",
-  subtitle: "From crafting the perfect teammate to designing a seamless brand experience—all with enterprise-grade reliability.",
+  subtitle: "Craft the right behavior and create a look that feels designed for your brand.",
   methods: [
     {
-      title: "Craft the perfect AI teammate for any goal",
-      description: "Every business is different. Define your AI's role in plain language, and let the platform handle the rest.",
+      title: "Define the experience from the first interaction",
+      description: "No prompt engineering required. Just describe the behavior you need.",
       icon: Brain,
       features: [
         {
-          title: "24/7 sales qualifier",
-          description: "Have your AI act like an entry-level account executive. Screen prospects with targeted questions and deliver a warm, qualified lead summary to your sales team.",
-          icon: Target,
-          videoSrc: "/features/add-sitemap.mp4"
+          title: "Create a friendly first impression",
+          description: "Craft and test greetings so your AI teammate always starts the conversation the right way.",
+          icon: Hand,
+          videoSrc: "/features/edit-greeting.mp4"
         },
         {
-          title: "Self-improving support agent",
-          description: "Offload repetitive questions. Your AI builds and updates its own knowledge base, adds quick links, and escalates only when it's truly needed.",
-          icon: MessageSquare,
-          videoSrc: "/features/add-sitemap.mp4"
+          title: "Streamlined prompt creation",
+          description: "Generate effective prompts with built-in AI assistance. Shape interactions without writing everything from scratch.",
+          icon: Wand2,
+          videoSrc: "/features/editing-behavior.mp4"
         },
         {
-          title: "Proactive digital concierge",
-          description: "Go beyond Q&A. Suggest events, highlight timely offers, and guide visitors through tasks that add value to their journey.",
-          icon: Zap,
-          videoSrc: "/features/add-sitemap.mp4"
+          title: "Effortless updates",
+          description: "Easily refine your AI’s behavior as needs evolve. Update prompts seamlessly and keep your teammate aligned with your business.",
+          icon: Sliders,
+          videoSrc: "/features/updating-behavior.mp4"
         }
       ]
     },
     {
-      title: "Design a seamless, on-brand experience",
-      description: "Make your AI Teammate feel like it's always been part of your site with powerful, easy-to-use visual controls.",
+      title: "A teammate that looks the part",
+      description: "Make your AI teammate indistinguishable from the rest of your customer experience.",
       icon: Palette,
       features: [
         {
-          title: "Brand colors",
-          description: "Adjust headers, buttons, message bubbles, and links to match your palette.",
-          icon: Paintbrush,
-          videoSrc: "/features/add-sitemap.mp4"
+          title: "Header & start state",
+          description: "Set the widget header text and choose how conversations begin—opened by default or only when invited.",
+          icon: BarChart3,
+          videoSrc: "/features/edit-header-collapsed-state.mp4"
         },
         {
           title: "Logo and icons",
-          description: "Upload your logo or custom icon to appear in the header and avatar.",
+          description: "Upload your logo or a custom icon to brand the header and personalize the chat avatar.",
           icon: Users,
-          videoSrc: "/features/add-sitemap.mp4"
+          videoSrc: "/features/edit-logo.mp4"
         },
         {
-          title: "Header & start state",
-          description: "Customize welcome text and decide if chat opens by default or stays collapsed.",
-          icon: BarChart3,
-          videoSrc: "/features/add-sitemap.mp4"
+          title: "Colors & styles",
+          description: "Match headers, buttons, message bubbles, and links to your palette for a consistent look and feel.",
+          icon: Paintbrush,
+          videoSrc: "/features/edit-colors.mp4"
         }
       ]
     },

@@ -12,7 +12,7 @@ export const sectionId = "video-demo";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: "Make it yours",
-  subtitle: "Your AI teammate should feel native to your brand—not an add-on. Set the voice, tone, and behavior, match the look, and define guardrails so every interaction is on-brand and unmistakably yours.",
+  subtitle: "Give your AI a voice and look that match your brand. With behavior, tone, and style aligned, every interaction becomes unmistakably yours.",
   videoId: "w0KNGqvUFSI",
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
