@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { Animate } from "@/components/ui/animate";
 
@@ -82,9 +83,9 @@ export default function Section() {
 
         {c.items.length > 3 && (
           <div className="mt-4">
-            <a className="text-sm underline underline-offset-4" href={c.seeMoreUrl}>
+            <Link href={c.seeMoreUrl} className="text-sm underline underline-offset-4">
               See more
-            </a>
+            </Link>
           </div>
         )}
       </div>

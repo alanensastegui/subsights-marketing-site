@@ -46,7 +46,7 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
         <div className="min-h-full flex flex-col bg-gradient-to-br from-background via-muted/80 to-muted/30 overflow-auto h-full">
             {/* Demo Content */}
             <div className="flex-1">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16 space-y-12 sm:space-y-20">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-12 sm:space-y-20">
 
                     {/* 1. WELCOME SECTION */}
                     <section className="text-center space-y-6 sm:space-y-8">

@@ -190,6 +190,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 -   Tailwind + design tokens (text-primary, bg-secondary, border-muted, etc.).
 
+-   **Section Layout Tokens**: Use section-specific tokens for consistent spacing and width:
+  - `.px-section` - Section horizontal padding (replaces `px-6`)
+  - `.py-section` - Section vertical padding (responsive: 48px mobile, 80px desktop)
+  - `.max-w-section` - Section max width (replaces `max-w-6xl`)
+  - **Standard section wrapper**: `max-w-section px-section py-section`
+
 -   Semantic HTML; labeled controls; keyboard-friendly; logical heading order.
 
 -   Images require meaningful alt. If Image uses fill, include sizes.

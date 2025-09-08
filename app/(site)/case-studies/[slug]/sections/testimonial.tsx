@@ -27,7 +27,7 @@ export default function CaseStudyTestimonial({ caseStudy }: Props) {
   }
 
   return (
-    <section className="relative isolate py-16 sm:py-20">
+    <section className="relative isolate py-12 sm:py-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Animate name="fadeInStagger" trigger="onVisible">
           <div className="text-center mb-12">

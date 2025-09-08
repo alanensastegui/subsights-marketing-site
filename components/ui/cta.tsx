@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
@@ -53,9 +54,9 @@ export function Cta({ copy, className, analyticsContext, classes }: CtaProps) {
               {c.primaryCta.label}
             </a>
           ) : (
-            <a href={c.primaryCta.href}>
+            <Link href={c.primaryCta.href}>
               {c.primaryCta.label}
-            </a>
+            </Link>
           )}
         </Button>
 
@@ -66,9 +67,9 @@ export function Cta({ copy, className, analyticsContext, classes }: CtaProps) {
                 {c.secondaryCta.label}
               </a>
             ) : (
-              <a href={c.secondaryCta.href}>
+              <Link href={c.secondaryCta.href}>
                 {c.secondaryCta.label}
-              </a>
+              </Link>
             )}
           </Button>
         )}

@@ -121,8 +121,28 @@
   --sidebar-border: #2a2a9a;
   --sidebar-ring: #1F2BF3;
 
+  /* Section layout tokens */
+  /* 24px ≈ px-6 */
+  --section-px: 1.5rem;
+  /* 48px ≈ py-12 */
+  --section-py: 3rem;
+  /* 1152px ≈ max-w-6xl */
+  --section-max-w: 72rem;
+
+  /* MIGRATION NOTE: When migrating sections to use py-section token,
+     update layout main component padding from pt-14 to "pt-14 sm:pt-6" to maintain
+     same desktop spacing (pt-6 + py-section = 24px + 80px = 104px total) */
+
   /* Improves native form & scrollbar colors for dark UI */
   color-scheme: dark;
+}
+
+/* Responsive section y-padding */
+@media (min-width: 640px) {
+  :root {
+    --section-py: 5rem;
+    /* 80px ≈ py-20 */
+  }
 }
 
 /* Same values as :root (kept for future theming changes) */
@@ -374,6 +394,21 @@
       ========================================================================== */
 @layer utilities {
 
+  /* Section spacing utility */
+  .py-section {
+    padding-block: var(--section-py);
+  }
+
+  /* Section inline padding utility */
+  .px-section {
+    padding-inline: var(--section-px);
+  }
+
+  /* Section max width utility */
+  .max-w-section {
+    max-width: var(--section-max-w);
+  }
+
   /* Run animation as element becomes visible in viewport */
   .on-visible {
     animation-timeline: view();
@@ -449,6 +484,19 @@
     background: currentColor;
     animation: kf-caret-blink 1s steps(1, end) infinite;
     vertical-align: top;
+  }
+
+  /* Hide scrollbar while maintaining scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
   }
 
   /* Staggered fade-in animation system with 2-second maximum delay cap */
