@@ -1,5 +1,5 @@
 import { Animate } from "@/components/ui/animate";
-import { Button } from "@/components/ui/button";
+import { ButtonDuo } from "@/components/ui/button-duo";
 import { CustomerQuoteCard } from "@/components/ui/customer-quote-card";
 import Link from "next/link";
 import { getFeaturedTestimonials } from "@/lib/testimonials";
@@ -7,7 +7,11 @@ import { getFeaturedTestimonials } from "@/lib/testimonials";
 type Copy = {
   heading: string;
   subheading: string;
-  cta: {
+  primaryCta: {
+    text: string;
+    link: string;
+  };
+  secondaryCta: {
     text: string;
     link: string;
   };
@@ -16,9 +20,13 @@ type Copy = {
 const copy = {
   heading: "Loved by teams across industries",
   subheading: "Teams everywhere use Subsights to deliver instant, consistent service that converts",
-  cta: {
+  primaryCta: {
     text: "View All Case Studies",
     link: "/case-studies",
+  },
+  secondaryCta: {
+    text: "Explore Features",
+    link: "/features",
   },
 } satisfies Copy;
 
@@ -48,11 +56,28 @@ export default function CustomerQuote() {
 
         {/* Call to Action */}
         <div className="animate-item text-center">
-          <Button asChild size="lg" className="w-full sm:w-fit">
-            <Link href={copy.cta.link}>
-              {copy.cta.text}
-            </Link>
-          </Button>
+          <ButtonDuo
+            primary={{
+              asChild: true,
+              children: (
+                <Link href={copy.primaryCta.link}>
+                  {copy.primaryCta.text}
+                </Link>
+              ),
+              size: "lg",
+            }}
+            secondary={{
+              asChild: true,
+              children: (
+                <Link href={copy.secondaryCta.link}>
+                  {copy.secondaryCta.text}
+                </Link>
+              ),
+              size: "lg",
+            }}
+            stackAt="sm"
+            gap="md"
+          />
         </div>
       </Animate>
     </section>
