@@ -1,6 +1,4 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import React from "react";
 import { Animate } from "@/components/ui/animate";
 
 type Copy = {

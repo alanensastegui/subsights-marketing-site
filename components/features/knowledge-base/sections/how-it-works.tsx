@@ -5,7 +5,7 @@ import { Animate } from "@/components/ui/animate";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import VideoPlayer from "@/components/ui/video-player";
 import Carousel, { CarouselItem } from "@/components/ui/carousel";
-import { Globe, FileText, PenTool, Map, Link, RefreshCw, Upload, Shield, Type, HelpCircle, Edit3, Briefcase, ToggleLeft } from "lucide-react";
+import { Globe, FileText, PenTool, Map, Link, Upload, Type, HelpCircle, ToggleLeft } from "lucide-react";
 
 type Feature = {
   title: string;
