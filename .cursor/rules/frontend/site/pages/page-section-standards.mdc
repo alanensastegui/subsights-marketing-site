@@ -162,6 +162,11 @@ export default function SectionClient({ data }) {
 
 ## Styling & A11y
 - Tailwind classes + design tokens (e.g., `text-primary`, `bg-secondary`, `bg-card`). No external styles.
+- **Section Layout Tokens**: Use section-specific tokens for consistent spacing and width:
+  - `.px-section` - Section horizontal padding (replaces `px-6`)
+  - `.py-section` - Section vertical padding (responsive: 48px mobile, 80px desktop)
+  - `.max-w-section` - Section max width (replaces `max-w-6xl`)
+  - **Standard section wrapper**: `max-w-section px-section py-section`
 - Semantic HTML; labelled controls; keyboard-friendly interactions; logical heading order.
 - Images must have meaningful `alt`. If using `<Image fill>`, include an appropriate `sizes` attribute.
 
