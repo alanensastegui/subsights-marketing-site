@@ -2,7 +2,7 @@ import Hero from "./sections/hero";
 import QuickSetup from "./sections/value-prop";
 import VideoDemo from "./sections/video-demo";
 import HowItWorks from "./sections/how-it-works";
-import FAQ from "./sections/faq";
+import BuiltToBeSimple from "./sections/built-to-be-simple";
 import CallToAction from "./sections/call-to-action";
 
 const EffortlessSetupOnboardingPage = () => {
@@ -12,7 +12,7 @@ const EffortlessSetupOnboardingPage = () => {
     VideoDemo,
     QuickSetup,
     HowItWorks,
-    // FAQ,
+    BuiltToBeSimple,
     CallToAction,
   ];
 
