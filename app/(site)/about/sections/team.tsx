@@ -79,7 +79,7 @@ export default function Section() {
                   alt={`Portrait of ${p.name}`}
                   width={192}
                   height={192}
-                  className="h-48 w-48 rounded-full object-cover grayscale transition hover:grayscale-0"
+                  className="h-48 w-48 rounded-full object-cover"
                   priority={true}
                 />
                 <div className="mt-4">
