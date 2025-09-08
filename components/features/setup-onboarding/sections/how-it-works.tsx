@@ -98,7 +98,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <section className="relative isolate px-6 py-16 max-w-6xl mx-auto">
+    <section className="relative isolate px-6 py-12 max-w-6xl mx-auto">
       <Animate name="fadeInStagger" trigger="onVisible">
         {/* Section Header */}
         <div className="mb-16">
