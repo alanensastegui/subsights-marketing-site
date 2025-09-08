@@ -8,7 +8,7 @@ interface Props {
 export default function CaseStudyContent({ caseStudy }: Props) {
   return (
     <section className="relative isolate py-12">
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-2xl px-6">
         <Animate name="fadeInStagger" trigger="onVisible">
           <div
             className="animate-item case-study-content"

@@ -20,12 +20,12 @@ export default function BlogPostSection({ post }: BlogPostSectionProps) {
   return (
     <section className="relative isolate py-12">
       {/* Background blur effect */}
-      <div className="absolute inset-0 -z-10 bg-background/5 backdrop-blur-[96px]" />
+      <div className="absolute inset-0 -z-10 bg-background/5 backdrop-blur-[72px] max-w-4xl mx-auto" />
 
-      <div className="mx-auto max-w-3xl px-6">
+      <div className="mx-auto max-w-2xl px-6">
         <Animate name="fadeInStagger" trigger="onVisible">
           <div className="animate-item space-y-4 text-center mb-12">
-            <h2 className="text-4xl font-bold tracking-tight">{post.title}</h2>
+            <h2 className="text-5xl font-bold tracking-tight">{post.title}</h2>
             <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground/80">
               <div className="flex items-center gap-3">
                 <div className="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-muted-foreground/20">
