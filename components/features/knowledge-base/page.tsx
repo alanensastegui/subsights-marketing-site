@@ -2,6 +2,7 @@ import Hero from "./sections/hero";
 import VideoDemo from "./sections/video-demo";
 import ValueProp from "./sections/value-prop";
 import HowItWorks from "./sections/how-it-works";
+import FastPath from "./sections/fast-path";
 import CallToAction from "./sections/call-to-action";
 
 export default function KnowledgeBasePage() {
@@ -11,6 +12,7 @@ export default function KnowledgeBasePage() {
     VideoDemo,
     ValueProp,
     HowItWorks,
+    FastPath,
     CallToAction,
   ];
 
