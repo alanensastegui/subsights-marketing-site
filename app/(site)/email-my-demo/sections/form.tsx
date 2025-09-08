@@ -104,7 +104,7 @@ export default function Section() {
   }
 
   return (
-    <section id={sectionId} className={cn("relative isolate text-foreground py-16")}>
+    <section id={sectionId} className={cn("relative isolate text-foreground py-12")}>
       <div className="mx-auto max-w-2xl px-0">
         <Animate name="fadeInStagger" trigger="onVisible">
           <Card className="animate-item">

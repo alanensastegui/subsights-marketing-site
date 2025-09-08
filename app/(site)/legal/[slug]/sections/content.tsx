@@ -7,7 +7,7 @@ type Props = {
 
 export default function LegalPageContent({ legalPage }: Props) {
   return (
-    <section className="max-w-5xl mx-auto px-6 py-16">
+    <section className="max-w-5xl mx-auto px-6 py-12">
       {/* Header */}
       <Animate name="fadeIn" trigger="onVisible" className="mb-16">
         <div className="text-center mb-10">

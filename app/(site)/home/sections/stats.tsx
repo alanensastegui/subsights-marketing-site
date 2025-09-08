@@ -33,7 +33,7 @@ const copy = {
 export default function Stats() {
   const c = copy;
   return (
-    <section className="relative isolate px-6 py-16 max-w-6xl mx-auto">
+    <section className="relative isolate px-6 py-12 max-w-6xl mx-auto">
       <Animate name="fadeInStagger" trigger="onVisible">
         <div className="text-center">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto">
