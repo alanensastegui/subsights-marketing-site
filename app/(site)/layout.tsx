@@ -46,8 +46,8 @@ function buildNavigationItems() {
     caseStudiesNavItem,
     { label: "Pricing", href: "/pricing" },
     { label: "Partners", href: "/partners" },
-    { label: "About", href: "/about" },
     { label: "Blog", href: "/blog" },
+    { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
     { label: "Email My Demo", href: "/email-my-demo", isButton: true },
   ] as (NavItem & { isButton?: boolean })[];
