@@ -368,6 +368,15 @@ export const DEMO_TARGETS: DemoTarget[] = [
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="KDKqFBuiqwiYegMqGh56Jmna5aHN4Ys5"></script>',
     variant: "default",
   },
+  {
+    slug: "cabarstyle",
+    url: "https://cabarstyle.com/",
+    label: "Cabarstyle",
+    testMessage: "Hi, I'm preparing for the CA Bar exam. What programs do you offer to help me pass?",
+    scriptTag:
+      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="iKvBWTNGJPw57OHSeRon5Y5wQrw6h4An"></script>',
+    variant: "default",
+  },
 ];
 
 export const getDemoTarget = (slug: string) =>
