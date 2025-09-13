@@ -1,7 +1,7 @@
 ---
 slug: "lead-qualification-rules-that-dont-feel-robotic"
-title: "Lead-Qualification Rules That Don’t Feel Robotic"
-date: "2025-09-15"
+title: "Lead-Qualification Rules That Don't Feel Robotic"
+date: "2025-09-17"
 excerpt: "A governed workflow approach to qualification—clear boundaries, conversational funnels, and time-aware routing—so sales-led teams get fewer, better leads. With field notes from Intrust Funding (WA + loan-type gates)."
 author:
   name: "Alan"
