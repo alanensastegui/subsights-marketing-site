@@ -687,9 +687,12 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                                                     asChild
                                                     size="lg"
                                                     className="mx-auto min-w-[140px] w-full sm:w-auto"
+                                                    data-analytics-id="demo_cta_schedule_call"
+                                                    data-analytics-name="Schedule Call (Demo CTA)"
+                                                    data-analytics-context='{"source":"demo_cta","section":"call-to-action"}'
                                                 >
                                                     <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                                                        Schedule a Call
+                                                        Schedule Call
                                                     </a>
                                                 </Button>
                                                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -703,6 +706,9 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                                                     variant="outline"
                                                     size="lg"
                                                     className="mx-auto min-w-[140px] w-full sm:w-auto"
+                                                    data-analytics-id="demo_cta_start_free"
+                                                    data-analytics-name="Start Free Trial (Demo CTA)"
+                                                    data-analytics-context='{"source":"demo_cta","section":"call-to-action"}'
                                                 >
                                                     <a href={getFreeTrialUrl()} target="_blank" rel="noopener noreferrer">
                                                         Start Free Trial
