@@ -17,8 +17,10 @@ type OverlayPhase = 'loading' | 'transitioning' | 'welcome' | 'preparing' | 'exi
 // Animation timing constants
 const TIMING = {
   TRANSITION_DELAY: 300,
-  WELCOME_DISPLAY: 3000,
-  PREPARING_DISPLAY: 2500, // Time to show "Prepare for launch..."
+  WELCOME_DISPLAY: 2000,
+  PREPARING_DISPLAY: 2000, // Time to show "Prepare for launch..."
+  JUMP_DURATION: 1000, // Portal jump animation duration
+  COOLDOWN_DURATION: 600, // Final cooldown before completing
   EXIT_DELAY: 300,
   ANIMATION_DURATION: 0.3,
 } as const;
@@ -71,8 +73,8 @@ export function DemoOverlay({ isLoading, onWelcomeComplete, slug }: DemoOverlayP
             setPortalPhase('cooldown');
             setTimeout(() => {
               onWelcomeComplete();
-            }, 600); // Cooldown duration
-          }, 2000); // Jump duration
+            }, TIMING.COOLDOWN_DURATION);
+          }, TIMING.JUMP_DURATION);
         }, TIMING.PREPARING_DISPLAY);
       }, TIMING.WELCOME_DISPLAY);
     }

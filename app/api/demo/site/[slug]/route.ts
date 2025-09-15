@@ -77,12 +77,13 @@ const fetchTargetSite = async (url: string, userAgent: string): Promise<Response
 };
 
 // Process successful HTML response
-const processHtmlResponse = async (response: Response, targetUrl: string, scriptTag: string): Promise<string> => {
+const processHtmlResponse = async (response: Response, targetUrl: string, slug: string, scriptTag: string): Promise<string> => {
     const html = await response.text();
 
     return injectWidget({
         html,
         origin: targetUrl,
+        slug,
         scriptTag,
     });
 };
@@ -144,7 +145,7 @@ const proxyTargetSite = async (target: NonNullable<ReturnType<typeof getDemoTarg
         }
 
         // Process successful HTML response
-        const modifiedHtml = await processHtmlResponse(response, target.url, target.scriptTag);
+        const modifiedHtml = await processHtmlResponse(response, target.url, target.slug, target.scriptTag);
 
         return { success: true, html: modifiedHtml };
     } catch (error) {
