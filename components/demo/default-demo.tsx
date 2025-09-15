@@ -6,6 +6,7 @@ import { Animate } from "@/components/ui/animate";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { getFreeTrialUrl } from "@/lib/subscriptions";
+import { CALENDLY_URL } from "@/lib/config";
 
 interface DefaultDemoProps {
     targetLabel: string;
@@ -682,8 +683,14 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                                     <Animate name="fadeIn" trigger="onVisible" delay={200}>
                                         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
                                             <div className="space-y-3 sm:space-y-4">
-                                                <Button size="lg" className="mx-auto min-w-[140px] w-full sm:w-auto">
-                                                    Schedule a Call
+                                                <Button
+                                                    asChild
+                                                    size="lg"
+                                                    className="mx-auto min-w-[140px] w-full sm:w-auto"
+                                                >
+                                                    <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                                                        Schedule a Call
+                                                    </a>
                                                 </Button>
                                                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                                                     Book a personalized consultation to discuss your specific needs
@@ -691,7 +698,12 @@ export function DefaultDemo({ scriptTag }: DefaultDemoProps) {
                                             </div>
 
                                             <div className="space-y-3 sm:space-y-4">
-                                                <Button variant="outline" size="lg" className="mx-auto min-w-[140px] w-full sm:w-auto" asChild>
+                                                <Button
+                                                    asChild
+                                                    variant="outline"
+                                                    size="lg"
+                                                    className="mx-auto min-w-[140px] w-full sm:w-auto"
+                                                >
                                                     <a href={getFreeTrialUrl()} target="_blank" rel="noopener noreferrer">
                                                         Start Free Trial
                                                     </a>
