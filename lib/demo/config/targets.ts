@@ -377,6 +377,15 @@ export const DEMO_TARGETS: DemoTarget[] = [
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="iKvBWTNGJPw57OHSeRon5Y5wQrw6h4An"></script>',
     variant: "default",
   },
+  {
+    slug: "visit-irving",
+    url: "https://www.irvingtexas.com/",
+    label: "Visit Irving",
+    testMessage: "What family-friendly things to do are near the Las Colinas Entertainment District?",
+    scriptTag:
+      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="g0OCCG9jPm8R3LOqUAqBXoJvjiC0KwkA"></script>',
+    variant: "default",
+  },
 ];
 
 export const getDemoTarget = (slug: string) =>
