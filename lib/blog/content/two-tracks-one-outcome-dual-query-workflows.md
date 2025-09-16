@@ -1,6 +1,6 @@
 ---
 slug: "two-tracks-one-outcome-dual-query-workflows"
-title: "Two tracks, one outcome"
+title: "Two tracks, one outcome: Dual-Query workflows for helpful and commercial chats"
 date: "2025-09-15"
 excerpt: "How Subsights’ Dual-Query workflows resolve questions and recommend the next best action in the same turn—managed for you—with transparent daily and monthly reporting and a field example from All Allied Health Schools."
 author:
@@ -46,7 +46,6 @@ Reasoning takes steps. We optimize for:
 
 - **Responsiveness without noise.** Suggestions reuse your site’s visual language and are clearly marked as system-generated. If nothing meets the bar, nothing is shown.  
 - **Visible guardrails.** Refusals, eligibility checks, and escalation triggers are explicit.  
-- **Auditability.** Conversation summaries show which sources and offers drove a suggestion so you can tune thresholds and close content gaps.
 
 ---
 
@@ -60,11 +59,8 @@ Dual-Query is best understood as a **derivative of your workflows**, not a tangl
 **Action**:  
 1) Run **Resolve** workflow: fetch approved facts, answer directly.  
 2) Run **Recommend** workflow: retrieve eligible offers; score by intent fit, eligibility, seasonality, and priority.  
-3) **Decide**:  
-   - If score ≥ threshold and policy OK → show answer, then a single, contextually relevant suggestion or handoff.  
-   - Else if a fallback exists → show answer, then the next-best alternative.  
-   - Else → show answer only.  
-4) **Escalate** when triggers fire (insistent request, sensitive topic, high-value lead).
+
+
 
 **We build this for you.**  
 You don’t need to implement these workflows yourself. Our team designs, configures, and maintains them—tuned to your content, offers, and policies—so the assistant behaves like part of your team from day one.
@@ -89,7 +85,6 @@ Behind every high-performing assistant is a set of operational guardrails. We ma
 - We catalog your offers with eligibility, seasonality, and priority so recommendations never drift.  
 - We write refusal and escalation workflows word-for-word so sensitive topics and high-value leads are handled properly.  
 - We set thresholds for when to recommend, when to fallback, and when to escalate—so every response follows your playbook.  
-- We run weekly triage on conversation summaries to close gaps and keep performance improving.
 
 You don’t need to run this checklist yourself—but seeing it gives you confidence that the system isn’t “AI improvisation.” It’s a managed workflow with clear boundaries.
 
@@ -114,12 +109,4 @@ The goal isn’t to drown you in metrics. It’s to make the assistant’s reaso
 
 ---
 
-## What’s next
-
-Automation will come with controls. If you trust certain suggestion types, you can opt in to have them applied automatically—attaching an offer, routing to a team, or collecting contact details—while keeping a full trace of what happened and why.
-
-Each improvement compounds. The more the assistant resolves and routes, the cleaner your knowledge base becomes, the sharper your offer graph gets, and the more consistent your conversions are—without sacrificing help.
-
----
-
-**The same workflows that power All Allied Health Schools and DMOs are available to you too—built to turn every conversation into an opportunity.**
+**Sound interesting? The same workflows that power All Allied Health Schools and DMOs are available to you too—built to turn every conversation into an opportunity.**
