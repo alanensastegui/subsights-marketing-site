@@ -16,11 +16,23 @@ export function getAllPostSlugs(): string[] {
     return [];
   }
   const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames
+  const slugs = fileNames
     .filter((fileName) => fileName.endsWith(".md"))
     .filter((fileName) => fileName.toLowerCase() !== "readme.md")
     .filter((fileName) => !fileName.startsWith("_"))
     .map((fileName) => fileName.replace(/\.md$/, ""));
+
+  // Filter out future-dated posts (only show published posts)
+  return slugs.filter((slug) => {
+    const post = getPostOverviewBySlug(slug);
+    if (!post) return false;
+
+    const postDate = new Date(post.date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time to start of day for accurate comparison
+
+    return postDate <= today;
+  });
 }
 
 export function getAllPosts(): BlogPostOverview[] {
