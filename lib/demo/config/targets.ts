@@ -183,6 +183,15 @@ export const DEMO_TARGETS: DemoTarget[] = [
     variant: "default",
   },
   {
+    slug: "luxury-supercars-dubai",
+    url: "https://luxurysupercarsdubai.com",
+    label: "Luxury Supercars Dubai",
+    testMessage: "I'm visiting Dubai soon and want to rent a Lamborghini. Which models are available?",
+    scriptTag:
+      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="wAp57ohxLNAJJGwWYH59aiymSjM11Lyj"></script>',
+    variant: "default",
+  },
+  {
     slug: "massage-reimagined",
     url: "https://massagereimagined.com/",
     label: "Massage Reimagined",
