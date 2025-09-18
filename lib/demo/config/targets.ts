@@ -27,6 +27,15 @@ export const DEMO_TARGETS: DemoTarget[] = [
     variant: "default",
   },
   {
+    slug: "santa-monica-pier",
+    url: "https://www.santamonicapier.org/",
+    label: "Santa Monica Pier",
+    testMessage: "What's happening at local's night today?",
+    scriptTag:
+      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="Ss5CvqwbJosIaOEUMssUYyi6FYO8b8jK"></script>',
+    variant: "default",
+  },
+  {
     slug: "seattle-chamber",
     url: "https://www.seattlechamber.com/",
     label: "Seattle Chamber",
