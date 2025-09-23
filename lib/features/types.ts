@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 
-export type FeatureName = 'setup-onboarding' | 'knowledge-base' | 'brand-voice';
+export type FeatureName = 'setup-onboarding' | 'knowledge-base' | 'brand-voice' | 'integrations';
 
 export interface FeatureMetadata {
   id: FeatureName;
