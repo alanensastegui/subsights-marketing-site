@@ -11,9 +11,9 @@ export const sectionId = "video-demo";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Works with your stack",
-  subtitle: "Automate handoffs and preserve context across your stack. Keep every team aligned, automatically.",
-  videoId: "OlwA_a5CpYQ",
+  title: "Insights that matter",
+  subtitle: "Turn conversations into KPIs, trends, and next steps your team can act on. See what moves the needle—and why.",
+  videoId: "KH7lHahnI-M",
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
@@ -28,7 +28,7 @@ export default function VideoDemo() {
             <p className="animate-item text-lg text-muted-foreground leading-relaxed">{c.subtitle}</p>
           </div>
           <div className="lg:col-span-3 animate-item">
-            <YoutubeEmbed videoId={c.videoId} title="Subsights Integrations Demo" />
+            <YoutubeEmbed videoId={c.videoId} title="Subsights Analytics Demo" />
           </div>
         </div>
       </Animate>

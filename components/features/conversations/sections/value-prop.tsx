@@ -10,12 +10,12 @@ export const sectionId = "value-prop";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  heading: "Value that compounds",
-  subheading: "Tie your tools together so every conversation drives measurable outcomes across your stack.",
+  heading: "From black box to crystal clear",
+  subheading: "Understand what customers ask and why so you can improve answers, remove friction, and spot opportunities.",
   features: [
-    { title: "Unified context", description: "Pass along AI-generated summaries and full conversation history for frictionless handoffs." },
-    { title: "Cleaner data", description: "Standardize fields automatically so sales and support stay tidy and searchable." },
-    { title: "Operational clarity", description: "Track clicks, engagement, and time saved—without leaving your inbox." },
+    { title: "Audit with confidence", description: "Inspect every chat to ensure quality and brand alignment." },
+    { title: "Collaborate in place", description: "Flag issues, leave inline comments, and track status through to resolution." },
+    { title: "See what works", description: "Spot gold-standard conversations to model behavior and training." },
   ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -47,3 +47,5 @@ export default function ValueProp() {
     </section>
   );
 }
+
+

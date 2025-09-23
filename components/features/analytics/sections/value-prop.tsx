@@ -10,12 +10,12 @@ export const sectionId = "value-prop";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  heading: "Value that compounds",
-  subheading: "Tie your tools together so every conversation drives measurable outcomes across your stack.",
+  heading: "Go beyond clicks—understand intent",
+  subheading: "Track what matters: engagement, themes, and time saved tied to real chats.",
   features: [
-    { title: "Unified context", description: "Pass along AI-generated summaries and full conversation history for frictionless handoffs." },
-    { title: "Cleaner data", description: "Standardize fields automatically so sales and support stay tidy and searchable." },
-    { title: "Operational clarity", description: "Track clicks, engagement, and time saved—without leaving your inbox." },
+    { title: "Prove your ROI", description: "Link activity to pipeline, outcomes, and minutes saved." },
+    { title: "Uncover insights", description: "Surface top questions and emerging topics—straight from your audience." },
+    { title: "Optimize performance", description: "Turn trends and KPIs into better content and behavior." },
   ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
