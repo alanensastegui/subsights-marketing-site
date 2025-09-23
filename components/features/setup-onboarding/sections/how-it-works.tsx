@@ -46,7 +46,8 @@ const copy = {
       number: "03",
       title: "Wire your workflow",
       description: "Turn conversations into action. Trigger emails, updates, and summaries right when your team needs them.",
-      videoSrc: "/features/configuring-leads.mp4"
+      videoSrc: "/features/configuring-leads.mp4",
+      featureSlug: "integrations"
     },
     {
       number: "04",
