@@ -16,7 +16,7 @@ export const sectionId = "hero";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: getFeatureMetadata('analytics').title,
-  subtitle: "Make data-driven decisions based on real conversations, not just clicks.",
+  subtitle: "Insights grounded in real conversations",
   primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
   secondaryCta: { label: "Start Free Trial", href: getFreeTrialUrl() },
 } satisfies Copy;

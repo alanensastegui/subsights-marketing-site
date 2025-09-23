@@ -16,7 +16,7 @@ export const sectionId = "hero";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: getFeatureMetadata('conversations').title,
-  subtitle: "Gain complete visibility into every interaction and turn feedback into action.",
+  subtitle: "See every interaction. Turn feedback into action",
   primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
   secondaryCta: { label: "Start Free Trial", href: getFreeTrialUrl() },
 } satisfies Copy;

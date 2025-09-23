@@ -11,9 +11,9 @@ export const sectionId = "video-demo";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "How Subsights Integrates With Your Tools",
-  subtitle: "A quick look at how our integrations automate handoffs, capture context, and keep your team in the loop.",
-  videoId: "OlwA_a5CpYQ", // TODO: confirm video → Ask user: "Provide the final YouTube ID when ready"
+  title: "Works with your stack",
+  subtitle: "Automate handoffs and preserve context across your stack. Keep every team aligned, automatically.",
+  videoId: "OlwA_a5CpYQ",
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

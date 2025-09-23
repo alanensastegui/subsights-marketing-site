@@ -11,11 +11,11 @@ export const sectionId = "value-prop";
 // ---- SECTION COPY REGION ----
 const copy = {
   heading: "From black box to crystal clear",
-  subheading: "Understand what customers ask—and why—so you can improve answers, fix friction, and spot opportunities.",
+  subheading: "Understand what customers ask and why so you can improve answers, remove friction, and spot opportunities.",
   features: [
-    { title: "Audit with confidence", description: "Review every chat and ensure quality and brand alignment." },
-    { title: "Collaborate in place", description: "Flag issues, add comments, and track statuses to resolution." },
-    { title: "See what works", description: "Identify gold‑standard conversations to guide behavior and training." },
+    { title: "Audit with confidence", description: "Inspect every chat to ensure quality and brand alignment." },
+    { title: "Collaborate in place", description: "Flag issues, leave inline comments, and track status through to resolution." },
+    { title: "See what works", description: "Spot gold-standard conversations to model behavior and training." },
   ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----

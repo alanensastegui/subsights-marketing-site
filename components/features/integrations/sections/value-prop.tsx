@@ -10,12 +10,12 @@ export const sectionId = "value-prop";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  heading: "More than connections—compounding value",
-  subheading: "Integrations knit your tools together so conversations create measurable outcomes across your stack.",
+  heading: "Value that compounds",
+  subheading: "Tie your tools together so every conversation drives measurable outcomes across your stack.",
   features: [
-    { title: "Unified context", description: "Keep handoffs rich with AI‑generated summaries and conversation history." },
-    { title: "Cleaner data", description: "Capture consistent fields so sales and support workflows stay tidy." },
-    { title: "Operational clarity", description: "See clicks, engagement, and time saved—right in your inbox." },
+    { title: "Unified context", description: "Pass along AI-generated summaries and full conversation history for frictionless handoffs." },
+    { title: "Cleaner data", description: "Standardize fields automatically so sales and support stay tidy and searchable." },
+    { title: "Operational clarity", description: "Track clicks, engagement, and time saved-without leaving your inbox." },
   ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -47,5 +47,3 @@ export default function ValueProp() {
     </section>
   );
 }
-
-

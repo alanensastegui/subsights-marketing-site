@@ -11,8 +11,8 @@ export const sectionId = "video-demo";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Inside the Conversations Dashboard",
-  subtitle: "Audit chats, collaborate with our team, and uncover insights—all in one place.",
+  title: "Conversations, clarified",
+  subtitle: "Review chats, collaborate with your team, and surface insights that drive action. Everything you need, all in one place.",
   videoId: "zlOeb_2uVio",
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----

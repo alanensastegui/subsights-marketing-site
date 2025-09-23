@@ -11,11 +11,11 @@ export const sectionId = "value-prop";
 // ---- SECTION COPY REGION ----
 const copy = {
   heading: "Go beyond clicks—understand intent",
-  subheading: "Measure what matters: engagement, trends, and time saved tied to real conversations.",
+  subheading: "Track what matters: engagement, themes, and time saved tied to real chats.",
   features: [
-    { title: "Prove your ROI", description: "Connect activity to leads and working minutes saved." },
-    { title: "Uncover insights", description: "See top questions and emerging topics—straight from your audience." },
-    { title: "Optimize performance", description: "Use trends and KPIs to improve behavior and content." },
+    { title: "Prove your ROI", description: "Link activity to pipeline, outcomes, and minutes saved." },
+    { title: "Uncover insights", description: "Surface top questions and emerging topics---straight from your audience." },
+    { title: "Optimize performance", description: "Turn trends and KPIs into better content and behavior." },
   ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -47,5 +47,3 @@ export default function ValueProp() {
     </section>
   );
 }
-
-

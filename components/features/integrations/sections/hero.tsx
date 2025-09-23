@@ -16,7 +16,7 @@ export const sectionId = "hero";
 // ---- SECTION COPY REGION ----
 const copy = {
   title: getFeatureMetadata('integrations').title,
-  subtitle: "Connect your workflow. Purpose-built tools that turn chats into measurable outcomes.",
+  subtitle: "Purpose-built integrations that turn chats into measurable outcomes",
   primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
   secondaryCta: { label: "Start Free Trial", href: getFreeTrialUrl() },
 } satisfies Copy;

@@ -11,8 +11,8 @@ export const sectionId = "video-demo";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Inside the Analytics Hub",
-  subtitle: "See how we turn conversations into measurable KPIs and actionable insights.",
+  title: "Insights that matter",
+  subtitle: "Turn conversations into KPIs, trends, and next steps your team can act on. See what moves the needle—and why.",
   videoId: "KH7lHahnI-M",
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
