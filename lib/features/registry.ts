@@ -32,7 +32,7 @@ export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
     id: 'conversations',
     title: 'Conversations',
     description: 'Your command center for auditing, feedback, and insights',
-    ctaTitle: 'See what your customers are saying.',
+    ctaTitle: 'Hear your customers.',
   },
   'analytics': {
     id: 'analytics',

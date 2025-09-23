@@ -15,7 +15,7 @@ const copy = {
   steps: [
     {
       title: "Open your report",
-      description: "Start from your daily or weekly email summary.",
+      description: "Start from your daily, automated email summary.",
       icon: MailOpen,
     },
     {

@@ -29,7 +29,7 @@ const copy = {
     },
     {
       title: "Launch and measure",
-      description: "Go live in minutes. Get email summaries and iterate with confidence.",
+      description: "Go live in minutes and iterate with confidence.",
       icon: Rocket,
     },
   ],

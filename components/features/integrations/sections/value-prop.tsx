@@ -15,7 +15,7 @@ const copy = {
   features: [
     { title: "Unified context", description: "Pass along AI-generated summaries and full conversation history for frictionless handoffs." },
     { title: "Cleaner data", description: "Standardize fields automatically so sales and support stay tidy and searchable." },
-    { title: "Operational clarity", description: "Track clicks, engagement, and time saved-without leaving your inbox." },
+    { title: "Operational clarity", description: "Track clicks, engagement, and time saved—without leaving your inbox." },
   ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----

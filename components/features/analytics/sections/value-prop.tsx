@@ -14,7 +14,7 @@ const copy = {
   subheading: "Track what matters: engagement, themes, and time saved tied to real chats.",
   features: [
     { title: "Prove your ROI", description: "Link activity to pipeline, outcomes, and minutes saved." },
-    { title: "Uncover insights", description: "Surface top questions and emerging topics---straight from your audience." },
+    { title: "Uncover insights", description: "Surface top questions and emerging topics—straight from your audience." },
     { title: "Optimize performance", description: "Turn trends and KPIs into better content and behavior." },
   ],
 } satisfies Copy;
