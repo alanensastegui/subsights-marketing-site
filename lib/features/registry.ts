@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 import type { FeatureMetadata, FeatureName, FeaturePackage } from "./types";
-import { Rocket, BookOpen, Palette, Workflow, MessagesSquare } from "lucide-react";
+import { Rocket, BookOpen, Palette, Workflow, MessagesSquare, BarChart3 } from "lucide-react";
 
 // Central metadata registry
 export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
@@ -34,6 +34,12 @@ export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
     description: 'Your command center for auditing, feedback, and insights',
     ctaTitle: 'See what your customers are saying.',
   },
+  'analytics': {
+    id: 'analytics',
+    title: 'Analytics',
+    description: 'Go beyond clicks. Understand intent and prove ROI',
+    ctaTitle: 'Make decisions with real insight.',
+  },
 };
 
 // Map feature names to their icon components
@@ -43,6 +49,7 @@ export const iconMap: Record<FeatureName, ComponentType<{ className?: string }>>
   'brand-voice': Palette,
   'integrations': Workflow,
   'conversations': MessagesSquare,
+  'analytics': BarChart3,
 };
 
 // Registry of feature packages
@@ -67,6 +74,10 @@ const featurePackages: Record<FeatureName, () => Promise<FeaturePackage>> = {
   'conversations': async () => ({
     metadata: featureMetadata['conversations'],
     Page: (await import('@/components/features/conversations')).default,
+  }),
+  'analytics': async () => ({
+    metadata: featureMetadata['analytics'],
+    Page: (await import('@/components/features/analytics')).default,
   }),
 };
 
