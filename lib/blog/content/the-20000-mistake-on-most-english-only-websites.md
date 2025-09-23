@@ -22,11 +22,9 @@ So how do you serve a global audience? Before now, you had two painful, expensiv
 
 This seems like the most professional choice, but the cost is staggering, especially for a content-rich site like our partner, Visit Sun Valley, which has over 1,000 pages.
 
-**Initial Translation**
-According to industry data, professional translation and localization for a single language costs between $15 and $30 per page. For a site like Visit Sun Valley, translating into just one new language would be a $15,000 - $30,000 upfront project.
+**Initial Translation:** According to industry data, professional translation and localization for a single language costs between $15 and $30 per page. For a site like Visit Sun Valley, translating into just one new language would be a $15,000 - $30,000 upfront project.
 
-**Ongoing Maintenance**
-That's not a one-time fee. With constantly changing events and content, you'd be looking at an ongoing retainer of $1,000 - $2,000+ per month to keep that single translated site up to date.
+**Ongoing Maintenance:** That's not a one-time fee. With constantly changing events and content, you'd be looking at an ongoing retainer of $1,000 - $2,000+ per month to keep that single translated site up to date.
 
 The math is brutal. And even after all that investment, you've only solved the problem for one language, and you still haven't provided the instant, conversational guidance your visitors actually want.
 
