@@ -340,34 +340,10 @@ export class GoogleAnalytics implements Analytics {
 
       gtag("consent", "update", consent);
 
-      // If consent is granted, flush any queued events and update user properties
+      // If consent is granted, flush any queued events
       if (granted) {
-        this.updateUserBotProperties();
         this.flushQueue();
       }
-    });
-  }
-
-  /**
-   * Update user properties with current bot detection status
-   */
-  private updateUserBotProperties(): void {
-    this.call(() => {
-      const gtag = this.getGtag();
-      if (!gtag) return;
-
-      const botDetection = getBotDetectionResult();
-
-      // Only set user properties if bot is detected
-      const userProperties = botDetection.isBot ? {
-        is_bot: botDetection.isBot,
-        bot_confidence: botDetection.confidence,
-        bot_type: botDetection.botType || 'unknown',
-      } : {};
-
-      gtag("config", this.measurementId, {
-        user_properties: userProperties,
-      });
     });
   }
 
