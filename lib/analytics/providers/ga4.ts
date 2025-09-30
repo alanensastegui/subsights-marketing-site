@@ -60,9 +60,20 @@ export class GoogleAnalytics implements Analytics {
       // Initialize gtag
       gtag("js", new Date());
 
-      // Configure GA4 with consent mode defaults
+      // Get bot detection results for user-level tracking
+      const botDetection = getBotDetectionResult();
+
+      // Only set user properties if bot is detected
+      const userProperties = botDetection.isBot ? {
+        is_bot: botDetection.isBot,
+        bot_confidence: botDetection.confidence,
+        bot_type: botDetection.botType || 'unknown',
+      } : {};
+
+      // Configure GA4 with consent mode defaults and user properties
       gtag("config", this.measurementId, {
         send_page_view: false, // We'll control page views manually
+        user_properties: userProperties,
         ...ANALYTICS_CONFIG.consentMode.default,
       });
 
@@ -329,10 +340,34 @@ export class GoogleAnalytics implements Analytics {
 
       gtag("consent", "update", consent);
 
-      // If consent is granted, flush any queued events
+      // If consent is granted, flush any queued events and update user properties
       if (granted) {
+        this.updateUserBotProperties();
         this.flushQueue();
       }
+    });
+  }
+
+  /**
+   * Update user properties with current bot detection status
+   */
+  private updateUserBotProperties(): void {
+    this.call(() => {
+      const gtag = this.getGtag();
+      if (!gtag) return;
+
+      const botDetection = getBotDetectionResult();
+
+      // Only set user properties if bot is detected
+      const userProperties = botDetection.isBot ? {
+        is_bot: botDetection.isBot,
+        bot_confidence: botDetection.confidence,
+        bot_type: botDetection.botType || 'unknown',
+      } : {};
+
+      gtag("config", this.measurementId, {
+        user_properties: userProperties,
+      });
     });
   }
 
