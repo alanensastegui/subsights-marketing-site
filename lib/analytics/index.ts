@@ -15,9 +15,7 @@ export { DisabledAnalytics } from "./providers/disabled";
 export { AnalyticsProvider, useAnalytics } from "./context";
 
 // Export bot detection utilities (client-side only)
-export { getBotDetectionResult, isLikelyBot, botDetector } from "./bot-detection";
-export type { BotDetectionResult, BotDetectionConfig } from "./bot-detection";
-export * from "./bot-filter";
+export { getBotDetectionResult } from "./bot-detection";
 
 // Note: The old analytics singleton is deprecated in favor of the context-based approach
 // Use useAnalytics() hook instead of importing analytics directly
