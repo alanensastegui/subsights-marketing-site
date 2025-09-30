@@ -2,6 +2,24 @@
 // BOT DETECTION SYSTEM
 // ============================================================================
 
+// Extend Window interface for automation detection properties
+declare global {
+  interface Window {
+    // Automation framework properties (optional)
+    __webdriver_evaluate?: unknown;
+    __selenium_evaluate?: unknown;
+    __webdriver_script_function?: unknown;
+    __webdriver_script_func?: unknown;
+    __fxdriver_evaluate?: unknown;
+    __driver_unwrapped?: unknown;
+    __webdriver_unwrapped?: unknown;
+    __fxdriver_unwrapped?: unknown;
+    __driver_evaluate?: unknown;
+    __selenium_unwrapped?: unknown;
+    __fxdriver_script_function?: unknown;
+  }
+}
+
 export type BotDetectionResult = {
   isBot: boolean;
   confidence: number; // 0-100
@@ -201,8 +219,8 @@ export class BotDetector {
 
   private detectByConnection(): { isBot: boolean; confidence: number; reason: string } {
     // Check for suspicious connection patterns
-    const connection = (navigator as any).connection;
-    const suspiciousConnections = [];
+    const connection = (navigator as { connection?: { effectiveType?: string; saveData?: boolean } }).connection;
+    const suspiciousConnections: string[] = [];
 
     if (connection) {
       // Very slow connections might be bots on poor networks
@@ -221,7 +239,7 @@ export class BotDetector {
       // This is a basic check - in reality you'd need server-side detection for most headers
       const suspiciousHeaders = this.detectSuspiciousHeaders();
       suspiciousConnections.push(...suspiciousHeaders);
-    } catch (e) {
+    } catch {
       // Headers not accessible
     }
 
@@ -238,28 +256,28 @@ export class BotDetector {
 
   private detectAutomation(): { isBot: boolean; confidence: number; reason: string } {
     // Check for automation frameworks
-    const automationSigns = [];
+    const automationSigns: string[] = [];
 
     // Check for common automation properties
-    if ((window as any).__webdriver_evaluate) automationSigns.push('webdriver_evaluate');
-    if ((window as any).__selenium_evaluate) automationSigns.push('selenium_evaluate');
-    if ((window as any).__webdriver_script_function) automationSigns.push('webdriver_script');
-    if ((window as any).__webdriver_script_func) automationSigns.push('webdriver_script_func');
-    if ((window as any).__fxdriver_evaluate) automationSigns.push('firefox_driver');
-    if ((window as any).__driver_unwrapped) automationSigns.push('driver_unwrapped');
-    if ((window as any).__webdriver_unwrapped) automationSigns.push('webdriver_unwrapped');
-    if ((window as any).__fxdriver_unwrapped) automationSigns.push('firefox_driver_unwrapped');
-    if ((window as any).__driver_evaluate) automationSigns.push('driver_evaluate');
-    if ((window as any).__selenium_unwrapped) automationSigns.push('selenium_unwrapped');
-    if ((window as any).__fxdriver_script_function) automationSigns.push('firefox_driver_script');
+    if (window.__webdriver_evaluate) automationSigns.push('webdriver_evaluate');
+    if (window.__selenium_evaluate) automationSigns.push('selenium_evaluate');
+    if (window.__webdriver_script_function) automationSigns.push('webdriver_script');
+    if (window.__webdriver_script_func) automationSigns.push('webdriver_script_func');
+    if (window.__fxdriver_evaluate) automationSigns.push('firefox_driver');
+    if (window.__driver_unwrapped) automationSigns.push('driver_unwrapped');
+    if (window.__webdriver_unwrapped) automationSigns.push('webdriver_unwrapped');
+    if (window.__fxdriver_unwrapped) automationSigns.push('firefox_driver_unwrapped');
+    if (window.__driver_evaluate) automationSigns.push('driver_evaluate');
+    if (window.__selenium_unwrapped) automationSigns.push('selenium_unwrapped');
+    if (window.__fxdriver_script_function) automationSigns.push('firefox_driver_script');
 
     // Check for Chrome DevTools Protocol
-    if ((window as any).chrome && (window as any).chrome.runtime && (window as any).chrome.runtime.onConnect) {
+    if ((window as { chrome?: { runtime?: { onConnect?: unknown } } }).chrome?.runtime?.onConnect) {
       automationSigns.push('chrome_runtime_api');
     }
 
     // Check for headless browser properties
-    if (navigator.webdriver) automationSigns.push('navigator_webdriver');
+    if ((navigator as { webdriver?: boolean }).webdriver) automationSigns.push('navigator_webdriver');
 
     if (automationSigns.length >= 3) {
       return {
@@ -354,7 +372,7 @@ export class BotDetector {
     try {
       const canvas = document.createElement('canvas');
       return !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
-    } catch (e) {
+    } catch {
       return false;
     }
   }

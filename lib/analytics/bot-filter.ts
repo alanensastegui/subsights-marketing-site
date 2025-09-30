@@ -2,8 +2,6 @@
 // BOT TRAFFIC FILTERING UTILITIES
 // ============================================================================
 
-import type { BotDetectionResult } from "./bot-detection";
-
 /**
  * Configuration for bot traffic filtering
  */

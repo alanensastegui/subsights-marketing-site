@@ -79,8 +79,8 @@ export class GoogleAnalytics implements Analytics {
       // Set up visibility change handler for reliable event sending
       this.setupVisibilityHandler();
 
-    } catch (error) {
-      console.error("Failed to initialize Google Analytics:", error);
+    } catch {
+      console.error("Failed to initialize Google Analytics");
     }
   }
 
@@ -129,8 +129,8 @@ export class GoogleAnalytics implements Analytics {
     queued.forEach(fn => {
       try {
         fn();
-      } catch (error) {
-        console.error("Failed to send queued analytics event:", error);
+      } catch {
+        console.error("Failed to send queued analytics event");
       }
     });
   }
