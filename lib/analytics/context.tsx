@@ -20,6 +20,8 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
 
   // Initialize event queue when provider is ready
   useEffect(() => {
+    // For dev dashboard visibility: if router is enabled, mark ready shortly after mount.
+    // GA provider also calls ready on its own; this guard is harmless and idempotent in router.
     if (typeof window !== "undefined") {
       // Mark queue as ready after a brief delay to ensure dashboard is mounted
       const timer = setTimeout(() => {
@@ -55,5 +57,4 @@ export function useAnalytics(): Analytics {
 
   return analytics;
 }
-
 
