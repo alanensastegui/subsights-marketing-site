@@ -28,7 +28,6 @@ export type BotDetectionResult = {
 };
 
 export type BotDetectionConfig = {
-  strictMode?: boolean;
   minConfidenceThreshold?: number;
   enableLogging?: boolean;
   whitelistUserAgents?: string[];
@@ -43,7 +42,6 @@ export class BotDetector {
 
   constructor(config: BotDetectionConfig = {}) {
     this.config = {
-      strictMode: config.strictMode ?? false,
       minConfidenceThreshold: config.minConfidenceThreshold ?? 70,
       enableLogging: config.enableLogging ?? true,
       whitelistUserAgents: config.whitelistUserAgents ?? [],
@@ -182,38 +180,8 @@ export class BotDetector {
   }
 
   private detectByBehavior(): { isBot: boolean; confidence: number; reason: string } {
-    const behaviors = {
-      // Check for rapid interactions (bots often click very fast)
-      rapidClicks: this.detectRapidClicks(),
-
-      // Check for programmatic navigation (bots often don't scroll naturally)
-      unnaturalScroll: this.detectUnnaturalScroll(),
-
-      // Check for missing mouse movements (bots often don't move mouse)
-      noMouseMovement: this.detectNoMouseMovement(),
-
-      // Check for consistent timing (bots often have perfect timing)
-      perfectTiming: this.detectPerfectTiming(),
-
-      // Check for form filling patterns
-      suspiciousFormFilling: this.detectSuspiciousFormFilling(),
-    };
-
-    const botBehaviors = Object.values(behaviors).filter(b => b.isBot);
-    const avgConfidence = botBehaviors.length > 0
-      ? botBehaviors.reduce((sum, b) => sum + b.confidence, 0) / botBehaviors.length
-      : 0;
-
-    if (botBehaviors.length >= 2) {
-      return {
-        isBot: true,
-        confidence: Math.min(90, avgConfidence),
-        reason: 'multiple_suspicious_behaviors'
-      };
-    } else if (botBehaviors.length === 1) {
-      return botBehaviors[0];
-    }
-
+    // Behavioral detection is not implemented yet
+    // All helper methods return false, so this always returns normal behavior
     return { isBot: false, confidence: 0, reason: 'normal_behavior' };
   }
 
@@ -234,14 +202,7 @@ export class BotDetector {
       }
     }
 
-    // Check for suspicious headers (if accessible)
-    try {
-      // This is a basic check - in reality you'd need server-side detection for most headers
-      const suspiciousHeaders = this.detectSuspiciousHeaders();
-      suspiciousConnections.push(...suspiciousHeaders);
-    } catch (error) {
-      // Headers not accessible
-    }
+    // Note: Header detection would require server-side implementation
 
     if (suspiciousConnections.length >= 2) {
       return {
@@ -341,32 +302,6 @@ export class BotDetector {
     return 'suspicious';
   }
 
-  // Helper methods for behavioral detection
-  private detectRapidClicks(): { isBot: boolean; confidence: number; reason: string } {
-    // This would need to be implemented with event tracking
-    // For now, return normal
-    return { isBot: false, confidence: 0, reason: 'normal_click_timing' };
-  }
-
-  private detectUnnaturalScroll(): { isBot: boolean; confidence: number; reason: string } {
-    // Implementation would track scroll patterns
-    return { isBot: false, confidence: 0, reason: 'normal_scroll_behavior' };
-  }
-
-  private detectNoMouseMovement(): { isBot: boolean; confidence: number; reason: string } {
-    // Implementation would track mouse movement
-    return { isBot: false, confidence: 0, reason: 'normal_mouse_behavior' };
-  }
-
-  private detectPerfectTiming(): { isBot: boolean; confidence: number; reason: string } {
-    // Implementation would track timing patterns
-    return { isBot: false, confidence: 0, reason: 'normal_timing' };
-  }
-
-  private detectSuspiciousFormFilling(): { isBot: boolean; confidence: number; reason: string } {
-    // Implementation would track form interaction patterns
-    return { isBot: false, confidence: 0, reason: 'normal_form_behavior' };
-  }
 
   private hasWebGL(): boolean {
     try {
@@ -377,23 +312,12 @@ export class BotDetector {
     }
   }
 
-  private detectSuspiciousHeaders(): string[] {
-    // Basic implementation - in reality you'd need server-side detection
-    return [];
-  }
 }
 
 /**
  * Global bot detector instance
  */
 export const botDetector = new BotDetector();
-
-/**
- * Quick bot detection check
- */
-export function isLikelyBot(): boolean {
-  return botDetector.detect().isBot;
-}
 
 /**
  * Get detailed bot detection result
