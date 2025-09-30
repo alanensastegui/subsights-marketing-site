@@ -1,6 +1,7 @@
 import type { Analytics, PageViewEvent, CustomEvent, ConversionEvent, UserTimingEvent, ExceptionEvent } from "../types";
 import { GA_MEASUREMENT_ID, ANALYTICS_CONFIG } from "../config";
 import { analyticsEventQueue } from "../event-queue";
+import { getBotDetectionResult } from "../bot-detection";
 
 // Extend Window interface for Google Analytics
 declare global {
@@ -149,13 +150,23 @@ export class GoogleAnalytics implements Analytics {
       const gtag = this.getGtag();
       if (!gtag) return;
 
+      // Add bot detection information to custom parameters
+      const botDetection = getBotDetectionResult();
+      const enhancedParameters = {
+        ...event.custom_parameters,
+        bot_detected: botDetection.isBot,
+        bot_confidence: botDetection.confidence,
+        bot_type: botDetection.botType || 'unknown',
+        bot_reasons: botDetection.reasons.join(','),
+      };
+
       gtag("event", "page_view", {
         page_title: event.page_title,
         page_location: event.page_location,
         page_path: event.page_path,
         send_to: this.measurementId,
         transport_type: "beacon",
-        ...event.custom_parameters,
+        ...enhancedParameters,
       });
     });
   }
@@ -165,13 +176,23 @@ export class GoogleAnalytics implements Analytics {
       const gtag = this.getGtag();
       if (!gtag) return;
 
+      // Add bot detection information to custom parameters
+      const botDetection = getBotDetectionResult();
+      const enhancedParameters = {
+        ...event.custom_parameters,
+        bot_detected: botDetection.isBot,
+        bot_confidence: botDetection.confidence,
+        bot_type: botDetection.botType || 'unknown',
+        bot_reasons: botDetection.reasons.join(','),
+      };
+
       gtag("event", event.event_name, {
         event_category: event.event_category,
         event_label: event.event_label,
         value: event.value,
         send_to: this.measurementId,
         transport_type: "beacon",
-        ...event.custom_parameters,
+        ...enhancedParameters,
       });
     });
   }
@@ -181,6 +202,16 @@ export class GoogleAnalytics implements Analytics {
       const gtag = this.getGtag();
       if (!gtag) return;
 
+      // Add bot detection information to custom parameters
+      const botDetection = getBotDetectionResult();
+      const enhancedParameters = {
+        ...event.custom_parameters,
+        bot_detected: botDetection.isBot,
+        bot_confidence: botDetection.confidence,
+        bot_type: botDetection.botType || 'unknown',
+        bot_reasons: botDetection.reasons.join(','),
+      };
+
       gtag("event", "conversion", {
         conversion_id: event.conversion_id,
         conversion_label: event.conversion_label,
@@ -188,7 +219,7 @@ export class GoogleAnalytics implements Analytics {
         currency: event.currency || "USD",
         send_to: this.measurementId,
         transport_type: "beacon",
-        ...event.custom_parameters,
+        ...enhancedParameters,
       });
     });
   }
@@ -198,6 +229,9 @@ export class GoogleAnalytics implements Analytics {
       const gtag = this.getGtag();
       if (!gtag) return;
 
+      // Add bot detection information to custom parameters
+      const botDetection = getBotDetectionResult();
+
       gtag("event", "timing_complete", {
         name: event.name,
         value: event.value,
@@ -205,6 +239,9 @@ export class GoogleAnalytics implements Analytics {
         event_label: event.label,
         send_to: this.measurementId,
         transport_type: "beacon",
+        bot_detected: botDetection.isBot,
+        bot_confidence: botDetection.confidence,
+        bot_type: botDetection.botType || 'unknown',
       });
     });
   }

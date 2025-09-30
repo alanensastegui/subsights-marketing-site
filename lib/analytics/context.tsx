@@ -4,12 +4,19 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import type { Analytics } from "./types";
 import { AnalyticsRouter } from "./router";
 import { analyticsEventQueue } from "./event-queue";
+import { getBotDetectionResult, isLikelyBot, type BotDetectionResult } from "./bot-detection";
 
 // ============================================================================
 // ANALYTICS CONTEXT
 // ============================================================================
 
-const AnalyticsContext = createContext<Analytics | null>(null);
+interface AnalyticsContextValue {
+  analytics: Analytics;
+  botDetection: BotDetectionResult;
+  isBot: boolean;
+}
+
+const AnalyticsContext = createContext<AnalyticsContextValue | null>(null);
 
 /**
  * Analytics Provider component
@@ -17,12 +24,19 @@ const AnalyticsContext = createContext<Analytics | null>(null);
  */
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   const [analytics] = useState<Analytics>(() => new AnalyticsRouter());
+  const [botDetection, setBotDetection] = useState<BotDetectionResult>({
+    isBot: false,
+    confidence: 0,
+    reasons: ['initializing']
+  });
 
-  // Initialize event queue when provider is ready
+  // Initialize bot detection and event queue when provider is ready
   useEffect(() => {
-    // For dev dashboard visibility: if router is enabled, mark ready shortly after mount.
-    // GA provider also calls ready on its own; this guard is harmless and idempotent in router.
     if (typeof window !== "undefined") {
+      // Perform bot detection
+      const detection = getBotDetectionResult();
+      setBotDetection(detection);
+
       // Mark queue as ready after a brief delay to ensure dashboard is mounted
       const timer = setTimeout(() => {
         analyticsEventQueue.ready();
@@ -32,8 +46,14 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     }
   }, [analytics]);
 
+  const contextValue: AnalyticsContextValue = {
+    analytics,
+    botDetection,
+    isBot: botDetection.isBot,
+  };
+
   return (
-    <AnalyticsContext.Provider value={analytics}>
+    <AnalyticsContext.Provider value={contextValue}>
       {children}
     </AnalyticsContext.Provider>
   );
@@ -44,9 +64,9 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
  * Only works on the client side
  */
 export function useAnalytics(): Analytics {
-  const analytics = useContext(AnalyticsContext);
+  const context = useContext(AnalyticsContext);
 
-  if (!analytics) {
+  if (!context) {
     throw new Error("useAnalytics must be used within AnalyticsProvider");
   }
 
@@ -55,6 +75,34 @@ export function useAnalytics(): Analytics {
     console.warn("useAnalytics: Called on server side - analytics will be disabled");
   }
 
-  return analytics;
+  return context.analytics;
+}
+
+/**
+ * Hook to access bot detection information
+ * Only works on the client side
+ */
+export function useBotDetection(): BotDetectionResult {
+  const context = useContext(AnalyticsContext);
+
+  if (!context) {
+    throw new Error("useBotDetection must be used within AnalyticsProvider");
+  }
+
+  return context.botDetection;
+}
+
+/**
+ * Hook to check if current visitor is likely a bot
+ * Only works on the client side
+ */
+export function useIsBot(): boolean {
+  const context = useContext(AnalyticsContext);
+
+  if (!context) {
+    throw new Error("useIsBot must be used within AnalyticsProvider");
+  }
+
+  return context.isBot;
 }
 
