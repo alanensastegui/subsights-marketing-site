@@ -8,7 +8,6 @@ import { X, BarChart3, Eye, MousePointer, DollarSign, Clock, AlertTriangle, User
 import { isConsentRequired, getConsentState } from "@/lib/analytics/consent";
 import { RUNTIME, isDevelopment } from "@/lib/analytics/config";
 import { analyticsEventQueue } from "@/lib/analytics/event-queue";
-import { BotDetectionStatus } from "./bot-detection-status";
 
 // Event queue item type (matching the one in event-queue.ts)
 type EventQueueItem = {
@@ -154,9 +153,6 @@ export function DevAnalyticsDashboard() {
           </div>
 
           <div className="p-4 space-y-4 max-h-80 overflow-y-auto">
-            {/* Bot Detection Status */}
-            <BotDetectionStatus />
-
             {/* Environment Info */}
             <Card className="p-3">
               <CardContent className="p-2 space-y-2">

@@ -239,7 +239,7 @@ export class BotDetector {
       // This is a basic check - in reality you'd need server-side detection for most headers
       const suspiciousHeaders = this.detectSuspiciousHeaders();
       suspiciousConnections.push(...suspiciousHeaders);
-    } catch {
+    } catch (error) {
       // Headers not accessible
     }
 
@@ -372,7 +372,7 @@ export class BotDetector {
     try {
       const canvas = document.createElement('canvas');
       return !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
-    } catch {
+    } catch (error) {
       return false;
     }
   }
