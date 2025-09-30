@@ -9,11 +9,7 @@ import { analyticsEventQueue } from "./event-queue";
 // ANALYTICS CONTEXT
 // ============================================================================
 
-interface AnalyticsContextValue {
-  analytics: Analytics;
-}
-
-const AnalyticsContext = createContext<AnalyticsContextValue | null>(null);
+const AnalyticsContext = createContext<Analytics | null>(null);
 
 /**
  * Analytics Provider component
@@ -34,12 +30,8 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     }
   }, [analytics]);
 
-  const contextValue: AnalyticsContextValue = {
-    analytics,
-  };
-
   return (
-    <AnalyticsContext.Provider value={contextValue}>
+    <AnalyticsContext.Provider value={analytics}>
       {children}
     </AnalyticsContext.Provider>
   );
@@ -50,9 +42,9 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
  * Only works on the client side
  */
 export function useAnalytics(): Analytics {
-  const context = useContext(AnalyticsContext);
+  const analytics = useContext(AnalyticsContext);
 
-  if (!context) {
+  if (!analytics) {
     throw new Error("useAnalytics must be used within AnalyticsProvider");
   }
 
@@ -61,7 +53,7 @@ export function useAnalytics(): Analytics {
     console.warn("useAnalytics: Called on server side - analytics will be disabled");
   }
 
-  return context.analytics;
+  return analytics;
 }
 
 
