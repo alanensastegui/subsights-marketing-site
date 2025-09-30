@@ -1,6 +1,7 @@
 import type { Analytics, PageViewEvent, CustomEvent, ConversionEvent, UserTimingEvent, ExceptionEvent } from "../types";
 import { GA_MEASUREMENT_ID, ANALYTICS_CONFIG } from "../config";
 import { analyticsEventQueue } from "../event-queue";
+import { getBotDetectionResult } from "../bot-detection";
 
 // Extend Window interface for Google Analytics
 declare global {
@@ -149,12 +150,20 @@ export class GoogleAnalytics implements Analytics {
       const gtag = this.getGtag();
       if (!gtag) return;
 
+      // Get bot detection results
+      const botDetection = getBotDetectionResult();
+
       gtag("event", "page_view", {
         page_title: event.page_title,
         page_location: event.page_location,
         page_path: event.page_path,
         send_to: this.measurementId,
         transport_type: "beacon",
+        // Bot detection data
+        bot_detected: botDetection.isBot,
+        bot_confidence: botDetection.confidence,
+        bot_type: botDetection.botType || 'unknown',
+        bot_reasons: botDetection.reasons.join(','),
         ...event.custom_parameters,
       });
     });
@@ -165,12 +174,20 @@ export class GoogleAnalytics implements Analytics {
       const gtag = this.getGtag();
       if (!gtag) return;
 
+      // Get bot detection results
+      const botDetection = getBotDetectionResult();
+
       gtag("event", event.event_name, {
         event_category: event.event_category,
         event_label: event.event_label,
         value: event.value,
         send_to: this.measurementId,
         transport_type: "beacon",
+        // Bot detection data
+        bot_detected: botDetection.isBot,
+        bot_confidence: botDetection.confidence,
+        bot_type: botDetection.botType || 'unknown',
+        bot_reasons: botDetection.reasons.join(','),
         ...event.custom_parameters,
       });
     });
@@ -181,6 +198,9 @@ export class GoogleAnalytics implements Analytics {
       const gtag = this.getGtag();
       if (!gtag) return;
 
+      // Get bot detection results
+      const botDetection = getBotDetectionResult();
+
       gtag("event", "conversion", {
         conversion_id: event.conversion_id,
         conversion_label: event.conversion_label,
@@ -188,6 +208,11 @@ export class GoogleAnalytics implements Analytics {
         currency: event.currency || "USD",
         send_to: this.measurementId,
         transport_type: "beacon",
+        // Bot detection data
+        bot_detected: botDetection.isBot,
+        bot_confidence: botDetection.confidence,
+        bot_type: botDetection.botType || 'unknown',
+        bot_reasons: botDetection.reasons.join(','),
         ...event.custom_parameters,
       });
     });
@@ -198,6 +223,9 @@ export class GoogleAnalytics implements Analytics {
       const gtag = this.getGtag();
       if (!gtag) return;
 
+      // Get bot detection results
+      const botDetection = getBotDetectionResult();
+
       gtag("event", "timing_complete", {
         name: event.name,
         value: event.value,
@@ -205,6 +233,10 @@ export class GoogleAnalytics implements Analytics {
         event_label: event.label,
         send_to: this.measurementId,
         transport_type: "beacon",
+        // Bot detection data
+        bot_detected: botDetection.isBot,
+        bot_confidence: botDetection.confidence,
+        bot_type: botDetection.botType || 'unknown',
       });
     });
   }
@@ -214,6 +246,9 @@ export class GoogleAnalytics implements Analytics {
       const gtag = this.getGtag();
       if (!gtag) return;
 
+      // Get bot detection results
+      const botDetection = getBotDetectionResult();
+
       // Scrub PII from error description
       const scrubbedDescription = this.scrubPII(event.description);
 
@@ -222,6 +257,10 @@ export class GoogleAnalytics implements Analytics {
         fatal: event.fatal || false,
         send_to: this.measurementId,
         transport_type: "beacon",
+        // Bot detection data
+        bot_detected: botDetection.isBot,
+        bot_confidence: botDetection.confidence,
+        bot_type: botDetection.botType || 'unknown',
         ...event.custom_parameters,
       });
     });
