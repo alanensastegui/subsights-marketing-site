@@ -4,7 +4,6 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import type { Analytics } from "./types";
 import { AnalyticsRouter } from "./router";
 import { analyticsEventQueue } from "./event-queue";
-import { getBotDetectionResult } from "./bot-detection";
 
 // ============================================================================
 // ANALYTICS CONTEXT
