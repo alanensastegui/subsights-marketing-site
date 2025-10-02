@@ -32,7 +32,8 @@ const copy = {
 
 export default function Hero() {
   return (
-    <section className="space-y-8 max-w-6xl mx-auto px-6 py-12 flex relative justify-start">
+    // mb-24 is hardcoded until we add more padding between sections as the standard
+    <section className="space-y-8 max-w-6xl mx-auto px-6 py-12 flex relative justify-start mb-24">
       {/* Slogan */}
       <div className="flex flex-col items-center md:gap-12 lg:gap-24 md:flex-row md:items-stretch">
         <Animate
