@@ -100,7 +100,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           async
         />
       </head>
-      <body className="bg-background text-foreground h-full overflow-x-clip">
+      <body className="bg-background text-foreground h-full">
         <AnalyticsProvider>
           <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
             <div className="absolute left-[10%] top-[15%]">
