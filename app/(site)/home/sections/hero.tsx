@@ -34,28 +34,6 @@ export default function Hero() {
   return (
     // mb-24 is hardcoded until we add more padding between sections as the standard
     <section className="space-y-8 max-w-6xl mx-auto px-6 py-12 flex flex-col relative justify-start md:flex-row md:mb-24 gap-8 md:gap-0">
-      <div className="md:hidden flex w-full justify-center">
-        <div className="relative w-full max-w-md">
-          <div className="overflow-hidden rounded-sm">
-            <Image
-              src="/images/product-screenshots/chatbot-analytics.png"
-              alt="Subsights chatbot analytics conversation dashboard"
-              width={1960}
-              height={1960}
-              className="h-auto w-full"
-            />
-          </div>
-          <div className="absolute -top-3.5 -left-4 w-28 overflow-hidden rounded-sm shadow-lg">
-            <Image
-              src="/images/product-screenshots/wisp-conversation.png"
-              alt="Subsights assistant conversation preview"
-              width={225}
-              height={378}
-              className="h-auto w-full"
-            />
-          </div>
-        </div>
-      </div>
       {/* Slogan */}
       <div className="flex flex-col items-center md:gap-12 lg:gap-24 md:flex-row md:items-stretch">
         <Animate
@@ -115,6 +93,28 @@ export default function Hero() {
             />
           </div>
         </Animate>
+      </div>
+      <div className="md:hidden flex w-full justify-center">
+        <div className="relative w-full max-w-md">
+          <div className="overflow-hidden rounded-sm">
+            <Image
+              src="/images/product-screenshots/chatbot-analytics.png"
+              alt="Subsights chatbot analytics conversation dashboard"
+              width={1960}
+              height={1960}
+              className="h-auto w-full"
+            />
+          </div>
+          <div className="absolute -top-3.5 -left-4 w-28 overflow-hidden rounded-sm shadow-lg">
+            <Image
+              src="/images/product-screenshots/wisp-conversation.png"
+              alt="Subsights assistant conversation preview"
+              width={225}
+              height={378}
+              className="h-auto w-full"
+            />
+          </div>
+        </div>
       </div>
       <div className="absolute left-1/2 hidden md:block md:w-md lg:w-lg xl:w-xl 2xl:w-3xl overflow-x-clip w-0">
         {/* Overlay gradient hardcoded to match the dashboard height and top offset */}
