@@ -307,7 +307,7 @@ export class BotDetector {
     try {
       const canvas = document.createElement('canvas');
       return !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
-    } catch (error) {
+    } catch {
       return false;
     }
   }
