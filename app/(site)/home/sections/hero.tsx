@@ -116,7 +116,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="absolute left-1/2 hidden md:block md:w-md lg:w-lg xl:w-xl 2xl:w-3xl overflow-x-clip w-0" aria-hidden="true">
+      <div className="absolute left-1/2 hidden md:block md:w-md lg:w-lg xl:w-xl 2xl:w-3xl overflow-x-clip w-0">
         {/* Overlay gradient hardcoded to match the dashboard height and top offset */}
         <div className="pointer-events-none absolute inset-y-0 right-0 -top-8 w-48 h-111 bg-gradient-to-r from-transparent via-background/80 to-background z-10" />
         <div className="rounded-xl overflow-hidden w-3xl absolute left-20 -top-8">
