@@ -22,7 +22,8 @@ import type { NavItem } from "@/components/ui/navigation-menu";
 
 function buildNavigationItems() {
   const caseStudies = getAllCaseStudies();
-  const features = getAllFeatureMetadata();
+  // TODO: Remove this once integrations is added back in
+  const features = getAllFeatureMetadata().filter(feature => feature.id !== 'integrations');
 
   const caseStudiesNavItem: NavItem = {
     label: "Case Studies",
