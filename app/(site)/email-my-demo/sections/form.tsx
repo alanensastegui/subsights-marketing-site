@@ -59,12 +59,13 @@ export default function Section() {
     website?: string;
   }>({});
 
-
+  const formValues = { firstName, lastName, company, email, website, marketingOptIn };
+  const isFormValid = EmailMyDemoSchema.safeParse(formValues).success;
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setErrors({});
-    const result = EmailMyDemoSchema.safeParse({ firstName, lastName, company, email, website, marketingOptIn });
+    const result = EmailMyDemoSchema.safeParse(formValues);
     if (!result.success) {
       const tree = z.treeifyError(result.error);
       setErrors({
@@ -273,7 +274,8 @@ export default function Section() {
                 <CardFooter>
                   <Button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !isFormValid}
+                    aria-disabled={isSubmitting || !isFormValid}
                     data-analytics-id="email_my_demo_submit"
                     data-analytics-name="Email My Demo - Submit"
                     data-analytics-context='{"page":"email_my_demo"}'

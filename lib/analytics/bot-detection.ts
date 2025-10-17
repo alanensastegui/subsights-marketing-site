@@ -1,0 +1,327 @@
+// ============================================================================
+// BOT DETECTION SYSTEM
+// ============================================================================
+
+// Extend Window interface for automation detection properties
+declare global {
+  interface Window {
+    // Automation framework properties (optional)
+    __webdriver_evaluate?: unknown;
+    __selenium_evaluate?: unknown;
+    __webdriver_script_function?: unknown;
+    __webdriver_script_func?: unknown;
+    __fxdriver_evaluate?: unknown;
+    __driver_unwrapped?: unknown;
+    __webdriver_unwrapped?: unknown;
+    __fxdriver_unwrapped?: unknown;
+    __driver_evaluate?: unknown;
+    __selenium_unwrapped?: unknown;
+    __fxdriver_script_function?: unknown;
+  }
+}
+
+export type BotDetectionResult = {
+  isBot: boolean;
+  confidence: number; // 0-100
+  reasons: string[];
+  botType?: 'crawler' | 'scraper' | 'spam' | 'automated' | 'suspicious';
+};
+
+export type BotDetectionConfig = {
+  minConfidenceThreshold?: number;
+  enableLogging?: boolean;
+  whitelistUserAgents?: string[];
+  blacklistUserAgents?: string[];
+};
+
+/**
+ * Comprehensive bot detection system
+ */
+export class BotDetector {
+  private config: Required<BotDetectionConfig>;
+
+  constructor(config: BotDetectionConfig = {}) {
+    this.config = {
+      minConfidenceThreshold: config.minConfidenceThreshold ?? 70,
+      enableLogging: config.enableLogging ?? true,
+      whitelistUserAgents: config.whitelistUserAgents ?? [],
+      blacklistUserAgents: config.blacklistUserAgents ?? [],
+      ...config,
+    };
+  }
+
+  /**
+   * Detect if current visitor is likely a bot
+   */
+  detect(): BotDetectionResult {
+    if (typeof window === 'undefined') {
+      return { isBot: false, confidence: 0, reasons: ['server-side'] };
+    }
+
+    const detections: Array<{ isBot: boolean; confidence: number; reason: string }> = [];
+
+    // 1. User Agent Analysis
+    detections.push(this.detectByUserAgent());
+
+    // 2. Browser Fingerprinting
+    detections.push(this.detectByBrowserFeatures());
+
+    // 3. Behavioral Analysis
+    detections.push(this.detectByBehavior());
+
+    // 4. Connection Analysis
+    detections.push(this.detectByConnection());
+
+    // 5. Automation Detection
+    detections.push(this.detectAutomation());
+
+    // Calculate final result
+    const botScore = this.calculateBotScore(detections);
+    const isBot = botScore >= this.config.minConfidenceThreshold;
+
+    const result: BotDetectionResult = {
+      isBot,
+      confidence: botScore,
+      reasons: detections.filter(d => d.isBot).map(d => d.reason),
+    };
+
+    // Determine bot type if detected as bot
+    if (isBot) {
+      result.botType = this.classifyBotType(detections);
+    }
+
+    // Log detection if enabled
+    if (this.config.enableLogging && isBot) {
+      console.warn('Bot detected:', result);
+    }
+
+    return result;
+  }
+
+  private detectByUserAgent(): { isBot: boolean; confidence: number; reason: string } {
+    const userAgent = navigator.userAgent.toLowerCase();
+
+    // Whitelist check first
+    if (this.config.whitelistUserAgents.some(pattern =>
+      userAgent.includes(pattern.toLowerCase())
+    )) {
+      return { isBot: false, confidence: 0, reason: 'whitelisted_user_agent' };
+    }
+
+    // Blacklist check
+    if (this.config.blacklistUserAgents.some(pattern =>
+      userAgent.includes(pattern.toLowerCase())
+    )) {
+      return { isBot: true, confidence: 95, reason: 'blacklisted_user_agent' };
+    }
+
+    // Known bot patterns
+    const botPatterns = [
+      // Crawlers and spiders
+      { pattern: /bot|crawler|spider|crawling/i, confidence: 90, reason: 'crawler_user_agent' },
+      { pattern: /googlebot|bingbot|yandexbot|duckduckbot|baiduspider/i, confidence: 95, reason: 'search_engine_bot' },
+      { pattern: /facebookexternalhit|twitterbot|linkedinbot/i, confidence: 85, reason: 'social_media_bot' },
+      { pattern: /slackbot|discordbot|telegrambot/i, confidence: 80, reason: 'messaging_bot' },
+
+      // Scrapers and automated tools
+      { pattern: /wget|curl|python-requests|go-http-client|java\/\d/i, confidence: 90, reason: 'automated_tool' },
+      { pattern: /scrapy|beautifulsoup|selenium|phantomjs|puppeteer/i, confidence: 95, reason: 'scraping_tool' },
+
+      // Monitoring and analytics
+      { pattern: /uptime|monitoring|pingdom|newrelic|datadog/i, confidence: 85, reason: 'monitoring_bot' },
+      { pattern: /ahrefsbot|semrushbot|majestic12|moz\.com/i, confidence: 90, reason: 'seo_analysis_bot' },
+
+      // Suspicious patterns
+      { pattern: /headless|phantom|selenium/i, confidence: 80, reason: 'headless_browser' },
+      { pattern: /\+\+\+\+\+\+|test|scan/i, confidence: 70, reason: 'suspicious_pattern' },
+    ];
+
+    for (const { pattern, confidence, reason } of botPatterns) {
+      if (pattern.test(userAgent)) {
+        return { isBot: true, confidence, reason };
+      }
+    }
+
+    return { isBot: false, confidence: 0, reason: 'normal_user_agent' };
+  }
+
+  private detectByBrowserFeatures(): { isBot: boolean; confidence: number; reason: string } {
+    const features = {
+      hasNotifications: 'Notification' in window,
+      hasServiceWorker: 'serviceWorker' in navigator,
+      hasWebRTC: 'RTCPeerConnection' in window,
+      hasLocalStorage: 'localStorage' in window,
+      hasSessionStorage: 'sessionStorage' in window,
+      hasIndexedDB: 'indexedDB' in window,
+      hasWebGL: this.hasWebGL(),
+      hasAudioContext: 'AudioContext' in window || 'webkitAudioContext' in window,
+      hasMediaDevices: 'mediaDevices' in navigator,
+      hasPermissions: 'permissions' in navigator,
+      hasPlugins: 'plugins' in navigator && navigator.plugins.length > 0,
+      hasUserMedia: 'mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices,
+    };
+
+    // Count missing "human" features
+    const missingHumanFeatures = Object.values(features).filter(f => !f).length;
+    const totalFeatures = Object.keys(features).length;
+
+    // Bots often lack human-centric browser features
+    const missingRatio = missingHumanFeatures / totalFeatures;
+
+    if (missingRatio > 0.6) {
+      return {
+        isBot: true,
+        confidence: Math.min(85, 60 + (missingRatio * 40)),
+        reason: 'missing_browser_features'
+      };
+    }
+
+    return { isBot: false, confidence: 0, reason: 'normal_browser_features' };
+  }
+
+  private detectByBehavior(): { isBot: boolean; confidence: number; reason: string } {
+    // Behavioral detection is not implemented yet
+    // All helper methods return false, so this always returns normal behavior
+    return { isBot: false, confidence: 0, reason: 'normal_behavior' };
+  }
+
+  private detectByConnection(): { isBot: boolean; confidence: number; reason: string } {
+    // Check for suspicious connection patterns
+    const connection = (navigator as { connection?: { effectiveType?: string; saveData?: boolean } }).connection;
+    const suspiciousConnections: string[] = [];
+
+    if (connection) {
+      // Very slow connections might be bots on poor networks
+      if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+        suspiciousConnections.push('slow_connection');
+      }
+
+      // Bots sometimes use datacenter IPs (though this is hard to detect client-side)
+      if (connection.saveData) {
+        suspiciousConnections.push('save_data_mode');
+      }
+    }
+
+    // Note: Header detection would require server-side implementation
+
+    if (suspiciousConnections.length >= 2) {
+      return {
+        isBot: true,
+        confidence: 60,
+        reason: 'suspicious_connection_patterns'
+      };
+    }
+
+    return { isBot: false, confidence: 0, reason: 'normal_connection' };
+  }
+
+  private detectAutomation(): { isBot: boolean; confidence: number; reason: string } {
+    // Check for automation frameworks
+    const automationSigns: string[] = [];
+
+    // Check for common automation properties
+    if (window.__webdriver_evaluate) automationSigns.push('webdriver_evaluate');
+    if (window.__selenium_evaluate) automationSigns.push('selenium_evaluate');
+    if (window.__webdriver_script_function) automationSigns.push('webdriver_script');
+    if (window.__webdriver_script_func) automationSigns.push('webdriver_script_func');
+    if (window.__fxdriver_evaluate) automationSigns.push('firefox_driver');
+    if (window.__driver_unwrapped) automationSigns.push('driver_unwrapped');
+    if (window.__webdriver_unwrapped) automationSigns.push('webdriver_unwrapped');
+    if (window.__fxdriver_unwrapped) automationSigns.push('firefox_driver_unwrapped');
+    if (window.__driver_evaluate) automationSigns.push('driver_evaluate');
+    if (window.__selenium_unwrapped) automationSigns.push('selenium_unwrapped');
+    if (window.__fxdriver_script_function) automationSigns.push('firefox_driver_script');
+
+    // Check for Chrome DevTools Protocol
+    if ((window as { chrome?: { runtime?: { onConnect?: unknown } } }).chrome?.runtime?.onConnect) {
+      automationSigns.push('chrome_runtime_api');
+    }
+
+    // Check for headless browser properties
+    if ((navigator as { webdriver?: boolean }).webdriver) automationSigns.push('navigator_webdriver');
+
+    if (automationSigns.length >= 3) {
+      return {
+        isBot: true,
+        confidence: 95,
+        reason: 'automation_framework_detected'
+      };
+    } else if (automationSigns.length >= 1) {
+      return {
+        isBot: true,
+        confidence: 80,
+        reason: 'possible_automation'
+      };
+    }
+
+    return { isBot: false, confidence: 0, reason: 'no_automation_detected' };
+  }
+
+  private calculateBotScore(detections: Array<{ isBot: boolean; confidence: number; reason: string }>): number {
+    const botDetections = detections.filter(d => d.isBot);
+    if (botDetections.length === 0) return 0;
+
+    // Weighted average based on detection method reliability
+    const weights = {
+      'crawler_user_agent': 0.3,
+      'search_engine_bot': 0.3,
+      'automation_framework_detected': 0.25,
+      'multiple_suspicious_behaviors': 0.2,
+      'scraping_tool': 0.15,
+      'missing_browser_features': 0.1,
+    };
+
+    let weightedSum = 0;
+    let totalWeight = 0;
+
+    for (const detection of botDetections) {
+      const weight = weights[detection.reason as keyof typeof weights] || 0.05;
+      weightedSum += detection.confidence * weight;
+      totalWeight += weight;
+    }
+
+    return totalWeight > 0 ? Math.min(100, weightedSum / totalWeight) : 0;
+  }
+
+  private classifyBotType(detections: Array<{ isBot: boolean; confidence: number; reason: string }>): BotDetectionResult['botType'] {
+    const reasons = detections.filter(d => d.isBot).map(d => d.reason);
+
+    if (reasons.some(r => r.includes('crawler') || r.includes('search_engine'))) {
+      return 'crawler';
+    }
+    if (reasons.some(r => r.includes('scraping') || r.includes('automation'))) {
+      return 'scraper';
+    }
+    if (reasons.some(r => r.includes('spam') || r.includes('suspicious'))) {
+      return 'spam';
+    }
+    if (reasons.some(r => r.includes('monitoring'))) {
+      return 'automated';
+    }
+
+    return 'suspicious';
+  }
+
+
+  private hasWebGL(): boolean {
+    try {
+      const canvas = document.createElement('canvas');
+      return !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
+    } catch {
+      return false;
+    }
+  }
+
+}
+
+/**
+ * Global bot detector instance
+ */
+export const botDetector = new BotDetector();
+
+/**
+ * Get detailed bot detection result
+ */
+export function getBotDetectionResult(): BotDetectionResult {
+  return botDetector.detect();
+}

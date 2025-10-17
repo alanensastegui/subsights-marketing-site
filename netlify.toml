@@ -31,7 +31,82 @@
 
 # Force HTTPS (optional, depending on deployment)
 [[redirects]]
-  from = "http://subsights.netlify.app/*"
-  to = "https://subsights.netlify.app/:splat"
+  from = "http://subsights-marketing-site.netlify.app/*"
+  to = "https://subsights-marketing-site.netlify.app/:splat"
+  status = 301
+  force = true
+
+# Redirect trysubsights.com to subsights.com
+[[redirects]]
+  from = "https://trysubsights.com/*"
+  to = "https://subsights.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://trysubsights.com/*"
+  to = "https://subsights.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.trysubsights.com/*"
+  to = "https://subsights.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.trysubsights.com/*"
+  to = "https://subsights.com/:splat"
+  status = 301
+  force = true
+
+# Redirect getsubsights.com to subsights.com
+[[redirects]]
+  from = "https://getsubsights.com/*"
+  to = "https://subsights.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://getsubsights.com/*"
+  to = "https://subsights.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.getsubsights.com/*"
+  to = "https://subsights.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.getsubsights.com/*"
+  to = "https://subsights.com/:splat"
+  status = 301
+  force = true
+
+# Redirect subsights.ai to subsights.com
+[[redirects]]
+  from = "https://subsights.ai/*"
+  to = "https://subsights.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://subsights.ai/*"
+  to = "https://subsights.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.subsights.ai/*"
+  to = "https://subsights.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.subsights.ai/*"
+  to = "https://subsights.com/:splat"
   status = 301
   force = true
