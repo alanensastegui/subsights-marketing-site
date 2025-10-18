@@ -1,6 +1,11 @@
-import { Animate } from "@/components/ui/animate";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Plug, Sliders, Rocket } from "lucide-react";
+import { Animate } from '@/components/ui/animate';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  ArrowRight,
+  MailOpen,
+  MessageSquare,
+  CheckCircle2,
+} from 'lucide-react';
 
 type Copy = {
   title: string;
@@ -11,26 +16,27 @@ type Copy = {
   }[];
 };
 
-export const sectionId = "fast-path";
+export const sectionId = 'fast-path';
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Fast path to a connected workflow",
+  title: 'Fast path to insight and action',
   steps: [
     {
-      title: "Select your tools",
-      description: "Pick the integrations you need—leads, live calls, reports, calendars.",
-      icon: Plug,
+      title: 'Open your report',
+      description: 'Start from your daily, automated email summary.',
+      icon: MailOpen,
     },
     {
-      title: "Set triggers & routing",
-      description: "Define when to capture, who gets notified, and where data goes.",
-      icon: Sliders,
+      title: 'Click into a chat',
+      description: 'Jump straight to the conversation in the dashboard.',
+      icon: MessageSquare,
     },
     {
-      title: "Launch and measure",
-      description: "Go live in minutes. Get email summaries and iterate with confidence.",
-      icon: Rocket,
+      title: 'Flag or star',
+      description:
+        'Leave a comment, change status, and our team handles the rest.',
+      icon: CheckCircle2,
     },
   ],
 } satisfies Copy;
@@ -45,7 +51,6 @@ export default function FastPath() {
             {copy.title}
           </h2>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {copy.steps.map((step, index) => (
             <div key={step.title} className="animate-item">
@@ -65,7 +70,6 @@ export default function FastPath() {
                     </p>
                   </CardContent>
                 </Card>
-
                 {index < copy.steps.length - 1 && (
                   <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
                     <div className="w-8 h-8 rounded-full bg-background border border-border/50 flex items-center justify-center">
@@ -81,5 +85,3 @@ export default function FastPath() {
     </section>
   );
 }
-
-

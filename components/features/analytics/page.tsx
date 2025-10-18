@@ -1,17 +1,12 @@
 import Hero from "./sections/hero";
 import VideoDemo from "./sections/video-demo";
-import HowItWorks from "./sections/how-it-works";
 import ValueProp from "./sections/value-prop";
+import HowItWorks from "./sections/how-it-works";
+import AnalyticsOnRamp from "./sections/analytics-on-ramp";
 import CallToAction from "./sections/call-to-action";
 
-const IntegrationsFeaturePage = () => {
-  const Sections = [
-    Hero,
-    VideoDemo,
-    ValueProp,
-    HowItWorks,
-    CallToAction,
-  ];
+const AnalyticsFeaturePage = () => {
+  const Sections = [Hero, VideoDemo, ValueProp, HowItWorks, AnalyticsOnRamp, CallToAction];
 
   return (
     <main className="min-h-screen">
@@ -22,4 +17,6 @@ const IntegrationsFeaturePage = () => {
   );
 }
 
-export default IntegrationsFeaturePage;
+export default AnalyticsFeaturePage;
+
+

@@ -12,7 +12,7 @@ type Copy = {
 export const sectionId = "call-to-action";
 
 // ---- SECTION COPY REGION ----
-// const featureMetadata = getFeatureMetadata('integrations');
+// const featureMetadata = getFeatureMetadata('analytics');
 const copy = {
   title: '', //featureMetadata.ctaTitle,
   primaryCta: { label: "Email My Demo", href: "/email-my-demo", external: false },
@@ -26,7 +26,7 @@ export default function CallToAction() {
       <Animate name="fadeInStagger" trigger="onVisible">
         <Cta
           copy={copy}
-          analyticsContext="integrations_cta"
+          analyticsContext="analytics_cta"
           classes={{
             title: "animate-item",
             primaryButton: "animate-item",
