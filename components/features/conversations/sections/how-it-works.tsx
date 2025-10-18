@@ -8,7 +8,12 @@ import VideoPlayer from '@/components/ui/video-player';
 import {
   ListTree,
   Search,
-  Share2,
+  MessageSquare,
+  CheckCircle,
+  Download,
+  Info,
+  Filter,
+  BarChart3,
 } from 'lucide-react';
 
 type Feature = {
@@ -49,20 +54,20 @@ const copy = {
           title: 'Discuss in context',
           description:
             'Leave quick notes or suggestions without leaving the thread.',
-          icon: Share2,
+          icon: MessageSquare,
           videoSrc: '/features/conversation-comment.mp4',
         },
         {
           title: 'Track progress clearly',
           description:
             'Move conversations through review stages with simple, visual cues.',
-          icon: Share2,
+          icon: CheckCircle,
           videoSrc: '/features/conversation-status.mp4',
         },
         {
           title: 'Take insights with you',
           description: 'Export data effortlessly to review or archive offline.',
-          icon: Share2,
+          icon: Download,
           videoSrc: '/features/conversation-export.mp4',
         },
       ],
@@ -77,21 +82,21 @@ const copy = {
           title: 'See the full story',
           description:
             'Each conversation comes with a title, summary, and context that makes scanning effortless.',
-          icon: Search,
+          icon: Info,
           videoSrc: '/features/conversation-info.mp4',
         },
         {
           title: 'Cut through the noise',
           description:
             'Refine your view with powerful filters built for speed and precision.',
-          icon: Search,
+          icon: Filter,
           videoSrc: '/features/conversation-filter.mp4',
         },
         {
           title: 'View it your way',
           description:
             'Organize lists by key metrics so you can see what needs attention first.',
-          icon: Search,
+          icon: BarChart3,
           videoSrc: '/features/conversation-sort.mp4',
         },
       ],
