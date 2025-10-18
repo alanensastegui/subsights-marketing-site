@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 import type { FeatureMetadata, FeatureName, FeaturePackage } from "./types";
-import { Rocket, BookOpen, Palette, Workflow, MessagesSquare, BarChart3 } from "lucide-react";
+import { Rocket, BookOpen, Palette, MessageCircle } from "lucide-react";
 
 // Central metadata registry
 export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
@@ -22,24 +22,24 @@ export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
     description: 'Voice, tone, and design. Dialed to your brand',
     ctaTitle: 'Make the experience yours.',
   },
-  'integrations': {
-    id: 'integrations',
-    title: 'Integrations',
-    description: 'Connect your workflow. Tools that turn chats into outcomes',
-    ctaTitle: 'Connect your tools.',
-  },
+  // 'integrations': {
+  //   id: 'integrations',
+  //   title: 'Integrations',
+  //   description: 'Connect your workflow. Tools that turn chats into outcomes',
+  //   ctaTitle: 'Connect your tools.',
+  // },
   'conversations': {
     id: 'conversations',
     title: 'Conversations',
     description: 'Your command center for auditing, feedback, and insights',
     ctaTitle: 'Close the loop faster.',
   },
-  'analytics': {
-    id: 'analytics',
-    title: 'Analytics',
-    description: 'Go beyond clicks. Understand intent and prove ROI',
-    ctaTitle: 'Make decisions with real insight.',
-  },
+  // 'analytics': {
+  //   id: 'analytics',
+  //   title: 'Analytics',
+  //   description: 'Go beyond clicks. Understand intent and prove ROI',
+  //   ctaTitle: 'Make decisions with real insight.',
+  // },
 };
 
 // Map feature names to their icon components
@@ -47,9 +47,9 @@ export const iconMap: Record<FeatureName, ComponentType<{ className?: string }>>
   'setup-onboarding': Rocket,
   'knowledge-base': BookOpen,
   'brand-voice': Palette,
-  'integrations': Workflow,
-  'conversations': MessagesSquare,
-  'analytics': BarChart3,
+  // 'integrations': Workflow,
+  'conversations': MessageCircle,
+  // 'analytics': BarChart3,
 };
 
 // Registry of feature packages
@@ -67,18 +67,18 @@ const featurePackages: Record<FeatureName, () => Promise<FeaturePackage>> = {
     metadata: featureMetadata['brand-voice'],
     Page: (await import('@/components/features/brand-voice')).default,
   }),
-  'integrations': async () => ({
-    metadata: featureMetadata['integrations'],
-    Page: (await import('@/components/features/integrations')).default,
-  }),
+  // 'integrations': async () => ({
+  //   metadata: featureMetadata['integrations'],
+  //   Page: (await import('@/components/features/integrations')).default,
+  // }),
   'conversations': async () => ({
     metadata: featureMetadata['conversations'],
     Page: (await import('@/components/features/conversations')).default,
   }),
-  'analytics': async () => ({
-    metadata: featureMetadata['analytics'],
-    Page: (await import('@/components/features/analytics')).default,
-  }),
+  // 'analytics': async () => ({
+  //   metadata: featureMetadata['analytics'],
+  //   Page: (await import('@/components/features/analytics')).default,
+  // }),
 };
 
 // Cache for loaded packages to avoid re-importing

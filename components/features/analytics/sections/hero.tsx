@@ -1,7 +1,7 @@
 import { Animate } from "@/components/ui/animate";
 import { ButtonDuo } from "@/components/ui/button-duo";
 import Link from "next/link";
-import { getFeatureMetadata } from "@/lib/features/registry";
+// import { getFeatureMetadata } from "@/lib/features/registry";
 import { getFreeTrialUrl } from "@/lib/subscriptions";
 
 type Copy = {
@@ -15,7 +15,7 @@ export const sectionId = "hero";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: getFeatureMetadata('analytics').title,
+  title: '', //getFeatureMetadata('analytics').title,
   subtitle: "Insights grounded in real conversations",
   primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
   secondaryCta: { label: "Start Free Trial", href: getFreeTrialUrl() },

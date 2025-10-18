@@ -47,7 +47,7 @@ const copy = {
       title: "Wire your workflow",
       description: "Turn conversations into action. Trigger emails, updates, and summaries right when your team needs them.",
       videoSrc: "/features/configuring-leads.mp4",
-      featureSlug: "integrations"
+      // featureSlug: "integrations"
     },
     {
       number: "04",
