@@ -1,11 +1,15 @@
-"use client";
+'use client';
 
-import { useCallback, useMemo, useState } from "react";
-import { Animate } from "@/components/ui/animate";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Carousel, { CarouselItem } from "@/components/ui/carousel";
-import VideoPlayer from "@/components/ui/video-player";
-import { ListTree, MessagesSquare, Flag, Star, Search, Upload as UploadIcon, FileText, Share2 } from "lucide-react";
+import { useCallback, useMemo, useState } from 'react';
+import { Animate } from '@/components/ui/animate';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import Carousel, { CarouselItem } from '@/components/ui/carousel';
+import VideoPlayer from '@/components/ui/video-player';
+import {
+  ListTree,
+  Search,
+  Share2,
+} from 'lucide-react';
 
 type Feature = {
   title: string;
@@ -27,39 +31,70 @@ type Copy = {
   methods: Method[];
 };
 
-export const sectionId = "how-it-works";
+export const sectionId = 'how-it-works';
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "How it works",
-  subtitle: "From table to detail view, every action supports auditing, feedback, and learning.",
+  title: 'How it works',
+  subtitle:
+    'Turn conversations into action—gather feedback, align stakeholders, and improve continuously.',
   methods: [
     {
-      title: "Intelligent conversation table",
-      description: "Scan conversations with AI titles, summaries, and link tracking.",
+      title: 'Review, refine, and act',
+      description:
+        'Bring clarity to every exchange with a lightweight system designed to keep teams focused and feedback actionable.',
       icon: ListTree,
       features: [
-        { title: "AI titles & summaries", description: "Understand context at a glance.", icon: FileText, videoSrc: "/features/updating-behavior.mp4" },
-        { title: "Clickable links", description: "See every URL, email, and phone shared.", icon: Share2, videoSrc: "/features/creating-embedding.mp4" },
-      ]
+        {
+          title: 'Discuss in context',
+          description:
+            'Leave quick notes or suggestions without leaving the thread.',
+          icon: Share2,
+          videoSrc: '/features/conversation-comment.mp4',
+        },
+        {
+          title: 'Track progress clearly',
+          description:
+            'Move conversations through review stages with simple, visual cues.',
+          icon: Share2,
+          videoSrc: '/features/conversation-status.mp4',
+        },
+        {
+          title: 'Take insights with you',
+          description: 'Export data effortlessly to review or archive offline.',
+          icon: Share2,
+          videoSrc: '/features/conversation-export.mp4',
+        },
+      ],
     },
     {
-      title: "From report to resolution",
-      description: "Jump from email reports to a conversation and resolve in one flow.",
-      icon: MessagesSquare,
-      features: [
-        { title: "Flag & comment", description: "Mark issues and leave feedback for our team.", icon: Flag, videoSrc: "/features/editing-behavior.mp4" },
-        { title: "Star great chats", description: "Capture gold‑standard examples for training.", icon: Star, videoSrc: "/features/edit-greeting.mp4" },
-      ]
-    },
-    {
-      title: "Search & data management",
-      description: "Find exactly what you need and keep data clean.",
+      title: 'Find what matters faster',
+      description:
+        "Navigate conversations effortlessly with intuitive controls that help you focus, filter, and stay on top of what's most important.",
       icon: Search,
       features: [
-        { title: "Full‑text search", description: "Locate specific interactions or keywords.", icon: Search, videoSrc: "/features/text-sources.mp4" },
-        { title: "Batch actions & export", description: "Delete tests and export CSV for analysis.", icon: UploadIcon, videoSrc: "/features/file-upload.mp4" },
-      ]
+        {
+          title: 'See the full story',
+          description:
+            'Each conversation comes with a title, summary, and context that makes scanning effortless.',
+          icon: Search,
+          videoSrc: '/features/conversation-info.mp4',
+        },
+        {
+          title: 'Cut through the noise',
+          description:
+            'Refine your view with powerful filters built for speed and precision.',
+          icon: Search,
+          videoSrc: '/features/conversation-filter.mp4',
+        },
+        {
+          title: 'View it your way',
+          description:
+            'Organize lists by key metrics so you can see what needs attention first.',
+          icon: Search,
+          videoSrc: '/features/conversation-sort.mp4',
+        },
+      ],
     },
   ],
 } satisfies Copy;
@@ -67,23 +102,33 @@ const copy = {
 
 export default function HowItWorks() {
   const c = copy;
-  const [currentFeatures, setCurrentFeatures] = useState<number[]>(c.methods.map(() => 0));
+  const [currentFeatures, setCurrentFeatures] = useState<number[]>(
+    c.methods.map(() => 0)
+  );
 
-  const handleFeatureChange = useCallback((methodIndex: number, featureIndex: number) => {
-    setCurrentFeatures((prev) => {
-      const next = [...prev];
-      next[methodIndex] = featureIndex;
-      return next;
-    });
-  }, []);
+  const handleFeatureChange = useCallback(
+    (methodIndex: number, featureIndex: number) => {
+      setCurrentFeatures((prev) => {
+        const next = [...prev];
+        next[methodIndex] = featureIndex;
+        return next;
+      });
+    },
+    []
+  );
 
   const getIndexChangeHandler = useCallback(
-    (methodIndex: number) => (featureIndex: number) => handleFeatureChange(methodIndex, featureIndex),
+    (methodIndex: number) => (featureIndex: number) =>
+      handleFeatureChange(methodIndex, featureIndex),
     [handleFeatureChange]
   );
 
   const createCarouselItems = useCallback(
-    (features: Feature[], methodIndex: number, activeIndex: number): CarouselItem[] =>
+    (
+      features: Feature[],
+      methodIndex: number,
+      activeIndex: number
+    ): CarouselItem[] =>
       features.map((feature, featureIndex) => ({
         id: feature.title,
         content: (
@@ -92,10 +137,14 @@ export default function HowItWorks() {
               <div className="inline-flex items-center justify-center w-8 h-8 rounded-md bg-primary/10 border border-primary/20 flex-shrink-0">
                 <feature.icon className="w-4 h-4 text-primary" />
               </div>
-              <CardTitle className="text-base font-semibold text-foreground">{feature.title}</CardTitle>
+              <CardTitle className="text-base font-semibold text-foreground">
+                {feature.title}
+              </CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
-              <p className="text-sm text-muted-foreground leading-relaxed mb-3">{feature.description}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                {feature.description}
+              </p>
               <div className="relative aspect-video w-full overflow-hidden rounded-md ring-1 ring-border/50 bg-background/20">
                 <VideoPlayer
                   src={feature.videoSrc}
@@ -122,9 +171,14 @@ export default function HowItWorks() {
   );
 
   const carouselItemsPerMethod = useMemo(
-    () => c.methods.map((method, methodIndex) =>
-      createCarouselItems(method.features, methodIndex, currentFeatures[methodIndex])
-    ),
+    () =>
+      c.methods.map((method, methodIndex) =>
+        createCarouselItems(
+          method.features,
+          methodIndex,
+          currentFeatures[methodIndex]
+        )
+      ),
     [c.methods, currentFeatures, createCarouselItems]
   );
 
@@ -132,8 +186,12 @@ export default function HowItWorks() {
     <section className="relative isolate px-6 py-12 max-w-6xl mx-auto">
       <Animate name="fadeInStagger" trigger="onVisible">
         <div className="mb-16">
-          <h2 className="animate-item text-3xl md:text-4xl font-bold tracking-tight mb-4">{c.title}</h2>
-          <p className="animate-item text-lg text-muted-foreground max-w-md leading-relaxed">{c.subtitle}</p>
+          <h2 className="animate-item text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            {c.title}
+          </h2>
+          <p className="animate-item text-lg text-muted-foreground max-w-md leading-relaxed">
+            {c.subtitle}
+          </p>
         </div>
         <div className="space-y-16">
           {c.methods.map((method, index) => (
@@ -144,8 +202,12 @@ export default function HowItWorks() {
                     <method.icon className="w-6 h-6 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-semibold tracking-tight text-foreground mb-2">{method.title}</h3>
-                    <p className="text-base text-muted-foreground leading-relaxed">{method.description}</p>
+                    <h3 className="text-2xl font-semibold tracking-tight text-foreground mb-2">
+                      {method.title}
+                    </h3>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      {method.description}
+                    </p>
                   </div>
                 </div>
                 <div className="flex-1">
@@ -168,5 +230,3 @@ export default function HowItWorks() {
     </section>
   );
 }
-
-

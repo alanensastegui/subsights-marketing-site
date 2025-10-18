@@ -1,31 +1,41 @@
-import { Animate } from "@/components/ui/animate";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, MailOpen, MessageSquare, CheckCircle2 } from "lucide-react";
+import { Animate } from '@/components/ui/animate';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  ArrowRight,
+  MailOpen,
+  MessageSquare,
+  CheckCircle2,
+} from 'lucide-react';
 
 type Copy = {
   title: string;
-  steps: { title: string; description: string; icon: React.ComponentType<{ className?: string }>; }[];
+  steps: {
+    title: string;
+    description: string;
+    icon: React.ComponentType<{ className?: string }>;
+  }[];
 };
 
-export const sectionId = "fast-path";
+export const sectionId = 'fast-path';
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Fast path to insight and action",
+  title: 'Fast path to insight and action',
   steps: [
     {
-      title: "Open your report",
-      description: "Start from your daily, automated email summary.",
+      title: 'Open your report',
+      description: 'Start from your daily, automated email summary.',
       icon: MailOpen,
     },
     {
-      title: "Click into a chat",
-      description: "Jump straight to the conversation in the dashboard.",
+      title: 'Click into a chat',
+      description: 'Jump straight to the conversation in the dashboard.',
       icon: MessageSquare,
     },
     {
-      title: "Flag or star",
-      description: "Leave a comment, change status, and our team handles the rest.",
+      title: 'Flag or star',
+      description:
+        'Leave a comment, change status, and our team handles the rest.',
       icon: CheckCircle2,
     },
   ],
@@ -37,7 +47,9 @@ export default function FastPath() {
     <section className="relative isolate px-6 py-12 max-w-6xl mx-auto">
       <Animate name="fadeInStagger" trigger="onVisible">
         <div className="text-center mb-16">
-          <h2 className="animate-item text-3xl md:text-4xl font-bold tracking-tight mb-8">{copy.title}</h2>
+          <h2 className="animate-item text-3xl md:text-4xl font-bold tracking-tight mb-8">
+            {copy.title}
+          </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {copy.steps.map((step, index) => (
@@ -48,10 +60,14 @@ export default function FastPath() {
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-colors flex-shrink-0">
                       <step.icon className="w-6 h-6 text-primary" />
                     </div>
-                    <CardTitle className="text-xl font-semibold tracking-tight text-foreground">{step.title}</CardTitle>
+                    <CardTitle className="text-xl font-semibold tracking-tight text-foreground">
+                      {step.title}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
                   </CardContent>
                 </Card>
                 {index < copy.steps.length - 1 && (
@@ -69,5 +85,3 @@ export default function FastPath() {
     </section>
   );
 }
-
-

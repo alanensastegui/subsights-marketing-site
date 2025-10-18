@@ -1,5 +1,3 @@
-import ConversationsFeaturePage from "./page";
+import ConversationsFeaturePage from './page';
 
 export default ConversationsFeaturePage;
-
-

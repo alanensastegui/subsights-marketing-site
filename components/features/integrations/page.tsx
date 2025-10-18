@@ -3,7 +3,6 @@ import VideoDemo from "./sections/video-demo";
 import HowItWorks from "./sections/how-it-works";
 import ValueProp from "./sections/value-prop";
 import CallToAction from "./sections/call-to-action";
-import FastPath from "./sections/fast-path";
 
 const IntegrationsFeaturePage = () => {
   const Sections = [
@@ -11,7 +10,6 @@ const IntegrationsFeaturePage = () => {
     VideoDemo,
     ValueProp,
     HowItWorks,
-    FastPath,
     CallToAction,
   ];
 
