@@ -50,6 +50,7 @@ function buildNavigationItems() {
     { label: "Blog", href: "/blog" },
     { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
+    { label: "Sign In", href: "https://app.subsights.com", isButton: true },
     { label: "Email My Demo", href: "/email-my-demo", isButton: true },
   ] as (NavItem & { isButton?: boolean })[];
 }
