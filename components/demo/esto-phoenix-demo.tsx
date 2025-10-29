@@ -700,7 +700,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           </a>
                         </Button>
                         <p className="text-xs sm:text-sm text-[#F5E6D3] leading-relaxed">
-                          Try Subsights free for 30 days. No credit card required
+                          Try Subsights free for 14 days. No credit card required
                         </p>
                       </div>
                     </div>

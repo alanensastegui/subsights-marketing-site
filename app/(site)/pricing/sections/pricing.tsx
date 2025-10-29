@@ -186,7 +186,7 @@ export default function Section({ searchParams }: Props) {
 
   const getPriceUnit = (plan: Copy["plans"][0]) => {
     if (plan.enterprise) return "";
-    if (plan.free) return "for 30 days";
+    if (plan.free) return "for 14 days";
     return "/month";
   };
 
