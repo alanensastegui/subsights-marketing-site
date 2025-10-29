@@ -42,7 +42,7 @@ const copy = {
       name: "Free Trial",
       sort_price: 0.0,
       features: [
-        "30 Day Free Trial",
+        "14 Day Free Trial",
         "Professional Tier Access",
         "No Payment Information Required",
       ],
