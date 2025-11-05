@@ -30,7 +30,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     slug: "santa-monica-pier",
     url: "https://www.santamonicapier.org/",
     label: "Santa Monica Pier",
-    testMessage: "When is the next local's night?",
+    testMessage: "I am a professional photographer. Where are some popular spots to take photos?",
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="Ss5CvqwbJosIaOEUMssUYyi6FYO8b8jK"></script>',
     variant: "default",
