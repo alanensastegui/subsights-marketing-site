@@ -404,6 +404,15 @@ export const DEMO_TARGETS: DemoTarget[] = [
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="g0OCCG9jPm8R3LOqUAqBXoJvjiC0KwkA"></script>',
     variant: "default",
   },
+  {
+    slug: "riverside",
+    url: "https://riversidecvb.com/",
+    label: "Riverside",
+    testMessage: "Hi, I'd like to host a convention in Riverside. What are the best hotels and venues?",
+    scriptTag:
+      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="p5Zom7p2gzGOLPuiim0VbOIYudoub87R"></script>',
+    variant: "default",
+  },
 ];
 
 export const getDemoTarget = (slug: string) =>
