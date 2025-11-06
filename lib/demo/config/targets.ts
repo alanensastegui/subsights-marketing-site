@@ -413,6 +413,15 @@ export const DEMO_TARGETS: DemoTarget[] = [
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="p5Zom7p2gzGOLPuiim0VbOIYudoub87R"></script>',
     variant: "default",
   },
+  {
+    slug: "swiftsku",
+    url: "https://www.swiftsku.com/",
+    label: "SwiftSKU",
+    testMessage: "How can I get started?",
+    scriptTag:
+      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="BzjF5e8glces8qZcc1BZd3PpNBfAeLTh"></script>',
+    variant: "default",
+  },
 ];
 
 export const getDemoTarget = (slug: string) =>
