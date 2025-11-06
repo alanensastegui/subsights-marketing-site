@@ -422,6 +422,15 @@ export const DEMO_TARGETS: DemoTarget[] = [
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="BzjF5e8glces8qZcc1BZd3PpNBfAeLTh"></script>',
     variant: "default",
   },
+  {
+    slug: "aurora",
+    url: "https://www.visitaurora.com/",
+    label: "Visit Aurora",
+    testMessage: "I'm looking into hosting a conference in Aurora",
+    scriptTag:
+      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="lf4K8ZCq2fXA1Rfn3f6dSIG4C2fntROV"></script>',
+    variant: "default",
+  },
 ];
 
 export const getDemoTarget = (slug: string) =>
