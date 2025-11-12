@@ -431,6 +431,15 @@ export const DEMO_TARGETS: DemoTarget[] = [
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="lf4K8ZCq2fXA1Rfn3f6dSIG4C2fntROV"></script>',
     variant: "default",
   },
+  {
+    slug: "modesto",
+    url: "https://visitmodesto.com/",
+    label: "Visit Modesto",
+    testMessage: "Any dog-friendly places to eat?",
+    scriptTag:
+      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="BAwFodi02469fHnfrbbUnnU8mvgFXsRb"></script>',
+    variant: "default",
+  },
 ];
 
 export const getDemoTarget = (slug: string) =>
