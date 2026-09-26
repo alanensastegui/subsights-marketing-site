@@ -346,7 +346,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     label: "Visit Boulder",
     testMessage: "Hi, where can I find a good place to eat?",
     scriptTag:
-      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="YJeRNl4uTB5jhrbv9I2KbMaL28dwH4Rl"></script>',
+      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="IGuttkpSCZK1MlNwRgla4w4Eq2kR2jzI"></script>',
     variant: "default",
     policy: "default",
   },
@@ -438,6 +438,15 @@ export const DEMO_TARGETS: DemoTarget[] = [
     testMessage: "Any dog-friendly places to eat?",
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="BAwFodi02469fHnfrbbUnnU8mvgFXsRb"></script>',
+    variant: "default",
+  },
+  {
+    slug: "huntington-beach",
+    url: "https://www.surfcityusa.com/",
+    label: "Visit Huntington Beach",
+    testMessage: "Where can I park near the pier?",
+    scriptTag:
+      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="Dlp6hi9y0XU2NlwZ2ObKKvcAoyBX4Y3T"></script>',
     variant: "default",
   },
 ];
