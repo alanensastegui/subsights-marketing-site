@@ -38,7 +38,7 @@ const copy = {
     {
       question: "What does it cost?",
       answer:
-        "Plans start at $149 a month, or $1,490 a year, with managed support included. Multi-destination and custom-integration plans are quoted.",
+        "Destinations can start with a three-month pilot at $99 a month. After that, plans start at $199 a month, or $1,990 a year, with managed support included. Multi-destination and custom-integration plans are quoted.",
     },
   ],
 } satisfies Copy;

@@ -19,7 +19,7 @@ const copy = {
   heading: "Give every visitor a local expert, 24/7.",
   description:
     "Subsights answers visitor questions about events, lodging, getting around and things to do, from your own website and calendars, in the visitor's language. We set it up and keep it current each season.",
-  priceCue: "Managed plans from $149 a month. No procurement cycle.",
+  priceCue: "Start with a three-month pilot at $99 a month. Managed plans from $199 a month after that.",
   primaryCta: { label: "See a destination demo", href: "/email-my-demo" },
   secondaryCta: { label: "See pricing", href: "/pricing" },
 } satisfies Copy;

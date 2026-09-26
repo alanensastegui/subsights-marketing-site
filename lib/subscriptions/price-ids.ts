@@ -29,14 +29,14 @@ export const PRICE_IDS: Record<RuntimeEnvironment, {
     },
   },
   prod: {
-    free_trial: "price_1RWMgmLBwjY0mWjvWBn3bbaM",
+    free_trial: "price_1UJmdGLBwjY0mWjvOEpAbsSF",
     professional: {
-      monthly: "price_1RWMgmLBwjY0mWjvWBn3bbaM",
-      annual: "price_1Rlg1ALBwjY0mWjvoASzYgKk",
+      monthly: "price_1UJmdGLBwjY0mWjvOEpAbsSF",
+      annual: "price_1UJmdGLBwjY0mWjveBm9yAlU",
     },
     professional_plus: {
-      monthly: "price_1RWMinLBwjY0mWjvNsqW5b0B",
-      annual: "price_1Rlg1eLBwjY0mWjv0ju095LY",
+      monthly: "price_1UJmdHLBwjY0mWjvpHvYKUE3",
+      annual: "price_1UJmdHLBwjY0mWjvfPykZT11",
     },
   },
 };
