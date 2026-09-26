@@ -1,14 +1,10 @@
 import { Animate } from "@/components/ui/animate";
 import { ButtonDuo } from "@/components/ui/button-duo";
 import Link from "next/link";
-import { getFreeTrialUrl } from "@/lib/subscriptions";
 import Image from "next/image";
 
 type Copy = {
-  slogan: {
-    mobile: string;
-    desktop: string;
-  };
+  slogan: string;
   description: {
     mobile: string;
     desktop: string;
@@ -18,16 +14,13 @@ type Copy = {
 };
 
 const copy = {
-  slogan: {
-    mobile: "The AI teammate to grow your business",
-    desktop: "The AI teammate to grow your business"
-  },
+  slogan: "Answer every visitor question, day and night",
   description: {
-    mobile: "Subsights is the system that streamlines support, lead qualification, and revenue growth.",
-    desktop: "Meet the system that streamlines support, lead qualification, and revenue growth.",
+    mobile: "A managed AI assistant for destinations and tour operators. We set it up and keep it current.",
+    desktop: "A managed AI assistant for destinations and tour operators. It learns your website and calendars, answers in the visitor's language, and we keep it current.",
   },
-  primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
-  secondaryCta: { label: "Start Free", href: getFreeTrialUrl() },
+  primaryCta: { label: "See a destination demo", href: "/email-my-demo" },
+  secondaryCta: { label: "See pricing", href: "/pricing" },
 } satisfies Copy;
 
 export default function Hero() {
@@ -41,10 +34,9 @@ export default function Hero() {
           trigger="onVisible"
           className="md:flex-1 md:min-w-xs md:max-w-xs lg:min-w-md lg:max-w-md"
         >
-          <h2 id="home-hero-title" className="animate-item text-5xl font-bold tracking-tight leading-tight mb-4 text-left">
-            <span className="block md:hidden">{copy.slogan.mobile}</span>
-            <span className="hidden md:block">{copy.slogan.desktop}</span>
-          </h2>
+          <h1 id="home-hero-title" className="animate-item text-5xl font-bold tracking-tight leading-tight mb-4 text-left">
+            {copy.slogan}
+          </h1>
 
           {/* Description */}
           <div className="flex">
@@ -67,22 +59,22 @@ export default function Hero() {
                 size: "lg",
                 dataAttributes: {
                   "data-analytics-id": "home_hero_demo",
-                  "data-analytics-name": "Email My Demo (Home Hero)",
+                  "data-analytics-name": "Destination Demo (Home Hero)",
                   "data-analytics-context": '{"source":"home_hero","section":"hero"}',
                 },
               }}
               secondary={{
                 asChild: true,
                 children: (
-                  <a href={copy.secondaryCta.href} target="_blank" rel="noopener noreferrer">
+                  <Link href={copy.secondaryCta.href}>
                     {copy.secondaryCta.label}
-                  </a>
+                  </Link>
                 ),
                 variant: "outline",
                 size: "lg",
                 dataAttributes: {
-                  "data-analytics-id": "home_hero_start_free",
-                  "data-analytics-name": "Start Free (Home Hero)",
+                  "data-analytics-id": "home_hero_pricing",
+                  "data-analytics-name": "See Pricing (Home Hero)",
                   "data-analytics-context": '{"source":"home_hero","section":"hero"}',
                 },
               }}

@@ -43,6 +43,7 @@ function buildNavigationItems() {
   };
 
   return [
+    { label: "Destinations", href: "/destinations" },
     featuresNavItem,
     caseStudiesNavItem,
     { label: "Pricing", href: "/pricing" },
