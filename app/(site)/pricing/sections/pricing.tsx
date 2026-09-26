@@ -60,29 +60,28 @@ const copy = {
     {
       key: "professional",
       name: "Professional",
-      sort_price: 149.0,
+      sort_price: 199.0,
       features: [
         "600 conversations per month",
         "1 seat",
         "1 chatbot",
         "Fully managed support",
-        "$0.40 per excess conversation",
       ],
       free: false,
       enterprise: false,
       monthly_price: {
-        dollars: 149,
+        dollars: 199,
         cents: 0,
       },
       annual_price: {
-        dollars: 124,
-        cents: 17,
+        dollars: 165,
+        cents: 83,
       },
     },
     {
       key: "professional_plus",
       name: "Professional+",
-      sort_price: 279.0,
+      sort_price: 399.0,
       features: [
         "2,200 conversations per month",
         "3 seats",
@@ -92,16 +91,15 @@ const copy = {
         "2 custom reports",
         "Website AI SEO Audit",
         "24/7 fully managed priority support",
-        "$0.20 per excess conversation",
       ],
       free: false,
       enterprise: false,
       monthly_price: {
-        dollars: 279,
+        dollars: 399,
         cents: 0,
       },
       annual_price: {
-        dollars: 232,
+        dollars: 332,
         cents: 50,
       },
       featured: true,
