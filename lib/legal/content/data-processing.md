@@ -64,7 +64,7 @@ This DPA applies to the Processing of Personal Data by Processor on behalf of th
 
 **AI Observability**
 - LangChain, Inc. (LangSmith)
-  - Purpose: Tracing and debugging chatbot runs when tracing is enabled
+  - Purpose: Tracing and debugging chatbot runs
   - Location: United States
 
 **Payment Processing**  
