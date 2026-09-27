@@ -26,7 +26,7 @@ lastUpdated: "2025-07-13"
    **4.3. Termination.** You may terminate your account at any time. Subsights may suspend or terminate your access to the Service if you are in breach of these Terms. Upon termination, your right to use the Service will immediately cease, and your data will be handled in accordance with our Data Processing Agreement.
 
 5. **Data Processing**  
-   **5.1. Data Processing Agreement (DPA).** This Agreement incorporates by reference our Data Processing Agreement, available at [https://www.subsights.com/dataprocessingagreeement](https://www.subsights.com/data-processing-agreement). The DPA governs our relationship as a data processor for any personal data you provide as a Controller.  
+   **5.1. Data Processing Agreement (DPA).** This Agreement incorporates by reference our [Data Processing Agreement](/legal/data-processing). The DPA governs our relationship as a data processor for any personal data you provide as a Controller.
    **5.2. Customer Responsibilities.** As the Data Controller, you are responsible for having a lawful basis for collecting and processing End-User data and for complying with all applicable data protection laws in your use of the Service.
 
 6. **License to Use the Service**  
