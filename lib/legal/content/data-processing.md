@@ -2,7 +2,7 @@
 slug: data-processing
 title: Data Processing Agreement
 description: Data Processing Agreement (DPA) governing how Subsights AI processes personal data on behalf of customers.
-lastUpdated: "2025-07-2025"
+lastUpdated: "2026-09-27"
 ---
 
 This Data Processing Agreement ("DPA") is incorporated by reference into the Subsights Subscription Agreement (the "Agreement") and forms a binding part of that agreement.
@@ -53,6 +53,19 @@ This DPA applies to the Processing of Personal Data by Processor on behalf of th
 - Mistral AI  
   - Purpose: AI model processing for chatbot functionality  
   - Location: France
+
+**Search Reranking**
+- Voyage AI Innovations, Inc.
+  - Purpose: Reranking information retrieved for chatbot answers
+  - Location: United States
+- Cohere Inc.
+  - Purpose: Alternative reranking of information retrieved for chatbot answers
+  - Location: United States
+
+**AI Observability**
+- LangChain, Inc. (LangSmith)
+  - Purpose: Tracing and debugging chatbot runs
+  - Location: United States
 
 **Payment Processing**  
 - Stripe, Inc.  
@@ -128,7 +141,7 @@ This DPA applies to the Processing of Personal Data by Processor on behalf of th
 
 **9. Data Retention and Deletion**  
 9.1. Processor shall retain Personal Data only for as long as necessary to provide the Services under the Agreement.  
-9.2. Upon termination of the Agreement, Processor shall retain the Controller's Personal Data in a deactivated state for a grace period of ninety (90) days to allow for account reactivation. Following the expiration of this grace period, if the Controller has not reactivated their account, Processor shall securely delete all Personal Data in its possession within a further thirty (30) days, unless applicable law requires longer storage. During the grace period, the Controller may request immediate deletion by contacting Processor at info@subsights.com in writing.
+9.2. Following termination of the Agreement, Controller may request deletion of its Personal Data by contacting Processor at info@subsights.com in writing. Processor shall arrange deletion from active systems after verifying and processing the request, subject to applicable legal retention requirements. Processor does not currently have an automated post-termination deletion schedule for chat conversations and messages.
 
 **10. CCPA Addendum**  
 10.1. To the extent Processor processes personal information of California residents, the Controller is the “Business” and Processor is the "Service Provider." Processor shall comply with its obligations under Cal. Civ. Code § 1798.100 et seq. and shall not retain, use, or disclose such personal information for any purpose other than for the specific purpose of performing the Services specified in the Agreement.
