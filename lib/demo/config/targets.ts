@@ -18,6 +18,15 @@ export type DemoTarget = {
 
 export const DEMO_TARGETS: DemoTarget[] = [
   {
+    slug: "kirkland-chamber",
+    url: "https://www.kirklandchamber.org/",
+    label: "Kirkland Chamber of Commerce",
+    testMessage: "How can the Kirkland Chamber help my local business, and how do I join?",
+    scriptTag:
+      "<script src=\"https://widget.subsights.com/chatbot.js\" data-workspace=\"0XvceSLk1j\" data-api-key=\"a6hGMAbp2dSTwGAILaHkafFwTju6zm5H\" defer></script>",
+    variant: "default",
+  },
+  {
     slug: "forks",
     url: "https://www.forkswa.com",
     label: "Forks, WA",
