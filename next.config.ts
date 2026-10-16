@@ -29,6 +29,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/dpa',
+        destination: '/legal/data-processing',
+        permanent: true,
+      },
+      {
+        source: '/data-processing-agreement',
+        destination: '/legal/data-processing',
+        permanent: true,
+      },
+      {
         source: '/phoenix-2025',
         destination: '/demo/phoenix-2025',
         permanent: false,

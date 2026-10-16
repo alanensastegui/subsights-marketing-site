@@ -2,7 +2,7 @@
 slug: privacy
 title: Privacy Policy
 description: How Subsights AI collects, uses, and protects your personal information and data.
-lastUpdated: "2025-07-13"
+lastUpdated: "2026-09-27"
 ---
 
 **1. Introduction**  
@@ -39,11 +39,11 @@ When you interact with our Service on a Customer's website, we process the follo
 We do not sell your personal data. We may share information under the following limited circumstances:  
 **With Our Customers:** We provide our Customers with access to the data generated from their chatbot implementation, including conversation transcripts and analytics.  
 **With Our Partners:** If our Customer has engaged with a Subsights-certified partner for setup or administration, that partner may have access to account information as a Sub-processor, acting on the Customer's behalf.  
-**With Third-Party Sub-processors:** To provide our Service, we use a number of third-party infrastructure providers and AI models ("Sub-processors"). Our policy is to use commercial APIs from these providers under terms that prohibit them from using any data we send to train their own models. For a complete and up-to-date list of our sub-processors, please see our sub-processor list at <https://www.subsights.com/dpa>.  
+**With Third-Party Sub-processors:** To provide our Service, we use third-party infrastructure, AI and monitoring providers. Their data-use terms differ. For example, OpenAI says it does not train on API inputs or outputs by default, while Voyage AI's standard terms permit training on submitted content unless the account opts out. See the providers authorized under our [Data Processing Agreement](/legal/data-processing#4-sub-processors) for the list and purposes.
 **For Legal Reasons:** We may disclose your data if required by law, in connection with a business transaction (like a merger or acquisition), or to protect the rights, property, or safety of Subsights, our customers, or the public.
 
 **6. Data Retention and Security**  
-**Data Retention:** When acting as a Data Processor, we retain a Customer's data for as long as their account is active. Upon termination of a Customer's account, we retain the data in a deactivated state for a 90-day grace period to allow for easy account reactivation. After this grace period, all personal data is permanently deleted from our active systems within a further 30 days. A Customer may request immediate deletion during the grace period by contacting us.  
+**Data Retention:** Chat conversations and messages are stored while the Customer account is active. We do not currently have an automated schedule that deletes these records after account termination. Customers can contact us to request deletion. Third-party providers have their own retention practices, which may differ from ours.
 **Data Security:** We implement reasonable administrative, technical, and physical security measures to protect your information. However, no electronic transmission or storage is 100% secure, and we cannot guarantee absolute security.
 
 **7. Your Data Protection Rights & How to Exercise Them**  
