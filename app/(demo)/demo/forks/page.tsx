@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +16,7 @@ export default function ForksDemo() {
   if (widgetKey) widgetUrl.searchParams.set("api_key", widgetKey);
 
   return (
-    <main className="min-h-dvh bg-[#f2f5f1] px-4 py-5 text-[#1f3029] sm:px-8 sm:py-8">
+    <main className="flex-1 shrink-0 bg-[#f2f5f1] px-4 py-5 pb-28 text-[#1f3029] sm:px-8 sm:py-8 sm:pb-28">
       <div className="mx-auto max-w-3xl">
         <p className="text-sm font-medium text-[#53645b]">Subsights · Forks visitor demo</p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Plan your Forks visit</h1>
@@ -30,12 +31,23 @@ export default function ForksDemo() {
           It cannot book tickets or rooms, or check live road conditions.
         </p>
         {widgetKey ? (
-          <iframe
-            title="Ask the Forks visitor assistant"
-            src={widgetUrl.toString()}
-            referrerPolicy="no-referrer"
-            className="mt-5 h-[70dvh] min-h-[420px] w-full rounded-2xl border border-[#d5ded7] bg-white shadow-sm sm:h-[640px]"
-          />
+          <>
+            <a
+              href={widgetUrl.toString()}
+              data-subsights-open="open"
+              className="mt-5 inline-flex min-h-12 items-center rounded-lg bg-[#244d3c] px-5 py-3 font-medium text-white hover:bg-[#1f4033] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#244d3c]"
+            >
+              Ask about your visit
+            </a>
+            <p className="mt-3 text-sm text-[#53645b]">Use this button to reopen the chat whenever you need it.</p>
+            <Script
+              id="forks-visitor-widget"
+              src="https://widget.subsights.com/chatbot.js"
+              data-workspace="0XvceSLk1j"
+              data-api-key={widgetKey}
+              strategy="afterInteractive"
+            />
+          </>
         ) : (
           <p className="mt-5">Coming soon: ask the Forks visitor assistant once this demo is connected.</p>
         )}
