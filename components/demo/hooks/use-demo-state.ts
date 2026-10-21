@@ -193,7 +193,7 @@ export function useDemoState(slug: string): UseDemoStateReturn {
 
         settledRef.current = true;
         setIsLoading(false);
-        setShowWelcomeOverlay(true); // Show welcome overlay after loading completes
+        setShowWelcomeOverlay(successMode !== "default");
         setMode(successMode);
     }, []);
 

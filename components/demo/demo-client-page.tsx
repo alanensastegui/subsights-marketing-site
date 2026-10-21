@@ -147,7 +147,8 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
   }
 
   const src = demoState.mode === "proxy" ? `/api/demo/site/${encodeURIComponent(slug)}` : target.url;
-  const showOverlay = demoState.isLoading || demoState.showWelcomeOverlay;
+  const showGuidance = demoState.mode !== "default";
+  const showOverlay = showGuidance && (demoState.isLoading || demoState.showWelcomeOverlay);
   const isDefaultMode = demoState.mode === "default" && !demoState.isLoading;
 
   const renderDemoContent = () => {
@@ -169,6 +170,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
           ) : (
             <DefaultDemo
               targetLabel={target.label}
+              sourceUrl={target.url}
               scriptTag={target.scriptTag}
             />
           )}
@@ -213,7 +215,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
 
         {/* Walkthrough - Shows after welcome overlay completes */}
         {/* allowSkip is true when user has previously completed this demo's walkthrough */}
-        {demoState.showWalkthrough && (
+        {showGuidance && demoState.showWalkthrough && (
           <Walkthrough
             steps={createWalkthroughSteps(target)}
             onComplete={handleGuidanceComplete}

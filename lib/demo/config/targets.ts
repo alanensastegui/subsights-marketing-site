@@ -345,7 +345,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     slug: "bouldercoloradousa",
     url: "https://www.bouldercoloradousa.com/",
     label: "Visit Boulder",
-    testMessage: "Hi, where can I find a good place to eat?",
+    testMessage: "We are flying into Denver without a car. How do we get to Boulder?",
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="YJeRNl4uTB5jhrbv9I2KbMaL28dwH4Rl"></script>',
     variant: "default",
@@ -436,10 +436,11 @@ export const DEMO_TARGETS: DemoTarget[] = [
     slug: "modesto",
     url: "https://visitmodesto.com/",
     label: "Visit Modesto",
-    testMessage: "Any dog-friendly places to eat?",
+    testMessage: "We have two hours before a Gallo show. What should we do?",
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="BAwFodi02469fHnfrbbUnnU8mvgFXsRb"></script>',
     variant: "default",
+    policy: "default",
   },
 ];
 
