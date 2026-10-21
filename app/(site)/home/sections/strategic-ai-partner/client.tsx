@@ -1,11 +1,10 @@
 // components/sections/strategic-ai-partner/StrategicAIPartner.client.tsx
-"use client";
+'use client';
 
-import { useState, useEffect, useCallback, useRef, memo } from "react";
-import Image from "next/image";
-import { Progress } from "@/components/ui/progress";
-import { Animate } from "@/components/ui/animate";
-import { cn } from "@/lib/cn";
+import { useState, useEffect, useCallback, useRef, memo } from 'react';
+import Image from 'next/image';
+import { Progress } from '@/components/ui/progress';
+import { cn } from '@/lib/cn';
 
 type ValueProp = {
   title: string;
@@ -84,8 +83,8 @@ const ValueProposition = ({
     {/* Divider with progress bar */}
     <div
       className={cn(
-        "relative h-0.25 rounded-none overflow-hidden",
-        isActive && isMobile ? "bg-primary" : "bg-white"
+        'relative h-0.25 rounded-none overflow-hidden',
+        isActive && isMobile ? 'bg-primary' : 'bg-white'
       )}
     >
       {isActive && !isMobile && (
@@ -102,24 +101,24 @@ const ValueProposition = ({
     <button
       onClick={onClick}
       className={cn(
-        "text-left w-full transition-colors duration-200 cursor-pointer p-4 rounded-lg hover:bg-white/5 text-foreground",
+        'text-left w-full transition-colors duration-200 cursor-pointer p-4 rounded-lg hover:bg-white/5 text-foreground'
       )}
       type="button"
+      aria-label={title}
+      aria-expanded={isMobile ? isExpanded : undefined}
     >
-      <h3 className={cn(
-        "text-xl font-semibold mb-3",
-        isActive ? "text-muted-foreground" : "text-foreground"
-      )}>{title}</h3>
+      <h3
+        className={cn(
+          'text-xl font-semibold mb-3',
+          isActive ? 'text-muted-foreground' : 'text-foreground'
+        )}
+      >
+        {title}
+      </h3>
 
       {/* Subtext - always visible on desktop, conditional on mobile */}
       {(isMobile ? isExpanded : true) && (
-        <Animate
-          name="slideUp"
-          trigger="onLoad"
-          duration={800}
-          className="overflow-hidden"
-          key={isExpanded ? "expanded" : "collapsed"}
-        >
+        <div className="overflow-hidden">
           <div>
             <p className="text-gray-300 text-base leading-relaxed">{subtext}</p>
 
@@ -130,7 +129,7 @@ const ValueProposition = ({
               </div>
             )}
           </div>
-        </Animate>
+        </div>
       )}
     </button>
   </div>
@@ -141,13 +140,12 @@ export default function StrategicAIPartnerClient({ valuePropositions }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [expandedIndex, setExpandedIndex] = useState(-1);
-  const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
-  const [isAutoExpanded, setIsAutoExpanded] = useState(false);
+  const [expandedIndex, setExpandedIndex] = useState(0);
   const [isSectionVisible, setIsSectionVisible] = useState(false);
 
   // ===== REFS =====
   const sectionRef = useRef<HTMLDivElement>(null);
+  const hasSelectedRef = useRef(false);
   const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -157,8 +155,8 @@ export default function StrategicAIPartnerClient({ valuePropositions }: Props) {
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Auto-play functionality for desktop (when section visible)
@@ -193,51 +191,39 @@ export default function StrategicAIPartnerClient({ valuePropositions }: Props) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsSectionVisible(true);
-          if (isMobile && !hasAnimatedIn) {
-            setHasAnimatedIn(true);
-            setExpandedIndex(0);
-            setIsAutoExpanded(true);
-          }
-        } else {
-          setIsSectionVisible(false);
-        }
+        setIsSectionVisible(entry.isIntersecting);
       },
       { threshold: 0.1 }
     );
 
     observer.observe(sectionRef.current);
     return () => observer.disconnect();
-  }, [isMobile, hasAnimatedIn]);
+  }, []);
 
   // Scroll to expanded value prop on mobile
   useEffect(() => {
-    if (!isMobile || expandedIndex < 0) return;
-    if (!isAutoExpanded) {
-      const valuePropElements = document.querySelectorAll("[data-value-prop]");
-      const el = valuePropElements[expandedIndex] as HTMLElement | undefined;
-      if (el) {
-        const elementTop = el.offsetTop;
-        const scrollTop = elementTop - 85;
-        window.scrollTo({ top: scrollTop, behavior: "smooth" });
-      }
+    if (!isMobile || !hasSelectedRef.current) return;
+    const el = sectionRef.current?.querySelector<HTMLElement>(
+      `[data-value-prop="${expandedIndex}"]`
+    );
+    if (el) {
+      const top = window.scrollY + el.getBoundingClientRect().top - 85;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
-  }, [expandedIndex, isMobile, isAutoExpanded]);
+  }, [expandedIndex, isMobile]);
 
   // ===== HANDLERS =====
   const handleValuePropClick = useCallback(
     (index: number) => {
       if (isMobile) {
-        const next = expandedIndex === index ? 0 : index;
-        setExpandedIndex(next);
-        if (next !== 0) setIsAutoExpanded(false);
+        hasSelectedRef.current = true;
+        setExpandedIndex(index);
       } else {
         setActiveIndex(index);
         setProgress(0);
       }
     },
-    [isMobile, expandedIndex]
+    [isMobile]
   );
 
   const createClickHandler = useCallback(
@@ -269,36 +255,32 @@ export default function StrategicAIPartnerClient({ valuePropositions }: Props) {
   // ===== RENDER =====
   return (
     <div ref={sectionRef}>
-      {/* TODO: Improve animations by using fadeInStagger for grouped elements */}
-
-      <Animate name="fadeIn" trigger="onVisible">
-        {/* Desktop Layout */}
-        {!isMobile && (
-          <div className="grid md:grid-cols-[1fr_1.5fr] gap-6 items-stretch">
-            {/* Left: Chat Screenshot */}
-            <div className="sticky top-8 h-full max-w-sm">
-              <ChatScreenshot
-                imageSrc={valuePropositions[activeIndex].imageSrc}
-                imageAlt={valuePropositions[activeIndex].imageAlt}
-              />
-            </div>
-
-            {/* Right: Value Propositions */}
-            <div className="space-y-8">
-              {valuePropositions.map(renderValueProposition)}
-            </div>
+      {/* Desktop Layout */}
+      {!isMobile && (
+        <div className="grid md:grid-cols-[1fr_1.5fr] gap-6 items-stretch">
+          {/* Left: Chat Screenshot */}
+          <div className="sticky top-8 h-full max-w-sm">
+            <ChatScreenshot
+              imageSrc={valuePropositions[activeIndex].imageSrc}
+              imageAlt={valuePropositions[activeIndex].imageAlt}
+            />
           </div>
-        )}
 
-        {/* Mobile Layout */}
-        {isMobile && (
+          {/* Right: Value Propositions */}
           <div className="space-y-8">
-            <div className="space-y-8">
-              {valuePropositions.map(renderValueProposition)}
-            </div>
+            {valuePropositions.map(renderValueProposition)}
           </div>
-        )}
-      </Animate>
+        </div>
+      )}
+
+      {/* Mobile Layout */}
+      {isMobile && (
+        <div className="space-y-8">
+          <div className="space-y-8">
+            {valuePropositions.map(renderValueProposition)}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

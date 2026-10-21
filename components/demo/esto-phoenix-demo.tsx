@@ -8,6 +8,7 @@ import { Animate } from "@/components/ui/animate";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { getFreeTrialUrl } from "@/lib/subscriptions";
+import { CALENDLY_URL } from "@/lib/config";
 
 interface EstoPhoenixDemoProps {
   targetLabel: string;
@@ -685,8 +686,10 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                   <Animate name="fadeIn" trigger="onVisible" delay={200}>
                     <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
                       <div className="space-y-3 sm:space-y-4">
-                        <Button size="lg" className="mx-auto min-w-[140px] w-full sm:w-auto bg-[#561f37] hover:bg-[#561f37]/90">
-                          Schedule Call
+                        <Button asChild size="lg" className="mx-auto min-w-[140px] w-full sm:w-auto bg-[#561f37] hover:bg-[#561f37]/90">
+                          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                            Schedule Call
+                          </a>
                         </Button>
                         <p className="text-xs sm:text-sm text-[#F5E6D3] leading-relaxed">
                           Book a personalized consultation to discuss your specific needs

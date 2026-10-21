@@ -10,7 +10,7 @@ export type DemoTarget = {
   scriptTag: string; // Full script tag from sales (e.g., <script src="..." data-workspace="..." data-api-key="..."></script>)
   variant?: DemoVariant; // demo variant - defaults to "default" if not specified
   // optional controls
-  policy?: DemoPolicy; // default: "auto"
+  policy?: DemoPolicy; // omitted or "auto": assistant; proxy/iframe require opt-in
   allowIframe?: boolean; // override when you *know* iframe is OK
   timeoutMs?: number; // fetch timeout for proxy
   maxHtmlBytes?: number; // safety cap (e.g., 2_000_000)
@@ -25,6 +25,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       "<script src=\"https://widget.subsights.com/chatbot.js\" data-workspace=\"0XvceSLk1j\" data-api-key=\"a6hGMAbp2dSTwGAILaHkafFwTju6zm5H\" defer></script>",
     variant: "default",
+    policy: "default",
   },
 
   {
@@ -64,6 +65,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="Afr6bSyHnD9cZh41CU88gnvXztbdQNxe"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "cesi",
@@ -73,6 +75,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="9GcLTB5PakGlQ0y7LwlEvDOum7Ma68ms"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "cleanupguys",
@@ -82,6 +85,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="ZOkSEOZS2gFSKJIOZZjNPuEp1YXG88nR"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "enrepreneurs-source",
@@ -91,6 +95,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="cgbjGx4QO1oFbn5yq2icsalng2ZfUuEe"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "eugene-cascades",
@@ -155,6 +160,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="EsFwua1KIwihRp5Df16iVzYlybRgNwA1"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "jlt",
@@ -164,6 +170,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="pZD0ejN8CLjnnAsC5GE8xruAcmofnBns"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "laguna-beach",
@@ -191,6 +198,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="cNOO8kH9QWc2GWGFaNFQMPuHUabKcvGY"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "luxury-supercars-dubai",
@@ -218,6 +226,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="RK1SFqZA1KpiWYZborO68ktCjHMsMJqW"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "newport-beach",
@@ -257,6 +266,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="5qbYO9C3MoDulbSKWsbaPbHozyuQzRCi"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "safariyellowstone",
@@ -266,6 +276,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="8JTv8TZcLT02wW4QLqCLdwQS0NLoP1Pr"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "santa-cruz",
@@ -275,6 +286,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="9Z6gAchgUgFVI0bGQwL6gswoKNdDbteR"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "santa-monica",
@@ -284,11 +296,12 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="VRabj3ytY4iRZXj7N27Xv4UxbaMED25e"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "santa-rosa",
     url: "https://www.visitsantarosa.com/",
-    label: "Santa Rose",
+    label: "Santa Rosa",
     testMessage: "Hi, where can I find a good place to eat?",
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="FOZk4Q6bgoIG8Q3edmu73BEVZZbTGY29"></script>',
@@ -298,7 +311,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     slug: "second-love",
     url: "https://www.secondlovecoffeeroasters.com/",
     label: "Second Love",
-    testMessage: "Hi, where can I find a good place to eat?",
+    testMessage: "Which coffee would you suggest for someone who prefers a darker roast?",
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="7y8BF0r34qIwmbsEOmRY6TpKlYlMFXnw"></script>',
     variant: "default",
@@ -340,12 +353,13 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="PZINHCGB30LGIzOTTd9PjhbvJ1r8Ml6y"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "bouldercoloradousa",
     url: "https://www.bouldercoloradousa.com/",
     label: "Visit Boulder",
-    testMessage: "Hi, where can I find a good place to eat?",
+    testMessage: "We are flying into Denver without a car. How do we get to Boulder?",
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="YJeRNl4uTB5jhrbv9I2KbMaL28dwH4Rl"></script>',
     variant: "default",
@@ -386,6 +400,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="KDKqFBuiqwiYegMqGh56Jmna5aHN4Ys5"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "cabarstyle",
@@ -395,6 +410,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="iKvBWTNGJPw57OHSeRon5Y5wQrw6h4An"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "visit-irving",
@@ -436,10 +452,11 @@ export const DEMO_TARGETS: DemoTarget[] = [
     slug: "modesto",
     url: "https://visitmodesto.com/",
     label: "Visit Modesto",
-    testMessage: "Any dog-friendly places to eat?",
+    testMessage: "We have two hours before a Gallo show. What should we do?",
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="BAwFodi02469fHnfrbbUnnU8mvgFXsRb"></script>',
     variant: "default",
+    policy: "default",
   },
 ];
 

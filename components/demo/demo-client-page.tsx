@@ -11,7 +11,6 @@ import { DemoNotFound } from "@/components/demo/demo-not-found";
 import { DemoOverlay } from "@/components/demo/demo-overlay";
 import { DemoIframe } from "@/components/demo/demo-iframe";
 import { useDemoState, useDemoAnalytics, useDemoModeRouting } from "@/components/demo/hooks";
-import { Animate } from "@/components/ui/animate";
 import { Walkthrough } from "./walkthrough";
 import { FloatingShareButton } from "./floating-share-button";
 
@@ -69,12 +68,13 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     }
   }, []);
 
+  const { markSuccess } = demoState;
   const markSuccessWithAnalytics = useCallback(
     async (successMode: DemoMode) => {
-      await trackSuccess(slug, successMode);
-      demoState.markSuccess(successMode);
+      markSuccess(successMode);
+      void trackSuccess(slug, successMode);
     },
-    [slug, demoState, trackSuccess]
+    [slug, markSuccess, trackSuccess]
   );
 
   const { tryProxy, tryIframe } = useDemoModeRouting({
@@ -109,7 +109,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     }
   }, [tryProxy, tryIframe, trackView, markSuccessWithAnalytics]);
 
-  // Main demo logic: try proxy first, fallback to iframe/default
+  // Ordinary demos use the assistant; copied sites require an explicit mode.
   useEffect(() => {
     if (!target) return;
 
@@ -124,11 +124,10 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       return handleForcedMode(target.policy);
     }
 
-    // Auto mode: try proxy first
-    const cleanup = tryProxy();
-    return () => cleanup?.();
+    // Automatic routing must not depend on a copied site's scripts working.
+    return handleForcedMode("default");
     // NOTE: searchParams is intentionally read-only (Next provides referential stability)
-  }, [slug, target, searchParams, tryProxy, handleForcedMode]);
+  }, [slug, target, searchParams, handleForcedMode]);
 
   // Handle guidance completion
   const handleGuidanceComplete = useCallback(() => {
@@ -147,7 +146,8 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
   }
 
   const src = demoState.mode === "proxy" ? `/api/demo/site/${encodeURIComponent(slug)}` : target.url;
-  const showOverlay = demoState.isLoading || demoState.showWelcomeOverlay;
+  const showGuidance = demoState.mode !== "default";
+  const showOverlay = demoState.isLoading || (showGuidance && demoState.showWelcomeOverlay);
   const isDefaultMode = demoState.mode === "default" && !demoState.isLoading;
 
   const renderDemoContent = () => {
@@ -155,12 +155,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       const demoVariant = target.variant || "default";
 
       return (
-        <Animate
-          className="absolute inset-0"
-          name="fadeIn"
-          trigger="onLoad"
-          duration={800}
-        >
+        <div className="absolute inset-0">
           {demoVariant === "estoPhoenix" ? (
             <EstoPhoenixDemo
               targetLabel={target.label}
@@ -169,12 +164,17 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
           ) : (
             <DefaultDemo
               targetLabel={target.label}
+              sourceUrl={target.url}
               scriptTag={target.scriptTag}
             />
           )}
-        </Animate>
+        </div>
       );
     }
+
+    // Routing has not selected an external mode yet. Keep the loading overlay
+    // without briefly loading a target frame underneath it.
+    if (demoState.mode === "default") return null;
 
     return (
       <DemoIframe
@@ -198,6 +198,11 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         mode={demoState.mode}
       />
 
+      {/* Keep sharing above the demo, clear of floating chat launchers. */}
+      {!demoState.showWalkthrough && !showOverlay && (
+        <FloatingShareButton />
+      )}
+
       <div id="subsights-demo-page-content" className="relative flex-1 min-h-0 overflow-hidden">
         {/* Unified Loading/Welcome Overlay - Shows in ALL modes */}
         {showOverlay && (
@@ -213,7 +218,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
 
         {/* Walkthrough - Shows after welcome overlay completes */}
         {/* allowSkip is true when user has previously completed this demo's walkthrough */}
-        {demoState.showWalkthrough && (
+        {showGuidance && demoState.showWalkthrough && (
           <Walkthrough
             steps={createWalkthroughSteps(target)}
             onComplete={handleGuidanceComplete}
@@ -225,11 +230,6 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         {/* Demo Content - All modes */}
         {renderDemoContent()}
       </div>
-
-      {/* Floating Share Button - Only show after walkthrough is complete */}
-      {!demoState.showWalkthrough && !showOverlay && (
-        <FloatingShareButton />
-      )}
     </div>
   );
 }
