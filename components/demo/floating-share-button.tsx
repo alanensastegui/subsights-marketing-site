@@ -1,136 +1,84 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useId, useRef, useState } from 'react';
+import { Button } from '@/components/ui/button';
 
 export function FloatingShareButton() {
-  const [shareStatus, setShareStatus] = useState<'idle' | 'sharing' | 'copied' | 'error'>('idle');
-  const [isVisible, setIsVisible] = useState(false);
+  const [status, setStatus] = useState<
+    'idle' | 'sharing' | 'copied' | 'manual'
+  >('idle');
+  const [shareUrl, setShareUrl] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const inputId = useId();
 
-  // Use the current URL instead of hardcoded path
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : '/';
-
-  // Animate in after a short delay
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 500);
-    return () => clearTimeout(timer);
-  }, []);
+    if (status === 'manual') {
+      inputRef.current?.focus();
+      inputRef.current?.select();
+    }
+  }, [status]);
 
   const handleShare = async () => {
-    setShareStatus('sharing');
+    const url = window.location.href;
+    setShareUrl(url);
+    setStatus('sharing');
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: document.title, url });
+        setStatus('idle');
+        return;
+      } catch (error) {
+        if (
+          error &&
+          typeof error === 'object' &&
+          'name' in error &&
+          error.name === 'AbortError'
+        ) {
+          setStatus('idle');
+          return;
+        }
+        // A denied share sheet can still fall back to copying the link.
+      }
+    }
 
     try {
-      // Try Web Share API first (mobile-friendly)
-      if (navigator.share) {
-        await navigator.share({
-          title: 'Subsights AI',
-          text: 'Check this out to help you get around!',
-          url: shareUrl,
-        });
-        setShareStatus('idle');
-      } else {
-        // Fallback to clipboard copy
-        await navigator.clipboard.writeText(shareUrl);
-        setShareStatus('copied');
-        setTimeout(() => setShareStatus('idle'), 2000);
-      }
-    } catch (error) {
-      // Check if it's a user cancellation (AbortError) or actual error
-      if (error instanceof Error && error.name === 'AbortError') {
-        // User cancelled the share - just return to idle state
-        setShareStatus('idle');
-      } else {
-        // Actual error occurred
-        console.error('Share failed:', error);
-        setShareStatus('error');
-        setTimeout(() => setShareStatus('idle'), 2000);
-      }
-    }
-  };
-
-  const getShareButtonText = () => {
-    switch (shareStatus) {
-      case 'sharing': return 'Sharing...';
-      case 'copied': return 'Copied!';
-      case 'error': return 'Error';
-      default: return 'Share';
-    }
-  };
-
-  const getShareButtonVariant = () => {
-    switch (shareStatus) {
-      case 'copied': return 'default';
-      case 'error': return 'destructive';
-      default: return 'default';
+      await navigator.clipboard.writeText(url);
+      setStatus('copied');
+    } catch {
+      setStatus('manual');
     }
   };
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          className="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-50"
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 25,
-            duration: 0.6
-          }}
-        >
-          <motion.div
-            animate={{
-              boxShadow: [
-                "0 4px 20px rgba(0, 0, 0, 0.1)",
-                "0 8px 30px rgba(0, 0, 0, 0.15)",
-                "0 4px 20px rgba(0, 0, 0, 0.1)"
-              ]
-            }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <motion.div
-              whileHover={{
-                scale: 1.05,
-                rotate: -1
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={{
-                type: "spring",
-                stiffness: 400,
-                damping: 10
-              }}
-            >
-              <Button
-                onClick={handleShare}
-                variant={getShareButtonVariant()}
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-3 min-w-[140px] justify-center backdrop-blur-sm"
-                disabled={shareStatus === 'sharing'}
-              >
-                {shareStatus === 'sharing' ? (
-                  <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                ) : shareStatus === 'copied' ? (
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                ) : shareStatus === 'error' ? (
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                ) : (
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
-                  </svg>
-                )}
-                <span className="text-base">{getShareButtonText()}</span>
-              </Button>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div className="shrink-0 border-b bg-background px-4 py-3">
+      <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-3">
+        <Button onClick={handleShare} disabled={status === 'sharing'}>
+          {status === 'sharing' ? 'Sharing…' : 'Share'}
+        </Button>
+        <span role="status" className="text-sm">
+          {status === 'copied'
+            ? 'Link copied.'
+            : status === 'manual'
+              ? 'Select and copy this link.'
+              : ''}
+        </span>
+        {status === 'manual' && (
+          <div className="w-full">
+            <label htmlFor={inputId} className="mb-1 block text-sm">
+              Demo link
+            </label>
+            <input
+              ref={inputRef}
+              id={inputId}
+              readOnly
+              value={shareUrl}
+              onFocus={(event) => event.currentTarget.select()}
+              className="w-full rounded-md border bg-background px-3 py-2 text-base"
+            />
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

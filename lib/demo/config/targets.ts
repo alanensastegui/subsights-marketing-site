@@ -266,6 +266,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="8JTv8TZcLT02wW4QLqCLdwQS0NLoP1Pr"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "santa-cruz",
@@ -284,6 +285,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="VRabj3ytY4iRZXj7N27Xv4UxbaMED25e"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "santa-rosa",
@@ -298,7 +300,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     slug: "second-love",
     url: "https://www.secondlovecoffeeroasters.com/",
     label: "Second Love",
-    testMessage: "Hi, where can I find a good place to eat?",
+    testMessage: "Which coffee would you suggest for someone who prefers a darker roast?",
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="7y8BF0r34qIwmbsEOmRY6TpKlYlMFXnw"></script>',
     variant: "default",

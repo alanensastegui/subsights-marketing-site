@@ -11,7 +11,6 @@ import { DemoNotFound } from "@/components/demo/demo-not-found";
 import { DemoOverlay } from "@/components/demo/demo-overlay";
 import { DemoIframe } from "@/components/demo/demo-iframe";
 import { useDemoState, useDemoAnalytics, useDemoModeRouting } from "@/components/demo/hooks";
-import { Animate } from "@/components/ui/animate";
 import { Walkthrough } from "./walkthrough";
 import { FloatingShareButton } from "./floating-share-button";
 
@@ -69,12 +68,13 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     }
   }, []);
 
+  const { markSuccess } = demoState;
   const markSuccessWithAnalytics = useCallback(
     async (successMode: DemoMode) => {
-      await trackSuccess(slug, successMode);
-      demoState.markSuccess(successMode);
+      markSuccess(successMode);
+      void trackSuccess(slug, successMode);
     },
-    [slug, demoState, trackSuccess]
+    [slug, markSuccess, trackSuccess]
   );
 
   const { tryProxy, tryIframe } = useDemoModeRouting({
@@ -148,7 +148,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
 
   const src = demoState.mode === "proxy" ? `/api/demo/site/${encodeURIComponent(slug)}` : target.url;
   const showGuidance = demoState.mode !== "default";
-  const showOverlay = showGuidance && (demoState.isLoading || demoState.showWelcomeOverlay);
+  const showOverlay = demoState.isLoading || (showGuidance && demoState.showWelcomeOverlay);
   const isDefaultMode = demoState.mode === "default" && !demoState.isLoading;
 
   const renderDemoContent = () => {
@@ -156,12 +156,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       const demoVariant = target.variant || "default";
 
       return (
-        <Animate
-          className="absolute inset-0"
-          name="fadeIn"
-          trigger="onLoad"
-          duration={800}
-        >
+        <div className="absolute inset-0">
           {demoVariant === "estoPhoenix" ? (
             <EstoPhoenixDemo
               targetLabel={target.label}
@@ -174,9 +169,13 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
               scriptTag={target.scriptTag}
             />
           )}
-        </Animate>
+        </div>
       );
     }
+
+    // Routing has not selected an external mode yet. Keep the loading overlay
+    // without briefly loading a target frame underneath it.
+    if (demoState.mode === "default") return null;
 
     return (
       <DemoIframe
@@ -199,6 +198,11 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         originalUrl={target.url}
         mode={demoState.mode}
       />
+
+      {/* Keep sharing above the demo, clear of floating chat launchers. */}
+      {!demoState.showWalkthrough && !showOverlay && (
+        <FloatingShareButton />
+      )}
 
       <div id="subsights-demo-page-content" className="relative flex-1 min-h-0 overflow-hidden">
         {/* Unified Loading/Welcome Overlay - Shows in ALL modes */}
@@ -227,11 +231,6 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
         {/* Demo Content - All modes */}
         {renderDemoContent()}
       </div>
-
-      {/* Floating Share Button - Only show after walkthrough is complete */}
-      {!demoState.showWalkthrough && !showOverlay && (
-        <FloatingShareButton />
-      )}
     </div>
   );
 }
