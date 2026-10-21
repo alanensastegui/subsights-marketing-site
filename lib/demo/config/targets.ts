@@ -10,7 +10,7 @@ export type DemoTarget = {
   scriptTag: string; // Full script tag from sales (e.g., <script src="..." data-workspace="..." data-api-key="..."></script>)
   variant?: DemoVariant; // demo variant - defaults to "default" if not specified
   // optional controls
-  policy?: DemoPolicy; // default: "auto"
+  policy?: DemoPolicy; // omitted or "auto": assistant; proxy/iframe require opt-in
   allowIframe?: boolean; // override when you *know* iframe is OK
   timeoutMs?: number; // fetch timeout for proxy
   maxHtmlBytes?: number; // safety cap (e.g., 2_000_000)

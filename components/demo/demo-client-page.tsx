@@ -109,7 +109,7 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
     }
   }, [tryProxy, tryIframe, trackView, markSuccessWithAnalytics]);
 
-  // Main demo logic: try proxy first, fallback to iframe/default
+  // Ordinary demos use the assistant; copied sites require an explicit mode.
   useEffect(() => {
     if (!target) return;
 
@@ -124,11 +124,10 @@ function DemoPageClient({ slug }: DemoPageClientProps) {
       return handleForcedMode(target.policy);
     }
 
-    // Auto mode: try proxy first
-    const cleanup = tryProxy();
-    return () => cleanup?.();
+    // Automatic routing must not depend on a copied site's scripts working.
+    return handleForcedMode("default");
     // NOTE: searchParams is intentionally read-only (Next provides referential stability)
-  }, [slug, target, searchParams, tryProxy, handleForcedMode]);
+  }, [slug, target, searchParams, handleForcedMode]);
 
   // Handle guidance completion
   const handleGuidanceComplete = useCallback(() => {

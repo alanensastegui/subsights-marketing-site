@@ -1,14 +1,14 @@
 # Subsights Demo System
 
-A sophisticated multi-level fallback demo system that provides the most realistic demo experience possible for each prospect, with comprehensive analytics and performance monitoring.
+Prospect demos open an assistant page with sharing and links to the official site. Explicit modes support testing a copied site or direct iframe.
 
 ## Architecture Overview
 
-The system automatically tries three levels of demo rendering in order:
+Ordinary demo URLs use the existing assistant presentation without copying the prospect's website or executing its scripts. Explicit policies and `force` query parameters can select another mode:
 
-1. **Proxy + Inject** (Best) - Fetches target HTML, injects widget, serves from our domain
-2. **Direct Iframe** (Good) - Loads target in iframe with widget overlay
-3. **Default Demo** (Fallback) - Branded demo page with integrated widget that always works
+1. **Default Demo** - Assistant page with an embedded widget and standalone assistant link
+2. **Proxy + Inject** - Fetches target HTML, injects widget, serves from our domain; falls back to iframe/default on failure
+3. **Direct Iframe** - Loads target in iframe; falls back to default when unavailable
 
 ## Quick Start
 
@@ -54,14 +54,14 @@ export const DEMO_TARGETS: DemoTarget[] = [
 
 ### Demo URLs
 
-- `/demo/new-prospect` - Automatic fallback chain
+- `/demo/new-prospect` - Assistant page, unless an explicit target policy selects another mode
 - `/demo/new-prospect?force=proxy` - Force proxy mode (for testing)
 - `/demo/new-prospect?force=iframe` - Force iframe mode
 - `/demo/new-prospect?force=default` - Force default demo
 
 ### Fallback Policies
 
-- `"auto"` (default) - Try proxy → iframe → default
+- `"auto"` or omitted (default) - Open the assistant page without trying the customer-site proxy or iframe
 - `"proxy"` - Force proxy mode
 - `"iframe"` - Force iframe mode
 - `"default"` - Force default demo mode
