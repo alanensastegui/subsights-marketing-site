@@ -95,6 +95,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="cgbjGx4QO1oFbn5yq2icsalng2ZfUuEe"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "eugene-cascades",
@@ -197,6 +198,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="cNOO8kH9QWc2GWGFaNFQMPuHUabKcvGY"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "luxury-supercars-dubai",
@@ -224,6 +226,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="RK1SFqZA1KpiWYZborO68ktCjHMsMJqW"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "newport-beach",
@@ -407,6 +410,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="3vRaqoLArV" data-api-key="iKvBWTNGJPw57OHSeRon5Y5wQrw6h4An"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "visit-irving",

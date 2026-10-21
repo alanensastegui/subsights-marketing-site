@@ -44,9 +44,13 @@ it.each([
   'business-impact-nw',
   'cesi',
   'cleanupguys',
+  'cabarstyle',
+  'enrepreneurs-source',
   'hc',
   'jlt',
   'kirkland-chamber',
+  'lithtex-nw',
+  'monterey',
   'redfish-lake',
   'santa-cruz',
   'twin-falls',
@@ -54,8 +58,12 @@ it.each([
 ])('makes %s usable without waiting for the customer site', async (slug) => {
   render(<DemoPageClient slug={slug} />);
 
-  expect(await screen.findByRole('link', { name: 'Ask the assistant' })).toBeTruthy();
-  expect(screen.getByRole('link', { name: 'Open assistant in a new tab' })).toBeTruthy();
+  expect(
+    await screen.findByRole('link', { name: 'Ask the assistant' })
+  ).toBeTruthy();
+  expect(
+    screen.getByRole('link', { name: 'Open assistant in a new tab' })
+  ).toBeTruthy();
   expect(screen.getByRole('button', { name: 'Share' })).toBeTruthy();
   expect(screen.getByRole('link', { name: 'Open origin' })).toBeTruthy();
   expect(screen.queryByTestId('demo-iframe')).toBeNull();
