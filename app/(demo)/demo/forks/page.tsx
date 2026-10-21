@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: "Plan your Forks visit | Subsights demo",
   description: "Try a visitor assistant built around Forks' published information.",
@@ -10,13 +8,14 @@ export const metadata: Metadata = {
 };
 
 export default function ForksDemo() {
-  const widgetKey = process.env.FORKS_DEMO_WIDGET_KEY;
+  // Public client key for this demo's widget chat, not a management credential.
+  const widgetKey = "b1l8ztD9sb5UiXu4CFnb9g1esLWJDOXR";
   const widgetUrl = new URL("https://widget.subsights.com/index.html");
   widgetUrl.searchParams.set("workspace_id", "0XvceSLk1j");
-  if (widgetKey) widgetUrl.searchParams.set("api_key", widgetKey);
+  widgetUrl.searchParams.set("api_key", widgetKey);
 
   return (
-    <main className="flex-1 shrink-0 bg-[#f2f5f1] px-4 py-5 pb-28 text-[#1f3029] sm:px-8 sm:py-8 sm:pb-28">
+    <main className="flex-1 shrink-0 [&+footer]:pb-28 sm:[&+footer]:pb-3 bg-[#f2f5f1] px-4 py-5 pb-28 text-[#1f3029] sm:px-8 sm:py-8 sm:pb-28">
       <div className="mx-auto max-w-3xl">
         <p className="text-sm font-medium text-[#53645b]">Subsights · Forks visitor demo</p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Plan your Forks visit</h1>
@@ -30,27 +29,21 @@ export default function ForksDemo() {
           {" "}and linked official visitor sources, checked October 21, 2026. Our team refreshes it.
           It cannot book tickets or rooms, or check live road conditions.
         </p>
-        {widgetKey ? (
-          <>
-            <a
-              href={widgetUrl.toString()}
-              data-subsights-open="open"
-              className="mt-5 inline-flex min-h-12 items-center rounded-lg bg-[#244d3c] px-5 py-3 font-medium text-white hover:bg-[#1f4033] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#244d3c]"
-            >
-              Ask about your visit
-            </a>
-            <p className="mt-3 text-sm text-[#53645b]">Use this button to reopen the chat whenever you need it.</p>
-            <Script
-              id="forks-visitor-widget"
-              src="https://widget.subsights.com/chatbot.js"
-              data-workspace="0XvceSLk1j"
-              data-api-key={widgetKey}
-              strategy="afterInteractive"
-            />
-          </>
-        ) : (
-          <p className="mt-5">Coming soon: ask the Forks visitor assistant once this demo is connected.</p>
-        )}
+        <a
+          href={widgetUrl.toString()}
+          data-subsights-open="open"
+          className="mt-5 inline-flex min-h-12 items-center rounded-lg bg-[#244d3c] px-5 py-3 font-medium text-white hover:bg-[#1f4033] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#244d3c]"
+        >
+          Ask about your visit
+        </a>
+        <p className="mt-3 text-sm text-[#53645b]">Use this button to reopen the chat whenever you need it.</p>
+        <Script
+          id="forks-visitor-widget"
+          src="https://widget.subsights.com/chatbot.js"
+          data-workspace="0XvceSLk1j"
+          data-api-key={widgetKey}
+          strategy="afterInteractive"
+        />
       </div>
     </main>
   );
