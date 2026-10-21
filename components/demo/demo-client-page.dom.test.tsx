@@ -39,3 +39,25 @@ it('opens the actual assistant while analytics is still pending', async () => {
   ).toBeNull();
   expect(analytics.trackSuccess).toHaveBeenCalled();
 });
+
+it.each([
+  'business-impact-nw',
+  'cesi',
+  'cleanupguys',
+  'hc',
+  'jlt',
+  'kirkland-chamber',
+  'redfish-lake',
+  'santa-cruz',
+  'twin-falls',
+  'watchtower',
+])('makes %s usable without waiting for the customer site', async (slug) => {
+  render(<DemoPageClient slug={slug} />);
+
+  expect(await screen.findByRole('link', { name: 'Ask the assistant' })).toBeTruthy();
+  expect(screen.getByRole('link', { name: 'Open assistant in a new tab' })).toBeTruthy();
+  expect(screen.getByRole('button', { name: 'Share' })).toBeTruthy();
+  expect(screen.getByRole('link', { name: 'Open origin' })).toBeTruthy();
+  expect(screen.queryByTestId('demo-iframe')).toBeNull();
+  expect(screen.queryByText('Loading demo')).toBeNull();
+});

@@ -25,6 +25,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       "<script src=\"https://widget.subsights.com/chatbot.js\" data-workspace=\"0XvceSLk1j\" data-api-key=\"a6hGMAbp2dSTwGAILaHkafFwTju6zm5H\" defer></script>",
     variant: "default",
+    policy: "default",
   },
 
   {
@@ -64,6 +65,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="Afr6bSyHnD9cZh41CU88gnvXztbdQNxe"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "cesi",
@@ -73,6 +75,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="9GcLTB5PakGlQ0y7LwlEvDOum7Ma68ms"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "cleanupguys",
@@ -82,6 +85,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="ZOkSEOZS2gFSKJIOZZjNPuEp1YXG88nR"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "enrepreneurs-source",
@@ -155,6 +159,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="EsFwua1KIwihRp5Df16iVzYlybRgNwA1"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "jlt",
@@ -164,6 +169,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="pZD0ejN8CLjnnAsC5GE8xruAcmofnBns"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "laguna-beach",
@@ -257,6 +263,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="5qbYO9C3MoDulbSKWsbaPbHozyuQzRCi"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "safariyellowstone",
@@ -276,6 +283,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="9Z6gAchgUgFVI0bGQwL6gswoKNdDbteR"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "santa-monica",
@@ -342,6 +350,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="PZINHCGB30LGIzOTTd9PjhbvJ1r8Ml6y"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "bouldercoloradousa",
@@ -388,6 +397,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="KDKqFBuiqwiYegMqGh56Jmna5aHN4Ys5"></script>',
     variant: "default",
+    policy: "default",
   },
   {
     slug: "cabarstyle",
