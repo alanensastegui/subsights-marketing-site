@@ -33,7 +33,8 @@ export default function ForksDemo() {
           <p className="mt-2 max-w-2xl text-sm leading-6 text-[#53645b]">
             This demo uses published{" "}
             <a className="underline underline-offset-2" href="https://forkswa.com/" target="_blank" rel="noopener noreferrer">Forks Chamber information</a>
-            {" "}and linked official visitor sources, checked October 21, 2026. Our team refreshes it.
+            {/* Keep the Pacific date of the last real source check; update it with each content refresh, never from the server clock. */}
+            {" "}and linked official visitor sources, checked October 20, 2026 (Pacific time). Our team refreshes it.
             It cannot book tickets or rooms, or check live road conditions.
           </p>
           <a
