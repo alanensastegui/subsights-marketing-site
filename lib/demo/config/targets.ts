@@ -301,7 +301,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
   {
     slug: "santa-rosa",
     url: "https://www.visitsantarosa.com/",
-    label: "Santa Rose",
+    label: "Santa Rosa",
     testMessage: "Hi, where can I find a good place to eat?",
     scriptTag:
       '<script src="https://widget.subsights.com/chatbot.js" data-workspace="mRgCMAhx8l" data-api-key="FOZk4Q6bgoIG8Q3edmu73BEVZZbTGY29"></script>',
