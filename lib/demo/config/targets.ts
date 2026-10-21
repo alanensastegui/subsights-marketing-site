@@ -26,15 +26,7 @@ export const DEMO_TARGETS: DemoTarget[] = [
       "<script src=\"https://widget.subsights.com/chatbot.js\" data-workspace=\"0XvceSLk1j\" data-api-key=\"a6hGMAbp2dSTwGAILaHkafFwTju6zm5H\" defer></script>",
     variant: "default",
   },
-  {
-    slug: "forks",
-    url: "https://www.forkswa.com",
-    label: "Forks, WA",
-    testMessage: "Hi, where can I find a good place to eat?",
-    scriptTag:
-      '<script src="https://widget.latest.subsights.com/chatbot.js" data-workspace="I6BHboKbqb" data-api-key="4yO7Z30ZFFZ79w75v5d1VqYhfHX63z44"></script>',
-    variant: "default",
-  },
+
   {
     slug: "santa-monica-pier",
     url: "https://www.santamonicapier.org/",
