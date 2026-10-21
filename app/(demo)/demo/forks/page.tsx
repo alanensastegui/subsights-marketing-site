@@ -39,6 +39,7 @@ export default function ForksDemo() {
           <a
             href={widgetUrl.toString()}
             data-subsights-open="open"
+            data-slot="button"
             data-analytics-name="forks_open_chat"
             data-analytics-id="forks-open-chat"
             className="mt-5 inline-flex min-h-12 items-center rounded-lg bg-[#244d3c] px-5 py-3 font-medium text-white hover:bg-[#1f4033] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#244d3c]"
