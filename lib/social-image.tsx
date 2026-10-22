@@ -1,11 +1,8 @@
 import { ImageResponse } from 'next/og';
 
-export const alt =
-  'Subsights: managed website AI for destinations, lenders and publishers';
 export const size = { width: 1200, height: 630 };
-export const contentType = 'image/png';
 
-export default function SocialImage() {
+export function getSocialImage() {
   return new ImageResponse(
     (
       <div

@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/og/:path*',
+        destination: '/api/og',
+        permanent: true,
+      },
+      {
         source: '/case-studies/dylans-tours',
         destination: '/case-studies',
         permanent: true,

@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: 'Subsights AI',
     images: [
       {
-        url: '/images/logo/small-logo.svg',
+        url: '/api/og',
         width: 1200,
         height: 630,
         alt: 'Subsights AI Logo',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     site: '@subsights',
-    images: ['/images/logo/small-logo.svg'],
+    images: ['/api/og'],
   },
 };
 
