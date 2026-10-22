@@ -13,11 +13,11 @@ export const sectionId = 'hero';
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  eyebrow: 'Managed AI for your website',
-  heading: 'Good questions deserve a useful answer.',
+  eyebrow: 'Affordable AI for your website',
+  heading: 'A helpful assistant. Made for your website.',
   description:
-    'A visitor planning a trip. An investor looking for a loan. A reader choosing a program. Give them an assistant that looks like your website, uses your content and helps them take the next step.',
-  note: 'We handle setup and ongoing care. Managed plans from $1,990 a year.',
+    'A branded AI widget that answers questions using your content and helps visitors take the next step. We set it up, match your style and keep improving it with you.',
+  note: 'Managed plans from $1,990 a year. Setup and ongoing care included.',
   question: "We're visiting without a car. Where should we start?",
   answer:
     "Let's start with where you're staying and what you'd like to do. Then we can look at transport and nearby activities together.",
@@ -49,10 +49,10 @@ export default function Hero() {
               asChild
               size="lg"
               data-analytics-id="home_hero_demo"
-              data-analytics-name="Talk with Lucas (Home Hero)"
+              data-analytics-name="Talk with Us (Home Hero)"
               data-analytics-context='{"source":"home_hero","section":"hero"}'
             >
-              <Link href="/email-my-demo">Talk with Lucas</Link>
+              <Link href="/email-my-demo">Talk with us</Link>
             </Button>
             <Button
               asChild

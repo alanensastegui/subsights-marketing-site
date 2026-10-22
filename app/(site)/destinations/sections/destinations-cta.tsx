@@ -17,7 +17,7 @@ const copy = {
   description:
     "Let's look at your website, try a few realistic questions and see where an assistant would help.",
   primaryCta: {
-    label: 'Talk with Lucas',
+    label: 'Talk with us',
     href: '/email-my-demo?industry=destinations',
   },
   secondaryCta: { label: 'See pricing', href: '/pricing' },

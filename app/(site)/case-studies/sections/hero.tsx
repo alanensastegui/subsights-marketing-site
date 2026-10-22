@@ -16,7 +16,7 @@ const copy = {
   title: 'See the work behind the assistant.',
   subtitle:
     'A destination, a private lender and a past publisher implementation',
-  primaryCta: { label: 'Talk with Lucas', href: '/email-my-demo' },
+  primaryCta: { label: 'Talk with us', href: '/email-my-demo' },
   secondaryCta: { label: 'Explore the stories', href: '#case-studies' },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----

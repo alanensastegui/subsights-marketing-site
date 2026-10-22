@@ -8,7 +8,7 @@ export const sectionId = 'form';
 const copy = {
   heading: "Let's look at your website.",
   description:
-    "Tell Lucas who you help and bring a question your visitors ask. We'll review your website and reply to discuss the right next step.",
+    "Tell us who you help and bring a question your visitors ask. We'll review your website and reply to discuss the right next step.",
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
@@ -28,7 +28,7 @@ export default function Form() {
         <Suspense
           fallback={
             <p className="mt-8">
-              Loading the request form. You can also email lucas@subsights.com.
+              Loading the request form. You can also email team@subsights.com.
             </p>
           }
         >

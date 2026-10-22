@@ -3,9 +3,9 @@ import { buildMetadata } from '@/lib/seo';
 import EmailMyDemoFormSection from './sections/form';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Talk with Lucas',
+  title: 'Talk with Subsights',
   description:
-    'Bring Lucas your website and a question your visitors ask. Discuss a managed AI assistant for your destination, lending business, publisher or directory.',
+    'Bring us your website and a question your visitors ask. Discuss a managed AI assistant for your destination, lending business, publisher or directory.',
   path: '/email-my-demo',
 });
 

@@ -103,7 +103,7 @@ export default function DemoRequestForm() {
       setSubmitted(true);
     } catch {
       setRequestError(
-        "We couldn't deliver your request. Please try again or email Lucas directly."
+        "We couldn't deliver your request. Please try again or email our team directly."
       );
     } finally {
       setIsSubmitting(false);
@@ -118,7 +118,7 @@ export default function DemoRequestForm() {
       >
         <h2 className="text-2xl font-semibold">Your request is in.</h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          Thanks for the context. Lucas will review it and reply to the email
+          Thanks for the context. Our team will review it and reply to the email
           address you shared.
         </p>
         <Link
@@ -258,19 +258,19 @@ export default function DemoRequestForm() {
       <p className="text-sm leading-relaxed text-muted-foreground">
         Prefer a direct conversation?{' '}
         <a
-          href="mailto:lucas@subsights.com"
+          href="mailto:team@subsights.com"
           className="underline underline-offset-4"
         >
-          Email lucas@subsights.com
+          Email team@subsights.com
         </a>{' '}
         or{' '}
         <a
-          href="https://www.linkedin.com/in/lucascairns/"
+          href="https://www.linkedin.com/company/subsights/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-4"
         >
-          find Lucas on LinkedIn ↗
+          find Subsights on LinkedIn ↗
         </a>
         .
       </p>

@@ -13,7 +13,7 @@ export const sectionId = 'call-to-action';
 const copy = {
   title: 'What would help on your website?',
   primaryCta: {
-    label: 'Talk with Lucas',
+    label: 'Talk with us',
     href: '/email-my-demo',
     external: false,
   },

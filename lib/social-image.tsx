@@ -31,11 +31,11 @@ export function getSocialImage() {
             maxWidth: 980,
           }}
         >
-          Good questions deserve a useful answer.
+          A helpful assistant. Made for your website.
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ display: 'flex', fontSize: 29, color: '#c6cbdf' }}>
-            Managed website AI. Personal setup. Ongoing care.
+            Your brand. Our setup and ongoing care. From $1,990/year.
           </div>
           <div style={{ display: 'flex', fontSize: 24, color: '#aeb9ff' }}>
             Destinations · Private lenders · Publishers

@@ -71,7 +71,7 @@ export const copy: { faqs: FAQ[] } = {
       category: 'Pricing & Plans',
       question: 'How can I see the experience before choosing a plan?',
       answer:
-        'Explore the customer examples on our destination and lender pages, or bring Lucas a realistic question from your website. We can walk through the visitor experience, discuss the sources it would need and help you choose the right next step. The pricing page also links to account signup.',
+        'Explore the customer examples on our destination and lender pages, or bring us a realistic question from your website. We can walk through the visitor experience, discuss the sources it would need and help you choose the right next step. The pricing page also links to account signup.',
     },
     {
       id: 'enterprise',

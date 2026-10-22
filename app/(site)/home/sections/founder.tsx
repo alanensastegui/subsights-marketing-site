@@ -5,19 +5,20 @@ import { Button } from '@/components/ui/button';
 type Copy = {
   heading: string;
   description: string;
-  detail: string;
-  linkedin: string;
+  members: { name: string; headshot: string }[];
 };
 export const sectionId = 'founder';
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  heading: 'Talk with the person building it.',
+  heading: 'Work with the people who build it.',
   description:
-    "Lucas Cairns is a Seattle-based Subsights co-founder and AI builder. Bring your website and the questions your customers ask. We'll talk through what would help, what needs an integration and what should stay with a person.",
-  detail:
-    'Follow Lucas on LinkedIn for practical lessons from building AI tools and working with customers.',
-  linkedin: 'https://www.linkedin.com/in/lucascairns/',
+    'Built by Alán, Lucas and Ryan. Work with our team on your assistant’s appearance, sources and answers, from setup through ongoing care.',
+  members: [
+    { name: 'Alán', headshot: '/images/team-headshots/alan.avif' },
+    { name: 'Lucas', headshot: '/images/team-headshots/lucas.avif' },
+    { name: 'Ryan', headshot: '/images/team-headshots/ryan.avif' },
+  ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
@@ -27,14 +28,7 @@ export default function Founder() {
       aria-labelledby="founder-title"
       className="max-w-section mx-auto px-section py-section"
     >
-      <div className="grid items-center gap-8 border-y border-border py-10 sm:grid-cols-[160px_1fr]">
-        <Image
-          src="/images/team-headshots/lucas.avif"
-          alt="Lucas Cairns, Subsights co-founder"
-          width={160}
-          height={160}
-          className="h-32 w-32 rounded-2xl object-cover sm:h-40 sm:w-40"
-        />
+      <div className="grid items-center gap-10 border-y border-border py-10 lg:grid-cols-[1.2fr_1fr]">
         <div>
           <h2 id="founder-title" className="text-3xl font-bold tracking-tight">
             {copy.heading}
@@ -46,25 +40,38 @@ export default function Founder() {
             <Button
               asChild
               data-analytics-id="home_founder_demo"
-              data-analytics-name="Talk with Lucas (Founder)"
+              data-analytics-name="Talk with Us (Founder)"
               data-analytics-context='{"source":"home_founder"}'
             >
-              <Link href="/email-my-demo">Talk with Lucas</Link>
+              <Link href="/email-my-demo">Talk with us</Link>
             </Button>
             <Button
               asChild
               variant="outline"
-              data-analytics-id="home_founder_linkedin"
-              data-analytics-name="Follow Lucas (LinkedIn)"
-              data-analytics-context='{"source":"home_founder","channel":"linkedin"}'
+              data-analytics-id="home_founder_team"
+              data-analytics-name="Meet the Founders (Home)"
+              data-analytics-context='{"source":"home_founder"}'
             >
-              <a href={copy.linkedin} target="_blank" rel="noopener noreferrer">
-                Connect on LinkedIn ↗
-              </a>
+              <Link href="/about#team">Meet the founders →</Link>
             </Button>
           </div>
-          <p className="mt-4 text-sm text-muted-foreground">{copy.detail}</p>
         </div>
+        <ul className="grid grid-cols-3 gap-4 text-center sm:gap-6">
+          {copy.members.map((member) => (
+            <li key={member.name}>
+              <Image
+                src={member.headshot}
+                alt={`${member.name}, Subsights co-founder`}
+                width={160}
+                height={160}
+                sizes="(min-width: 1024px) 160px, 30vw"
+                className="mx-auto aspect-square h-auto w-full max-w-40 rounded-2xl object-cover"
+              />
+              <p className="mt-3 font-semibold">{member.name}</p>
+              <p className="mt-1 text-xs text-muted-foreground">Co-founder</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

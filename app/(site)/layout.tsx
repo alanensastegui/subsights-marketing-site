@@ -32,7 +32,7 @@ function buildNavigationItems() {
     { label: 'Customer stories', href: '/case-studies' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'About', href: '/about' },
-    { label: 'Talk with Lucas', href: '/email-my-demo', isButton: true },
+    { label: 'Talk with us', href: '/email-my-demo', isButton: true },
   ] as (NavItem & { isButton?: boolean })[];
 }
 
@@ -177,12 +177,12 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
                   Sign in
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/lucascairns/"
+                  href="https://www.linkedin.com/company/subsights/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-foreground"
                 >
-                  Lucas on LinkedIn ↗
+                  Subsights on LinkedIn ↗
                 </a>
               </nav>
 
