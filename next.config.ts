@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: '/case-studies/dylans-tours',
+        destination: '/case-studies',
+        permanent: true,
+      },
       {
         source: '/terms',
         destination: '/legal/terms',

@@ -1,79 +1,83 @@
-import { Animate } from "@/components/ui/animate";
-import { CustomerQuoteCard } from "@/components/ui/customer-quote-card";
-import TrustedByCarousel from "./trusted-by-carousel";
-import { getTestimonialById } from "@/lib/testimonials";
-
-// ============================================================================
-// TYPES & COPY
-// ============================================================================
+import Image from 'next/image';
+import Link from 'next/link';
 
 type Copy = {
   heading: string;
-  logos: Array<{
-    logoSrc: string;
-    logoAlt: string;
-    websiteUrl: string;
-  }>;
+  quote: string;
+  attribution: string;
+  customers: { name: string; logo: string; href: string }[];
 };
+export const sectionId = 'trusted-by';
 
+// ---- SECTION COPY REGION ----
 const copy = {
-  heading: "Trusted by",
-  logos: [
+  heading: 'Working with teams who know their customers.',
+  quote:
+    'The chatbot is fantastic in providing eloquent and informative responses to users. We have seen a decrease in email inquiries as a result.',
+  attribution: 'Jessica Maynard, Director of Operations, Visit Sun Valley',
+  customers: [
     {
-      logoSrc: "/images/client-logos/vsv.avif",
-      logoAlt: "VSV company logo",
-      websiteUrl: "https://visitsunvalley.com"
+      name: 'Visit Sun Valley',
+      logo: '/images/client-logos/vsv.avif',
+      href: '/case-studies/visit-sun-valley',
     },
     {
-      logoSrc: "/images/client-logos/dylan's tours.avif",
-      logoAlt: "Dylan's Tours company logo",
-      websiteUrl: "https://www.dylanstours.com/"
-    },
-    {
-      logoSrc: "/images/client-logos/intrust.avif",
-      logoAlt: "Intrust company logo",
-      websiteUrl: "https://intrustfunding.com/"
-    },
-    {
-      logoSrc: "/images/client-logos/allied-health.svg",
-      logoAlt: "Allied Health company logo",
-      websiteUrl: "https://www.allalliedhealthschools.com/"
+      name: 'Intrust Funding',
+      logo: '/images/client-logos/intrust.avif',
+      href: '/case-studies/intrust-funding',
     },
   ],
 } satisfies Copy;
-
-// ============================================================================
-// MAIN COMPONENT
-// ============================================================================
+// ---- /SECTION COPY REGION ----
 
 export default function TrustedBy() {
-  // Get VSV testimonial
-  const vsvTestimonial = getTestimonialById("visit-sun-valley");
-
   return (
-    <section className="max-w-6xl mx-auto px-6 py-12">
-      <Animate name="fadeInStagger" trigger="onVisible">
-        {/* Heading */}
-        <div className="animate-item text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+    <section
+      aria-labelledby="customer-proof-title"
+      className="max-w-section mx-auto px-section py-section"
+    >
+      <div className="grid items-center gap-10 rounded-3xl border border-border bg-card p-6 sm:p-10 lg:grid-cols-[1fr_1.5fr]">
+        <div>
+          <h2
+            id="customer-proof-title"
+            className="text-2xl font-bold tracking-tight sm:text-3xl"
+          >
             {copy.heading}
           </h2>
-        </div>
-
-        {/* Carousel */}
-        <div className="animate-item mb-16">
-          <TrustedByCarousel logos={copy.logos} />
-        </div>
-
-        {/* VSV Testimonial */}
-        {vsvTestimonial && (
-          <div className="animate-item max-w-4xl mx-auto">
-            <CustomerQuoteCard testimonial={vsvTestimonial} />
+          <div className="mt-7 flex flex-wrap gap-6">
+            {copy.customers.map((customer) => (
+              <Link
+                key={customer.name}
+                href={customer.href}
+                className="flex items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-ring"
+              >
+                <Image
+                  src={customer.logo}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 rounded-lg object-contain"
+                />
+                <span className="text-sm">{customer.name}</span>
+              </Link>
+            ))}
           </div>
-        )}
-      </Animate>
+        </div>
+        <figure>
+          <blockquote className="text-xl leading-relaxed sm:text-2xl">
+            &ldquo;{copy.quote}&rdquo;
+          </blockquote>
+          <figcaption className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            {copy.attribution}
+          </figcaption>
+          <Link
+            href="/case-studies/visit-sun-valley"
+            className="mt-4 inline-block text-sm underline underline-offset-4"
+          >
+            Meet Sunny at Visit Sun Valley →
+          </Link>
+        </figure>
+      </div>
     </section>
   );
 }
-
-export const sectionId = "trusted-by";

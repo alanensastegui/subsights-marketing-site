@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,20 +8,21 @@ import {
   NavigationMenuTrigger,
   NavigationMenuLink,
   type NavItem,
-} from "@/components/ui/navigation-menu";
-import { Separator } from "@/components/ui/separator";
+} from '@/components/ui/navigation-menu';
+import { Separator } from '@/components/ui/separator';
 type ExtendedNavItem = NavItem & { isButton?: boolean };
 
 interface DesktopNavigationProps {
   navItems: ExtendedNavItem[];
 }
 
-export default function DesktopNavigation({ navItems }: DesktopNavigationProps) {
-
+export default function DesktopNavigation({
+  navItems,
+}: DesktopNavigationProps) {
   return (
-    <NavigationMenu className="hidden md:block">
+    <NavigationMenu className="hidden xl:block">
       <NavigationMenuList>
-        {navItems.map((item) => (
+        {navItems.map((item) =>
           'children' in item ? (
             <NavigationMenuItem key={item.label}>
               <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
@@ -35,12 +36,17 @@ export default function DesktopNavigation({ navItems }: DesktopNavigationProps) 
                           href={item.mainItem.href}
                           className="group relative block w-full rounded-lg p-3 text-sm font-medium leading-none no-underline outline-none transition-all duration-200 ease-out hover:bg-primary/80 hover:text-foreground focus:bg-primary/10 focus:text-foreground hover:scale-[1.02] hover:shadow-sm"
                         >
-                          <span className="relative z-10">{item.mainItem.label}</span>
+                          <span className="relative z-10">
+                            {item.mainItem.label}
+                          </span>
                           <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
                         </NavigationMenuLink>
                       </div>
                       <div className="flex items-center">
-                        <Separator orientation="vertical" className="h-16 bg-foreground/20" />
+                        <Separator
+                          orientation="vertical"
+                          className="h-16 bg-foreground/20"
+                        />
                       </div>
                     </>
                   )}
@@ -71,9 +77,7 @@ export default function DesktopNavigation({ navItems }: DesktopNavigationProps) 
                   data-analytics-name="Email My Demo (Nav)"
                   data-analytics-context='{"source":"nav_desktop","location":"header"}'
                 >
-                  <Link href={item.href}>
-                    {item.label}
-                  </Link>
+                  <Link href={item.href}>{item.label}</Link>
                 </Button>
               ) : (
                 <NavigationMenuLink
@@ -85,7 +89,7 @@ export default function DesktopNavigation({ navItems }: DesktopNavigationProps) 
               )}
             </NavigationMenuItem>
           )
-        ))}
+        )}
       </NavigationMenuList>
     </NavigationMenu>
   );

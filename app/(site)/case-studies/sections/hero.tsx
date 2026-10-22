@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { ButtonDuo } from "@/components/ui/button-duo";
-import { Animate } from "@/components/ui/animate";
+import Link from 'next/link';
+import { ButtonDuo } from '@/components/ui/button-duo';
+import { Animate } from '@/components/ui/animate';
 
 type Copy = {
   title: string;
@@ -9,14 +9,15 @@ type Copy = {
   secondaryCta: { label: string; href: string };
 };
 
-export const sectionId = "hero";
+export const sectionId = 'hero';
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Meet the teams who support customers 24/7",
-  subtitle: "Subsights powers consistent answers, faster routing, and better outcomes",
-  primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
-  secondaryCta: { label: "View Case Studies", href: "#customer-stories" },
+  title: 'See the work behind the assistant.',
+  subtitle:
+    'A destination, a private lender and a past publisher implementation',
+  primaryCta: { label: 'Talk with Lucas', href: '/email-my-demo' },
+  secondaryCta: { label: 'Explore the stories', href: '#case-studies' },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
@@ -43,22 +44,25 @@ export default function Hero() {
                 primary={{
                   asChild: true,
                   children: (
-                    <Link href={c.primaryCta.href}>
-                      {c.primaryCta.label}
-                    </Link>
+                    <Link href={c.primaryCta.href}>{c.primaryCta.label}</Link>
                   ),
-                  size: "lg",
+                  size: 'lg',
                   dataAttributes: {
-                    "data-analytics-id": "case_studies_hero_demo",
-                    "data-analytics-name": "Email My Demo (Case Studies Hero)",
-                    "data-analytics-context": '{"source":"case_studies_hero","section":"hero"}',
+                    'data-analytics-id': 'case_studies_hero_demo',
+                    'data-analytics-name': 'Email My Demo (Case Studies Hero)',
+                    'data-analytics-context':
+                      '{"source":"case_studies_hero","section":"hero"}',
                   },
                 }}
                 secondary={{
                   asChild: true,
-                  children: <Link href={c.secondaryCta.href}>{c.secondaryCta.label}</Link>,
-                  variant: "outline",
-                  size: "lg",
+                  children: (
+                    <Link href={c.secondaryCta.href}>
+                      {c.secondaryCta.label}
+                    </Link>
+                  ),
+                  variant: 'outline',
+                  size: 'lg',
                 }}
                 gap="md"
                 stackAt="sm"
