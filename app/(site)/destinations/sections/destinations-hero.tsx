@@ -70,7 +70,7 @@ export default function DestinationsHero() {
               variant: 'outline',
               size: 'lg',
               dataAttributes: {
-                'data-analytics-id': 'destinations_hero_pricing',
+                'data-analytics-id': 'destinations_hero_customer_story',
                 'data-analytics-name': 'Meet Sunny (Destinations Hero)',
                 'data-analytics-context':
                   '{"source":"destinations_hero","section":"hero"}',
