@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 type Copy = {
   heading: string;
   description: string;
-  members: { name: string; headshot: string }[];
+  members: { name: string; role: string; headshot: string }[];
 };
 export const sectionId = 'founder';
 
@@ -15,9 +15,21 @@ const copy = {
   description:
     'Built by Alán, Lucas and Ryan. Work with our team on your assistant’s appearance, sources and answers, from setup through ongoing care.',
   members: [
-    { name: 'Alán', headshot: '/images/team-headshots/alan.avif' },
-    { name: 'Lucas', headshot: '/images/team-headshots/lucas.avif' },
-    { name: 'Ryan', headshot: '/images/team-headshots/ryan.avif' },
+    {
+      name: 'Alán',
+      role: 'Engineer',
+      headshot: '/images/team-headshots/alan.avif',
+    },
+    {
+      name: 'Lucas',
+      role: 'Business Development',
+      headshot: '/images/team-headshots/lucas.avif',
+    },
+    {
+      name: 'Ryan',
+      role: 'Engineer',
+      headshot: '/images/team-headshots/ryan.avif',
+    },
   ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -68,7 +80,11 @@ export default function Founder() {
                 className="mx-auto aspect-square h-auto w-full max-w-40 rounded-2xl object-cover"
               />
               <p className="mt-3 font-semibold">{member.name}</p>
-              <p className="mt-1 text-xs text-muted-foreground">Co-founder</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                {member.role}
+                <br />
+                Co-founder
+              </p>
             </li>
           ))}
         </ul>

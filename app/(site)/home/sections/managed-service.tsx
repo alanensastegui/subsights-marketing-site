@@ -12,7 +12,7 @@ export const sectionId = 'managed-service';
 const copy = {
   heading: 'You know your business. We make the assistant work for it.',
   description:
-    'Work directly with the people building your assistant, from the first conversation through ongoing improvements.',
+    'A simple widget, with engineering behind the details. Work directly with our team on the sources it uses, the answers it gives and the links that help someone take the next step.',
   steps: [
     {
       title: 'Make it yours',
@@ -22,7 +22,7 @@ const copy = {
     {
       title: 'Test before launch',
       description:
-        'Bring your real questions, awkward edge cases and important links. We work through them together before adding the assistant to your website.',
+        'Bring your real questions, awkward edge cases and important links. We test answers and next steps together, including referral tracking on approved partner links.',
     },
     {
       title: 'Keep learning',
@@ -33,7 +33,7 @@ const copy = {
   insight: {
     heading: 'Another way to understand your customers.',
     description:
-      'Page views tell you where people went. Conversations help you understand what they were trying to do. See questions, review responses and find gaps in your content.',
+      'See what people ask, where answers fall short and which links they follow. Use those findings to improve FAQs, plan useful content and spot questions worth a human follow-up.',
   },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----

@@ -19,7 +19,7 @@ export const sectionId = 'managed-plans';
 const copy = {
   heading: 'A useful assistant. A clear annual price.',
   description:
-    'Setup and managed support are part of the service. Choose the capacity your website needs.',
+    'Your branded widget, setup and ongoing care in one subscription. Choose the capacity your website needs. Add custom engineering when it makes sense for your business.',
   plans: [
     {
       name: 'Professional',
