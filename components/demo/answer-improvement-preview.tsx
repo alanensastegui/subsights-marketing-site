@@ -104,7 +104,7 @@ export function AnswerImprovementPreview({ demo }: { demo: ProspectDemo }) {
                     value={value}
                     checked={route === value}
                     onChange={() => changeRoute(value)}
-                    className="mt-1 accent-slate-900"
+                    className="mt-1 h-4 w-4 shrink-0 appearance-none rounded-full border border-slate-400 bg-white checked:border-slate-900 checked:bg-slate-900 checked:shadow-[inset_0_0_0_3px_white] focus-visible:outline-2 focus-visible:outline-offset-2"
                   />
                   <span>
                     <span className="block font-semibold text-slate-950">
