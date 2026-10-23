@@ -36,9 +36,9 @@ function Metrics({ values }: { values: (typeof reports)[Cadence] }) {
       ].map(([label, value]) => (
         <div
           key={label}
-          className="min-w-0 rounded-xl border border-slate-200 bg-white p-3 sm:p-5"
+          className="min-w-0 rounded-xl border border-slate-200 bg-white p-2 sm:p-5"
         >
-          <dt className="text-xs font-medium text-slate-500 sm:text-sm">
+          <dt className="text-[11px] font-medium text-slate-500 sm:text-sm">
             {label}
           </dt>
           <dd className="mt-2 text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
