@@ -1,0 +1,9 @@
+{
+  "rtu_model_name": "gpt-5.2-2025-12-11",
+  "tug_model_name": null,
+  "refiner_model_name": null,
+  "leads_model_name": null,
+  "k": 5000,
+  "introduction": "Hi! Ask about Subsights, pricing or a demo. No contact details needed.",
+  "answer_evidence_check": false
+}
