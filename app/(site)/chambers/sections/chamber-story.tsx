@@ -35,7 +35,7 @@ const copy = {
     label: 'Experience serving a community online',
     title: 'Sunny at Visit Sun Valley',
     description:
-      'Visit Sun Valley uses Subsights to help people explore its destination. That work informs our approach to local discovery, useful follow-up questions and linking people to the right resource. It is a destination customer example, rather than a Chamber endorsement.',
+      'Visit Sun Valley uses Subsights to help people explore its destination. That work informs our approach to local discovery, useful follow-up questions and linking people to the right resource.',
     href: '/case-studies/visit-sun-valley',
   },
   learning: {
@@ -57,7 +57,7 @@ const copy = {
     {
       title: 'Reports your team can use',
       description:
-        'Daily, weekly and monthly report options bring conversation activity and questions to selected recipients. Choose a useful cadence during setup, and turn recurring questions into better content. Chat activity alone does not prove new memberships or event attendance.',
+        'Daily, weekly and monthly report options bring conversation activity and questions to selected recipients. Choose a useful cadence during setup, and turn recurring questions into better content. Open the underlying conversations to understand the context behind each trend.',
     },
     {
       title: 'A clear route to a person',
