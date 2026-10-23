@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { AnswerImprovementPreview } from './answer-improvement-preview';
 
 type Cadence = 'Daily' | 'Weekly' | 'Monthly';
 const reports: Record<
@@ -52,6 +53,14 @@ function Metrics({ values }: { values: (typeof reports)[Cadence] }) {
 
 export function TeamPreview({ demo }: { demo: ProspectDemo }) {
   const [cadence, setCadence] = useState<Cadence>('Weekly');
+  const [tab, setTab] = useState('analytics');
+
+  function openImprovement() {
+    setTab('improvement');
+    requestAnimationFrame(() => {
+      document.getElementById('answer-improvement-title')?.focus();
+    });
+  }
   const report = reports[cadence];
   return (
     <section
@@ -77,7 +86,8 @@ export function TeamPreview({ demo }: { demo: ProspectDemo }) {
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600">
           Track activity, read the conversations behind it and see which links
           people follow. Bring the useful questions and next steps to your inbox
-          with scheduled reports.
+          with scheduled reports. Spot missing information and use it to make
+          the next answer better.
         </p>
         <p className="mt-3 max-w-3xl text-xs leading-relaxed text-slate-500">
           These product illustrations use fictional numbers and example
@@ -85,16 +95,17 @@ export function TeamPreview({ demo }: { demo: ProspectDemo }) {
           not update them or send a report.
         </p>
       </div>
-      <Tabs defaultValue="analytics" className="gap-0">
+      <Tabs value={tab} onValueChange={setTab} className="gap-0">
         <div className="border-b border-slate-200 px-3 pt-3 sm:px-7">
           <TabsList
             aria-label="Explore the team view"
-            className="h-auto w-full justify-start gap-1 rounded-none bg-white p-0 text-slate-500 sm:w-auto"
+            className="grid h-auto w-full grid-cols-2 justify-start gap-1 rounded-none bg-white p-0 text-slate-500 sm:flex sm:w-auto"
           >
             {[
               ['analytics', 'Analytics'],
               ['report', 'Email report'],
               ['notification', 'Staff email'],
+              ['improvement', 'Improve answers'],
             ].map(([value, label]) => (
               <TabsTrigger
                 key={value}
@@ -291,6 +302,27 @@ export function TeamPreview({ demo }: { demo: ProspectDemo }) {
                   ))}
                 </ul>
               </div>
+              <div className="rounded-xl border border-amber-200 bg-amber-50/60 p-4">
+                <h5 className="font-semibold text-slate-950">
+                  Unanswered question · Sample gap
+                </h5>
+                <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                  {demo.conversation.turns[0].question}
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-slate-600">
+                  In this fictional example, the assistant lacked the
+                  information to answer. Review the conversation and supply what
+                  is missing. This is not a measured failure from the live demo.
+                </p>
+                <button
+                  type="button"
+                  onClick={openImprovement}
+                  className="mt-3 min-h-11 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
+                  style={{ color: demo.accent }}
+                >
+                  Preview how to improve this answer →
+                </button>
+              </div>
               <div className="rounded-xl bg-slate-50 p-4">
                 <h5 className="font-semibold text-slate-950">
                   Worth acting on
@@ -375,6 +407,9 @@ export function TeamPreview({ demo }: { demo: ProspectDemo }) {
               </div>
             </article>
           </div>
+        </TabsContent>
+        <TabsContent value="improvement" className="bg-slate-50 p-4 sm:p-7">
+          <AnswerImprovementPreview key={demo.slug} demo={demo} />
         </TabsContent>
       </Tabs>
     </section>

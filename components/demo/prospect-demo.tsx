@@ -154,9 +154,11 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
             Make it useful for your visitors. Make it yours.
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-300">
-            We work with your team on the content, appearance and real
-            questions. Then we use what people ask to keep improving the
-            experience.
+            We work with your team on the content, appearance and real questions
+            before launch, including the difficult follow-ups. Then we use what
+            people ask to keep improving the experience. A gap can become a
+            website update or better chatbot knowledge, with the answer checked
+            again after the change.
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-5">
             <a
