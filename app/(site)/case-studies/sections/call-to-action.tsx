@@ -1,6 +1,5 @@
-import { Cta } from "@/components/ui/cta";
-import { Animate } from "@/components/ui/animate";
-import { getFreeTrialUrl } from "@/lib/subscriptions";
+import { Cta } from '@/components/ui/cta';
+import { Animate } from '@/components/ui/animate';
 
 type Copy = {
   title: string;
@@ -8,13 +7,17 @@ type Copy = {
   secondaryCta: { label: string; href: string; external: boolean };
 };
 
-export const sectionId = "call-to-action";
+export const sectionId = 'call-to-action';
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Ready for similar results?",
-  primaryCta: { label: "Email My Demo", href: "/email-my-demo", external: false },
-  secondaryCta: { label: "Start Free", href: getFreeTrialUrl(), external: true },
+  title: 'What would help on your website?',
+  primaryCta: {
+    label: 'Talk with us',
+    href: '/email-my-demo',
+    external: false,
+  },
+  secondaryCta: { label: 'See pricing', href: '/pricing', external: false },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
@@ -26,9 +29,9 @@ export default function CallToAction() {
           copy={copy}
           analyticsContext="all_case_studies_cta"
           classes={{
-            title: "animate-item",
-            primaryButton: "animate-item",
-            secondaryButton: "animate-item",
+            title: 'animate-item',
+            primaryButton: 'animate-item',
+            secondaryButton: 'animate-item',
           }}
         />
       </Animate>
