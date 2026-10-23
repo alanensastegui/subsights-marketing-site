@@ -33,7 +33,7 @@ export function IndustryStory({ copy }: { copy: IndustryStoryCopy }) {
             asChild
             size="lg"
             data-analytics-id={`${copy.industry}_hero_demo`}
-            data-analytics-name={`Talk with Lucas (${copy.eyebrow})`}
+            data-analytics-name={`Talk with us (${copy.eyebrow})`}
             data-analytics-context={JSON.stringify({
               source: copy.industry,
               section: 'hero',
@@ -146,7 +146,7 @@ export function IndustryStory({ copy }: { copy: IndustryStoryCopy }) {
                 section: 'cta',
               })}
             >
-              <Link href={demoHref}>Bring Lucas a question</Link>
+              <Link href={demoHref}>Bring us a question</Link>
             </Button>
             <Button
               asChild
