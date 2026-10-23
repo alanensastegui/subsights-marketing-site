@@ -23,7 +23,7 @@ it.each(PROSPECT_DEMOS)(
     });
     for (const cadence of ['Daily', 'Weekly', 'Monthly']) {
       fireEvent.click(
-        await screen.findByRole('button', { name: cadence, exact: true })
+        await screen.findByRole('button', { name: cadence })
       );
       const report = screen.getByRole('article', {
         name: `${cadence} sample report`,
