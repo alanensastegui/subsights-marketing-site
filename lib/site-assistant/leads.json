@@ -1,0 +1,12 @@
+{
+  "integration_kind": "Leads",
+  "enabled": true,
+  "email_collection": "optional",
+  "phone_number_collection": "optional",
+  "lead_recipients": [
+    {
+      "kind": "Email",
+      "kind_id": "team@subsights.com"
+    }
+  ]
+}
