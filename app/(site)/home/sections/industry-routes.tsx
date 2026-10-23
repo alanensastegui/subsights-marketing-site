@@ -9,6 +9,7 @@ type Copy = {
     question: string;
     description: string;
     href: string;
+    analyticsId: string;
   }[];
 };
 export const sectionId = 'industry-routes';
@@ -26,6 +27,7 @@ const copy = {
       description:
         "Help visitors navigate things to do, places to stay and local logistics. Learn what they can't find.",
       href: '/destinations',
+      analyticsId: 'home_industry_destinations',
     },
     {
       name: 'Private lenders',
@@ -34,6 +36,7 @@ const copy = {
       description:
         'Explain your programs and service area, ask useful questions and guide borrowers to your team.',
       href: '/lenders',
+      analyticsId: 'home_industry_lenders',
     },
     {
       name: 'Publishers & directories',
@@ -42,6 +45,7 @@ const copy = {
       description:
         'Turn a broad search into a relevant next step, with approved partner links and measurable clicks.',
       href: '/publishers',
+      analyticsId: 'home_industry_publishers',
     },
   ],
 } satisfies Copy;
@@ -68,6 +72,10 @@ export default function IndustryRoutes() {
           <Link
             key={industry.href}
             href={industry.href}
+            data-slot="button"
+            data-analytics-id={industry.analyticsId}
+            data-analytics-name={`Explore ${industry.name} (Home Industries)`}
+            data-analytics-context='{"source":"home_industries","section":"industry-routes"}'
             className="group flex flex-col rounded-2xl border border-border bg-card p-7 transition-colors hover:border-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
           >
             <p className="text-sm text-muted-foreground">{industry.audience}</p>

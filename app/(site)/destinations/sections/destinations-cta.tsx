@@ -44,7 +44,7 @@ export default function DestinationsCta() {
               size: 'lg',
               dataAttributes: {
                 'data-analytics-id': 'destinations_cta_demo',
-                'data-analytics-name': 'Destination Demo (Destinations CTA)',
+                'data-analytics-name': `${copy.primaryCta.label} (Destinations CTA)`,
                 'data-analytics-context':
                   '{"source":"destinations_cta","section":"call-to-action"}',
               },

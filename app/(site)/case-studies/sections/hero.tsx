@@ -49,7 +49,7 @@ export default function Hero() {
                   size: 'lg',
                   dataAttributes: {
                     'data-analytics-id': 'case_studies_hero_demo',
-                    'data-analytics-name': 'Email My Demo (Case Studies Hero)',
+                    'data-analytics-name': `${c.primaryCta.label} (Case Studies Hero)`,
                     'data-analytics-context':
                       '{"source":"case_studies_hero","section":"hero"}',
                   },

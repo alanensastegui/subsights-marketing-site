@@ -55,7 +55,7 @@ export default function DestinationsHero() {
               size: 'lg',
               dataAttributes: {
                 'data-analytics-id': 'destinations_hero_demo',
-                'data-analytics-name': 'Destination Demo (Destinations Hero)',
+                'data-analytics-name': `${copy.primaryCta.label} (Destinations Hero)`,
                 'data-analytics-context':
                   '{"source":"destinations_hero","section":"hero"}',
               },

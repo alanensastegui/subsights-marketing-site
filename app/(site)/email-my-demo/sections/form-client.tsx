@@ -246,7 +246,7 @@ export default function DemoRequestForm() {
         type="submit"
         disabled={isSubmitting}
         data-analytics-id="email_my_demo_submit"
-        data-analytics-name="Send Website Question"
+        data-analytics-name="Send Website Question (Inquiry Form)"
         data-analytics-context={JSON.stringify({
           page: 'email_my_demo',
           industry,

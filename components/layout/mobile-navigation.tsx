@@ -112,7 +112,7 @@ export default function MobileNavigation({ navItems }: MobileNavigationProps) {
                     asChild
                     className="w-full transition-all duration-200 ease-out hover:scale-[1.02] hover:shadow-lg"
                     data-analytics-id="nav_mobile_demo"
-                    data-analytics-name="Email My Demo (Nav Mobile)"
+                    data-analytics-name={`${item.label} (Nav Mobile)`}
                     data-analytics-context='{"source":"nav_mobile","location":"header"}'
                   >
                     <Link href={item.href}>{item.label}</Link>

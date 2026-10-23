@@ -74,7 +74,7 @@ export default function DesktopNavigation({
                   asChild
                   size="sm"
                   data-analytics-id="nav_desktop_demo"
-                  data-analytics-name="Email My Demo (Nav)"
+                  data-analytics-name={`${item.label} (Nav)`}
                   data-analytics-context='{"source":"nav_desktop","location":"header"}'
                 >
                   <Link href={item.href}>{item.label}</Link>
