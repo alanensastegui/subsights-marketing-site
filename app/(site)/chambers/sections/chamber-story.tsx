@@ -60,9 +60,9 @@ const copy = {
         'Daily, weekly and monthly report options bring conversation activity and questions to selected recipients. Choose a useful cadence during setup, and turn recurring questions into better content. Open the underlying conversations to understand the context behind each trend.',
     },
     {
-      title: 'A clear route to a person',
+      title: 'Follow-up with the right context',
       description:
-        'Start with the right contact link or phone number. When lead collection and forwarding are configured, contact details and a conversation summary can go to agreed recipients. Staffed live chat and other event-triggered workflows require a separately agreed connection.',
+        'Help visitors get the information they need in the conversation. When someone wants a follow-up, configured lead collection and forwarding can send their contact details and a conversation summary to agreed recipients. Keep the relevant contact page or phone number easy to find.',
     },
   ],
   cta: 'Bring a question your members ask every week.',

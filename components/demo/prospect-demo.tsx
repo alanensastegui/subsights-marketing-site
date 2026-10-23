@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
+import { TeamPreview } from './team-preview';
+import { ConversationExample } from './conversation-example';
 
 export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
   return (
@@ -38,27 +40,21 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               ))}
             </ul>
           </div>
-          <a
-            href={`mailto:team@subsights.com?subject=${encodeURIComponent(`${demo.label} assistant preview`)}`}
-            className="mt-6 inline-flex min-h-11 items-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
-            style={{ backgroundColor: demo.accent }}
-            data-slot="button"
-            data-button-id={`demo-${demo.slug}-contact`}
-            data-button-name="Talk through this demo"
-            data-button-location="prospect-demo"
-          >
-            Talk through this demo
-          </a>
-          {demo.industryHref && (
-            <p className="mt-4 text-sm">
-              <Link
-                href={demo.industryHref}
-                className="font-medium text-slate-700 underline underline-offset-4"
-              >
-                Subsights for chambers and associations
-              </Link>
-            </p>
-          )}
+          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <a
+              href="#live-assistant"
+              className="inline-flex min-h-11 items-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+              style={{ backgroundColor: demo.accent }}
+            >
+              Try the assistant ↓
+            </a>
+            <a
+              href="#team-preview"
+              className="inline-flex min-h-11 items-center text-sm font-medium text-slate-700 underline underline-offset-4"
+            >
+              See the team view ↓
+            </a>
+          </div>
           <details className="mt-6 rounded-xl border border-slate-200 bg-white p-4 lg:hidden">
             <summary className="cursor-pointer font-medium text-slate-950">
               Questions to try
@@ -72,7 +68,8 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
         </section>
 
         <section
-          className="min-w-0"
+          id="live-assistant"
+          className="min-w-0 scroll-mt-5"
           aria-label={`${demo.label} live assistant`}
         >
           <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-200/60">
@@ -87,7 +84,7 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
             <iframe
               src={demo.widgetUrl}
               title={`${demo.label} assistant preview`}
-              className="block h-[650px] w-full border-0 sm:h-[700px]"
+              className="block h-[560px] w-full border-0 sm:h-[620px]"
               referrerPolicy="no-referrer"
               allow="clipboard-write"
               sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
@@ -100,6 +97,13 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
             out of the chat.
           </p>
         </section>
+
+        <div className="min-w-0 lg:col-span-2">
+          <TeamPreview demo={demo} />
+        </div>
+        <div className="min-w-0 lg:col-span-2">
+          <ConversationExample demo={demo} />
+        </div>
 
         <section
           className="min-w-0 border-t border-slate-200 pt-6 lg:col-span-2"
@@ -139,40 +143,41 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
             </div>
           </div>
         </section>
-        {demo.teamView && (
-          <section
-            className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 lg:col-span-2"
-            aria-labelledby="team-insights"
+        <section
+          className="min-w-0 rounded-2xl bg-slate-900 p-6 text-white sm:p-8 lg:col-span-2"
+          aria-labelledby="demo-next-step"
+        >
+          <h2
+            id="demo-next-step"
+            className="text-2xl font-semibold tracking-tight"
           >
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-600">
-              Beyond the answer
-            </p>
-            <h2
-              id="team-insights"
-              className="mt-3 text-2xl font-semibold text-slate-950"
+            Make it useful for your visitors. Make it yours.
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-300">
+            We work with your team on the content, appearance and real
+            questions. Then we use what people ask to keep improving the
+            experience.
+          </p>
+          <div className="mt-5 flex flex-wrap items-center gap-5">
+            <a
+              href={`mailto:team@subsights.com?subject=${encodeURIComponent(`${demo.label} assistant preview`)}`}
+              className="inline-flex min-h-11 items-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-4"
+              data-slot="button"
+              data-analytics-id={`demo_${demo.slug.replaceAll('-', '_')}_contact`}
+              data-analytics-name="Talk through this demo (Prospect Demo)"
             >
-              Learn what your community needs.
-            </h2>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600">
-              Conversation history can help your team spot unclear benefits,
-              event questions and member-service needs. These examples
-              illustrate what to look for; they are not measured Chamber results
-              or an active report subscription.
-            </p>
-            <div className="mt-5 grid gap-5 md:grid-cols-3">
-              {demo.teamView.map((item) => (
-                <div key={item.question}>
-                  <h3 className="font-semibold leading-relaxed text-slate-950">
-                    “{item.question}”
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                    {item.insight}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+              Talk through this demo
+            </a>
+            {demo.industryHref && (
+              <Link
+                href={demo.industryHref}
+                className="inline-flex min-h-11 items-center text-sm font-medium text-white underline underline-offset-4"
+              >
+                Subsights for chambers and associations
+              </Link>
+            )}
+          </div>
+        </section>
       </div>
     </main>
   );
