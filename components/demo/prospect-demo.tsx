@@ -32,7 +32,7 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               <h2 className="text-sm font-semibold text-slate-950">{demo.label}</h2>
               <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-800">Live assistant preview</span>
             </div>
-            <iframe src={demo.widgetUrl} title={`${demo.label} assistant preview`} className="block h-[650px] w-full border-0 sm:h-[700px]" referrerPolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox" />
+            <iframe src={demo.widgetUrl} title={`${demo.label} assistant preview`} className="block h-[650px] w-full border-0 sm:h-[700px]" referrerPolicy="no-referrer" allow="clipboard-write" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox" />
           </div>
           <p className="mt-3 text-xs leading-relaxed text-slate-600">
             Prepared independently by Subsights from selected public pages. This preview is not installed on {demo.label}’s website. Questions in this demo are visible to Subsights; please keep personal information out of the chat.
