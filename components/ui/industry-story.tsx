@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export type IndustryStoryCopy = {
-  industry: 'lenders' | 'publishers';
+  industry: 'lenders' | 'publishers' | 'chambers';
   eyebrow: string;
   heading: string;
   description: string;

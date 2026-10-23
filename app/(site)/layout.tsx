@@ -24,6 +24,7 @@ function buildNavigationItems() {
       label: 'Industries',
       children: [
         { label: 'Destinations', href: '/destinations' },
+        { label: 'Chambers & associations', href: '/chambers' },
         { label: 'Private lenders', href: '/lenders' },
         { label: 'Publishers & directories', href: '/publishers' },
       ],
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     default: 'Subsights AI - Managed Website Assistants',
   },
   description:
-    'A branded AI assistant for your website, with personal setup, managed support and customer insights. Built for destinations, lenders and publishers.',
+    'A branded AI assistant for your website, with personal setup, managed support and customer insights. Built for destinations, chambers, lenders and publishers.',
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -157,6 +158,9 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
                 </Link>
                 <Link href="/lenders" className="hover:text-foreground">
                   Private lenders
+                </Link>
+                <Link href="/chambers" className="hover:text-foreground">
+                  Chambers
                 </Link>
                 <Link href="/publishers" className="hover:text-foreground">
                   Publishers

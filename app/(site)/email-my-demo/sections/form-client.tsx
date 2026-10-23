@@ -52,8 +52,20 @@ const fields = [
 ] as const;
 
 type Field = (typeof fields)[number]['name'];
-type Industry = '' | 'destinations' | 'lenders' | 'publishers' | 'other';
-const industries = new Set(['destinations', 'lenders', 'publishers', 'other']);
+type Industry =
+  | ''
+  | 'destinations'
+  | 'lenders'
+  | 'publishers'
+  | 'chambers'
+  | 'other';
+const industries = new Set([
+  'destinations',
+  'lenders',
+  'publishers',
+  'chambers',
+  'other',
+]);
 
 export default function DemoRequestForm() {
   const params = useSearchParams();
@@ -193,6 +205,7 @@ export default function DemoRequestForm() {
         >
           <option value="">Choose an industry</option>
           <option value="destinations">Destination marketing</option>
+          <option value="chambers">Chambers &amp; associations</option>
           <option value="lenders">Private or hard money lending</option>
           <option value="publishers">
             Publisher, directory or affiliate website

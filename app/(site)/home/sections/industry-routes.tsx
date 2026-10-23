@@ -47,6 +47,15 @@ const copy = {
       href: '/publishers',
       analyticsId: 'home_industry_publishers',
     },
+    {
+      name: 'Chambers & associations',
+      audience: 'Member organizations and business communities',
+      question: 'Can I attend an event before joining?',
+      description:
+        'Help people understand membership, find the right event and discover local businesses. Learn what your community needs.',
+      href: '/chambers',
+      analyticsId: 'home_industry_chambers',
+    },
   ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -67,7 +76,7 @@ export default function IndustryRoutes() {
       <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
         {copy.description}
       </p>
-      <div className="mt-9 grid gap-5 lg:grid-cols-3">
+      <div className="mt-9 grid gap-5 lg:grid-cols-2">
         {copy.industries.map((industry) => (
           <Link
             key={industry.href}

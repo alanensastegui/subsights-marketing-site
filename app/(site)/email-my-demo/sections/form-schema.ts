@@ -36,7 +36,7 @@ export const EmailMyDemoSchema = z.object({
       .optional()
   ),
   industry: z
-    .enum(['destinations', 'lenders', 'publishers', 'other'])
+    .enum(['destinations', 'lenders', 'publishers', 'chambers', 'other'])
     .optional(),
   customerQuestion: z.string().trim().max(600).optional(),
   marketingOptIn: z.boolean().optional().default(false),
