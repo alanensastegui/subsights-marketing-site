@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
@@ -74,6 +74,28 @@ export default function DemoRequestForm() {
   const [requestError, setRequestError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const firstField = [
+      ...fields.map((field) => field.name),
+      'industry',
+      'customerQuestion',
+    ].find((name) => errors[name]);
+    const control =
+      firstField && formRef.current?.elements.namedItem(firstField);
+    if (control instanceof HTMLElement) control.focus();
+  }, [errors]);
+
+  useEffect(() => {
+    if (submitted) successRef.current?.focus();
+  }, [submitted]);
+
+  function showFieldErrors(nextErrors: Record<string, string>) {
+    setErrors(nextErrors);
+    setRequestError('Please check the highlighted fields.');
+  }
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -88,8 +110,8 @@ export default function DemoRequestForm() {
     if (!result.success) {
       const nextErrors: Record<string, string> = {};
       for (const issue of result.error.issues)
-        nextErrors[String(issue.path[0])] = issue.message;
-      setErrors(nextErrors);
+        nextErrors[String(issue.path[0])] ??= issue.message;
+      showFieldErrors(nextErrors);
       return;
     }
     setIsSubmitting(true);
@@ -99,6 +121,22 @@ export default function DemoRequestForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(result.data),
       });
+      if (response.status === 400) {
+        const body = await response.json();
+        const nextErrors: Record<string, string> = {};
+        for (const name of [
+          ...fields.map((field) => field.name),
+          'industry',
+          'customerQuestion',
+        ]) {
+          const message = body?.errors?.properties?.[name]?.errors?.[0];
+          if (typeof message === 'string') nextErrors[name] = message;
+        }
+        if (Object.keys(nextErrors).length) {
+          showFieldErrors(nextErrors);
+          return;
+        }
+      }
       if (!response.ok) throw new Error('Request was not delivered');
       setSubmitted(true);
     } catch {
@@ -115,6 +153,8 @@ export default function DemoRequestForm() {
       <div
         className="mt-8 rounded-2xl border border-border bg-card p-7"
         role="status"
+        tabIndex={-1}
+        ref={successRef}
       >
         <h2 className="text-2xl font-semibold">Your request is in.</h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
@@ -132,6 +172,7 @@ export default function DemoRequestForm() {
 
   return (
     <form
+      ref={formRef}
       noValidate
       onSubmit={onSubmit}
       className="mt-8 space-y-5 rounded-2xl border border-border bg-card p-6 sm:p-8"
@@ -188,6 +229,8 @@ export default function DemoRequestForm() {
           id="industry"
           name="industry"
           value={industry}
+          aria-invalid={Boolean(errors.industry)}
+          aria-describedby={errors.industry ? 'industry-error' : undefined}
           onChange={(event) => setIndustry(event.target.value as Industry)}
           className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring"
         >
@@ -199,6 +242,11 @@ export default function DemoRequestForm() {
           </option>
           <option value="other">Another kind of business</option>
         </select>
+        {errors.industry && (
+          <p id="industry-error" className="text-sm text-destructive">
+            {errors.industry}
+          </p>
+        )}
       </div>
       <div className="space-y-2">
         <label htmlFor="customerQuestion" className="text-sm font-medium">
@@ -213,14 +261,20 @@ export default function DemoRequestForm() {
           onChange={(event) => setCustomerQuestion(event.target.value)}
           className="w-full rounded-md border border-input bg-background p-3 text-sm focus-visible:outline-2 focus-visible:outline-ring"
           aria-invalid={Boolean(errors.customerQuestion)}
-          aria-describedby="question-hint"
+          aria-describedby={
+            errors.customerQuestion
+              ? 'question-hint customerQuestion-error'
+              : 'question-hint'
+          }
         />
         <p id="question-hint" className="text-xs text-muted-foreground">
           A realistic question helps us explore what would be useful on your
           site. Please leave out private customer information.
         </p>
         {errors.customerQuestion && (
-          <p className="text-sm text-destructive">{errors.customerQuestion}</p>
+          <p id="customerQuestion-error" className="text-sm text-destructive">
+            {errors.customerQuestion}
+          </p>
         )}
       </div>
       <div className="flex items-start gap-3">

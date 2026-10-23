@@ -30,6 +30,10 @@ export const EmailMyDemoSchema = z.object({
       .url('Enter a valid website (e.g., example.com)')
       .max(500)
       .refine(
+        (value) => !/\s/.test(value),
+        'Remove spaces from the website address'
+      )
+      .refine(
         (value) => /^https?:\/\//i.test(value),
         'Use an http or https website'
       )
