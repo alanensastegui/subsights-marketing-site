@@ -1,69 +1,51 @@
-import "@/styles/globals.css";
-import Link from "next/link";
-import Image from "next/image";
-import type { ReactNode } from "react";
-import { Suspense } from "react";
-import type { Metadata } from "next";
-import { Animate } from "@/components/ui/animate";
-import MobileNavigation from "@/components/layout/mobile-navigation";
-import DesktopNavigation from "@/components/layout/desktop-navigation";
-import FloatingOrb from "@/components/layout/floating-orb";
-import { GoogleAnalytics } from "@/lib/analytics/components/google-analytics";
-import { PageViewTracker } from "@/lib/analytics/components/page-view-tracker";
-import { DevAnalyticsDashboard } from "@/lib/analytics/components/dev-analytics-dashboard";
-import { ConsentBanner } from "@/lib/analytics/components/consent-banner";
-import { AnalyticsProvider } from "@/lib/analytics/context";
-import { ScrollToTop } from "@/components/layout/scroll-to-top";
-import { AutoButtonTracking } from "@/lib/analytics/components/auto-button-tracking";
-import { ApolloTracker } from "@/components/layout/apollo-tracker";
-import { getAllCaseStudies } from "@/lib/case-studies";
-import { getAllFeatureMetadata } from "@/lib/features/registry";
-import type { NavItem } from "@/components/ui/navigation-menu";
+import '@/styles/globals.css';
+import Link from 'next/link';
+import Image from 'next/image';
+import type { ReactNode } from 'react';
+import { Suspense } from 'react';
+import type { Metadata } from 'next';
+import { Animate } from '@/components/ui/animate';
+import MobileNavigation from '@/components/layout/mobile-navigation';
+import DesktopNavigation from '@/components/layout/desktop-navigation';
+import FloatingOrb from '@/components/layout/floating-orb';
+import { GoogleAnalytics } from '@/lib/analytics/components/google-analytics';
+import { PageViewTracker } from '@/lib/analytics/components/page-view-tracker';
+import { DevAnalyticsDashboard } from '@/lib/analytics/components/dev-analytics-dashboard';
+import { ConsentBanner } from '@/lib/analytics/components/consent-banner';
+import { AnalyticsProvider } from '@/lib/analytics/context';
+import { ScrollToTop } from '@/components/layout/scroll-to-top';
+import { AutoButtonTracking } from '@/lib/analytics/components/auto-button-tracking';
+import { ApolloTracker } from '@/components/layout/apollo-tracker';
+import type { NavItem } from '@/components/ui/navigation-menu';
 
 function buildNavigationItems() {
-  const caseStudies = getAllCaseStudies();
-  const features = getAllFeatureMetadata();
-
-  const caseStudiesNavItem: NavItem = {
-    label: "Case Studies",
-    mainItem: { label: "All Case Studies", href: "/case-studies" },
-    children: caseStudies.map(study => ({
-      label: study.company,
-      href: `/case-studies/${study.slug}`
-    }))
-  };
-
-  const featuresNavItem: NavItem = {
-    label: "Features",
-    mainItem: { label: "All Features", href: "/features" },
-    children: features.map(feature => ({
-      label: feature.title,
-      href: `/features/${feature.id}`
-    }))
-  };
-
   return [
-    { label: "Destinations", href: "/destinations" },
-    featuresNavItem,
-    caseStudiesNavItem,
-    { label: "Pricing", href: "/pricing" },
-    { label: "Partners", href: "/partners" },
-    { label: "Blog", href: "/blog" },
-    { label: "About", href: "/about" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Sign In", href: "https://app.subsights.com", isButton: true },
-    { label: "Email My Demo", href: "/email-my-demo", isButton: true },
+    {
+      label: 'Industries',
+      children: [
+        { label: 'Destinations', href: '/destinations' },
+        { label: 'Private lenders', href: '/lenders' },
+        { label: 'Publishers & directories', href: '/publishers' },
+      ],
+    },
+    { label: 'Features', href: '/features' },
+    { label: 'Customer stories', href: '/case-studies' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'About', href: '/about' },
+    { label: 'Talk with us', href: '/email-my-demo', isButton: true },
   ] as (NavItem & { isButton?: boolean })[];
 }
 
-
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subsights.com'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subsights.com'
+  ),
   title: {
     template: '%s | Subsights AI',
-    default: 'Subsights AI - AI-Powered Website Conversion',
+    default: 'Subsights AI - Managed Website Assistants',
   },
-  description: 'Transform your website with AI-powered conversion tools. Increase leads, bookings, and revenue automatically.',
+  description:
+    'A branded AI assistant for your website, with personal setup, managed support and customer insights. Built for destinations, lenders and publishers.',
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -71,7 +53,7 @@ export const metadata: Metadata = {
     siteName: 'Subsights AI',
     images: [
       {
-        url: '/images/logo/small-logo.svg',
+        url: '/api/og',
         width: 1200,
         height: 630,
         alt: 'Subsights AI Logo',
@@ -81,7 +63,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     site: '@subsights',
-    images: ['/images/logo/small-logo.svg'],
+    images: ['/api/og'],
   },
 };
 
@@ -91,8 +73,16 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="h-full">
       <head>
-        <link rel="icon" href="/images/logo/small-logo.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="/images/logo/small-logo.svg" type="image/svg+xml" />
+        <link
+          rel="icon"
+          href="/images/logo/small-logo.svg"
+          type="image/svg+xml"
+        />
+        <link
+          rel="shortcut icon"
+          href="/images/logo/small-logo.svg"
+          type="image/svg+xml"
+        />
         <link rel="apple-touch-icon" href="/images/logo/small-logo.svg" />
         <ApolloTracker appId={process.env.NEXT_PUBLIC_APOLLO_APP_ID} />
         <script
@@ -104,7 +94,10 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
       </head>
       <body className="bg-background text-foreground h-full">
         <AnalyticsProvider>
-          <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
+          <div
+            className="fixed inset-0 pointer-events-none"
+            style={{ zIndex: -1 }}
+          >
             <div className="absolute left-[10%] top-[15%]">
               <FloatingOrb size="large" blur={40} opacity={0.4} speed={1} />
             </div>
@@ -112,14 +105,17 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
               <FloatingOrb size="small" blur={40} opacity={0.4} speed={1.1} />
             </div>
             <div className="absolute left-[40%] top-[40%]">
-              <FloatingOrb size="medium" blur={40} opacity={0.40} speed={1.2} />
+              <FloatingOrb size="medium" blur={40} opacity={0.4} speed={1.2} />
             </div>
           </div>
 
           <header className="sticky top-0 z-50 backdrop-blur-md shadow-sm transition-[background,backdrop-filter,box-shadow] duration-200 ease-out hover:backdrop-blur-xl hover:shadow-lg [animation:header-fade-in_linear_both] [animation-timeline:scroll(root)] [animation-range:0_100px] supports-[animation-timeline:scroll(root)]:animate-none">
             <Animate name="fadeIn" trigger="onLoad">
               <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-                <Link href="/" className="flex items-center group rounded-lg transition-colors duration-150 ease-out hover:bg-white/10">
+                <Link
+                  href="/"
+                  className="flex items-center group rounded-lg transition-colors duration-150 ease-out hover:bg-white/10"
+                >
                   <Image
                     src="/images/logo/full-logo.svg"
                     alt="Subsights AI"
@@ -134,12 +130,15 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
             </Animate>
           </header>
 
-          <main className="mx-auto max-w-6xl px-6 pt-14">{children}</main>
+          <div className="mx-auto max-w-6xl px-6 pt-14 sm:pt-6">{children}</div>
           <ScrollToTop />
           <footer className="mx-auto max-w-6xl px-6 py-12">
             <div className="flex flex-col items-center space-y-6 text-center">
               {/* Logo */}
-              <Link href="/" className="flex items-center group rounded-lg transition-colors duration-150 ease-out hover:bg-white/10">
+              <Link
+                href="/"
+                className="flex items-center group rounded-lg transition-colors duration-150 ease-out hover:bg-white/10"
+              >
                 <Image
                   src="/images/logo/full-logo.svg"
                   alt="Subsights AI"
@@ -149,15 +148,62 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
                 />
               </Link>
 
+              <nav
+                aria-label="Footer"
+                className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-muted-foreground"
+              >
+                <Link href="/destinations" className="hover:text-foreground">
+                  Destinations
+                </Link>
+                <Link href="/lenders" className="hover:text-foreground">
+                  Private lenders
+                </Link>
+                <Link href="/publishers" className="hover:text-foreground">
+                  Publishers
+                </Link>
+                <Link href="/blog" className="hover:text-foreground">
+                  Blog
+                </Link>
+                <Link href="/partners" className="hover:text-foreground">
+                  Partners
+                </Link>
+                <Link href="/faq" className="hover:text-foreground">
+                  FAQ
+                </Link>
+                <a
+                  href="https://app.subsights.com"
+                  className="hover:text-foreground"
+                >
+                  Sign in
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/subsights/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground"
+                >
+                  Subsights on LinkedIn ↗
+                </a>
+              </nav>
+
               {/* Legal Links */}
               <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-                <Link href="/legal/terms" className="hover:text-foreground transition-colors">
+                <Link
+                  href="/legal/terms"
+                  className="hover:text-foreground transition-colors"
+                >
                   Terms of Service
                 </Link>
-                <Link href="/legal/privacy" className="hover:text-foreground transition-colors">
+                <Link
+                  href="/legal/privacy"
+                  className="hover:text-foreground transition-colors"
+                >
                   Privacy Policy
                 </Link>
-                <Link href="/legal/data-processing" className="hover:text-foreground transition-colors">
+                <Link
+                  href="/legal/data-processing"
+                  className="hover:text-foreground transition-colors"
+                >
                   Data Processing
                 </Link>
               </div>

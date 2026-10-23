@@ -1,28 +1,44 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export function normalizeWebsite(value: unknown) {
-  if (typeof value !== "string") return value;
+  if (typeof value !== 'string') return value;
   const trimmed = value.trim();
   if (!trimmed) return trimmed;
-  const hasScheme = /^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(trimmed);
-  return hasScheme ? trimmed : `https://${trimmed}`;
+  return /^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(trimmed)
+    ? trimmed
+    : `https://${trimmed}`;
 }
 
 function emptyStringToUndefined(value: unknown) {
-  if (typeof value !== "string") return value;
-  const trimmed = value.trim();
-  return trimmed === "" ? undefined : trimmed;
+  if (typeof value !== 'string') return value;
+  return value.trim() === '' ? undefined : value.trim();
 }
 
 export const EmailMyDemoSchema = z.object({
-  firstName: z.string().min(1, "Required"),
-  lastName: z.string().min(1, "Required"),
-  email: z.string().min(1, "Required").email("Enter a valid email (e.g., you@example.com)"),
-  company: z.preprocess(emptyStringToUndefined, z.string().min(1, "Required").optional()),
+  firstName: z.string().trim().min(1, 'Enter your first name').max(80),
+  lastName: z.string().trim().min(1, 'Enter your last name').max(80),
+  email: z
+    .string()
+    .trim()
+    .min(1, 'Enter your email')
+    .email('Enter a valid email')
+    .max(254),
+  company: z.preprocess(emptyStringToUndefined, z.string().max(160).optional()),
   website: z.preprocess(
-    (v) => normalizeWebsite(emptyStringToUndefined(v)),
-    z.url("Enter a valid URL (e.g., https://example.com)").optional()
+    (value) => normalizeWebsite(emptyStringToUndefined(value)),
+    z
+      .url('Enter a valid website (e.g., example.com)')
+      .max(500)
+      .refine(
+        (value) => /^https?:\/\//i.test(value),
+        'Use an http or https website'
+      )
+      .optional()
   ),
+  industry: z
+    .enum(['destinations', 'lenders', 'publishers', 'other'])
+    .optional(),
+  customerQuestion: z.string().trim().max(600).optional(),
   marketingOptIn: z.boolean().optional().default(false),
 });
 
