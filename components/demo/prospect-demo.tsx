@@ -40,7 +40,7 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               ))}
             </ul>
           </div>
-          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <div className="mt-6 hidden flex-wrap items-center gap-x-5 gap-y-3 lg:flex">
             <a
               href="#live-assistant"
               className="inline-flex min-h-11 items-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
@@ -55,7 +55,7 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               See the team view ↓
             </a>
           </div>
-          <details className="mt-6 rounded-xl border border-slate-200 bg-white p-4 lg:hidden">
+          <details className="mt-5 rounded-xl border border-slate-200 bg-white p-4 lg:hidden">
             <summary className="cursor-pointer font-medium text-slate-950">
               Questions to try
             </summary>
@@ -90,7 +90,19 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
             />
           </div>
-          <p className="mt-3 text-xs leading-relaxed text-slate-600">
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-x-5 gap-y-1 text-sm">
+            <p className="text-slate-600">Prefer a larger chat?</p>
+            <a
+              href={demo.widgetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
+              style={{ color: demo.accent }}
+            >
+              Open assistant in a new tab
+            </a>
+          </div>
+          <p className="mt-2 text-xs leading-relaxed text-slate-600">
             Prepared independently by Subsights from selected public pages. This
             preview is not installed on {demo.label}’s website. Questions in
             this demo are visible to Subsights; please keep personal information
