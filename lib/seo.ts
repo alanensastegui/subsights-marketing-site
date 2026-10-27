@@ -1,31 +1,31 @@
 // /lib/seo.ts
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
 export type OGType =
-  | "website"
-  | "article"
-  | "book"
-  | "profile"
-  | "music.song"
-  | "music.album"
-  | "music.playlist"
-  | "music.radio_station"
-  | "video.movie"
-  | "video.episode"
-  | "video.tv_show"
-  | "video.other";
+  | 'website'
+  | 'article'
+  | 'book'
+  | 'profile'
+  | 'music.song'
+  | 'music.album'
+  | 'music.playlist'
+  | 'music.radio_station'
+  | 'video.movie'
+  | 'video.episode'
+  | 'video.tv_show'
+  | 'video.other';
 
-export type TwitterCard = "summary" | "summary_large_image" | "app" | "player";
+export type TwitterCard = 'summary' | 'summary_large_image' | 'app' | 'player';
 
 type OgImage =
   | string
   | {
-    src: string;
-    alt?: string;
-    width?: number;
-    height?: number;
-    type?: string;
-  };
+      src: string;
+      alt?: string;
+      width?: number;
+      height?: number;
+      type?: string;
+    };
 
 export type BuildMetadataInput = {
   title: string;
@@ -40,34 +40,34 @@ export type BuildMetadataInput = {
 };
 
 function ensureLeadingSlash(path: string): string {
-  return path.startsWith("/") ? path : `/${path}`;
+  return path.startsWith('/') ? path : `/${path}`;
 }
 
 function toOgImages(
   image?: OgImage | OgImage[]
-): NonNullable<Metadata["openGraph"]>["images"] | undefined {
+): NonNullable<Metadata['openGraph']>['images'] | undefined {
   if (!image) return undefined;
   const arr = Array.isArray(image) ? image : [image];
   return arr.map((img) =>
-    typeof img === "string"
+    typeof img === 'string'
       ? { url: img }
       : {
-        url: img.src,
-        alt: img.alt,
-        width: img.width,
-        height: img.height,
-        type: img.type,
-      }
+          url: img.src,
+          alt: img.alt,
+          width: img.width,
+          height: img.height,
+          type: img.type,
+        }
   );
 }
 
 function toTwitterImages(
   image?: OgImage | OgImage[]
-): NonNullable<Metadata["twitter"]>["images"] | undefined {
+): NonNullable<Metadata['twitter']>['images'] | undefined {
   if (!image) return undefined;
   const arr = Array.isArray(image) ? image : [image];
   // Twitter accepts string/URL or array; collapse objects to their src.
-  const urls = arr.map((img) => (typeof img === "string" ? img : img.src));
+  const urls = arr.map((img) => (typeof img === 'string' ? img : img.src));
   return urls.length === 1 ? urls[0] : urls;
 }
 
@@ -75,9 +75,9 @@ export function buildMetadata({
   title,
   description,
   path,
-  image,
-  ogType = "website",
-  twitterCard = "summary_large_image",
+  image = '/api/og',
+  ogType = 'website',
+  twitterCard = 'summary_large_image',
   noindex = false,
   overrides,
 }: BuildMetadataInput): Metadata {
@@ -113,7 +113,12 @@ export function buildMetadata({
     openGraph: { ...base.openGraph, ...overrides?.openGraph },
     twitter: { ...base.twitter, ...overrides?.twitter },
     robots: (() => {
-      if (typeof overrides?.robots === "object" && overrides.robots && base.robots && typeof base.robots === "object") {
+      if (
+        typeof overrides?.robots === 'object' &&
+        overrides.robots &&
+        base.robots &&
+        typeof base.robots === 'object'
+      ) {
         return { ...base.robots, ...overrides.robots };
       }
       return overrides?.robots ?? base.robots;

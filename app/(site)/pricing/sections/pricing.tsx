@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { cn } from "@/lib/cn";
-import { getSignupUrl, type PlanId } from "@/lib/subscriptions";
-import { Sparkles, RefreshCw, CreditCard } from "lucide-react";
-import { Animate } from "@/components/ui/animate";
-import PricingToggle from "./pricing-client";
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/cn';
+import { getSignupUrl, type PlanId } from '@/lib/subscriptions';
+import { Sparkles, RefreshCw, CreditCard } from 'lucide-react';
+import { Animate } from '@/components/ui/animate';
+import PricingToggle from './pricing-client';
 
 type Copy = {
   title: string;
@@ -26,25 +26,28 @@ type Copy = {
       cents: number;
     };
     featured?: boolean;
+    annual_total: number;
   }[];
 };
 
-export const sectionId = "pricing";
+export const sectionId = 'pricing';
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Simple, transparent pricing",
-  subtitle: "Choose the plan that fits your business",
-  annualDisclaimer: "Billed annually; price shown per month for comparison.",
+  title: 'Simple, transparent pricing',
+  subtitle: 'A branded website assistant with setup and managed support',
+  annualDisclaimer:
+    'Annual totals shown. Conversation allowances reset monthly.',
   plans: [
     {
-      key: "free_trial",
-      name: "Free Trial",
+      key: 'free_trial',
+      annual_total: 0,
+      name: 'Free Trial',
       sort_price: 0.0,
       features: [
-        "14 Day Free Trial",
-        "Professional Tier Access",
-        "No Payment Information Required",
+        '14 Day Free Trial',
+        'Professional Tier Access',
+        'No Payment Information Required',
       ],
       free: true,
       enterprise: false,
@@ -58,14 +61,15 @@ const copy = {
       },
     },
     {
-      key: "professional",
-      name: "Professional",
+      key: 'professional',
+      annual_total: 1990,
+      name: 'Professional',
       sort_price: 199.0,
       features: [
-        "600 conversations per month",
-        "1 seat",
-        "1 chatbot",
-        "Fully managed support",
+        '600 conversations per month',
+        '1 seat',
+        '1 chatbot',
+        'Fully managed support',
       ],
       free: false,
       enterprise: false,
@@ -79,18 +83,19 @@ const copy = {
       },
     },
     {
-      key: "professional_plus",
-      name: "Professional+",
+      key: 'professional_plus',
+      annual_total: 3990,
+      name: 'Professional+',
       sort_price: 399.0,
       features: [
-        "2,200 conversations per month",
-        "3 seats",
-        "2 chatbots",
-        "all integrations",
-        "all analytics",
-        "2 custom reports",
-        "Website AI SEO Audit",
-        "24/7 fully managed priority support",
+        '2,200 conversations per month',
+        '3 seats',
+        '2 chatbots',
+        'Standard integrations; bespoke work quoted separately',
+        'all analytics',
+        '2 custom reports',
+        'Website AI SEO Audit',
+        'Fully managed priority support',
       ],
       free: false,
       enterprise: false,
@@ -105,15 +110,16 @@ const copy = {
       featured: true,
     },
     {
-      key: "enterprise",
-      name: "Enterprise",
+      key: 'enterprise',
+      annual_total: 0,
+      name: 'Enterprise',
       sort_price: 500.0,
       features: [
-        "Fully tailored solution based on your specific requirements",
-        "Scalable number of chatbots and conversation limits",
-        "Deep or bespoke integrations with your existing systems",
-        "Website AI SEO Audit",
-        "24/7 fully managed priority support",
+        'Fully tailored solution based on your specific requirements',
+        'Scalable number of chatbots and conversation limits',
+        'Deep or bespoke integrations with your existing systems',
+        'Website AI SEO Audit',
+        'Fully managed priority support',
       ],
       free: false,
       enterprise: true,
@@ -136,62 +142,59 @@ type Props = {
 
 export default function Section({ searchParams }: Props) {
   const c = copy;
-  const isAnnual = searchParams?.billing !== "monthly";
+  const isAnnual = searchParams?.billing !== 'monthly';
 
   const toPlanKey = (name: string) => {
     return name
       .toLowerCase()
-      .replace(/\+/g, " plus ")
-      .replace(/[^a-z0-9]+/g, "_")
-      .replace(/_+/g, "_")
-      .replace(/^_+|_+$/g, "");
+      .replace(/\+/g, ' plus ')
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/_+/g, '_')
+      .replace(/^_+|_+$/g, '');
   };
 
-  const generateSignUpUrl = (plan: Copy["plans"][0]) => {
+  const generateSignUpUrl = (plan: Copy['plans'][0]) => {
     return getSignupUrl({
       plan: plan.key,
-      cycle: isAnnual ? "annual" : "monthly",
+      cycle: isAnnual ? 'annual' : 'monthly',
       isFreeTrial: plan.free,
     });
   };
 
-  const getButtonText = (plan: Copy["plans"][0]) => {
+  const getButtonText = (plan: Copy['plans'][0]) => {
     if (plan.free) {
-      return "Start Free Trial";
+      return 'Start Free Trial';
     }
 
     if (plan.enterprise) {
-      return "Contact Sales";
+      return 'Contact Sales';
     }
 
     return `Choose ${plan.name}`;
   };
 
-  const formatPrice = (price: {
-    dollars: number;
-    cents: number;
-  }) => {
-    if (price.dollars === 0 && price.cents === 0) return { dollars: "Custom", cents: "" };
+  const formatPrice = (price: { dollars: number; cents: number }) => {
+    if (price.dollars === 0 && price.cents === 0)
+      return { dollars: 'Custom', cents: '' };
     return {
-      dollars: `$${price.dollars}`,
-      cents: price.cents > 0 ? `.${price.cents.toString().padStart(2, "0")}` : ""
+      dollars: `$${price.dollars.toLocaleString('en-US')}`,
+      cents:
+        price.cents > 0 ? `.${price.cents.toString().padStart(2, '0')}` : '',
     };
   };
 
-  const getCurrentPrice = (plan: Copy["plans"][0]) => {
-    return isAnnual ? plan.annual_price : plan.monthly_price;
+  const getPriceUnit = (plan: Copy['plans'][0]) => {
+    if (plan.enterprise) return '';
+    if (plan.free) return 'for 14 days';
+    return isAnnual ? '/year' : '/month';
   };
 
-  const getPriceUnit = (plan: Copy["plans"][0]) => {
-    if (plan.enterprise) return "";
-    if (plan.free) return "for 14 days";
-    return "/month";
-  };
-
-  const getPriceDisplay = (plan: Copy["plans"][0]) => {
-    if (plan.free) return { dollars: "$0", cents: "" };
-    if (plan.enterprise) return { dollars: "Custom", cents: "" };
-    const price = getCurrentPrice(plan);
+  const getPriceDisplay = (plan: Copy['plans'][0]) => {
+    if (plan.free) return { dollars: '$0', cents: '' };
+    if (plan.enterprise) return { dollars: 'Custom', cents: '' };
+    const price = isAnnual
+      ? { dollars: plan.annual_total, cents: 0 }
+      : plan.monthly_price;
     return formatPrice(price);
   };
 
@@ -200,9 +203,9 @@ export default function Section({ searchParams }: Props) {
       <div className="mx-auto max-w-7xl">
         <Animate name="fadeInStagger" trigger="onVisible">
           <div className="animate-item text-center space-y-6 mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
               {c.title}
-            </h2>
+            </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {c.subtitle}
             </p>
@@ -231,10 +234,10 @@ export default function Section({ searchParams }: Props) {
                 <Card
                   key={index}
                   className={cn(
-                    "animate-item relative w-full max-w-72 mx-auto transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col h-full",
+                    'animate-item relative w-full max-w-72 mx-auto transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col h-full',
                     plan.featured
-                      ? "border-2 border-primary shadow-lg ring-4 ring-primary/10"
-                      : "shadow-md hover:border-primary/20",
+                      ? 'border-2 border-primary shadow-lg ring-4 ring-primary/10'
+                      : 'shadow-md hover:border-primary/20'
                   )}
                 >
                   <CardHeader className="pb-0">
@@ -260,7 +263,7 @@ export default function Section({ searchParams }: Props) {
                         )}
                       </div>
                       <div className="text-sm text-muted-foreground mt-1 h-5 flex items-center justify-center">
-                        {priceUnit || " "}
+                        {priceUnit || ' '}
                       </div>
                     </div>
 
@@ -269,8 +272,7 @@ export default function Section({ searchParams }: Props) {
                       {isAnnual && !plan.enterprise && !plan.free && (
                         <div className="text-center">
                           <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-50 text-green-700 border border-green-200">
-                            <Sparkles className="w-4 h-4 mr-1" />
-                            2 months free
+                            <Sparkles className="w-4 h-4 mr-1" />2 months free
                           </div>
                         </div>
                       )}
@@ -279,21 +281,25 @@ export default function Section({ searchParams }: Props) {
                     {/* Primary CTA placed right after the price */}
                     <Button
                       className={cn(
-                        "w-full mb-3 font-semibold transition-all duration-200",
+                        'w-full mb-3 font-semibold transition-all duration-200',
                         plan.featured
-                          ? "bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl"
-                          : "hover:scale-105",
+                          ? 'bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl'
+                          : 'hover:scale-105'
                       )}
-                      variant={plan.featured ? "default" : "outline"}
+                      variant={plan.featured ? 'default' : 'outline'}
                       asChild
-                      aria-label={`Select ${plan.name} ${plan.enterprise ? "" : isAnnual ? "annual" : "monthly"} plan`}
-                      data-analytics-id={`pricing_cta_${toPlanKey(plan.name)}_${plan.enterprise ? "custom" : isAnnual ? "annual" : "monthly"}`}
+                      aria-label={`Select ${plan.name} ${plan.enterprise ? '' : isAnnual ? 'annual' : 'monthly'} plan`}
+                      data-analytics-id={`pricing_cta_${toPlanKey(plan.name)}_${plan.enterprise ? 'custom' : isAnnual ? 'annual' : 'monthly'}`}
                       data-analytics-name={`${plan.name} (Pricing)`}
                       data-analytics-context={JSON.stringify({
-                        source: "pricing",
-                        section: "pricing",
+                        source: 'pricing',
+                        section: 'pricing',
                         plan: toPlanKey(plan.name),
-                        billing: plan.enterprise ? "custom" : isAnnual ? "annual" : "monthly",
+                        billing: plan.enterprise
+                          ? 'custom'
+                          : isAnnual
+                            ? 'annual'
+                            : 'monthly',
                       })}
                     >
                       <a
@@ -315,7 +321,7 @@ export default function Section({ searchParams }: Props) {
                       ) : (
                         <span className="inline-flex items-center">
                           <RefreshCw className="w-3 h-3 mr-1" />
-                          Cancel anytime
+                          {isAnnual ? 'Annual billing' : 'Monthly billing'}
                         </span>
                       )}
                     </p>
