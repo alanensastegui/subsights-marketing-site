@@ -59,6 +59,9 @@ describe('website inquiry form', () => {
       )
     );
     expect(screen.queryByText('Your request is in.')).toBeNull();
+    await waitFor(() =>
+      expect(screen.getByRole('alert')).toBe(document.activeElement)
+    );
     expect(
       (screen.getByLabelText('Work email *') as HTMLInputElement).value
     ).toBe('visitor@example.test');
@@ -66,9 +69,9 @@ describe('website inquiry form', () => {
       screen.getByRole('button', { name: 'Send my website question' })
     );
     await waitFor(() =>
-      expect(screen.getByRole('status').textContent).toContain(
-        'Your request is in.'
-      )
+      expect(
+        screen.getByRole('status', { name: 'Your request is in.' }).textContent
+      ).toContain('Your request is in.')
     );
     expect(JSON.parse(delivery.mock.calls[1][1].body).industry).toBe(
       'publishers'
@@ -76,6 +79,34 @@ describe('website inquiry form', () => {
     expect(JSON.parse(delivery.mock.calls[1][1].body).customerQuestion).toBe(
       'Which program fits?'
     );
+  });
+
+  it('focuses a network failure and preserves the visitor question for retry', async () => {
+    const delivery = vi.fn().mockRejectedValue(new TypeError('Failed to fetch'));
+    vi.stubGlobal('fetch', delivery);
+    render(<DemoRequestForm />);
+    for (const [label, value] of [
+      ['First name *', 'Example'],
+      ['Last name *', 'Visitor'],
+      ['Work email *', 'visitor@example.test'],
+      ['A question your visitors ask (optional)', 'Can I compare the programs?'],
+    ]) {
+      fireEvent.change(screen.getByLabelText(label), { target: { value } });
+    }
+    fireEvent.click(
+      screen.getByRole('button', { name: 'Send my website question' })
+    );
+    await waitFor(() =>
+      expect(screen.getByRole('alert')).toBe(document.activeElement)
+    );
+    expect(
+      (screen.getByLabelText('A question your visitors ask (optional)') as HTMLTextAreaElement).value
+    ).toBe('Can I compare the programs?');
+    expect(
+      screen.getByRole('button', { name: 'Send my website question' }).hasAttribute('disabled')
+    ).toBe(false);
+    expect(delivery).toHaveBeenCalledTimes(1);
+    expect(screen.queryByRole('status')).toBeNull();
   });
 
   it('explains missing fields and focuses the first one without submitting', async () => {
@@ -89,6 +120,16 @@ describe('website inquiry form', () => {
     expect(screen.getByRole('alert').textContent).toContain(
       'highlighted fields'
     );
+    await waitFor(() =>
+      expect(screen.getByLabelText('First name *')).toBe(document.activeElement)
+    );
+    expect(delivery).not.toHaveBeenCalled();
+    const previousAlert = screen.getByRole('alert');
+    fireEvent.click(
+      screen.getByRole('button', { name: 'Send my website question' })
+    );
+    expect(screen.getByRole('alert')).not.toBe(previousAlert);
+    expect(screen.getByRole('alert').textContent).toContain('highlighted fields');
     await waitFor(() =>
       expect(screen.getByLabelText('First name *')).toBe(document.activeElement)
     );

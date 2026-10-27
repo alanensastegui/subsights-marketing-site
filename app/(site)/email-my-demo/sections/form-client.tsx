@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
@@ -84,10 +84,13 @@ export default function DemoRequestForm() {
   const [marketingOptIn, setMarketingOptIn] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [requestError, setRequestError] = useState('');
+  const [errorVersion, setErrorVersion] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
+  const requestErrorRef = useRef<HTMLParagraphElement>(null);
+  const successTitleId = useId();
 
   useEffect(() => {
     const firstField = [
@@ -104,8 +107,16 @@ export default function DemoRequestForm() {
     if (submitted) successRef.current?.focus();
   }, [submitted]);
 
+  useEffect(() => {
+    if (requestError && !isSubmitting && !Object.keys(errors).length) {
+      requestErrorRef.current?.focus();
+    }
+  }, [requestError, isSubmitting, errors]);
+
   function showFieldErrors(nextErrors: Record<string, string>) {
     setErrors(nextErrors);
+    // A repeated invalid submit must create a new live announcement.
+    setErrorVersion((version) => version + 1);
     setRequestError('Please check the highlighted fields.');
   }
 
@@ -165,10 +176,13 @@ export default function DemoRequestForm() {
       <div
         className="mt-8 rounded-2xl border border-border bg-card p-7"
         role="status"
+        aria-labelledby={successTitleId}
         tabIndex={-1}
         ref={successRef}
       >
-        <h2 className="text-2xl font-semibold">Your request is in.</h2>
+        <h2 id={successTitleId} className="text-2xl font-semibold">
+          Your request is in.
+        </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
           Thanks for the context. Our team will review it and reply to the email
           address you shared.
@@ -305,7 +319,13 @@ export default function DemoRequestForm() {
         </label>
       </div>
       {requestError && (
-        <p role="alert" className="text-sm text-destructive">
+        <p
+          key={errorVersion}
+          ref={requestErrorRef}
+          role="alert"
+          tabIndex={-1}
+          className="text-sm text-destructive focus-visible:outline-2 focus-visible:outline-offset-4"
+        >
           {requestError}
         </p>
       )}
