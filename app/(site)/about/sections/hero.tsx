@@ -1,4 +1,4 @@
-import { Animate } from "@/components/ui/animate";
+import { Animate } from '@/components/ui/animate';
 
 type Copy = {
   title: string;
@@ -8,15 +8,15 @@ type Copy = {
   };
 };
 
-export const sectionId = "hero";
+export const sectionId = 'hero';
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Trust, built in",
+  title: 'Made for your website. Backed by our team.',
   productScreenshot: {
-    posterJpg: "/images/product-screenshots/conversations-graph.png",
+    posterJpg: '/images/product-screenshots/conversations-graph.png',
     ariaLabel:
-      "Subsights auto-summarizes conversations and highlights root causes in real time.",
+      'Subsights auto-summarizes conversations and highlights root causes in real time.',
   },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----

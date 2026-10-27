@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import { ApolloTracker } from "@/components/layout/apollo-tracker";
 
 export const metadata: Metadata = {
     icons: {
@@ -31,9 +30,6 @@ export const metadata: Metadata = {
 export default function DemoLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en" className="h-full">
-            <head>
-                <ApolloTracker appId={process.env.NEXT_PUBLIC_APOLLO_APP_ID} />
-            </head>
             <body className="bg-background text-foreground flex flex-col h-full">
                 <header className="border-b px-6 py-3 flex items-center justify-between bg-background">
                     {/* TODO: Switch back to internal Link when main site is ready */}

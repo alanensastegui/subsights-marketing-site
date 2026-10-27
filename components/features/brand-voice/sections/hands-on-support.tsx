@@ -20,30 +20,35 @@ export const sectionId = "hands-on-support";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Expert support for complex needs",
-  description: "When your needs go beyond self-service, our team steps in. We work with you directly to design workflows, integrate systems, and ensure your teammate performs to your exact standards.",
+  title: 'Expert support for complex needs',
+  description:
+    'Work directly with our team on setup, answer quality and changes to your assistant. Bespoke integrations and larger improvements have an agreed scope and price before work begins.',
   features: [
     {
-      title: "Custom workflow design",
-      description: "Our team builds workflows and integrations tailored to your business processes.",
-      icon: Wrench
+      title: 'Custom workflow design',
+      description:
+        'Discuss the workflow you need. We confirm the connection, required behavior and price before building.',
+      icon: Wrench,
     },
     {
-      title: "Dedicated partnership",
-      description: "We partner with you on setup, optimization, and ongoing improvements.",
-      icon: Headphones
+      title: 'Dedicated partnership',
+      description:
+        'We partner with you on setup, optimization, and ongoing improvements.',
+      icon: Headphones,
     },
     {
-      title: "Quality assurance",
-      description: "We test and validate every detail to meet your specifications.",
-      icon: CheckCircle
+      title: 'Quality assurance',
+      description:
+        'Test important questions, links and handoffs against the agreed behavior.',
+      icon: CheckCircle,
     },
     {
-      title: "Ongoing optimization",
-      description: "We monitor performance and refine continuously to keep your teammate at its best.",
-      icon: MessageCircle
-    }
-  ]
+      title: 'Ongoing optimization',
+      description:
+        'Use conversation reviews and your feedback to choose improvements. Your plan sets support and reporting arrangements.',
+      icon: MessageCircle,
+    },
+  ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

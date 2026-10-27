@@ -1,20 +1,22 @@
-import type { ComponentType } from "react";
-import type { FeatureMetadata, FeatureName, FeaturePackage } from "./types";
-import { Rocket, BookOpen, Palette, MessageCircle } from "lucide-react";
+import type { ComponentType } from 'react';
+import type { FeatureMetadata, FeatureName, FeaturePackage } from './types';
+import { Rocket, BookOpen, Palette, MessageCircle } from 'lucide-react';
 
 // Central metadata registry
 export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
   'setup-onboarding': {
     id: 'setup-onboarding',
     title: 'Setup & Onboarding',
-    description: 'No code required. Real results on day one',
-    ctaTitle: 'Get value on day one.',
+    description:
+      'Choose sources, shape the behavior and test real questions with us.',
+    ctaTitle: 'Launch with a tested setup.',
   },
   'knowledge-base': {
     id: 'knowledge-base',
     title: 'Knowledge Base',
-    description: 'Define what\'s in scope. Your AI Teammate responds with accuracy',
-    ctaTitle: 'Keep every answer accurate.',
+    description:
+      'Choose the content your assistant uses and review important answers.',
+    ctaTitle: 'Keep your sources and answers useful.',
   },
   'brand-voice': {
     id: 'brand-voice',
@@ -28,10 +30,11 @@ export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
   //   description: 'Connect your workflow. Tools that turn chats into outcomes',
   //   ctaTitle: 'Connect your tools.',
   // },
-  'conversations': {
+  conversations: {
     id: 'conversations',
     title: 'Conversations',
-    description: 'Your command center for auditing, feedback, and insights',
+    description:
+      'Review conversations, flag problems and find useful improvements.',
     ctaTitle: 'Close the loop faster.',
   },
   // 'analytics': {
@@ -43,12 +46,15 @@ export const featureMetadata: Record<FeatureName, FeatureMetadata> = {
 };
 
 // Map feature names to their icon components
-export const iconMap: Record<FeatureName, ComponentType<{ className?: string }>> = {
+export const iconMap: Record<
+  FeatureName,
+  ComponentType<{ className?: string }>
+> = {
   'setup-onboarding': Rocket,
   'knowledge-base': BookOpen,
   'brand-voice': Palette,
   // 'integrations': Workflow,
-  'conversations': MessageCircle,
+  conversations: MessageCircle,
   // 'analytics': BarChart3,
 };
 
@@ -71,7 +77,7 @@ const featurePackages: Record<FeatureName, () => Promise<FeaturePackage>> = {
   //   metadata: featureMetadata['integrations'],
   //   Page: (await import('@/components/features/integrations')).default,
   // }),
-  'conversations': async () => ({
+  conversations: async () => ({
     metadata: featureMetadata['conversations'],
     Page: (await import('@/components/features/conversations')).default,
   }),
@@ -96,7 +102,9 @@ export function getAllFeatureMetadata(): FeatureMetadata[] {
  * Get a single feature package by id
  * Uses caching to avoid re-importing the same package
  */
-export async function getFeaturePackage(id: FeatureName): Promise<FeaturePackage | null> {
+export async function getFeaturePackage(
+  id: FeatureName
+): Promise<FeaturePackage | null> {
   // Return cached package if available
   if (packageCache.has(id)) {
     return packageCache.get(id)!;
@@ -140,4 +148,3 @@ export function getAllFeatureIds(): readonly FeatureName[] {
 export function isFeatureName(id: string): id is FeatureName {
   return id in featurePackages;
 }
-

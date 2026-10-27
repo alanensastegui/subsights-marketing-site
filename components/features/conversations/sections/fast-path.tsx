@@ -24,7 +24,8 @@ const copy = {
   steps: [
     {
       title: 'Open your report',
-      description: 'Start from your daily, automated email summary.',
+      description:
+        'Use the conversation dashboard or the reports included in your plan.',
       icon: MailOpen,
     },
     {
@@ -35,7 +36,7 @@ const copy = {
     {
       title: 'Flag or star',
       description:
-        'Leave a comment, change status, and our team handles the rest.',
+        'Leave a comment or review status. Share the conversation with our team when you need a correction.',
       icon: CheckCircle2,
     },
   ],

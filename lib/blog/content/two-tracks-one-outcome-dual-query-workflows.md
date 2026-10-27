@@ -67,13 +67,13 @@ You don’t need to implement these workflows yourself. Our team designs, config
 
 ---
 
-## Field example: All Allied Health Schools
+## Historical field example: All Allied Health Schools
 
-Lead-gen platforms face a double mandate: help users navigate high-stakes decisions *and* guide them to relevant affiliate partner programs (APLs). All Allied Health Schools deployed Subsights as an expert advisor with a **mandatory Dual-Query** design—one track for factual guidance, one track that continuously surfaces best-fit APLs. The assistant stays helpful while reliably creating high-intent leads.
+Lead-gen platforms face a double mandate: help users navigate high-stakes decisions *and* guide them to relevant affiliate partner programs (APLs). All Allied Health Schools previously deployed Subsights with a **mandatory Dual-Query** design: one track for factual guidance and another for relevant affiliate partner programs (APLs). It is a former customer, not a current deployment. The intended outcome was useful guidance and relevant program referrals; a link click alone did not establish an application, enrollment or qualified lead.
 
-When no direct match exists, the system doesn’t stall. A **hierarchical APL fallback** selects the next-best alternative by job similarity and education level, turning potential dead ends into opportunities rather than exits. For nursing/CNA queries, it follows a **specialized pathway** to promote a sister site—an example of business-aware routing baked into the workflow.
+The configuration included a **hierarchical APL fallback** and a nursing/CNA route to a sister site. Those were intended matching rules, not proof that every recommendation was suitable. A useful referral still needed the visitor’s location, credential requirements and the exact program to agree.
 
-In practice, this means handling complex questions 24/7 (e.g., localized school searches, credential validation, scholarships), switching languages when needed, and continuously nudging toward qualified program matches. The team also benefits from conversation analysis that exposes popular careers, friction points, and geographic demand—fuel for content and partnership strategy.
+The retained conversations show the questions visitors brought to the assistant, including localized school searches, credential requirements and scholarships. Reviewing those conversations can reveal content gaps and unsuitable recommendations as well as successful guidance.
 
 ---
 
@@ -109,4 +109,4 @@ The goal isn’t to drown you in metrics. It’s to make the assistant’s reaso
 
 ---
 
-**Sound interesting? The same workflows that power All Allied Health Schools and DMOs are available to you too—built to turn every conversation into an opportunity.**
+**Want a useful assistant for your website? We configure its sources, permitted actions and recommendations around your visitors, then check the complete conversations.**

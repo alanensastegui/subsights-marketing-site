@@ -16,7 +16,8 @@ const copy = {
   features: [
     {
       title: 'Review for quality',
-      description: 'Ensure every chat reflects your standards and brand voice.',
+      description:
+        'Review answers against approved sources, answer boundaries and brand voice.',
     },
     {
       title: 'Collaborate in place',

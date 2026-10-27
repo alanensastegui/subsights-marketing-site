@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { buildMetadata } from "@/lib/seo";
-import { getAllCaseStudySlugs, getCaseStudyBySlug } from "@/lib/case-studies";
-import CaseStudyHero from "./sections/hero";
-import CaseStudyContent from "./sections/content";
-import CaseStudyMetrics from "./sections/metrics";
-import CaseStudyTestimonial from "./sections/testimonial";
-import CallToAction from "./sections/call-to-action";
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { buildMetadata } from '@/lib/seo';
+import { getAllCaseStudySlugs, getCaseStudyBySlug } from '@/lib/case-studies';
+import CaseStudyHero from './sections/hero';
+import CaseStudyContent from './sections/content';
+import CaseStudyMetrics from './sections/metrics';
+import CaseStudyTestimonial from './sections/testimonial';
+import CallToAction from './sections/call-to-action';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -25,16 +25,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!caseStudy) {
     return {
-      title: "Case Study Not Found",
+      title: 'Case Study Not Found',
     };
   }
 
   return buildMetadata({
-    title: `${caseStudy.company} Case Study - Customer Success Story`,
+    title: `${caseStudy.company} | Implementation Story`,
     description: caseStudy.overview.challenge,
     path: `/case-studies/${caseStudy.slug}`,
     image: caseStudy.logo,
-    ogType: "article",
+    ogType: 'article',
   });
 }
 
@@ -56,7 +56,9 @@ export default async function CaseStudyPage({ params }: Props) {
 
   return (
     <main className="min-h-screen">
-      {Sections.map((S, i) => <S key={i} />)}
+      {Sections.map((S, i) => (
+        <S key={i} />
+      ))}
     </main>
   );
 }

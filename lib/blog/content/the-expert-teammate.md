@@ -29,10 +29,10 @@ There’s a better approach: strong guardrails informed by real context.
 The Subsights Expert Teammate combines two opinionated pieces:
 
 1. **Your Business Playbook.**  
-   We codify the non-negotiables — pricing tiers, shipping rules, qualification criteria. Clear boundaries that align every response with the way you run the business. See how [All Allied Health Schools](https://www.subsights.com/case-studies/all-allied-health-schools) uses this approach to qualify leads.
+   We codify the non-negotiables — pricing tiers, shipping rules, qualification criteria. Clear boundaries that align every response with the way you run the business. Our past work with [All Allied Health Schools](https://www.subsights.com/case-studies/all-allied-health-schools) applied this approach to guiding readers to relevant school program links.
 
 2. **The AI's Reasoning Engine.**  
-   A small team of specialized agents interprets messy, human questions and selects the right play. Not generic chatter — disciplined execution of your playbook, conversation by conversation. See how [Dylan's Tours](https://www.subsights.com/case-studies/dylans-tours) uses this approach to handle complex travel inquiries and drive revenue through strategic upselling.
+   A small team of specialized agents interprets messy, human questions and selects the right play. Not generic chatter — disciplined execution of your playbook, conversation by conversation. See how [Visit Sun Valley](https://www.subsights.com/case-studies/visit-sun-valley) uses Subsights to help visitors explore its destination and find useful travel information.
 
 Vision with constraints. Flexibility without drift.
 

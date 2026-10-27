@@ -1,19 +1,20 @@
-import { Animate } from "@/components/ui/animate";
+import { Animate } from '@/components/ui/animate';
 
 type Copy = {
   lead: string;
   paragraphs: string[];
 };
 
-export const sectionId = "narrative";
+export const sectionId = 'narrative';
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  lead: "We’re crafting the AI teammate that answers clearly and acts reliably. Momentum, not noise",
+  lead: 'Helpful website AI, without making it your new project.',
   paragraphs: [
-    "We built Subsights because the tools meant to help started getting in the way. Website chatbots became clunky, generic, noisy. We made a teammate instead—fast, useful, and easy to trust.",
-    "It began as a lightweight site assistant. It’s now a platform that learns your business end-to-end. An expert brain for your website: answers with precision, guides at the right moment, and hands off to your team when it matters.",
-    "Teams across industries—from local tour operators to private lenders—use Subsights to cut noise, reclaim hours, and convert high-intent leads they’d otherwise miss. Focus stays where it should: serving customers and growing the business.",
+    'We built Subsights to make it easier to give website visitors useful answers. A small assistant can match your brand and help people find the right page, program or person.',
+    'You bring your website and the questions your customers ask. We work with you on its sources, appearance and responses, handle setup, and keep improving it with you.',
+    'Conversations give your team another way to understand visitors: what they need, what confuses them and which information is hard to find. Bespoke integrations are scoped separately, so the service fits what your business actually needs.',
+    'We use AI throughout our development work to help us investigate problems, build improvements and test changes. You work directly with the people responsible for the product, from initial setup through ongoing care.',
   ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -42,7 +43,10 @@ export default function Section() {
             {/* Right column - Paragraphs */}
             <div className="animate-item space-y-6">
               {c.paragraphs.map((paragraph, i) => (
-                <p key={i} className="text-lg leading-relaxed text-muted-foreground">
+                <p
+                  key={i}
+                  className="text-lg leading-relaxed text-muted-foreground"
+                >
                   {paragraph}
                 </p>
               ))}
