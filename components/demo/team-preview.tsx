@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AnswerImprovementPreview } from './answer-improvement-preview';
@@ -54,6 +54,27 @@ function Metrics({ values }: { values: (typeof reports)[Cadence] }) {
 export function TeamPreview({ demo }: { demo: ProspectDemo }) {
   const [cadence, setCadence] = useState<Cadence>('Weekly');
   const [tab, setTab] = useState('analytics');
+
+  useEffect(() => {
+    function selectSample() {
+      const samples: Record<string, string> = {
+        '#sample-report': 'report',
+        '#sample-notification': 'notification',
+        '#sample-improvement': 'improvement',
+        '#team-preview': 'analytics',
+      };
+      const sample = samples[window.location.hash];
+      if (!sample) return;
+      setTab(sample);
+      // Select the labelled illustration without remounting the chat or its draft.
+      requestAnimationFrame(() => {
+        document.getElementById('team-preview')?.scrollIntoView({ block: 'start' });
+      });
+    }
+    selectSample();
+    window.addEventListener('hashchange', selectSample);
+    return () => window.removeEventListener('hashchange', selectSample);
+  }, []);
 
   function openImprovement() {
     setTab('improvement');

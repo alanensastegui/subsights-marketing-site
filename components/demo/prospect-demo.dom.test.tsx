@@ -24,3 +24,16 @@ it.each(PROSPECT_DEMOS)(
     expect(document.body.textContent).toContain('Your test chat above does not update them or send a report.');
   }
 );
+
+it.each(PROSPECT_DEMOS)('keeps $slug setup in the same chat without a save claim', (demo) => {
+  const document = new DOMParser().parseFromString(
+    renderToStaticMarkup(<ProspectDemoPage demo={demo} />), 'text/html'
+  );
+  const link = Array.from(document.querySelectorAll('a')).find(
+    link => link.textContent?.includes('Plan setup in the chat')
+  )!;
+  expect(link.getAttribute('href')).toBe('#live-assistant');
+  expect(document.body.textContent).toContain('These are proposals in the');
+  expect(document.querySelectorAll('iframe')).toHaveLength(1);
+  expect(document.querySelector('script[src*="chatbot.js"]')).toBeNull();
+});
