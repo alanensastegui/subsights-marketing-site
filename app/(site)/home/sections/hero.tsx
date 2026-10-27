@@ -14,9 +14,10 @@ export const sectionId = 'hero';
 // ---- SECTION COPY REGION ----
 const copy = {
   eyebrow: 'Affordable AI for your website',
-  heading: 'A helpful assistant. Made for your website.',
+  heading:
+    'Your website assistant, shaped around your business and cared for by its builders.',
   description:
-    'A branded AI widget that answers questions using your content and helps visitors take the next step. We set it up, match your style and keep improving it with you.',
+    'Subsights helps visitors find useful answers and take the next step. We work with you on the content, appearance and behavior, test realistic questions before launch, and help improve the experience as you learn what visitors need.',
   note: 'Managed plans from $1,990 a year. Setup and ongoing care included.',
   question: "We're visiting without a car. Where should we start?",
   answer:

@@ -31,79 +31,89 @@ export const sectionId = "how-it-works";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "How it works",
-  subtitle: "Build your knowledge base with flexible options designed for different workflows",
+  title: 'How it works',
+  subtitle:
+    'Build your knowledge base with flexible options designed for different workflows',
   methods: [
     {
-      title: "Train from your website",
-      description: "Connect your existing website content to build a comprehensive knowledge base that stays up-to-date automatically.",
+      title: 'Use your website content',
+      description:
+        'Choose approved website content and agree on how updates will be imported and checked.',
       icon: Globe,
       features: [
         {
-          title: "Sitemap",
-          description: "Import your entire sitemap or select branches with cut-off dates for control. Updates sync every hour — the fastest way to keep content current.",
+          title: 'Sitemap',
+          description:
+            'Import a sitemap or select the sections the assistant should use. Confirm the refresh process during setup and verify important changes.',
           icon: Map,
-          videoSrc: "/features/add-sitemap.mp4"
+          videoSrc: '/features/add-sitemap.mp4',
         },
         {
-          title: "Single URL",
-          description: "Add important pages individually. Updates sync weekly.",
+          title: 'Single URL',
+          description:
+            'Add important pages individually. Check the source status and test answers when those pages change.',
           icon: Link,
-          videoSrc: "/features/single-url.mp4"
+          videoSrc: '/features/single-url.mp4',
         },
         {
-          title: "One-click control",
-          description: "Include or exclude single URLs from your teammate's knowledge instantly.",
+          title: 'One-click control',
+          description:
+            "Choose which URLs belong in the assistant's sources, then test the affected answers.",
           icon: ToggleLeft,
-          videoSrc: "/features/toggle-data-source.mp4"
+          videoSrc: '/features/toggle-data-source.mp4',
         },
-      ]
+      ],
     },
     {
-      title: "Direct file uploads",
-      description: "Upload documents and manuals that fuel your teammate’s responses, from price lists to product guides.",
+      title: 'Direct file uploads',
+      description:
+        'Upload documents and manuals that fuel your teammate’s responses, from price lists to product guides.',
       icon: FileText,
       features: [
         {
-          title: "Supported formats",
-          description: "PDF, Markdown, and text files.",
+          title: 'Supported formats',
+          description: 'PDF, Markdown, and text files.',
           icon: Upload,
-          videoSrc: "/features/file-upload.mp4"
+          videoSrc: '/features/file-upload.mp4',
         },
         {
-          title: "One-click control",
-          description: "Include or exclude specific files from your teammate's knowledge instantly.",
+          title: 'One-click control',
+          description:
+            'Choose which files the assistant should use and verify changes with realistic questions.',
           icon: ToggleLeft,
-          videoSrc: "/features/toggle-data-source.mp4"
+          videoSrc: '/features/toggle-data-source.mp4',
         },
-      ]
+      ],
     },
     {
-      title: "Manual text input",
-      description: "Add knowledge directly with structured content, Q&A pairs, and specific directives.",
+      title: 'Manual text input',
+      description:
+        'Add knowledge directly with structured content, Q&A pairs, and specific directives.',
       icon: PenTool,
       features: [
         {
-          title: "Simple text",
-          description: "Write topics with a title and supporting content.",
+          title: 'Simple text',
+          description: 'Write topics with a title and supporting content.',
           icon: Type,
-          videoSrc: "/features/text-sources.mp4"
+          videoSrc: '/features/text-sources.mp4',
         },
         {
-          title: "Q&A pairs",
-          description: "Set questions with exact answers for consistent responses.",
+          title: 'Q&A pairs',
+          description:
+            'Add approved question-and-answer pairs for important topics, then check the responses.',
           icon: HelpCircle,
-          videoSrc: "/features/qa-pairs.mp4"
+          videoSrc: '/features/qa-pairs.mp4',
         },
         {
-          title: "One-click control",
-          description: "Include or exclude single entries from your teammate's knowledge instantly.",
+          title: 'One-click control',
+          description:
+            'Choose which entries the assistant should use and check the affected answers.',
           icon: ToggleLeft,
-          videoSrc: "/features/toggle-data-source.mp4"
-        }
-      ]
-    }
-  ]
+          videoSrc: '/features/toggle-data-source.mp4',
+        },
+      ],
+    },
+  ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

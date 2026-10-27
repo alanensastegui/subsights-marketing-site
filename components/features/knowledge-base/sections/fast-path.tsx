@@ -15,21 +15,23 @@ export const sectionId = "fast-path";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Fast path to precise answers",
+  title: 'Choose, test and improve',
   steps: [
     {
-      title: "Bring content in",
-      description: "Connect your website, upload files, or add text directly.",
+      title: 'Bring content in',
+      description: 'Connect your website, upload files, or add text directly.',
       icon: Zap,
     },
     {
-      title: "Test edge cases",
-      description: "Try different questions to see how your AI responds.",
+      title: 'Test edge cases',
+      description:
+        'Try real questions, missing-information cases and questions that should go to your team.',
       icon: Target,
     },
     {
-      title: "Launch with confidence",
-      description: "Launch, learn from real use, and evolve with our support.",
+      title: 'Launch with confidence',
+      description:
+        'Review conversations, share corrections and verify changes with our team.',
       icon: Rocket,
     },
   ],

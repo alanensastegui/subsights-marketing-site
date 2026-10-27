@@ -3,9 +3,9 @@ import Home from './home/page';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Affordable Website AI, Managed for You',
+  title: 'Your Website Assistant, Cared for by Its Builders',
   description:
-    'A branded AI widget for destinations, private lenders and publishers. Subsights handles setup and ongoing care. Managed plans from $1,990 a year.',
+    'A website assistant shaped around your business. Work with its builders on content, appearance and answers, with testing before launch and ongoing care.',
   path: '/',
 });
 

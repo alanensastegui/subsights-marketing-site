@@ -6,8 +6,8 @@ import Team from "./sections/team";
 import News from "./sections/news";
 
 export const metadata: Metadata = buildMetadata({
-    title: "About Us",
-    description: "Learn about the Subsights team and our mission to build smarter AI assistants.",
+    title: 'About Us',
+    description: 'Meet Alán, Lucas and Ryan, the builders of Subsights. Personal setup, AI-assisted development and ongoing care for an assistant shaped around your business.',
     path: "/about",
 });
 

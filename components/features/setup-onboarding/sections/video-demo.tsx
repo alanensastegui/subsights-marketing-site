@@ -11,9 +11,10 @@ export const sectionId = "video-demo";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Start fast—not later",
-  subtitle: "Purpose-built to take you from sign-up to a live AI teammate—no noise, no headaches. Setup that gets out of your way so you can get back to work. ",
-  videoId: "iicp8Ydxrnk",
+  title: 'See how setup works',
+  subtitle:
+    'Watch the setup controls, then work with us to select sources, shape the experience and test the questions that matter to your visitors.',
+  videoId: 'iicp8Ydxrnk',
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

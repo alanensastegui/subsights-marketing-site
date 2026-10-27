@@ -13,22 +13,26 @@ export const sectionId = "quick-setup";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  heading: "Launch without detours",
-  subheading: "Powerful tech should be simple to use. Our setup process is designed to deliver value from day one.",
+  heading: 'Setup with the people who build it',
+  subheading:
+    'Work with us on the sources, appearance and answer boundaries. Test the experience before it goes on your website.',
   features: [
     {
-      title: "Fast onboarding",
-      description: "Spin up your AI Teammate and start engaging customers right away."
+      title: 'A clear starting point',
+      description:
+        'Bring the questions your visitors ask and the pages you want them to find.',
     },
     {
-      title: "No technical hurdles",
-      description: "Skip the complexity. No custom code or heavy configuration required."
+      title: 'No technical hurdles',
+      description:
+        'We help install the widget and check the experience on phone and desktop.',
     },
     {
-      title: "Support when you need it",
-      description: "Get hands-on support included with every plan—whenever you need it."
-    }
-  ]
+      title: 'Support when you need it',
+      description:
+        'Setup and managed support are included. Your plan sets the usage limits and support arrangements.',
+    },
+  ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

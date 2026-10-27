@@ -11,9 +11,10 @@ export const sectionId = "video-demo";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Answers you can trust",
-  subtitle: "Control the knowledge your AI Teammate uses. Every answer stays accurate, consistent, and reliable.",
-  videoId: "nwFlzhBB_gI",
+  title: 'See how sources shape answers',
+  subtitle:
+    'Choose the knowledge your assistant can use. Test realistic questions, check important details and flag answers that need attention.',
+  videoId: 'nwFlzhBB_gI',
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

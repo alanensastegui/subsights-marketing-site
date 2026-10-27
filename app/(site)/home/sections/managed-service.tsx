@@ -27,7 +27,7 @@ const copy = {
     {
       title: 'Keep learning',
       description:
-        'Review conversations, link clicks and recurring questions. Use what people ask to improve both the assistant and your website.',
+        'Review conversations, link clicks and recurring questions with us. Share a conversation that needs attention, request a source or behavior change, and test the revised answer together. Larger integrations are scoped separately.',
     },
   ],
   insight: {

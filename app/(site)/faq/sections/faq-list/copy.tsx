@@ -24,6 +24,13 @@ export const copy: { faqs: FAQ[] } = {
         'Conversation and link-click reporting helps identify common questions, missing information and answers that need attention. We use those findings and your feedback to update sources and behavior. Information changes need to be added and verified; the assistant does not automatically know everything that has changed.',
     },
     {
+      id: 'managed-care',
+      category: 'Getting Started',
+      question: 'How do I request a correction or improvement?',
+      answer:
+        'Email support@subsights.com with the conversation link or example question, what needs to change and the correct information. For a content update, include the approved page or source. We can review the sources, wording, appearance or behavior with you and test the revised experience.\n\nProfessional includes managed support; Professional+ includes managed priority support and its listed reporting features. Your plan and agreement set the limits and support arrangements. Bespoke integrations and larger changes are scoped and priced before work begins.',
+    },
+    {
       id: 'integration',
       category: 'Integration & Tools',
       question:
