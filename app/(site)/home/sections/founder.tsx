@@ -13,7 +13,7 @@ export const sectionId = 'founder';
 const copy = {
   heading: 'Work with the people who build it.',
   description:
-    'Built by Alán, Lucas and Ryan. Work with our team on your assistant’s appearance, sources and answers, from setup through ongoing care.',
+    'Built by Alán, Lucas and Ryan. We use AI throughout our development work to help us investigate problems, build improvements and test changes. You work directly with the people responsible for the product, from initial setup through ongoing care.',
   members: [
     {
       name: 'Alán',

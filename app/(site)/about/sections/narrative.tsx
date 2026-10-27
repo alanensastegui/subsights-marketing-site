@@ -14,6 +14,7 @@ const copy = {
     'We built Subsights to make it easier to give website visitors useful answers. A small assistant can match your brand and help people find the right page, program or person.',
     'You bring your website and the questions your customers ask. We work with you on its sources, appearance and responses, handle setup, and keep improving it with you.',
     'Conversations give your team another way to understand visitors: what they need, what confuses them and which information is hard to find. Bespoke integrations are scoped separately, so the service fits what your business actually needs.',
+    'We use AI throughout our development work to help us investigate problems, build improvements and test changes. You work directly with the people responsible for the product, from initial setup through ongoing care.',
   ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----

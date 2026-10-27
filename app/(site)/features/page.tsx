@@ -5,8 +5,8 @@ import FeaturesGrid from "./sections/features-grid";
 import FeaturesCta from "./sections/features-cta";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Features - Subsights AI",
-  description: "Discover the powerful features that make Subsights AI the perfect solution for your website conversion needs. From intelligent lead qualification to seamless integrations.",
+  title: 'Features - Subsights AI',
+  description: 'Choose sources, shape your website assistant, review conversations and test useful improvements. Work directly with the Subsights team from setup through care.',
   path: "/features",
 });
 

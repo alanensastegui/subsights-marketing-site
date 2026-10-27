@@ -12,7 +12,7 @@ export const sectionId = 'committed-to-quality';
 const copy = {
   title: 'Committed to your quality',
   description:
-    "We work alongside your team to analyze conversations, strengthen answers, and keep every exchange true to your company's standards.",
+    'Share a conversation link with the answer that needs attention and the correct information. We review the sources and behavior with you, then check the revised answer.',
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

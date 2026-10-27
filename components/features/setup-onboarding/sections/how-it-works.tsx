@@ -25,37 +25,41 @@ export const sectionId = "how-it-works";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "How it works",
-  subtitle: "Sign up today. Go live in four steps",
+  title: 'How it works',
+  subtitle: 'Agree on the experience, test it and install it',
   steps: [
     {
-      number: "01",
-      title: "Build the brain",
-      description: "Power your AI Teammate with the knowledge it needs. Upload files, link your sitemap, or add text to build a knowledge base you can trust.",
-      videoSrc: "/features/add-sitemap.mp4",
-      featureSlug: "knowledge-base"
+      number: '01',
+      title: 'Build the brain',
+      description:
+        'Choose approved website pages, documents and text sources. Check important facts and identify information that needs an update process.',
+      videoSrc: '/features/add-sitemap.mp4',
+      featureSlug: 'knowledge-base',
     },
     {
-      number: "02",
-      title: "Set the voice",
-      description: "Make your AI Teammate unmistakeably yours. Define its behavior in plain English and customize every detail to match your brand.",
-      videoSrc: "/features/editing-behavior.mp4",
-      featureSlug: "brand-voice"
+      number: '02',
+      title: 'Set the voice',
+      description:
+        'Make your AI Teammate unmistakeably yours. Define its behavior in plain English and customize every detail to match your brand.',
+      videoSrc: '/features/editing-behavior.mp4',
+      featureSlug: 'brand-voice',
     },
     {
-      number: "03",
-      title: "Wire your workflow",
-      description: "Turn conversations into action. Trigger emails, updates, and summaries right when your team needs them.",
-      videoSrc: "/features/configuring-leads.mp4",
+      number: '03',
+      title: 'Wire your workflow',
+      description:
+        'Agree on the next step for visitors: a useful link, a contact form or your team. Connections that update another business system are scoped separately.',
+      videoSrc: '/features/configuring-leads.mp4',
       // featureSlug: "integrations"
     },
     {
-      number: "04",
-      title: "Embed once",
-      description: "Paste a single script into your site and hit publish. Your AI teammate is live.",
-      videoSrc: "/features/creating-embedding.mp4"
-    }
-  ]
+      number: '04',
+      title: 'Embed once',
+      description:
+        'Test realistic questions and important links, then add the widget script. We help check appearance and behavior on the live website.',
+      videoSrc: '/features/creating-embedding.mp4',
+    },
+  ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

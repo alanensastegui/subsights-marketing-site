@@ -10,8 +10,9 @@ export const sectionId = "built-to-be-simple";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  title: "Built to be simple",
-  description: "Great technology lasts because it stays dependable. That's why we built Subsights to remain consistent, trustworthy, and simple—today and every day you use it.",
+  title: 'Built to be simple',
+  description:
+    'Keep a clear route back to the people responsible for the product. Share what needs attention, agree on the change and check the result together.',
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

@@ -13,22 +13,25 @@ export const sectionId = "value-prop";
 
 // ---- SECTION COPY REGION ----
 const copy = {
-  heading: "Knowledge that evolves with you",
-  subheading: "Content shifts over time. Your AI Teammate is built to keep up without missing a beat.",
+  heading: 'Knowledge that evolves with you',
+  subheading:
+    'Content changes. Agree on the source update process and test important answers after a change.',
   features: [
     {
-      title: "Precision at every step",
-      description: "Answers stay anchored in the materials you select."
+      title: 'Approved sources',
+      description:
+        'Choose the materials the assistant should use and test its responses against them.',
     },
     {
-      title: "Control without friction",
-      description: "Add or adjust sources with ease."
+      title: 'Control without friction',
+      description: 'Add or adjust sources with ease.',
     },
     {
-      title: "Refresh on autopilot",
-      description: "Your knowledge base stays aligned with your site."
-    }
-  ]
+      title: 'Check what changed',
+      description:
+        'Review updated information and verify the answer, especially for time-sensitive details.',
+    },
+  ],
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 

@@ -1,7 +1,7 @@
-import { Animate } from "@/components/ui/animate";
-import { ButtonDuo } from "@/components/ui/button-duo";
-import Link from "next/link";
-import { getFreeTrialUrl } from "@/lib/subscriptions";
+import { Animate } from '@/components/ui/animate';
+import { ButtonDuo } from '@/components/ui/button-duo';
+import Link from 'next/link';
+import { getFreeTrialUrl } from '@/lib/subscriptions';
 
 type Copy = {
   heading: string;
@@ -11,10 +11,11 @@ type Copy = {
 };
 
 const copy = {
-  heading: "Built for outcomes",
-  description: "Features that power your Subsights teammate—so every visit counts",
-  primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
-  secondaryCta: { label: "Start Free", href: getFreeTrialUrl() },
+  heading: 'From approved sources to useful answers',
+  description:
+    'Choose the content, test realistic questions, review conversations and work with our team on improvements.',
+  primaryCta: { label: 'Email My Demo', href: '/email-my-demo' },
+  secondaryCta: { label: 'Start Free', href: getFreeTrialUrl() },
 } satisfies Copy;
 
 export default function FeaturesHero() {
@@ -39,30 +40,34 @@ export default function FeaturesHero() {
             primary={{
               asChild: true,
               children: (
-                <Link href={copy.primaryCta.href}>
-                  {copy.primaryCta.label}
-                </Link>
+                <Link href={copy.primaryCta.href}>{copy.primaryCta.label}</Link>
               ),
-              size: "lg",
+              size: 'lg',
               dataAttributes: {
-                "data-analytics-id": "features_hero_demo",
-                "data-analytics-name": "Email My Demo (Features Hero)",
-                "data-analytics-context": '{"source":"features_hero","section":"hero"}',
+                'data-analytics-id': 'features_hero_demo',
+                'data-analytics-name': 'Email My Demo (Features Hero)',
+                'data-analytics-context':
+                  '{"source":"features_hero","section":"hero"}',
               },
             }}
             secondary={{
               asChild: true,
               children: (
-                <a href={copy.secondaryCta.href} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={copy.secondaryCta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {copy.secondaryCta.label}
                 </a>
               ),
-              variant: "outline",
-              size: "lg",
+              variant: 'outline',
+              size: 'lg',
               dataAttributes: {
-                "data-analytics-id": "features_hero_start_free",
-                "data-analytics-name": "Start Free (Features Hero)",
-                "data-analytics-context": '{"source":"features_hero","section":"hero"}',
+                'data-analytics-id': 'features_hero_start_free',
+                'data-analytics-name': 'Start Free (Features Hero)',
+                'data-analytics-context':
+                  '{"source":"features_hero","section":"hero"}',
               },
             }}
             gap="md"
@@ -75,4 +80,4 @@ export default function FeaturesHero() {
   );
 }
 
-export const sectionId = "features-hero";
+export const sectionId = 'features-hero';
