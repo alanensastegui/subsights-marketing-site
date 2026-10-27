@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "scheme": "light",
+  "start_collapsed": true,
+  "color": {
+    "light": {
+      "accent": "#172033",
+      "accent_ink": "#ffffff",
+      "surface": "#ffffff",
+      "surface_alt": "#f5f7fb",
+      "text": "#172033",
+      "text_muted": "#667085",
+      "line": "#e5e9f0",
+      "ai_bubble": "#f5f7fb",
+      "ai_text": "#172033",
+      "user_bubble": "#1f2bf3",
+      "user_text": "#ffffff",
+      "link": "#1f2bf3"
+    }
+  },
+  "type": {
+    "family": "Arial, Helvetica, sans-serif",
+    "size_base": "16px"
+  },
+  "radius": {
+    "panel": "20px",
+    "bubble": "16px",
+    "control": "12px"
+  },
+  "launcher": {
+    "shape": "pill",
+    "label": "Ask Subsights",
+    "size": "52px"
+  },
+  "tone": {
+    "placeholder": "Ask about Subsights..."
+  }
+}
