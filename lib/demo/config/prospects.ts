@@ -25,6 +25,54 @@ export type ProspectDemo = {
 
 export const PROSPECT_DEMOS: ProspectDemo[] = [
   {
+    slug: 'forks',
+    label: 'Forks Chamber of Commerce',
+    url: 'https://forkswa.com/',
+    headline: 'Plan your Forks visit.',
+    description:
+      'Ask about getting here, Forever Twilight, places to stay, or nearby beaches and rainforest. Change your timing or transport and keep the conversation going.',
+    questions: [
+      'I have 45 minutes in Forks and no car. What can I do?',
+      'Where can I check the official Forever Twilight dates?',
+      'Show me what our team would receive, then help me plan setup.',
+    ],
+    scope:
+      'This assistant uses published Forks Chamber information and linked official visitor sources, checked October 20, 2026 (Pacific time) and refreshed by our team. It cannot book tickets or rooms or check live road conditions. Ask the chat about its current tools and connections; the team samples below are fictional illustrations.',
+    sources: [
+      { label: 'Forks visitor information', url: 'https://forkswa.com/' },
+      { label: 'Area events', url: 'https://forkswa.com/things-to-do/area-events/' },
+      { label: 'Directions and transport', url: 'https://forkswa.com/plan-your-visit/directions/' },
+    ],
+    accent: '#244d3c',
+    widgetUrl:
+      'https://widget.subsights.com/index.html?view=inline&workspace_id=0XvceSLk1j&api_key=b1l8ztD9sb5UiXu4CFnb9g1esLWJDOXR',
+    teamView: [
+      { question: 'What can I do with limited time and no car?',
+        insight: 'Make practical transport and short-visit information easy to find.' },
+      { question: 'Where are the official event dates?',
+        insight: 'Keep event dates attached to their official source and year.' },
+      { question: 'Can you book a room for me?',
+        insight: 'Explain the available booking route without claiming live room inventory.' },
+    ],
+    conversation: {
+      title: 'A visitor changes the plan. The assistant keeps the constraint.',
+      turns: [
+        { question: 'Can you help me plan a visit to Forks?',
+          answer: 'Use the official visitor information to plan your visit. Your arrival date and transport will shape which ideas fit.',
+          source: { label: 'Forks visitor information', url: 'https://forkswa.com/' } },
+        { question: 'Actually, I only have 45 minutes and no car.',
+          answer: 'Keep the plan focused on Forks itself. A beach or rainforest trip needs transport and more time; I would not add one to this short stop.',
+          source: { label: 'Forks visitor information', url: 'https://forkswa.com/' } },
+        { question: 'Can you book the rest of my trip?',
+          answer: 'This preview cannot book rooms or tickets. Check the official visitor information for the available routes.',
+          source: { label: 'Forks visitor information', url: 'https://forkswa.com/' } },
+      ],
+      takeaway:
+        'This written example shows why a changed time or transport constraint needs to carry into the next answer. Try your own conversation in the live assistant above.',
+    },
+  },
+
+  {
     slug: 'kirkland-chamber',
     label: 'Kirkland Chamber of Commerce',
     url: 'https://www.kirklandchamber.org/',

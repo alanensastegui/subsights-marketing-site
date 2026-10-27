@@ -22,7 +22,8 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
           </p>
           <p className="mt-4 text-sm leading-relaxed text-slate-600">
             Ask your own questions in the live chat. Try a follow-up, change
-            your plans, or ask for a detail it cannot know.
+            your plans, or ask for a detail it cannot know. You can also ask
+            what is connected, explore the team samples or plan your setup.
           </p>
           <div className="mt-7 hidden rounded-2xl border border-slate-200 bg-white p-5 lg:block">
             <h2 className="font-semibold text-slate-950">
@@ -172,15 +173,21 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
             website update or better chatbot knowledge, with the answer checked
             again after the change.
           </p>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-300">
+            Start in the chat with “Help me plan setup.” Describe your goals and
+            correct a preference as you go. These are proposals in the
+            conversation; applying settings, connecting sources and choosing
+            staff recipients happens in your authenticated Subsights workspace.
+          </p>
           <div className="mt-5 flex flex-wrap items-center gap-5">
             <a
-              href={`mailto:team@subsights.com?subject=${encodeURIComponent(`${demo.label} assistant preview`)}`}
+              href="#live-assistant"
               className="inline-flex min-h-11 items-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-4"
               data-slot="button"
               data-analytics-id={`demo_${demo.slug.replaceAll('-', '_')}_contact`}
-              data-analytics-name="Talk through this demo (Prospect Demo)"
+              data-analytics-name="Plan setup in the chat (Prospect Demo)"
             >
-              Talk through this demo
+              Plan setup in the chat ↑
             </a>
             {demo.industryHref && (
               <Link
