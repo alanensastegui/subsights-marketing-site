@@ -104,6 +104,19 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               Open assistant in a new tab
             </a>
           </div>
+          {demo.publishedLinks && (
+            <aside className="mt-4 rounded-xl border border-slate-200 bg-white p-4" aria-label="Published guide links">
+              <p className="text-sm font-medium text-slate-950">Published next steps</p>
+              <ul className="mt-2 space-y-2 text-sm">
+                {demo.publishedLinks.map((link) => (
+                  <li key={link.url}>
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center underline underline-offset-4" style={{ color: demo.accent }}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2 text-xs leading-relaxed text-slate-600">These destinations are published in the guide, which discloses affiliate links. Opening them does not reserve a room or confirm a rate.</p>
+            </aside>
+          )}
           <p className="mt-2 text-xs leading-relaxed text-slate-600">
             Prepared independently by Subsights from selected public pages. This
             preview is not installed on {demo.label}’s website. Questions in
