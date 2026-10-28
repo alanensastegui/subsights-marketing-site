@@ -21,7 +21,7 @@ it.each(PROSPECT_DEMOS)(
     expect(fallback.getAttribute('target')).toBe('_blank');
     expect(fallback.getAttribute('rel')).toContain('noopener');
     expect(document.body.textContent).not.toContain('Preparing your personalized experience');
-    expect(document.body.textContent).toContain('Your test chat above does not update them or send a report.');
+    expect(document.body.textContent).toContain('Your test chat above does not populate these examples or send a report.');
   }
 );
 

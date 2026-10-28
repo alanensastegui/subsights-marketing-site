@@ -83,6 +83,7 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               </span>
             </div>
             <iframe
+              id={`demo-assistant-${demo.slug}`}
               src={demo.widgetUrl}
               title={`${demo.label} assistant preview`}
               className="block h-[560px] w-full border-0 sm:h-[620px]"
