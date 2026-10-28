@@ -46,7 +46,7 @@ function Metrics({ values }: { values: (typeof reports)[Cadence] }) {
           key={label}
           className="min-w-0 rounded-xl border border-slate-200 bg-white p-2 sm:p-5"
         >
-          <dt className="text-[11px] font-medium text-slate-500 sm:text-sm">
+          <dt className="break-words text-[11px] font-medium text-slate-500 sm:text-sm">
             {label}
           </dt>
           <dd className="mt-2 text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
