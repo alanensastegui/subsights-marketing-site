@@ -86,7 +86,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
       'I am already a member and our directory address is wrong. What should I do?',
     ],
     scope:
-      'Membership, public directory and October–November 2026 event information, refreshed manually. Check current event details on the official calendar. This preview cannot register visitors, change member records or notify Chamber staff. Calendar sync, report emails and lead forwarding are not connected in this preview.',
+      'Membership and directory answers use selected public pages. Event dates can be searched in the connected public Chamber calendar; confirm current details on the official listing. This preview cannot register visitors, change member records or notify Chamber staff. Report emails and lead forwarding are not connected. The team samples below are fictional illustrations.',
     sources: [
       {
         label: 'Membership benefits',
