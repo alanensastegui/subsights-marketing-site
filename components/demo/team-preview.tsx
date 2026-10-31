@@ -36,7 +36,7 @@ const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 function Metrics({ values }: { values: (typeof reports)[Cadence] }) {
   return (
-    <dl className="grid grid-cols-3 gap-2 sm:gap-4">
+    <dl className="grid gap-2 sm:grid-cols-3 sm:gap-4">
       {[
         ['Conversations', values.conversations],
         ['Messages', values.messages],
@@ -44,12 +44,12 @@ function Metrics({ values }: { values: (typeof reports)[Cadence] }) {
       ].map(([label, value]) => (
         <div
           key={label}
-          className="min-w-0 rounded-xl border border-slate-200 bg-white p-2 sm:p-5"
+          className="flex min-w-0 items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-3 sm:block sm:p-5"
         >
-          <dt className="break-words text-[11px] font-medium text-slate-500 sm:text-sm">
+          <dt className="text-sm font-medium text-slate-500">
             {label}
           </dt>
-          <dd className="mt-2 text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
+          <dd className="text-2xl font-semibold tracking-tight text-slate-950 sm:mt-2 sm:text-3xl">
             {value}
           </dd>
         </div>
