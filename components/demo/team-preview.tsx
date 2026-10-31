@@ -1,6 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  previewHash,
+  readPreviewHash,
+  readPreviewMessage,
+  type DemoPreview,
+  type PreviewChange,
+} from '@/lib/demo/preview';
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AnswerImprovementPreview } from './answer-improvement-preview';
@@ -29,7 +36,7 @@ const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 function Metrics({ values }: { values: (typeof reports)[Cadence] }) {
   return (
-    <dl className="grid grid-cols-3 gap-2 sm:gap-4">
+    <dl className="grid gap-2 sm:grid-cols-3 sm:gap-4">
       {[
         ['Conversations', values.conversations],
         ['Messages', values.messages],
@@ -37,12 +44,12 @@ function Metrics({ values }: { values: (typeof reports)[Cadence] }) {
       ].map(([label, value]) => (
         <div
           key={label}
-          className="min-w-0 rounded-xl border border-slate-200 bg-white p-2 sm:p-5"
+          className="flex min-w-0 items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-3 sm:block sm:p-5"
         >
-          <dt className="text-[11px] font-medium text-slate-500 sm:text-sm">
+          <dt className="text-sm font-medium text-slate-500">
             {label}
           </dt>
-          <dd className="mt-2 text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
+          <dd className="text-2xl font-semibold tracking-tight text-slate-950 sm:mt-2 sm:text-3xl">
             {value}
           </dd>
         </div>
@@ -52,32 +59,63 @@ function Metrics({ values }: { values: (typeof reports)[Cadence] }) {
 }
 
 export function TeamPreview({ demo }: { demo: ProspectDemo }) {
-  const [cadence, setCadence] = useState<Cadence>('Weekly');
-  const [tab, setTab] = useState('analytics');
+  const [preview, setPreview] = useState<DemoPreview>({
+    sample: 'analytics',
+    cadence: 'weekly',
+    staff_alerts: null,
+  });
+  const previewRef = useRef(preview);
+  const cadence = (preview.cadence[0].toUpperCase() +
+    preview.cadence.slice(1)) as Cadence;
+  const tab = preview.sample;
+  const changePreview = useCallback(
+    (change: PreviewChange, navigate = false) => {
+      const next = { ...previewRef.current, ...change };
+      previewRef.current = next;
+      setPreview(next);
+      // Only local visual choices live in this URL. No settings request or recipient data.
+      window.history.replaceState(window.history.state, '', previewHash(next));
+      if (navigate)
+        requestAnimationFrame(() => {
+          document
+            .getElementById('team-preview')
+            ?.scrollIntoView({ block: 'start' });
+        });
+    },
+    []
+  );
 
   useEffect(() => {
     function selectSample() {
-      const samples: Record<string, string> = {
-        '#sample-report': 'report',
-        '#sample-notification': 'notification',
-        '#sample-improvement': 'improvement',
-        '#team-preview': 'analytics',
-      };
-      const sample = samples[window.location.hash];
-      if (!sample) return;
-      setTab(sample);
-      // Select the labelled illustration without remounting the chat or its draft.
-      requestAnimationFrame(() => {
-        document.getElementById('team-preview')?.scrollIntoView({ block: 'start' });
-      });
+      const change = readPreviewHash(window.location.hash);
+      if (change) changePreview(change, true);
+    }
+    function receivePreview(event: MessageEvent) {
+      const frame = document.getElementById(
+        `demo-assistant-${demo.slug}`
+      ) as HTMLIFrameElement | null;
+      if (
+        !frame?.contentWindow ||
+        event.source !== frame.contentWindow ||
+        event.origin !== new URL(demo.widgetUrl).origin
+      )
+        return;
+      const change = readPreviewMessage(event.data, demo.slug);
+      if (change) changePreview(change, true);
     }
     selectSample();
     window.addEventListener('hashchange', selectSample);
-    return () => window.removeEventListener('hashchange', selectSample);
-  }, []);
+    window.addEventListener('popstate', selectSample);
+    window.addEventListener('message', receivePreview);
+    return () => {
+      window.removeEventListener('hashchange', selectSample);
+      window.removeEventListener('popstate', selectSample);
+      window.removeEventListener('message', receivePreview);
+    };
+  }, [demo.slug, demo.widgetUrl, changePreview]);
 
   function openImprovement() {
-    setTab('improvement');
+    changePreview({ sample: 'improvement' });
     requestAnimationFrame(() => {
       document.getElementById('answer-improvement-title')?.focus();
     });
@@ -113,10 +151,61 @@ export function TeamPreview({ demo }: { demo: ProspectDemo }) {
         <p className="mt-3 max-w-3xl text-xs leading-relaxed text-slate-500">
           These product illustrations use fictional numbers and example
           questions, not results from {demo.label}. Your test chat above does
-          not update them or send a report.
+          not populate these examples or send a report. Chat preview choices
+          only change the illustration.
         </p>
       </div>
-      <Tabs value={tab} onValueChange={setTab} className="gap-0">
+      <div className="space-y-3 border-b border-slate-200 bg-slate-50 p-5 sm:px-7">
+        <p className="text-sm font-semibold text-slate-950" role="status">
+          Preview choices: {cadence.toLowerCase()} report · Staff alerts{' '}
+          {preview.staff_alerts === null
+            ? 'not chosen'
+            : preview.staff_alerts
+              ? 'on'
+              : 'off'}
+        </p>
+        <p className="text-xs leading-relaxed text-slate-600">
+          Not saved or activated. No email is sent. Apply your choices in your
+          authenticated Subsights workspace.
+        </p>
+        <div className="flex flex-wrap items-center gap-3">
+          <div
+            role="group"
+            aria-label="Staff alerts in this preview"
+            className="flex flex-wrap items-center gap-1"
+          >
+            <span className="mr-2 text-xs font-medium text-slate-700">
+              Staff alerts
+            </span>
+            {([true, false] as const).map((value) => (
+              <button
+                key={String(value)}
+                type="button"
+                aria-pressed={preview.staff_alerts === value}
+                onClick={() =>
+                  changePreview({ sample: tab, staff_alerts: value })
+                }
+                className={`min-h-11 rounded-lg px-4 text-xs font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 ${preview.staff_alerts === value ? 'bg-slate-900 text-white' : 'border border-slate-200 bg-white text-slate-700'}`}
+              >
+                {value ? 'On' : 'Off'}
+              </button>
+            ))}
+          </div>
+          <a
+            href="#live-assistant"
+            className="inline-flex min-h-11 items-center text-xs font-semibold text-slate-700 underline underline-offset-4"
+          >
+            Back to the chat ↑
+          </a>
+        </div>
+      </div>
+      <Tabs
+        value={tab}
+        onValueChange={(sample) =>
+          changePreview({ sample: sample as DemoPreview['sample'] })
+        }
+        className="gap-0"
+      >
         <div className="border-b border-slate-200 px-3 pt-3 sm:px-7">
           <TabsList
             aria-label="Explore the team view"
@@ -273,8 +362,13 @@ export function TeamPreview({ demo }: { demo: ProspectDemo }) {
                   key={value}
                   type="button"
                   aria-pressed={cadence === value}
-                  onClick={() => setCadence(value)}
-                  className={`min-h-10 rounded-lg px-3 text-xs font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 ${cadence === value ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
+                  onClick={() =>
+                    changePreview({
+                      sample: 'report',
+                      cadence: value.toLowerCase() as DemoPreview['cadence'],
+                    })
+                  }
+                  className={`min-h-11 rounded-lg px-3 text-xs font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 ${cadence === value ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
                 >
                   {value}
                 </button>

@@ -1,4 +1,4 @@
-import { afterEach, expect, it } from 'vitest';
+import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import {
   cleanup,
   fireEvent,
@@ -11,7 +11,14 @@ import { AnswerImprovementPreview } from './answer-improvement-preview';
 import { TeamPreview } from './team-preview';
 import { PROSPECT_DEMOS } from '@/lib/demo/config/prospects';
 
-afterEach(cleanup);
+beforeEach(() => {
+  Element.prototype.scrollIntoView = vi.fn();
+});
+afterEach(() => {
+  cleanup();
+  window.history.replaceState(null, '', '/');
+  vi.restoreAllMocks();
+});
 
 it.each(PROSPECT_DEMOS)(
   'opens the $slug correction example from every report cadence',
@@ -22,9 +29,7 @@ it.each(PROSPECT_DEMOS)(
       ctrlKey: false,
     });
     for (const cadence of ['Daily', 'Weekly', 'Monthly']) {
-      fireEvent.click(
-        await screen.findByRole('button', { name: cadence })
-      );
+      fireEvent.click(await screen.findByRole('button', { name: cadence }));
       const report = screen.getByRole('article', {
         name: `${cadence} sample report`,
       });

@@ -10,6 +10,7 @@ export type ProspectDemo = {
   sources: { label: string; url: string }[];
   accent: string;
   widgetUrl: string;
+  publishedLinks?: { label: string; url: string }[];
   industryHref?: string;
   teamView: { question: string; insight: string }[];
   conversation: {
@@ -85,7 +86,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
       'I am already a member and our directory address is wrong. What should I do?',
     ],
     scope:
-      'Membership, public directory and October–November 2026 event information, refreshed manually. Check current event details on the official calendar. This preview cannot register visitors, change member records or notify Chamber staff. Calendar sync, report emails and lead forwarding are not connected in this preview.',
+      'Membership and directory answers use selected public pages. Event dates can be searched in the connected public Chamber calendar; confirm current details on the official listing. This preview cannot register visitors, change member records or notify Chamber staff. Report emails and lead forwarding are not connected. The team samples below are fictional illustrations.',
     sources: [
       {
         label: 'Membership benefits',
@@ -413,5 +414,53 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
   },
 ];
 
-export const getProspectDemo = (slug: string) =>
-  PROSPECT_DEMOS.find((demo) => demo.slug === slug) ?? null;
+// Publish this private preview after its existing bot has a widget key and paid
+// admission is installed. The key is public embed access, not a platform token.
+export function getProspectDemo(
+  slug: string,
+  postcardsKey = process.env.SUBSIGHTS_POSTCARDS_WIDGET_KEY,
+): ProspectDemo | null {
+  if (slug !== 'postcards-to-seattle') {
+    return PROSPECT_DEMOS.find((demo) => demo.slug === slug) ?? null;
+  }
+  if (!postcardsKey?.trim()) return null;
+  const widget = new URL('https://widget.subsights.com/index.html');
+  widget.searchParams.set('view', 'inline');
+  widget.searchParams.set('workspace_id', '0XvceSLk1j');
+  widget.searchParams.set('api_key', postcardsKey.trim());
+  return {
+    slug,
+    label: 'Postcards to Seattle',
+    url: 'https://postcardstoseattle.com/',
+    headline: 'Help readers find the stay that fits.',
+    description: 'Try a conversation built around Marissa’s San Juan Islands lodging guide. Narrow the options, change your plans and follow the matching published link.',
+    questions: [
+      'We’re walking off the Friday Harbor ferry. What is an affordable place to stay?',
+      'Actually, we want a boutique feel. Still no car.',
+      'Can you confirm a room is available tonight? Then show a sample of what our team would learn.',
+    ],
+    scope: 'Selected San Juan Islands lodging content, prepared independently for this preview. Recommendations and commercial links come from the published guide, which discloses affiliate links. Live room availability, current rates, reservations and staff notifications are not established by this content. The samples below are fictional and send nothing.',
+    sources: [{ label: 'Marissa’s San Juan Islands lodging guide', url: 'https://postcardstoseattle.com/where-to-stay-san-juan-islands/' }],
+    accent: '#234e52',
+    widgetUrl: widget.toString(),
+    publishedLinks: [
+      { label: 'Read the lodging guide', url: 'https://postcardstoseattle.com/where-to-stay-san-juan-islands/' },
+      { label: 'Earthbox: published booking link', url: 'https://www.booking.com/hotel/us/earthbox-inn-amp-spa.html' },
+      { label: 'Bird Rock: published booking link', url: 'https://www.booking.com/hotel/us/bird-rock.html' },
+    ],
+    teamView: [
+      { question: 'Boutique, but still no car', insight: 'See which travel constraints readers keep while changing their preferences.' },
+      { question: 'Does the family pick work without a car?', insight: 'Find transport questions the guide could explain beside a recommendation.' },
+      { question: 'Is there a room tonight?', insight: 'Separate a useful published booking route from inventory the assistant cannot verify.' },
+    ],
+    conversation: {
+      title: 'A reader changes the plan',
+      turns: [
+        { question: 'Affordable, near the Friday Harbor ferry, without a car.', answer: 'The guide presents Earthbox as a budget/mid-range Friday Harbor option. Compare its published details and check the booking page for current rates and rooms.', source: { label: 'Earthbox in the guide', url: 'https://postcardstoseattle.com/where-to-stay-san-juan-islands/#1_Earthbox_Inn_Spa_Best_for_Budget_Travelers' } },
+        { question: 'Actually, boutique. Still no car.', answer: 'The guide describes Bird Rock as a boutique downtown option near the ferry. That keeps your no-car preference in view; it does not confirm a room or an accessible route.', source: { label: 'Bird Rock in the guide', url: 'https://postcardstoseattle.com/where-to-stay-san-juan-islands/#2_Bird_Rock_Hotel_Best_Boutique_Stay_Under_Friday_Harbor_House' } },
+        { question: 'Is it available tonight?', answer: 'The guide cannot establish tonight’s inventory or price. Use its published Bird Rock booking link to check before making plans.', source: { label: 'Published Bird Rock booking route', url: 'https://www.booking.com/hotel/us/bird-rock.html' } },
+      ],
+      takeaway: 'Useful reader questions can show where a guide needs clearer transport or booking information. These examples do not establish bookings, revenue or a change to the article.',
+    },
+  };
+}
