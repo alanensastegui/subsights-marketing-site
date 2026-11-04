@@ -6,25 +6,27 @@ import { ConversationExample } from './conversation-example';
 export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
   return (
     <main className="flex-1 bg-slate-50">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12 lg:py-12">
+      <div className={`mx-auto grid max-w-7xl px-4 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12 lg:py-12 ${demo.entry ? 'gap-4 py-4' : 'gap-8 py-8'}`}>
         <section className="min-w-0 self-start" aria-labelledby="preview-title">
           <p className="text-xs font-semibold uppercase tracking-widest text-slate-600">
             A working preview for {demo.label}
           </p>
           <h1
             id="preview-title"
-            className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl lg:text-5xl"
+            className={`font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl lg:text-5xl ${demo.entry ? 'mt-2 text-2xl lg:mt-4' : 'mt-4 text-3xl'}`}
           >
             {demo.headline}
           </h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">
+          <p className={`mt-5 max-w-xl text-lg leading-relaxed text-slate-600 ${demo.entry ? 'hidden lg:block' : ''}`}>
             {demo.description}
           </p>
-          <p className="mt-4 text-sm leading-relaxed text-slate-600">
-            Ask your own questions in the live chat. Try a follow-up, change
-            your plans, or ask for a detail it cannot know. You can also ask
-            what is connected, explore the team samples or plan your setup.
-          </p>
+          {!demo.entry && (
+            <p className="mt-4 text-sm leading-relaxed text-slate-600">
+              Ask your own questions in the live chat. Try a follow-up, change
+              your plans, or ask for a detail it cannot know. You can also ask
+              what is connected, explore the team samples or plan your setup.
+            </p>
+          )}
           <div className="mt-7 hidden rounded-2xl border border-slate-200 bg-white p-5 lg:block">
             <h2 className="font-semibold text-slate-950">
               A few questions to try
@@ -56,16 +58,6 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               See the team view ↓
             </a>
           </div>
-          <details className="mt-5 rounded-xl border border-slate-200 bg-white p-4 lg:hidden">
-            <summary className="cursor-pointer font-medium text-slate-950">
-              Questions to try
-            </summary>
-            <ul className="mt-3 space-y-3 text-sm leading-relaxed text-slate-600">
-              {demo.questions.map((question) => (
-                <li key={question}>{question}</li>
-              ))}
-            </ul>
-          </details>
         </section>
 
         <section
@@ -73,25 +65,45 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
           className="min-w-0 scroll-mt-5"
           aria-label={`${demo.label} live assistant`}
         >
+          {demo.entry && (
+            <dl
+              id="preview-entry"
+              className="mb-3 space-y-1 text-sm leading-5 text-slate-600"
+            >
+              {demo.entry.map((item) => (
+                <div key={item.label}>
+                  <dt className="inline font-semibold text-slate-950">
+                    {item.label}:
+                  </dt>{' '}
+                  <dd className="inline">{item.text}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
           <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-200/60">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-3">
+            <div className={`flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-3 ${demo.entry ? 'hidden sm:flex' : 'flex'}`}>
               <h2 className="text-sm font-semibold text-slate-950">
                 {demo.label}
               </h2>
               <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-800">
-                Live assistant preview
+                Live preview
               </span>
             </div>
             <iframe
               id={`demo-assistant-${demo.slug}`}
               src={demo.widgetUrl}
               title={`${demo.label} assistant preview`}
-              className="block h-[560px] w-full border-0 sm:h-[620px]"
+              className={`block w-full border-0 sm:h-[620px] ${demo.entry ? 'h-[320px] max-sm:h-[clamp(18rem,calc(100svh_-_29rem),35rem)]' : 'h-[560px]'}`}
               referrerPolicy="no-referrer"
               allow="clipboard-write"
               sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
             />
           </div>
+          <p className="mt-2 text-xs leading-relaxed text-slate-600">
+            Prepared independently by Subsights. This preview is not installed
+            on {demo.label}’s site. Your questions are visible to Subsights;
+            please leave out personal details.
+          </p>
           <div className="mt-3 flex flex-wrap items-center justify-between gap-x-5 gap-y-1 text-sm">
             <p className="text-slate-600">Prefer a larger chat?</p>
             <a
@@ -104,6 +116,16 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               Open assistant in a new tab
             </a>
           </div>
+          <details className="mt-5 rounded-xl border border-slate-200 bg-white p-4 lg:hidden">
+            <summary className="cursor-pointer font-medium text-slate-950">
+              Questions to try
+            </summary>
+            <ul className="mt-3 space-y-3 text-sm leading-relaxed text-slate-600">
+              {demo.questions.map((question) => (
+                <li key={question}>{question}</li>
+              ))}
+            </ul>
+          </details>
           {demo.publishedLinks && (
             <aside className="mt-4 rounded-xl border border-slate-200 bg-white p-4" aria-label="Published guide links">
               <p className="text-sm font-medium text-slate-950">Published next steps</p>
@@ -117,12 +139,6 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               <p className="mt-2 text-xs leading-relaxed text-slate-600">These destinations are published in the guide, which discloses affiliate links. Opening them does not reserve a room or confirm a rate.</p>
             </aside>
           )}
-          <p className="mt-2 text-xs leading-relaxed text-slate-600">
-            Prepared independently by Subsights from selected public pages. This
-            preview is not installed on {demo.label}’s website. Questions in
-            this demo are visible to Subsights; please keep personal information
-            out of the chat.
-          </p>
         </section>
 
         <div className="min-w-0 lg:col-span-2">
