@@ -7,6 +7,9 @@ export type ProspectDemo = {
   description: string;
   questions: string[];
   scope: string;
+  // Shown at the chat entry: what the preview is connected to, what it reads,
+  // what is known about refresh, and what the visitor does next.
+  entry?: { label: string; text: string }[];
   sources: { label: string; url: string }[];
   accent: string;
   widgetUrl: string;
@@ -38,7 +41,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
       'Show me what our team would receive, then help me plan setup.',
     ],
     scope:
-      'This assistant uses published Forks Chamber information and linked official visitor sources, checked October 20, 2026 (Pacific time) and refreshed by our team. It cannot book tickets or rooms or check live road conditions. Ask the chat about its current tools and connections; the team samples below are fictional illustrations.',
+      'This assistant uses published Forks Chamber information and linked official visitor sources, checked October 20, 2026 (Pacific time) and refreshed by our team. It cannot book tickets or rooms or check live road conditions. Ask the chat about its current tools and connections; the team samples above are fictional illustrations.',
     sources: [
       { label: 'Forks visitor information', url: 'https://forkswa.com/' },
       { label: 'Area events', url: 'https://forkswa.com/things-to-do/area-events/' },
@@ -86,7 +89,22 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
       'I am already a member and our directory address is wrong. What should I do?',
     ],
     scope:
-      'Membership and directory answers use selected public pages. Event dates can be searched in the connected public Chamber calendar; confirm current details on the official listing. This preview cannot register visitors, change member records or notify Chamber staff. Report emails and lead forwarding are not connected. The team samples below are fictional illustrations.',
+      'Membership and directory answers use selected public pages. Event dates can be searched in the connected public Chamber calendar; confirm current details on the official listing. This preview cannot register visitors, change member records or notify Chamber staff. Report emails and lead forwarding are not connected. The team samples above are fictional illustrations.',
+    entry: [
+      {
+        label: 'Connected',
+        text: 'Public Chamber events calendar. Reads selected public membership and directory pages.',
+      },
+      {
+        label: 'Coming soon',
+        text: 'Registration, member edits, staff alerts, report emails and lead forwarding.',
+      },
+      {
+        label: 'Refresh',
+        text: 'Timing unverified. Confirm current details on the Chamber’s pages.',
+      },
+      { label: 'Next', text: 'Ask a question, then a follow-up.' },
+    ],
     sources: [
       {
         label: 'Membership benefits',
@@ -439,7 +457,7 @@ export function getProspectDemo(
       'Actually, we want a boutique feel. Still no car.',
       'Can you confirm a room is available tonight? Then show a sample of what our team would learn.',
     ],
-    scope: 'Selected San Juan Islands lodging content, prepared independently for this preview. Recommendations and commercial links come from the published guide, which discloses affiliate links. Live room availability, current rates, reservations and staff notifications are not established by this content. The samples below are fictional and send nothing.',
+    scope: 'Selected San Juan Islands lodging content, prepared independently for this preview. Recommendations and commercial links come from the published guide, which discloses affiliate links. Live room availability, current rates, reservations and staff notifications are not established by this content. The samples above are fictional and send nothing.',
     sources: [{ label: 'Marissa’s San Juan Islands lodging guide', url: 'https://postcardstoseattle.com/where-to-stay-san-juan-islands/' }],
     accent: '#234e52',
     widgetUrl: widget.toString(),
