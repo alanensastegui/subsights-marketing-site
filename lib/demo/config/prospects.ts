@@ -89,21 +89,24 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
       'I am already a member and our directory address is wrong. What should I do?',
     ],
     scope:
-      'Membership and directory answers use selected public pages. Event dates can be searched in the connected public Chamber calendar; confirm current details on the official listing. This preview cannot register visitors, change member records or notify Chamber staff. Report emails and lead forwarding are not connected. The team samples above are fictional illustrations.',
+      'Answers use selected public membership and directory pages and an imported Chamber events calendar. They do not establish current availability, admission or registration. Follow the official source to confirm. This preview cannot register you, edit member records or notify Chamber staff. Report emails and lead forwarding are not connected. Team samples are fictional illustrations.',
     entry: [
       {
-        label: 'Connected',
-        text: 'Public Chamber events calendar. Reads selected public membership and directory pages.',
+        label: 'Sources',
+        text: 'Saved public membership and directory pages, plus an imported Chamber events calendar. These are not live availability checks.',
       },
       {
-        label: 'Coming soon',
-        text: 'Registration, member edits, staff alerts, report emails and lead forwarding.',
+        label: 'Try it',
+        text: 'Ask about your goal, then change a detail or ask for the official application, event or contact link.',
       },
       {
-        label: 'Current details',
-        text: 'The assistant uses saved public pages and a connected calendar. Confirm dates, eligibility and availability on the linked Chamber page.',
+        label: 'Unavailable here',
+        text: 'Registration, member-record edits and staff notifications. Report emails and lead forwarding are not connected.',
       },
-      { label: 'Next', text: 'Ask a question, then a follow-up.' },
+      {
+        label: 'Next step',
+        text: 'Use the linked Chamber page to confirm eligibility, availability and how to apply or register.',
+      },
     ],
     sources: [
       {
