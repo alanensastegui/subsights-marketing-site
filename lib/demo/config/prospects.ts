@@ -85,7 +85,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
       'Explore membership, find an event or discover a local business. Ask a follow-up and see how the assistant keeps track of what matters to you.',
     questions: [
       'I am opening a design studio and want a ribbon cutting. Which membership fits a $900 annual budget?',
-      'Could I attend the November 5 lunch before joining?',
+      'I am not a member yet. Is there an upcoming Chamber event I can attend, and where would I register?',
       'I am already a member and our directory address is wrong. What should I do?',
     ],
     scope:
@@ -100,8 +100,8 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
         text: 'Registration, member edits, staff alerts, report emails and lead forwarding.',
       },
       {
-        label: 'Refresh',
-        text: 'Timing unverified. Confirm current details on the Chamber’s pages.',
+        label: 'Current details',
+        text: 'The assistant uses saved public pages and a connected calendar. Confirm dates, eligibility and availability on the linked Chamber page.',
       },
       { label: 'Next', text: 'Ask a question, then a follow-up.' },
     ],
