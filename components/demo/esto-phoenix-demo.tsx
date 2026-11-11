@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 import { Animate } from "@/components/ui/animate";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
-import { getFreeTrialUrl } from "@/lib/subscriptions";
+import { FREE_TRIAL_DAYS, getFreeTrialUrl } from "@/lib/subscriptions";
 import { CALENDLY_URL } from "@/lib/config";
 
 interface EstoPhoenixDemoProps {
@@ -703,7 +703,7 @@ export function EstoPhoenixDemo({ scriptTag }: EstoPhoenixDemoProps) {
                           </a>
                         </Button>
                         <p className="text-xs sm:text-sm text-[#F5E6D3] leading-relaxed">
-                          Try Subsights free for 14 days. No credit card required
+                          Try Subsights free for {FREE_TRIAL_DAYS} days. No credit card required
                         </p>
                       </div>
                     </div>
