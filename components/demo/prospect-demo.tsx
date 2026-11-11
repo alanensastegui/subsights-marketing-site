@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
+import type { Comparison } from '@/lib/demo/comparisons/schema';
 import { FREE_TRIAL_DAYS, getFreeTrialUrl } from '@/lib/subscriptions';
 import { TeamPreview } from './team-preview';
 import { AssistantFrame } from './assistant-frame';
 import { ConversationExample } from './conversation-example';
 import { ProspectBuiltFor, ProspectCapabilities } from './prospect-capabilities';
+import { ProspectComparison } from './prospect-comparison';
 
 // Their heading type and corners when the demo config names them; the Subsights defaults otherwise.
 function themeStyles(demo: ProspectDemo) {
@@ -19,7 +21,7 @@ function themeStyles(demo: ProspectDemo) {
   return { theme, heading, corners, panel, button };
 }
 
-export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
+export function ProspectDemoPage({ demo, comparison = null }: { demo: ProspectDemo; comparison?: Comparison | null }) {
   const { theme, heading, corners, panel, button } = themeStyles(demo);
   return (
     <main className="flex-1 bg-slate-50">
@@ -88,6 +90,14 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
             >
               Try the assistant ↓
             </a>
+            {comparison && (
+              <a
+                href="#comparison"
+                className="inline-flex min-h-11 items-center text-sm font-medium text-slate-700 underline underline-offset-4"
+              >
+                Compare answers ↓
+              </a>
+            )}
             {demo.capabilities && (
               <a
                 href="#capabilities"
@@ -225,6 +235,11 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
         {demo.capabilities && (
           <div className="min-w-0 lg:col-span-2">
             <ProspectCapabilities demo={demo} heading={heading} panel={panel} />
+          </div>
+        )}
+        {comparison && (
+          <div className="min-w-0 lg:col-span-2">
+            <ProspectComparison comparison={comparison} accent={demo.accent} heading={heading} panel={panel} />
           </div>
         )}
         <div className="min-w-0 lg:col-span-2">
