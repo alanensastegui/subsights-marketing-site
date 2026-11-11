@@ -5,7 +5,7 @@ import { ComparisonSchema, type Comparison } from '@/lib/demo/comparisons/schema
 import { COMPARISON_SLUGS, getComparison } from '@/lib/demo/comparisons';
 import { PROSPECT_DEMOS } from '@/lib/demo/config/prospects';
 
-const trackEvent = vi.fn(async () => {});
+const trackEvent = vi.fn(async (_event: { event_name: string; event_label?: string }) => {});
 vi.mock('@/lib/analytics', () => ({ useAnalytics: () => ({ trackEvent }) }));
 import { ChatEngagementTracker } from './chat-engagement-tracker';
 
