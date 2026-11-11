@@ -2,6 +2,7 @@ import { Animate } from "@/components/ui/animate";
 import { ButtonDuo } from "@/components/ui/button-duo";
 import Link from "next/link";
 import { getFeatureMetadata } from "@/lib/features/registry";
+import { getFreeTrialUrl } from "@/lib/subscriptions";
 
 type Copy = {
   title: string;
@@ -17,7 +18,7 @@ const copy = {
   title: getFeatureMetadata('knowledge-base').title,
   subtitle: getFeatureMetadata('knowledge-base').description,
   primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
-  secondaryCta: { label: "Start Free Trial", href: "https://app.subsights.com/signup" }
+  secondaryCta: { label: "Start Free Trial", href: getFreeTrialUrl() }
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
