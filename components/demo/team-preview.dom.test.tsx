@@ -5,6 +5,7 @@ import {
   screen,
   act,
   fireEvent,
+  within,
 } from '@testing-library/react';
 import { TeamPreview } from './team-preview';
 import { PROSPECT_DEMOS } from '@/lib/demo/config/prospects';
@@ -176,6 +177,8 @@ it('shows measured activity beside the labelled samples only when it exists', ()
     />
   );
   expect(screen.getByText('Measured since November 9, 2026')).toBeTruthy();
-  expect(screen.getByRole('link', { name: demo.sources[0].label, hidden: false }).closest('section')?.textContent).toContain('3');
+  const measured = within(screen.getByRole('region', { name: 'Measured on this preview' }));
+  expect(measured.getByRole('link', { name: demo.sources[0].label }).closest('li')?.textContent).toContain('3');
+  expect(measured.getByText('Visitor conversations').nextElementSibling?.textContent).toBe('4');
   expect(screen.getByText('Sample data')).toBeTruthy();
 });
