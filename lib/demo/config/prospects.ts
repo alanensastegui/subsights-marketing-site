@@ -20,6 +20,8 @@ export type ProspectDemo = {
     highlightInk?: string;
     square?: boolean;
   };
+  // The prospect's own logo, shown beside the "A Subsights preview for" label, which stays.
+  logo?: { src: string; alt: string; width: number; height: number };
   // Tools a visitor can try on this page today. Each action is a working link in the page or the chat.
   tools?: { name: string; text: string; href: string; action: string }[];
   // One line for what the tools do once a real workspace is connected.
@@ -132,6 +134,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     ],
     accent: '#173851',
     theme: { headingFont: 'jost', highlight: '#E2D573', highlightInk: '#173851', square: true },
+    logo: { src: '/images/demo/kirkland-chamber-logo.png', alt: 'Greater Kirkland Chamber of Commerce', width: 320, height: 138 },
     tools: [
       {
         name: 'Events calendar',

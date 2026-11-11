@@ -23,9 +23,21 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
     <main className="flex-1 bg-slate-50">
       <div className={`mx-auto grid max-w-7xl px-4 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12 lg:py-12 ${demo.entry ? 'gap-4 py-4' : 'gap-8 py-8'}`}>
         <section className="min-w-0 self-start" aria-labelledby="preview-title">
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-600">
-            A Subsights preview for {demo.label}
-          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            {demo.logo && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={demo.logo.src}
+                alt={demo.logo.alt}
+                width={demo.logo.width}
+                height={demo.logo.height}
+                className="h-10 w-auto"
+              />
+            )}
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-600">
+              A Subsights preview for {demo.label}
+            </p>
+          </div>
           {theme.highlight && (
             <span
               aria-hidden="true"

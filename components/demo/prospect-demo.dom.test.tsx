@@ -95,5 +95,5 @@ it('gives every Kirkland tool a working target in the page or the chat', () => {
     expect(href === '#live-assistant' || readPreviewHash(href) !== null).toBe(true);
   }
   expect(document.body.textContent).toContain('Coming soon:');
-  expect(document.querySelector('img[src*="kirklandchamber"]')).toBeNull();
+  expect(document.body.textContent).toContain('A Subsights preview for Kirkland Chamber of Commerce');
 });
