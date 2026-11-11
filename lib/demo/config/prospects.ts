@@ -26,6 +26,16 @@ export type ProspectDemo = {
   tools?: { name: string; text: string; href: string; action: string }[];
   // One line for what the tools do once a real workspace is connected.
   toolsComingSoon?: string;
+  // What the live assistant can do for this organization. Every `ask` is a question the live
+  // preview answers today; anything not connected carries its own "Coming soon:" line.
+  capabilities?: {
+    title: string;
+    tested?: string;
+    tools: Capability[];
+    habits: Capability[];
+  };
+  // Needs we can build for beyond this preview, with one invitation to talk it through.
+  builtFor?: { title: string; text: string; ideas: { name: string; text: string }[]; invite: string };
   widgetUrl: string;
   publishedLinks?: { label: string; url: string }[];
   industryHref?: string;
@@ -40,6 +50,8 @@ export type ProspectDemo = {
     takeaway: string;
   };
 };
+
+export type Capability = { name: string; text: string; ask: string; comingSoon?: string };
 
 export const PROSPECT_DEMOS: ProspectDemo[] = [
   {
@@ -98,9 +110,11 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     description:
       'Explore membership, find an event or discover a local business. Ask a follow-up and see how the assistant keeps track of what matters to you.',
     questions: [
-      'I am opening a design studio and want a ribbon cutting. Which membership fits a $900 annual budget?',
-      'I am not a member yet. Is there an upcoming Chamber event I can attend, and where would I register?',
-      'I am already a member and our directory address is wrong. What should I do?',
+      'Which membership fits a $900 annual budget for a design studio that wants a ribbon cutting?',
+      'I’m not a member yet. What’s the next networking event I can attend?',
+      'What does a table at the Chamber gala cost?',
+      '¿Cuál es el próximo evento de networking?',
+      'Can I get Kathryn Straub’s cell number?',
     ],
     scope:
       'Answers use selected public membership and directory pages and an imported Chamber events calendar. They do not establish current availability, admission or registration. Follow the official source to confirm. This preview cannot register you, edit member records or notify Chamber staff. Report emails and lead forwarding are not connected. Team samples are fictional illustrations.',
@@ -137,12 +151,6 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     logo: { src: '/images/demo/kirkland-chamber-logo.png', alt: 'Greater Kirkland Chamber of Commerce', width: 320, height: 138 },
     tools: [
       {
-        name: 'Events calendar',
-        text: 'Answers come from the imported Chamber events calendar.',
-        href: '#live-assistant',
-        action: 'Ask “What Chamber events are coming up?”',
-      },
-      {
         name: 'Weekly report',
         text: 'The summary your team would get each week.',
         href: '#sample-report?cadence=weekly',
@@ -157,6 +165,63 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     ],
     toolsComingSoon:
       'Coming soon: reports and staff alerts built from your own test chat, sent to your inbox once your workspace is connected.',
+    capabilities: {
+      title: 'What it can do for the Chamber',
+      tested:
+        'Tested on 32 real Chamber questions, including follow-ups that change a detail, other languages and requests it should decline.',
+      tools: [
+        {
+          name: 'Events calendar',
+          text: 'Reads the imported Chamber calendar and gives the date, time, place and registration link.',
+          ask: 'What Chamber events are coming up?',
+        },
+        {
+          name: 'Member directory',
+          text: 'Finds members by what they do and links each profile.',
+          ask: 'Which members do commercial photography?',
+        },
+        {
+          name: 'Membership advisor',
+          text: 'Matches a tier to a budget and goals, using the published benefits.',
+          ask: 'What does Engagement membership include?',
+        },
+        {
+          name: 'Staff routing',
+          text: 'Points a visitor to the right person on the team, not a general inbox.',
+          ask: 'Who should I talk to about sponsoring an event?',
+          comingSoon: 'Coming soon: hands the request to that person by email once lead forwarding is connected.',
+        },
+      ],
+      habits: [
+        {
+          name: 'Answers in their language',
+          text: 'Replies in the language the visitor writes in.',
+          ask: 'Quels avantages offre l’adhésion à la Chambre ?',
+        },
+        {
+          name: 'Keeps the thread',
+          text: 'Carries a budget or plan into the next answer. Ask the $900 question first.',
+          ask: 'What if my budget drops to $500?',
+        },
+        {
+          name: 'Honest about gaps',
+          text: 'Says when something is not published and gives the official route instead.',
+          ask: 'Do you know the Chamber’s annual revenue?',
+        },
+      ],
+    },
+    builtFor: {
+      title: 'Built for your Chamber',
+      text: 'This preview runs on public pages. With your team, we shape it around the questions you handle every week.',
+      ideas: [
+        { name: 'Sponsorships and the gala', text: 'Packages, tables and who to talk to, with the inquiry sent to the right person.' },
+        { name: 'New member onboarding', text: 'First steps, benefits to use early and answers to the questions new members ask.' },
+        { name: 'Ribbon cuttings', text: 'Who qualifies, what to prepare and how to request a date.' },
+        { name: 'Program staff routing', text: 'Leadership, events and member services questions sent to the staff who run them.' },
+        { name: 'Chamber Organizer', text: 'Connect your calendar and member directory so answers follow your updates.' },
+      ],
+      invite: 'Tell us what your team answers most, and we will show you how it would work.',
+    },
     widgetUrl:
       'https://widget.subsights.com/?view=inline&api_key=a6hGMAbp2dSTwGAILaHkafFwTju6zm5H&workspace_id=0XvceSLk1j',
     industryHref: '/chambers',

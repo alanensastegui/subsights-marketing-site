@@ -97,3 +97,24 @@ it('gives every Kirkland tool a working target in the page or the chat', () => {
   expect(document.body.textContent).toContain('Coming soon:');
   expect(document.body.textContent).toContain('A Subsights preview for Kirkland Chamber of Commerce');
 });
+
+it('sends every Kirkland capability to the live chat and keeps unconnected work marked coming soon', () => {
+  const demo = getProspectDemo('kirkland-chamber')!;
+  const document = new DOMParser().parseFromString(
+    renderToStaticMarkup(<ProspectDemoPage demo={demo} />), 'text/html'
+  );
+  const items = [...demo.capabilities!.tools, ...demo.capabilities!.habits];
+  const asks = Array.from(document.querySelectorAll('#capabilities li a'));
+  expect(asks).toHaveLength(items.length);
+  for (const [index, link] of asks.entries()) {
+    expect(link.getAttribute('href')).toBe('#live-assistant');
+    expect(link.textContent).toContain(items[index].ask);
+  }
+  for (const item of items.filter((entry) => entry.comingSoon)) {
+    expect(item.comingSoon).toMatch(/^Coming soon: /);
+    expect(document.querySelector('#capabilities')!.textContent).toContain(item.comingSoon);
+  }
+  expect(document.querySelectorAll('#capabilities button, #built-for button')).toHaveLength(0);
+  const talk = document.querySelector('#built-for a')!;
+  expect(new URL(talk.getAttribute('href')!).hostname).toBe('calendly.com');
+});
