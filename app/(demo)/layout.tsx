@@ -45,6 +45,10 @@ export default function DemoLayout({ children }: { children: ReactNode }) {
                     This is a Subsights demo experience •
                     {/* TODO: Switch back to internal Link when main site is ready */}
                     <Link href="/" className="hover:underline ml-1">Learn more</Link>
+                    {" • "}
+                    <Link href="/legal/privacy" className="hover:underline">Privacy</Link>
+                    {" • "}
+                    <Link href="/legal/terms" className="hover:underline">Terms</Link>
                 </footer>
             </body>
         </html>

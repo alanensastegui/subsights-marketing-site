@@ -12,6 +12,20 @@ export type ProspectDemo = {
   entry?: { label: string; text: string }[];
   sources: { label: string; url: string }[];
   accent: string;
+  // Optional look borrowed from the prospect's own site: heading type, a second brand color for the main
+  // call to action and square corners. Never their logo; the page stays a Subsights preview.
+  theme?: {
+    headingFont?: 'jost';
+    highlight?: string;
+    highlightInk?: string;
+    square?: boolean;
+  };
+  // The prospect's own logo, shown beside the "A Subsights preview for" label, which stays.
+  logo?: { src: string; alt: string; width: number; height: number };
+  // Tools a visitor can try on this page today. Each action is a working link in the page or the chat.
+  tools?: { name: string; text: string; href: string; action: string }[];
+  // One line for what the tools do once a real workspace is connected.
+  toolsComingSoon?: string;
   widgetUrl: string;
   publishedLinks?: { label: string; url: string }[];
   industryHref?: string;
@@ -93,19 +107,11 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     entry: [
       {
         label: 'Sources',
-        text: 'Saved public membership and directory pages, plus an imported Chamber events calendar. These are not live availability checks.',
+        text: 'Saved public membership and directory pages, plus the imported Chamber events calendar.',
       },
       {
         label: 'Try it',
-        text: 'Ask about your goal, then change a detail or ask for the official application, event or contact link.',
-      },
-      {
-        label: 'Unavailable here',
-        text: 'Registration, member-record edits and staff notifications. Report emails and lead forwarding are not connected.',
-      },
-      {
-        label: 'Next step',
-        text: 'Use the linked Chamber page to confirm eligibility, availability and how to apply or register.',
+        text: 'Ask about your goal, then change a detail or ask for the official link.',
       },
     ],
     sources: [
@@ -126,7 +132,31 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
         url: 'https://www.kirklandchamber.org/contact',
       },
     ],
-    accent: '#155E75',
+    accent: '#173851',
+    theme: { headingFont: 'jost', highlight: '#E2D573', highlightInk: '#173851', square: true },
+    logo: { src: '/images/demo/kirkland-chamber-logo.png', alt: 'Greater Kirkland Chamber of Commerce', width: 320, height: 138 },
+    tools: [
+      {
+        name: 'Events calendar',
+        text: 'Answers come from the imported Chamber events calendar.',
+        href: '#live-assistant',
+        action: 'Ask “What Chamber events are coming up?”',
+      },
+      {
+        name: 'Weekly report',
+        text: 'The summary your team would get each week.',
+        href: '#sample-report?cadence=weekly',
+        action: 'Preview the weekly report',
+      },
+      {
+        name: 'Staff alerts',
+        text: 'The email staff get when a visitor asks for follow-up.',
+        href: '#sample-notification?cadence=weekly&staff-alerts=on',
+        action: 'Turn on staff alerts',
+      },
+    ],
+    toolsComingSoon:
+      'Coming soon: reports and staff alerts built from your own test chat, sent to your inbox once your workspace is connected.',
     widgetUrl:
       'https://widget.subsights.com/?view=inline&api_key=a6hGMAbp2dSTwGAILaHkafFwTju6zm5H&workspace_id=0XvceSLk1j',
     industryHref: '/chambers',
