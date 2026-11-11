@@ -125,8 +125,8 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
           <p className="mt-2 text-xs leading-relaxed text-slate-600">
             Prepared independently by Subsights, not affiliated with{' '}
             {demo.label}. AI answers can be wrong; confirm on the official page.
-            Subsights stores these chats with an approximate location, so please
-            leave out personal details.{' '}
+            Subsights keeps these chats for 90 days with an approximate
+            location, so please leave out personal details.{' '}
             <Link href="/legal/privacy" className="underline underline-offset-2">
               Privacy
             </Link>{' '}
@@ -315,8 +315,8 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
             )}
           </div>
           <p className="mt-3 text-xs leading-relaxed text-white/80">
-            Your own Subsights account and workspace. 14 days free, no card
-            needed; choose yearly billing for 2 months free.{' '}
+            Your own Subsights account and workspace, free for 1 month. No
+            card needed.{' '}
             <Link href="/pricing" className="underline underline-offset-2">
               See pricing
             </Link>

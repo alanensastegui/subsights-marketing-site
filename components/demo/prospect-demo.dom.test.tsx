@@ -67,7 +67,7 @@ it.each(PROSPECT_DEMOS)('states who runs the $slug preview and links the policie
   const notice = document.querySelector('#live-assistant iframe')!.parentElement!.nextElementSibling!;
   expect(notice.textContent).toContain(`Prepared independently by Subsights, not affiliated with ${demo.label}`);
   expect(notice.textContent).toContain('AI answers can be wrong');
-  expect(notice.textContent).toContain('Subsights stores these chats');
+  expect(notice.textContent).toContain('Subsights keeps these chats for 90 days');
   const hrefs = Array.from(notice.querySelectorAll('a')).map(a => a.getAttribute('href'));
   expect(hrefs).toEqual(['/legal/privacy', '/legal/terms']);
 });
