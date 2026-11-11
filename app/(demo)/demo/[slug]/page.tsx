@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getProspectDemo } from "@/lib/demo/config/prospects";
 import { ProspectDemoPage } from "@/components/demo/prospect-demo";
+import { getDemoEngagement } from "@/lib/demo/engagement";
 
 export const dynamic = "force-dynamic"; // put this on the server page
 
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const prospect = getProspectDemo(slug);
-  if (prospect) return <ProspectDemoPage demo={prospect} />;
+  if (prospect) return <ProspectDemoPage demo={prospect} measured={await getDemoEngagement(prospect.slug)} />;
   const { default: DemoPageClient } = await import("@/components/demo/demo-client-page");
   return <DemoPageClient slug={slug} />;
 }

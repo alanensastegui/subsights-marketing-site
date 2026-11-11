@@ -1,9 +1,16 @@
 import Link from 'next/link';
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
+import type { DemoEngagement } from '@/lib/demo/engagement';
 import { TeamPreview } from './team-preview';
 import { ConversationExample } from './conversation-example';
 
-export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
+export function ProspectDemoPage({
+  demo,
+  measured = null,
+}: {
+  demo: ProspectDemo;
+  measured?: DemoEngagement | null;
+}) {
   return (
     <main className="flex-1 bg-slate-50">
       <div className={`mx-auto grid max-w-7xl px-4 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12 lg:py-12 ${demo.entry ? 'gap-4 py-4' : 'gap-8 py-8'}`}>
@@ -142,7 +149,7 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
         </section>
 
         <div className="min-w-0 lg:col-span-2">
-          <TeamPreview demo={demo} />
+          <TeamPreview demo={demo} measured={measured} />
         </div>
         <div className="min-w-0 lg:col-span-2">
           <ConversationExample demo={demo} />

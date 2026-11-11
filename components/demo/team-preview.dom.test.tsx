@@ -162,3 +162,20 @@ it('restores a linked monthly/off sample and lets people adjust it without a set
   );
   expect(send).not.toHaveBeenCalled();
 });
+
+it('shows measured activity beside the labelled samples only when it exists', () => {
+  const demo = PROSPECT_DEMOS[0];
+  const { unmount } = render(<TeamPreview demo={demo} />);
+  expect(screen.queryByText(/Measured since/)).toBeNull();
+  expect(screen.getByText('Sample data')).toBeTruthy();
+  unmount();
+  render(
+    <TeamPreview
+      demo={demo}
+      measured={{ measuredSince: '2026-11-09', conversations: 4, linkClicks: [{ link: demo.sources[0].url, clicks: 3 }] }}
+    />
+  );
+  expect(screen.getByText('Measured since November 9, 2026')).toBeTruthy();
+  expect(screen.getByRole('link', { name: demo.sources[0].label, hidden: false }).closest('section')?.textContent).toContain('3');
+  expect(screen.getByText('Sample data')).toBeTruthy();
+});
