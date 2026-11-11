@@ -4,6 +4,7 @@ import type { ProspectDemo } from '@/lib/demo/config/prospects';
 import { FREE_TRIAL_DAYS, getFreeTrialUrl } from '@/lib/subscriptions';
 import { TeamPreview } from './team-preview';
 import { ConversationExample } from './conversation-example';
+import { ProspectBuiltFor, ProspectCapabilities } from './prospect-capabilities';
 
 // Their heading type and corners when the demo config names them; the Subsights defaults otherwise.
 function themeStyles(demo: ProspectDemo) {
@@ -86,6 +87,14 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
             >
               Try the assistant ↓
             </a>
+            {demo.capabilities && (
+              <a
+                href="#capabilities"
+                className="inline-flex min-h-11 items-center text-sm font-medium text-slate-700 underline underline-offset-4"
+              >
+                What it can do ↓
+              </a>
+            )}
             <a
               href="#team-preview"
               className="inline-flex min-h-11 items-center text-sm font-medium text-slate-700 underline underline-offset-4"
@@ -225,12 +234,22 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
           )}
         </section>
 
+        {demo.capabilities && (
+          <div className="min-w-0 lg:col-span-2">
+            <ProspectCapabilities demo={demo} heading={heading} panel={panel} />
+          </div>
+        )}
         <div className="min-w-0 lg:col-span-2">
           <TeamPreview demo={demo} />
         </div>
         <div className="min-w-0 lg:col-span-2">
           <ConversationExample demo={demo} />
         </div>
+        {demo.builtFor && (
+          <div className="min-w-0 lg:col-span-2">
+            <ProspectBuiltFor demo={demo} heading={heading} panel={panel} />
+          </div>
+        )}
 
         <section
           className="min-w-0 border-t border-slate-200 pt-6 lg:col-span-2"
