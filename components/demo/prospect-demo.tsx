@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
-import { getFreeTrialUrl } from '@/lib/subscriptions';
+import { FREE_TRIAL_DAYS, getFreeTrialUrl } from '@/lib/subscriptions';
 import { TeamPreview } from './team-preview';
 import { ConversationExample } from './conversation-example';
 
@@ -327,8 +327,8 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
             )}
           </div>
           <p className="mt-3 text-xs leading-relaxed text-white/80">
-            Your own Subsights account and workspace, free for 1 month. No
-            card needed.{' '}
+            Your own Subsights account and workspace, free for{' '}
+            {FREE_TRIAL_DAYS} days. No card needed.{' '}
             <Link href="/pricing" className="underline underline-offset-2">
               See pricing
             </Link>
