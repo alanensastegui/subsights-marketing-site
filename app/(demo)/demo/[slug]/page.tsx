@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getProspectDemo } from "@/lib/demo/config/prospects";
 import { ProspectDemoPage } from "@/components/demo/prospect-demo";
+import { jost } from "@/lib/demo/prospect-fonts";
 
 export const dynamic = "force-dynamic"; // put this on the server page
 
@@ -24,7 +25,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const prospect = getProspectDemo(slug);
-  if (prospect) return <ProspectDemoPage demo={prospect} />;
+  if (prospect) {
+    const fonts = prospect.theme?.headingFont === "jost" ? jost.variable : "";
+    return (
+      <div className={`flex flex-1 flex-col ${fonts}`}>
+        <ProspectDemoPage demo={prospect} />
+      </div>
+    );
+  }
   const { default: DemoPageClient } = await import("@/components/demo/demo-client-page");
   return <DemoPageClient slug={slug} />;
 }

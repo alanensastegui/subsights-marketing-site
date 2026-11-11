@@ -1,19 +1,42 @@
 import Link from 'next/link';
+import type { CSSProperties } from 'react';
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
+import { getFreeTrialUrl } from '@/lib/subscriptions';
 import { TeamPreview } from './team-preview';
 import { ConversationExample } from './conversation-example';
 
+// Their heading type and corners when the demo config names them; the Subsights defaults otherwise.
+function themeStyles(demo: ProspectDemo) {
+  const theme = demo.theme ?? {};
+  const heading: CSSProperties = theme.headingFont
+    ? { fontFamily: 'var(--font-prospect-heading), system-ui, sans-serif', fontWeight: 500, color: demo.accent }
+    : {};
+  const corners = theme.square ? 'rounded-none' : 'rounded-xl';
+  const panel = theme.square ? 'rounded-sm' : 'rounded-2xl';
+  const button = theme.headingFont ? 'uppercase tracking-wide' : '';
+  return { theme, heading, corners, panel, button };
+}
+
 export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
+  const { theme, heading, corners, panel, button } = themeStyles(demo);
   return (
     <main className="flex-1 bg-slate-50">
       <div className={`mx-auto grid max-w-7xl px-4 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12 lg:py-12 ${demo.entry ? 'gap-4 py-4' : 'gap-8 py-8'}`}>
         <section className="min-w-0 self-start" aria-labelledby="preview-title">
           <p className="text-xs font-semibold uppercase tracking-widest text-slate-600">
-            A working preview for {demo.label}
+            A Subsights preview for {demo.label}
           </p>
+          {theme.highlight && (
+            <span
+              aria-hidden="true"
+              className="mt-2 block h-1 w-12"
+              style={{ backgroundColor: theme.highlight }}
+            />
+          )}
           <h1
             id="preview-title"
             className={`font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl lg:text-5xl ${demo.entry ? 'mt-2 text-2xl lg:mt-4' : 'mt-4 text-3xl'}`}
+            style={heading}
           >
             {demo.headline}
           </h1>
@@ -27,8 +50,8 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               what is connected, explore the team samples or plan your setup.
             </p>
           )}
-          <div className="mt-7 hidden rounded-2xl border border-slate-200 bg-white p-5 lg:block">
-            <h2 className="font-semibold text-slate-950">
+          <div className={`mt-7 hidden border border-slate-200 bg-white p-5 lg:block ${panel}`}>
+            <h2 className="font-semibold text-slate-950" style={heading}>
               A few questions to try
             </h2>
             <ul className="mt-3 space-y-3 text-sm leading-relaxed text-slate-600">
@@ -46,7 +69,7 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
           <div className="mt-6 hidden flex-wrap items-center gap-x-5 gap-y-3 lg:flex">
             <a
               href="#live-assistant"
-              className="inline-flex min-h-11 items-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+              className={`inline-flex min-h-11 items-center px-5 py-3 text-sm font-semibold text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 ${corners} ${button}`}
               style={{ backgroundColor: demo.accent }}
             >
               Try the assistant ↓
@@ -80,7 +103,7 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               ))}
             </dl>
           )}
-          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-200/60">
+          <div className={`overflow-hidden border border-slate-200 bg-white shadow-xl shadow-slate-200/60 ${panel}`}>
             <div className={`flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-3 ${demo.entry ? 'hidden sm:flex' : 'flex'}`}>
               <h2 className="text-sm font-semibold text-slate-950">
                 {demo.label}
@@ -100,9 +123,17 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
             />
           </div>
           <p className="mt-2 text-xs leading-relaxed text-slate-600">
-            Prepared independently by Subsights. This preview is not installed
-            on {demo.label}’s site. Your questions are visible to Subsights;
-            please leave out personal details.
+            Prepared independently by Subsights, not affiliated with{' '}
+            {demo.label}. AI answers can be wrong; confirm on the official page.
+            Subsights stores these chats with an approximate location, so please
+            leave out personal details.{' '}
+            <Link href="/legal/privacy" className="underline underline-offset-2">
+              Privacy
+            </Link>{' '}
+            ·{' '}
+            <Link href="/legal/terms" className="underline underline-offset-2">
+              Terms
+            </Link>
           </p>
           <div className="mt-3 flex flex-wrap items-center justify-between gap-x-5 gap-y-1 text-sm">
             <p className="text-slate-600">Prefer a larger chat?</p>
@@ -116,7 +147,48 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               Open assistant in a new tab
             </a>
           </div>
-          <details className="mt-5 rounded-xl border border-slate-200 bg-white p-4 lg:hidden">
+          {demo.tools && (
+            <section
+              className={`mt-5 border border-slate-200 bg-white p-4 ${panel}`}
+              aria-labelledby="preview-tools"
+            >
+              <h2
+                id="preview-tools"
+                className="text-sm font-semibold text-slate-950"
+                style={heading}
+              >
+                Try the tools
+              </h2>
+              <ul className="mt-2 divide-y divide-slate-100">
+                {demo.tools.map((tool) => (
+                  <li
+                    key={tool.name}
+                    className="flex flex-wrap items-center justify-between gap-x-4 py-2"
+                  >
+                    <p className="min-w-0 text-sm text-slate-600">
+                      <span className="font-semibold text-slate-950">
+                        {tool.name}.
+                      </span>{' '}
+                      {tool.text}
+                    </p>
+                    <a
+                      href={tool.href}
+                      className="inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4"
+                      style={{ color: demo.accent }}
+                    >
+                      {tool.action}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              {demo.toolsComingSoon && (
+                <p className="mt-1 text-xs leading-relaxed text-slate-600">
+                  {demo.toolsComingSoon}
+                </p>
+              )}
+            </section>
+          )}
+          <details className={`mt-5 border border-slate-200 bg-white p-4 lg:hidden ${panel}`}>
             <summary className="cursor-pointer font-medium text-slate-950">
               Questions to try
             </summary>
@@ -187,12 +259,14 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
           </div>
         </section>
         <section
-          className="min-w-0 rounded-2xl bg-slate-900 p-6 text-white sm:p-8 lg:col-span-2"
+          className={`min-w-0 bg-slate-900 p-6 text-white sm:p-8 lg:col-span-2 ${panel}`}
+          style={theme.highlight ? { backgroundColor: demo.accent } : undefined}
           aria-labelledby="demo-next-step"
         >
           <h2
             id="demo-next-step"
             className="text-2xl font-semibold tracking-tight"
+            style={theme.headingFont ? { ...heading, color: undefined } : undefined}
           >
             Make it useful for your visitors. Make it yours.
           </h2>
@@ -211,9 +285,21 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-5">
             <a
-              href="#live-assistant"
-              className="inline-flex min-h-11 items-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-4"
+              href={getFreeTrialUrl()}
+              className={`inline-flex min-h-11 items-center px-5 py-3 text-sm font-semibold hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 ${corners} ${button}`}
+              style={{
+                backgroundColor: theme.highlight ?? '#ffffff',
+                color: theme.highlightInk ?? '#020617',
+              }}
               data-slot="button"
+              data-analytics-id={`demo_${demo.slug.replaceAll('-', '_')}_signup`}
+              data-analytics-name="Start free trial (Prospect Demo)"
+            >
+              Start your free trial
+            </a>
+            <a
+              href="#live-assistant"
+              className="inline-flex min-h-11 items-center text-sm font-semibold text-white underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
               data-analytics-id={`demo_${demo.slug.replaceAll('-', '_')}_contact`}
               data-analytics-name="Plan setup in the chat (Prospect Demo)"
             >
@@ -228,6 +314,13 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               </Link>
             )}
           </div>
+          <p className="mt-3 text-xs leading-relaxed text-white/80">
+            Your own Subsights account and workspace. 14 days free, no card
+            needed; choose yearly billing for 2 months free.{' '}
+            <Link href="/pricing" className="underline underline-offset-2">
+              See pricing
+            </Link>
+          </p>
         </section>
       </div>
     </main>
