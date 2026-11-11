@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
-// One prospect's side-by-side, written by the Subsights prospect pipeline (briu-website scripts/subsights/prospect,
-// shared README in briu-agents ~/.openclaw/state/subsights/prospects/README.md). Answers are verbatim: theirs from
+// One prospect's side-by-side, written by the Subsights prospect audit tooling. Answers are verbatim: theirs from
 // their own chat or what their site makes a visitor do, ours from the demo assistant. Nothing is reworded.
 export const TIERS = ['common', 'decisive', 'harmful_if_wrong'] as const;
 export type Tier = (typeof TIERS)[number];
