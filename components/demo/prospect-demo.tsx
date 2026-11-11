@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react';
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
 import { FREE_TRIAL_DAYS, getFreeTrialUrl } from '@/lib/subscriptions';
 import { TeamPreview } from './team-preview';
+import { AssistantFrame } from './assistant-frame';
 import { ConversationExample } from './conversation-example';
 import { ProspectBuiltFor, ProspectCapabilities } from './prospect-capabilities';
 
@@ -124,25 +125,12 @@ export function ProspectDemoPage({ demo }: { demo: ProspectDemo }) {
               ))}
             </dl>
           )}
-          <div className={`overflow-hidden border border-slate-200 bg-white shadow-xl shadow-slate-200/60 ${panel}`}>
-            <div className={`flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-3 ${demo.entry ? 'hidden sm:flex' : 'flex'}`}>
-              <h2 className="text-sm font-semibold text-slate-950">
-                {demo.label}
-              </h2>
-              <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-800">
-                Live preview
-              </span>
-            </div>
-            <iframe
-              id={`demo-assistant-${demo.slug}`}
-              src={demo.widgetUrl}
-              title={`${demo.label} assistant preview`}
-              className={`block w-full border-0 sm:h-[620px] ${demo.entry ? 'h-[320px] max-sm:h-[clamp(18rem,calc(100svh_-_29rem),35rem)]' : 'h-[560px]'}`}
-              referrerPolicy="no-referrer"
-              allow="clipboard-write"
-              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-            />
-          </div>
+          <AssistantFrame
+            slug={demo.slug}
+            label={demo.label}
+            widgetUrl={demo.widgetUrl}
+            panel={panel}
+          />
           <p className="mt-2 text-xs leading-relaxed text-slate-600">
             Prepared independently by Subsights, not affiliated with{' '}
             {demo.label}. AI answers can be wrong; confirm on the official page.
