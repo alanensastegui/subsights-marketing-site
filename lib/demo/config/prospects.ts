@@ -12,6 +12,30 @@ export type ProspectDemo = {
   entry?: { label: string; text: string }[];
   sources: { label: string; url: string }[];
   accent: string;
+  // Optional look borrowed from the prospect's own site: heading type, a second brand color for the main
+  // call to action and square corners. Never their logo; the page stays a Subsights preview.
+  theme?: {
+    headingFont?: 'jost';
+    highlight?: string;
+    highlightInk?: string;
+    square?: boolean;
+  };
+  // The prospect's own logo, shown beside the "A Subsights preview for" label, which stays.
+  logo?: { src: string; alt: string; width: number; height: number };
+  // Tools a visitor can try on this page today. Each action is a working link in the page or the chat.
+  tools?: { name: string; text: string; href: string; action: string }[];
+  // One line for what the tools do once a real workspace is connected.
+  toolsComingSoon?: string;
+  // What the live assistant can do for this organization. Every `ask` is a question the live
+  // preview answers today; anything not connected carries its own "Coming soon:" line.
+  capabilities?: {
+    title: string;
+    tested?: string;
+    tools: Capability[];
+    habits: Capability[];
+  };
+  // Needs we can build for beyond this preview, with one invitation to talk it through.
+  builtFor?: { title: string; text: string; ideas: { name: string; text: string }[]; invite: string };
   widgetUrl: string;
   publishedLinks?: { label: string; url: string }[];
   industryHref?: string;
@@ -26,6 +50,8 @@ export type ProspectDemo = {
     takeaway: string;
   };
 };
+
+export type Capability = { name: string; text: string; ask: string; comingSoon?: string };
 
 export const PROSPECT_DEMOS: ProspectDemo[] = [
   {
@@ -84,28 +110,22 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     description:
       'Explore membership, find an event or discover a local business. Ask a follow-up and see how the assistant keeps track of what matters to you.',
     questions: [
-      'I am opening a design studio and want a ribbon cutting. Which membership fits a $900 annual budget?',
-      'I am not a member yet. Is there an upcoming Chamber event I can attend, and where would I register?',
-      'I am already a member and our directory address is wrong. What should I do?',
+      'Which membership fits a $900 annual budget for a design studio that wants a ribbon cutting?',
+      'I’m not a member yet. What’s the next networking event I can attend?',
+      'What does a table at the Chamber gala cost?',
+      '¿Cuál es el próximo evento de networking?',
+      'Can I get Kathryn Straub’s cell number?',
     ],
     scope:
       'Answers use selected public membership and directory pages and an imported Chamber events calendar. They do not establish current availability, admission or registration. Follow the official source to confirm. This preview cannot register you, edit member records or notify Chamber staff. Report emails and lead forwarding are not connected. Team samples are fictional illustrations.',
     entry: [
       {
         label: 'Sources',
-        text: 'Saved public membership and directory pages, plus an imported Chamber events calendar. These are not live availability checks.',
+        text: 'Saved public membership and directory pages, plus the imported Chamber events calendar.',
       },
       {
         label: 'Try it',
-        text: 'Ask about your goal, then change a detail or ask for the official application, event or contact link.',
-      },
-      {
-        label: 'Unavailable here',
-        text: 'Registration, member-record edits and staff notifications. Report emails and lead forwarding are not connected.',
-      },
-      {
-        label: 'Next step',
-        text: 'Use the linked Chamber page to confirm eligibility, availability and how to apply or register.',
+        text: 'Ask about your goal, then change a detail or ask for the official link.',
       },
     ],
     sources: [
@@ -126,7 +146,82 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
         url: 'https://www.kirklandchamber.org/contact',
       },
     ],
-    accent: '#155E75',
+    accent: '#173851',
+    theme: { headingFont: 'jost', highlight: '#E2D573', highlightInk: '#173851', square: true },
+    logo: { src: '/images/demo/kirkland-chamber-logo.png', alt: 'Greater Kirkland Chamber of Commerce', width: 320, height: 138 },
+    tools: [
+      {
+        name: 'Weekly report',
+        text: 'The summary your team would get each week.',
+        href: '#sample-report?cadence=weekly',
+        action: 'Preview the weekly report',
+      },
+      {
+        name: 'Staff alerts',
+        text: 'The email staff get when a visitor asks for follow-up.',
+        href: '#sample-notification?cadence=weekly&staff-alerts=on',
+        action: 'Turn on staff alerts',
+      },
+    ],
+    toolsComingSoon:
+      'Coming soon: reports and staff alerts built from your own test chat, sent to your inbox once your workspace is connected.',
+    capabilities: {
+      title: 'What it can do for the Chamber',
+      tested:
+        'Tested on 32 real Chamber questions, including follow-ups that change a detail, other languages and requests it should decline.',
+      tools: [
+        {
+          name: 'Events calendar',
+          text: 'Reads the imported Chamber calendar and gives the date, time, place and registration link.',
+          ask: 'What Chamber events are coming up?',
+        },
+        {
+          name: 'Member directory',
+          text: 'Finds members by what they do and links each profile.',
+          ask: 'Which members do commercial photography?',
+        },
+        {
+          name: 'Membership advisor',
+          text: 'Matches a tier to a budget and goals, using the published benefits.',
+          ask: 'What does Engagement membership include?',
+        },
+        {
+          name: 'Staff routing',
+          text: 'Points a visitor to the right person on the team, not a general inbox.',
+          ask: 'Who should I talk to about sponsoring an event?',
+          comingSoon: 'Coming soon: hands the request to that person by email once lead forwarding is connected.',
+        },
+      ],
+      habits: [
+        {
+          name: 'Answers in their language',
+          text: 'Replies in the language the visitor writes in.',
+          ask: 'Quels avantages offre l’adhésion à la Chambre ?',
+        },
+        {
+          name: 'Keeps the thread',
+          text: 'Carries a budget or plan into the next answer. Ask the $900 question first.',
+          ask: 'What if my budget drops to $500?',
+        },
+        {
+          name: 'Honest about gaps',
+          text: 'Says when something is not published and gives the official route instead.',
+          ask: 'Do you know the Chamber’s annual revenue?',
+        },
+      ],
+    },
+    builtFor: {
+      title: 'Built for your Chamber',
+      text: 'This preview runs on public pages. With your team, we shape it around the questions you handle every week.',
+      ideas: [
+        { name: 'Sponsorships and the gala', text: 'Packages, tables and who to talk to, with the inquiry sent to the right person.' },
+        { name: 'New member onboarding', text: 'First steps, benefits to use early and answers to the questions new members ask.' },
+        { name: 'Ribbon cuttings', text: 'Who qualifies, what to prepare and how to request a date.' },
+        { name: 'Program staff routing', text: 'Leadership, events and member services questions sent to the staff who run them.' },
+        { name: 'Chamber Organizer', text: 'Connect your calendar and member directory so answers follow your updates.' },
+      ],
+      invite: 'Tell us what your team answers most, and we will show you how it would work.',
+    },
     widgetUrl:
       'https://widget.subsights.com/?view=inline&api_key=a6hGMAbp2dSTwGAILaHkafFwTju6zm5H&workspace_id=0XvceSLk1j',
     industryHref: '/chambers',
@@ -431,6 +526,126 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
       ],
       takeaway:
         'Readers reveal the distinctions they need help with. Use those questions to improve guide navigation and put important eligibility details beside the next link.',
+    },
+  },
+  {
+    slug: 'secret-burger-kitchen',
+    label: 'Secret Burger Kitchen',
+    url: 'https://secretburgerkitchen.com/',
+    headline: 'Hours, prices, catering and the truck, answered.',
+    description:
+      'Ask which SBK is open, what a Double Smash costs, or what catering for your office would run. Catering and truck requests can go straight to your team.',
+    questions: [
+      'Which SBK is open right now?',
+      'How much is a Double Smash?',
+      'Can I book the food truck for an event?',
+      'What would catering for 25 people cost?',
+    ],
+    scope:
+      'Answers use 19 public pages of secretburgerkitchen.com, published store hours, the food truck’s online menu and the published ezCater catering menus, checked November 11, 2026 (Pacific time). Store menu prices behind Toast’s bot check could not be read, so prices quote the truck menu. This preview cannot place an order or confirm a booking; requests go to a demo inbox. Team samples are fictional illustrations.',
+    entry: [
+      { label: 'Sources', text: 'Your public pages, store hours, the truck menu and your ezCater catering menus.' },
+      { label: 'Try it', text: 'Ask about a store, a price or an event, then change the headcount or the place.' },
+    ],
+    sources: [
+      { label: 'Locations and hours', url: 'https://secretburgerkitchen.com/locations/' },
+      { label: 'Menu', url: 'https://secretburgerkitchen.com/menu/' },
+      { label: 'Food truck', url: 'https://secretburgerkitchen.com/locations/kent/' },
+      { label: 'Seattle catering on ezCater', url: 'https://www.ezcater.com/catering/secret-burger-kitchen-4' },
+    ],
+    accent: '#BF1F09',
+    logo: { src: '/images/demo/secret-burger-kitchen-logo.png', alt: 'Secret Burger Kitchen', width: 300, height: 300 },
+    widgetUrl:
+      'https://widget.subsights.com/?view=inline&api_key=2xKB6yQ8ThAn5VW6OxwDWT53GyTYLN0P&workspace_id=0XvceSLk1j',
+    teamView: [
+      { question: 'Can I book the food truck for a company event of about 60 people?', insight: 'Truck leads: the request goes to the truck team with the date, headcount and place.' },
+      { question: 'How much is a Double Smash?', insight: 'Prices: guests want a number before they order; keep each store’s menu readable.' },
+      { question: 'Is the Renton location open yet?', insight: 'New stores: say the opening month and point to the nearest open SBK.' },
+    ],
+    conversation: {
+      title: 'A truck booking that reaches the truck team.',
+      turns: [
+        {
+          question: 'Can I book the food truck for a company event of about 60 people in Kirkland next month? How do I get a quote?',
+          answer:
+            'Yes, SBK Mobile handles private event bookings. For a quote for your December company event in Kirkland for about 60 people, call the truck team at (206) 759-0000. They can discuss the date, travel and pricing; availability isn’t confirmed. If you prefer, I can help pass along your request for a quote.',
+          source: { label: 'Food truck', url: 'https://secretburgerkitchen.com/locations/kent/' },
+        },
+        {
+          question: 'How much would it cost to cater lunch for about 25 people at our office in Seattle?',
+          answer:
+            'For about 25 people, Seattle drop-off catering estimates are 25 Executive Boxes at $487.50, or 4 Event Burger Bars at $440 for 32 servings. Add $20 for delivery. These are estimates before tax and tip, not quotes.',
+          source: { label: 'Seattle catering on ezCater', url: 'https://www.ezcater.com/catering/secret-burger-kitchen-4' },
+        },
+        {
+          question: 'Is the Renton location open yet?',
+          answer:
+            'Not yet. The Renton location at 202 SW 43rd St is opening in December 2026; an exact day hasn’t been published. The nearest open SBK is the Auburn food truck, about 10 miles away, at 102 15th St NE.',
+          source: { label: 'Locations and hours', url: 'https://secretburgerkitchen.com/locations/' },
+        },
+      ],
+      takeaway: 'These are answers the live assistant gave on November 11, 2026. Ask your own in the chat above.',
+    },
+  },
+
+  {
+    slug: 'studio-east',
+    label: 'Studio East',
+    url: 'https://studio-east.org/',
+    headline: 'The right class, camp or show for every family.',
+    description:
+      'Ask which class fits your child, when the next show is, or what the refund policy says. Each answer links the exact sign-up or ticket page.',
+    questions: [
+      'Which class fits my 8-year-old this winter?',
+      'A Christmas Story dates and tickets?',
+      'What’s the refund policy for classes?',
+      'Is there help with tuition?',
+    ],
+    scope:
+      'Answers use 18 public pages of studio-east.org, the class and camp listings on Active.com and the show listings on the Studio East ticket site, checked November 11, 2026 (Pacific time). This preview cannot register a child or sell a ticket; it links the exact page. Requests go to a demo inbox. Team samples are fictional illustrations.',
+    entry: [
+      { label: 'Sources', text: 'Your public pages, your Active.com class and camp listings and your ticket site.' },
+      { label: 'Try it', text: 'Ask about your child’s grade and free days, then change a detail.' },
+    ],
+    sources: [
+      { label: 'Classes', url: 'https://studio-east.org/classes' },
+      { label: 'Policies and FAQs', url: 'https://studio-east.org/policies-and-faqs' },
+      { label: 'Class and camp registration', url: 'https://campscui.active.com/orgs/StudioEast' },
+      { label: 'Tickets', url: 'https://studioeast.my.salesforce-sites.com/ticket/' },
+    ],
+    accent: '#171D3A',
+    theme: { highlight: '#A72061', highlightInk: '#ffffff' },
+    logo: { src: '/images/demo/studio-east-logo.png', alt: 'Studio East', width: 750, height: 156 },
+    widgetUrl:
+      'https://widget.subsights.com/?view=inline&api_key=oi1687OBN1Wwjl5wKISwwT7QKgaOvT4e&workspace_id=0XvceSLk1j',
+    teamView: [
+      { question: 'Which class fits my 8-year-old in January?', insight: 'Placement: parents think in ages; the site places by grade.' },
+      { question: 'Do you have a camp during mid-winter break?', insight: 'Camps: publish grades and prices for planned camps as soon as they are set.' },
+      { question: 'Can I get a refund if we cancel?', insight: 'Policies: classes, camps and tickets each have their own rules.' },
+    ],
+    conversation: {
+      title: 'A parent’s question, from age to sign-up.',
+      turns: [
+        {
+          question: 'Which class or camp fits my 8-year-old in January, and where do I sign up?',
+          answer:
+            'Studio East places children by school grade, not age. An 8-year-old is usually in second or third grade. Frozen KIDS (grades 2–6, Tuesdays, January 12–March 23, $450) and Broadway Kids: The Little Mermaid (grades 1–3, Saturdays, January 16–March 27, $220) both fit. The links go directly to registration.',
+          source: { label: 'Class and camp registration', url: 'https://campscui.active.com/orgs/StudioEast' },
+        },
+        {
+          question: 'I want 4 tickets for A Christmas Story on the afternoon of Saturday, December 19. How much will that be?',
+          answer:
+            'For the Saturday, December 19, 2026, 2 PM matinee, four standard tickets are $112 total ($25 plus a $3 fee each); reduced-price blue seats are $72 total. It is a relaxed performance and a Christmas Morning PJ matinee.',
+          source: { label: 'Tickets', url: 'https://studioeast.my.salesforce-sites.com/ticket/' },
+        },
+        {
+          question: 'I registered my son for Frozen KIDS but we need to cancel. Class starts January 12. Do I get my money back?',
+          answer:
+            'Yes. Canceling now is more than 48 hours before the first class, so the class cost is refundable minus the $50 non-refundable registration fee, or the full cost can be kept as credit. On the listed $450 tuition, that is $400 refunded.',
+          source: { label: 'Policies and FAQs', url: 'https://studio-east.org/policies-and-faqs' },
+        },
+      ],
+      takeaway: 'These are answers the live assistant gave on November 11, 2026. Ask your own in the chat above.',
     },
   },
 ];

@@ -1,0 +1,279 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "studio-east",
+  "theirs": {
+    "label": "What a parent finds on your site today",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-11",
+    "note": "Answers take about 8 to 22 seconds while it checks your listings. It can't register a child or sell a ticket; it links the exact sign-up or ticket page."
+  },
+  "questions": [
+    {
+      "id": "k-winter",
+      "tier": "common",
+      "q": "What classes do you have for kindergarteners this winter?",
+      "theirs": "The Classes page carousel shows class names and grades. Times, prices and the full list are on Active.com.",
+      "theirs_seconds": null,
+      "ours": "For **winter 2027**, these classes welcome kindergarteners:\n\n- **[Broadway Kids: Wicked](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958334)** — Kindergarten–grade 2. Drama games, singing and dancing inspired by *Wicked*. Wednesdays, 3:30–5 p.m., January 13–March 24. **$375**.\n- **[Drama Bugs: Puppies and Kitties!](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934043)** — Pre-K–kindergarten. Games, stories, characters and songs. Saturdays, 9:30–10:30 a.m., January 16–March 27; no class February 13. **$375**.\n\nThe registration links show live openings and waitlists; a listing doesn’t reserve a spot.",
+      "ours_seconds": 10,
+      "outcome": "Ours lists both kindergarten classes with day, time, dates, price and the sign-up link.",
+      "verdict": "ours_better"
+    },
+    {
+      "id": "location",
+      "tier": "common",
+      "q": "Where are you located, and is there parking?",
+      "theirs": "The footer gives the address. Parking is not covered.",
+      "theirs_seconds": null,
+      "ours": "Studio East is at **10718 NE 68th St, Kirkland, WA 98033**.\n\nI couldn’t find parking information in the available sources. Please contact Studio East at **425-820-1800** or [info@studio-east.org](mailto:info@studio-east.org) to check.",
+      "ours_seconds": 10,
+      "outcome": "Both give the address. Ours says parking isn't published and gives the phone and email.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "xmas-length",
+      "tier": "common",
+      "q": "How long is A Christmas Story, and is it OK for young kids?",
+      "theirs": "The runtime is on the ticket site. No age guidance is published.",
+      "theirs_seconds": null,
+      "ours": "**A Christmas Story The Musical** runs about **2 hours and 30 minutes**, including a 20-minute intermission.\n\nIt’s based on the classic movie, but I couldn’t find a recommended audience age. For guidance on whether it’s right for your children, contact [tickets@studio-east.org](mailto:tickets@studio-east.org).",
+      "ours_seconds": 16,
+      "outcome": "Ours gives the runtime and says plainly that no age guidance is published.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "summer-open",
+      "tier": "common",
+      "q": "When does summer camp registration open?",
+      "theirs": "The Summer Camps page says registration opens in early 2027, date to be announced.",
+      "theirs_seconds": null,
+      "ours": "Summer 2027 camp registration is expected to open in **early 2027**. The exact date hasn’t been announced; check the [summer camps page](https://studio-east.org/summer-camps) in late 2026 for an update.",
+      "ours_seconds": 7.7,
+      "outcome": "Both correct.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "drop-in",
+      "tier": "common",
+      "q": "Do you have drop-in dance classes?",
+      "theirs": "The Classes page mentions $25 drop-ins on Saturdays. Grades and times are on Active.com.",
+      "theirs_seconds": null,
+      "ours": "Yes! Studio East offers **Saturday drop-in dance classes for $25 per class**. The fall session runs September 19–December 12, 2026, with no class November 28:\n\n- [Musical Theater Jazz Int/Adv](https://campscui.active.com/orgs/StudioEast?season=3835445&session=71367934): Grades 6–12, 9–10 AM.\n- [Tap Dance Open Level](https://campscui.active.com/orgs/StudioEast?season=3835445&session=71395740): Grades 5–12, 10–11 AM.\n- [Musical Theater Jazz Beg/Int](https://campscui.active.com/orgs/StudioEast?season=3835445&session=71409731): Grades 5–12, 11 AM–noon.\n\n[Winter drop-in classes](https://campscui.active.com/orgs/StudioEast?season=3891044) begin January 16, 2027. Check Active.com for live openings and waitlists.",
+      "ours_seconds": 12.3,
+      "outcome": "Ours lists each drop-in class with grades, times, the skipped date and links.",
+      "verdict": "ours_better"
+    },
+    {
+      "id": "watch",
+      "tier": "common",
+      "q": "Can I stay and watch my kid's class?",
+      "theirs": "Answered in the Policies and FAQs page.",
+      "theirs_seconds": null,
+      "ours": "You’re welcome to watch the **first 10 minutes of the first class**. Studio East limits observation to support students’ safety, comfort and learning. You’re welcome to wait in the lobby.\n\nMany classes also have a showcase or performance for families on the final day. See the [Policies & FAQs](https://studio-east.org/policies-and-faqs) for details.",
+      "ours_seconds": 17.5,
+      "outcome": "Both correct.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "fit-8yo",
+      "tier": "decisive",
+      "q": "Which class or camp fits my 8-year-old in January, and where do I sign up?",
+      "theirs": "Nothing on the site matches classes to an age. The parent compares grade ranges on the site with times and prices on Active.com, and the homepage still promotes the Nov 11 Studio Day.",
+      "theirs_seconds": null,
+      "ours": "Studio East places children by **school grade**, not age. An 8-year-old is usually in second or third grade. These classes begin in January 2027:\n\n- **[Frozen KIDS](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234)** — Grades 2–6; Tuesdays, 4–6:30 p.m., January 12–March 23; $450. Students rehearse and perform a production.\n- **[Broadway Kids: The Little Mermaid](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)** — Grades 1–3; Saturdays, 9:30–10:30 a.m., January 16–March 27; $220. No class February 13.\n- **[Broadway Kids: Wicked](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958334)** — Kindergarten–grade 2; Wednesdays, 3:30–5 p.m., January 13–March 24; $375.\n- **[Acting for film: And you're watching Disney channel!](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72936139)** — Grades 3–5; Wednesdays, 3:30–5 p.m., January 13–March 24; $375.\n\nThe links go directly to registration; Active.com shows current openings and waitlists.\n\nA **Studio Day is planned for January 18**, but its grades and price aren’t published yet. Registration is scheduled to open November 16, 2026.",
+      "ours_seconds": 12.7,
+      "outcome": "Ours explains grade placement and lists the winter classes that fit, with sign-up links and the Jan 18 Studio Day.",
+      "verdict": "ours_better"
+    },
+    {
+      "id": "sat-3rd",
+      "tier": "decisive",
+      "q": "My daughter is in 3rd grade and is only free on Saturdays. What can she do this winter, and how much is it?",
+      "theirs": "The parent filters Active.com by day and grade.",
+      "theirs_seconds": null,
+      "ours": "Your daughter has two Saturday class options for **winter 2027**:\n\n- **Broadway Kids: The Little Mermaid** — Grades 1–3. Singing, dancing and acting inspired by the musical. Saturdays, **9:30–10:30 AM**. **$220** for the session. [Register on Active.com](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)\n- **Musical Theater Jazz** — Grades 3–5. Learn jazz technique and dance combinations. Saturdays, **10:30–11:30 AM**. **$220** for the session or **$25 per drop-in class**. [Register on Active.com](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nBoth run **January 16–March 27, 2027**, with no class February 13. Active.com shows live openings and waitlists.",
+      "ours_seconds": 10.7,
+      "outcome": "Ours gives the two Saturday options with times, prices and the drop-in price.",
+      "verdict": "ours_better"
+    },
+    {
+      "id": "midwinter",
+      "tier": "decisive",
+      "q": "Do you have a camp during mid-winter break in February for my 2nd grader?",
+      "theirs": "Break camp registration says it opens Nov 16. Planned February dates appear only on the internal-style calendar.",
+      "theirs_seconds": null,
+      "ours": "Studio East plans two Mid-Winter Break Camps, **Descendants** and **Frozen**, for **February 11–12, 2027, from 9 AM to 3 PM**.\n\nThe grade ranges and prices haven’t been published yet, so I can’t confirm whether either camp will be open to your 2nd grader. Registration is scheduled to open Monday, November 16, 2026, on [Active.com](https://campscui.active.com/orgs/StudioEast?season=3861533).",
+      "ours_seconds": 9.2,
+      "outcome": "Ours gives the planned Feb 11-12 camps and says grades and prices aren't published yet.",
+      "verdict": "ours_better"
+    },
+    {
+      "id": "tickets-19",
+      "tier": "decisive",
+      "q": "I want 4 tickets for A Christmas Story on the afternoon of Saturday, December 19. How much will that be?",
+      "theirs": "The ticket site lists performances and prices. The parent works out the total.",
+      "theirs_seconds": null,
+      "ours": "For the **Saturday, December 19, 2026, 2 PM** matinee, four tickets cost:\n\n- **Standard:** $112 total ($25 plus a $3 fee per ticket)\n- **Reduced-price blue seats:** $72 total ($15 plus a $3 fee per ticket)\n- **Supporter:** $140 total ($35 per ticket, with no added fee)\n\nThis is a relaxed performance and a Christmas Morning PJ matinee. [Check seat availability and buy tickets](https://studioeast.my.salesforce-sites.com/ticket/#/instances/a0FRi000009nSlxMAE).",
+      "ours_seconds": 11.2,
+      "outcome": "Ours finds the Dec 19 2 PM relaxed matinee and gives the totals for four tickets with the exact link.",
+      "verdict": "ours_better"
+    },
+    {
+      "id": "winter-break",
+      "tier": "decisive",
+      "q": "Is there anything for kids to do over winter break at the end of December?",
+      "theirs": "Nothing is published for late December. A parent has to check several pages to be sure.",
+      "theirs_seconds": null,
+      "ours": "I couldn’t find a Studio East camp or class listed for the end-of-December 2026 break.\n\nThe next planned school-day-off activities are **Studio Day: Moana** and **Studio Day: Wicked** on Monday, January 18, 2027, from 9 AM to 3 PM. Grades and prices haven’t been published yet. [Registration for break camps and Studio Days](https://campscui.active.com/orgs/StudioEast?season=3861533) opens Monday, November 16, 2026.",
+      "ours_seconds": 12.1,
+      "outcome": "Ours says nothing is listed, gives the next Studio Day and when registration opens, and mentions the show.",
+      "verdict": "ours_better"
+    },
+    {
+      "id": "afford",
+      "tier": "decisive",
+      "q": "We can't afford $450 for Frozen KIDS. Is there any help?",
+      "theirs": "The Tuition Assistance page explains it. The Policies page says to apply before registering.",
+      "theirs_seconds": null,
+      "ours": "Yes. Studio East offers **tuition assistance** that can cover part or all of a class’s cost. You can apply for the level of help your family needs; no financial documents are required.\n\n[Apply for tuition assistance](https://docs.google.com/forms/d/1lu5rCVR1mvgeAC6oKOqY1N53eorpt-q7J8FfYTNxrdY/viewform?edit_requested=true) **before registering**—assistance cannot be applied after payment.\n\nIf you’re worried Frozen KIDS will fill while your application is reviewed, ask Studio East to save a spot: [education@studio-east.org](mailto:education@studio-east.org) or 425-820-1800.",
+      "ours_seconds": 19.4,
+      "outcome": "Ours combines both: no documents needed, apply before paying, ask to hold a spot.",
+      "verdict": "ours_better"
+    },
+    {
+      "id": "trial",
+      "tier": "decisive",
+      "q": "Can my 7-year-old try a class before we commit to a whole session?",
+      "theirs": "Answered in the Policies and FAQs page.",
+      "theirs_seconds": null,
+      "ours": "Yes! Each student can take **one free trial class per session**. Trials must be arranged in advance and are subject to availability.\n\nIf you decide to enroll afterward, full session tuition is due and isn’t prorated for the trial. Studio East places students by school grade, so share your child’s grade when arranging a class.\n\nContact the Education Team at [education@studio-east.org](mailto:education@studio-east.org) or **425-820-1800** before bringing your child.",
+      "ours_seconds": 12.2,
+      "outcome": "Both correct.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "cancel-48",
+      "tier": "harmful_if_wrong",
+      "q": "I registered my son for Frozen KIDS but we need to cancel. Class starts January 12. If I cancel now, do I get my money back?",
+      "theirs": "The Policies page has the class refund rules. Summer camps and tickets have different rules on other pages.",
+      "theirs_seconds": null,
+      "ours": "Yes. Since **Frozen KIDS starts January 12, 2027**, canceling now is more than 48 hours before the first class. Under the [class refund policy](https://studio-east.org/policies-and-faqs), the class cost is refundable minus the **$50 non-refundable registration fee**, or the full class cost can be kept as credit.\n\nThe listed tuition is $450, so that would be **$400 refunded** if you paid the full listed tuition. Credit is valid for up to one year and cannot later be refunded.\n\nTo request cancellation, contact the Education Team at [education@studio-east.org](mailto:education@studio-east.org) or **425-820-1800**.",
+      "ours_seconds": 16.2,
+      "outcome": "Ours applies the class rule ($450 minus the $50 fee = $400, or full credit) and gives the contact.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "drop-after-2",
+      "tier": "harmful_if_wrong",
+      "q": "We've already been to two classes and want to drop. Can we get a refund?",
+      "theirs": "Policies and FAQs page.",
+      "theirs_seconds": null,
+      "ours": "For a seasonal class, Studio East’s policy says **there’s no refund or credit after the second class**. You can read the full [class refund policy](https://studio-east.org/policies-and-faqs).\n\nTo discuss dropping the class, contact the Education Team at education@studio-east.org or 425-820-1800.",
+      "ours_seconds": 9.1,
+      "outcome": "Both correct: no refund or credit after the 2nd class.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "sick",
+      "tier": "harmful_if_wrong",
+      "q": "My daughter has a cough and a fever. Can she still come to camp tomorrow?",
+      "theirs": "Policies and FAQs page.",
+      "theirs_seconds": null,
+      "ours": "Please keep her home from camp until she has been **symptom-free for 24 hours**, including both her cough and fever.\n\nPlease let Studio East know she’ll be absent by calling **425-820-1800** or emailing [education@studio-east.org](mailto:education@studio-east.org). I hope she feels better soon.",
+      "ours_seconds": 7.7,
+      "outcome": "Both correct: 24 hours symptom-free.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "meds",
+      "tier": "harmful_if_wrong",
+      "q": "Can the staff give my son his ADHD medication at camp?",
+      "theirs": "Policies and FAQs page.",
+      "theirs_seconds": null,
+      "ours": "No. Studio East staff cannot give or monitor your son’s ADHD medication. The only exception is for emergency EpiPens and inhalers, with written emergency instructions.\n\nThe policy says families should arrange to provide needed care during camp hours or have the student self-administer. Please discuss your son’s needs before camp with the Education Team at [education@studio-east.org](mailto:education@studio-east.org) or 425-820-1800.",
+      "ours_seconds": 16.1,
+      "outcome": "Both correct: staff cannot give medication; EpiPens and inhalers only.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "ticket-refund",
+      "tier": "harmful_if_wrong",
+      "q": "We can't make our Christmas Story tickets on December 13. Can I get a refund?",
+      "theirs": "Production FAQ page.",
+      "theirs_seconds": null,
+      "ours": "I’m sorry you can’t make it. Tickets are **non-refundable**, except if you can’t attend because of a contagious illness. In that case, the ticket cost is refunded minus the online processing fee. Please email the [Box Office](mailto:tickets@studio-east.org) as soon as you know.\n\nYou can also request an exchange for another performance of the same show, subject to availability. Email the Box Office at least 48 hours before the December 13 performance.",
+      "ours_seconds": 22.3,
+      "outcome": "Both correct: non-refundable except contagious illness; exchange 48 hours ahead.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "age-exception",
+      "tier": "harmful_if_wrong",
+      "q": "My son is 5 but really mature. Can he join the D&D class for grades 3-5?",
+      "theirs": "Policies and FAQs page.",
+      "theirs_seconds": null,
+      "ours": "**D&D: Roll For Drama! is for grades 3–5**, and Studio East places children by school grade rather than age. A 5-year-old is typically in kindergarten, so he would need an approved exception if he’s outside the posted range.\n\nExceptions are very rare and must be approved by the Education Director. You can explain his maturity and ask the Education Team before registering: [education@studio-east.org](mailto:education@studio-east.org) or 425-820-1800.",
+      "ours_seconds": 10.5,
+      "outcome": "Both correct. Ours makes no promise and routes to the Education Director.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "thanksgiving",
+      "tier": "harmful_if_wrong",
+      "q": "Is there Saturday dance class on November 28, and are you open the Friday after Thanksgiving?",
+      "theirs": "Class skip dates are only on Active.com; closures only on the public room-planner calendar.",
+      "theirs_seconds": null,
+      "ours": "- **Saturday, November 28:** The listed fall Tap and Musical Theater Jazz classes do not meet. They’re scheduled to resume Saturday, December 5. [See fall dance listings](https://campscui.active.com/orgs/StudioEast?season=3835445).\n- **Friday, November 27:** Studio East is closed for Thanksgiving, according to its [public calendar](https://teamup.com/ks2tc1wf11pudhkgg8).",
+      "ours_seconds": 19.8,
+      "outcome": "Ours confirms no class Nov 28 and that Studio East is closed Nov 27.",
+      "verdict": "ours_better"
+    }
+  ],
+  "found": {
+    "tools": [
+      "No chat on the site",
+      "Class and camp registration on Active.com",
+      "Tickets on a Salesforce ticket site",
+      "A public Teamup calendar (the team and room planner)",
+      "Email: info@, education@, tickets@",
+      "Tuition assistance by Google Form"
+    ],
+    "faq": "Good: a Policies and FAQs page (about 13 questions, plus refund, payment, medical and pickup policies) and a Production FAQ with the ticket policy.",
+    "gap": "Find which class or camp fits their child on given dates, and where to sign up, in one place. Grades are on the site; times, prices and dates are on Active.com; tickets are on another site.",
+    "noticed": [
+      "The Classes page carousel shows some winter end dates like \"Jan 13-24\"; the registration listing runs to Mar 24.",
+      "The homepage still promotes the Nov 11 Studio Day. Today its Register button shows \"Registration opens November 16\".",
+      "A draft season page (/2627-season-1) with placeholder text (\"Directed by X\") is public in the sitemap.",
+      "The Auditions page lists A Christmas Story through Dec 20; the ticket site sells shows through Dec 23.",
+      "The \"Calendar\" link opens the team and room planner (rehearsals, rentals, holds), not a public events calendar."
+    ]
+  },
+  "cost": {
+    "today": [
+      {
+        "label": "Today",
+        "amount": "Staff time: parent questions go to education@, info@ and tickets@ by email and phone. No chat vendor."
+      }
+    ],
+    "ours": {
+      "plan": "Standard plan",
+      "price": "$199 a month",
+      "includes": "Fully managed: we keep classes, camps, shows and policies current, send a weekly report of what parents asked, and pass trial-class and other staff requests to your team."
+    },
+    "timing": [
+      {
+        "label": "Time to go live",
+        "value": "Live within days on your Squarespace site. Your team does nothing technical."
+      }
+    ]
+  },
+  "reliability": {
+    "suite": "Studio East (StoryBook Theater) demo questions",
+    "checked": "2026-11-11",
+    "cases": 20,
+    "passed": 20,
+    "harmful_if_wrong_failures": 0
+  }
+}

@@ -8,6 +8,7 @@ import {
   within,
 } from '@testing-library/react';
 import { TeamPreview } from './team-preview';
+import { readEngagement } from '@/lib/demo/engagement';
 import { PROSPECT_DEMOS } from '@/lib/demo/config/prospects';
 
 beforeEach(() => {
@@ -173,12 +174,15 @@ it('shows measured activity beside the labelled samples only when it exists', ()
   render(
     <TeamPreview
       demo={demo}
-      measured={{ measuredSince: '2026-11-09', conversations: 4, linkClicks: [{ link: demo.sources[0].url, clicks: 3 }] }}
+      measured={readEngagement({ measured_since: '2026-11-09', conversations: 4, clicks: 23,
+        link_clicks: [{ link: 'https://example.org/private?token=private-value', clicks: 3 }] })}
     />
   );
   expect(screen.getByText('Measured since November 9, 2026')).toBeTruthy();
   const measured = within(screen.getByRole('region', { name: 'Measured on this preview' }));
-  expect(measured.getByRole('link', { name: demo.sources[0].label }).closest('li')?.textContent).toContain('3');
+  expect(measured.getByText('Link clicks').nextElementSibling?.textContent).toBe('23');
+  expect(measured.queryAllByRole('link')).toHaveLength(0);
+  expect(document.body.innerHTML).not.toContain('private-value');
   expect(measured.getByText('Visitor conversations').nextElementSibling?.textContent).toBe('4');
   expect(screen.getByText('Sample data')).toBeTruthy();
 });

@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/cn';
-import { getSignupUrl, type PlanId } from '@/lib/subscriptions';
+import { FREE_TRIAL_DAYS, getSignupUrl, type PlanId } from '@/lib/subscriptions';
 import { Sparkles, RefreshCw, CreditCard } from 'lucide-react';
 import { Animate } from '@/components/ui/animate';
 import PricingToggle from './pricing-client';
@@ -45,7 +45,7 @@ const copy = {
       name: 'Free Trial',
       sort_price: 0.0,
       features: [
-        '14 Day Free Trial',
+        `${FREE_TRIAL_DAYS} Day Free Trial`,
         'Professional Tier Access',
         'No Payment Information Required',
       ],
@@ -185,7 +185,7 @@ export default function Section({ searchParams }: Props) {
 
   const getPriceUnit = (plan: Copy['plans'][0]) => {
     if (plan.enterprise) return '';
-    if (plan.free) return 'for 14 days';
+    if (plan.free) return `for ${FREE_TRIAL_DAYS} days`;
     return isAnnual ? '/year' : '/month';
   };
 

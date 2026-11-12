@@ -38,3 +38,6 @@ export const getFreeTrialUrl = (): string => getSignupUrl({ plan: "free_trial", 
 export const getAllResolvedPriceIds = () => {
   return PRICE_IDS[RUNTIME];
 };
+
+// Length of the self-serve free trial. Checkout (platform-api) creates trials of this length.
+export const FREE_TRIAL_DAYS = 30;

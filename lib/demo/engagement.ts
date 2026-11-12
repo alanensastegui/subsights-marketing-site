@@ -3,7 +3,7 @@
 export type DemoEngagement = {
   measuredSince: string;
   conversations: number;
-  linkClicks: { link: string; clicks: number }[];
+  clicks: number;
 };
 
 const BOT_API_URL = process.env.SUBSIGHTS_BOT_API_URL || 'https://bot-api.subsights.com';
@@ -15,14 +15,9 @@ export function readEngagement(body: unknown): DemoEngagement | null {
   const since = value.measured_since;
   if (typeof conversations !== 'number' || !Number.isInteger(conversations) || conversations < 1) return null;
   if (typeof since !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(since)) return null;
-  const links = Array.isArray(value.link_clicks) ? value.link_clicks : [];
-  const linkClicks = links.flatMap((row) => {
-    const { link, clicks } = (row ?? {}) as Record<string, unknown>;
-    if (typeof link !== 'string' || !/^https?:\/\//.test(link)) return [];
-    if (typeof clicks !== 'number' || !Number.isInteger(clicks) || clicks < 1) return [];
-    return [{ link, clicks }];
-  });
-  return { measuredSince: since, conversations, linkClicks };
+  const clicks = value.clicks;
+  if (typeof clicks !== 'number' || !Number.isSafeInteger(clicks) || clicks < 0) return null;
+  return { measuredSince: since, conversations, clicks };
 }
 
 export async function getDemoEngagement(slug: string): Promise<DemoEngagement | null> {
