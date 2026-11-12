@@ -2,7 +2,7 @@
   "schema": "subsights.prospect.comparison.v1",
   "slug": "studio-east",
   "theirs": {
-    "label": "What a parent finds on your site today",
+    "label": "What a visitor finds on your site today",
     "kind": "site"
   },
   "asked": {
@@ -236,9 +236,9 @@
       "q": "If Frozen KIDS fills up, can I get on a waitlist for my 3rd grader?",
       "theirs": "Active’s Frozen KIDS registration listing offers a waitlist option. The November 12 snapshot was not full; parents must check the session page for current availability.",
       "theirs_seconds": null,
-      "ours": "Yes. **Frozen KIDS is for grades 2–6**, so your 3rd grader is eligible. If it fills, select the official waitlist on the [Frozen KIDS session page](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234).\n\nThe waitlist doesn’t guarantee a place, and I can’t enroll your child myself. Check Active.com for current availability.",
-      "ours_seconds": 11.4,
-      "outcome": "Points the parent to Frozen KIDS’ official waitlist without promising a spot. The saved follow-up queues a staff inquiry.",
+      "ours": "Yes. **Frozen KIDS is for grades 2–6**, so your 3rd grader is eligible. If it fills, select the official waitlist on the [Frozen KIDS session page](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234).\n\nThe waitlist doesn’t guarantee a place, and I can’t enroll your child myself. Check Active.com for current availability.\n\n**Visitor:** Please ask the education team about a waitlist for winter Frozen KIDS instead. I'm [contact redacted], [contact redacted]. This is a Subsights demo test, please ignore.\n\n**Subsights:** Your request is queued for the team. Delivery and a response time aren't confirmed.",
+      "ours_seconds": null,
+      "outcome": "Points the parent to Frozen KIDS’ official waitlist and queues a staff inquiry without promising a spot.",
       "verdict": "ours_better"
     },
     {
@@ -258,9 +258,9 @@
       "q": "Can we rent space for a birthday, or do you sell a party package?",
       "theirs": "The About page offers space, costume and prop rental inquiries through info@studio-east.org. It publishes no rental price, capacity or birthday-party package.",
       "theirs_seconds": null,
-      "ours": "Studio East accepts **space rental inquiries**, though prices and availability aren’t published. I didn’t find a birthday-party package on the pages checked.\n\nYou can ask the front office whether a rental would suit your celebration using the [space rental inquiry](mailto:info@studio-east.org?subject=Space%20Rental%20Inquiries&body=Hi%2C%0A%0AMy%20name%20is%20%5BFirstName%5D%20and%20I%20have%20questions%20about%20renting%20your%20space.%0A%0AThank%20you%2C) or call **425-820-1800**. Include your proposed date, approximate headcount and space needs.",
-      "ours_seconds": 10.3,
-      "outcome": "Finds the published space rental inquiry and says a birthday package was not found. The saved follow-up queues the rental request.",
+      "ours": "Studio East accepts **space rental inquiries**, though prices and availability aren’t published. I didn’t find a birthday-party package on the pages checked.\n\nYou can ask the front office whether a rental would suit your celebration using the [space rental inquiry](mailto:info@studio-east.org?subject=Space%20Rental%20Inquiries&body=Hi%2C%0A%0AMy%20name%20is%20%5BFirstName%5D%20and%20I%20have%20questions%20about%20renting%20your%20space.%0A%0AThank%20you%2C) or call **425-820-1800**. Include your proposed date, approximate headcount and space needs.\n\n**Visitor:** Please pass on a space rental inquiry for a birthday on June 20, 2027, around 20 guests, a room for theatre games. I'm [contact redacted], [contact redacted]. This is a Subsights demo test, please ignore.\n\n**Subsights:** Your request is queued for the team. Delivery and a response time aren't confirmed.",
+      "ours_seconds": null,
+      "outcome": "Finds the published space rental inquiry and queues the request. No birthday package, price or booking is promised.",
       "verdict": "ours_better"
     },
     {
