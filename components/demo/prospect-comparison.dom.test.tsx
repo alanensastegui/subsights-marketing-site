@@ -105,3 +105,10 @@ it('renders a link inside bold, and folds rows past three per tier', () => {
   expect(screen.queryByText(/\[Wicked\]/)).toBeNull();
   expect(screen.getByText('Show 2 more questions')).toBeTruthy();
 });
+
+it('renders italics and mailto links without leaving Markdown on the page', () => {
+  show({ ...base, questions: [{ ...base.questions[1], ours: 'Inspired by *Wicked*. Write [info@example.test](mailto:info@example.test).' }] });
+  expect(screen.getByText('Wicked').tagName).toBe('EM');
+  expect(screen.getByRole('link', { name: 'info@example.test' }).getAttribute('href')).toBe('mailto:info@example.test');
+  expect(document.body.textContent).not.toMatch(/\]\(|\*Wicked\*/);
+});

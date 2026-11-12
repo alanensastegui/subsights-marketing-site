@@ -197,7 +197,7 @@ function Verdict({ verdict }: { verdict: string }) {
   );
 }
 
-// Answers are stored as the assistant gave them, with light Markdown: lines, "- " bullets, **bold** and https links.
+// Answers are stored as the assistant gave them, with light Markdown: lines, "- " bullets, **bold**, *italic*, https and mailto links.
 // Rendered as React text; nothing is set as HTML.
 export function renderAnswer(text: string): ReactNode[] {
   return text.split(/\n+/).filter((line) => line.trim()).map((line, index) => {
@@ -208,11 +208,12 @@ export function renderAnswer(text: string): ReactNode[] {
 }
 function inline(line: string): ReactNode[] {
   const out: ReactNode[] = [];
-  const re = /\*\*(.+?)\*\*|\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g;
+  const re = /\*\*(.+?)\*\*|\[([^\]]+)\]\(((?:https:\/\/|mailto:)[^\s)]+)\)|\*([^*\s][^*]*?)\*/g;
   let last = 0;
   for (const match of line.matchAll(re)) {
     if (match.index! > last) out.push(line.slice(last, match.index));
     if (match[1]) out.push(<strong key={match.index}>{inline(match[1])}</strong>);
+    else if (match[4]) out.push(<em key={match.index}>{match[4]}</em>);
     else out.push(<a key={match.index} href={match[3]} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{match[2]}</a>);
     last = match.index! + match[0].length;
   }
