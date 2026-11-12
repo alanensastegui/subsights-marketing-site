@@ -76,3 +76,24 @@ it('records one chat engagement when the visitor moves into the demo assistant',
   expect(trackEvent).toHaveBeenCalledTimes(1);
   expect(trackEvent.mock.calls[0][0]).toMatchObject({ event_name: 'demo_chat_engaged', event_label: 'example-camps' });
 });
+
+it('shows what we found, verdicts, the source of their answer and the honest tradeoff', () => {
+  show({
+    ...base,
+    found: { tools: ['No chat on the site'], faq: 'Good policy FAQ.', gap: 'Find the right class in one place.', noticed: ['A draft page is public.'] },
+    questions: [{ ...base.questions[1], verdict: 'both_right', theirs_source: 'On the website' }],
+    cost: { today: [{ label: 'Today', amount: 'Staff time' }], ours: { plan: 'Standard', price: '$199 a month' }, tradeoff: 'Theirs answers faster.' },
+  });
+  expect(screen.getByText('What we found on your site today')).toBeTruthy();
+  expect(screen.getByText('No chat on the site')).toBeTruthy();
+  expect(screen.getByText('Both right')).toBeTruthy();
+  expect(screen.getByText('On the website')).toBeTruthy();
+  expect(screen.getByText(/Theirs answers faster/)).toBeTruthy();
+});
+
+it('renders bold, bullets and https links from an answer, and never a script link', () => {
+  show({ ...base, questions: [{ ...base.questions[1], ours: 'Open **today**.\n- [Menu](https://example.test/menu)\n- [bad](javascript:alert(1))' }] });
+  expect(screen.getByText('today').tagName).toBe('STRONG');
+  expect(screen.getByRole('link', { name: 'Menu' }).getAttribute('href')).toBe('https://example.test/menu');
+  expect(screen.queryByRole('link', { name: 'bad' })).toBeNull();
+});
