@@ -16,22 +16,45 @@ const copy = {
   exampleHeading: 'Understand the need before recommending the next step.',
   examples: [
     {
-      question: "I'm changing careers. Where do I start?",
+      question:
+        'I want to change careers, but I need an online option around work.',
       response:
-        "Ask about the reader's goal and starting point. Explain relevant options using the publisher's content.",
+        'Ask about the reader’s goal, prior education, location and schedule before narrowing the options in your approved content.',
+      nextStep:
+        'Link the relevant guide or approved program page, keeping any partner tracking parameters intact.',
+      limit:
+        'A broad career match does not establish admission, cost, accreditation or professional licensing eligibility.',
     },
     {
-      question: 'Which of these programs fits my situation?',
+      question: 'Does this program qualify me to work in my state?',
       response:
-        'Clarify the criteria that matter before sharing an approved partner or program link. Identify what still needs to be checked with the provider.',
+        'Use the published state and program information where it answers the exact question. Make any missing qualification clear.',
+      nextStep:
+        'Direct the reader to the provider’s official requirements or the relevant licensing authority for confirmation.',
+      limit:
+        'Do not turn a general program description into a state licensing guarantee or invent a suitable program when none is supported.',
     },
     {
-      question: 'Do you have anything that fits my location?',
+      question: 'Which of these options fits my budget and prerequisites?',
       response:
-        "Use available, approved information. When there isn't a suitable match, explain the gap and offer a useful next step.",
+        'Compare the criteria covered in your content, retain the reader’s constraints and explain where details are missing.',
+      nextStep:
+        'Open the approved provider enquiry or application route so the reader can verify current tuition, prerequisites and availability.',
+      limit:
+        'A link click is not an accepted lead, application, enrollment or commission. Those outcomes must come from the downstream system.',
     },
   ],
+  comparison: {
+    heading: 'Add guidance without replacing your editorial work.',
+    existing:
+      'Comparison pages, filters and approved partner links serve readers who know which criteria to use.',
+    assistant:
+      'A conversation can uncover a missing constraint, connect answers across guides and help a reader choose which official detail to verify next.',
+    retained:
+      'Your content remains the editorial source. Partner catalogs and admissions systems own current availability and outcomes; your CRM or affiliate platform owns conversion attribution.',
+  },
   proof: {
+    linkLabel: 'Read the past implementation',
     label: 'A past implementation',
     title: 'Guided discovery for All Allied Health Schools',
     description:

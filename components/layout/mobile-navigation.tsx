@@ -55,6 +55,7 @@ export default function MobileNavigation({ navItems }: MobileNavigationProps) {
                 <div className="space-y-2">
                   <button
                     aria-expanded={expandedItems.has(item.label)}
+                    aria-controls={`mobile-nav-${item.label.replace(/\s+/g, '-').toLowerCase()}`}
                     onClick={() => toggleExpanded(item.label)}
                     className="flex items-center justify-between w-full font-medium text-foreground py-3 px-2 rounded-lg hover:bg-primary/5 hover:text-primary transition-all duration-200 ease-out group"
                   >
@@ -68,6 +69,8 @@ export default function MobileNavigation({ navItems }: MobileNavigationProps) {
                     />
                   </button>
                   <div
+                    id={`mobile-nav-${item.label.replace(/\s+/g, '-').toLowerCase()}`}
+                    hidden={!expandedItems.has(item.label)}
                     className={`overflow-hidden transition-all duration-300 ease-out ${
                       expandedItems.has(item.label)
                         ? 'max-h-96 opacity-100 translate-y-0'

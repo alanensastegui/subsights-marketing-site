@@ -16,6 +16,7 @@ import { AnalyticsProvider } from '@/lib/analytics/context';
 import { ScrollToTop } from '@/components/layout/scroll-to-top';
 import { AutoButtonTracking } from '@/lib/analytics/components/auto-button-tracking';
 import { ApolloTracker } from '@/components/layout/apollo-tracker';
+import { SITE_URL } from '@/lib/seo';
 import type { NavItem } from '@/components/ui/navigation-menu';
 
 function buildNavigationItems() {
@@ -38,9 +39,7 @@ function buildNavigationItems() {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subsights.com'
-  ),
+  metadataBase: new URL(SITE_URL),
   title: {
     template: '%s | Subsights AI',
     default: 'Subsights AI - Managed Website Assistants',
@@ -50,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.subsights.com',
+    url: SITE_URL,
     siteName: 'Subsights AI',
     images: [
       {
@@ -85,6 +84,30 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           type="image/svg+xml"
         />
         <link rel="apple-touch-icon" href="/images/logo/small-logo.svg" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  '@id': `${SITE_URL}/#organization`,
+                  name: 'Subsights AI',
+                  url: SITE_URL,
+                  logo: `${SITE_URL}/images/logo/full-logo.svg`,
+                },
+                {
+                  '@type': 'WebSite',
+                  '@id': `${SITE_URL}/#website`,
+                  name: 'Subsights AI',
+                  url: SITE_URL,
+                  publisher: { '@id': `${SITE_URL}/#organization` },
+                },
+              ],
+            }).replace(/</g, '\\u003c'),
+          }}
+        />
         <ApolloTracker appId={process.env.NEXT_PUBLIC_APOLLO_APP_ID} />
         <script
           src="https://widget.subsights.com/chatbot.js"

@@ -1,7 +1,12 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { buildMetadata } from "@/lib/seo";
-import { getFeaturePackage, getFeatureMetadata, getAllFeatureIds, isFeatureName } from "@/lib/features/registry";
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { buildMetadata } from '@/lib/seo';
+import {
+  getFeaturePackage,
+  getFeatureMetadata,
+  getAllFeatureIds,
+  isFeatureName,
+} from '@/lib/features/registry';
 
 interface FeaturePageProps {
   params: Promise<{
@@ -16,13 +21,15 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: FeaturePageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: FeaturePageProps): Promise<Metadata> {
   const { slug } = await params;
 
   if (!isFeatureName(slug)) {
     return buildMetadata({
-      title: "Feature Not Found - Subsights AI",
-      description: "The requested feature could not be found.",
+      title: 'Feature Not Found',
+      description: 'The requested feature could not be found.',
       path: `/features/${slug}`,
     });
   }
@@ -31,14 +38,14 @@ export async function generateMetadata({ params }: FeaturePageProps): Promise<Me
 
   if (!metadata) {
     return buildMetadata({
-      title: "Feature Not Found - Subsights AI",
-      description: "The requested feature could not be found.",
+      title: 'Feature Not Found',
+      description: 'The requested feature could not be found.',
       path: `/features/${slug}`,
     });
   }
 
   return buildMetadata({
-    title: `${metadata.title} - Subsights AI`,
+    title: metadata.title,
     description: metadata.description,
     path: `/features/${metadata.id}`,
   });

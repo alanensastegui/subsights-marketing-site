@@ -16,22 +16,45 @@ const copy = {
   exampleHeading: 'Make the first conversation useful.',
   examples: [
     {
-      question: 'Do you fund fix-and-flips in my area?',
+      question:
+        'I am buying my first investment property. Which program should I look at?',
       response:
-        "Explain the lender's published service area and programs. Ask where the property is and what the borrower plans to do.",
+        'Ask about the property location, loan purpose and experience before explaining the published programs that fit those details.',
+      nextStep:
+        'Open the lender’s existing application or the approved loan officer contact, carrying the visitor’s stated project into the conversation.',
+      limit:
+        'The lending team confirms current terms, eligibility and underwriting. A program description is not an approval.',
     },
     {
-      question: 'What do you need to look at my project?',
+      question: 'I already have a loan. How do I get a payoff statement?',
       response:
-        'Use your approved requirements to guide the visitor to the right application, document checklist or contact.',
+        'Recognize an existing borrower and explain the approved payoff request process, rather than starting a new loan enquiry.',
+      nextStep:
+        'Use the published servicing or payoff request route, with its required details and stated response process.',
+      limit:
+        'The assistant does not retrieve a loan balance, issue a payoff statement or claim a request was sent.',
     },
     {
-      question: 'Can I speak with someone about my deal?',
+      question: 'Can you tell my contractor what is happening with my loan?',
       response:
-        'Direct the visitor to your team through the contact and application paths you approve.',
+        'Distinguish a third-party request from a borrower’s general program question. Avoid disclosing account or deal details.',
+      nextStep:
+        'Direct the visitor to the authorized team contact for an identity and permission check.',
+      limit:
+        'The CRM and lending team remain responsible for permission, private deal status and any disclosure.',
     },
   ],
+  comparison: {
+    heading: 'Keep the application. Improve the conversation before it.',
+    existing:
+      'A clear program page, FAQ and application form work well when a borrower knows what they need.',
+    assistant:
+      'A conversation can distinguish a new project from servicing, retain location and loan purpose, and help the visitor choose the right existing route.',
+    retained:
+      'Your application, CRM and servicing process remain the records of the deal. Live status, document collection and CRM writes require an agreed connection.',
+  },
   proof: {
+    linkLabel: 'Read the lending example',
     label: 'A working customer example',
     title: 'Penny at Intrust Funding',
     description:

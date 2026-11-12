@@ -16,22 +16,47 @@ const copy = {
   exampleHeading: 'One website. Different reasons to visit.',
   examples: [
     {
-      question: 'I am opening a business. Is membership worth it for me?',
+      question:
+        'I run a new business with a small budget. Is membership useful for me?',
       response:
-        'Understand their goals and budget, compare your published benefits and explain the next step. An existing member gets help with their membership, rather than another sales pitch.',
+        'Ask what the owner needs: local introductions, promotion, advocacy or events. Compare those goals with the published membership benefits and prices.',
+      nextStep:
+        'Link the relevant membership information or the team member who can discuss fit. Help an existing member with their account instead of selling membership again.',
+      limit:
+        'Do not invent a discount, return on membership or a benefit that is not included in that tier.',
     },
     {
-      question: 'Can I attend a lunch before joining?',
+      question:
+        'Can a non-member come to next month’s lunch, and what does it cost?',
       response:
-        'Find the relevant event, preserve its date and eligibility rules, and link the official registration or contact route. Ask about a guest exception without promising one.',
+        'Look up the relevant dated event when a compatible calendar is connected, then preserve its published guest rules, price and registration link.',
+      nextStep:
+        'Open the official event registration page. If guest eligibility is unclear, give the event team’s approved contact.',
+      limit:
+        'The event platform confirms remaining places, registration and payment. An exception for a guest needs the Chamber’s decision.',
     },
     {
-      question: 'Who in the directory could help with my project?',
+      question:
+        'I need someone local for a small business project. Who should I contact?',
       response:
-        'Narrow the options around what the visitor needs and share the relevant business profiles. Confirm details from your content instead of guessing services or availability.',
+        'Clarify the service, location and other constraints, then use the connected member directory to find relevant profiles.',
+      nextStep:
+        'Offer the business profile and its published contact route, retaining the visitor’s constraints when they refine the question.',
+      limit:
+        'Directory coverage and supported search are checked during setup. A listing is not a referral, endorsement or confirmation of availability.',
     },
   ],
+  comparison: {
+    heading: 'Work with your member website and event platform.',
+    existing:
+      'Your directory, event calendar, FAQ and membership form already handle direct lookups and transactions.',
+    assistant:
+      'A conversation helps when a visitor does not know the right category, needs to compare benefits, or asks a follow-up that crosses several pages.',
+    retained:
+      'The Chamber’s member system owns membership records, renewals and permissions. Your event platform owns registration and payment; a chat reply does not complete either.',
+  },
   proof: {
+    linkLabel: 'Read the destination example',
     label: 'Experience serving a community online',
     title: 'Sunny at Visit Sun Valley',
     description:
@@ -57,12 +82,12 @@ const copy = {
     {
       title: 'Reports your team can use',
       description:
-        'Daily, weekly and monthly report options bring conversation activity and questions to selected recipients. Choose a useful cadence during setup, and turn recurring questions into better content. Open the underlying conversations to understand the context behind each trend.',
+        'Choose from the report schedules available for your account and select the recipients during setup. Review the underlying conversations before acting on a trend. Confirm the first delivery with your team; a saved schedule alone does not show that a report arrived.',
     },
     {
       title: 'Follow-up with the right context',
       description:
-        'Help visitors get the information they need in the conversation. When someone wants a follow-up, configured lead collection and forwarding can send their contact details and a conversation summary to agreed recipients. Keep the relevant contact page or phone number easy to find.',
+        'Choose the contact details to request and the recipients for visitors who want a follow-up. We check the lead notification path during setup. Your contact page and phone number remain available; a chat reply must not claim that someone was notified without a delivery result.',
     },
   ],
   cta: 'Bring a question your members ask every week.',

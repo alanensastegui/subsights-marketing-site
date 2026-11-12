@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-import { Animate } from "@/components/ui/animate";
-import { cn } from "@/lib/cn";
-import type { CaseStudy } from "@/lib/case-studies";
+import Image from 'next/image';
+import { Badge } from '@/components/ui/badge';
+import { Animate } from '@/components/ui/animate';
+import { cn } from '@/lib/cn';
+import type { CaseStudy } from '@/lib/case-studies';
 
 interface Props {
   caseStudy: CaseStudy;
@@ -23,8 +23,9 @@ export default function CaseStudyHero({ caseStudy }: Props) {
                   width={64}
                   height={64}
                   className={cn(
-                    "object-contain w-full h-full",
-                    caseStudy.logo.includes("allied-health") && "grayscale brightness-150 filter"
+                    'object-contain w-full h-full',
+                    caseStudy.logo.includes('allied-health') &&
+                      'grayscale brightness-150 filter'
                   )}
                 />
                 {/* TODO: Get proper color logos for all clients so we can apply grayscale filter universally */}
@@ -43,7 +44,7 @@ export default function CaseStudyHero({ caseStudy }: Props) {
 
             {/* Brief Tagline */}
             <p className="animate-item text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Transforming {caseStudy.industry.toLowerCase()} through AI-powered solutions
+              A website assistant for {caseStudy.industry.toLowerCase()}
             </p>
           </Animate>
         </div>

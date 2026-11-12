@@ -16,7 +16,7 @@ const featureMetadata = getFeatureMetadata('conversations');
 const copy = {
   title: featureMetadata.ctaTitle,
   primaryCta: {
-    label: 'Email My Demo',
+    label: 'Talk through your website',
     href: '/email-my-demo',
     external: false,
   },

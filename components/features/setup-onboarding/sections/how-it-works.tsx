@@ -1,11 +1,16 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
-import { Animate } from "@/components/ui/animate";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import VideoPlayer from "@/components/ui/video-player";
-import type { FeatureName } from "@/lib/features/types";
+import { useState } from 'react';
+import Link from 'next/link';
+import { Animate } from '@/components/ui/animate';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@/components/ui/card';
+import VideoPlayer from '@/components/ui/video-player';
+import type { FeatureName } from '@/lib/features/types';
 
 type Step = {
   number: string;
@@ -21,7 +26,7 @@ type Copy = {
   steps: Step[];
 };
 
-export const sectionId = "how-it-works";
+export const sectionId = 'how-it-works';
 
 // ---- SECTION COPY REGION ----
 const copy = {
@@ -65,41 +70,42 @@ const copy = {
 
 // Helper function to get step classes based on selection state
 const getStepClasses = (isSelected: boolean) => ({
-  container: `cursor-pointer transition-all duration-500 ease-in-out will-change-transform ${isSelected
-    ? 'opacity-100 scale-100'
-    : 'opacity-50 hover:opacity-75 hover:scale-[1.02]'
-    }`,
-  card: `transition-all duration-500 ease-in-out will-change-transform ${isSelected
-    ? 'bg-card text-card-foreground border shadow-lg backdrop-blur-sm p-6'
-    : 'bg-transparent border border-transparent shadow-none p-0'
-    }`,
-  cardHeader: `transition-all duration-500 ease-in-out ${isSelected
-    ? 'px-0 py-0'
-    : 'px-0 py-0'
-    }`,
-  stepNumber: `inline-flex items-center justify-center w-12 h-12 rounded-full border flex-shrink-0 transition-all duration-500 ease-in-out will-change-transform ${isSelected
-    ? 'bg-gradient-to-br from-primary/20 to-primary/30 border-primary/50 shadow-md'
-    : 'bg-muted/30 border-muted/50'
-    }`,
-  stepNumberText: `text-lg font-bold transition-colors duration-500 ease-in-out ${isSelected
-    ? 'text-foreground'
-    : 'text-muted-foreground'
-    }`,
-  title: `text-2xl font-semibold tracking-tight mb-3 transition-colors duration-500 ease-in-out ${isSelected
-    ? 'text-foreground'
-    : 'text-muted-foreground'
-    }`,
-  description: `text-base leading-relaxed transition-all duration-500 ease-in-out will-change-transform ${isSelected
-    ? 'text-muted-foreground opacity-100 max-h-96 transform translate-y-0'
-    : 'text-muted-foreground/70 opacity-0 max-h-0 overflow-hidden transform -translate-y-2'
-    }`
+  container: `cursor-pointer transition-all duration-500 ease-in-out will-change-transform ${
+    isSelected
+      ? 'opacity-100 scale-100'
+      : 'opacity-50 hover:opacity-75 hover:scale-[1.02]'
+  }`,
+  card: `transition-all duration-500 ease-in-out will-change-transform ${
+    isSelected
+      ? 'bg-card text-card-foreground border shadow-lg backdrop-blur-sm p-6'
+      : 'bg-transparent border border-transparent shadow-none p-0'
+  }`,
+  cardHeader: `transition-all duration-500 ease-in-out ${
+    isSelected ? 'px-0 py-0' : 'px-0 py-0'
+  }`,
+  stepNumber: `inline-flex items-center justify-center w-12 h-12 rounded-full border flex-shrink-0 transition-all duration-500 ease-in-out will-change-transform ${
+    isSelected
+      ? 'bg-gradient-to-br from-primary/20 to-primary/30 border-primary/50 shadow-md'
+      : 'bg-muted/30 border-muted/50'
+  }`,
+  stepNumberText: `text-lg font-bold transition-colors duration-500 ease-in-out ${
+    isSelected ? 'text-foreground' : 'text-muted-foreground'
+  }`,
+  title: `text-2xl font-semibold tracking-tight mb-3 transition-colors duration-500 ease-in-out ${
+    isSelected ? 'text-foreground' : 'text-muted-foreground'
+  }`,
+  description: `text-base leading-relaxed transition-all duration-500 ease-in-out will-change-transform ${
+    isSelected
+      ? 'text-muted-foreground opacity-100 max-h-96 transform translate-y-0'
+      : 'text-muted-foreground/70 opacity-0 max-h-0 overflow-hidden transform -translate-y-2'
+  }`,
 });
 
 export default function HowItWorks() {
   const c = copy;
   const [selectedStep, setSelectedStep] = useState(0);
   const handleVideoEnded = () => {
-    setSelectedStep(prev => (prev + 1) % c.steps.length);
+    setSelectedStep((prev) => (prev + 1) % c.steps.length);
   };
 
   return (
@@ -119,9 +125,7 @@ export default function HowItWorks() {
         <div className="lg:hidden space-y-8">
           {c.steps.map((step) => (
             <div key={step.number} className="animate-item">
-              <div
-                className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-card to-card/80 border-primary/20 shadow-xl shadow-primary/5 backdrop-blur-sm transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-primary/10 hover:scale-102 will-change-transform transform-gpu"
-              >
+              <div className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-card to-card/80 border-primary/20 shadow-xl shadow-primary/5 backdrop-blur-sm transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-primary/10 hover:scale-102 will-change-transform transform-gpu">
                 {/* Video Preview */}
                 <div className="px-6 pt-6">
                   <div className="relative aspect-video w-full overflow-hidden rounded-2xl ring-1 ring-white/20 shadow-2xl bg-background/20 backdrop-blur-2xl group/video">
@@ -174,10 +178,7 @@ export default function HowItWorks() {
 
               return (
                 <div key={step.number} className="animate-item">
-                  <div
-                    className={classes.container}
-                    onClick={() => setSelectedStep(index)}
-                  >
+                  <div className={classes.container}>
                     <Card className={classes.card}>
                       <CardHeader className={classes.cardHeader}>
                         <div className="flex items-start gap-4">
@@ -189,7 +190,14 @@ export default function HowItWorks() {
                           </div>
                           <div className="flex-1">
                             <CardTitle className={classes.title}>
-                              {step.title}
+                              <button
+                                type="button"
+                                onClick={() => setSelectedStep(index)}
+                                aria-pressed={isSelected}
+                                className="text-left rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                              >
+                                {step.title}
+                              </button>
                             </CardTitle>
                             <CardDescription className={classes.description}>
                               {step.description}

@@ -1,8 +1,8 @@
-import { Animate } from "@/components/ui/animate";
-import { ButtonDuo } from "@/components/ui/button-duo";
-import Link from "next/link";
-import { getFeatureMetadata } from "@/lib/features/registry";
-import { getFreeTrialUrl } from "@/lib/subscriptions";
+import { Animate } from '@/components/ui/animate';
+import { ButtonDuo } from '@/components/ui/button-duo';
+import Link from 'next/link';
+import { getFeatureMetadata } from '@/lib/features/registry';
+import { getFreeTrialUrl } from '@/lib/subscriptions';
 
 type Copy = {
   title: string;
@@ -11,14 +11,14 @@ type Copy = {
   secondaryCta: { label: string; href: string };
 };
 
-export const sectionId = "hero";
+export const sectionId = 'hero';
 
 // ---- SECTION COPY REGION ----
 const copy = {
   title: getFeatureMetadata('knowledge-base').title,
   subtitle: getFeatureMetadata('knowledge-base').description,
-  primaryCta: { label: "Email My Demo", href: "/email-my-demo" },
-  secondaryCta: { label: "Start Free Trial", href: getFreeTrialUrl() }
+  primaryCta: { label: 'Talk through your website', href: '/email-my-demo' },
+  secondaryCta: { label: 'Start Free Trial', href: getFreeTrialUrl() },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
@@ -28,9 +28,9 @@ export default function Hero() {
     <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-12">
       <Animate name="fadeInStagger" trigger="onVisible">
         {/* Main Title */}
-        <h2 className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8">
+        <h1 className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8">
           {c.title}
-        </h2>
+        </h1>
 
         {/* Subtitle */}
         <p className="animate-item text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
@@ -44,30 +44,34 @@ export default function Hero() {
             fullWidthMobile={true}
             primary={{
               asChild: true,
-              size: "lg",
+              size: 'lg',
               children: (
-                <Link href={c.primaryCta.href}>
-                  {c.primaryCta.label}
-                </Link>
+                <Link href={c.primaryCta.href}>{c.primaryCta.label}</Link>
               ),
               dataAttributes: {
-                "data-analytics-id": "knowledge_base_hero_demo",
-                "data-analytics-name": "Email My Demo (Knowledge Base Hero)",
-                "data-analytics-context": '{"source":"knowledge_base_hero","section":"hero"}',
+                'data-analytics-id': 'knowledge_base_hero_demo',
+                'data-analytics-name': 'Email My Demo (Knowledge Base Hero)',
+                'data-analytics-context':
+                  '{"source":"knowledge_base_hero","section":"hero"}',
               },
             }}
             secondary={{
               asChild: true,
-              size: "lg",
+              size: 'lg',
               children: (
-                <a href={c.secondaryCta.href} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={c.secondaryCta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {c.secondaryCta.label}
                 </a>
               ),
               dataAttributes: {
-                "data-analytics-id": "knowledge_base_hero_start_free",
-                "data-analytics-name": "Start Free Trial (Knowledge Base Hero)",
-                "data-analytics-context": '{"source":"knowledge_base_hero","section":"hero"}',
+                'data-analytics-id': 'knowledge_base_hero_start_free',
+                'data-analytics-name': 'Start Free Trial (Knowledge Base Hero)',
+                'data-analytics-context':
+                  '{"source":"knowledge_base_hero","section":"hero"}',
               },
             }}
           />

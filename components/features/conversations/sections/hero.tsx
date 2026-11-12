@@ -17,7 +17,7 @@ export const sectionId = 'hero';
 const copy = {
   title: getFeatureMetadata('conversations').title,
   subtitle: getFeatureMetadata('conversations').description,
-  primaryCta: { label: 'Email My Demo', href: '/email-my-demo' },
+  primaryCta: { label: 'Talk through your website', href: '/email-my-demo' },
   secondaryCta: { label: 'Start Free Trial', href: getFreeTrialUrl() },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -27,9 +27,9 @@ export default function Hero() {
   return (
     <section className="text-center space-y-8 max-w-6xl mx-auto px-6 py-12">
       <Animate name="fadeInStagger" trigger="onVisible">
-        <h2 className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8">
+        <h1 className="animate-item text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8">
           {c.title}
-        </h2>
+        </h1>
         <p className="animate-item text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
           {c.subtitle}
         </p>
