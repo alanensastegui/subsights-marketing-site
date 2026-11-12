@@ -11,13 +11,11 @@ export type IndustryStoryCopy = {
     question: string;
     response: string;
     nextStep: string;
-    limit: string;
   }[];
   comparison: {
     heading: string;
     existing: string;
     assistant: string;
-    retained: string;
   };
   proof: {
     label: string;
@@ -82,8 +80,8 @@ export function IndustryStory({ copy }: { copy: IndustryStoryCopy }) {
           {copy.exampleHeading}
         </h2>
         <p className="mt-3 text-sm text-muted-foreground">
-          Illustrative visitor questions. These describe the intended
-          experience, not recorded chatbot answers.
+          Illustrative visitor journeys, tailored to your content and
+          connections.
         </p>
         <div className="mt-9 grid gap-5 md:grid-cols-3">
           {copy.examples.map((example) => (
@@ -104,14 +102,6 @@ export function IndustryStory({ copy }: { copy: IndustryStoryCopy }) {
                     {example.nextStep}
                   </dd>
                 </div>
-                <div>
-                  <dt className="font-semibold">
-                    What still needs a person or your system
-                  </dt>
-                  <dd className="mt-1 text-muted-foreground">
-                    {example.limit}
-                  </dd>
-                </div>
               </dl>
             </div>
           ))}
@@ -121,27 +111,17 @@ export function IndustryStory({ copy }: { copy: IndustryStoryCopy }) {
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {copy.comparison.heading}
         </h2>
-        <dl className="mt-8 grid gap-8 md:grid-cols-3">
+        <dl className="mt-8 grid gap-8 md:grid-cols-2">
           <div>
-            <dt className="text-lg font-semibold">What already works</dt>
+            <dt className="text-lg font-semibold">Your website today</dt>
             <dd className="mt-3 leading-relaxed text-muted-foreground">
               {copy.comparison.existing}
             </dd>
           </div>
           <div>
-            <dt className="text-lg font-semibold">
-              Where a conversation helps
-            </dt>
+            <dt className="text-lg font-semibold">A conversation adds</dt>
             <dd className="mt-3 leading-relaxed text-muted-foreground">
               {copy.comparison.assistant}
-            </dd>
-          </div>
-          <div>
-            <dt className="text-lg font-semibold">
-              Keep the right system in charge
-            </dt>
-            <dd className="mt-3 leading-relaxed text-muted-foreground">
-              {copy.comparison.retained}
             </dd>
           </div>
         </dl>

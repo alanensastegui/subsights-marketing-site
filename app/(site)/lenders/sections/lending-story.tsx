@@ -19,63 +19,55 @@ const copy = {
       question:
         'I am buying my first investment property. Which program should I look at?',
       response:
-        'Ask about the property location, loan purpose and experience before explaining the published programs that fit those details.',
+        'Published program details become easier to compare around the property’s location, loan purpose and the borrower’s experience.',
       nextStep:
-        'Open the lender’s existing application or the approved loan officer contact, carrying the visitor’s stated project into the conversation.',
-      limit:
-        'The lending team confirms current terms, eligibility and underwriting. A program description is not an approval.',
+        'Your existing application or loan officer contact. Your lending team confirms current terms, eligibility and approval.',
     },
     {
       question: 'I already have a loan. How do I get a payoff statement?',
       response:
-        'Recognize an existing borrower and explain the approved payoff request process, rather than starting a new loan enquiry.',
+        'An existing borrower gets the published payoff request process and the details needed to start it.',
       nextStep:
-        'Use the published servicing or payoff request route, with its required details and stated response process.',
-      limit:
-        'The assistant does not retrieve a loan balance, issue a payoff statement or claim a request was sent.',
+        'Your servicing or payoff request route, where the authorized team can provide the statement.',
     },
     {
       question: 'Can you tell my contractor what is happening with my loan?',
       response:
-        'Distinguish a third-party request from a borrower’s general program question. Avoid disclosing account or deal details.',
+        'The visitor gets a clear route for an authorized status request, with private deal details kept out of the chat.',
       nextStep:
-        'Direct the visitor to the authorized team contact for an identity and permission check.',
-      limit:
-        'The CRM and lending team remain responsible for permission, private deal status and any disclosure.',
+        'Your team’s identity and permission check before any account information is shared.',
     },
   ],
   comparison: {
-    heading: 'Keep the application. Improve the conversation before it.',
+    heading: 'A useful conversation before the application.',
     existing:
-      'A clear program page, FAQ and application form work well when a borrower knows what they need.',
+      'Program pages, FAQs and an application form work well when a borrower knows what they need.',
     assistant:
-      'A conversation can distinguish a new project from servicing, retain location and loan purpose, and help the visitor choose the right existing route.',
-    retained:
-      'Your application, CRM and servicing process remain the records of the deal. Live status, document collection and CRM writes require an agreed connection.',
+      'A conversation helps distinguish a new project from servicing, carries the borrower’s criteria through follow-ups and points them to the appropriate route.',
   },
   proof: {
     linkLabel: 'Read the lending example',
     label: 'A working customer example',
     title: 'Penny at Intrust Funding',
     description:
-      "Intrust Funding uses Subsights for its website assistant, Penny. The implementation focuses on the lender's Washington real estate investor programs, common borrower questions and the next step to reach the team.",
+      'Intrust Funding uses Subsights for its website assistant, Penny. The implementation focuses on the lender’s Washington real estate investor programs, common borrower questions and reaching the right team.',
     href: '/case-studies/intrust-funding',
   },
   learning: {
     title: 'Hear what borrowers are trying to understand.',
     description:
-      'Review questions about service areas, loan purpose, program fit and application requirements. Find confusing website content and useful topics for your next update.',
+      'Questions about service areas, program fit and application requirements reveal confusing content and useful topics for your next website update.',
   },
   boundaries: [
     {
-      title: 'Information, with clear limits',
+      title: 'Guidance that leads to your lending team',
       description:
-        'Your lending team owns underwriting, current terms and credit decisions. We agree on what the assistant can explain and which questions go to a person.',
+        'Your published information helps borrowers prepare. Underwriting, account balances, payoff statements and credit decisions stay with your authorized team.',
     },
     {
-      title: 'Connect the systems that matter',
+      title: 'Connections around your workflow',
       description:
-        'Start with your website and existing application links. CRM updates, live deal status and other system actions need a separately agreed integration.',
+        'Website content and existing application links are the starting point. Live deal status, document collection and CRM updates can be scoped as separate integrations.',
     },
   ],
   cta: 'Bring a question your loan officers hear every week.',

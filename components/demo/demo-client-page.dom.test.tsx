@@ -29,6 +29,13 @@ it('keeps initial routing behind the loading screen without loading a target ifr
   expect(html).not.toContain('<iframe');
 });
 
+it('offers a route home when a preview is no longer available', () => {
+  render(<DemoPageClient slug="removed-preview" />);
+  expect(screen.getByRole('link', { name: 'Back to Home' }).getAttribute('href')).toBe('/');
+  expect(screen.queryByRole('link', { name: 'Ask the assistant' })).toBeNull();
+  expect(document.querySelector('iframe')).toBeNull();
+});
+
 it('opens the actual assistant while analytics is still pending', async () => {
   render(<DemoPageClient slug="modesto" />);
   const frame = await screen.findByTitle('Visit Modesto assistant');

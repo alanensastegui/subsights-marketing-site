@@ -393,16 +393,6 @@ export const DEMO_TARGETS: DemoTarget[] = [
     variant: "default",
   },
   {
-    slug: "watchtower",
-    url: "https://www.watchtowerits.com/",
-    label: "WatchTower IT",
-    testMessage: "Hi, where can I find a good place to eat?",
-    scriptTag:
-      '<script src="https://widget.subsights.com/chatbot.js" data-workspace="0XvceSLk1j" data-api-key="KDKqFBuiqwiYegMqGh56Jmna5aHN4Ys5"></script>',
-    variant: "default",
-    policy: "default",
-  },
-  {
     slug: "cabarstyle",
     url: "https://cabarstyle.com/",
     label: "Cabarstyle",
