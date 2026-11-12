@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { Fragment, type CSSProperties, type ReactNode } from 'react';
 import type { Comparison, Tier } from '@/lib/demo/comparisons/schema';
 
 // The side-by-side on a prospect's demo page: the same visitor questions, what a visitor gets today and what the
@@ -49,26 +49,53 @@ export function ProspectComparison({
         {comparison.asked.note ? ` ${comparison.asked.note}` : ''}
       </p>
 
+      {comparison.found && (
+        <div className={`mt-5 border border-slate-200 bg-white p-5 ${panel}`} aria-labelledby="found-title">
+          <h3 id="found-title" className="text-base font-semibold text-slate-950">
+            What we found on your site today
+          </h3>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-600">
+            {comparison.found.tools.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          {comparison.found.faq && <p className="mt-3 text-sm leading-relaxed text-slate-600"><span className="font-semibold text-slate-900">FAQ:</span> {comparison.found.faq}</p>}
+          {comparison.found.gap && <p className="mt-2 text-sm leading-relaxed text-slate-600"><span className="font-semibold text-slate-900">What a visitor can’t do yet:</span> {comparison.found.gap}</p>}
+          {comparison.found.noticed && comparison.found.noticed.length > 0 && (
+            <details className="mt-3 text-sm text-slate-600">
+              <summary className="cursor-pointer font-medium text-slate-900">Small things we noticed</summary>
+              <ul className="mt-2 list-disc space-y-1 pl-5 leading-relaxed">
+                {comparison.found.noticed.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </details>
+          )}
+        </div>
+      )}
+
       {tiers.map((tier) => (
         <div key={tier} className="mt-6" data-tier={tier}>
           <h3 className="text-base font-semibold text-slate-950">{TIER_COPY[tier].title}</h3>
           {TIER_COPY[tier].intro && <p className="mt-1 max-w-3xl text-sm leading-relaxed text-slate-600">{TIER_COPY[tier].intro}</p>}
-          <ul className="mt-3 space-y-4">
-            {comparison.questions
-              .filter((question) => question.tier === tier)
-              .map((question) => (
+          <Rows
+            rows={comparison.questions.filter((question) => question.tier === tier)}
+            render={(question) => (
                 <li key={question.id} className={`border border-slate-200 bg-white p-4 ${panel}`}>
-                  <p className="font-medium text-slate-950">“{question.q}”</p>
+                  <div className="flex flex-wrap items-start justify-between gap-2">
+                    <p className="font-medium text-slate-950">“{question.q}”</p>
+                    {question.verdict && <Verdict verdict={question.verdict} />}
+                  </div>
                   <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                    <Answer label={comparison.theirs.label} text={question.theirs} time={seconds(question.theirs_seconds)} tone="theirs" />
+                    <Answer label={question.theirs_source ?? comparison.theirs.label} text={question.theirs} time={seconds(question.theirs_seconds)} tone="theirs" />
                     <Answer label="With Subsights" text={question.ours} time={seconds(question.ours_seconds)} tone="ours" accent={accent} />
                   </div>
                   <p className="mt-3 text-sm text-slate-700">
-                    <span className="font-semibold">For your business:</span> {question.outcome}
+                    <span className="font-semibold">What it means:</span> {question.outcome}
                   </p>
                 </li>
-              ))}
-          </ul>
+            )}
+          />
         </div>
       ))}
 
@@ -99,6 +126,7 @@ export function ProspectComparison({
               <span className="font-medium text-slate-900">{comparison.cost.ours.plan}:</span> {comparison.cost.ours.price}
               {comparison.cost.ours.includes && <span className="block text-xs text-slate-500">{comparison.cost.ours.includes}</span>}
             </p>
+            {comparison.cost.tradeoff && <p className="mt-2 text-sm text-slate-600"><span className="font-medium text-slate-900">Honest tradeoff:</span> {comparison.cost.tradeoff}</p>}
             {comparison.cost.timing && (
               <ul className="mt-2 space-y-1 text-sm text-slate-600">
                 {comparison.cost.timing.map((item) => (
@@ -130,14 +158,67 @@ export function ProspectComparison({
 
 function Answer({ label, text, time, tone, accent }: { label: string; text: string; time: string | null; tone: 'theirs' | 'ours'; accent?: string }) {
   return (
-    <figure className={`rounded-md p-3 ${tone === 'ours' ? 'bg-slate-50' : 'bg-slate-100'}`} style={tone === 'ours' && accent ? { boxShadow: `inset 3px 0 0 ${accent}` } : undefined}>
+    <figure className={`min-w-0 break-words rounded-md p-3 ${tone === 'ours' ? 'bg-slate-50' : 'bg-slate-100'}`} style={tone === 'ours' && accent ? { boxShadow: `inset 3px 0 0 ${accent}` } : undefined}>
       <figcaption className="flex items-baseline justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
         <span>{label}</span>
         {time && <span className="font-normal normal-case tracking-normal">{time}</span>}
       </figcaption>
-      <blockquote className="mt-1 whitespace-pre-line text-sm leading-relaxed text-slate-800">{text}</blockquote>
+      <blockquote className="mt-1 space-y-1 text-sm leading-relaxed text-slate-800">{renderAnswer(text)}</blockquote>
     </figure>
   );
+}
+
+// The first three rows of a tier show; the rest fold behind one control, so the page stays readable on a phone.
+type Row = Comparison['questions'][number];
+function Rows({ rows, render }: { rows: Row[]; render: (row: Row) => ReactNode }) {
+  const shown = rows.slice(0, 3);
+  const more = rows.slice(3);
+  return (
+    <>
+      <ul className="mt-3 space-y-4">{shown.map((row) => <Fragment key={row.id}>{render(row)}</Fragment>)}</ul>
+      {more.length > 0 && (
+        <details className="mt-3">
+          <summary className="inline-flex min-h-11 cursor-pointer items-center text-sm font-medium text-slate-700 underline underline-offset-4">
+            Show {more.length} more {more.length === 1 ? 'question' : 'questions'}
+          </summary>
+          <ul className="mt-3 space-y-4">{more.map((row) => <Fragment key={row.id}>{render(row)}</Fragment>)}</ul>
+        </details>
+      )}
+    </>
+  );
+}
+
+const VERDICT: Record<string, string> = { both_right: 'Both right', ours_better: 'Ours went further', theirs_better: 'Theirs was better' };
+function Verdict({ verdict }: { verdict: string }) {
+  return (
+    <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${verdict === 'both_right' ? 'bg-slate-100 text-slate-700' : verdict === 'ours_better' ? 'bg-emerald-50 text-emerald-800' : 'bg-amber-50 text-amber-800'}`}>
+      {VERDICT[verdict]}
+    </span>
+  );
+}
+
+// Answers are stored as the assistant gave them, with light Markdown: lines, "- " bullets, **bold**, *italic*, https and mailto links.
+// Rendered as React text; nothing is set as HTML.
+export function renderAnswer(text: string): ReactNode[] {
+  return text.split(/\n+/).filter((line) => line.trim()).map((line, index) => {
+    const bullet = /^\s*[-*]\s+/.test(line);
+    const body = inline(line.replace(/^\s*[-*]\s+/, ''));
+    return bullet ? <p key={index} className="pl-3 -indent-3">• {body}</p> : <p key={index}>{body}</p>;
+  });
+}
+function inline(line: string): ReactNode[] {
+  const out: ReactNode[] = [];
+  const re = /\*\*(.+?)\*\*|\[([^\]]+)\]\(((?:https:\/\/|mailto:)[^\s)]+)\)|\*([^*\s][^*]*?)\*/g;
+  let last = 0;
+  for (const match of line.matchAll(re)) {
+    if (match.index! > last) out.push(line.slice(last, match.index));
+    if (match[1]) out.push(<strong key={match.index}>{inline(match[1])}</strong>);
+    else if (match[4]) out.push(<em key={match.index}>{match[4]}</em>);
+    else out.push(<a key={match.index} href={match[3]} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{match[2]}</a>);
+    last = match.index! + match[0].length;
+  }
+  if (last < line.length) out.push(line.slice(last));
+  return out;
 }
 
 function formatDate(date: string) {

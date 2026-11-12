@@ -20,18 +20,31 @@ export const ComparisonSchema = z.object({
         tier: z.enum(TIERS),
         q: text,
         theirs: text,
+        // Where "theirs" came from when it differs from the page-level label, e.g. the site when their chat was not asked.
+        theirs_source: text.optional(),
         theirs_seconds: seconds,
         ours: text,
         ours_seconds: seconds,
         outcome: text,
+        verdict: z.enum(['both_right', 'ours_better', 'theirs_better']).optional(),
       })
     )
     .min(1),
+  // "What we found on your site today", stated kindly: what they run, FAQ coverage, the one thing a visitor can't do.
+  found: z
+    .object({
+      tools: z.array(text).min(1),
+      faq: text.optional(),
+      gap: text.optional(),
+      noticed: z.array(text).optional(),
+    })
+    .optional(),
   cost: z
     .object({
       today: z.array(z.object({ label: text, amount: text, note: text.optional() })).min(1),
       ours: z.object({ plan: text, price: text, includes: text.optional() }),
       timing: z.array(z.object({ label: text, value: text })).optional(),
+      tradeoff: text.optional(),
     })
     .optional(),
   partner: z.object({ points: z.array(z.object({ title: text, text })).min(1) }).optional(),

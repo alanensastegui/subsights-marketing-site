@@ -528,6 +528,126 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
         'Readers reveal the distinctions they need help with. Use those questions to improve guide navigation and put important eligibility details beside the next link.',
     },
   },
+  {
+    slug: 'secret-burger-kitchen',
+    label: 'Secret Burger Kitchen',
+    url: 'https://secretburgerkitchen.com/',
+    headline: 'Hours, prices, catering and the truck, answered.',
+    description:
+      'Ask which SBK is open, what a Double Smash costs, or what catering for your office would run. Catering and truck requests can go straight to your team.',
+    questions: [
+      'Which SBK is open right now?',
+      'How much is a Double Smash?',
+      'Can I book the food truck for an event?',
+      'What would catering for 25 people cost?',
+    ],
+    scope:
+      'Answers use 19 public pages of secretburgerkitchen.com, published store hours, the food truck’s online menu and the published ezCater catering menus, checked November 11, 2026 (Pacific time). Store menu prices behind Toast’s bot check could not be read, so prices quote the truck menu. This preview cannot place an order or confirm a booking; requests go to a demo inbox. Team samples are fictional illustrations.',
+    entry: [
+      { label: 'Sources', text: 'Your public pages, store hours, the truck menu and your ezCater catering menus.' },
+      { label: 'Try it', text: 'Ask about a store, a price or an event, then change the headcount or the place.' },
+    ],
+    sources: [
+      { label: 'Locations and hours', url: 'https://secretburgerkitchen.com/locations/' },
+      { label: 'Menu', url: 'https://secretburgerkitchen.com/menu/' },
+      { label: 'Food truck', url: 'https://secretburgerkitchen.com/locations/kent/' },
+      { label: 'Seattle catering on ezCater', url: 'https://www.ezcater.com/catering/secret-burger-kitchen-4' },
+    ],
+    accent: '#BF1F09',
+    logo: { src: '/images/demo/secret-burger-kitchen-logo.png', alt: 'Secret Burger Kitchen', width: 300, height: 300 },
+    widgetUrl:
+      'https://widget.subsights.com/?view=inline&api_key=2xKB6yQ8ThAn5VW6OxwDWT53GyTYLN0P&workspace_id=0XvceSLk1j',
+    teamView: [
+      { question: 'Can I book the food truck for a company event of about 60 people?', insight: 'Truck leads: the request goes to the truck team with the date, headcount and place.' },
+      { question: 'How much is a Double Smash?', insight: 'Prices: guests want a number before they order; keep each store’s menu readable.' },
+      { question: 'Is the Renton location open yet?', insight: 'New stores: say the opening month and point to the nearest open SBK.' },
+    ],
+    conversation: {
+      title: 'A truck booking that reaches the truck team.',
+      turns: [
+        {
+          question: 'Can I book the food truck for a company event of about 60 people in Kirkland next month? How do I get a quote?',
+          answer:
+            'Yes, SBK Mobile handles private event bookings. For a quote for your December company event in Kirkland for about 60 people, call the truck team at (206) 759-0000. They can discuss the date, travel and pricing; availability isn’t confirmed. If you prefer, I can help pass along your request for a quote.',
+          source: { label: 'Food truck', url: 'https://secretburgerkitchen.com/locations/kent/' },
+        },
+        {
+          question: 'How much would it cost to cater lunch for about 25 people at our office in Seattle?',
+          answer:
+            'For about 25 people, Seattle drop-off catering estimates are 25 Executive Boxes at $487.50, or 4 Event Burger Bars at $440 for 32 servings. Add $20 for delivery. These are estimates before tax and tip, not quotes.',
+          source: { label: 'Seattle catering on ezCater', url: 'https://www.ezcater.com/catering/secret-burger-kitchen-4' },
+        },
+        {
+          question: 'Is the Renton location open yet?',
+          answer:
+            'Not yet. The Renton location at 202 SW 43rd St is opening in December 2026; an exact day hasn’t been published. The nearest open SBK is the Auburn food truck, about 10 miles away, at 102 15th St NE.',
+          source: { label: 'Locations and hours', url: 'https://secretburgerkitchen.com/locations/' },
+        },
+      ],
+      takeaway: 'These are answers the live assistant gave on November 11, 2026. Ask your own in the chat above.',
+    },
+  },
+
+  {
+    slug: 'studio-east',
+    label: 'Studio East',
+    url: 'https://studio-east.org/',
+    headline: 'The right class, camp or show for every family.',
+    description:
+      'Ask which class fits your child, when the next show is, or what the refund policy says. Each answer links the exact sign-up or ticket page.',
+    questions: [
+      'Which class fits my 8-year-old this winter?',
+      'A Christmas Story dates and tickets?',
+      'What’s the refund policy for classes?',
+      'Is there help with tuition?',
+    ],
+    scope:
+      'Answers use 18 public pages of studio-east.org, the class and camp listings on Active.com and the show listings on the Studio East ticket site, checked November 11, 2026 (Pacific time). This preview cannot register a child or sell a ticket; it links the exact page. Requests go to a demo inbox. Team samples are fictional illustrations.',
+    entry: [
+      { label: 'Sources', text: 'Your public pages, your Active.com class and camp listings and your ticket site.' },
+      { label: 'Try it', text: 'Ask about your child’s grade and free days, then change a detail.' },
+    ],
+    sources: [
+      { label: 'Classes', url: 'https://studio-east.org/classes' },
+      { label: 'Policies and FAQs', url: 'https://studio-east.org/policies-and-faqs' },
+      { label: 'Class and camp registration', url: 'https://campscui.active.com/orgs/StudioEast' },
+      { label: 'Tickets', url: 'https://studioeast.my.salesforce-sites.com/ticket/' },
+    ],
+    accent: '#171D3A',
+    theme: { highlight: '#A72061', highlightInk: '#ffffff' },
+    logo: { src: '/images/demo/studio-east-logo.png', alt: 'Studio East', width: 750, height: 156 },
+    widgetUrl:
+      'https://widget.subsights.com/?view=inline&api_key=oi1687OBN1Wwjl5wKISwwT7QKgaOvT4e&workspace_id=0XvceSLk1j',
+    teamView: [
+      { question: 'Which class fits my 8-year-old in January?', insight: 'Placement: parents think in ages; the site places by grade.' },
+      { question: 'Do you have a camp during mid-winter break?', insight: 'Camps: publish grades and prices for planned camps as soon as they are set.' },
+      { question: 'Can I get a refund if we cancel?', insight: 'Policies: classes, camps and tickets each have their own rules.' },
+    ],
+    conversation: {
+      title: 'A parent’s question, from age to sign-up.',
+      turns: [
+        {
+          question: 'Which class or camp fits my 8-year-old in January, and where do I sign up?',
+          answer:
+            'Studio East places children by school grade, not age. An 8-year-old is usually in second or third grade. Frozen KIDS (grades 2–6, Tuesdays, January 12–March 23, $450) and Broadway Kids: The Little Mermaid (grades 1–3, Saturdays, January 16–March 27, $220) both fit. The links go directly to registration.',
+          source: { label: 'Class and camp registration', url: 'https://campscui.active.com/orgs/StudioEast' },
+        },
+        {
+          question: 'I want 4 tickets for A Christmas Story on the afternoon of Saturday, December 19. How much will that be?',
+          answer:
+            'For the Saturday, December 19, 2026, 2 PM matinee, four standard tickets are $112 total ($25 plus a $3 fee each); reduced-price blue seats are $72 total. It is a relaxed performance and a Christmas Morning PJ matinee.',
+          source: { label: 'Tickets', url: 'https://studioeast.my.salesforce-sites.com/ticket/' },
+        },
+        {
+          question: 'I registered my son for Frozen KIDS but we need to cancel. Class starts January 12. Do I get my money back?',
+          answer:
+            'Yes. Canceling now is more than 48 hours before the first class, so the class cost is refundable minus the $50 non-refundable registration fee, or the full cost can be kept as credit. On the listed $450 tuition, that is $400 refunded.',
+          source: { label: 'Policies and FAQs', url: 'https://studio-east.org/policies-and-faqs' },
+        },
+      ],
+      takeaway: 'These are answers the live assistant gave on November 11, 2026. Ask your own in the chat above.',
+    },
+  },
 ];
 
 // Publish this private preview after its existing bot has a widget key and paid
