@@ -542,7 +542,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
       'What would catering for 25 people cost?',
     ],
     scope:
-      'Answers use 19 public pages of secretburgerkitchen.com, published store hours, the food truck’s online menu and the published ezCater catering menus, checked November 11, 2026 (Pacific time). Store menu prices behind Toast’s bot check could not be read, so prices quote the truck menu. This preview cannot place an order or confirm a booking; requests go to a demo inbox. Team samples are fictional illustrations.',
+      'Answers use SBK’s public pages, published hours, the truck menu and ezCater catering menus. Catering, truck and ordering sources were rechecked November 12, 2026 (UTC). Store menu prices remain unverified; quoted menu prices come from the truck. Sample codes are not redeemable. This preview cannot place an order or confirm a booking; requests go to a demo inbox. Team samples are fictional illustrations.',
     entry: [
       { label: 'Sources', text: 'Your public pages, store hours, the truck menu and your ezCater catering menus.' },
       { label: 'Try it', text: 'Ask about a store, a price or an event, then change the headcount or the place.' },
@@ -602,7 +602,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
       'Is there help with tuition?',
     ],
     scope:
-      'Answers use 18 public pages of studio-east.org, the class and camp listings on Active.com and the show listings on the Studio East ticket site, checked November 11, 2026 (Pacific time). This preview cannot register a child or sell a ticket; it links the exact page. Requests go to a demo inbox. Team samples are fictional illustrations.',
+      'Answers use Studio East’s public pages, Active.com class and camp listings and the ticket site. Waitlist, ticket, rental and assistance sources were rechecked November 12, 2026 (UTC). Active.com and the ticket page show current availability. This preview cannot register a child or sell a ticket; requests go to a demo inbox. Team samples are fictional illustrations.',
     entry: [
       { label: 'Sources', text: 'Your public pages, your Active.com class and camp listings and your ticket site.' },
       { label: 'Try it', text: 'Ask about your child’s grade and free days, then change a detail.' },
