@@ -7,7 +7,7 @@
   },
   "asked": {
     "date": "2026-11-11",
-    "note": "Answers take about 8 to 22 seconds while it checks your listings. It can't register a child or sell a ticket; it links the exact sign-up or ticket page."
+    "note": "New flow replies took about 4 to 16 seconds while checking the saved class, camp, ticket and policy sources. The assistant links Active.com or the ticket page for current availability."
   },
   "questions": [
     {
@@ -229,6 +229,50 @@
       "ours_seconds": 19.8,
       "outcome": "Ours confirms no class Nov 28 and that Studio East is closed Nov 27.",
       "verdict": "ours_better"
+    },
+    {
+      "id": "waitlist",
+      "tier": "decisive",
+      "q": "If Frozen KIDS fills up, can I get on a waitlist for my 3rd grader?",
+      "theirs": "Active’s Frozen KIDS registration listing offers a waitlist option. The November 12 snapshot was not full; parents must check the session page for current availability.",
+      "theirs_seconds": null,
+      "ours": "Yes. **Frozen KIDS is for grades 2–6**, so your 3rd grader is eligible. If it fills, select the official waitlist on the [Frozen KIDS session page](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234).\n\nThe waitlist doesn’t guarantee a place, and I can’t enroll your child myself. Check Active.com for current availability.",
+      "ours_seconds": 11.4,
+      "outcome": "Points the parent to Frozen KIDS’ official waitlist without promising a spot. The saved follow-up queues a staff inquiry.",
+      "verdict": "ours_better"
+    },
+    {
+      "id": "family-tickets",
+      "tier": "decisive",
+      "q": "How much for two adults and three children at the December 19 afternoon Christmas Story? Is there a season pass that would save us money?",
+      "theirs": "The December 19, 2 PM ticket page lists Standard $25 plus $3 fee, Reduced $15 plus $3 fee where available and Supporter $35 including fees. No season pass was found on the checked season or ticket pages.",
+      "theirs_seconds": null,
+      "ours": "For the **Saturday, December 19, 2 PM** performance, five tickets cost:\n\n- **Standard:** $140 total\n- **Reduced blue seats:** $90 total, if available\n- **Supporter:** $175 total\n\nAll totals include fees. The same published seat prices apply to adults and children. This is a relaxed performance and a Christmas Morning PJ matinee. [Check seats and tickets](https://studioeast.my.salesforce-sites.com/ticket/#/instances/a0FRi000009nSlxMAE).\n\nI didn’t find a published season pass, subscription or multi-show discount on the checked season and ticket pages. The box office can answer questions about other options at tickets@studio-east.org.",
+      "ours_seconds": 10.2,
+      "outcome": "Five tickets total $140 Standard, $90 Reduced where available or $175 Supporter, including fees. No unpublished pass savings are claimed.",
+      "verdict": "ours_better"
+    },
+    {
+      "id": "rental-and-birthday",
+      "tier": "decisive",
+      "q": "Can we rent space for a birthday, or do you sell a party package?",
+      "theirs": "The About page offers space, costume and prop rental inquiries through info@studio-east.org. It publishes no rental price, capacity or birthday-party package.",
+      "theirs_seconds": null,
+      "ours": "Studio East accepts **space rental inquiries**, though prices and availability aren’t published. I didn’t find a birthday-party package on the pages checked.\n\nYou can ask the front office whether a rental would suit your celebration using the [space rental inquiry](mailto:info@studio-east.org?subject=Space%20Rental%20Inquiries&body=Hi%2C%0A%0AMy%20name%20is%20%5BFirstName%5D%20and%20I%20have%20questions%20about%20renting%20your%20space.%0A%0AThank%20you%2C) or call **425-820-1800**. Include your proposed date, approximate headcount and space needs.",
+      "ours_seconds": 10.3,
+      "outcome": "Finds the published space rental inquiry and says a birthday package was not found. The saved follow-up queues the rental request.",
+      "verdict": "ours_better"
+    },
+    {
+      "id": "aid-and-donate",
+      "tier": "decisive",
+      "q": "We need help paying for Frozen KIDS. How do we apply? Can friends support tuition assistance?",
+      "theirs": "The tuition-assistance page says no financial documents are needed and publishes a Donate link. Policies say to apply before registering or paying and ask for a spot to be held while reviewed.",
+      "theirs_seconds": null,
+      "ours": "You can [apply for tuition assistance](https://docs.google.com/forms/d/1lu5rCVR1mvgeAC6oKOqY1N53eorpt-q7J8FfYTNxrdY/viewform?edit_requested=true) for **Frozen KIDS**. Request the level of help your family needs; no financial documents are required.\n\n**Apply and receive approval before registering or paying.** Assistance cannot be applied after payment. You can ask [education@studio-east.org](mailto:education@studio-east.org) to hold a spot while your application is reviewed.\n\nYes, friends can support access through Studio East’s [Donate page](https://studioeast.my.salesforce-sites.com/donate/?dfId=a0n5G00000nBhkaQAC). A donation is not required for assistance.",
+      "ours_seconds": 15.6,
+      "outcome": "Explains how to seek tuition help before paying, then offers one optional Donate link for friends who want to support access.",
+      "verdict": "ours_better"
     }
   ],
   "found": {
@@ -268,12 +312,5 @@
         "value": "Live within days on your Squarespace site. Your team does nothing technical."
       }
     ]
-  },
-  "reliability": {
-    "suite": "Studio East (StoryBook Theater) demo questions",
-    "checked": "2026-11-11",
-    "cases": 20,
-    "passed": 20,
-    "harmful_if_wrong_failures": 0
   }
 }
