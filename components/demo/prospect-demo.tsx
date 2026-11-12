@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
+import type { DemoEngagement } from '@/lib/demo/engagement';
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
 import type { Comparison } from '@/lib/demo/comparisons/schema';
 import { FREE_TRIAL_DAYS, getFreeTrialUrl } from '@/lib/subscriptions';
@@ -21,7 +22,11 @@ function themeStyles(demo: ProspectDemo) {
   return { theme, heading, corners, panel, button };
 }
 
-export function ProspectDemoPage({ demo, comparison = null }: { demo: ProspectDemo; comparison?: Comparison | null }) {
+export function ProspectDemoPage({ demo, comparison = null, measured = null }: {
+  demo: ProspectDemo;
+  comparison?: Comparison | null;
+  measured?: DemoEngagement | null;
+}) {
   const { theme, heading, corners, panel, button } = themeStyles(demo);
   return (
     <main className="flex-1 bg-slate-50">
@@ -243,7 +248,7 @@ export function ProspectDemoPage({ demo, comparison = null }: { demo: ProspectDe
           </div>
         )}
         <div className="min-w-0 lg:col-span-2">
-          <TeamPreview demo={demo} />
+          <TeamPreview demo={demo} measured={measured} />
         </div>
         <div className="min-w-0 lg:col-span-2">
           <ConversationExample demo={demo} />

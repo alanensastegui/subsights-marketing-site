@@ -9,6 +9,7 @@ import {
   type PreviewChange,
 } from '@/lib/demo/preview';
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
+import { formatMeasuredSince, type DemoEngagement } from '@/lib/demo/engagement';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AnswerImprovementPreview } from './answer-improvement-preview';
 
@@ -58,7 +59,45 @@ function Metrics({ values }: { values: (typeof reports)[Cadence] }) {
   );
 }
 
-export function TeamPreview({ demo }: { demo: ProspectDemo }) {
+function MeasuredActivity({ measured }: { measured: DemoEngagement }) {
+  return (
+    <section
+      aria-labelledby="measured-activity-title"
+      className="space-y-4 rounded-xl border border-emerald-200 bg-white p-4 sm:p-5"
+    >
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h3 id="measured-activity-title" className="text-base font-semibold text-slate-950">
+          Measured on this preview
+        </h3>
+        <span className="text-xs text-slate-500">
+          Measured since {formatMeasuredSince(measured.measuredSince)}
+        </span>
+      </div>
+      <dl className="grid gap-2 sm:grid-cols-2 sm:gap-4">
+        {[
+          ['Visitor conversations', measured.conversations],
+          ['Link clicks', measured.clicks],
+        ].map(([label, value]) => (
+          <div key={label} className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 p-3 sm:block sm:p-4">
+            <dt className="text-sm font-medium text-slate-500">{label}</dt>
+            <dd className="text-2xl font-semibold tracking-tight text-slate-950 sm:mt-1">{value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="text-xs leading-relaxed text-slate-500">
+        Visitor conversations on this live preview, excluding Subsights tests. Counts only; no transcripts.
+      </p>
+    </section>
+  );
+}
+
+export function TeamPreview({
+  demo,
+  measured = null,
+}: {
+  demo: ProspectDemo;
+  measured?: DemoEngagement | null;
+}) {
   const [preview, setPreview] = useState<DemoPreview>({
     sample: 'analytics',
     cadence: 'weekly',
@@ -231,6 +270,7 @@ export function TeamPreview({ demo }: { demo: ProspectDemo }) {
           value="analytics"
           className="space-y-5 bg-slate-50 p-4 sm:p-7"
         >
+          {measured && <MeasuredActivity measured={measured} />}
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className="text-base font-semibold text-slate-950">
               Activity at a glance

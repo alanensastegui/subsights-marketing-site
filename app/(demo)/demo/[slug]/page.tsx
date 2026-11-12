@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getDemoEngagement } from "@/lib/demo/engagement";
 import { getProspectDemo } from "@/lib/demo/config/prospects";
 import { ProspectDemoPage } from "@/components/demo/prospect-demo";
 import { jost } from "@/lib/demo/prospect-fonts";
@@ -40,7 +41,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     return (
       <AnalyticsProvider>
         <div className={`flex flex-1 flex-col ${fonts}`}>
-          <ProspectDemoPage demo={prospect} comparison={getComparison(slug)} />
+          <ProspectDemoPage demo={prospect} comparison={getComparison(slug)} measured={await getDemoEngagement(prospect.slug)} />
         </div>
         <GoogleAnalytics />
         <Suspense fallback={null}>
