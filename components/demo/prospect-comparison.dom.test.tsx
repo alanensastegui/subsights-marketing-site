@@ -97,3 +97,11 @@ it('renders bold, bullets and https links from an answer, and never a script lin
   expect(screen.getByRole('link', { name: 'Menu' }).getAttribute('href')).toBe('https://example.test/menu');
   expect(screen.queryByRole('link', { name: 'bad' })).toBeNull();
 });
+
+it('renders a link inside bold, and folds rows past three per tier', () => {
+  const rows = Array.from({ length: 5 }, (_, i) => ({ ...base.questions[1], id: `c${i}`, q: `Question ${i}?`, ours: i === 0 ? '**[Wicked](https://example.test/w)** for K–2' : 'ok' }));
+  show({ ...base, questions: rows });
+  expect(screen.getByRole('link', { name: 'Wicked' }).closest('strong')).toBeTruthy();
+  expect(screen.queryByText(/\[Wicked\]/)).toBeNull();
+  expect(screen.getByText('Show 2 more questions')).toBeTruthy();
+});

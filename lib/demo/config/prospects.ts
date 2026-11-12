@@ -534,7 +534,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     url: 'https://secretburgerkitchen.com/',
     headline: 'Hours, prices, catering and the truck, answered.',
     description:
-      'Ask which SBK is open, what a Double Smash costs, or what catering for your office would run. Catering and truck requests go straight to your team.',
+      'Ask which SBK is open, what a Double Smash costs, or what catering for your office would run. Catering and truck requests can go straight to your team.',
     questions: [
       'Which SBK is open right now?',
       'How much is a Double Smash?',

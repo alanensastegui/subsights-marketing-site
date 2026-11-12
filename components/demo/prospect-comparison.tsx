@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react';
+import { Fragment, type CSSProperties, type ReactNode } from 'react';
 import type { Comparison, Tier } from '@/lib/demo/comparisons/schema';
 
 // The side-by-side on a prospect's demo page: the same visitor questions, what a visitor gets today and what the
@@ -78,10 +78,9 @@ export function ProspectComparison({
         <div key={tier} className="mt-6" data-tier={tier}>
           <h3 className="text-base font-semibold text-slate-950">{TIER_COPY[tier].title}</h3>
           {TIER_COPY[tier].intro && <p className="mt-1 max-w-3xl text-sm leading-relaxed text-slate-600">{TIER_COPY[tier].intro}</p>}
-          <ul className="mt-3 space-y-4">
-            {comparison.questions
-              .filter((question) => question.tier === tier)
-              .map((question) => (
+          <Rows
+            rows={comparison.questions.filter((question) => question.tier === tier)}
+            render={(question) => (
                 <li key={question.id} className={`border border-slate-200 bg-white p-4 ${panel}`}>
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <p className="font-medium text-slate-950">“{question.q}”</p>
@@ -95,8 +94,8 @@ export function ProspectComparison({
                     <span className="font-semibold">What it means:</span> {question.outcome}
                   </p>
                 </li>
-              ))}
-          </ul>
+            )}
+          />
         </div>
       ))}
 
@@ -159,13 +158,33 @@ export function ProspectComparison({
 
 function Answer({ label, text, time, tone, accent }: { label: string; text: string; time: string | null; tone: 'theirs' | 'ours'; accent?: string }) {
   return (
-    <figure className={`rounded-md p-3 ${tone === 'ours' ? 'bg-slate-50' : 'bg-slate-100'}`} style={tone === 'ours' && accent ? { boxShadow: `inset 3px 0 0 ${accent}` } : undefined}>
+    <figure className={`min-w-0 break-words rounded-md p-3 ${tone === 'ours' ? 'bg-slate-50' : 'bg-slate-100'}`} style={tone === 'ours' && accent ? { boxShadow: `inset 3px 0 0 ${accent}` } : undefined}>
       <figcaption className="flex items-baseline justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
         <span>{label}</span>
         {time && <span className="font-normal normal-case tracking-normal">{time}</span>}
       </figcaption>
       <blockquote className="mt-1 space-y-1 text-sm leading-relaxed text-slate-800">{renderAnswer(text)}</blockquote>
     </figure>
+  );
+}
+
+// The first three rows of a tier show; the rest fold behind one control, so the page stays readable on a phone.
+type Row = Comparison['questions'][number];
+function Rows({ rows, render }: { rows: Row[]; render: (row: Row) => ReactNode }) {
+  const shown = rows.slice(0, 3);
+  const more = rows.slice(3);
+  return (
+    <>
+      <ul className="mt-3 space-y-4">{shown.map((row) => <Fragment key={row.id}>{render(row)}</Fragment>)}</ul>
+      {more.length > 0 && (
+        <details className="mt-3">
+          <summary className="inline-flex min-h-11 cursor-pointer items-center text-sm font-medium text-slate-700 underline underline-offset-4">
+            Show {more.length} more {more.length === 1 ? 'question' : 'questions'}
+          </summary>
+          <ul className="mt-3 space-y-4">{more.map((row) => <Fragment key={row.id}>{render(row)}</Fragment>)}</ul>
+        </details>
+      )}
+    </>
   );
 }
 
@@ -189,11 +208,11 @@ export function renderAnswer(text: string): ReactNode[] {
 }
 function inline(line: string): ReactNode[] {
   const out: ReactNode[] = [];
-  const re = /\*\*([^*]+)\*\*|\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g;
+  const re = /\*\*(.+?)\*\*|\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g;
   let last = 0;
   for (const match of line.matchAll(re)) {
     if (match.index! > last) out.push(line.slice(last, match.index));
-    if (match[1]) out.push(<strong key={match.index}>{match[1]}</strong>);
+    if (match[1]) out.push(<strong key={match.index}>{inline(match[1])}</strong>);
     else out.push(<a key={match.index} href={match[3]} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{match[2]}</a>);
     last = match.index! + match[0].length;
   }
