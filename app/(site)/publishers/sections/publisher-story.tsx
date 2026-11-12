@@ -13,45 +13,37 @@ const copy = {
   heading: 'A better path from a question to the right link.',
   description:
     'Help readers choose their next step. Build a conversational guide around your content and approved partner links, with fit at the center of the experience.',
-  exampleHeading: 'Understand the need before recommending the next step.',
+  exampleHeading: 'Help readers find the option that fits.',
   examples: [
     {
       question:
         'I want to change careers, but I need an online option around work.',
       response:
-        'Ask about the reader’s goal, prior education, location and schedule before narrowing the options in your approved content.',
+        'Relevant guides and program options narrowed around the reader’s goal, education, location and schedule.',
       nextStep:
-        'Link the relevant guide or approved program page, keeping any partner tracking parameters intact.',
-      limit:
-        'A broad career match does not establish admission, cost, accreditation or professional licensing eligibility.',
+        'Your approved guide or partner page, with its tracking link preserved.',
     },
     {
       question: 'Does this program qualify me to work in my state?',
       response:
-        'Use the published state and program information where it answers the exact question. Make any missing qualification clear.',
+        'The program’s published state requirements, with any qualification that still needs confirmation made clear.',
       nextStep:
-        'Direct the reader to the provider’s official requirements or the relevant licensing authority for confirmation.',
-      limit:
-        'Do not turn a general program description into a state licensing guarantee or invent a suitable program when none is supported.',
+        'The provider or licensing authority’s official requirements before the reader applies.',
     },
     {
       question: 'Which of these options fits my budget and prerequisites?',
       response:
-        'Compare the criteria covered in your content, retain the reader’s constraints and explain where details are missing.',
+        'A comparison of the costs and entry criteria covered in your content, shaped around the reader’s constraints.',
       nextStep:
-        'Open the approved provider enquiry or application route so the reader can verify current tuition, prerequisites and availability.',
-      limit:
-        'A link click is not an accepted lead, application, enrollment or commission. Those outcomes must come from the downstream system.',
+        'The approved provider enquiry or application page for current tuition, prerequisites and availability.',
     },
   ],
   comparison: {
-    heading: 'Add guidance without replacing your editorial work.',
+    heading: 'Put your editorial work into the conversation.',
     existing:
-      'Comparison pages, filters and approved partner links serve readers who know which criteria to use.',
+      'Comparison pages, filters and partner links help readers who already know which criteria matter.',
     assistant:
-      'A conversation can uncover a missing constraint, connect answers across guides and help a reader choose which official detail to verify next.',
-    retained:
-      'Your content remains the editorial source. Partner catalogs and admissions systems own current availability and outcomes; your CRM or affiliate platform owns conversion attribution.',
+      'A conversation uncovers additional needs and connects answers across your guides, helping readers choose a useful next step.',
   },
   proof: {
     linkLabel: 'Read the past implementation',
@@ -64,18 +56,18 @@ const copy = {
   learning: {
     title: 'Learn where readers get stuck.',
     description:
-      'Conversation and link-click reporting helps reveal what people are looking for, which options they ask about and where your content needs a better answer.',
+      'Conversation and link-click reporting can reveal the options people ask about and where your content needs a better answer.',
   },
   boundaries: [
     {
-      title: 'Preserve the approved path',
+      title: 'Your approved content and partner links',
       description:
-        'Use the destination URLs and tracking parameters you provide. Live catalog availability, eligibility checks and catalog integrations need a separately agreed scope.',
+        'Your editorial sources guide recommendations. Official providers confirm admission, licensing eligibility and current availability. Live catalogs and eligibility checks can be scoped separately.',
     },
     {
-      title: 'Measure beyond the click',
+      title: 'A clear view of engagement',
       description:
-        'Subsights can show conversations and link engagement. Accepted leads, applications, enrollments and revenue need data from your own downstream systems.',
+        'Subsights shows conversations and link engagement. Measuring accepted leads, applications, enrollments or revenue takes data from your downstream systems.',
     },
   ],
   cta: 'Bring a page where readers struggle to choose.',

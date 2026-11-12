@@ -9,14 +9,12 @@ type Copy = {
     question: string;
     response: string;
     nextStep: string;
-    limit: string;
     icon: React.ComponentType<{ className?: string }>;
   }>;
   comparison: {
     heading: string;
     existing: string;
     assistant: string;
-    retained: string;
   };
 };
 
@@ -26,39 +24,34 @@ export const sectionId = 'visitor-questions';
 const copy = {
   heading: 'Help visitors turn a question into a plan.',
   description:
-    'Examples adapted from destination visitor questions. They describe the experience to build around your sources, rather than recorded chatbot answers.',
+    'Illustrative visitor journeys, tailored to your content and connections.',
   moments: [
     {
       title: 'Dates that stay exact',
       question:
         'We are visiting in March. Which days are the races, rather than training?',
       response:
-        'Use the connected calendar for the requested year and distinguish race days, training and other related events. Keep those distinctions through follow-up questions.',
-      nextStep: 'Link the official event details and booking or ticket page.',
-      limit:
-        'Published dates do not establish ticket availability. The event organizer confirms changes and places.',
+        'Race dates for the requested year, clearly distinguished from training and related events in your connected calendar.',
+      nextStep:
+        'The official event page for details, ticket availability and any schedule changes.',
       icon: CalendarDays,
     },
     {
       title: 'The right lodging route',
       question: 'We are a family looking for a vacation rental, not a hotel.',
       response:
-        'Retain the party’s needs and the difference between a hotel and a rental. Use the relevant approved lodging listings and enquiry route.',
+        'Relevant vacation rentals from your approved listings, with the family’s needs carried through the conversation.',
       nextStep:
-        'Open the matching property or booking partner page for dates, rates and availability.',
-      limit:
-        'A listing is not live inventory. The assistant does not promise a room, a price or a reservation without a booking connection.',
+        'The property or booking partner’s page for dates, current rates and availability.',
       icon: Tent,
     },
     {
       title: 'Holiday hours without a guess',
       question: 'Will the visitor center be open the day after Christmas?',
       response:
-        'Look for the exact holiday date and location. Regular seasonal hours alone do not establish a holiday opening.',
+        'Published holiday hours for the exact date and location, or a clear indication that the holiday schedule still needs checking.',
       nextStep:
-        'Give confirmed published hours where available, or the official contact to check that date.',
-      limit:
-        'Make a missing holiday schedule clear instead of inferring that the office is open.',
+        'The visitor center’s official hours page or contact details to confirm the holiday opening.',
       icon: Moon,
     },
     {
@@ -66,33 +59,27 @@ const copy = {
       question:
         'Where can we eat nearby with children and a specific dietary need?',
       response:
-        'Ask which location and constraints matter, then narrow the connected local listings. Keep those details when the visitor changes one part of the plan.',
+        'Relevant local listings shaped around the family’s location and dietary needs, with room to refine the plan.',
       nextStep:
-        'Share the business profile and its official menu or contact route.',
-      limit:
-        'The business confirms dietary suitability, opening hours and reservations. A directory description is not that confirmation.',
+        'The business’s menu or contact details to confirm dietary suitability, opening hours and reservations.',
       icon: Route,
     },
     {
       title: 'The same useful route in another language',
       question: '¿Dónde puedo estacionar cerca del evento?',
       response:
-        'Help the visitor in their language using the same published event, parking and transport information.',
+        'Published parking and transport information for the visitor’s event and date, explained in Spanish.',
       nextStep:
-        'Link the official parking or transport instructions and retain the requested event and date.',
-      limit:
-        'Do not invent a parking restriction, accessible space or shuttle service when the source does not cover it.',
+        'The official parking or transport guidance, with any accessibility details covered by the source.',
       icon: Globe,
     },
   ],
   comparison: {
-    heading: 'Keep the destination tools visitors already use.',
+    heading: 'A conversation that connects the trip.',
     existing:
-      'A good FAQ, map, calendar and booking site are often the quickest route for a visitor who knows exactly what they want.',
+      'Your FAQ, map, calendar and booking links help visitors who know where to look.',
     assistant:
-      'A conversation helps when dates, party needs and preferences cross several pages, or when a follow-up changes the plan. Compatible calendar and directory connections are checked during setup.',
-    retained:
-      'Your calendar and tourism content remain the sources. Booking providers own availability, payment and reservations. Your team handles information that has not been published or connected.',
+      'An assistant brings those resources together around dates, party needs and preferences. Follow-up questions help visitors refine the plan and reach the right page.',
   },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
@@ -111,7 +98,7 @@ export default function VisitorQuestions() {
         </div>
         <ul className="grid gap-5 md:grid-cols-2">
           {copy.moments.map(
-            ({ title, question, response, nextStep, limit, icon: Icon }) => (
+            ({ title, question, response, nextStep, icon: Icon }) => (
               <li
                 key={title}
                 className="animate-item rounded-xl border border-border bg-card p-6"
@@ -127,12 +114,6 @@ export default function VisitorQuestions() {
                     <dt className="font-semibold">Next step</dt>
                     <dd className="mt-1 text-muted-foreground">{nextStep}</dd>
                   </div>
-                  <div>
-                    <dt className="font-semibold">
-                      What still needs confirmation
-                    </dt>
-                    <dd className="mt-1 text-muted-foreground">{limit}</dd>
-                  </div>
                 </dl>
               </li>
             )
@@ -140,23 +121,17 @@ export default function VisitorQuestions() {
         </ul>
         <div className="mt-12 border-t border-border pt-10">
           <h2 className="text-2xl font-semibold">{copy.comparison.heading}</h2>
-          <dl className="mt-7 grid gap-7 md:grid-cols-3">
+          <dl className="mt-7 grid gap-7 md:grid-cols-2">
             <div>
-              <dt className="font-semibold">What already works</dt>
+              <dt className="font-semibold">Your website today</dt>
               <dd className="mt-3 leading-relaxed text-muted-foreground">
                 {copy.comparison.existing}
               </dd>
             </div>
             <div>
-              <dt className="font-semibold">Where a conversation helps</dt>
+              <dt className="font-semibold">A conversation adds</dt>
               <dd className="mt-3 leading-relaxed text-muted-foreground">
                 {copy.comparison.assistant}
-              </dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Keep the right system in charge</dt>
-              <dd className="mt-3 leading-relaxed text-muted-foreground">
-                {copy.comparison.retained}
               </dd>
             </div>
           </dl>
