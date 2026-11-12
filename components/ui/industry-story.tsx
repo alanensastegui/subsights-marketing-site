@@ -7,8 +7,25 @@ export type IndustryStoryCopy = {
   heading: string;
   description: string;
   exampleHeading: string;
-  examples: { question: string; response: string }[];
-  proof: { label: string; title: string; description: string; href: string };
+  examples: {
+    question: string;
+    response: string;
+    nextStep: string;
+    limit: string;
+  }[];
+  comparison: {
+    heading: string;
+    existing: string;
+    assistant: string;
+    retained: string;
+  };
+  proof: {
+    label: string;
+    title: string;
+    description: string;
+    href: string;
+    linkLabel: string;
+  };
   learning: { title: string; description: string };
   boundaries: { title: string; description: string }[];
   cta: string;
@@ -52,7 +69,7 @@ export function IndustryStory({ copy }: { copy: IndustryStoryCopy }) {
               section: 'hero',
             })}
           >
-            <Link href={copy.proof.href}>See the customer example</Link>
+            <Link href={copy.proof.href}>{copy.proof.linkLabel}</Link>
           </Button>
         </div>
         <p className="mt-5 text-sm text-muted-foreground">
@@ -65,7 +82,8 @@ export function IndustryStory({ copy }: { copy: IndustryStoryCopy }) {
           {copy.exampleHeading}
         </h2>
         <p className="mt-3 text-sm text-muted-foreground">
-          Illustrative questions and the behavior we design around.
+          Illustrative visitor questions. These describe the intended
+          experience, not recorded chatbot answers.
         </p>
         <div className="mt-9 grid gap-5 md:grid-cols-3">
           {copy.examples.map((example) => (
@@ -79,9 +97,54 @@ export function IndustryStory({ copy }: { copy: IndustryStoryCopy }) {
               <p className="mt-5 leading-relaxed text-muted-foreground">
                 {example.response}
               </p>
+              <dl className="mt-5 space-y-3 text-sm leading-relaxed">
+                <div>
+                  <dt className="font-semibold">Next step</dt>
+                  <dd className="mt-1 text-muted-foreground">
+                    {example.nextStep}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold">
+                    What still needs a person or your system
+                  </dt>
+                  <dd className="mt-1 text-muted-foreground">
+                    {example.limit}
+                  </dd>
+                </div>
+              </dl>
             </div>
           ))}
         </div>
+      </section>
+      <section className="max-w-section mx-auto px-section py-section">
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          {copy.comparison.heading}
+        </h2>
+        <dl className="mt-8 grid gap-8 md:grid-cols-3">
+          <div>
+            <dt className="text-lg font-semibold">What already works</dt>
+            <dd className="mt-3 leading-relaxed text-muted-foreground">
+              {copy.comparison.existing}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-lg font-semibold">
+              Where a conversation helps
+            </dt>
+            <dd className="mt-3 leading-relaxed text-muted-foreground">
+              {copy.comparison.assistant}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-lg font-semibold">
+              Keep the right system in charge
+            </dt>
+            <dd className="mt-3 leading-relaxed text-muted-foreground">
+              {copy.comparison.retained}
+            </dd>
+          </div>
+        </dl>
       </section>
       <section className="max-w-section mx-auto px-section py-section">
         <div className="grid gap-8 lg:grid-cols-2">

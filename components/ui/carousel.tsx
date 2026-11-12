@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/cn";
+import React, { useEffect, useRef, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { cn } from '@/lib/cn';
 
 export interface CarouselItem {
   id: string;
@@ -27,8 +27,8 @@ export default function Carousel({
   className,
   showNavigation = true,
   showIndicators = true,
-  slideWidth = "w-5/6",
-  gap = "px-2",
+  slideWidth = 'w-5/6',
+  gap = 'px-2',
 }: CarouselProps) {
   // Refs and measurements for precise centering
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -55,9 +55,26 @@ export default function Carousel({
     };
 
     measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
   }, [items.length]);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    const focused = document.activeElement;
+    if (
+      wrapper &&
+      focused instanceof HTMLElement &&
+      wrapper.contains(focused) &&
+      focused.closest('[inert]')
+    ) {
+      wrapper
+        .querySelector<HTMLElement>(
+          '[data-carousel-active="true"] button, [data-carousel-active="true"] a[href]'
+        )
+        ?.focus();
+    }
+  }, [currentIndex]);
 
   const nextItem = () => {
     const nextIndex = (currentIndex + 1) % items.length;
@@ -73,11 +90,10 @@ export default function Carousel({
     onIndexChange(index);
   };
 
-
   if (items.length === 0) return null;
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn('relative', className)}>
       {/* Navigation Arrows */}
       {showNavigation && items.length > 1 && (
         <>
@@ -100,14 +116,13 @@ export default function Carousel({
       )}
 
       {/* Carousel Container */}
-      <div
-        className="overflow-hidden"
-        ref={wrapperRef}
-      >
+      <div className="overflow-hidden" ref={wrapperRef}>
         <div
           className={cn(
-            "flex transform-gpu will-change-transform motion-reduce:transition-none",
-            measurements?.slideWidth ? "transition-transform duration-500 ease-in-out" : ""
+            'flex transform-gpu will-change-transform motion-reduce:transition-none',
+            measurements?.slideWidth
+              ? 'transition-transform duration-500 ease-in-out'
+              : ''
           )}
           style={{
             transform: (() => {
@@ -115,32 +130,40 @@ export default function Carousel({
                 // Initial positioning: center the first slide
                 return `translate3d(8.33%, 0, 0)`;
               }
-              const offset = (measurements.wrapperWidth - measurements.slideWidth) / 2 - currentIndex * measurements.stepWidth;
+              const offset =
+                (measurements.wrapperWidth - measurements.slideWidth) / 2 -
+                currentIndex * measurements.stepWidth;
               return `translate3d(${offset}px, 0, 0)`;
             })(),
           }}
         >
           {items.map((item, index) => {
             const isActive = index === currentIndex;
-            const isPrev = index === (currentIndex - 1 + items.length) % items.length;
+            const isPrev =
+              index === (currentIndex - 1 + items.length) % items.length;
             const isNext = index === (currentIndex + 1) % items.length;
 
             return (
               <div
                 key={item.id}
-                className={cn("flex-shrink-0", slideWidth, gap)}
+                data-carousel-active={isActive}
+                inert={!isActive}
+                aria-hidden={!isActive}
+                className={cn('flex-shrink-0', slideWidth, gap)}
                 ref={(el) => {
                   if (index === 0) firstSlideRef.current = el;
                 }}
               >
-                <div className={cn(
-                  "transition-all duration-500 ease-in-out motion-reduce:transition-none",
-                  isActive
-                    ? "scale-100 opacity-100"
-                    : isPrev || isNext
-                      ? "scale-95 opacity-40"
-                      : "scale-90 opacity-20"
-                )}>
+                <div
+                  className={cn(
+                    'transition-all duration-500 ease-in-out motion-reduce:transition-none',
+                    isActive
+                      ? 'scale-100 opacity-100'
+                      : isPrev || isNext
+                        ? 'scale-95 opacity-40'
+                        : 'scale-90 opacity-20'
+                  )}
+                >
                   {/* Render item content */}
                   {item.content}
                 </div>
@@ -158,10 +181,10 @@ export default function Carousel({
               key={index}
               onClick={() => goToItem(index)}
               className={cn(
-                "w-2 h-2 rounded-full transition-all duration-300 ease-out",
+                'w-2 h-2 rounded-full transition-all duration-300 ease-out',
                 index === currentIndex
-                  ? "bg-primary scale-125"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  ? 'bg-primary scale-125'
+                  : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
               )}
               aria-label={`Go to item ${index + 1}`}
             />

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 
 interface YoutubeEmbedProps {
   videoId: string;
@@ -8,16 +8,23 @@ interface YoutubeEmbedProps {
   className?: string;
 }
 
-export function YoutubeEmbed({ videoId, title, className = "" }: YoutubeEmbedProps) {
+export function YoutubeEmbed({
+  videoId,
+  title,
+  className = '',
+}: YoutubeEmbedProps) {
   return (
     <div className={`relative group ${className}`}>
       {/* Video Wrapper */}
       <div className="relative aspect-video w-full overflow-hidden rounded-2xl ring-1 ring-white/20 shadow-2xl bg-background/20 backdrop-blur-2xl">
         {/* Video Thumbnail/Poster */}
-        <div data-thumbnail={videoId} className="absolute inset-0 flex items-center justify-center">
+        <div
+          data-thumbnail={videoId}
+          className="absolute inset-0 flex items-center justify-center"
+        >
           <Image
             src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
-            alt="Video thumbnail"
+            alt=""
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
             className="object-cover opacity-90"
@@ -28,14 +35,23 @@ export function YoutubeEmbed({ videoId, title, className = "" }: YoutubeEmbedPro
 
         {/* Custom Play Button */}
         <button
+          type="button"
+          aria-label={`Play ${title}`}
           onClick={() => {
-            const iframe = document.querySelector(`iframe[data-video-id="${videoId}"]`) as HTMLIFrameElement;
+            const iframe = document.querySelector(
+              `iframe[data-video-id="${videoId}"]`
+            ) as HTMLIFrameElement;
             if (iframe) {
               iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&autoplay=1&controls=1&loop=0&mute=0`;
               iframe.style.display = 'block';
+              iframe.focus();
               // Hide the play button and thumbnail
-              const playButton = document.querySelector(`[data-play-button="${videoId}"]`) as HTMLElement;
-              const thumbnail = document.querySelector(`[data-thumbnail="${videoId}"]`) as HTMLElement;
+              const playButton = document.querySelector(
+                `[data-play-button="${videoId}"]`
+              ) as HTMLElement;
+              const thumbnail = document.querySelector(
+                `[data-thumbnail="${videoId}"]`
+              ) as HTMLElement;
               if (playButton) playButton.style.display = 'none';
               if (thumbnail) thumbnail.style.display = 'none';
             }

@@ -1,6 +1,6 @@
-import { Cta } from "@/components/ui/cta";
-import { Animate } from "@/components/ui/animate";
-import { getFreeTrialUrl } from "@/lib/subscriptions";
+import { Cta } from '@/components/ui/cta';
+import { Animate } from '@/components/ui/animate';
+import { getFreeTrialUrl } from '@/lib/subscriptions';
 // import { getFeatureMetadata } from "@/lib/features";
 
 type Copy = {
@@ -9,14 +9,22 @@ type Copy = {
   secondaryCta: { label: string; href: string; external: boolean };
 };
 
-export const sectionId = "call-to-action";
+export const sectionId = 'call-to-action';
 
 // ---- SECTION COPY REGION ----
 // const featureMetadata = getFeatureMetadata('integrations');
 const copy = {
   title: '', //featureMetadata.ctaTitle,
-  primaryCta: { label: "Email My Demo", href: "/email-my-demo", external: false },
-  secondaryCta: { label: "Start Free Trial", href: getFreeTrialUrl(), external: true },
+  primaryCta: {
+    label: 'Talk through your website',
+    href: '/email-my-demo',
+    external: false,
+  },
+  secondaryCta: {
+    label: 'Start Free Trial',
+    href: getFreeTrialUrl(),
+    external: true,
+  },
 } satisfies Copy;
 // ---- /SECTION COPY REGION ----
 
@@ -28,9 +36,9 @@ export default function CallToAction() {
           copy={copy}
           analyticsContext="integrations_cta"
           classes={{
-            title: "animate-item",
-            primaryButton: "animate-item",
-            secondaryButton: "animate-item",
+            title: 'animate-item',
+            primaryButton: 'animate-item',
+            secondaryButton: 'animate-item',
           }}
         />
       </Animate>

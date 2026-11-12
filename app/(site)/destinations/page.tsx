@@ -9,7 +9,7 @@ import DestinationsFaq from './sections/destinations-faq';
 import DestinationsCta from './sections/destinations-cta';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'AI Visitor Assistant for Destinations - Subsights AI',
+  title: 'AI Visitor Assistant for Destinations',
   description:
     'A branded website assistant for your destination, with setup, visitor insights and managed support. Professional+ is $3,990 annually. Meet Sunny at Sun Valley.',
   path: '/destinations',

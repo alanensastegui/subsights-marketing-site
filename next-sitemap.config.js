@@ -1,6 +1,5 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  // TODO: update this env var
   siteUrl: 'https://subsights.com',
   generateRobotsTxt: true,
   autoLastmod: false,
@@ -9,11 +8,21 @@ module.exports = {
   sitemapSize: 100000,
   transform: async (config, path) => ({ loc: path }),
   // Exclude sensitive/non-indexable routes
-  exclude: ['/api/*', '/admin', '/demo/*'],
+  exclude: [
+    '/api/*',
+    '/admin',
+    '/demo/*',
+    '/home',
+    '/terms',
+    '/privacy',
+    '/data-processing',
+    '/case-studies/dylans-tours',
+    '/phoenix-2025',
+  ],
   // Manually include dynamic pages
   additionalPaths: async (config) => [
     // These are dynamic pages, so we need to manually include them.
     await config.transform(config, '/pricing'),
     await config.transform(config, '/partners'),
   ],
-}
+};

@@ -14,7 +14,7 @@ const copy = {
   heading: 'From approved sources to useful answers',
   description:
     'Choose the content, test realistic questions, review conversations and work with our team on improvements.',
-  primaryCta: { label: 'Email My Demo', href: '/email-my-demo' },
+  primaryCta: { label: 'Talk through your website', href: '/email-my-demo' },
   secondaryCta: { label: 'Start Free', href: getFreeTrialUrl() },
 } satisfies Copy;
 

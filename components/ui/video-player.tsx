@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   hoverToPlay?: boolean;
@@ -21,6 +21,10 @@ export default function VideoPlayer({
   ...videoProps
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [loadedSource, setLoadedSource] = useState<VideoPlayerProps['src']>();
+  const [playError, setPlayError] = useState(false);
+  const manualPlayPending = useRef<VideoPlayerProps['src'] | null>(null);
+  const playAttempt = useRef(0);
   const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -29,18 +33,55 @@ export default function VideoPlayer({
   const wasManuallyPausedRef = useRef(false);
 
   // Treat autoPlay as intent, not a native prop; do not forward it to <video>
-  const { autoPlay: shouldAutoPlay, ...restVideoProps } = videoProps;
+  const { autoPlay: shouldAutoPlay, src, ...restVideoProps } = videoProps;
+  const hasLoaded = !!src && loadedSource === src;
+  useEffect(() => {
+    wasManuallyPausedRef.current = false;
+    setIsPlaying(false);
+    setPlayError(false);
+    return () => {
+      playAttempt.current += 1;
+    };
+  }, [src]);
+
+  const playVideo = useCallback(
+    (manual = false) => {
+      setPlayError(false);
+      if (!hasLoaded) {
+        manualPlayPending.current = manual ? (src ?? null) : null;
+        setLoadedSource(src);
+        return;
+      }
+      const attempt = ++playAttempt.current;
+      const failed = () => {
+        if (attempt !== playAttempt.current) return;
+        wasManuallyPausedRef.current = true;
+        setIsPlaying(false);
+        if (manual) setPlayError(true);
+      };
+      try {
+        videoRef.current?.play().catch(failed);
+      } catch {
+        failed();
+      }
+    },
+    [hasLoaded, src]
+  );
+
+  useEffect(() => {
+    if (hasLoaded && manualPlayPending.current === src) {
+      manualPlayPending.current = null;
+      playVideo(true);
+    }
+  }, [hasLoaded, src, playVideo]);
 
   const togglePlayPause = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-        wasManuallyPausedRef.current = true;
-      } else {
-        videoRef.current.play();
-        wasManuallyPausedRef.current = false;
-      }
-      setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      videoRef.current?.pause();
+      wasManuallyPausedRef.current = true;
+    } else {
+      wasManuallyPausedRef.current = false;
+      playVideo(true);
     }
   };
 
@@ -50,22 +91,30 @@ export default function VideoPlayer({
     onPlay?.(event);
   };
 
-  const handlePause = (event: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+  const handlePause = (
+    event: React.SyntheticEvent<HTMLVideoElement, Event>
+  ) => {
     setIsPlaying(false);
     onPause?.(event);
   };
 
-  const handleEnded = (event: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+  const handleEnded = (
+    event: React.SyntheticEvent<HTMLVideoElement, Event>
+  ) => {
     onEnded?.(event);
   };
 
-  const handleLoadStart = (event: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+  const handleLoadStart = (
+    event: React.SyntheticEvent<HTMLVideoElement, Event>
+  ) => {
     setProgress(0);
     wasManuallyPausedRef.current = false;
     onLoadStart?.(event);
   };
 
-  const handleTimeUpdate = (event: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+  const handleTimeUpdate = (
+    event: React.SyntheticEvent<HTMLVideoElement, Event>
+  ) => {
     if (videoRef.current) {
       const currentTime = videoRef.current.currentTime;
       const duration = videoRef.current.duration;
@@ -78,14 +127,13 @@ export default function VideoPlayer({
 
   const handleMouseEnter = () => {
     if (hoverToPlay && videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Silently handle autoplay restrictions
-      });
+      playVideo(true);
     }
   };
 
   const handleMouseLeave = () => {
     if (hoverToPlay && videoRef.current) {
+      manualPlayPending.current = null;
       videoRef.current.pause();
       videoRef.current.currentTime = 0; // Reset to beginning
     }
@@ -98,7 +146,12 @@ export default function VideoPlayer({
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const isVisible = entry.isIntersecting;
+          const isVisible =
+            entry.isIntersecting &&
+            entry.intersectionRatio >= autoplayThreshold;
+          const reduceMotion = window.matchMedia?.(
+            '(prefers-reduced-motion: reduce)'
+          ).matches;
 
           if (videoRef.current) {
             if (!isVisible && isPlaying && hasBeenSeenRef.current) {
@@ -111,12 +164,16 @@ export default function VideoPlayer({
               }
             } else if (isVisible && wasAutoPausedRef.current && !isPlaying) {
               // Video came back into view and was auto-paused - resume
-              videoRef.current.play();
+              if (!reduceMotion) playVideo();
               wasAutoPausedRef.current = false;
-            } else if (isVisible && !isPlaying && shouldAutoPlay && !wasManuallyPausedRef.current) {
+            } else if (
+              isVisible &&
+              !isPlaying &&
+              shouldAutoPlay &&
+              !wasManuallyPausedRef.current
+            ) {
               // Only auto-play if the video wasn't manually paused
-              videoRef.current.play();
-              setIsPlaying(true);
+              if (!reduceMotion) playVideo();
             }
           }
 
@@ -127,7 +184,7 @@ export default function VideoPlayer({
       },
       {
         threshold: autoplayThreshold,
-        rootMargin: '0px'
+        rootMargin: '0px',
       }
     );
 
@@ -136,7 +193,14 @@ export default function VideoPlayer({
     return () => {
       observer.disconnect();
     };
-  }, [isPlaying, shouldAutoPlay, restartOnAutoPause, autoplayThreshold]);
+  }, [
+    isPlaying,
+    hasLoaded,
+    shouldAutoPlay,
+    restartOnAutoPause,
+    autoplayThreshold,
+    playVideo,
+  ]);
 
   return (
     <div
@@ -148,6 +212,8 @@ export default function VideoPlayer({
       <video
         ref={videoRef}
         {...restVideoProps}
+        src={hasLoaded ? src : undefined}
+        preload={restVideoProps.preload ?? 'none'}
         muted={muted ?? (shouldAutoPlay ? true : undefined)}
         onPlay={handlePlay}
         onPause={handlePause}
@@ -157,18 +223,23 @@ export default function VideoPlayer({
       />
 
       {/* Sleek Pause/Play Button with Progress Ring */}
+      {playError && (
+        <p
+          role="status"
+          className="absolute top-2 left-2 right-2 rounded bg-background/90 p-2 text-sm"
+        >
+          Video couldn&apos;t play. Try play again.
+        </p>
+      )}
       <button
+        type="button"
         onClick={togglePlayPause}
         className="absolute bottom-2 left-2 z-20 opacity-60 hover:opacity-100 transition-all duration-300 ease-in-out"
-        aria-label={isPlaying ? "Pause video" : "Play video"}
+        aria-label={isPlaying ? 'Pause video' : 'Play video'}
       >
         <div className="relative">
           {/* Progress Ring */}
-          <svg
-            className="w-12 h-12 -rotate-90"
-            viewBox="0 0 48 48"
-            fill="none"
-          >
+          <svg className="w-12 h-12 -rotate-90" viewBox="0 0 48 48" fill="none">
             {/* Background circle */}
             <circle
               cx="24"

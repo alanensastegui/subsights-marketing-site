@@ -1,6 +1,9 @@
 // /lib/seo.ts
 import type { Metadata } from 'next';
 
+// The published site redirects www to this host. All discovery URLs use it.
+export const SITE_URL = 'https://subsights.com';
+
 export type OGType =
   | 'website'
   | 'article'
@@ -81,7 +84,7 @@ export function buildMetadata({
   noindex = false,
   overrides,
 }: BuildMetadataInput): Metadata {
-  const canonical = ensureLeadingSlash(path);
+  const canonical = new URL(ensureLeadingSlash(path), SITE_URL).href;
   const ogImages = toOgImages(image);
   const twImages = toTwitterImages(image);
 
