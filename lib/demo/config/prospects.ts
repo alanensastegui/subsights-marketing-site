@@ -1,3 +1,5 @@
+import { getWarmLunchDemo } from './warm-lunch';
+
 // Public widget embed URLs only. Platform session credentials never belong here.
 export type ProspectDemo = {
   slug: string;
@@ -40,7 +42,7 @@ export type ProspectDemo = {
   publishedLinks?: { label: string; url: string }[];
   industryHref?: string;
   teamView: { question: string; insight: string }[];
-  conversation: {
+  conversation?: {
     title: string;
     turns: {
       question: string;
@@ -53,7 +55,7 @@ export type ProspectDemo = {
 
 export type Capability = { name: string; text: string; ask: string; comingSoon?: string };
 
-export const PROSPECT_DEMOS: ProspectDemo[] = [
+export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<ProspectDemo['conversation']> })[] = [
   {
     slug: 'forks',
     label: 'Forks Chamber of Commerce',
@@ -657,7 +659,7 @@ export function getProspectDemo(
   postcardsKey = process.env.SUBSIGHTS_POSTCARDS_WIDGET_KEY,
 ): ProspectDemo | null {
   if (slug !== 'postcards-to-seattle') {
-    return PROSPECT_DEMOS.find((demo) => demo.slug === slug) ?? null;
+    return PROSPECT_DEMOS.find((demo) => demo.slug === slug) ?? getWarmLunchDemo(slug);
   }
   if (!postcardsKey?.trim()) return null;
   const widget = new URL('https://widget.subsights.com/index.html');
