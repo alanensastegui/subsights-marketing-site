@@ -3,6 +3,7 @@ import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { DEMO_TARGETS } from '@/lib/demo/config'
 import { PROSPECT_DEMOS } from '@/lib/demo/config/prospects'
+import { WARM_LUNCH_DEMOS } from '@/lib/demo/config/warm-lunch'
 
 // Prospect demos are private links made for one organization. The website
 // assistant must never hand them to visitors.
@@ -21,7 +22,8 @@ function demoLinks(text: string): string[] {
 }
 
 const slugs = new Set(
-  [...PROSPECT_DEMOS, ...DEMO_TARGETS].map((demo) => demo.slug).concat('postcards-to-seattle'),
+  [...PROSPECT_DEMOS, ...DEMO_TARGETS, ...WARM_LUNCH_DEMOS.map(({ demo }) => demo)]
+    .map((demo) => demo.slug).concat('postcards-to-seattle'),
 )
 
 describe('site assistant content', () => {

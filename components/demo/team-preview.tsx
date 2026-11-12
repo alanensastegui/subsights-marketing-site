@@ -153,6 +153,8 @@ export function TeamPreview({
     };
   }, [demo.slug, demo.widgetUrl, changePreview]);
 
+  if (!demo.conversation?.turns.length || !demo.teamView.length) return null;
+
   function openImprovement() {
     changePreview({ sample: 'improvement' });
     requestAnimationFrame(() => {
