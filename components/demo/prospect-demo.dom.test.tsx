@@ -1,8 +1,10 @@
 import { expect, it } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { ProspectDemoPage } from './prospect-demo';
-import { PROSPECT_DEMOS, getProspectDemo } from '@/lib/demo/config/prospects';
+import { PROSPECT_DEMOS as CONTENT, getProspectDemo } from '@/lib/demo/config/prospects';
 import { readPreviewHash } from '@/lib/demo/preview';
+// The component receives an authorized DTO, never the server's content-only catalog.
+const PROSPECT_DEMOS = CONTENT.map(demo => ({ ...demo, widgetUrl: 'https://widget.subsights.com/?view=inline&workspace_id=test#api_key=isolated-test-capability' }));
 
 it.each(PROSPECT_DEMOS)(
   'keeps the $slug assistant and direct fallback usable before host JavaScript loads',
