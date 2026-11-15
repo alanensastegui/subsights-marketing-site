@@ -2,6 +2,10 @@ import 'server-only';
 
 // Exact existing bot/workspace identities; capabilities never live in this catalog.
 export const PRIVATE_DEMO_IDENTITIES: Record<string, {workspace: string; bot: string}> = {
+  "postcards-to-seattle": {
+    "workspace": "0XvceSLk1j",
+    "bot": "aXCHlhdkU7zG"
+  },
   "forks": {
     "workspace": "0XvceSLk1j",
     "bot": "pxtrtOFDN9ap"

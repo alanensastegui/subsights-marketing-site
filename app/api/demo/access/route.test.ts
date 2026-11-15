@@ -14,7 +14,7 @@ it.each([['forks', null], ['missing', `Basic ${key}`], ['__proto__', `Basic ${ke
   expect(response.status).toBe(404); expect(await response.json()).toEqual({ message: 'Demo unavailable.' });
   expect(response.headers.get('cache-control')).toContain('no-store'); expect(upstream).not.toHaveBeenCalled();
 });
-it.each([404, 500])('keeps a rejected capability private when native access returns %s', async status => {
+it.each([401, 403, 404])('keeps a rejected capability private when native access returns %s', async status => {
   vi.stubGlobal('fetch', vi.fn(async () => new Response('{}', { status })));
   expect((await POST(request())).status).toBe(404);
 });
@@ -45,4 +45,18 @@ it('removes a previously accepted capability on the next request without caching
   vi.stubGlobal('fetch', upstream); expect((await POST(request())).status).toBe(200);
   upstream.mockImplementation(async () => new Response('{}', { status: 404 }));
   const revoked = await POST(request()); expect(revoked.status).toBe(404); expect(await revoked.json()).toEqual({ message: 'Demo unavailable.' });
+});
+
+it.each([429, 500, 503])('keeps temporary native failure %s retryable', async status => {
+  vi.stubGlobal('fetch', vi.fn(async () => new Response('{}', { status })));
+  const response = await POST(request()); expect(response.status).toBe(503); expect(response.headers.get('cache-control')).toContain('no-store');
+});
+it('keeps network failure retryable without returning private content', async () => {
+  vi.stubGlobal('fetch', vi.fn(async () => { throw new Error('network'); }));
+  const response = await POST(request()); expect(response.status).toBe(503); expect(await response.json()).toEqual({ message: 'Demo temporarily unavailable.' });
+});
+it('keeps the existing Postcards demo reachable with its exact native identity', async () => {
+ const identity = PRIVATE_DEMO_IDENTITIES['postcards-to-seattle'];
+ vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ workspace: identity.workspace, chatbot: identity.bot }))));
+ const response = await POST(request('postcards-to-seattle')); expect(response.status).toBe(200); expect((await response.json()).prospect.slug).toBe('postcards-to-seattle');
 });

@@ -45,3 +45,26 @@ it('does not let an older successful authorization reopen a newly denied page', 
   fireEvent.focus(window); await screen.findByRole('heading', { name: 'Demo unavailable' });
   release(new Response(JSON.stringify(preview))); await waitFor(() => expect(document.querySelector('iframe')).toBeNull());
 });
+
+it.each(['503', 'network'])('preserves an authorized chat on a temporary %s recheck', async kind => {
+ window.history.replaceState(null, '', '/demo/forks#share?key=isolated-capability');
+ const upstream = vi.fn(async () => new Response(JSON.stringify(preview))); vi.stubGlobal('fetch', upstream);
+ render(<PrivateDemoPage slug="forks" />); const frame = await screen.findByTitle('Authorized Organization assistant preview');
+ upstream.mockImplementation(async () => { if (kind === 'network') throw new Error('network'); return new Response('{}', { status: 503 }); });
+ fireEvent.focus(window); await waitFor(() => expect(upstream).toHaveBeenCalledTimes(2));
+ expect(document.querySelector('iframe')).toBe(frame); expect(document.title).toBe('Authorized Organization');
+});
+it('offers a working retry after a temporary first-open failure', async () => {
+ window.history.replaceState(null, '', '/demo/forks#share?key=isolated-capability');
+ const upstream = vi.fn().mockResolvedValueOnce(new Response('{}', { status: 503 })).mockImplementation(async () => new Response(JSON.stringify(preview))); vi.stubGlobal('fetch', upstream);
+ render(<PrivateDemoPage slug="forks" />); fireEvent.click(await screen.findByRole('button', { name: 'Try again' }));
+ expect(await screen.findByTitle('Authorized Organization assistant preview')).toBeTruthy();
+});
+it('does not preserve the previous demo after changing capability during an outage', async () => {
+ window.history.replaceState(null, '', '/demo/forks#share?key=isolated-capability');
+ const upstream = vi.fn(async () => new Response(JSON.stringify(preview))); vi.stubGlobal('fetch', upstream);
+ render(<PrivateDemoPage slug="forks" />); await screen.findByTitle('Authorized Organization assistant preview');
+ upstream.mockImplementation(async () => new Response('{}', { status: 503 }));
+ window.history.replaceState(null, '', '/demo/forks#share?key=different-capability'); fireEvent(window, new HashChangeEvent('hashchange'));
+ await screen.findByRole('button', { name: 'Try again' }); expect(document.querySelector('iframe')).toBeNull();
+});

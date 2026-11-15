@@ -8,6 +8,7 @@ const API = process.env.SUBSIGHTS_BOT_API_URL || 'https://bot-api.subsights.com'
 const headers = { 'Cache-Control': 'private, no-store', 'Referrer-Policy': 'no-referrer' };
 export async function POST(request: NextRequest) {
   const unavailable = () => NextResponse.json({ message: 'Demo unavailable.' }, { status: 404, headers });
+  const retry = () => NextResponse.json({ message: 'Demo temporarily unavailable.' }, { status: 503, headers });
   const authorization = request.headers.get('authorization') || '';
   if (!/^Basic [A-Za-z0-9_-]{8,256}$/.test(authorization)) return unavailable();
   let slug: string;
@@ -19,7 +20,7 @@ export async function POST(request: NextRequest) {
       headers: { Authorization: authorization, Workspace: identity.workspace },
       cache: 'no-store', signal: AbortSignal.timeout(4000),
     });
-    if (!access.ok) return unavailable();
+    if (!access.ok) return [401, 403, 404].includes(access.status) ? unavailable() : retry();
     const verified = await access.json();
     if (verified.chatbot !== identity.bot || verified.workspace !== identity.workspace) return unavailable();
     const prospect = getProspectDemo(slug, authorization.slice(6));
@@ -35,5 +36,5 @@ export async function POST(request: NextRequest) {
       comparison: prospect ? getComparison(slug) : null,
       measured: prospect ? await getDemoEngagement(slug, { authorization, workspace: identity.workspace }) : null,
     }, { headers });
-  } catch { return unavailable(); }
+  } catch { return retry(); }
 }
