@@ -12,6 +12,7 @@ export const metadata: Metadata = {
         apple: '/images/logo/small-logo.svg',
     },
     openGraph: {
+        title: 'Subsights demo',
         images: [
             {
                 url: '/images/logo/small-logo.svg',
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
         ],
     },
     twitter: {
+        title: 'Subsights demo',
         images: ['/images/logo/small-logo.svg'],
     },
 };
