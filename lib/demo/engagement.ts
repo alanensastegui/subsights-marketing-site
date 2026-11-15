@@ -20,10 +20,10 @@ export function readEngagement(body: unknown): DemoEngagement | null {
   return { measuredSince: since, conversations, clicks };
 }
 
-export async function getDemoEngagement(slug: string): Promise<DemoEngagement | null> {
+export async function getDemoEngagement(slug: string, capability?: { authorization: string; workspace: string }): Promise<DemoEngagement | null> {
   try {
     const response = await fetch(`${BOT_API_URL}/demo/engagement?slug=${encodeURIComponent(slug)}`, {
-      next: { revalidate: 300 },
+      ...(capability ? { cache: 'no-store' as const, headers: { Authorization: capability.authorization, Workspace: capability.workspace } } : { next: { revalidate: 300 } }),
       signal: AbortSignal.timeout(1500),
     });
     if (!response.ok) return null;

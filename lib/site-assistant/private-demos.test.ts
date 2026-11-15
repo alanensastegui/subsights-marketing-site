@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { DEMO_TARGETS } from '@/lib/demo/config'
+import { CUSTOMER_DEMO_TARGETS as DEMO_TARGETS } from '@/lib/demo/config/customer-targets'
 import { PROSPECT_DEMOS } from '@/lib/demo/config/prospects'
 
 // Prospect demos are private links made for one organization. The website

@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  experimental: { cpus: 1 },
   images: {
     remotePatterns: [
       {
@@ -10,6 +11,13 @@ const nextConfig: NextConfig = {
         pathname: '/vi/**',
       },
     ],
+  },
+  async headers() {
+    return ['/demo/:path*', '/api/demo/:path*'].map(source => ({ source, headers: [
+      { key: 'Cache-Control', value: 'private, no-store' },
+      { key: 'Referrer-Policy', value: 'no-referrer' },
+      { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+    ] }));
   },
   async redirects() {
     return [

@@ -47,7 +47,8 @@ it('publishes the Postcards preview only with an existing embed key and preserve
   expect(url.origin).toBe('https://widget.subsights.com');
   expect(url.searchParams.get('workspace_id')).toBe('0XvceSLk1j');
   expect(url.searchParams.get('view')).toBe('inline');
-  expect(url.searchParams.get('api_key')).toBe('controlled-public-embed-key');
+  expect(url.searchParams.has('api_key')).toBe(false);
+  expect(new URLSearchParams(url.hash.slice(1)).get('api_key')).toBe('controlled-public-embed-key');
   const document = new DOMParser().parseFromString(renderToStaticMarkup(<ProspectDemoPage demo={demo} />), 'text/html');
   expect(document.querySelectorAll('iframe')).toHaveLength(1);
   expect(document.querySelector('#demo-assistant-postcards-to-seattle')).not.toBeNull();

@@ -2,6 +2,7 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 import DemoPageClient from './demo-client-page';
+const publicTarget = { slug: 'public-example', label: 'Public Example', url: 'https://example.test/', testMessage: 'Hello', scriptTag: '<script data-workspace="workspace" data-api-key="public-example-key"></script>', variant: 'default' as const, policy: 'default' as const };
 import * as config from '@/lib/demo/config';
 
 const analytics = vi.hoisted(() => ({
@@ -24,7 +25,8 @@ afterEach(() => {
 });
 
 it('keeps initial routing behind the loading screen without loading a target iframe', () => {
-  const html = renderToString(<DemoPageClient slug="modesto" />);
+  vi.spyOn(config, 'getDemoTarget').mockReturnValue(publicTarget);
+  const html = renderToString(<DemoPageClient slug={publicTarget.slug} />);
   expect(html).toContain('Loading demo');
   expect(html).not.toContain('<iframe');
 });
@@ -37,8 +39,9 @@ it('offers a route home when a preview is no longer available', () => {
 });
 
 it('opens the actual assistant while analytics is still pending', async () => {
-  render(<DemoPageClient slug="modesto" />);
-  const frame = await screen.findByTitle('Visit Modesto assistant');
+  vi.spyOn(config, 'getDemoTarget').mockReturnValue(publicTarget);
+  render(<DemoPageClient slug={publicTarget.slug} />);
+  const frame = await screen.findByTitle('Public Example assistant');
   const link = screen.getByRole('link', {
     name: 'Open assistant in a new tab',
   });
@@ -53,24 +56,8 @@ it('opens the actual assistant while analytics is still pending', async () => {
   expect(analytics.trackSuccess).toHaveBeenCalled();
 });
 
-it.each(config.DEMO_TARGETS.filter(target => target.variant !== 'estoPhoenix').map(target => target.slug))(
-  'makes %s usable without waiting for the customer site', async (slug) => {
-  render(<DemoPageClient slug={slug} />);
-
-  expect(
-    await screen.findByRole('link', { name: 'Ask the assistant' })
-  ).toBeTruthy();
-  expect(
-    screen.getByRole('link', { name: 'Open assistant in a new tab' })
-  ).toBeTruthy();
-  expect(screen.getByRole('button', { name: 'Share' })).toBeTruthy();
-  expect(screen.getByRole('link', { name: 'Open origin' })).toBeTruthy();
-  expect(screen.queryByTestId('demo-iframe')).toBeNull();
-  expect(screen.queryByText('Loading demo')).toBeNull();
-});
-
 it('uses the assistant for an explicit auto policy', async () => {
-  const target = config.getDemoTarget('growing-contigo')!;
+  const target = publicTarget;
   vi.spyOn(config, 'getDemoTarget').mockReturnValue({ ...target, policy: 'auto' });
   render(<DemoPageClient slug={target.slug} />);
   expect(await screen.findByRole('link', { name: 'Ask the assistant' })).toBeTruthy();
@@ -79,7 +66,7 @@ it('uses the assistant for an explicit auto policy', async () => {
 
 it.each(['proxy', 'iframe', 'default'] as const)(
   'preserves the explicit %s policy', async (policy) => {
-    const target = config.getDemoTarget('growing-contigo')!;
+    const target = publicTarget;
     vi.spyOn(config, 'getDemoTarget').mockReturnValue({ ...target, policy });
     render(<DemoPageClient slug={target.slug} />);
     if (policy === 'default') {
@@ -96,7 +83,7 @@ it.each(['proxy', 'iframe', 'default'] as const)(
 
 it.each(['proxy', 'iframe', 'default'] as const)(
   'lets force=%s override an explicit target policy', async (mode) => {
-    const target = config.getDemoTarget('modesto')!;
+    const target = publicTarget;
     vi.spyOn(config, 'getDemoTarget').mockReturnValue({
       ...target, policy: mode === 'default' ? 'proxy' : 'default',
     });

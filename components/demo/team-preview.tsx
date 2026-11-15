@@ -1,4 +1,5 @@
 'use client';
+import { shareKey, withShareKey } from '@/lib/demo/share-link';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
@@ -113,7 +114,7 @@ export function TeamPreview({
       previewRef.current = next;
       setPreview(next);
       // Only local visual choices live in this URL. No settings request or recipient data.
-      window.history.replaceState(window.history.state, '', previewHash(next));
+      window.history.replaceState(window.history.state, '', withShareKey(previewHash(next), shareKey(window.location.hash)));
       if (navigate)
         requestAnimationFrame(() => {
           document
