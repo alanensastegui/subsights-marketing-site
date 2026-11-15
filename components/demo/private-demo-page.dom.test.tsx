@@ -2,12 +2,14 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 import { PrivateDemoPage } from './private-demo-page';
+import { metadata } from '@/app/(demo)/demo/[slug]/page';
 import { shareKey } from '@/lib/demo/share-link';
 vi.mock('./prospect-demo', () => ({ ProspectDemoPage: ({ demo }: { demo: { label: string } }) => <div>{demo.label}<a href="#team-preview">Team sample</a><div id="team-preview" /></div> }));
 const preview = { prospect: null, target: { label: 'Authorized Organization', url: 'https://example.test/' }, widgetUrl: 'https://widget.example.test/index.html?workspace_id=isolated#api_key=isolated-capability', comparison: null, measured: null };
-afterEach(() => { cleanup(); vi.unstubAllGlobals(); window.history.replaceState(null, '', '/'); document.title = ''; });
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); window.history.replaceState(null, '', '/'); document.querySelectorAll('title').forEach(node => node.remove()); });
 it('server-renders only a generic shell, even with a known private slug', () => {
   const html = renderToString(<PrivateDemoPage slug="forks" />);
+  expect(html).toContain('<title>Subsights demo</title>');
   expect(html).not.toContain('Authorized Organization'); expect(html).not.toContain('<iframe'); expect(html).not.toContain('api_key');
 });
 it('keeps an old predictable URL neutral without requesting customer data', async () => {
@@ -67,4 +69,23 @@ it('does not preserve the previous demo after changing capability during an outa
  upstream.mockImplementation(async () => new Response('{}', { status: 503 }));
  window.history.replaceState(null, '', '/demo/forks#share?key=different-capability'); fireEvent(window, new HashChangeEvent('hashchange'));
  await screen.findByRole('button', { name: 'Try again' }); expect(document.querySelector('iframe')).toBeNull();
+});
+
+it('keeps one authorized title when route metadata commits after fast authorization', async () => {
+  window.history.replaceState(null, '', '/demo/forks#share?key=isolated-capability');
+  vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(preview))));
+  // The server metadata can be revealed after the client has authorized the demo.
+  function Page({ metadataReady }: { metadataReady: boolean }) {
+    return <><PrivateDemoPage slug="forks" />{metadataReady && typeof metadata.title === 'string' && <title>{metadata.title}</title>}</>;
+  }
+  const view = render(<Page metadataReady={false} />);
+  await screen.findByTitle('Authorized Organization assistant preview');
+  expect(document.title).toBe(preview.target.label);
+  view.rerender(<Page metadataReady />);
+  expect(document.title).toBe(preview.target.label);
+  expect(document.querySelectorAll('title')).toHaveLength(1);
+  window.history.replaceState(null, '', '/demo/forks'); fireEvent.popState(window);
+  await screen.findByRole('heading', { name: 'Demo unavailable' });
+  expect(document.title).toBe('Subsights demo');
+  expect([...document.querySelectorAll('title')].some(node => node.textContent?.includes(preview.target.label))).toBe(false);
 });
