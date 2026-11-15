@@ -16,9 +16,9 @@ export function AdminTargetsTab({ getSuccessRate }: AdminTargetsTabProps) {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Demo Targets</CardTitle>
+                <CardTitle>Public Demo Targets</CardTitle>
                 <p className="text-sm text-muted-foreground">
-                    {DEMO_TARGETS.length} configured demo targets
+                    {DEMO_TARGETS.length} public demo targets
                 </p>
             </CardHeader>
             <CardContent className="divide-y">

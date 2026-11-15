@@ -9,7 +9,8 @@ import {
 } from '@testing-library/react';
 import { TeamPreview } from './team-preview';
 import { readEngagement } from '@/lib/demo/engagement';
-import { PROSPECT_DEMOS } from '@/lib/demo/config/prospects';
+import { PROSPECT_DEMOS as CONTENT } from '@/lib/demo/config/prospects';
+const PROSPECT_DEMOS = CONTENT.map(demo => ({ ...demo, widgetUrl: 'https://widget.subsights.com/?view=inline&workspace_id=test#api_key=isolated-test-capability' }));
 
 beforeEach(() => {
   Element.prototype.scrollIntoView = vi.fn();

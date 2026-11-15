@@ -11,6 +11,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async headers() {
+    return ['/demo/:path*', '/api/demo/:path*'].map(source => ({ source, headers: [
+      { key: 'Cache-Control', value: 'private, no-store' },
+      { key: 'Referrer-Policy', value: 'no-referrer' },
+      { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+    ] }));
+  },
   async redirects() {
     return [
       { source: '/home', destination: '/', permanent: true },

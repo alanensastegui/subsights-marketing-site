@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import { jost } from "@/lib/demo/prospect-fonts";
 import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
 export default function DemoLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en" className="h-full">
-            <body className="bg-background text-foreground flex flex-col h-full">
+            <body className={`bg-background text-foreground flex flex-col h-full ${jost.variable}`}>
                 <header className="border-b px-6 py-3 flex items-center justify-between bg-background">
                     {/* TODO: Switch back to internal Link when main site is ready */}
                     <Link href="/" className="flex items-center">

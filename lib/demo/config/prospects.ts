@@ -1,4 +1,5 @@
-// Public widget embed URLs only. Platform session credentials never belong here.
+import 'server-only';
+// Server-only preview content. Authorized access supplies each widget URL at request time.
 export type ProspectDemo = {
   slug: string;
   label: string;
@@ -75,7 +76,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     ],
     accent: '#244d3c',
     widgetUrl:
-      'https://widget.subsights.com/index.html?view=inline&workspace_id=0XvceSLk1j&api_key=b1l8ztD9sb5UiXu4CFnb9g1esLWJDOXR',
+      '',
     teamView: [
       { question: 'What can I do with limited time and no car?',
         insight: 'Make practical transport and short-visit information easy to find.' },
@@ -223,7 +224,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
       invite: 'Tell us what your team answers most, and we will show you how it would work.',
     },
     widgetUrl:
-      'https://widget.subsights.com/?view=inline&api_key=a6hGMAbp2dSTwGAILaHkafFwTju6zm5H&workspace_id=0XvceSLk1j',
+      '',
     industryHref: '/chambers',
     teamView: [
       {
@@ -307,7 +308,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     ],
     accent: '#006AB4',
     widgetUrl:
-      'https://widget.subsights.com/?view=inline&api_key=Fz3nZgAkChEXuncy7Z4KIl9O8eTfM3Y7&workspace_id=0XvceSLk1j',
+      '',
     url: 'https://visitkitsap.com/itineraries/one-more-night-in-bremerton/',
     teamView: [
       {
@@ -390,7 +391,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     ],
     accent: '#002144',
     widgetUrl:
-      'https://widget.subsights.com/?view=inline&api_key=0oaBrAQl00GvbtUAzN1W3bZJtE1JZNZW&workspace_id=0XvceSLk1j',
+      '',
     url: 'https://cascaracapital.com/loan-programs/',
     teamView: [
       {
@@ -474,7 +475,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     ],
     accent: '#0B60BE',
     widgetUrl:
-      'https://widget.subsights.com/?view=inline&api_key=2pTsOd3Uo0BDw5eKVvpPrYWIj76hw85x&workspace_id=0XvceSLk1j',
+      '',
     url: 'https://www.onlineu.com/degrees/nursing',
     teamView: [
       {
@@ -556,7 +557,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     accent: '#BF1F09',
     logo: { src: '/images/demo/secret-burger-kitchen-logo.png', alt: 'Secret Burger Kitchen', width: 300, height: 300 },
     widgetUrl:
-      'https://widget.subsights.com/?view=inline&api_key=2xKB6yQ8ThAn5VW6OxwDWT53GyTYLN0P&workspace_id=0XvceSLk1j',
+      '',
     teamView: [
       { question: 'Can I book the food truck for a company event of about 60 people?', insight: 'Truck leads: the request goes to the truck team with the date, headcount and place.' },
       { question: 'How much is a Double Smash?', insight: 'Prices: guests want a number before they order; keep each store’s menu readable.' },
@@ -617,7 +618,7 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
     theme: { highlight: '#A72061', highlightInk: '#ffffff' },
     logo: { src: '/images/demo/studio-east-logo.png', alt: 'Studio East', width: 750, height: 156 },
     widgetUrl:
-      'https://widget.subsights.com/?view=inline&api_key=oi1687OBN1Wwjl5wKISwwT7QKgaOvT4e&workspace_id=0XvceSLk1j',
+      '',
     teamView: [
       { question: 'Which class fits my 8-year-old in January?', insight: 'Placement: parents think in ages; the site places by grade.' },
       { question: 'Do you have a camp during mid-winter break?', insight: 'Camps: publish grades and prices for planned camps as soon as they are set.' },
@@ -650,11 +651,10 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
   },
 ];
 
-// Publish this private preview after its existing bot has a widget key and paid
-// admission is installed. The key is public embed access, not a platform token.
+// Server-side preview content. Its widget capability is supplied only after authorization.
 export function getProspectDemo(
   slug: string,
-  postcardsKey = process.env.SUBSIGHTS_POSTCARDS_WIDGET_KEY,
+  postcardsKey = '',
 ): ProspectDemo | null {
   if (slug !== 'postcards-to-seattle') {
     return PROSPECT_DEMOS.find((demo) => demo.slug === slug) ?? null;
@@ -663,7 +663,7 @@ export function getProspectDemo(
   const widget = new URL('https://widget.subsights.com/index.html');
   widget.searchParams.set('view', 'inline');
   widget.searchParams.set('workspace_id', '0XvceSLk1j');
-  widget.searchParams.set('api_key', postcardsKey.trim());
+  widget.hash = new URLSearchParams({ api_key: postcardsKey.trim() }).toString();
   return {
     slug,
     label: 'Postcards to Seattle',

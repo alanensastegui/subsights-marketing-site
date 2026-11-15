@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useId, useRef, useState } from 'react';
+import { canonicalShareUrl } from '@/lib/demo/share-link';
 import { Button } from '@/components/ui/button';
 
 export function FloatingShareButton() {
@@ -19,7 +20,7 @@ export function FloatingShareButton() {
   }, [status]);
 
   const handleShare = async () => {
-    const url = window.location.href;
+    const url = canonicalShareUrl(window.location.href);
     setShareUrl(url);
     setStatus('sharing');
 
