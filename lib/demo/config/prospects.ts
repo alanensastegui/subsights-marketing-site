@@ -1,4 +1,5 @@
 import 'server-only';
+import { getWarmLunchDemo } from './warm-lunch';
 // Server-only preview content. Authorized access supplies each widget URL at request time.
 export type ProspectDemo = {
   slug: string;
@@ -41,7 +42,7 @@ export type ProspectDemo = {
   publishedLinks?: { label: string; url: string }[];
   industryHref?: string;
   teamView: { question: string; insight: string }[];
-  conversation: {
+  conversation?: {
     title: string;
     turns: {
       question: string;
@@ -54,7 +55,7 @@ export type ProspectDemo = {
 
 export type Capability = { name: string; text: string; ask: string; comingSoon?: string };
 
-export const PROSPECT_DEMOS: ProspectDemo[] = [
+export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<ProspectDemo['conversation']> })[] = [
   {
     slug: 'forks',
     label: 'Forks Chamber of Commerce',
@@ -654,16 +655,16 @@ export const PROSPECT_DEMOS: ProspectDemo[] = [
 // Server-side preview content. Its widget capability is supplied only after authorization.
 export function getProspectDemo(
   slug: string,
-  postcardsKey = '',
+  capability = '',
 ): ProspectDemo | null {
   if (slug !== 'postcards-to-seattle') {
-    return PROSPECT_DEMOS.find((demo) => demo.slug === slug) ?? null;
+    return PROSPECT_DEMOS.find((demo) => demo.slug === slug) ?? getWarmLunchDemo(slug, capability);
   }
-  if (!postcardsKey?.trim()) return null;
+  if (!capability?.trim()) return null;
   const widget = new URL('https://widget.subsights.com/index.html');
   widget.searchParams.set('view', 'inline');
   widget.searchParams.set('workspace_id', '0XvceSLk1j');
-  widget.hash = new URLSearchParams({ api_key: postcardsKey.trim() }).toString();
+  widget.hash = new URLSearchParams({ api_key: capability.trim() }).toString();
   return {
     slug,
     label: 'Postcards to Seattle',

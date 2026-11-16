@@ -1,10 +1,63 @@
-import { expect, it } from 'vitest';
+import { afterEach, expect, it, vi } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { ProspectDemoPage } from './prospect-demo';
 import { PROSPECT_DEMOS as CONTENT, getProspectDemo } from '@/lib/demo/config/prospects';
 import { readPreviewHash } from '@/lib/demo/preview';
 // The component receives an authorized DTO, never the server's content-only catalog.
 const PROSPECT_DEMOS = CONTENT.map(demo => ({ ...demo, widgetUrl: 'https://widget.subsights.com/?view=inline&workspace_id=test#api_key=isolated-test-capability' }));
+import { WARM_LUNCH_DEMOS } from '@/lib/demo/config/warm-lunch';
+import { DEMO_TARGETS } from '@/lib/demo/config';
+import { TeamPreview } from './team-preview';
+import { AnswerImprovementPreview } from './answer-improvement-preview';
+
+afterEach(() => vi.unstubAllEnvs());
+
+it.each(WARM_LUNCH_DEMOS)('keeps $demo.slug unavailable without an explicit authorized capability', ({ demo }) => {
+  for (const name of ['SUBSIGHTS_KIRKLAND_FOUNDATION_WIDGET_KEY', 'SUBSIGHTS_SIMPLY_BOLD_WIDGET_KEY', 'SUBSIGHTS_BERNADETTE_WIDGET_KEY']) {
+    vi.stubEnv(name, 'obsolete-environment-capability');
+  }
+  expect(getProspectDemo(demo.slug)).toBeNull();
+  expect(getProspectDemo(demo.slug, '   ')).toBeNull();
+  expect([...PROSPECT_DEMOS, ...DEMO_TARGETS].some(entry => entry.slug === demo.slug)).toBe(false);
+  const widget = new URL(getProspectDemo(demo.slug, 'isolated-authorized-capability')!.widgetUrl);
+  expect(widget.origin).toBe('https://widget.subsights.com');
+  expect(widget.searchParams.get('workspace_id')).toBe('0XvceSLk1j');
+  expect(widget.searchParams.has('api_key')).toBe(false);
+  expect(new URLSearchParams(widget.hash.slice(1)).get('api_key')).toBe('isolated-authorized-capability');
+});
+
+it.each(WARM_LUNCH_DEMOS)('renders $demo.slug native next steps without fabricated conversations or team results', ({ demo }) => {
+  const ready = getProspectDemo(demo.slug, 'isolated-authorized-capability')!;
+  // Server markup does not open the iframe or make a visitor/model request.
+  const document = new DOMParser().parseFromString(renderToStaticMarkup(
+    <ProspectDemoPage demo={{ ...ready, headline: `${ready.label}: another harmless heading` }} />
+  ), 'text/html');
+  expect(document.querySelector('iframe')!.getAttribute('src')).toBe(ready.widgetUrl);
+  expect(document.querySelector('#conversation-example')).toBeNull();
+  expect(document.querySelector('#team-preview')).toBeNull();
+  expect(document.querySelector('a[href="#team-preview"]')).toBeNull();
+  expect(document.querySelector('a[href="#conversation-example"]')).toBeNull();
+  const links = Array.from(document.querySelectorAll('#preview-tools ~ ul a')).map(a => a.getAttribute('href'));
+  expect(links).toEqual(demo.tools!.map(tool => tool.href));
+  expect(document.querySelectorAll('form')).toHaveLength(0);
+});
+
+it.each([undefined, { title: 'No recorded turns', turns: [], takeaway: '' }])('does not render an improvement or team example without conversation evidence (%s)', conversation => {
+  const demo = { ...PROSPECT_DEMOS[0], conversation };
+  expect(renderToStaticMarkup(<TeamPreview demo={demo} />)).toBe('');
+  expect(renderToStaticMarkup(<AnswerImprovementPreview demo={demo} />)).toBe('');
+  const document = new DOMParser().parseFromString(renderToStaticMarkup(<ProspectDemoPage demo={demo} />), 'text/html');
+  expect(document.querySelector('a[href="#team-preview"]')).toBeNull();
+});
+
+it('preserves the actual project, consultation and photography inquiry destinations', () => {
+  const toolLinks = (slug: string) => WARM_LUNCH_DEMOS.find(entry => entry.demo.slug === slug)!.demo.tools!.map(tool => tool.href);
+  expect(toolLinks('kirkland-community-foundation')).toContain('https://kirklandcommunity.org/contact/');
+  expect(toolLinks('kirkland-community-foundation').every(url => !new URL(url).hash)).toBe(true);
+  expect(toolLinks('simply-bold-design')).toContain('https://www.simplybolddesign.com/contact');
+  expect(toolLinks('captured-by-bernadette')).toContain('https://www.capturedbybernadette.com/snohomishweddingphotographerinquire');
+});
+
 
 it.each(PROSPECT_DEMOS)(
   'keeps the $slug assistant and direct fallback usable before host JavaScript loads',
@@ -87,7 +140,7 @@ it.each(PROSPECT_DEMOS)('starts $slug sign-up on the real free-trial checkout ro
 });
 
 it('gives every Kirkland tool a working target in the page or the chat', () => {
-  const demo = getProspectDemo('kirkland-chamber')!;
+  const demo = PROSPECT_DEMOS.find(demo => demo.slug === 'kirkland-chamber')!;
   const document = new DOMParser().parseFromString(
     renderToStaticMarkup(<ProspectDemoPage demo={demo} />), 'text/html'
   );
@@ -102,7 +155,7 @@ it('gives every Kirkland tool a working target in the page or the chat', () => {
 });
 
 it('sends every Kirkland capability to the live chat and keeps unconnected work marked coming soon', () => {
-  const demo = getProspectDemo('kirkland-chamber')!;
+  const demo = PROSPECT_DEMOS.find(demo => demo.slug === 'kirkland-chamber')!;
   const document = new DOMParser().parseFromString(
     renderToStaticMarkup(<ProspectDemoPage demo={demo} />), 'text/html'
   );
