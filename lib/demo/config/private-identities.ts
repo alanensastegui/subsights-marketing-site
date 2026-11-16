@@ -2,6 +2,11 @@ import 'server-only';
 
 // Exact existing bot/workspace identities; capabilities never live in this catalog.
 export const PRIVATE_DEMO_IDENTITIES: Record<string, {workspace: string; bot: string}> = {
+  // Prepared routes only. Native enrollment and a valid bot-scoped capability
+  // are still required; these mappings do not enable a runtime.
+  "kirkland-community-foundation": { "workspace": "0XvceSLk1j", "bot": "oBgDPkFN3tlQ" },
+  "simply-bold-design": { "workspace": "0XvceSLk1j", "bot": "jcptvP98MPg2" },
+  "captured-by-bernadette": { "workspace": "0XvceSLk1j", "bot": "hH7wwZywyDip" },
   "postcards-to-seattle": {
     "workspace": "0XvceSLk1j",
     "bot": "aXCHlhdkU7zG"

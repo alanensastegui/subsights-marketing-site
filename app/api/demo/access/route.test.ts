@@ -60,3 +60,54 @@ it('keeps the existing Postcards demo reachable with its exact native identity',
  vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ workspace: identity.workspace, chatbot: identity.bot }))));
  const response = await POST(request('postcards-to-seattle')); expect(response.status).toBe(200); expect((await response.json()).prospect.slug).toBe('postcards-to-seattle');
 });
+
+const warm = [
+  ['kirkland-community-foundation', 'oBgDPkFN3tlQ'],
+  ['simply-bold-design', 'jcptvP98MPg2'],
+  ['captured-by-bernadette', 'hH7wwZywyDip'],
+] as const;
+it.each(warm)('authorizes %s only through its exact native identity', async (slug, bot) => {
+  const upstream = vi.fn<(url: string) => Promise<Response>>(async () => new Response(JSON.stringify({ workspace: '0XvceSLk1j', chatbot: bot })));
+  vi.stubGlobal('fetch', upstream);
+  const response = await POST(request(slug));
+  expect(response.status).toBe(200);
+  const value = await response.json();
+  expect(value.prospect.slug).toBe(slug);
+  expect(value.prospect.conversation).toBeUndefined();
+  expect(value.prospect.teamView).toEqual([]);
+  expect(value.comparison).toBeNull();
+  const widget = new URL(value.prospect.widgetUrl);
+  expect(widget.searchParams.get('workspace_id')).toBe('0XvceSLk1j');
+  expect(widget.searchParams.has('api_key')).toBe(false);
+  expect(new URLSearchParams(widget.hash.slice(1)).get('api_key')).toBe(key);
+  expect(upstream.mock.calls[0][0]).toContain(`bot=${bot}`);
+});
+it.each(warm)('does not disclose %s for missing, blank, wrong or stale authorization', async (slug, bot) => {
+  const upstream = vi.fn(); vi.stubGlobal('fetch', upstream);
+  for (const authorization of [null, '', 'Basic ', 'Basic short']) {
+    expect((await POST(request(slug, authorization))).status).toBe(404);
+  }
+  expect(upstream).not.toHaveBeenCalled();
+  for (const verified of [
+    { chatbot: 'another-warm-bot', workspace: '0XvceSLk1j' },
+    { chatbot: bot, workspace: 'another-workspace' },
+  ]) {
+    upstream.mockResolvedValue(new Response(JSON.stringify(verified)));
+    const denied = await POST(request(slug));
+    expect(denied.status).toBe(404);
+    expect(await denied.json()).toEqual({ message: 'Demo unavailable.' });
+  }
+  upstream.mockImplementation(async () => new Response(JSON.stringify({ chatbot: bot, workspace: '0XvceSLk1j' })));
+  expect((await POST(request(slug))).status).toBe(200);
+  upstream.mockImplementation(async () => new Response('{}', { status: 404 }));
+  const revoked = await POST(request(slug));
+  expect(revoked.status).toBe(404);
+  expect(await revoked.json()).toEqual({ message: 'Demo unavailable.' });
+});
+it.each(['forks', 'kirkland-chamber', 'visit-kitsap-peninsula', 'cascara-capital', 'onlineu', 'secret-burger-kitchen', 'studio-east'])('preserves the existing %s private demo', async slug => {
+  const identity = PRIVATE_DEMO_IDENTITIES[slug];
+  vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ workspace: identity.workspace, chatbot: identity.bot }))));
+  const response = await POST(request(slug));
+  expect(response.status).toBe(200);
+  expect((await response.json()).prospect.slug).toBe(slug);
+});

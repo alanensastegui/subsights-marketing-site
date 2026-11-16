@@ -1,6 +1,7 @@
 import type { ProspectDemo } from '@/lib/demo/config/prospects';
 
 export function ConversationExample({ demo }: { demo: ProspectDemo }) {
+  if (!demo.conversation?.turns.length) return null;
   return (
     <section
       id="conversation-example"

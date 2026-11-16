@@ -9,7 +9,8 @@ type Stage = 'correction' | 'review' | 'retested';
 export function AnswerImprovementPreview({ demo }: { demo: ProspectDemo }) {
   const [route, setRoute] = useState<UpdateRoute>('website');
   const [stage, setStage] = useState<Stage>('correction');
-  const example = demo.conversation.turns[0];
+  const example = demo.conversation?.turns[0];
+  if (!example) return null;
 
   function changeRoute(value: UpdateRoute) {
     setRoute(value);

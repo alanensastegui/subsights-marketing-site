@@ -28,6 +28,7 @@ export function ProspectDemoPage({ demo, comparison = null, measured = null }: {
   measured?: DemoEngagement | null;
 }) {
   const { theme, heading, corners, panel, button } = themeStyles(demo);
+  const hasTeamView = demo.teamView.length > 0 && !!demo.conversation?.turns.length;
   return (
     <main className="flex-1 bg-slate-50">
       <div className={`mx-auto grid max-w-7xl px-4 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12 lg:py-12 ${demo.entry ? 'gap-4 py-4' : 'gap-8 py-8'}`}>
@@ -68,7 +69,7 @@ export function ProspectDemoPage({ demo, comparison = null, measured = null }: {
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
               Ask your own questions in the live chat. Try a follow-up, change
               your plans, or ask for a detail it cannot know. You can also ask
-              what is connected, explore the team samples or plan your setup.
+              what is connected{hasTeamView ? ', explore the team samples' : ''} or plan your setup.
             </p>
           )}
           <div className={`mt-7 hidden border border-slate-200 bg-white p-5 lg:block ${panel}`}>
@@ -111,12 +112,14 @@ export function ProspectDemoPage({ demo, comparison = null, measured = null }: {
                 What it can do ↓
               </a>
             )}
-            <a
-              href="#team-preview"
-              className="inline-flex min-h-11 items-center text-sm font-medium text-slate-700 underline underline-offset-4"
-            >
-              See the team view ↓
-            </a>
+            {hasTeamView && (
+              <a
+                href="#team-preview"
+                className="inline-flex min-h-11 items-center text-sm font-medium text-slate-700 underline underline-offset-4"
+              >
+                See the team view ↓
+              </a>
+            )}
           </div>
         </section>
 
@@ -247,12 +250,16 @@ export function ProspectDemoPage({ demo, comparison = null, measured = null }: {
             <ProspectComparison comparison={comparison} accent={demo.accent} heading={heading} panel={panel} />
           </div>
         )}
-        <div className="min-w-0 lg:col-span-2">
-          <TeamPreview demo={demo} measured={measured} />
-        </div>
-        <div className="min-w-0 lg:col-span-2">
-          <ConversationExample demo={demo} />
-        </div>
+        {hasTeamView && (
+          <div className="min-w-0 lg:col-span-2">
+            <TeamPreview demo={demo} measured={measured} />
+          </div>
+        )}
+        {demo.conversation && (
+          <div className="min-w-0 lg:col-span-2">
+            <ConversationExample demo={demo} />
+          </div>
+        )}
         {demo.builtFor && (
           <div className="min-w-0 lg:col-span-2">
             <ProspectBuiltFor demo={demo} heading={heading} panel={panel} />
