@@ -4,6 +4,110 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "wmba",
+    "label": "Washington Mortgage Bankers Association",
+    "url": "https://wa-mba.org/",
+    "headline": "The right event, membership and next step.",
+    "description": "Keep your event and role together as you find WMBA programs, education and member services.",
+    "questions": [
+      "What is the December 1 Income Property luncheon?",
+      "Can I register for the January 14 luncheon?",
+      "Who chairs the Income Property committee?",
+      "Where can a member update contact information?"
+    ],
+    "scope": "Selected official public pages checked November 25, 2026. Applications, payments, calendar imports and member updates stay in WMBA’s own systems.",
+    "entry": [
+      {
+        "label": "Try it",
+        "text": "Ask a question, then change the event, your role or another detail."
+      }
+    ],
+    "sources": [
+      {
+        "label": "December",
+        "url": "https://wa-mba.org/all-events/ip-luncheon-december-2026/?occurrence=2026-12-01"
+      },
+      {
+        "label": "January",
+        "url": "https://wa-mba.org/all-events/ip-luncheon-january-2027/?occurrence=2027-01-14"
+      },
+      {
+        "label": "Committees",
+        "url": "https://wa-mba.org/committees/"
+      },
+      {
+        "label": "Membership",
+        "url": "https://wa-mba.org/membership/"
+      },
+      {
+        "label": "Members",
+        "url": "https://wa-mba.org/wmba-members/"
+      },
+      {
+        "label": "Education",
+        "url": "https://wa-mba.org/education-2/"
+      },
+      {
+        "label": "Member update",
+        "url": "https://ami.jotform.com/262355556572969"
+      },
+      {
+        "label": "Application",
+        "url": "https://wa-mba.org/become-a-member/"
+      },
+      {
+        "label": "December form",
+        "url": "https://ami.jotform.com/263134523756963"
+      },
+      {
+        "label": "December calendar export",
+        "url": "https://wa-mba.org/?method=ical&id=8035&occurrence=2026-12-01"
+      }
+    ],
+    "accent": "#1f2937",
+    "widgetUrl": "",
+    "teamView": [],
+    "tools": [
+      {
+        "name": "December 1 luncheon",
+        "text": "World Cup impact at Perkins Coie and on Zoom. Registration is closed; ask WMBA about any exception.",
+        "href": "https://wa-mba.org/all-events/ip-luncheon-december-2026/?occurrence=2026-12-01",
+        "action": "Event details"
+      },
+      {
+        "name": "January 14 luncheon",
+        "text": "Check the January page and organizer for unsettled time, venue and registration details.",
+        "href": "https://wa-mba.org/all-events/ip-luncheon-january-2027/?occurrence=2027-01-14",
+        "action": "January details"
+      },
+      {
+        "name": "Committees",
+        "text": "Find the current chair for the committee you need.",
+        "href": "https://wa-mba.org/committees/",
+        "action": "Find a committee"
+      },
+      {
+        "name": "Education",
+        "text": "Explore Lunch & Learns, the past-offerings library and MBA courses.",
+        "href": "https://wa-mba.org/education-2/",
+        "action": "Explore education"
+      },
+      {
+        "name": "Membership",
+        "text": "Compare General and Associate membership. Board approval comes before dues payment.",
+        "href": "https://wa-mba.org/become-a-member/",
+        "action": "View application"
+      },
+      {
+        "name": "Member information",
+        "text": "Update contact details in WMBA’s existing form.",
+        "href": "https://ami.jotform.com/262355556572969",
+        "action": "Open update form"
+      }
+    ],
+    "toolsComingSoon": "Coming soon: connected member-account help once WMBA authorizes access."
+  },
+  {
     slug: 'rhawa',
     label: 'RHAWA',
     url: 'https://www.rhawa.org',
