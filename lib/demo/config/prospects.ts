@@ -39,6 +39,7 @@ export type ProspectDemo = {
   // Needs we can build for beyond this preview, with one invitation to talk it through.
   builtFor?: { title: string; text: string; ideas: { name: string; text: string }[]; invite: string };
   widgetUrl: string;
+  requestDestination?: string;
   publishedLinks?: { label: string; url: string }[];
   industryHref?: string;
   teamView: { question: string; insight: string }[];
@@ -536,7 +537,7 @@ export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<Prospec
     url: 'https://secretburgerkitchen.com/',
     headline: 'Hours, prices, catering and the truck, answered.',
     description:
-      'Ask which SBK is open, what a Double Smash costs, or what catering for your office would run. Catering and truck requests can go straight to your team.',
+      'Ask which SBK is open, what a Double Smash costs, or what catering for your office would run. Try a catering estimate or a truck inquiry; demo requests go only to Subsights.',
     questions: [
       'Which SBK is open right now?',
       'How much is a Double Smash?',
@@ -557,6 +558,7 @@ export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<Prospec
     ],
     accent: '#BF1F09',
     logo: { src: '/images/demo/secret-burger-kitchen-logo.png', alt: 'Secret Burger Kitchen', width: 300, height: 300 },
+    requestDestination: 'Requests in this demo go only to the Subsights demo inbox, not Secret Burger Kitchen.',
     widgetUrl:
       '',
     teamView: [
@@ -618,6 +620,7 @@ export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<Prospec
     accent: '#171D3A',
     theme: { highlight: '#A72061', highlightInk: '#ffffff' },
     logo: { src: '/images/demo/studio-east-logo.png', alt: 'Studio East', width: 750, height: 156 },
+    requestDestination: 'Requests in this demo go only to the Subsights demo inbox, not Studio East.',
     widgetUrl:
       '',
     teamView: [

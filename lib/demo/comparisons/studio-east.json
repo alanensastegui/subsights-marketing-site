@@ -7,7 +7,7 @@
   },
   "asked": {
     "date": "2026-11-11",
-    "note": "Replies took about 4 to 16 seconds on November 11. Answers re-asked on November 25, after the class, ticket and policy sources were rechecked, took about 14 to 24 seconds. The assistant links Active.com or the ticket page for current availability."
+    "note": "These website comparisons include November 11 recordings and November 25 rechecks. Replies in the final November 25 checks took about 14 to 24 seconds. Registration and ticket links show current availability."
   },
   "questions": [
     {
@@ -82,7 +82,7 @@
       "q": "Which class or camp fits my 8-year-old in January, and where do I sign up? She's in 3rd grade.",
       "theirs": "Nothing on the site matches classes to an age. The parent compares grade ranges on the site with times and prices on Active.com, and the homepage still promotes the Nov 11 Studio Day.",
       "theirs_seconds": null,
-      "ours": "These options all fit a **3rd grader** and begin in January 2027:\n\n- **Studio Day: Marvel Heroes & Villains** — Grades 3–5; Monday, January 18, 9 AM–3 PM; **$175**. [Register](https://campscui.active.com/orgs/StudioEast?season=3861533&session=73225145)\n- **Frozen KIDS** — A production class for grades 2–6; Tuesdays, 4–6:30 PM, January 12–March 23; **$450**. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234)\n- **Acting for Film: And you’re watching Disney Channel!** — Grades 3–5; Wednesdays, 3:30–5 PM, January 13–March 24; **$375**. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72936139)\n- **Musical Theater Jazz** — Grades 3–5; Saturdays, 10:30–11:30 AM, January 16–March 27, with no class February 13; **$220**. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nThe Active.com pages show live openings and waitlists; a listing doesn’t reserve a spot.\n\n**Visitor:** She's only free on Saturdays. What's there and how much?\n\n**Subsights:** Two Saturday classes fit her grade. Both run **January 16–March 27, 2027**, with no class February 13:\n\n- **Broadway Kids: The Little Mermaid** — Grades 1–3, 9:30–10:30 AM. **$375** for the session. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)\n- **Musical Theater Jazz: 3rd–5th Grade** — Grades 3–5, 10:30–11:30 AM. **$220** for the session or **$25** per drop-in class. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nActive.com shows live openings and waitlists.",
+      "ours": "These January 2027 options all welcome third-graders:\n\n- **[Marvel Heroes & Villains Studio Day](https://campscui.active.com/orgs/StudioEast?season=3861533&session=73225145):** Grades 3–5; Monday, January 18, 9 AM–3 PM; **$175**.\n- **[Frozen KIDS](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234):** Grades 2–6; Tuesdays, 4–6:30 PM, January 12–March 23; **$450**.\n- **[Acting for Film: Disney Channel](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72936139):** Grades 3–5; Wednesdays, 3:30–5 PM, January 13–March 24; **$375**.\n- **[Musical Theater Jazz](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241):** Grades 3–5; Saturdays, 10:30–11:30 AM, January 16–March 27, with no class February 13; **$220**.\n\nEach link goes to the session’s Active.com registration page, where you can check live openings or a waitlist.\n\n**Visitor:** She's only free on Saturdays. What's there and how much?\n\n**Subsights:** Two Saturday classes fit her grade. Both run **January 16–March 27, 2027**, with no class February 13:\n\n- **Broadway Kids: The Little Mermaid** — Grades 1–3, 9:30–10:30 AM. **$375** for the session. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)\n- **Musical Theater Jazz: 3rd–5th Grade** — Grades 3–5, 10:30–11:30 AM. **$220** for the session or **$25** per drop-in class. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nActive.com shows live openings and waitlists.",
       "ours_seconds": null,
       "outcome": "Ours lists four January options that fit a 3rd grader, with days, times, prices and sign-up links. Asked about Saturdays, it narrows to The Little Mermaid ($375) and Musical Theater Jazz ($220 or $25 a class).",
       "verdict": "ours_better"
@@ -90,11 +90,11 @@
     {
       "id": "sat-3rd",
       "tier": "decisive",
-      "q": "My daughter is in 3rd grade and is only free on Saturdays. What can she do this winter, and how much is it?",
+      "q": "What Saturday class could my 3rd grader take this winter, and what does it cost?",
       "theirs": "The parent filters Active.com by day and grade.",
       "theirs_seconds": null,
-      "ours": "Your daughter has two Saturday class options for **winter 2027**:\n\n- **Broadway Kids: The Little Mermaid** — Grades 1–3. Singing, dancing and acting inspired by the musical. Saturdays, 9:30–10:30 AM; **$375**. [Register for Broadway Kids](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)\n- **Musical Theater Jazz** — Grades 3–5. Learn jazz technique and dance combinations. Saturdays, 10:30–11:30 AM; **$220** for the session or **$25** per drop-in class. [Register for Musical Theater Jazz](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nBoth run **January 16–March 27, 2027**, with no class February 13. Active.com shows live availability and waitlist options.",
-      "ours_seconds": 15.9,
+      "ours": "Two Saturday classes fit a third grader this winter:\n\n- **[Broadway Kids: The Little Mermaid](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)** — Grades 1–3; singing, dancing and acting. Saturdays, 9:30–10:30 AM; **$375** for the session.\n- **[Musical Theater Jazz](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)** — Grades 3–5; jazz dance technique. Saturdays, 10:30–11:30 AM; **$220** for the session or **$25** per drop-in class.\n\nBoth run **January 16–March 27, 2027**, with no class February 13. Check the registration links for live openings or waitlists.",
+      "ours_seconds": null,
       "outcome": "Ours gives both Saturday options, The Little Mermaid at $375 and Musical Theater Jazz at $220 or $25 a class, with times, dates and sign-up links.",
       "verdict": "ours_better"
     },
@@ -134,12 +134,12 @@
     {
       "id": "afford",
       "tier": "decisive",
-      "q": "We can't afford $450 for Frozen KIDS. Is there any help?",
+      "q": "We can't afford tuition. Can we register now and apply for aid afterward?",
       "theirs": "The Tuition Assistance page explains it. The Policies page says an application must be submitted and approved before registering, and a spot can be saved while it is reviewed.",
       "theirs_seconds": null,
-      "ours": "Yes. Studio East offers **tuition assistance for Frozen KIDS**, and no financial documents are required.\n\n[Apply for tuition assistance](https://docs.google.com/forms/d/1lu5rCVR1mvgeAC6oKOqY1N53eorpt-q7J8FfYTNxrdY/viewform?edit_requested=true). Your application must be **submitted and approved before you register or pay**; assistance cannot be applied after payment. Review usually takes 1–2 weeks.\n\nIf you’re worried the class might fill, you can ask the Education Team to save a spot while your application is reviewed: [education@studio-east.org](mailto:education@studio-east.org) or 425-820-1800. See the [tuition assistance page](https://studio-east.org/tuition-assistance) for more information.",
-      "ours_seconds": 14.3,
-      "outcome": "Ours says help is available with no financial documents, links the application, says it must be submitted and approved before registering or paying, and suggests asking the education team to save a spot.",
+      "ours": "**Please apply for tuition assistance and wait for approval before registering or paying.** Studio East cannot apply assistance after payment has been processed.\n\nYou can [apply for tuition assistance](https://docs.google.com/forms/d/1lu5rCVR1mvgeAC6oKOqY1N53eorpt-q7J8FfYTNxrdY/viewform?edit_requested=true); no financial documents are required. Review usually takes 1–2 weeks. See the [tuition assistance page](https://studio-east.org/tuition-assistance) for more information.\n\nIf you’re worried the class might fill, ask the office to save a spot while your application is reviewed: **info@studio-east.org** or **425-820-1800**.",
+      "ours_seconds": 14.283,
+      "outcome": "Links the assistance application, requires approval before registering or paying, and gives the office contact to ask about saving a spot during review.",
       "verdict": "ours_better"
     },
     {
@@ -236,9 +236,9 @@
       "q": "If Frozen KIDS fills up, can I get on a waitlist for my 3rd grader?",
       "theirs": "Active’s Frozen KIDS registration listing offers a separate waitlist option. On November 24 the session had open spots; parents check the session page for current availability.",
       "theirs_seconds": null,
-      "ours": "Yes. **Frozen KIDS is for grades 2–6**, so your 3rd grader is eligible. If it fills, select the official waitlist on the [Frozen KIDS session page](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234).\n\nThe waitlist doesn’t guarantee a place, and I can’t enroll your child myself. Check Active.com for current availability.\n\n**Visitor:** Please ask the education team about a waitlist for winter Frozen KIDS instead. I'm [contact redacted], [contact redacted]. This is a Subsights demo test, please ignore.\n\n**Subsights:** Your request is queued for the team. Delivery and a response time aren't confirmed.",
-      "ours_seconds": null,
-      "outcome": "Points the parent to Frozen KIDS’ official waitlist and queues a staff inquiry without promising a spot.",
+      "ours": "Yes. Your 3rd grader is eligible for **Frozen KIDS**, which is for grades 2–6.\n\nIf the class fills, select the official waitlist on the [Frozen KIDS Active.com page](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234). Joining the waitlist doesn’t guarantee a place.",
+      "ours_seconds": 13.838,
+      "outcome": "Links the official Frozen KIDS waitlist, confirms third-grade eligibility and explains that a place is not guaranteed.",
       "verdict": "ours_better"
     },
     {
@@ -269,8 +269,8 @@
       "q": "We need help paying for Frozen KIDS. How do we apply? Can friends support tuition assistance?",
       "theirs": "The tuition-assistance page says no financial documents are needed and publishes a Donate link. Policies say to apply before registering or paying and ask for a spot to be held while reviewed.",
       "theirs_seconds": null,
-      "ours": "You can [apply for tuition assistance](https://docs.google.com/forms/d/1lu5rCVR1mvgeAC6oKOqY1N53eorpt-q7J8FfYTNxrdY/viewform?edit_requested=true) for **Frozen KIDS**. Request the level of help your family needs; no financial documents are required.\n\n**Apply and receive approval before registering or paying.** Assistance cannot be applied after payment. You can ask [education@studio-east.org](mailto:education@studio-east.org) to hold a spot while your application is reviewed.\n\nYes, friends can support access through Studio East’s [Donate page](https://studioeast.my.salesforce-sites.com/donate/?dfId=a0n5G00000nBhkaQAC). A donation is not required for assistance.",
-      "ours_seconds": 15.6,
+      "ours": "You can [apply for tuition assistance](https://docs.google.com/forms/d/1lu5rCVR1mvgeAC6oKOqY1N53eorpt-q7J8FfYTNxrdY/viewform?edit_requested=true) for Frozen KIDS. No financial documents are required. You can also read the [tuition assistance page](https://studio-east.org/tuition-assistance).\n\n**Submit the application and wait for approval before registering or paying.** Assistance cannot be applied after payment. Review usually takes one to two weeks. If you’re concerned the class might fill, ask the office to save a spot while your application is reviewed: [info@studio-east.org](mailto:info@studio-east.org) or 425-820-1800.\n\nYes, friends can support tuition access through Studio East’s [Donate page](https://studioeast.my.salesforce-sites.com/donate/?dfId=a0n5G00000nBhkaQAC). A donation is entirely optional and does not affect your application.",
+      "ours_seconds": 24.4,
       "outcome": "Explains how to seek tuition help before paying, then offers one optional Donate link for friends who want to support access.",
       "verdict": "ours_better"
     }

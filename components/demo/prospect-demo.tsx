@@ -148,6 +148,7 @@ export function ProspectDemoPage({ demo, comparison = null, measured = null }: {
             label={demo.label}
             widgetUrl={demo.widgetUrl}
             panel={panel}
+            requestDestination={demo.requestDestination}
           />
           <p className="mt-2 text-xs leading-relaxed text-slate-600">
             Prepared independently by Subsights, not affiliated with{' '}
