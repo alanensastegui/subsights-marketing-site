@@ -4,6 +4,84 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "wmfha",
+    "label": "WMFHA",
+    "url": "https://www.wmfha.org/",
+    "headline": "Find the right class, company account or supplier.",
+    "description": "Keep your topic, company role or service area together through the next question.",
+    "questions": [
+      "Which December webinar covers practical AI?",
+      "How do I view a member-company invoice?",
+      "Find a painter serving the Eastside",
+      "Can I still apply to speak at EdCon?"
+    ],
+    "scope": "Selected official public pages checked November 25, 2026. Registration, invoices, applications and payments stay in WMFHA’s own services.",
+    "entry": [
+      {
+        "label": "Try it",
+        "text": "Ask a question, then change the topic, company role or another detail."
+      }
+    ],
+    "sources": [
+      {
+        "label": "December AI webinar",
+        "url": "https://www.wmfha.org/events/multifamily-insider-webinar-immediate-impact-practical-ai-tools-for-property-teams"
+      },
+      {
+        "label": "Regional manager webinar",
+        "url": "https://www.wmfha.org/events/multifamily-insider-webinar-maximizing-success-for-current-and-future-regional-property-managers"
+      },
+      {
+        "label": "Company membership",
+        "url": "https://www.wmfha.org/membership-information"
+      },
+      {
+        "label": "Supplier directory",
+        "url": "https://www.wmfha.org/statewide-supplier-directory"
+      },
+      {
+        "label": "EdCon speaker guidance",
+        "url": "https://www.wmfha.org/edcon-2027-speaker-application-info-page"
+      }
+    ],
+    "accent": "#1f2937",
+    "widgetUrl": "",
+    "teamView": [],
+    "tools": [
+      {
+        "name": "December 16 AI webinar",
+        "text": "Chelsea Kneeland, 11 a.m.–noon PST. One CEC for CAM, CAPS, CALP and AIME holders.",
+        "href": "https://www.wmfha.org/events/multifamily-insider-webinar-immediate-impact-practical-ai-tools-for-property-teams",
+        "action": "Webinar details"
+      },
+      {
+        "name": "Member Compass",
+        "text": "Use your existing company account for invoices and member services. Available invoices depend on your account permissions.",
+        "href": "https://www.wmfha.org/member-compass",
+        "action": "Open Member Compass"
+      },
+      {
+        "name": "Supplier directory",
+        "text": "Filter by expertise and service area, then confirm insurance and service directly with the supplier.",
+        "href": "https://www.wmfha.org/statewide-supplier-directory",
+        "action": "Find suppliers"
+      },
+      {
+        "name": "EdCon 2027 speakers",
+        "text": "The call closed November 8. The March 23 conference date does not reopen applications.",
+        "href": "https://www.wmfha.org/edcon-2027-speaker-application-info-page",
+        "action": "Read speaker guidance"
+      },
+      {
+        "name": "Company membership",
+        "text": "Compare company types and regional dues. Individual employees use their member company’s account route.",
+        "href": "https://www.wmfha.org/membership-information",
+        "action": "Membership options"
+      }
+    ],
+    "toolsComingSoon": "Coming soon: connected company-account help once WMFHA authorizes access."
+  },
+  {
     "slug": "crew-seattle",
     "label": "CREW Seattle",
     "url": "https://seattle.crewnetwork.org/",
