@@ -93,7 +93,7 @@ export function AssistantFrame({
         className={`block w-full border-0 ${expanded ? 'min-h-0 flex-1' : 'h-[clamp(26rem,72svh,44rem)] sm:h-[620px]'}`}
         referrerPolicy="no-referrer"
         allow="clipboard-write"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-downloads"
       />
     </div>
   );
