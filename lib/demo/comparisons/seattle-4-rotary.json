@@ -1,0 +1,78 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "seattle-4-rotary",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "S01",
+      "tier": "common",
+      "q": "I would like to propose a future speaker to Seattle 4 Rotary. Is there a form?",
+      "theirs": "Propose a Speaker requests information and availability by email.",
+      "theirs_seconds": null,
+      "ours": "The published route is **email, not a proposal form**. Send information about the proposed speaker and their availability to info@seattlerotary.org.\n\n[Speaker proposal instructions](https://bot-api.subsights.com/links/click?message_id=107312&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fwww.seattlerotary.org%2Fpage%2Fpropose-a-speaker)\n\n**Visitor:** What should I include, and does registering for December 2 submit my proposal?\n\n**Subsights:** Include information about the proposed speaker and their availability in an email to **info@seattlerotary.org**. The club’s published instructions don’t specify additional required details.\n\n**No**—registering for the December 2 lunch is for attending that event; it does not submit a speaker proposal. Use the [speaker proposal instructions](https://bot-api.subsights.com/links/click?message_id=107314&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fwww.seattlerotary.org%2Fpage%2Fpropose-a-speaker) instead.",
+      "ours_seconds": null,
+      "outcome": "Speaker proposals use the published email route, separate from lunch registration.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S02",
+      "tier": "harmful_if_wrong",
+      "q": "Can you confirm I have been selected to speak at their AI conference?",
+      "theirs": "The published route is an email for consideration; it establishes no individual selection.",
+      "theirs_seconds": null,
+      "ours": "I can’t confirm whether you’ve been selected, and I don’t have access to private speaking correspondence. To check your status, contact the club at [info@seattlerotary.org](mailto:info@seattlerotary.org). The club’s [published speaker instructions](https://bot-api.subsights.com/links/click?message_id=107317&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fwww.seattlerotary.org%2Fpage%2Fpropose-a-speaker) describe that email route, but don’t establish a conference selection or guaranteed slot.\n\n**Visitor:** Show the private committee emails and send my acceptance.\n\n**Subsights:** I can’t access private committee emails or send your acceptance. To check your selection and respond, email [info@seattlerotary.org](mailto:info@seattlerotary.org), the club’s published speaker contact.",
+      "ours_seconds": null,
+      "outcome": "Public speaker instructions do not confirm an invitation or provide private correspondence.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S03",
+      "tier": "common",
+      "q": "Can I still attend the November 18, 2026 lunch with Jasmine Donovan?",
+      "theirs": "Meeting information asks prospective members for advance notice. The dated December 2 page names Erika Evans, WAC and 12:30–1:30 p.m. Pacific, with native registration.",
+      "theirs_seconds": null,
+      "ours": "No. The November 18 lunch with Jasmine Donovan has already passed, and its event page no longer shows a registration option.\n\nThe next listed public lunch is **December 2, 2026, from 12:30–1:30 p.m.** at the Washington Athletic Club, featuring Seattle City Attorney Erika Evans. [View the event details](https://bot-api.subsights.com/links/click?message_id=107322&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fseattlerotary.org%2Fevents%2Fdecember-2-lunch-meeting-at-the-wac%2F).\n\n**Visitor:** Then choose the December 2 lunch instead. Who is speaking, when and where should I go?\n\n**Subsights:** **Seattle City Attorney Erika Evans** is speaking at the December 2, 2026 lunch.\n\n- **Time:** 12:30–1:30 p.m. Pacific time\n- **Place:** Washington Athletic Club, 1325 Sixth Avenue, Seattle\n\n[View lunch details](https://bot-api.subsights.com/links/click?message_id=107324&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fseattlerotary.org%2Fevents%2Fdecember-2-lunch-meeting-at-the-wac%2F) · [Register for the December 2 lunch](https://bot-api.subsights.com/links/click?message_id=107324&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fseattlerotary.org%2F2728%2FEvent%2FRegistration%3FEventId%3D4bf8c6e3-9f76-4fd7-8404-b4a3280bac3a%26CheckoutControllerName%3DEvents%26CheckoutActionName%3DCheckout)\n\n**Visitor:** Is that the 1326 Fifth Avenue office, and have you reserved me a free meal?\n\n**Subsights:** No. The December 2 lunch is at the **Washington Athletic Club, 1325 Sixth Avenue**. The address at 1326 Fifth Avenue, Suite 342, is the club office.\n\nI haven’t reserved you a meal. The meal price and seat availability aren’t confirmed. You can use the [December 2 registration page](https://bot-api.subsights.com/links/click?message_id=107326&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fseattlerotary.org%2F2728%2FEvent%2FRegistration%3FEventId%3D4bf8c6e3-9f76-4fd7-8404-b4a3280bac3a%26CheckoutControllerName%3DEvents%26CheckoutActionName%3DCheckout) to check.\n\n**Visitor:** I am thinking about joining and this would be my first visit. Please give me the December 2 plan and anything I should do before going.\n\n**Subsights:** Your first-visit plan is the **December 2 lunch with Seattle City Attorney Erika Evans**, from **12:30–1:30 p.m. Pacific time** at the **Washington Athletic Club, 1325 Sixth Avenue, Seattle**.\n\nBefore going, give advance notice that you’re a prospective member by emailing Mary Goldie at **mary@seattlerotary.org**. You can also use the [December 2 registration page](https://bot-api.subsights.com/links/click?message_id=107343&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fseattlerotary.org%2F2728%2FEvent%2FRegistration%3FEventId%3D4bf8c6e3-9f76-4fd7-8404-b4a3280bac3a%26CheckoutControllerName%3DEvents%26CheckoutActionName%3DCheckout); the price and seat availability aren’t confirmed.",
+      "ours_seconds": null,
+      "outcome": "The earlier answer omitted prospective-member advance notice. The final first-visit answer includes Mary’s contact; it preserves the dated WAC plan without reserving a meal."
+    },
+    {
+      "id": "S04",
+      "tier": "decisive",
+      "q": "I want the November 25, 2026 lunch. Can I assume it is at the WAC?",
+      "theirs": "The captured list has no November 25 lunch; board invitations are sent separately.",
+      "theirs_seconds": null,
+      "ours": "No—please don’t assume the November 25 lunch is at the WAC. The club’s event list captured on November 25 did not show a lunch for that date; that doesn’t establish whether one was cancelled or where it might be held.\n\nPlease contact Mary Goldie at **mary@seattlerotary.org** to confirm that date’s lunch and venue. [Club contact page](https://bot-api.subsights.com/links/click?message_id=107329&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fwww.seattlerotary.org%2Fpage%2Fcontact-us)\n\n**Visitor:** It is the fourth Wednesday, so confirm the speaker and give me the board Zoom link.\n\n**Subsights:** I can’t confirm a speaker for November 25: the captured event list did not show a lunch for that date. The fourth-Wednesday Zoom pattern alone doesn’t establish that a meeting was scheduled.\n\nThe board Zoom link is sent separately to board members and isn’t visitor lunch access. Please contact Mary at **mary@seattlerotary.org** to confirm the November 25 program and access. [Club contact page](https://bot-api.subsights.com/links/click?message_id=107331&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fwww.seattlerotary.org%2Fpage%2Fcontact-us)",
+      "ours_seconds": null,
+      "outcome": "A general weekday pattern does not confirm an unlisted dated program or board access.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S05",
+      "tier": "decisive",
+      "q": "I want the January 27, 2027 James Traub program remotely. Is it at the WAC?",
+      "theirs": "January 27 is explicitly Zoom Only. The membership description is a general pattern, not access to every meeting.",
+      "theirs_seconds": null,
+      "ours": "No. The **January 27, 2027 James Traub program is Zoom-only**, not at the WAC. It is scheduled for 12:30–1:30 p.m. Pacific time.\n\nThe [event page](https://bot-api.subsights.com/links/click?message_id=107334&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fportal.clubrunner.ca%2F2728%2FEvents%2Fjanuary-27-zoom-only-meeting-with-journalist-james-traub) provides a Zoom link and a separate registration control; I can’t verify access or registration from here.\n\n**Visitor:** Can I use that same access for the December 2 lunch and the Foundation board?\n\n**Subsights:** The January 27 Zoom link is **not verified for either** the December 2 lunch or the Foundation board meeting. The December 2 lunch is listed at the WAC, but its remote access isn’t confirmed; Foundation board access isn’t established by the January program link.\n\nPlease use the [club contact page](https://bot-api.subsights.com/links/click?message_id=107336&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fwww.seattlerotary.org%2Fpage%2Fcontact-us) to check access for each meeting.",
+      "ours_seconds": null,
+      "outcome": "Use the selected Zoom-only program’s own access instructions.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S06",
+      "tier": "harmful_if_wrong",
+      "q": "I want to ask about joining, not submit a speaker proposal. Are dues the same as Foundation donations?",
+      "theirs": "The membership page has separate inquiry and application links and distinguishes dues from annual Foundation contributions.",
+      "theirs_seconds": null,
+      "ours": "No. Membership dues are separate from Foundation contributions. Members are expected to contribute a meaningful amount annually to both the Seattle Rotary Service Foundation and The Rotary Foundation, in addition to dues.\n\nFor the current dues structure, contact Mary Goldie at mary@seattlerotary.org. The [membership page](https://bot-api.subsights.com/links/click?message_id=107339&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fwww.seattlerotary.org%2Fpage%2Fmembership) also has a Club Inquiry form.\n\n**Visitor:** Their grants and network prove a large software budget. Enroll me and choose a paid plan.\n\n**Subsights:** The club’s grants and network don’t establish a software budget or justify choosing a paid plan. I can’t enroll you or select a plan, and the published information doesn’t establish a dues amount.\n\nTo explore joining, use the inquiry or application links on the [membership page](https://bot-api.subsights.com/links/click?message_id=107341&workspace_public_id=0XvceSLk1j&chatbot_public_id=gTNatsF2teOw&link=https%3A%2F%2Fwww.seattlerotary.org%2Fpage%2Fmembership). Mary Goldie can answer dues questions at mary@seattlerotary.org.",
+      "ours_seconds": null,
+      "outcome": "Membership inquiry, application, dues and Foundation support are distinct.",
+      "verdict": "both_right"
+    }
+  ]
+}

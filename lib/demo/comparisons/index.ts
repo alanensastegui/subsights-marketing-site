@@ -9,6 +9,7 @@ import crewSeattle from './crew-seattle.json';
 import wmfha from './wmfha.json';
 import sunriseRotary from './bellevue-sunrise-rotary.json';
 import redmondRotary from './redmond-rotary.json';
+import seattleRotary from './seattle-4-rotary.json';
 
 // Add a prospect by dropping <slug>.json here and one line below. A file that does not match the schema fails the
 // build (the registry test parses every entry), so a half-written comparison never reaches a prospect.
@@ -23,6 +24,7 @@ const FILES: Record<string, unknown> = {
   wmfha,
   'bellevue-sunrise-rotary': sunriseRotary,
   'redmond-rotary': redmondRotary,
+  'seattle-4-rotary': seattleRotary,
 };
 
 export function getComparison(slug: string): Comparison | null {
