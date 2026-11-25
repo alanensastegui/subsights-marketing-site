@@ -82,7 +82,7 @@ it.each(warm)('authorizes %s only through its exact native identity', async (slu
   expect(new URLSearchParams(widget.hash.slice(1)).get('api_key')).toBe(key);
   expect(upstream.mock.calls[0][0]).toContain(`bot=${bot}`);
 });
-it.each([...warm, ['bellevue', 'gDz1Noxsjr9U'], ['issaquah', 'Cz8TTZvCk7fF']])('does not disclose %s for missing, blank, wrong or stale authorization', async (slug, bot) => {
+it.each([...warm, ['bellevue', 'gDz1Noxsjr9U'] as const, ['issaquah', 'Cz8TTZvCk7fF'] as const])('does not disclose %s for missing, blank, wrong or stale authorization', async (slug, bot) => {
   const upstream = vi.fn(); vi.stubGlobal('fetch', upstream);
   for (const authorization of [null, '', 'Basic ', 'Basic short']) {
     expect((await POST(request(slug, authorization))).status).toBe(404);
