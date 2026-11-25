@@ -1,0 +1,101 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "bellevue",
+  "theirs": {
+    "label": "Official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "B01",
+      "tier": "common",
+      "q": "I want the next economic forecast talk, not an evening mixer.",
+      "theirs": "The November 18, 2026 Summit is marked “Program Held.” The next listed Mid-Year Economic Forecast is Thursday, June 17, 2027, 11:30 a.m.–1 p.m. PDT. Its venue and price are not confirmed by the selected pages. The annual Summit’s exact November 2027 date is not published here.",
+      "theirs_seconds": null,
+      "ours": "The next listed forecast talk is the **Mid-Year Economic Forecast Chamber Lunch** on **Thursday, June 17, 2027, from 11:30 a.m. to 1 p.m. PDT**—not an evening mixer. The venue, fee and registration availability weren’t verified.\n\nThe annual Economic Forecast Summit is next November, but its exact 2027 date hasn’t been published in the available information.\n\n[View the speaker-program calendar](https://bot-api.subsights.com/links/click?message_id=106948&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fevents%2Fspeaker-program)\n\n**Visitor:** What time do I arrive and where?\n\n**Subsights:** The **Mid-Year Economic Forecast** starts at **11:30 a.m. PDT on Thursday, June 17, 2027**, and ends at 1 p.m. A specific arrival time and venue weren’t available in the information I have.\n\nCheck the [speaker-program calendar](https://bot-api.subsights.com/links/click?message_id=106950&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fevents%2Fspeaker-program) for details.",
+      "ours_seconds": null,
+      "outcome": "Keeps the next Mid-Year Forecast separate from the past annual Summit; the venue and ticket price still need the selected event’s own details.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "B02",
+      "tier": "harmful_if_wrong",
+      "q": "Can you book two non-member Summit seats?",
+      "theirs": "The annual Summit on November 18, 2026 has passed. Its old waitlist form still refers to that event. It does not offer a reservation for the June 2027 Mid-Year Forecast or the next annual Summit.",
+      "theirs_seconds": null,
+      "ours": "I can’t book seats. The November 18, 2026 Economic Forecast Summit has already been held.\n\nThe next listed forecast is the **Mid-Year Economic Forecast** on June 17, 2027, 11:30 AM–1 PM PDT. Non-member eligibility and availability for two seats are not confirmed. See the [speaker-program calendar](https://bot-api.subsights.com/links/click?message_id=106953&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fevents%2Fspeaker-program) or contact events@bellevuechamber.org.\n\n**Visitor:** Put us on the list and confirm we are in.\n\n**Subsights:** I can’t put you on a list or confirm two seats. The November 2026 Summit has already been held, and its old waitlist is not for a future event.\n\nFor two non-member seats at the June 17, 2027 Mid-Year Economic Forecast, contact [events@bellevuechamber.org](mailto:events@bellevuechamber.org) to ask about eligibility and availability.",
+      "ours_seconds": null,
+      "outcome": "Does not book a past event or treat its old waitlist as a future reservation.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "B03",
+      "tier": "decisive",
+      "q": "Is the December speaker event lunch or breakfast?",
+      "theirs": "Legislative Look Ahead is a breakfast on Tuesday, December 8, 2026, 7:30–9 a.m. PST, at Bellevue Club, Olympic Suite A, 11200 Southeast 6th Street. The calendar lists Chamber Lunch separately.",
+      "theirs_seconds": null,
+      "ours": "The December 8 **Legislative Look Ahead** is a breakfast, from **7:30–9:00 a.m. PST** at Bellevue Club. Program membership is required in addition to Chamber membership; eligibility should be confirmed with Ashley at ashley@bellevuechamber.org.\n\n[Event details](https://bot-api.subsights.com/links/click?message_id=106938&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fevents%2Fexecutive-business-roundtable-legislative-look-ahead)\n\n**Visitor:** Is it at the Hyatt like the Summit?\n\n**Subsights:** No. The December 8 Legislative Look Ahead breakfast is at **Bellevue Club, Olympic Suite A**, 11200 Southeast 6th Street. The November 2026 Economic Forecast Summit was at Hyatt Regency Bellevue.\n\n[December event details](https://bot-api.subsights.com/links/click?message_id=106940&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fevents%2Fexecutive-business-roundtable-legislative-look-ahead)",
+      "ours_seconds": null,
+      "outcome": "Preserves the December breakfast’s date, time and Bellevue Club venue through the follow-up.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "B04",
+      "tier": "harmful_if_wrong",
+      "q": "My company is Community Builder. Is the EBRT breakfast included?",
+      "theirs": "The December event page says Community Builder and above include EBRT. The program table instead lists Premier, Enterprise and Legacy Leader entitlements. Ashley must confirm eligibility and guest access. The $1,000 season and $700 additional-colleague dues are not guest ticket prices.",
+      "theirs_seconds": null,
+      "ours": "It’s **unclear whether Community Builder includes EBRT**. The [December breakfast event page](https://bot-api.subsights.com/links/click?message_id=106943&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fevents%2Fexecutive-business-roundtable-legislative-look-ahead) says Community Builder and above include EBRT, but the [EBRT program page](https://bot-api.subsights.com/links/click?message_id=106943&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Febrt) lists complimentary memberships for Premier, Enterprise and Legacy Leader.\n\nPlease contact Ashley at **ashley@bellevuechamber.org** to confirm your company’s entitlement before registering. The breakfast is December 8, 2026, from 7:30–9 a.m. at Bellevue Club.\n\n**Visitor:** Can my non-member friend buy a guest ticket?\n\n**Subsights:** I can’t confirm whether your non-member friend can attend or buy a guest ticket for the **December 8 EBRT breakfast**; a guest price wasn’t established. EBRT program membership is required in addition to Chamber membership.\n\nPlease ask Ashley at **ashley@bellevuechamber.org** to confirm both your Community Builder entitlement and your friend’s guest eligibility.",
+      "ours_seconds": null,
+      "outcome": "Explains the conflicting membership tiers and asks Ashley to confirm; season dues are not quoted as guest admission.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "B05",
+      "tier": "harmful_if_wrong",
+      "q": "I bookmarked the November 12 EBRT. Is that still the next program?",
+      "theirs": "The EBRT page marks November 12 “Program Held” and December 8 “Next Program.” December 8 is a breakfast at Bellevue Club, not the old November event.",
+      "theirs_seconds": null,
+      "ours": "No. The November 12 EBRT is marked **Program Held**. The next program is [Legislative Look Ahead](https://bot-api.subsights.com/links/click?message_id=106958&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fevents%2Fexecutive-business-roundtable-legislative-look-ahead) on **Tuesday, December 8, 2026, 7:30–9:00 a.m. PST**, at Bellevue Club, Olympic Suite A.\n\n**Visitor:** Which later breakfast can I look at?\n\n**Subsights:** The later breakfast is [EBRT Legislative Look Ahead](https://bot-api.subsights.com/links/click?message_id=106960&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fevents%2Fexecutive-business-roundtable-legislative-look-ahead), **Tuesday, December 8, 2026, 7:30–9:00 a.m. PST**, at Bellevue Club, Olympic Suite A.\n\nEBRT program membership is required in addition to Chamber membership. The event page says Community Builder and above include EBRT, while the program page’s table lists complimentary memberships for Premier, Enterprise and Legacy Leader. Contact [Ashley](mailto:ashley@bellevuechamber.org) to confirm eligibility.",
+      "ours_seconds": null,
+      "outcome": "Recognizes the bookmarked November event is past and finds the December program.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "B06",
+      "tier": "common",
+      "q": "I work for a member company. How do I pay our invoice?",
+      "theirs": "Employees of member companies can create an account and use Member Compass to view or pay invoices. Member Compass leads to the Chamber login. These public pages do not reveal a company’s balance, permissions or payment status.",
+      "theirs_seconds": null,
+      "ours": "Sign in to [Member Compass](https://bot-api.subsights.com/links/click?message_id=106963&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fmember-compass) to view and pay invoices. If you don’t yet have an employee account, you can [create one](https://bot-api.subsights.com/links/click?message_id=106963&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fregister%3FmemberTypeID%3Dnull); creating an account is not a membership purchase.\n\nIf your account or invoice isn’t available, call the Chamber at **425-454-2464**. Keep login and payment details in the Chamber’s system, not this chat.\n\n**Visitor:** Can you tell me the balance and pay it?\n\n**Subsights:** I can’t access your invoice balance or pay it for you. Sign in to [Member Compass](https://bot-api.subsights.com/links/click?message_id=106965&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fmember-compass) to view and pay invoices in the Chamber’s system.\n\nIf the invoice isn’t available there, call the Chamber at **425-454-2464**. Please don’t share login or payment details in this chat.",
+      "ours_seconds": null,
+      "outcome": "Uses the existing employee account and Member Compass. It cannot see an invoice balance or make a payment.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "B07",
+      "tier": "decisive",
+      "q": "Find a Bellevue member for computer support with a special offer.",
+      "theirs": "The directory offers industry and special-offer filters, including Computer/IT Services. The selected public read showed loading results and member login for more access. It did not establish a complete provider list or an empty result.",
+      "theirs_seconds": null,
+      "ours": "Use the [Bellevue Chamber member directory](https://bot-api.subsights.com/links/click?message_id=106968&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fmember-directory%2F) and select **Computer/IT Services** and **Has Special Offer**.\n\nI can’t verify a matching provider from the available information: the directory results were still loading when observed, and more results may be available to logged-in members.\n\n**Visitor:** The directory is loading. Does that mean there are none?\n\n**Subsights:** No. **“Loading” does not mean there are no matches.** The available information didn’t establish which providers appear, and more results may be available to logged-in members.\n\nKeep **Computer/IT Services** and **Has Special Offer** selected in the [member directory](https://bot-api.subsights.com/links/click?message_id=106970&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fmember-directory%2F), then try logging in or contact the Chamber at **425-454-2464** if it remains stuck.",
+      "ours_seconds": null,
+      "outcome": "Keeps the Computer/IT Services and special-offer criteria. Loading results do not prove that no providers exist.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "B08",
+      "tier": "decisive",
+      "q": "Do they already have chat?",
+      "theirs": "The Chamber site contains an existing LiveChat contact route. No message was submitted. Staffing, answer quality, automation, integrations and current cost remain unknown.",
+      "theirs_seconds": null,
+      "ours": "Yes. Bellevue Chamber’s website has a [“Chat with us” link](https://bot-api.subsights.com/links/click?message_id=106973&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.livechat.com%2Fchat-with%2F14315205%2F) using LiveChat. It appears to require JavaScript.\n\nThe available information doesn’t establish its hours, whether it’s staffed or automated, or how well it answers questions.\n\n**Visitor:** Is your assistant better, or can it pay invoices?\n\n**Subsights:** I can’t establish whether this demo is better than the Chamber’s existing chat; its answer quality and capabilities haven’t been verified.\n\nI **can’t pay invoices**. Employees of member companies can use [Member Compass](https://bot-api.subsights.com/links/click?message_id=106975&workspace_public_id=0XvceSLk1j&chatbot_public_id=gDz1Noxsjr9U&link=https%3A%2F%2Fwww.bellevuechamber.org%2Fmember-compass) to view and pay invoices in the Chamber’s own system. Don’t share passwords or payment details here.",
+      "ours_seconds": null,
+      "outcome": "Recognizes the existing LiveChat route. Its staffing, performance and cost remain unknown; this is not a replacement recommendation.",
+      "verdict": "both_right"
+    }
+  ]
+}

@@ -45,7 +45,9 @@ export function ProspectComparison({
         The same questions, side by side
       </h2>
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">
-        Asked {formatDate(comparison.asked.date)} as an anonymous visitor. Each answer is shown exactly as it was given.
+        {comparison.theirs.kind === 'site'
+          ? `Public pages checked ${formatDate(comparison.asked.date)}. Website findings are summarized beside the recorded assistant replies.`
+          : `Asked ${formatDate(comparison.asked.date)} as an anonymous visitor. Each answer is shown exactly as it was given.`}
         {comparison.asked.note ? ` ${comparison.asked.note}` : ''}
       </p>
 

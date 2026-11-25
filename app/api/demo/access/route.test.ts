@@ -82,7 +82,7 @@ it.each(warm)('authorizes %s only through its exact native identity', async (slu
   expect(new URLSearchParams(widget.hash.slice(1)).get('api_key')).toBe(key);
   expect(upstream.mock.calls[0][0]).toContain(`bot=${bot}`);
 });
-it.each(warm)('does not disclose %s for missing, blank, wrong or stale authorization', async (slug, bot) => {
+it.each([...warm, ['bellevue', 'gDz1Noxsjr9U'], ['issaquah', 'Cz8TTZvCk7fF']])('does not disclose %s for missing, blank, wrong or stale authorization', async (slug, bot) => {
   const upstream = vi.fn(); vi.stubGlobal('fetch', upstream);
   for (const authorization of [null, '', 'Basic ', 'Basic short']) {
     expect((await POST(request(slug, authorization))).status).toBe(404);
@@ -110,4 +110,18 @@ it.each(['forks', 'kirkland-chamber', 'visit-kitsap-peninsula', 'cascara-capital
   const response = await POST(request(slug));
   expect(response.status).toBe(200);
   expect((await response.json()).prospect.slug).toBe(slug);
+});
+
+it.each([['bellevue', 'gDz1Noxsjr9U'], ['issaquah', 'Cz8TTZvCk7fF']])('keeps %s recorded evidence and native assistant on the same authorized identity', async (slug, bot) => {
+  const upstream = vi.fn<(url: string) => Promise<Response>>(async () => new Response(JSON.stringify({ workspace: '0XvceSLk1j', chatbot: bot })));
+  vi.stubGlobal('fetch', upstream);
+  const response = await POST(request(slug));
+  expect(response.status).toBe(200);
+  const value = await response.json();
+  expect(value.prospect.slug).toBe(slug);
+  expect(value.prospect.conversation).toBeUndefined();
+  expect(value.prospect.teamView).toEqual([]);
+  expect(value.comparison.slug).toBe(slug);
+  expect(new URL(value.widgetUrl).searchParams.get('workspace_id')).toBe('0XvceSLk1j');
+  expect(upstream.mock.calls[0][0]).toContain(`bot=${bot}`);
 });

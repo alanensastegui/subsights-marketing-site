@@ -3,7 +3,7 @@ import { cleanup, render, screen, within } from '@testing-library/react';
 import { ProspectComparison } from './prospect-comparison';
 import { ComparisonSchema, type Comparison } from '@/lib/demo/comparisons/schema';
 import { COMPARISON_SLUGS, getComparison } from '@/lib/demo/comparisons';
-import { PROSPECT_DEMOS } from '@/lib/demo/config/prospects';
+import { getProspectDemo } from '@/lib/demo/config/prospects';
 
 const trackEvent = vi.fn(async (_event: { event_name: string; event_label?: string }) => {});
 vi.mock('@/lib/analytics', () => ({ useAnalytics: () => ({ trackEvent }) }));
@@ -59,7 +59,7 @@ it('refuses a data file that would show something false or incomplete', () => {
 it('every registered comparison parses and belongs to a demo page', () => {
   for (const slug of COMPARISON_SLUGS) {
     expect(getComparison(slug)?.slug).toBe(slug);
-    expect(PROSPECT_DEMOS.some((demo) => demo.slug === slug)).toBe(true);
+    expect(Boolean(getProspectDemo(slug, 'isolated-authorized-capability'))).toBe(true);
   }
   expect(getComparison('no-such-demo')).toBeNull();
 });
@@ -111,4 +111,15 @@ it('renders italics and mailto links without leaving Markdown on the page', () =
   expect(screen.getByText('Wicked').tagName).toBe('EM');
   expect(screen.getByRole('link', { name: 'info@example.test' }).getAttribute('href')).toBe('mailto:info@example.test');
   expect(document.body.textContent).not.toMatch(/\]\(|\*Wicked\*/);
+});
+
+// O12–O22: a source observation must never be represented as dialogue from their assistant.
+it('distinguishes website findings from captured chat replies', () => {
+  show({ ...base, theirs: { label: 'Official public pages', kind: 'site' } });
+  expect(screen.getByText(/Website findings are summarized beside the recorded assistant replies/)).toBeTruthy();
+  expect(screen.queryByText(/Each answer is shown exactly as it was given/)).toBeNull();
+  cleanup();
+  show(base);
+  expect(screen.getByText(/Each answer is shown exactly as it was given/)).toBeTruthy();
+  expect(screen.queryByText(/Website findings are summarized/)).toBeNull();
 });
