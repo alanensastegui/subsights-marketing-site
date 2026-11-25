@@ -544,7 +544,7 @@ export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<Prospec
       'What would catering for 25 people cost?',
     ],
     scope:
-      'Answers use SBK’s public pages, published hours, the truck menu and ezCater catering menus. Catering menus and delivery fees were rechecked November 20, 2026; truck and ordering sources November 12, 2026. Store menu prices remain unverified; quoted menu prices come from the truck. Sample codes are not redeemable. This preview cannot place an order or confirm a booking; requests go to a demo inbox. Team samples are fictional illustrations.',
+      'Answers use SBK’s public pages, published hours, the truck menu and ezCater catering menus. Catering menus and delivery fees were rechecked November 20, 2026; truck and ordering sources November 11, 2026. Store menu prices remain unverified; quoted menu prices come from the truck. Sample codes are not redeemable. This preview cannot place an order or confirm a booking; requests go to a demo inbox. Team samples are fictional illustrations.',
     entry: [
       { label: 'Sources', text: 'Your public pages, store hours, the truck menu and your ezCater catering menus.' },
       { label: 'Try it', text: 'Ask about a store, a price or an event, then change the headcount or the place.' },
@@ -604,7 +604,7 @@ export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<Prospec
       'Is there help with tuition?',
     ],
     scope:
-      'Answers use Studio East’s public pages, Active.com class and camp listings and the ticket site. Waitlist, ticket, rental and assistance pages were rechecked November 25, 2026. Active.com and the ticket page show current availability. This preview cannot register a child or sell a ticket; requests go to a demo inbox. Team samples are fictional illustrations.',
+      'Answers use Studio East’s public pages, Active.com class and camp listings and the ticket site. Waitlist, ticket, rental and assistance pages were rechecked November 24, 2026. Active.com and the ticket page show current availability. This preview cannot register a child or sell a ticket; requests go to a demo inbox. Team samples are fictional illustrations.',
     entry: [
       { label: 'Sources', text: 'Your public pages, your Active.com class and camp listings and your ticket site.' },
       { label: 'Try it', text: 'Ask about your child’s grade and free days, then change a detail.' },
