@@ -7,7 +7,7 @@
   },
   "asked": {
     "date": "2026-11-11",
-    "note": "New flow replies took about 4 to 16 seconds while checking the saved class, camp, ticket and policy sources. The assistant links Active.com or the ticket page for current availability."
+    "note": "Replies took about 4 to 16 seconds on November 11. Answers re-asked on November 25, after the class, ticket and policy sources were rechecked, took about 14 to 24 seconds. The assistant links Active.com or the ticket page for current availability."
   },
   "questions": [
     {
@@ -16,8 +16,8 @@
       "q": "What classes do you have for kindergarteners this winter?",
       "theirs": "The Classes page carousel shows class names and grades. Times, prices and the full list are on Active.com.",
       "theirs_seconds": null,
-      "ours": "For **winter 2027**, these classes welcome kindergarteners:\n\n- **[Broadway Kids: Wicked](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958334)** — Kindergarten–grade 2. Drama games, singing and dancing inspired by *Wicked*. Wednesdays, 3:30–5 p.m., January 13–March 24. **$375**.\n- **[Drama Bugs: Puppies and Kitties!](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934043)** — Pre-K–kindergarten. Games, stories, characters and songs. Saturdays, 9:30–10:30 a.m., January 16–March 27; no class February 13. **$375**.\n\nThe registration links show live openings and waitlists; a listing doesn’t reserve a spot.",
-      "ours_seconds": 10,
+      "ours": "Studio East has two **winter 2027 classes** for kindergarteners:\n\n- **[Broadway Kids: Wicked](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958334)** — Grades K–2. Singing, dancing and acting inspired by *Wicked*. Wednesdays, 3:30–5 PM, January 13–March 24. **$375**.\n- **[Drama Bugs: Puppies and Kitties!](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934043)** — Pre-K–Kindergarten. Drama games, stories and songs. Saturdays, 9:30–10:30 AM, January 16–March 27; no class February 13. **$375**.\n\nThe registration links show live openings and waitlists; a listing does not reserve a spot.",
+      "ours_seconds": 14.3,
       "outcome": "Ours lists both kindergarten classes with day, time, dates, price and the sign-up link.",
       "verdict": "ours_better"
     },
@@ -79,12 +79,12 @@
     {
       "id": "fit-8yo",
       "tier": "decisive",
-      "q": "Which class or camp fits my 8-year-old in January, and where do I sign up?",
+      "q": "Which class or camp fits my 8-year-old in January, and where do I sign up? She's in 3rd grade.",
       "theirs": "Nothing on the site matches classes to an age. The parent compares grade ranges on the site with times and prices on Active.com, and the homepage still promotes the Nov 11 Studio Day.",
       "theirs_seconds": null,
-      "ours": "Studio East places children by **school grade**, not age. An 8-year-old is usually in second or third grade. These classes begin in January 2027:\n\n- **[Frozen KIDS](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234)** — Grades 2–6; Tuesdays, 4–6:30 p.m., January 12–March 23; $450. Students rehearse and perform a production.\n- **[Broadway Kids: The Little Mermaid](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)** — Grades 1–3; Saturdays, 9:30–10:30 a.m., January 16–March 27; $220. No class February 13.\n- **[Broadway Kids: Wicked](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958334)** — Kindergarten–grade 2; Wednesdays, 3:30–5 p.m., January 13–March 24; $375.\n- **[Acting for film: And you're watching Disney channel!](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72936139)** — Grades 3–5; Wednesdays, 3:30–5 p.m., January 13–March 24; $375.\n\nThe links go directly to registration; Active.com shows current openings and waitlists.\n\nA **Studio Day is planned for January 18**, but its grades and price aren’t published yet. Registration is scheduled to open November 16, 2026.",
-      "ours_seconds": 12.7,
-      "outcome": "Ours explains grade placement and lists the winter classes that fit, with sign-up links and the Jan 18 Studio Day.",
+      "ours": "These options all fit a **3rd grader** and begin in January 2027:\n\n- **Studio Day: Marvel Heroes & Villains** — Grades 3–5; Monday, January 18, 9 AM–3 PM; **$175**. [Register](https://campscui.active.com/orgs/StudioEast?season=3861533&session=73225145)\n- **Frozen KIDS** — A production class for grades 2–6; Tuesdays, 4–6:30 PM, January 12–March 23; **$450**. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234)\n- **Acting for Film: And you’re watching Disney Channel!** — Grades 3–5; Wednesdays, 3:30–5 PM, January 13–March 24; **$375**. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72936139)\n- **Musical Theater Jazz** — Grades 3–5; Saturdays, 10:30–11:30 AM, January 16–March 27, with no class February 13; **$220**. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nThe Active.com pages show live openings and waitlists; a listing doesn’t reserve a spot.\n\n**Visitor:** She's only free on Saturdays. What's there and how much?\n\n**Subsights:** Two Saturday classes fit her grade. Both run **January 16–March 27, 2027**, with no class February 13:\n\n- **Broadway Kids: The Little Mermaid** — Grades 1–3, 9:30–10:30 AM. **$375** for the session. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)\n- **Musical Theater Jazz: 3rd–5th Grade** — Grades 3–5, 10:30–11:30 AM. **$220** for the session or **$25** per drop-in class. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nActive.com shows live openings and waitlists.",
+      "ours_seconds": null,
+      "outcome": "Ours lists four January options that fit a 3rd grader, with days, times, prices and sign-up links. Asked about Saturdays, it narrows to The Little Mermaid ($375) and Musical Theater Jazz ($220 or $25 a class).",
       "verdict": "ours_better"
     },
     {
@@ -93,9 +93,9 @@
       "q": "My daughter is in 3rd grade and is only free on Saturdays. What can she do this winter, and how much is it?",
       "theirs": "The parent filters Active.com by day and grade.",
       "theirs_seconds": null,
-      "ours": "Your daughter has two Saturday class options for **winter 2027**:\n\n- **Broadway Kids: The Little Mermaid** — Grades 1–3. Singing, dancing and acting inspired by the musical. Saturdays, **9:30–10:30 AM**. **$220** for the session. [Register on Active.com](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)\n- **Musical Theater Jazz** — Grades 3–5. Learn jazz technique and dance combinations. Saturdays, **10:30–11:30 AM**. **$220** for the session or **$25 per drop-in class**. [Register on Active.com](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nBoth run **January 16–March 27, 2027**, with no class February 13. Active.com shows live openings and waitlists.",
-      "ours_seconds": 10.7,
-      "outcome": "Ours gives the two Saturday options with times, prices and the drop-in price.",
+      "ours": "Your daughter has two Saturday class options for **winter 2027**:\n\n- **Broadway Kids: The Little Mermaid** — Grades 1–3. Singing, dancing and acting inspired by the musical. Saturdays, 9:30–10:30 AM; **$375**. [Register for Broadway Kids](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)\n- **Musical Theater Jazz** — Grades 3–5. Learn jazz technique and dance combinations. Saturdays, 10:30–11:30 AM; **$220** for the session or **$25** per drop-in class. [Register for Musical Theater Jazz](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nBoth run **January 16–March 27, 2027**, with no class February 13. Active.com shows live availability and waitlist options.",
+      "ours_seconds": 15.9,
+      "outcome": "Ours gives both Saturday options, The Little Mermaid at $375 and Musical Theater Jazz at $220 or $25 a class, with times, dates and sign-up links.",
       "verdict": "ours_better"
     },
     {
@@ -137,9 +137,9 @@
       "q": "We can't afford $450 for Frozen KIDS. Is there any help?",
       "theirs": "The Tuition Assistance page explains it. The Policies page says to apply before registering.",
       "theirs_seconds": null,
-      "ours": "Yes. Studio East offers **tuition assistance** that can cover part or all of a class’s cost. You can apply for the level of help your family needs; no financial documents are required.\n\n[Apply for tuition assistance](https://docs.google.com/forms/d/1lu5rCVR1mvgeAC6oKOqY1N53eorpt-q7J8FfYTNxrdY/viewform?edit_requested=true) **before registering**—assistance cannot be applied after payment.\n\nIf you’re worried Frozen KIDS will fill while your application is reviewed, ask Studio East to save a spot: [education@studio-east.org](mailto:education@studio-east.org) or 425-820-1800.",
-      "ours_seconds": 19.4,
-      "outcome": "Ours combines both: no documents needed, apply before paying, ask to hold a spot.",
+      "ours": "Yes. Studio East offers **tuition assistance for Frozen KIDS**, and no financial documents are required.\n\n[Apply for tuition assistance](https://docs.google.com/forms/d/1lu5rCVR1mvgeAC6oKOqY1N53eorpt-q7J8FfYTNxrdY/viewform?edit_requested=true). Your application must be **submitted and approved before you register or pay**; assistance cannot be applied after payment. Review usually takes 1–2 weeks.\n\nIf you’re worried the class might fill, you can ask the Education Team to save a spot while your application is reviewed: [education@studio-east.org](mailto:education@studio-east.org) or 425-820-1800. See the [tuition assistance page](https://studio-east.org/tuition-assistance) for more information.",
+      "ours_seconds": 14.3,
+      "outcome": "Ours says help is available with no financial documents, links the application, says it must be submitted and approved before registering or paying, and suggests asking the education team to save a spot.",
       "verdict": "ours_better"
     },
     {
@@ -247,20 +247,20 @@
       "q": "How much for two adults and three children at the December 19 afternoon Christmas Story? Is there a season pass that would save us money?",
       "theirs": "The December 19, 2 PM ticket page lists Standard $25 plus $3 fee, Reduced $15 plus $3 fee where available and Supporter $35 including fees. No season pass was found on the checked season or ticket pages.",
       "theirs_seconds": null,
-      "ours": "For the **Saturday, December 19, 2 PM** performance, five tickets cost:\n\n- **Standard:** $140 total\n- **Reduced blue seats:** $90 total, if available\n- **Supporter:** $175 total\n\nAll totals include fees. The same published seat prices apply to adults and children. This is a relaxed performance and a Christmas Morning PJ matinee. [Check seats and tickets](https://studioeast.my.salesforce-sites.com/ticket/#/instances/a0FRi000009nSlxMAE).\n\nI didn’t find a published season pass, subscription or multi-show discount on the checked season and ticket pages. The box office can answer questions about other options at tickets@studio-east.org.",
-      "ours_seconds": 10.2,
-      "outcome": "Five tickets total $140 Standard, $90 Reduced where available or $175 Supporter, including fees. No unpublished pass savings are claimed.",
+      "ours": "For the **Saturday, December 19, 2026, 2 PM** performance, five tickets cost:\n\n- **Standard:** $140 total\n- **Reduced:** $90 total, if five reduced-price blue seats are available\n- **Supporter:** $175 total\n\nTotals include fees. Adults and children pay the same published seat prices. This is a relaxed performance and a Christmas Morning PJ matinee. [Check seats and buy tickets](https://studioeast.my.salesforce-sites.com/ticket/#/instances/a0FRi000009nSlxMAE).\n\nI couldn’t find a published season pass, subscription or multi-show discount on the checked season and ticket pages. For any unpublished options, you can ask the box office at tickets@studio-east.org.",
+      "ours_seconds": 15.3,
+      "outcome": "Five tickets total $140 Standard, $90 Reduced if five blue seats remain, or $175 Supporter, including fees. No unpublished pass savings are claimed.",
       "verdict": "ours_better"
     },
     {
       "id": "rental-and-birthday",
       "tier": "decisive",
-      "q": "Can we rent space for a birthday, or do you sell a party package?",
+      "q": "We'd like to rent a room at Studio East for my daughter's birthday party. Is that possible?",
       "theirs": "The About page offers space, costume and prop rental inquiries through info@studio-east.org. It publishes no rental price, capacity or birthday-party package.",
       "theirs_seconds": null,
-      "ours": "Studio East accepts **space rental inquiries**, though prices and availability aren’t published. I didn’t find a birthday-party package on the pages checked.\n\nYou can ask the front office whether a rental would suit your celebration using the [space rental inquiry](mailto:info@studio-east.org?subject=Space%20Rental%20Inquiries&body=Hi%2C%0A%0AMy%20name%20is%20%5BFirstName%5D%20and%20I%20have%20questions%20about%20renting%20your%20space.%0A%0AThank%20you%2C) or call **425-820-1800**. Include your proposed date, approximate headcount and space needs.\n\n**Visitor:** Please pass on a space rental inquiry for a birthday on June 20, 2027, around 20 guests, a room for theatre games. I'm [contact redacted], [contact redacted]. This is a Subsights demo test, please ignore.\n\n**Subsights:** Your request is queued for the team. Delivery and a response time aren't confirmed.",
-      "ours_seconds": null,
-      "outcome": "Finds the published space rental inquiry and queues the request. No birthday package, price or booking is promised.",
+      "ours": "It may be possible: Studio East accepts space rental inquiries, but pricing and availability aren’t published. I couldn’t find a published birthday-party package, so the front office would need to confirm whether a rental would work.\n\nYou can contact the office at [info@studio-east.org](mailto:info@studio-east.org) or 425-820-1800.\n\nWould you like me to pass along an inquiry? If so, please share the date, approximate headcount, any space needs, and your name and email or phone. In this demo, the inquiry would go to the Subsights demo inbox; on Studio East’s live site, it would go to their team.",
+      "ours_seconds": 16.5,
+      "outcome": "Ours says no birthday package, price or availability is published, gives the office email and phone, and offers to pass an inquiry on, asking for the date, headcount, space needs and a contact.",
       "verdict": "ours_better"
     },
     {
