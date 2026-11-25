@@ -4,6 +4,95 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "bellevue-sunrise-rotary",
+    "label": "Bellevue Sunrise Rotary",
+    "url": "https://www.bellevuesunriserotary.org/",
+    "headline": "Plan a visit or a way to help.",
+    "description": "Keep the meeting date, grocery list or project you care about together through your next question.",
+    "questions": [
+      "Who speaks on December 1?",
+      "What goes in the December 1 grocery bags?",
+      "Ask about appliance assistance",
+      "How do I apply for membership?"
+    ],
+    "scope": "Selected official public pages checked November 25, 2026. Applications, Zoom requests, donations and volunteer assignments finish in the club’s own services.",
+    "entry": [
+      {
+        "label": "Try it",
+        "text": "Ask a question, then change the date or another detail."
+      }
+    ],
+    "sources": [
+      {
+        "label": "December 1 program",
+        "url": "https://www.bellevuesunriserotary.org/josh-walter-nuclear-energy/"
+      },
+      {
+        "label": "Meetings and grocery list",
+        "url": "https://www.bellevuesunriserotary.org/"
+      },
+      {
+        "label": "Membership and native forms",
+        "url": "https://www.bellevuesunriserotary.org/about-us/"
+      },
+      {
+        "label": "Club projects",
+        "url": "https://www.bellevuesunriserotary.org/projects/"
+      },
+      {
+        "label": "Medical scholarship",
+        "url": "https://www.bellevuesunriserotary.org/rotary-scholarship/"
+      }
+    ],
+    "accent": "#1f2937",
+    "widgetUrl": "",
+    "teamView": [],
+    "tools": [
+      {
+        "name": "Visit on December 1",
+        "text": "Dr. Josh Walter on nuclear energy. Published meeting: 7–8:30 a.m. Pacific at Cascades Grille, Embassy Suites Bellevue.",
+        "href": "https://www.bellevuesunriserotary.org/josh-walter-nuclear-energy/",
+        "action": "Program details"
+      },
+      {
+        "name": "Membership",
+        "text": "Use Sunrise’s own application and confirm current dues with the club. The linked Edmonds handbook describes a different club.",
+        "href": "https://portals.compass-360.org/Compass360WebUserServices08/org=bellevuesunriserotary.org/request=questionnairePortal/questionnaireId=EBD49840-5AAC-49A3-AB3E-6DBFFA345BB7",
+        "action": "Membership application"
+      },
+      {
+        "name": "Appliance assistance",
+        "text": "Ask the club about qualification and local screening. An appliance, cash award or delivery date is not guaranteed.",
+        "href": "https://www.bellevuesunriserotary.org/neighborhood-appliance-replacement-program/",
+        "action": "Program details"
+      },
+      {
+        "name": "Grant proposals",
+        "text": "Use the club’s native proposal route and confirm current criteria and deadlines. A past recipient list is not eligibility.",
+        "href": "https://portals.compass-360.org/Compass360WebUserServices08/org=bellevuesunriserotary.org/request=questionnairePortal/questionnaireId=A3C4DDFC-8418-4D83-8CC3-9F6479756F6D",
+        "action": "Grant proposal"
+      },
+      {
+        "name": "Fundraising",
+        "text": "The listed August 12, 2026 croquet event is past. Ask the club about current ways to support its work.",
+        "href": "https://www.bellevuesunriserotary.org/fundraising/",
+        "action": "Fundraising details"
+      },
+      {
+        "name": "December grocery bags",
+        "text": "Use the dated list: two bars of soap for December 1, shampoo for December 8. Confirm volunteer changes with the club.",
+        "href": "https://www.bellevuesunriserotary.org/",
+        "action": "Current grocery list"
+      },
+      {
+        "name": "Medical scholarship",
+        "text": "Read about supporting the WSU medical scholarship fund. This page does not establish an open student application.",
+        "href": "https://www.bellevuesunriserotary.org/rotary-scholarship/",
+        "action": "Scholarship details"
+      }
+    ]
+  },
+  {
     "slug": "wmfha",
     "label": "WMFHA",
     "url": "https://www.wmfha.org/",

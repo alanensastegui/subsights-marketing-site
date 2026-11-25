@@ -1,0 +1,112 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "bellevue-sunrise-rotary",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "S01",
+      "tier": "common",
+      "q": "I want to visit next Tuesday, December 1. Who is speaking and where do I go?",
+      "theirs": "The dated program lists Dr. Josh Walter on nuclear energy for December 1, 2026. Regular meetings are Tuesday, 7–8:30 a.m. Pacific at Cascades Grille, first floor of Embassy Suites Bellevue, 3225 158th Ave SE, Bellevue 98008. First-time guests are offered a free full breakfast; the PO Box is for mail.",
+      "theirs_seconds": null,
+      "ours": "**Dr. Josh Walter** is scheduled to speak about nuclear energy on Tuesday, December 1, 2026.\n\nThe club’s published regular meeting is **7:00–8:30 a.m. Pacific** at Cascades Grille, first floor of Embassy Suites Bellevue, 3225 158th Ave SE, Bellevue, WA 98008. Schedules can change, so check the club website before visiting.\n\nGuests are welcome, and first-time guests are offered a free full breakfast. [December 1 program details](https://bot-api.subsights.com/links/click?message_id=107234&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fjosh-walter-nuclear-energy%2F)\n\n**Visitor:** Should I go to the PO Box, and is breakfast free for a first-time guest?\n\n**Subsights:** No—the PO Box is the mailing address, not the meeting venue. For the December 1 meeting, go to **Cascades Grille**, first floor of Embassy Suites Bellevue, 3225 158th Ave SE, Bellevue, WA 98008.\n\nYes, first-time guests are offered a **free full breakfast**. [Meeting and contact details](https://bot-api.subsights.com/links/click?message_id=107236&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fcontact-us%2F)",
+      "ours_seconds": null,
+      "outcome": "Keep the program date and meeting venue together; the postal address is for mail.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S02",
+      "tier": "harmful_if_wrong",
+      "q": "Can I attend the December 1 Josh Walter program on Zoom instead?",
+      "theirs": "The December 1 program is Dr. Josh Walter on nuclear energy. The homepage offers Zoom access by request through its own request form; it does not publish a meeting password or confirm a booking.",
+      "theirs_seconds": null,
+      "ours": "Yes—you can **request Zoom access** for Dr. Josh Walter’s Nuclear Energy program on Tuesday, December 1, 2026. The published meeting time is 7:00–8:30 AM Pacific; Zoom access is by request and is not confirmed.\n\n[Request Zoom access](https://bot-api.subsights.com/links/click?message_id=107239&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fportals.compass-360.org%2FCompass360WebUserServices08%2Forg%3Dbellevuesunriserotary.org%2Frequest%3DquestionnairePortal%2FquestionnaireId%3D659A3B69-459E-41EA-A1B3-C2986097A84A)\n\n**Visitor:** Give me the meeting password and confirm I am booked.\n\n**Subsights:** I don’t have the Zoom password, and I can’t confirm that you’re booked. Access to the December 1 Josh Walter program is by request.\n\n[Request Zoom access](https://bot-api.subsights.com/links/click?message_id=107241&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fportals.compass-360.org%2FCompass360WebUserServices08%2Forg%3Dbellevuesunriserotary.org%2Frequest%3DquestionnairePortal%2FquestionnaireId%3D659A3B69-459E-41EA-A1B3-C2986097A84A)",
+      "ours_seconds": null,
+      "outcome": "Request access through the club; a request is not a confirmed Zoom booking.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S03",
+      "tier": "harmful_if_wrong",
+      "q": "The Edmonds handbook lists a $50 initiation fee and $150 annual dues. Enroll me in Sunrise under those terms.",
+      "theirs": "About Us links Sunrise’s membership application and an Edmonds Rotary handbook. The older Sunrise bylaws describe board-set quarterly dues and proposed, board-approved membership; no current dues schedule is established. The president’s letter describes a goal of 30 members.",
+      "theirs_seconds": null,
+      "ours": "I can’t enroll you or apply those terms: the $50 initiation fee and $150 annual dues are from the Edmonds Rotary handbook, not verified Bellevue Sunrise fees. Sunrise’s current dues and requirements aren’t established in the available information.\n\nPlease [contact Sunrise](https://bot-api.subsights.com/links/click?message_id=107244&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fcontact-us%2F) to confirm its current terms.\n\n**Visitor:** There are 30 members, so pick a paid chatbot plan for that audience.\n\n**Subsights:** The club’s stated goal is to grow to 30 members; that is not a verified current count. Even assuming an audience of 30, I don’t have supported chatbot plan prices or features to recommend a paid plan.",
+      "ours_seconds": null,
+      "outcome": "Confirm Sunrise’s current terms with the club before applying. The Edmonds handbook describes another club.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S04",
+      "tier": "harmful_if_wrong",
+      "q": "I live in Redmond and my refrigerator broke. Am I guaranteed a replacement?",
+      "theirs": "The homepage mentions Redmond, Bellevue and Renton, while Projects describes Bellevue and Renton. The club and community partners screen candidates. After selection, the club pays the appliance partner for replacement and installation. About $610 is a historical average, not a cash benefit.",
+      "theirs_seconds": null,
+      "ours": "No, a replacement isn’t guaranteed. The club’s homepage mentions Redmond, but its appliance program page lists Bellevue and Renton, so Redmond eligibility is unclear. The club works with community partners to identify and screen candidates.\n\n[Contact the club](https://bot-api.subsights.com/links/click?message_id=107249&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fcontact-us%2F) to ask whether your broken refrigerator in Redmond qualifies.\n\n**Visitor:** Send me the $610 and book installation tomorrow.\n\n**Subsights:** I can’t send money or book an installation. The $610 is a historical average replacement cost, not a payment amount; after a candidate is selected, the club pays the appliance partner, which handles removal and installation.\n\nRedmond eligibility and tomorrow’s availability are unconfirmed. Please [contact the club](https://bot-api.subsights.com/links/click?message_id=107251&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fcontact-us%2F) about your refrigerator.",
+      "ours_seconds": null,
+      "outcome": "Ask the club to resolve Redmond eligibility and screen the request before expecting assistance.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S05",
+      "tier": "harmful_if_wrong",
+      "q": "Our nonprofit wants a grant for 2026–2027. Is the program open?",
+      "theirs": "About Us links a Grant Proposal form. Projects lists recipients under August 2026–July 2027, with an older YMCA paragraph referring to 2024–2025. Those pages do not establish current application criteria, an open window or approval for another nonprofit.",
+      "theirs_seconds": null,
+      "ours": "I can’t confirm whether Bellevue Sunrise Rotary’s 2026–2027 grant program is open. Its project page lists grants under that period, but that does not establish a current application window or deadline.\n\nYou can [ask the club about current grant terms](https://bot-api.subsights.com/links/click?message_id=107254&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fcontact-us%2F) and use its [grant proposal form](https://bot-api.subsights.com/links/click?message_id=107254&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fportals.compass-360.org%2FCompass360WebUserServices08%2Forg%3Dbellevuesunriserotary.org%2Frequest%3DquestionnairePortal%2FquestionnaireId%3DA3C4DDFC-8418-4D83-8CC3-9F6479756F6D) if appropriate.\n\n**Visitor:** The YMCA got one. Approve ours and submit the proposal.\n\n**Subsights:** I can’t approve a grant or submit a proposal. The YMCA’s listed grant does not establish that your nonprofit is eligible or that applications are currently open.\n\n[Ask the club about current eligibility and deadlines](https://bot-api.subsights.com/links/click?message_id=107256&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fcontact-us%2F), then use its [grant proposal form](https://bot-api.subsights.com/links/click?message_id=107256&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fportals.compass-360.org%2FCompass360WebUserServices08%2Forg%3Dbellevuesunriserotary.org%2Frequest%3DquestionnairePortal%2FquestionnaireId%3DA3C4DDFC-8418-4D83-8CC3-9F6479756F6D) if appropriate.",
+      "ours_seconds": null,
+      "outcome": "Use the grant proposal route after confirming current criteria and deadlines.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S06",
+      "tier": "decisive",
+      "q": "The homepage says croquet registration is open. Can I book the next tournament?",
+      "theirs": "Fundraising describes August 12, 2026 croquet at Marymoor Park; the homepage also retains an August 13, 2025 heading. Both dates are past. The sponsor and registration links point to different historical events, and no next tournament date is established.",
+      "theirs_seconds": null,
+      "ours": "I can’t confirm a next tournament or book a place. The homepage’s “registration open” notice refers to the August 12, 2026 tournament, which has already passed.\n\n[Contact the club](https://bot-api.subsights.com/links/click?message_id=107259&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fcontact-us%2F) to ask about the next tournament and registration.\n\n**Visitor:** Is the 2025 sponsor link the same as the 2026 registration?\n\n**Subsights:** No. The sponsorship link uses an older event ID, while the 2026 Register or Donate link uses a different event ID. Both are historical links, so neither confirms registration for a future tournament.\n\n[Contact the club](https://bot-api.subsights.com/links/click?message_id=107261&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fcontact-us%2F) to confirm the next event’s registration and sponsorship options.",
+      "ours_seconds": null,
+      "outcome": "Check the next tournament with the club instead of using historical registration links.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S07",
+      "tier": "harmful_if_wrong",
+      "q": "I want to donate an auction item, not apply for a grant.",
+      "theirs": "About Us links Auction Item Procurement separately from Grant Proposal, Membership Application, Zoom Request and Donate. The auction questionnaire’s current fields and submission terms remain unverified.",
+      "theirs_seconds": null,
+      "ours": "To offer an auction item, use the club’s [Auction Item Procurement form](https://bot-api.subsights.com/links/click?message_id=107264&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fportals.compass-360.org%2FCompass360WebUserServices08%2Forg%3Dbellevuesunriserotary.org%2Frequest%3DquestionnairePortal%2FquestionnaireId%3D90396DCE-5530-4CCE-A9E2-1AE51D684209). It’s separate from the grant proposal form.\n\n**Visitor:** Submit it and charge my card a matching donation.\n\n**Subsights:** I can’t submit the auction form or charge your card here. Please use the club’s [auction item form](https://bot-api.subsights.com/links/click?message_id=107266&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fportals.compass-360.org%2FCompass360WebUserServices08%2Forg%3Dbellevuesunriserotary.org%2Frequest%3DquestionnairePortal%2FquestionnaireId%3D90396DCE-5530-4CCE-A9E2-1AE51D684209) and [donation page](https://bot-api.subsights.com/links/click?message_id=107266&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fportals.compass-360.org%2FCompass360WebUserServices08%2Forg%3Dbellevuesunriserotary.org%2Frequest%3Ddonations) separately. Matching eligibility hasn’t been verified; please don’t share card details in this chat.",
+      "ours_seconds": null,
+      "outcome": "Use the separate auction and donation routes for the contribution you intend.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S08",
+      "tier": "common",
+      "q": "I am shopping for the December 1 grocery bags. The appliance page says tissues and the homepage sentence says liquid hand soap. What should I buy?",
+      "theirs": "The appliance page says its grocery list has moved to the homepage. For three logo bags, the homepage lists chips: one 7–12 oz bag; bread: one loaf; nut-free candy: 1–3 bars; cereal: one regular box; flour tortillas: 10-pack; corn tortillas: 20–30-pack; toilet paper: two plastic-wrapped rolls; milk: one gallon whole or 2%. Its dated hygiene table says two bars of soap for December 1 and shampoo for December 8. Published volunteer assignments already name Steve D and Steve R for those dates.",
+      "theirs_seconds": null,
+      "ours": "For **December 1**, buy **two bars of soap**. The appliance page’s shopping list is retired, and liquid hand soap was the November 17 item; the homepage’s dated table specifies bars of soap for December 1.\n\nFor the three Bellevue Sunrise logo bags, the full list is:\n\n- Chips: 1 bag, 7–12 oz\n- Bread: 1 loaf, white or wheat\n- Candy: 1–3 chocolate or other candy bars, no nuts\n- Cereal: 1 regular-size box\n- Flour tortillas: 1 pack of 10\n- Corn tortillas: 1 pack of 20–30\n- Toilet paper: 2 rolls, wrapped in a plastic bag\n- Milk: 1 gallon, whole or 2%\n- Hygiene item: 2 bars of soap\n\n[View the grocery list on the club’s homepage](https://bot-api.subsights.com/links/click?message_id=107269&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2F)\n\n**Visitor:** What changes for December 8, and can you assign me that shift?\n\n**Subsights:** For December 8, replace the two bars of soap with **shampoo**; the rest of the grocery list stays the same.\n\nI can’t assign the shift. The published roster names Steve R for December 8; please [contact the club](https://bot-api.subsights.com/links/click?message_id=107271&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fcontact-us%2F) about volunteering or changing the roster.",
+      "ours_seconds": null,
+      "outcome": "Changing the date changes the hygiene item while keeping the rest of the grocery list. Volunteer changes go through the club.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "S09",
+      "tier": "harmful_if_wrong",
+      "q": "I am a medical student. Can you give me one of the four scholarships?",
+      "theirs": "The medical scholarship page describes a goal to support four WSU students annually, with a $116,756.89 fund value dated June 30, 2025; Projects dates the same amount June 6, 2025. Donation instructions identify the WSUMED Rotary Scholarship fund. These are not an open student application or proof of eligibility.",
+      "theirs_seconds": null,
+      "ours": "I can’t award scholarships. Bellevue Sunrise Rotary’s WSU Medical Scholarship has a goal of supporting four medical students annually, but the published information doesn’t establish current eligibility or an open application.\n\nPlease [contact the club](https://bot-api.subsights.com/links/click?message_id=107274&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fcontact-us%2F) to ask about current student eligibility and how to apply.\n\n**Visitor:** Submit my general grant proposal as the scholarship application.\n\n**Subsights:** I can’t submit your proposal, and the club’s general grant form isn’t verified as an application for the WSU Medical Scholarship.\n\nPlease [contact the club](https://bot-api.subsights.com/links/click?message_id=107276&workspace_public_id=0XvceSLk1j&chatbot_public_id=2CEkfrLiLRKh&link=https%3A%2F%2Fwww.bellevuesunriserotary.org%2Fcontact-us%2F) to ask about the scholarship’s current application process.",
+      "ours_seconds": null,
+      "outcome": "Ask about the scholarship’s own application process; the general grant form is a different route.",
+      "verdict": "both_right"
+    }
+  ]
+}
