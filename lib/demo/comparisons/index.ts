@@ -5,6 +5,7 @@ import bellevue from './bellevue.json';
 import issaquah from './issaquah.json';
 import rhawa from './rhawa.json';
 import wmba from './wmba.json';
+import crewSeattle from './crew-seattle.json';
 
 // Add a prospect by dropping <slug>.json here and one line below. A file that does not match the schema fails the
 // build (the registry test parses every entry), so a half-written comparison never reaches a prospect.
@@ -15,6 +16,7 @@ const FILES: Record<string, unknown> = {
   issaquah,
   rhawa,
   wmba,
+  'crew-seattle': crewSeattle,
 };
 
 export function getComparison(slug: string): Comparison | null {

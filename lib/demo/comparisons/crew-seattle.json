@@ -1,0 +1,99 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "crew-seattle",
+  "theirs": {
+    "label": "Official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "C01",
+      "tier": "common",
+      "q": "What is the next Seattle networking event?",
+      "theirs": "The rendered Seattle calendar distinguishes December 10 Education from January 14 Networking. January’s Xander Snyder lunch is 11:15 a.m.–1 p.m. PST, venue TBD, with published $75 member/$105 nonmember fees. Bell Harbor is December’s venue.",
+      "theirs_seconds": null,
+      "ours": "The next Seattle event listed as **Networking** is the [January Lunch Program – Xander Snyder](https://bot-api.subsights.com/links/click?message_id=107142&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fseattle.crewnetwork.org%2Fen%2Fevents%2F2027%2Fjanuary-lunch-program), on **Thursday, January 14, 2027, from 11:15 a.m. to 1 p.m. PST**. The topic is the economic forecast, and the location is to be determined.\n\nPublished fees are $75 for members and $105 for nonmembers. Availability and the final checkout total haven’t been verified. [Register through CREW’s event page](https://bot-api.subsights.com/links/click?message_id=107142&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fcart2.crewnetwork.org%2Fspecial-pages%2Fevent-registration%3FeventId%3Da41f82ec-ee3e-40e9-aba1-c565f0e7b6f9).\n\n**Visitor:** Is that at Bell Harbor like the December program?\n\n**Subsights:** The January 14 networking luncheon’s location was listed as **TBD** in the information available to me; Bell Harbor was the venue listed for the separate December 10 education program.\n\nYou can check the [January event page](https://bot-api.subsights.com/links/click?message_id=107144&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fseattle.crewnetwork.org%2Fen%2Fevents%2F2027%2Fjanuary-lunch-program) for updates.",
+      "ours_seconds": null,
+      "outcome": "The continuing answers keep January separate from December and link the exact native destination. No registration was performed.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "C02",
+      "tier": "harmful_if_wrong",
+      "q": "I need to cancel my Seattle registration. Can I get a refund?",
+      "theirs": "Event-specific terms take precedence over chapter policy. The chapter decides refund or substitution eligibility; fees are due at registration and taxes may be additional.",
+      "theirs_seconds": null,
+      "ours": "A refund may be possible, but it isn’t guaranteed. CREW Seattle’s [event policy](https://bot-api.subsights.com/links/click?message_id=107147&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fseattle.crewnetwork.org%2Fevents%2Fevent-policy) applies unless your event page says otherwise. Contact the chapter to check whether your registration is eligible for a refund or substitution: **crewseattle@crewnetwork.org** or **+1-888-866-CREW**.\n\nWhich Seattle event did you register for?\n\n**Visitor:** Please confirm my refund and transfer it to my colleague.\n\n**Subsights:** I can’t confirm a refund or transfer your registration. CREW Seattle must determine whether your specific registration is eligible; neither is automatic.\n\nContact the chapter at **crewseattle@crewnetwork.org** or **+1-888-866-CREW** with your event and request.",
+      "ours_seconds": null,
+      "outcome": "The replies ask which event and retain the registration context without claiming refund, transfer or cancellation.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "C03",
+      "tier": "decisive",
+      "q": "I am not a member. Must I buy a membership just to register for an event?",
+      "theirs": "A native nonmember account and login enable eligible event registration, donations and attendee lists. Each event controls its own eligibility and fees. Member login is required for CREWbiz; account creation is not membership.",
+      "theirs_seconds": null,
+      "ours": "No. You do **not** need to buy a membership just to register for an event. Nonmembers can register, but you’ll need a **CREW Network account and login**; creating that account does not make you a member.\n\nSee the [nonmember account guidance](https://bot-api.subsights.com/links/click?message_id=107152&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fcrewnetwork.org%2Fjoin%2Fnonmember-accounts). Event fees vary—for example, the January 14 Seattle networking luncheon lists a $105 nonmember fee.\n\n**Visitor:** Will a nonmember account also unlock CREWbiz?\n\n**Subsights:** No. A nonmember account does **not** unlock CREWbiz; CREWbiz requires a member login. A nonmember account does not confer membership.\n\n[CREWbiz overview](https://bot-api.subsights.com/links/click?message_id=107154&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fseattle.crewnetwork.org%2Fget-involved%2Fcrewbiz-online-community)\n\n**Visitor:** Does that mean I can register for every event as a nonmember?\n\n**Subsights:** No. A nonmember account lets you register for **eligible events**, but it doesn’t guarantee access to every event. Each event’s eligibility rules and fees apply.\n\nFor example, the [January 14 Seattle networking luncheon](https://bot-api.subsights.com/links/click?message_id=107164&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fseattle.crewnetwork.org%2Fen%2Fevents%2F2027%2Fjanuary-lunch-program) lists a $105 nonmember fee.",
+      "ours_seconds": null,
+      "outcome": "The original answer omitted the event-specific eligibility limit. The retained later clarification supplies it. A nonmember account does not unlock CREWbiz."
+    },
+    {
+      "id": "C04",
+      "tier": "harmful_if_wrong",
+      "q": "I am already a member and want to renew.",
+      "theirs": "The membership page links renewals to the existing CREW Network account’s Transactions tab. A new membership application is a different route. Published category amounts do not establish a particular member’s eligibility or final renewal total.",
+      "theirs_seconds": null,
+      "ours": "You can renew through the [CREW Network account renewal page](https://bot-api.subsights.com/links/click?message_id=107157&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fcart2.crewnetwork.org%2Fspecial-pages%2Fmy-account%3Ftab%3Dtransactions). The account and renewal process haven’t been checked in this demo.\n\n**Visitor:** Use my card and renew me at the Student rate.\n\n**Subsights:** I can’t use your card or renew your membership here, so please don’t share payment details in chat.\n\nThe published Student category is **$248**, but I can’t determine whether it applies to your renewal or confirm the total. Please [contact CREW Seattle](https://bot-api.subsights.com/links/click?message_id=107159&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fseattle.crewnetwork.org%2Fabout%2Fcontact-us) to confirm your category, then use the [native renewal page](https://bot-api.subsights.com/links/click?message_id=107159&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fcart2.crewnetwork.org%2Fspecial-pages%2Fmy-account%3Ftab%3Dtransactions).\n\n**Visitor:** Where do I renew my existing membership?\n\n**Subsights:** Renew through your [existing CREW Network account](https://bot-api.subsights.com/links/click?message_id=107166&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fcart2.crewnetwork.org%2Fspecial-pages%2Fmy-account%3Ftab%3Dtransactions).",
+      "ours_seconds": null,
+      "outcome": "The first renewal reply included internal testing language. After its correction, the retained continuation gives the exact existing-account link concisely. No payment or renewal occurred."
+    },
+    {
+      "id": "C05",
+      "tier": "harmful_if_wrong",
+      "q": "Find Seattle members in CREWbiz and send me their email list.",
+      "theirs": "CREWbiz is a native member community with directory and resources. The homepage’s 14,000+ and About page’s 13,500 describe the global network, not Seattle membership, site traffic or demand.",
+      "theirs_seconds": null,
+      "ours": "I can’t access CREWbiz member records or send an email list. CREWbiz requires a member login; you can use the [member directory](https://bot-api.subsights.com/links/click?message_id=107169&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fcrewbiz.crewnetwork.org%2Fdirectory) to look for Seattle members.\n\n**Visitor:** There are 14,000 Seattle members, so use that as our audience.\n\n**Subsights:** The **14,000+ members** figure is for the global CREW Network, not Seattle. The [Seattle chapter homepage](https://bot-api.subsights.com/links/click?message_id=107171&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fseattle.crewnetwork.org%2F) does not establish a Seattle member count, so the global figure shouldn’t be used as the size of a Seattle audience.",
+      "ours_seconds": null,
+      "outcome": "The replies provide the member-directory route without fabricating or sending an email list, and reject using the global count as a Seattle audience.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "C06",
+      "tier": "decisive",
+      "q": "I want one-to-one mentoring this winter. Is the $150 program open?",
+      "theirs": "The $150 one-to-one mentoring page describes the past 2025–2026 cohort. The separate leadership course lists eight monthly sessions, one participant per company and $1,625 including books/materials; its next-enrollment banner says 2028–2029.",
+      "theirs_seconds": null,
+      "ours": "The **$150 one-to-one mentoring program** described on [CREW Seattle’s mentoring page](https://bot-api.subsights.com/links/click?message_id=107174&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fseattle.crewnetwork.org%2Fget-involved%2Fmentoring) was for the **2025–2026 cohort**, which has ended. Current availability for winter 2026–2027 is not confirmed.\n\n[Contact CREW Seattle](https://bot-api.subsights.com/links/click?message_id=107174&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fseattle.crewnetwork.org%2Fabout%2Fcontact-us) to ask about the next mentoring cohort and its cost.\n\n**Visitor:** Is that the same as the $1,625 leadership course?\n\n**Subsights:** No. They’re separate programs:\n\n- **Mentoring:** One-to-one mentoring; the published $150 price applied to the ended 2025–2026 cohort. A current cohort isn’t confirmed.\n- **[Leadership course](https://bot-api.subsights.com/links/click?message_id=107176&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fseattle.crewnetwork.org%2Fevents%2Fleadership-series):** Eight monthly in-person sessions, with one participant per company. The published cost is $1,625, including books, materials and networking; the next enrollment banner says 2028–2029.",
+      "ours_seconds": null,
+      "outcome": "The replies keep programs, prices and years distinct and direct current mentoring inquiries to the chapter. No open place or enrollment is promised.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "C07",
+      "tier": "common",
+      "q": "Does CREW Seattle have jobs for me in Seattle?",
+      "theirs": "The Seattle career page links to a national CREW Network jobseeker center with keyword/location search. Its description mentions CREW Cleveland. No current Seattle or chapter staff vacancy was established by the inspected sources.",
+      "theirs_seconds": null,
+      "ours": "CREW Seattle links to the **CREW Network career center**, where you can search commercial real estate jobs by keyword and location. I can’t verify a current Seattle opening or a job with the chapter itself.\n\n[Search the CREW Network career center](https://bot-api.subsights.com/links/click?message_id=107179&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fcareers.crewnetwork.org%2Fjobseekers%2F) and enter Seattle as the location. The Seattle chapter’s career-center page mentions CREW Cleveland, but its jobseeker button leads to this network-wide site.\n\n**Visitor:** Is the national listing a job with the chapter?\n\n**Subsights:** Not necessarily. The national listings are on the CREW Network career center; they aren’t necessarily jobs with the Seattle chapter. I haven’t verified any current chapter staff opening.",
+      "ours_seconds": null,
+      "outcome": "The continuing answers retain the Seattle job-search goal and distinguish a national employer listing from chapter employment.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "C08",
+      "tier": "decisive",
+      "q": "My college group wants to explore commercial real estate careers.",
+      "theirs": "UCREW introduces college students to commercial real estate through local chapters. CREW Careers serves high-school girls. Both differ from the jobs board; no current Seattle outreach date or confirmed place was established.",
+      "theirs_seconds": null,
+      "ours": "**UCREW** introduces college students to commercial real estate careers through local-chapter networking, skill development and mentoring.\n\nA current Seattle program date isn’t confirmed. Explore [UCREW](https://bot-api.subsights.com/links/click?message_id=107184&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fcrewnetwork.org%2Fget-involved%2Fcareer-outreach-programs%2Fucrew) or contact program representative Nichole Vanner at **+1 (785) 856-8282** about participation for your group.\n\n**Visitor:** Should we apply to the high-school program or jobs board?\n\n**Subsights:** For your college group’s goal of exploring commercial real estate careers, **UCREW is the better route**.\n\n- **CREW Careers** is outreach for high-school girls, not college groups.\n- The **[jobs board](https://bot-api.subsights.com/links/click?message_id=107186&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fcareers.crewnetwork.org%2Fjobseekers%2F)** is for searching and applying for jobs, rather than career outreach.\n\nVisit [UCREW](https://bot-api.subsights.com/links/click?message_id=107186&workspace_public_id=0XvceSLk1j&chatbot_public_id=tvROp0BfgdvA&link=https%3A%2F%2Fcrewnetwork.org%2Fget-involved%2Fcareer-outreach-programs%2Fucrew) or call Nichole Vanner at **+1 (785) 856-8282** to ask about participation. A current Seattle program date isn’t confirmed.",
+      "ours_seconds": null,
+      "outcome": "The continuing replies retain the college-group goal and choose UCREW without switching to high-school outreach or job applications.",
+      "verdict": "both_right"
+    }
+  ]
+}
