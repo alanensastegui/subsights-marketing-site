@@ -576,7 +576,7 @@ export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<Prospec
         {
           question: 'How much would it cost to cater lunch for about 25 people at our office in Seattle?',
           answer:
-            'For about 25 people, Seattle drop-off catering estimates are 25 Executive Boxes at $487.50, or 4 Event Burger Bars at $440 for 32 servings. Add $20 for delivery. These are estimates before tax and tip, not quotes.',
+            'For 25 people, Seattle drop-off catering food estimates are 7 Jobsite Squad Packs at $385 for 28 servings, 4 Event Burger Bars at $440 for 32, or 25 Executive Boxes or Burger Bowl Boxes at $487.50. Seattle delivery is $30 and up, with a $100 order minimum. These are estimates, not quotes.',
           source: { label: 'Seattle catering on ezCater', url: 'https://www.ezcater.com/catering/secret-burger-kitchen-4' },
         },
         {
@@ -586,7 +586,7 @@ export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<Prospec
           source: { label: 'Locations and hours', url: 'https://secretburgerkitchen.com/locations/' },
         },
       ],
-      takeaway: 'These are answers the live assistant gave on November 11, 2026. Ask your own in the chat above.',
+      takeaway: 'These are answers the live assistant gave on November 11, 2026, and for catering on November 24. Ask your own in the chat above.',
     },
   },
 
