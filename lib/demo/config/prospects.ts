@@ -1,5 +1,6 @@
 import 'server-only';
 import { getWarmLunchDemo } from './warm-lunch';
+import { getOrganizationDemo } from './organizations';
 // Server-only preview content. Authorized access supplies each widget URL at request time.
 export type ProspectDemo = {
   slug: string;
@@ -661,7 +662,7 @@ export function getProspectDemo(
   capability = '',
 ): ProspectDemo | null {
   if (slug !== 'postcards-to-seattle') {
-    return PROSPECT_DEMOS.find((demo) => demo.slug === slug) ?? getWarmLunchDemo(slug, capability);
+    return PROSPECT_DEMOS.find((demo) => demo.slug === slug) ?? getOrganizationDemo(slug, capability) ?? getWarmLunchDemo(slug, capability);
   }
   if (!capability?.trim()) return null;
   const widget = new URL('https://widget.subsights.com/index.html');

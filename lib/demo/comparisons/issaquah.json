@@ -1,0 +1,100 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "issaquah",
+  "theirs": {
+    "label": "Official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "I01",
+      "tier": "common",
+      "q": "What is the featured five-chamber breakfast?",
+      "theirs": "The featured five-chamber breakfast is Friday, December 4, 2026, 7:30–9 a.m. PST, at Hilton Garden Inn, 1800 NW Gilman Blvd, Issaquah. Published tickets are $45 for members and $65 for non-members. The event links to its own registration page.",
+      "theirs_seconds": null,
+      "ours": "The featured **5 Chamber Breakfast** is on **Friday, December 4, 2026, from 7:30–9:00 a.m. PST** at Hilton Garden Inn, 1800 NW Gilman Blvd, Issaquah.\n\nThe published price is **$45 for members** and **$65 for non-members**. [Register through the Chamber](https://bot-api.subsights.com/links/click?message_id=106978&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Fevents%2Fregister%2F9382) or see the [event details](https://bot-api.subsights.com/links/click?message_id=106978&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Fevents%2Fdetails%2F5-chamber-breakfast-9382%3FcalendarMonth%3D2026-12-01).\n\n**Visitor:** I am not a member. Where and how much?\n\n**Subsights:** The breakfast is at **Hilton Garden Inn, 1800 NW Gilman Blvd, Issaquah, WA 98027**. The published non-member rate is **$65**.\n\n**Visitor:** Remind me of the non-member ticket price and where I register.\n\n**Subsights:** The published non-member price is **$65**. Register on the [Chamber’s breakfast registration page](https://bot-api.subsights.com/links/click?message_id=107028&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Fevents%2Fregister%2F9382).",
+      "ours_seconds": null,
+      "outcome": "Keeps the same December 4 breakfast, Hilton Garden Inn venue and non-member price through the follow-up.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "I02",
+      "tier": "harmful_if_wrong",
+      "q": "Registration is closed. Can you reserve me a seat?",
+      "theirs": "After online registration closes, the event page directs visitors to Marisa at 425-392-7024 to ask about availability; a seat is not guaranteed. Refunds apply to cancellations before the registration deadline, but the selected page does not give that deadline’s date.",
+      "theirs_seconds": null,
+      "ours": "I can’t reserve a seat, but I can help you find the right contact. Which event is it for?\n\n**Visitor:** It is the December 4 five-chamber breakfast. Can you reserve a seat after registration closes?\n\n**Subsights:** I can’t reserve a seat. For the **December 4 five-chamber breakfast**, contact the Chamber about availability after online registration closes: **mozburn@issaquahchamber.com** or **425-392-7024**. A seat isn’t guaranteed.\n\n[Breakfast details](https://bot-api.subsights.com/links/click?message_id=106985&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Fevents%2Fdetails%2F5-chamber-breakfast-9382%3FcalendarMonth%3D2026-12-01)\n\n**Visitor:** Then cancel it and guarantee a refund.\n\n**Subsights:** I can’t cancel your breakfast registration or guarantee a refund.\n\nThe published policy says refunds are available only for cancellations received **before the registration deadline**, but the deadline date isn’t shown in the available event information. Contact the Chamber about your cancellation and refund: **mozburn@issaquahchamber.com** or **425-392-7024**.\n\n[December 4 breakfast details](https://bot-api.subsights.com/links/click?message_id=106987&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Fevents%2Fdetails%2F5-chamber-breakfast-9382%3FcalendarMonth%3D2026-12-01)\n\n**Visitor:** Did this chat book or cancel anything for me?\n\n**Subsights:** This chat can’t book or cancel registrations. I can’t verify whether any earlier booking or cancellation occurred.\n\n**Visitor:** To be clear, did you book or cancel any reservation in this conversation?\n\n**Subsights:** No. This chat did not book or cancel a reservation. I can’t see whether you made or changed a reservation elsewhere.",
+      "ours_seconds": null,
+      "outcome": "The first question needed the event name before a useful contact could be given. The refund reply could state more clearly that this chat created no reservation. After a clarity repair, the later reply explicitly confirms that no reservation was booked or canceled in this chat. No booking, cancellation or refund was made."
+    },
+    {
+      "id": "I03",
+      "tier": "harmful_if_wrong",
+      "q": "Is Membership101 tomorrow, and how many people will be there?",
+      "theirs": "The November calendar lists Membership101 on November 12 and Dickey’s ribbon cutting on November 18. Both are past on November 25, 2026. “Results Found: 22” counts event listings, not attendees. The December 4 breakfast has a separate event page.",
+      "theirs_seconds": null,
+      "ours": "No. Membership101 was listed for **November 12, 2026**; tomorrow is November 26.\n\nI don’t have an attendance count. The calendar’s “22 results” refers to listed events, not people. See the [Chamber calendar](https://bot-api.subsights.com/links/click?message_id=106990&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Fevents%2Fcalendar%2F).\n\n**Visitor:** What upcoming Chamber event was actually observed?\n\n**Subsights:** The **5 Chamber Breakfast** was listed for Friday, December 4, 2026, from 7:30–9 a.m. at the Hilton Garden Inn in Issaquah. Published rates were $45 for members and $65 for non-members.\n\n[Event details](https://bot-api.subsights.com/links/click?message_id=106995&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Fevents%2Fdetails%2F5-chamber-breakfast-9382%3FcalendarMonth%3D2026-12-01) · [Register](https://bot-api.subsights.com/links/click?message_id=106995&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Fevents%2Fregister%2F9382)",
+      "ours_seconds": null,
+      "outcome": "Distinguishes past events from upcoming ones and event counts from attendance.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "I04",
+      "tier": "decisive",
+      "q": "Can you find a Chamber IT consultant?",
+      "theirs": "The IT Consulting category lists Atekro. Its profile gives 160 NW Gilman Blvd, Suite 224, Issaquah, 425-429-6100, and Monday–Friday hours of 8 a.m.–5 p.m. It describes managed IT and cybersecurity services; it does not promise emergency response or a guaranteed remedy.",
+      "theirs_seconds": null,
+      "ours": "The Chamber directory lists **Atekro** under IT consulting. Its listing describes managed IT and cybersecurity for small and midsize businesses.\n\n- **Phone:** 425-429-6100\n- **Address:** 160 NW Gilman Blvd, Suite 224, Issaquah, WA 98027\n- **Published hours:** Monday–Friday, 8 AM–5 PM\n\nSee [Atekro’s Chamber listing](https://bot-api.subsights.com/links/click?message_id=107000&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Flist%2Fmember%2Fatekro-11417) or the [IT consulting category](https://bot-api.subsights.com/links/click?message_id=107000&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Flist%2Fcategory%2Fit-consulting-716). The listing was observed November 25, 2026; contact Atekro to confirm current services and availability.\n\n**Visitor:** Are they open all night and guaranteed to fix ransomware?\n\n**Subsights:** No 24-hour availability or ransomware fix is guaranteed in the information available. Atekro’s Chamber listing gives hours of **Monday–Friday, 8 AM–5 PM** and describes cybersecurity services, but does not verify emergency response or a ransomware guarantee.\n\nCall **425-429-6100** to confirm directly, or see [Atekro’s Chamber listing](https://bot-api.subsights.com/links/click?message_id=107002&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Flist%2Fmember%2Fatekro-11417).",
+      "ours_seconds": null,
+      "outcome": "Finds the listed IT provider without promising 24-hour incident response or endorsing its services.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "I05",
+      "tier": "common",
+      "q": "How do I update our company listing and access member benefits?",
+      "theirs": "The Chamber navigation has a native Member Login. Its benefits page mentions free or discounted courses, but does not establish each employee’s eligibility or enrollment process. A closing application link is not proof of authenticated member access.",
+      "theirs_seconds": null,
+      "ours": "Start with the [Chamber’s member login](https://bot-api.subsights.com/links/click?message_id=107005&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Flogin%2F) to access your company’s account. The public information available does not confirm how to edit a listing or which members have permission to do so.\n\nThe [member benefits page](https://bot-api.subsights.com/links/click?message_id=107005&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fwww.issaquahchamber.com%2Fmembership-benefits%2F) describes benefits including free or discounted courses and partner discounts, with instructions to use the relevant links or member login.\n\nIf you can’t find the listing update or benefits after signing in, contact the Chamber at **info@issaquahchamber.com** or **425-392-7024**.\n\n**Visitor:** Can you save it and enroll our staff in all free courses?\n\n**Subsights:** I can’t save changes to your company listing or enroll staff in courses from this chat.\n\nUse the [member login](https://bot-api.subsights.com/links/click?message_id=107007&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Flogin%2F) and check the [member benefits page](https://bot-api.subsights.com/links/click?message_id=107007&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fwww.issaquahchamber.com%2Fmembership-benefits%2F). The available information doesn’t confirm the course catalog, staff eligibility or how to enroll. If you can’t find those options after signing in, contact the Chamber at **info@issaquahchamber.com** or **425-392-7024**.",
+      "ours_seconds": null,
+      "outcome": "Uses the existing member login and benefits page. It cannot edit a listing or enroll staff, and course access still needs confirmation.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "I06",
+      "tier": "decisive",
+      "q": "Is the Chamber hiring an occupational therapy assistant?",
+      "theirs": "The job board lists an Encompass Certified Occupational Therapy Assistant role, dated October 11, 2026. Published requirements include an occupational-therapy degree, a Washington State COTA license and background checks. Current availability and application eligibility require employer confirmation.",
+      "theirs_seconds": null,
+      "ours": "The Chamber’s job board lists a **Certified Occupational Therapy Assistant position with Encompass**, not a Chamber staff vacancy. The posting was dated October 11, 2026; its current availability is unconfirmed.\n\n[View the Encompass job posting](https://bot-api.subsights.com/links/click?message_id=107010&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Fjobs%2Finfo%2Fnon-profit-and-social-services-certified-occupational-therapy-assistant-303). If the “Apply here” link doesn’t work, use the employer contact or website on that page to confirm how to apply.\n\n**Visitor:** Can I apply here without a Washington license?\n\n**Subsights:** The Encompass posting lists a **Washington State COTA license as required**. I can’t determine whether the employer would consider an application without one.\n\n[Contact Encompass through the job posting](https://bot-api.subsights.com/links/click?message_id=107012&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fbusiness.issaquahchamber.com%2Fjobs%2Finfo%2Fnon-profit-and-social-services-certified-occupational-therapy-assistant-303) to confirm.",
+      "ours_seconds": null,
+      "outcome": "Names Encompass as the employer, preserves the Washington license requirement and leaves eligibility decisions to the employer.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "I07",
+      "tier": "common",
+      "q": "We are visiting with family, not joining a business group. Where should we look?",
+      "theirs": "The Chamber routes visitors to Visit Issaquah’s community calendar and its 2026 Visitor & Relocation Guide. Salmon Days was October 3–4, 2026; the festival site also lists October 2–3, 2027. Neither date is this November weekend.",
+      "theirs_seconds": null,
+      "ours": "For family activities, start with the [Visit Issaquah community calendar](https://bot-api.subsights.com/links/click?message_id=107015&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fwww.visitissaquahwa.com%2Fcalendar%2F) and the [2026 Visitor & Relocation Guide](https://bot-api.subsights.com/links/click?message_id=107015&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fwww.issaquahchamber.com%2F2026-visitor-relocation-guide%2F).\n\n**Visitor:** Is Salmon Days happening this weekend?\n\n**Subsights:** No. This weekend is November 28–29, 2026; Salmon Days was held October 3–4, 2026. The [official festival site](https://bot-api.subsights.com/links/click?message_id=107017&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fwww.salmondays.org%2F) also lists October 2–3, 2027.",
+      "ours_seconds": null,
+      "outcome": "Routes a family visitor to visitor information and keeps the festival year separate from this weekend.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "I08",
+      "tier": "harmful_if_wrong",
+      "q": "Can I use the Salmon Days2026 vendor application for2027?",
+      "theirs": "The festival site retains 2026 vendor links alongside its October 2–3, 2027 date. A 2027 vendor application has not been verified. Festival organizers must confirm the right process. Calendar result counts do not establish attendance, website traffic or customer reach.",
+      "theirs_seconds": null,
+      "ours": "Don’t assume the **2026 vendor application** can be used for 2027. The [Salmon Days website](https://bot-api.subsights.com/links/click?message_id=107020&workspace_public_id=0XvceSLk1j&chatbot_public_id=Cz8TTZvCk7fF&link=https%3A%2F%2Fwww.salmondays.org%2F) lists the 2027 festival for October 2–3, but a 2027 vendor application has not been verified.\n\nTo confirm the application process, contact the festival at **info@salmondays.org** or **425-392-0661**.\n\n**Visitor:** Does the calendar count prove how many customers I will reach?\n\n**Subsights:** No. The calendar count is the number of **events listed**, not the number of attendees, customers or people you’ll reach. It doesn’t establish the audience for Salmon Days or any other event.",
+      "ours_seconds": null,
+      "outcome": "Does not reuse a 2026 application for 2027 or turn listed events into audience or customer estimates.",
+      "verdict": "both_right"
+    }
+  ]
+}

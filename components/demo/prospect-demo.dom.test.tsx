@@ -5,6 +5,7 @@ import { PROSPECT_DEMOS as CONTENT, getProspectDemo } from '@/lib/demo/config/pr
 import { readPreviewHash } from '@/lib/demo/preview';
 // The component receives an authorized DTO, never the server's content-only catalog.
 const PROSPECT_DEMOS = CONTENT.map(demo => ({ ...demo, widgetUrl: 'https://widget.subsights.com/?view=inline&workspace_id=test#api_key=isolated-test-capability' }));
+import { ORGANIZATION_DEMOS } from '@/lib/demo/config/organizations';
 import { WARM_LUNCH_DEMOS } from '@/lib/demo/config/warm-lunch';
 import { DEMO_TARGETS } from '@/lib/demo/config';
 import { TeamPreview } from './team-preview';
@@ -173,4 +174,17 @@ it('sends every Kirkland capability to the live chat and keeps unconnected work 
   expect(document.querySelectorAll('#capabilities button, #built-for button')).toHaveLength(0);
   const talk = document.querySelector('#built-for a')!;
   expect(new URL(talk.getAttribute('href')!).hostname).toBe('calendly.com');
+});
+
+it.each(ORGANIZATION_DEMOS)('keeps $slug private and its source actions in the native organization system', demo => {
+  expect(getProspectDemo(demo.slug)).toBeNull();
+  expect(getProspectDemo(demo.slug, '   ')).toBeNull();
+  const ready = getProspectDemo(demo.slug, 'isolated-authorized-capability')!;
+  const document = new DOMParser().parseFromString(renderToStaticMarkup(<ProspectDemoPage demo={{ ...ready, widgetUrl: 'https://widget.subsights.com/?view=inline#api_key=isolated-authorized-capability' }} />), 'text/html');
+  expect(document.querySelector('#conversation-example')).toBeNull();
+  expect(document.querySelector('#team-preview')).toBeNull();
+  expect(document.querySelectorAll('iframe')).toHaveLength(1);
+  expect(document.querySelectorAll('form')).toHaveLength(0);
+  const links = Array.from(document.querySelectorAll('#preview-tools ~ ul a')).map(a => a.getAttribute('href'));
+  expect(links).toEqual(demo.tools!.map(tool => tool.href));
 });
