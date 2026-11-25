@@ -2,6 +2,7 @@ import 'server-only';
 
 // Exact existing bot/workspace identities; capabilities never live in this catalog.
 export const PRIVATE_DEMO_IDENTITIES: Record<string, {workspace: string; bot: string}> = {
+  'redmond-rotary': { workspace: '0XvceSLk1j', bot: 'AHp9JueXRvcA' },
   'bellevue-sunrise-rotary': { workspace: '0XvceSLk1j', bot: '2CEkfrLiLRKh' },
   wmfha: { workspace: '0XvceSLk1j', bot: 'EIMt8YnHb0OK' },
   'crew-seattle': { workspace: '0XvceSLk1j', bot: 'tvROp0BfgdvA' },
