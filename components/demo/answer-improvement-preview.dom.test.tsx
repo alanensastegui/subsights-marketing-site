@@ -53,7 +53,9 @@ it.each(PROSPECT_DEMOS)(
     expect(
       screen.getByText(/do not send a request or change any live chatbot/)
     ).toBeTruthy();
-  }
+  },
+  // This journey renders all three cadences; a cold DOM worker on a shared release host can exceed 5s.
+  10_000
 );
 
 it('shows the sample retest only after the example correction and review step', () => {

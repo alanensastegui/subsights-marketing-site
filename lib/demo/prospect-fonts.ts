@@ -1,10 +1,11 @@
-import { Jost } from 'next/font/google';
+import localFont from 'next/font/local';
 
-// Heading type a prospect demo may borrow from its own site. next/font serves it from our domain, so a visitor's
-// browser makes no request to Google.
-export const jost = Jost({
-  subsets: ['latin'],
-  weight: ['500', '600'],
+// Jost from google/fonts, commit 6e4b84c976cadb3c49a40fd9a1c203e4f7fcf2da (OFL.txt beside the font).
+// Bundle the font so production builds and visitors do not depend on a Google Fonts request.
+export const jost = localFont({
+  src: './fonts/Jost-Variable.ttf',
+  weight: '100 900',
+  style: 'normal',
   display: 'swap',
   variable: '--font-prospect-heading',
 });
