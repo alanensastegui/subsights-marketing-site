@@ -1,0 +1,79 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "redmond-rotary",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "R01",
+      "tier": "decisive",
+      "q": "Can I visit tomorrow, Thursday November 26, 2026, at noon at Family Pancake House? Please confirm it is happening.",
+      "theirs": "The club homepage lists its meeting pattern and explicit holiday cancellations.",
+      "theirs_seconds": null,
+      "ours": "No. Thursday, November 26, 2026 is Thanksgiving, and the club explicitly says there is **no Thanksgiving meeting**. The usual fourth-Thursday noon meeting at Family Pancake House will not take place that day.\n\n[See the club’s visitor schedule](https://bot-api.subsights.com/links/click?message_id=107279&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fredmondrotary.org%2F)\n\n**Visitor:** What about December 3 instead? Where and when should I go?\n\n**Subsights:** Thursday, **December 3, 2026** is the first Thursday of the month. The club’s regular schedule lists a meeting from **5:30 to around 7 p.m. Pacific** at **Postdoc Brewing, 17625 NE 65th Street #100, Redmond**.\n\nVisitors are welcome and attendance is free; food and drinks are optional. This is the regular schedule, not a dated confirmation, so you can [contact the club](https://bot-api.subsights.com/links/click?message_id=107281&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fredmondrotary.org%2F%3Fs%3Dcontact) to confirm.",
+      "ours_seconds": null,
+      "outcome": "Keep the selected date and distinguish holiday cancellations from the regular meeting pattern.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "R02",
+      "tier": "harmful_if_wrong",
+      "q": "Are meetings free and does that include my meal?",
+      "theirs": "The homepage says attendance is free and food or drink purchases are optional.",
+      "theirs_seconds": null,
+      "ours": "Yes, meetings are free to attend, but meals and beverages are not included. Purchasing food or drinks is optional.\n\n[See the visitor meeting schedule](https://bot-api.subsights.com/links/click?message_id=107284&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fredmondrotary.org%2F).\n\n**Visitor:** Reserve two free dinners for December 17, 2026, and name the speaker.\n\n**Subsights:** I can’t reserve dinners, and meals are not included: meetings are free to attend, but food and drinks are optional purchases.\n\nDecember 17, 2026 is a third Thursday, when the published regular meeting is **about 5:30–7 p.m. Pacific at JJ Mahoney’s Irish Pub**, 8932 161st Avenue NE. The speaker for that date isn’t confirmed in the available information; [contact the club](https://bot-api.subsights.com/links/click?message_id=107286&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fredmondrotary.org%2F%3Fs%3Dcontact) to confirm the meeting and speaker.",
+      "ours_seconds": null,
+      "outcome": "Free attendance does not include meals or reserve a place.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "R03",
+      "tier": "common",
+      "q": "I want volunteer updates, not a membership application. Who do I contact?",
+      "theirs": "The homepage lists separate membership and volunteer contacts plus youth-protection requirements.",
+      "theirs_seconds": null,
+      "ours": "For updates about future volunteer opportunities, contact David North at **volunteers@rrcfoundation.org** or **425-941-2091**. This is the volunteer updates route, not a membership application.\n\n[Rotary Club of Redmond contact page](https://bot-api.subsights.com/links/click?message_id=107289&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fredmondrotary.org%2F%3Fs%3Dcontact)\n\n**Visitor:** Is that person the program chair, and can you put me on a youth shift?\n\n**Subsights:** David North is listed as the membership contact and a contact for volunteer updates, but I can’t verify that he is the program chair.\n\nI can’t assign you to a youth shift, and no specific shift is confirmed. Contact the club about current opportunities and youth-protection requirements; background checks are required where applicable, along with proper supervision.\n\n[Contact the club](https://bot-api.subsights.com/links/click?message_id=107291&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fredmondrotary.org%2F%3Fs%3Dcontact)",
+      "ours_seconds": null,
+      "outcome": "Volunteer updates, membership and youth assignments have different requirements.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "R04",
+      "tier": "harmful_if_wrong",
+      "q": "I owe Redmond club dues. Is Click to Donate the same payment?",
+      "theirs": "The homepage has separate Club dues and Foundation donation links.",
+      "theirs_seconds": null,
+      "ours": "No. **Click to Donate** supports the Redmond Rotary Club Foundation; club dues have a separate payment link.\n\n[Click to Pay Dues](https://bot-api.subsights.com/links/click?message_id=107294&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fsecure.etransfer.com%2FEFT%2FblockcodeEvent_v2%2Fpayment1.cfm%3Fd2org%3DRotaryClubofRedmond%26d2tool%3Dpayment)\n\n**Visitor:** I will give you my password and card. Confirm my dues are paid.\n\n**Subsights:** Please **don’t share your password or card details here**. I can’t process payment or confirm whether your dues have been paid.\n\nUse the club’s [dues payment service](https://bot-api.subsights.com/links/click?message_id=107296&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fsecure.etransfer.com%2FEFT%2FblockcodeEvent_v2%2Fpayment1.cfm%3Fd2org%3DRotaryClubofRedmond%26d2tool%3Dpayment), or [contact the club](https://bot-api.subsights.com/links/click?message_id=107296&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fredmondrotary.org%2F%3Fs%3Dcontact) to verify your balance or payment status.",
+      "ours_seconds": null,
+      "outcome": "Club dues and Foundation donations use different native services.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "R05",
+      "tier": "decisive",
+      "q": "What day is the 2027 Stinky Spoke ride? Can I register now?",
+      "theirs": "The homepage labels Stinky Spoke tentative for February 2027 and lists sponsorship types.",
+      "theirs_seconds": null,
+      "ours": "The 2027 Stinky Spoke ride is tentatively planned for **February 2027**, but the club has not published an exact day. I can’t confirm whether registration is open.\n\nCheck the [Stinky Spoke event site](https://bot-api.subsights.com/links/click?message_id=107299&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fstinkyspokeride.com) or [contact the club](https://bot-api.subsights.com/links/click?message_id=107299&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fredmondrotary.org%2F%3Fs%3Dcontact) for current details.\n\n**Visitor:** It says fit any budget. Use that to select their Subsights plan.\n\n**Subsights:** “Fit any budget” describes the club’s **sponsorship opportunities**, not its technology budget. It doesn’t provide enough information to select a Subsights plan.",
+      "ours_seconds": null,
+      "outcome": "A tentative event month and sponsorship slogan do not establish registration or a software budget.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "R06",
+      "tier": "harmful_if_wrong",
+      "q": "Is there a Redmond Rotary meeting on December 31, 2026?",
+      "theirs": "The current homepage cancels New Year’s Eve and leaves fifth-Thursday arrangements undecided.",
+      "theirs_seconds": null,
+      "ours": "No. Rotary Club of Redmond explicitly says there is **no New Year’s Eve meeting** on December 31, 2026.\n\n[View the club’s meeting schedule](https://bot-api.subsights.com/links/click?message_id=107304&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fredmondrotary.org%2F)\n\n**Visitor:** Then I will go to the fifth-Thursday breakfast at Family Pancake House on April 29, 2027. Is it still 7 AM?\n\n**Subsights:** No—the club’s older 7 AM fifth-Thursday breakfast schedule has been superseded. For **Thursday, April 29, 2027**, the published fifth-Thursday time and place are **to be determined**, so Family Pancake House is not confirmed.\n\n[Contact the club](https://bot-api.subsights.com/links/click?message_id=107306&workspace_public_id=0XvceSLk1j&chatbot_public_id=AHp9JueXRvcA&link=https%3A%2F%2Fredmondrotary.org%2F%3Fs%3Dcontact) to confirm the arrangements.",
+      "ours_seconds": null,
+      "outcome": "The current fifth-Thursday time and place are undecided.",
+      "verdict": "both_right"
+    }
+  ]
+}

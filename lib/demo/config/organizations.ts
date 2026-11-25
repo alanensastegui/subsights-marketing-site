@@ -4,6 +4,81 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "redmond-rotary",
+    "label": "Rotary Club of Redmond",
+    "url": "https://redmondrotary.org/",
+    "headline": "Find the right meeting or way to help.",
+    "description": "Keep your date and goal together as you explore meetings, volunteering or club support.",
+    "questions": [
+      "Is there a Thanksgiving meeting?",
+      "Find a December visitor meeting",
+      "Explore volunteer opportunities",
+      "Check Stinky Spoke 2027"
+    ],
+    "scope": "Selected official public pages checked November 25, 2026. Bookings, membership, assignments and payments finish in the club’s own services.",
+    "entry": [
+      {
+        "label": "Try it",
+        "text": "Ask a question, then change the date or another detail."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Meeting schedule and club services",
+        "url": "https://redmondrotary.org/"
+      },
+      {
+        "label": "Club contact",
+        "url": "https://redmondrotary.org/?s=contact"
+      },
+      {
+        "label": "District meeting guide",
+        "url": "https://district5030.org/clubs/"
+      }
+    ],
+    "accent": "#1f2937",
+    "widgetUrl": "",
+    "teamView": [],
+    "tools": [
+      {
+        "name": "Visitor meetings",
+        "text": "No Thanksgiving, Christmas Eve or New Year’s Eve meeting. Other Thursdays have different venues; fifth-Thursday arrangements remain undecided.",
+        "href": "https://redmondrotary.org/",
+        "action": "Current meeting schedule"
+      },
+      {
+        "name": "Membership",
+        "text": "Ask Membership Chair David North about joining and current requirements.",
+        "href": "https://redmondrotary.org/?s=contact",
+        "action": "Membership contact"
+      },
+      {
+        "name": "Volunteer updates",
+        "text": "Ask about future volunteer opportunities and their requirements through the club’s published contact.",
+        "href": "https://redmondrotary.org/?s=contact",
+        "action": "Volunteer contact"
+      },
+      {
+        "name": "Club dues",
+        "text": "Use the club’s dues service to check the correct amount and recipient. Foundation donations are a separate path.",
+        "href": "https://secure.etransfer.com/EFT/blockcodeEvent_v2/payment1.cfm?d2org=RotaryClubofRedmond&d2tool=payment",
+        "action": "Pay club dues"
+      },
+      {
+        "name": "Foundation support",
+        "text": "Use the Foundation’s own donation service. It does not pay your club dues.",
+        "href": "https://secure.etransfer.com/eft/flexblockcode/donation1.cfm?d2org=RCRFoundation&d2tool=donate",
+        "action": "Foundation donation"
+      },
+      {
+        "name": "Stinky Spoke 2027",
+        "text": "The club lists a tentative February event at Redmond Senior & Community Center. Confirm the day and registration with the club.",
+        "href": "https://redmondrotary.org/?s=contact",
+        "action": "Confirm event details"
+      }
+    ]
+  },
+  {
     "slug": "bellevue-sunrise-rotary",
     "label": "Bellevue Sunrise Rotary",
     "url": "https://www.bellevuesunriserotary.org/",
