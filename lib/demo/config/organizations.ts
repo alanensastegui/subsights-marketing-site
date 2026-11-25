@@ -4,6 +4,79 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "seattle-4-rotary",
+    "label": "Rotary Club of Seattle",
+    "url": "https://www.seattlerotary.org/",
+    "headline": "Find your meeting or next step.",
+    "description": "Keep the date and purpose together as you explore a lunch, remote program, speaker proposal or membership.",
+    "questions": [
+      "Who speaks on December 2?",
+      "Find the January 27 remote program",
+      "How do I propose a speaker?",
+      "Explore membership"
+    ],
+    "scope": "Selected official public pages checked November 25, 2026. Registration, proposals and membership finish in the club’s own services.",
+    "entry": [
+      {
+        "label": "Try it",
+        "text": "Ask a question, then change the date or another detail."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Club meeting information",
+        "url": "https://www.seattlerotary.org/page/meeting-information"
+      },
+      {
+        "label": "Current events",
+        "url": "https://seattlerotary.org/Events"
+      },
+      {
+        "label": "Speaker proposal instructions",
+        "url": "https://www.seattlerotary.org/page/propose-a-speaker"
+      },
+      {
+        "label": "Membership",
+        "url": "https://www.seattlerotary.org/page/membership"
+      }
+    ],
+    "accent": "#1f2937",
+    "widgetUrl": "",
+    "teamView": [],
+    "tools": [
+      {
+        "name": "December 2 lunch",
+        "text": "Seattle City Attorney Erika Evans at Washington Athletic Club, 12:30–1:30 p.m. Pacific. Check the event’s own registration for current terms.",
+        "href": "https://seattlerotary.org/events/december-2-lunch-meeting-at-the-wac/",
+        "action": "Lunch details"
+      },
+      {
+        "name": "January 27 remote program",
+        "text": "Journalist James Traub’s program is Zoom only, 12:30–1:30 p.m. Pacific. Use its own event instructions.",
+        "href": "https://portal.clubrunner.ca/2728/Events/january-27-zoom-only-meeting-with-journalist-james-traub",
+        "action": "Remote program details"
+      },
+      {
+        "name": "Propose a speaker",
+        "text": "Email the published speaker contact with information and availability. Lunch registration is a separate service.",
+        "href": "https://www.seattlerotary.org/page/propose-a-speaker",
+        "action": "Speaker instructions"
+      },
+      {
+        "name": "Membership",
+        "text": "Explore the separate inquiry and application routes, and ask Mary Goldie about dues and Foundation contributions.",
+        "href": "https://www.seattlerotary.org/page/membership",
+        "action": "Membership information"
+      },
+      {
+        "name": "Prospective members: plan a visit",
+        "text": "Contact Club Director Mary Goldie in advance. The club office is separate from the lunch venue.",
+        "href": "https://www.seattlerotary.org/page/contact-us",
+        "action": "Club contact"
+      }
+    ]
+  },
+  {
     "slug": "redmond-rotary",
     "label": "Rotary Club of Redmond",
     "url": "https://redmondrotary.org/",
