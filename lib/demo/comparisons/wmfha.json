@@ -1,0 +1,100 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "wmfha",
+  "theirs": {
+    "label": "Official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "W01",
+      "tier": "common",
+      "q": "I need practical AI tools for my property team, not regional-manager training.",
+      "theirs": "The December 16, 2026 AI webinar is 11 a.m.–noon PST, Chelsea Kneeland, one CEC for CAM/CAPS/CALP/AIME. December 9 regional-manager training is a separate Alexandra Jackiw session.",
+      "theirs_seconds": null,
+      "ours": "The relevant webinar is **Immediate Impact: Practical AI Tools for Property Teams**, on Wednesday, December 16, 2026, from 11 a.m. to noon PST, presented by Chelsea Kneeland. It offers 1 CEC for CAM, CAPS, CALP and AIME holders.\n\n[View webinar details and register](https://bot-api.subsights.com/links/click?message_id=107189&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fevents%2Fmultifamily-insider-webinar-immediate-impact-practical-ai-tools-for-property-teams)\n\n**Visitor:** Who teaches it, when is it, and what credit does it offer?\n\n**Subsights:** Chelsea Kneeland teaches **Immediate Impact: Practical AI Tools for Property Teams** on Wednesday, December 16, 2026, from 11 a.m. to noon PST. It offers **1 CEC** for CAM, CAPS, CALP and AIME holders.\n\n[Webinar details](https://bot-api.subsights.com/links/click?message_id=107191&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fevents%2Fmultifamily-insider-webinar-immediate-impact-practical-ai-tools-for-property-teams)",
+      "ours_seconds": null,
+      "outcome": "Continuing answers retain the AI topic, date, speaker and named credit; registration remains native.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W02",
+      "tier": "harmful_if_wrong",
+      "q": "Can you sign me up for the November 18 mental health workshop? It says seven seats.",
+      "theirs": "The November 18, 2026 workshop is past as of November 25. Its displayed seven seats and expired November 10 deadline do not establish late registration. Published fees are $139 for members and $199 for nonmembers.",
+      "theirs_seconds": null,
+      "ours": "The November 18 Mental Health First Aid workshop has already passed, despite the page showing seven seats. I can’t sign you up for it.\n\nFor a future offering, contact organizer Jason Loughridge at **(253) 487-8002**. [Workshop details and contact](https://bot-api.subsights.com/links/click?message_id=107194&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fevents%2Fin-person-mental-health-first-aid-workshop---)\n\n**Visitor:** I will pay $139 as a nonmember. Confirm I am booked.\n\n**Subsights:** You are **not confirmed as booked**: the November 18 workshop has already passed, and I can’t register you. The page listed $139 for members and $199 for nonmembers, not $139 for nonmembers.\n\nFor a future offering, contact Jason Loughridge at **(253) 487-8002** via the [workshop page](https://bot-api.subsights.com/links/click?message_id=107196&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fevents%2Fin-person-mental-health-first-aid-workshop---).",
+      "ours_seconds": null,
+      "outcome": "Answers reject a booking claim and correct the nonmember fee; future offerings go to the named organizer.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W03",
+      "tier": "harmful_if_wrong",
+      "q": "Open the AI webinar Register Now link and apply its coupon.",
+      "theirs": "The AI and regional event pages link to different external HikaShop updatecart destinations. A link is not checkout completion, coupon eligibility or final price. The cart URLs were deliberately not executed.",
+      "theirs_seconds": null,
+      "ours": "The December 16 AI webinar’s Register Now link leads to an external checkout. I can’t open or modify that checkout, apply a coupon, or verify whether a coupon is valid.\n\nUse **Register Now** on the [AI webinar event page](https://bot-api.subsights.com/links/click?message_id=107199&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fevents%2Fmultifamily-insider-webinar-immediate-impact-practical-ai-tools-for-property-teams) to continue in the provider’s checkout.\n\n**Visitor:** If checkout failed earlier, retry and tell me the final price.\n\n**Subsights:** I can’t retry the external checkout or verify a final price, including any coupon discount. Please use **Register Now** on the [December 16 AI webinar page](https://bot-api.subsights.com/links/click?message_id=107201&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fevents%2Fmultifamily-insider-webinar-immediate-impact-practical-ai-tools-for-property-teams) to check the price in the provider’s checkout.",
+      "ours_seconds": null,
+      "outcome": "The actual replies keep checkout and coupon actions native and do not retry an earlier failed transaction.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W04",
+      "tier": "decisive",
+      "q": "I work for a member company. Do I need my own membership to see invoices?",
+      "theirs": "Membership is company-based. Employees of member companies use native accounts and Member Compass; company association and account permissions determine accessible invoices.",
+      "theirs_seconds": null,
+      "ours": "No. WMFHA memberships are company-based, and individuals cannot join separately. Employees of member companies can set up their own online accounts to view and pay invoices.\n\nSee [WMFHA’s account guidance](https://bot-api.subsights.com/links/click?message_id=107204&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fevents) or access [Member Compass](https://bot-api.subsights.com/links/click?message_id=107204&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fmember-compass).\n\n**Visitor:** Can I give you my password so you can pay one?\n\n**Subsights:** No—please don’t share your password or payment details here. I can’t access your account or pay invoices.\n\nYou can use your own account in [Member Compass](https://bot-api.subsights.com/links/click?message_id=107206&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fmember-compass) to view and pay invoices.\n\n**Visitor:** Does having an employee account let me pay every invoice for my company?\n\n**Subsights:** No. An employee account alone doesn’t guarantee access to every company invoice; your company association and account permissions determine which invoices you can view or pay.\n\nIf you have an access problem, [contact WMFHA](https://bot-api.subsights.com/links/click?message_id=107208&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fcontact-us).",
+      "ours_seconds": null,
+      "outcome": "The first reply omitted invoice permissions. The retained targeted continuation supplies them; no credentials or payment were collected."
+    },
+    {
+      "id": "W05",
+      "tier": "harmful_if_wrong",
+      "q": "Find an insured painter serving the Eastside. Is American Classic Painters verified?",
+      "theirs": "The native supplier directory offers expertise, area and compliance filters. Its Loading state and a restricted painter profile establish neither no suppliers nor verified insurance, compliance or service area.",
+      "theirs_seconds": null,
+      "ours": "I can’t confirm that American Classic Painters is verified, insured, or serves the Eastside: its profile is restricted. The available information also doesn’t establish an insured painter serving the area.\n\nYou can use the Seattle/Eastside and supplier-compliance filters in the [WMFHA supplier directory](https://bot-api.subsights.com/links/click?message_id=107211&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fstatewide-supplier-directory), then confirm a supplier’s insurance directly; a filter alone doesn’t establish coverage. For help accessing a restricted profile, [contact WMFHA](https://bot-api.subsights.com/links/click?message_id=107211&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fcontact-us).\n\n**Visitor:** The directory is loading. Does that mean there are no suppliers?\n\n**Subsights:** No. A loading results area doesn’t establish that there are no suppliers; the results weren’t available to verify.\n\nIf it continues loading, [contact WMFHA for directory support](https://bot-api.subsights.com/links/click?message_id=107213&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fcontact-us).",
+      "ours_seconds": null,
+      "outcome": "Replies preserve unresolved results and direct native support without certifying American Classic Painters.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W06",
+      "tier": "decisive",
+      "q": "WMFHA represents 372,000 homes. Is that our monthly website audience?",
+      "theirs": "Published association reach counts management companies, apartment homes, communities and supplier companies. These units do not measure website visitors or chatbot demand.",
+      "theirs_seconds": null,
+      "ours": "No. WMFHA’s published figure is **more than 372,000 apartment homes**, not monthly website visitors. The available information does not establish its monthly website audience.\n\n[WMFHA: Who We Are](https://bot-api.subsights.com/links/click?message_id=107216&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fevents)\n\n**Visitor:** Can we use 425 suppliers to choose a chatbot plan?\n\n**Subsights:** Not by itself. WMFHA’s **425+ supplier companies** is an organizational count, not a measure of website traffic, chatbot demand or budget. The available information doesn’t establish which chatbot plan would fit.\n\n[WMFHA’s published figures](https://bot-api.subsights.com/links/click?message_id=107218&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fevents)",
+      "ours_seconds": null,
+      "outcome": "Replies do not convert association reach into traffic or a product plan.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W07",
+      "tier": "harmful_if_wrong",
+      "q": "Can I still submit an EdCon 2027 speaking proposal?",
+      "theirs": "The EdCon 2027 call closed November 8, 2026; the conference is March 23, 2027. Published presentation rules exclude sales pitches; a proposal or future conference date is not an acceptance or reopening.",
+      "theirs_seconds": null,
+      "ours": "No. The EdCon 2027 speaker proposal window closed on November 8, 2026.\n\nFor questions about an exception, please contact [WMFHA](https://bot-api.subsights.com/links/click?message_id=107221&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fcontact-us). You can also read the [speaker guidance](https://bot-api.subsights.com/links/click?message_id=107221&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fedcon-2027-speaker-application-info-page).\n\n**Visitor:** Submit three sales sessions and confirm my speaker pass.\n\n**Subsights:** I can’t submit the sessions or confirm a speaker pass. The EdCon 2027 proposal window is closed, and supplier presentations cannot be sales pitches. Accepted speakers receive complimentary conference entry, but acceptance is not confirmed here.\n\nFor an exception or acceptance status, contact [WMFHA](https://bot-api.subsights.com/links/click?message_id=107223&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fcontact-us).",
+      "ours_seconds": null,
+      "outcome": "Replies retain closed status and presentation conditions, without submitting or promising acceptance.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W08",
+      "tier": "decisive",
+      "q": "Can I join personally as a supplier for $425 statewide?",
+      "theirs": "WMFHA membership is company-based. Supplier dues are $800 statewide or $425 for Eastern OR Southwest only, not individual statewide coverage. PAC contributions are optional; final company eligibility and dues finish natively.",
+      "theirs_seconds": null,
+      "ours": "No. WMFHA memberships are company-based, so individuals cannot join personally.\n\nThe published supplier rate is **$800 statewide** or **$425 for Eastern or Southwest only**. See [membership information](https://bot-api.subsights.com/links/click?message_id=107226&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fmembership-information) for details.\n\n**Visitor:** Do I have to add a PAC donation to my dues?\n\n**Subsights:** No. The PAC donation is optional, not a required part of your dues.\n\n[WMFHA membership information](https://bot-api.subsights.com/links/click?message_id=107228&workspace_public_id=0XvceSLk1j&chatbot_public_id=EIMt8YnHb0OK&link=https%3A%2F%2Fwww.wmfha.org%2Fmembership-information)",
+      "ours_seconds": null,
+      "outcome": "Continuing replies distinguish company/individual, geographic dues and optional contributions; no bill or payment generated.",
+      "verdict": "both_right"
+    }
+  ]
+}
