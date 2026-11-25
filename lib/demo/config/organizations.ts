@@ -4,6 +4,101 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    slug: 'rhawa',
+    label: 'RHAWA',
+    url: 'https://www.rhawa.org',
+    headline: 'Find the right course, form or member service.',
+    description:
+      'Keep your role and question together as you find RHAWA education, current forms, vendors and screening.',
+    questions: [
+      'What Academy access do property managers get?',
+      'Where is the current multi-family term lease?',
+      'Find a plumber in Snohomish County',
+      'How much is screening per adult?',
+    ],
+    scope:
+      'Selected official public pages checked November 25, 2026. Member access, documents, screening and payments stay in RHAWA’s own systems.',
+    entry: [
+      {
+        label: 'Try it',
+        text: 'Ask a question, then change your role or ask for the next step.',
+      },
+    ],
+    sources: [
+      {
+        label: 'Past Atlas event',
+        url: 'https://www.rhawa.org/past-event',
+      },
+      {
+        label: 'Academy access and courses',
+        url: 'https://www.rhawa.org/academy',
+      },
+      {
+        label: 'Rental forms and instructions',
+        url: 'https://www.rhawa.org/rental-forms-leases-notices',
+      },
+      {
+        label: 'Vendor directory',
+        url: 'https://www.rhawa.org/vendor-directory',
+      },
+      {
+        label: 'Screening information',
+        url: 'https://www.rhawa.org/screening',
+      },
+      {
+        label: 'Membership categories',
+        url: 'https://www.rhawa.org/membership-information',
+      },
+      {
+        label: 'Contact and support',
+        url: 'https://www.rhawa.org/contact-us',
+      },
+    ],
+    accent: '#1f2937',
+    widgetUrl: '',
+    teamView: [],
+    tools: [
+      {
+        name: 'Education calendar',
+        text: 'Choose a current class rather than a past event.',
+        href: 'https://www.rhawa.org/events/education',
+        action: 'Find classes',
+      },
+      {
+        name: 'Academy',
+        text: 'Compare role-specific courses, subscriptions and access help.',
+        href: 'https://www.rhawa.org/academy',
+        action: 'Explore courses',
+      },
+      {
+        name: 'Current rental forms',
+        text: 'Find the named lease and its published revision before opening the member file.',
+        href: 'https://www.rhawa.org/rental-forms-leases-notices',
+        action: 'Open library',
+      },
+      {
+        name: 'Vendor directory',
+        text: 'Choose your county and expertise, then contact an actual result.',
+        href: 'https://www.rhawa.org/vendor-directory',
+        action: 'Search vendors',
+      },
+      {
+        name: 'Screening',
+        text: 'Review published fees and use the member entry into Intellirent.',
+        href: 'https://www.rhawa.org/screening',
+        action: 'Open screening',
+      },
+      {
+        name: 'Membership',
+        text: 'Confirm your category and conflicting dues with the membership specialist.',
+        href: 'https://www.rhawa.org/membership-information',
+        action: 'Compare categories',
+      },
+    ],
+    toolsComingSoon:
+      'Coming soon: connected member-account help once RHAWA authorizes access.',
+  },
+  {
     slug: 'bellevue',
     label: 'Bellevue Chamber',
     url: 'https://www.bellevuechamber.org/',

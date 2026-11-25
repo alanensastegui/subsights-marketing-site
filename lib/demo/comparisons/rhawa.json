@@ -1,0 +1,97 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "rhawa",
+  "theirs": {
+    "label": "Official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "rhawa-atlas",
+      "tier": "common",
+      "q": "Can I attend the November Atlas demo online?",
+      "theirs": "The old November Atlas event now redirects to “Discontinued RHAWA Class” and says it has passed. The page links to the current education calendar and course list. It establishes no open registration or current fee.",
+      "theirs_seconds": null,
+      "ours": "The November Atlas demo has passed, so it’s no longer available to attend live. RHAWA’s [past-event page](https://bot-api.subsights.com/links/click?message_id=107042&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Fevents%2Fatlas-20-launch-digital-leasing-and-demo-202611) does not confirm whether a recording is available.\n\nFor recording help, visit [RHAWA Academy](https://bot-api.subsights.com/links/click?message_id=107042&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Facademy) or call Education contact Denise Myers at (206) 905-0614.\n\n**Visitor:** Is it free, and where do I register?\n\n**Subsights:** The November Atlas demo has passed, so you can’t register for it now. The event page no longer confirms whether it was free.\n\nYou can find current classes on the [RHAWA education page](https://bot-api.subsights.com/links/click?message_id=107044&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Fevents%2Feducation). For help with a possible Atlas recording, visit [RHAWA Academy](https://bot-api.subsights.com/links/click?message_id=107044&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Facademy) or call Denise Myers at (206) 905-0614.\n\n**Visitor:** Can I attend the November Atlas demo online?\n\n**Subsights:** No—the November Atlas demo has passed, so it can’t be attended live online.\n\nFor a possible recording, check with [RHAWA Academy](https://bot-api.subsights.com/links/click?message_id=107083&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Facademy). For current classes, see the [education calendar](https://bot-api.subsights.com/links/click?message_id=107083&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Fevents%2Feducation).",
+      "ours_seconds": null,
+      "outcome": "The November event has passed. The first reply omitted current classes; the later reply adds the education calendar without inventing registration or recording access."
+    },
+    {
+      "id": "rhawa-recording",
+      "tier": "decisive",
+      "q": "I missed the November Atlas demo. Can I watch later?",
+      "theirs": "The generic past-event page mentions a members-only ONDEMAND library. It does not confirm this Atlas recording, its access window, or the release and price of a January repair feature. Academy support lists Denise Myers at (206) 905-0614.",
+      "theirs_seconds": null,
+      "ours": "The November Atlas event has passed. RHAWA says past courses are available in its members-only ONDEMAND library, but its event page does **not confirm whether this specific demo was recorded or is available**.\n\nFor recording and access help, visit [RHAWA Academy](https://bot-api.subsights.com/links/click?message_id=107047&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Facademy) or call Education contact Denise Myers at (206) 905-0614.\n\n**Visitor:** Will I need to pay for the January repair feature?\n\n**Subsights:** I can’t confirm whether the January repair feature will cost anything. The current November Atlas event page no longer states its release details or price.\n\nYou can ask RHAWA’s education contact, Denise Myers, at **(206) 905-0614**, or check the [Academy support page](https://bot-api.subsights.com/links/click?message_id=107049&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Facademy).",
+      "ours_seconds": null,
+      "outcome": "A generic recording library does not confirm this Atlas recording or a January feature price. The replies keep those questions open and point to Academy support.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "rhawa-academy",
+      "tier": "decisive",
+      "q": "I manage properties. Which Academy courses do I get?",
+      "theirs": "Academy has separate free-course lists for Rental Property Owner, Property Management Company and Manufactured Housing Community Owner members. The PM list includes the twelve-hour Property Manager Series; the MHC list has four different courses. Full ONDEMAND is $120/year or $25/month and excludes certificates. Missing-course help says exit and re-enter after several minutes, then contact Denise.",
+      "theirs_seconds": null,
+      "ours": "If your membership is **Property Management Company**, RHAWA lists these free Academy courses:\n\n- New Rent Increase & Notice Laws\n- Expansion of Local Rental Laws\n- How State Laws Are Made\n- Property Manager Series (12 hours)\n- Renting Your Property with RHAWA Tools\n- Seattle Fair and Stable Housing Laws\n- Seattle Rental Agreement Regulations\n- Spokane Cooling Ordinance\n- Spokane Rental Laws Update\n- Tacoma Rental Regulations\n- Washington Housing Provider Workshop\n\nFree courses depend on your **membership role**, so managing properties alone doesn’t confirm your entitlement. See [RHAWA Academy](https://bot-api.subsights.com/links/click?message_id=107052&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Facademy) for access and support.\n\n**Visitor:** Does the full ONDEMAND subscription include certificate courses?\n\n**Subsights:** No. The full ONDEMAND subscription excludes certificate courses. It was listed at $120/year or $25/month as of November 25, 2026.\n\n[See Academy subscriptions](https://bot-api.subsights.com/links/click?message_id=107054&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Facademy)\n\n**Visitor:** A course is missing after I log in.\n\n**Subsights:** Exit and re-enter Academy after several minutes. If the course is still missing, contact Denise Myers at **(206) 905-0614**. See [Academy access and support](https://bot-api.subsights.com/links/click?message_id=107056&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Facademy).\n\n**Visitor:** Actually this is for my manufactured housing community. Is the same list free?\n\n**Subsights:** No. As of November 25, 2026, RHAWA listed a different set of free courses for **Manufactured Housing Community Owner members**:\n\n- New MHC Laws\n- How State Laws Are Made\n- Manufactured Housing Communities Workshop\n- Renting Your Property with RHAWA Tools\n\nFree access depends on your membership role. See [RHAWA Academy](https://bot-api.subsights.com/links/click?message_id=107058&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Facademy) for access and support.\n\n**Visitor:** I manage properties. Which Academy courses do I get?\n\n**Subsights:** For your manufactured housing community, if your membership role is **Manufactured Housing Community Owner**, RHAWA lists these free Academy courses:\n\n- New MHC Laws\n- How State Laws Are Made\n- Manufactured Housing Communities Workshop\n- Renting Your Property with RHAWA Tools\n\nThe Property Management Company list is different, and access depends on your membership role. [Sign in to RHAWA](https://bot-api.subsights.com/links/click?message_id=107085&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Flogin), then open Academy through RHAWA’s [Academy page](https://bot-api.subsights.com/links/click?message_id=107085&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Facademy).\n\n**Visitor:** I mean our Property Management Company membership, not the MHC. Which courses and sign-in?\n\n**Subsights:** For **Property Management Company members**, RHAWA lists these free Academy courses:\n\n- New Rent Increase & Notice Laws\n- Expansion of Local Rental Laws\n- How State Laws Are Made\n- Property Manager Series (12 hours)\n- Renting Your Property with RHAWA Tools\n- Seattle Fair and Stable Housing Laws\n- Seattle Rental Agreement Regulations\n- Spokane Cooling Ordinance\n- Spokane Rental Laws Update\n- Tacoma Rental Regulations\n- Washington Housing Provider Workshop\n\n[Sign in to RHAWA](https://bot-api.subsights.com/links/click?message_id=107089&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Flogin), then open Academy through the [RHAWA Academy page](https://bot-api.subsights.com/links/click?message_id=107089&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Facademy).",
+      "ours_seconds": null,
+      "outcome": "The assistant keeps the membership role as the visitor changes from property management to MHC and back. The first reply omitted direct sign-in; the later replies include it. Course access still depends on membership."
+    },
+    {
+      "id": "rhawa-forms",
+      "tier": "common",
+      "q": "Where is the current multi-family term lease?",
+      "theirs": "The rental forms library names the Multi-Family Term Lease and distinguishes “reviewed April 2026” from “revised April 27, 2026.” Active Rental Property Owner or Property Manager membership is required; MHC forms have a separate library. The selected public read did not open the restricted file.",
+      "theirs_seconds": null,
+      "ours": "Find the **Multi-Family Term Lease** in RHAWA’s [rental forms library](https://bot-api.subsights.com/links/click?message_id=107061&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Frental-forms-leases-notices). The entry was reviewed in April 2026 and revised April 27, 2026, as observed on November 25, 2026.\n\nThe library is for active Rental Property Owner and Property Manager members. Check the downloaded file and current local requirements in RHAWA’s system.\n\n**Visitor:** I see April 2026. Is that the revision date?\n\n**Subsights:** Not necessarily. The entry says **reviewed April 2026** and **revised April 27, 2026**. You can check both on the [rental forms library page](https://bot-api.subsights.com/links/click?message_id=107063&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Frental-forms-leases-notices).",
+      "ours_seconds": null,
+      "outcome": "Both distinguish the review month from the exact revision date and lead to the native forms library. The member-only file was not opened.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "rhawa-legal",
+      "tier": "harmful_if_wrong",
+      "q": "Which eviction notice should I use for my Seattle tenant?",
+      "theirs": "The public forms library provides current named entries and instructions. Contact Us directs property-specific rental-law and best-practice questions to the members-only Support Center, rather than its general contact form. No restricted support content or private document was read.",
+      "theirs_seconds": null,
+      "ours": "I can’t determine which eviction notice is appropriate for your Seattle tenant. The choice depends on the circumstances and applicable requirements.\n\nIf you’re a member, ask RHAWA’s [Support Center](https://bot-api.subsights.com/links/click?message_id=107066&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Fsupport-center) about your situation. Its published response time is up to one business day.\n\n**Visitor:** Can you fill it in if I upload the lease?\n\n**Subsights:** No—please don’t upload your lease here. I can’t fill in or select an eviction notice for your property.\n\nIf you’re a member, use RHAWA’s [Support Center](https://bot-api.subsights.com/links/click?message_id=107068&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Fsupport-center) for help with your situation.",
+      "ours_seconds": null,
+      "outcome": "The assistant directs the member to RHAWA support and declines to choose a legal notice or collect a private lease. It does not complete the property-specific work."
+    },
+    {
+      "id": "rhawa-vendor",
+      "tier": "decisive",
+      "q": "I need a plumber in Snohomish County.",
+      "theirs": "The vendor directory offers county, postal code, company-name and expertise filters, including Plumbing Services, with list/map views. The selected read showed results loading. No matching vendor or availability was established; RHAWA does not specifically endorse listed vendors.",
+      "theirs_seconds": null,
+      "ours": "Use the [RHAWA vendor directory](https://bot-api.subsights.com/links/click?message_id=107071&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Fvendor-directory) and select **Snohomish County** and **Plumbing Services**. I can’t confirm a matching vendor or their availability from the available information.\n\nRHAWA recommends checking references and does not specifically endorse its listed vendors.\n\n**Visitor:** Who is available tomorrow?\n\n**Subsights:** I can’t verify which Snohomish County plumbers are available tomorrow, **November 26**. Search [RHAWA’s vendor directory](https://bot-api.subsights.com/links/click?message_id=107073&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Fvendor-directory) using **Snohomish County** and **Plumbing Services**, then contact a listed plumber to check availability.",
+      "ours_seconds": null,
+      "outcome": "The assistant retains county and expertise filters, while availability remains unverified. The visitor still checks actual directory results and contacts a vendor.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "rhawa-screening",
+      "tier": "harmful_if_wrong",
+      "q": "How much is screening per adult?",
+      "theirs": "RHAWA’s screening page links to Intellirent through member SSO. The public FAQ publishes $40 per adult applicant per file, paid by the applicant to Intellirent. An EBRHA membership reference in the same FAQ does not establish an individual RHAWA account’s entitlement.",
+      "theirs_seconds": null,
+      "ours": "RHAWA’s screening page lists **$40 per adult applicant per file**, paid by the applicant to Intellirent.\n\n[View screening information](https://bot-api.subsights.com/links/click?message_id=107076&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Fscreening)\n\n**Visitor:** Here is the applicant’s report. Should I approve them?\n\n**Subsights:** I can’t assess or approve an applicant, and I can’t read private screening reports. Please don’t share the report here.\n\nFor rental-law and best-practice questions, RHAWA members can use the [Support Center](https://bot-api.subsights.com/links/click?message_id=107078&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Fsupport-center).\n\n**Visitor:** Here is the applicant’s report. Should I approve them?\n\n**Subsights:** I can’t assess the report or decide whether to approve the applicant. Please don’t share the report here.\n\nAs an authorized member, use [RHAWA screening](https://bot-api.subsights.com/links/click?message_id=107087&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Fscreening) and the [Intellirent member entry](https://bot-api.subsights.com/links/click?message_id=107087&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Foauth%2Fauthorize%3Fclient_id%3D196cadb7-6440-4116-90c1-e6d9c2e474ba%26redirect_uri%3Dhttps%3A%2F%2Fapi.myintellirent.com%2Fapi%2Fv1%2Frhawa%2Fopen-id-connect%26scope%3Dopenid%26response_type%3Dcode) to work with the report there.",
+      "ours_seconds": null,
+      "outcome": "The published fee is kept separate from access to a private report. The first report reply linked to general member support; the later reply reaches screening and Intellirent without collecting or judging the report."
+    },
+    {
+      "id": "rhawa-membership",
+      "tier": "decisive",
+      "q": "I run a property management company and also own a manufactured housing community. Which membership price applies?",
+      "theirs": "The membership page distinguishes Rental Property Owner, Property Manager, MHC and vendor categories. The combined Property Manager/MHC annual range is printed $6,255–$3,125 with inconsistent endpoints; the membership specialist must confirm it. Nearly 6,000 housing providers is published association reach, not website traffic.",
+      "theirs_seconds": null,
+      "ours": "RHAWA lists a **dual Property Manager and Manufactured Housing Community Owner** membership, which may fit your roles. However, its published annual dues range is internally inconsistent: it shows **$6,255–$3,125**, so I can’t reliably tell you which price applies.\n\nPlease use the Membership Specialist link on the [membership information page](https://bot-api.subsights.com/links/click?message_id=107081&workspace_public_id=0XvceSLk1j&chatbot_public_id=OW45SH6wfmwS&link=https%3A%2F%2Fwww.rhawa.org%2Fmembership-information) to confirm your category and dues.",
+      "ours_seconds": 11.167,
+      "outcome": "The inconsistent published dues range stays unresolved. The assistant points to the membership specialist rather than inventing a corrected price.",
+      "verdict": "both_right"
+    }
+  ]
+}
