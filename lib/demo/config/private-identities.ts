@@ -2,6 +2,7 @@ import 'server-only';
 
 // Exact existing bot/workspace identities; capabilities never live in this catalog.
 export const PRIVATE_DEMO_IDENTITIES: Record<string, {workspace: string; bot: string}> = {
+  rhawa: { workspace: "0XvceSLk1j", bot: "OW45SH6wfmwS" },
   bellevue: { workspace: "0XvceSLk1j", bot: "gDz1Noxsjr9U" },
   issaquah: { workspace: "0XvceSLk1j", bot: "Cz8TTZvCk7fF" },
   // Prepared routes only. Native enrollment and a valid bot-scoped capability
