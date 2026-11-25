@@ -1,0 +1,88 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "wmba",
+  "theirs": {
+    "label": "Official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "wmba-december",
+      "tier": "common",
+      "q": "What is the December 1 Income Property luncheon about?",
+      "theirs": "December 1 is a World Cup economic-impact luncheon with April Putney and Steve Strohmaier, at Perkins Coie and via Zoom. The event page lists $55 for members and $65 for nonmembers and November 25 at 9 am closing without a timezone. The exact linked registration form says registration has closed.",
+      "theirs_seconds": null,
+      "ours": "The December 1 Income Property luncheon is about the **economic impact of the 2026 World Cup**. The panelists are April Putney and Steve Strohmaier.\n\nThe discussion runs from 12:15\u20131 p.m. at Perkins Coie and virtually via Zoom. [Event details](https://bot-api.subsights.com/links/click?message_id=107101&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2Fall-events%2Fip-luncheon-december-2026%2F%3Foccurrence%3D2026-12-01)\n\n**Visitor:** I am not a member. What does it cost, and can I attend online?\n\n**Subsights:** The nonmember price is **$65**, and the event lists a virtual option via Zoom.\n\nHowever, the [December registration form](https://bot-api.subsights.com/links/click?message_id=107103&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fami.jotform.com%2F263134523756963) said registration had closed when checked November 25. For questions about attending online after the deadline, contact WMBA at **admin@wa-mba.org** or **(206) 401-5521**.",
+      "ours_seconds": null,
+      "outcome": "The continuing answers preserve the exact December event and closed registration. No registration or payment was performed.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "wmba-deadline",
+      "tier": "harmful_if_wrong",
+      "q": "Can I register at 9:30 am Pacific on November 25?",
+      "theirs": "The December event page gives November 25 at 9 am without a timezone. Its current registration form is closed. The native calendar export identifies the event time as America/Los_Angeles; that does not establish the registration deadline timezone.",
+      "theirs_seconds": null,
+      "ours": "For the **December 1 Income Property Luncheon**, the listed deadline was November 25 at 9:00 a.m., but its timezone wasn\u2019t specified, so the deadline\u2019s relationship to 9:30 a.m. Pacific is unclear.\n\nThe [registration form](https://bot-api.subsights.com/links/click?message_id=107106&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fami.jotform.com%2F263134523756963) was observed closed at 11:34 a.m. Pacific on November 25. Its status at 9:30 a.m. is not established. For a late-attendance question, contact WMBA at admin@wa-mba.org or (206) 401-5521.\n\n**Visitor:** Please pay and add it to my Outlook.\n\n**Subsights:** I can\u2019t pay or add the event to your Outlook calendar. [Registration was observed closed](https://bot-api.subsights.com/links/click?message_id=107108&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fami.jotform.com%2F263134523756963); for late attendance or payment questions, contact WMBA at admin@wa-mba.org or (206) 401-5521.\n\nYou can download and import the [December 1 Outlook calendar event](https://bot-api.subsights.com/links/click?message_id=107108&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2F%3Fmethod%3Dical%26id%3D8035%26occurrence%3D2026-12-01) yourself.",
+      "ours_seconds": null,
+      "outcome": "The answers avoid inferring the deadline timezone and provide the native calendar export without claiming an import.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "wmba-january",
+      "tier": "decisive",
+      "q": "Can I book the January 14 luncheon at Perkins Coie?",
+      "theirs": "The January 14, 2027 description says time, venue, presentation and registration are coming soon. Its structured block shows 11:30 am\u20131:30 pm and venue TBD. Registration is listed as closing January 7 at 9 am without a timezone. The details remain inconsistent.",
+      "theirs_seconds": null,
+      "ours": "The [January 14 luncheon page](https://bot-api.subsights.com/links/click?message_id=107111&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2Fall-events%2Fip-luncheon-january-2027%2F%3Foccurrence%3D2027-01-14) says registration and location are coming soon; its structured listing says the in-person location is TBD. **Perkins Coie is listed for the December luncheon, not January.**\n\nFor confirmation of January details, contact WMBA at admin@wa-mba.org or (206) 401-5521.\n\n**Visitor:** The block shows 11:30. Is that confirmed?\n\n**Subsights:** Not confirmed. The [January event page](https://bot-api.subsights.com/links/click?message_id=107113&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2Fall-events%2Fip-luncheon-january-2027%2F%3Foccurrence%3D2027-01-14) shows **11:30 a.m.\u20131:30 p.m.** in its structured block, but its description says the time is coming soon.\n\nContact WMBA at admin@wa-mba.org or (206) 401-5521 to confirm.\n\n**Visitor:** Just use the December registration form.\n\n**Subsights:** The [December registration form](https://bot-api.subsights.com/links/click?message_id=107115&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fami.jotform.com%2F263134523756963) is for **December 1, not January 14**, and it says registration has closed.\n\nFor January registration, contact WMBA at admin@wa-mba.org or (206) 401-5521.\n\n**Visitor:** Then give me the correct January page to check, rather than the December form.\n\n**Subsights:** [January 14 Income Property Luncheon page](https://bot-api.subsights.com/links/click?message_id=107137&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2Fall-events%2Fip-luncheon-january-2027%2F%3Foccurrence%3D2027-01-14)",
+      "ours_seconds": null,
+      "outcome": "An earlier reply linked the unrelated December form. The retained later continuation provides the exact January occurrence page. No booking was made."
+    },
+    {
+      "id": "wmba-committee",
+      "tier": "common",
+      "q": "Who chairs the Income Property committee?",
+      "theirs": "The committees page names Income Property chair Jeff Gregg, Global Credit Union, and co-chair Steve Cory, Fidelity National Title Company.",
+      "theirs_seconds": null,
+      "ours": "**Jeff Gregg of Global Credit Union** chairs the Income Property committee. Steve Cory of Fidelity National Title Company is co-chair. See the [WMBA committees page](https://wa-mba.org/committees/).\n\n**Visitor:** Is Eric still the contact?\n\n**Subsights:** I can\u2019t confirm Eric is still the contact. WMBA\u2019s [committee page](https://bot-api.subsights.com/links/click?message_id=107120&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2Fcommittees%2F) lists Jeff Gregg as chair and Steve Cory as co-chair.\n\nTo confirm the right contact, reach WMBA at [admin@wa-mba.org](mailto:admin@wa-mba.org) or (206) 401-5521.",
+      "ours_seconds": null,
+      "outcome": "The continuing replies identify the published committee roles and provide WMBA\u2019s contact for confirmation.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "wmba-education",
+      "tier": "decisive",
+      "q": "Where are the education recordings?",
+      "theirs": "Education lists quarterly virtual Lunch & Learns, MBA School of Mortgage Banking and a past-offerings library showing June 2023. The public read does not establish recording playability or licensing credits.",
+      "theirs_seconds": null,
+      "ours": "WMBA lists a **past-offerings library** on its [Education page](https://bot-api.subsights.com/links/click?message_id=107123&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2Feducation-2%2F), including an offering from June 2023. The available information doesn\u2019t confirm whether recordings are publicly playable.\n\n**Visitor:** Will the June course give me licensing credits?\n\n**Subsights:** I can\u2019t verify whether the June 2023 course provides licensing credits. The [Education page](https://bot-api.subsights.com/links/click?message_id=107125&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2Feducation-2%2F) lists it in the past-offerings library, but the available information doesn\u2019t confirm credits.\n\nPlease check with WMBA at **admin@wa-mba.org** or **(206) 401-5521** before relying on it for licensing.",
+      "ours_seconds": null,
+      "outcome": "The answers provide the education destination without promising playable recordings or licensing credit.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "wmba-membership",
+      "tier": "decisive",
+      "q": "We provide software to lenders, but do not originate, sell or service loans. Which membership?",
+      "theirs": "General membership covers loan origination, sale or servicing at $1,695/year; Associate covers other organizations serving mortgage lenders at $1,195/year. The year starts September 1 and national MBA is separate. The application requires board approval before dues. The sponsor note spells WWBA; membership names Tony Fernandez, while committees names Chad Jackson.",
+      "theirs_seconds": null,
+      "ours": "**Associate membership** appears to be the appropriate category for a software provider serving mortgage lenders. Annual dues are **$1,195**, and the fiscal year starts September 1.\n\nApplications go to the WMBA Board for approval, and dues are paid only after notification of approval. The membership page mentions a current-member sponsor for one year but refers to \u201cWWBA,\u201d so confirm that requirement with WMBA at admin@wa-mba.org or (206) 401-5521.\n\n[Apply for WMBA membership](https://bot-api.subsights.com/links/click?message_id=107128&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2Fbecome-a-member%2F)\n\n**Visitor:** Does it include national MBA membership and who do I ask about a sponsor?\n\n**Subsights:** No. **WMBA and national MBA memberships are separate.**\n\nFor the sponsor requirement, ask WMBA at **admin@wa-mba.org** or **(206) 401-5521**. Its membership page mentions a current-member sponsor for one year but calls the organization \u201cWWBA,\u201d so the requirement needs confirmation. The page names Tony Fernandez for membership questions.\n\n[WMBA membership details](https://bot-api.subsights.com/links/click?message_id=107130&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2Fmembership%2F)\n\n**Visitor:** Is Tony the current membership chair? The committee page shows Chad Jackson.\n\n**Subsights:** The [committees page](https://bot-api.subsights.com/links/click?message_id=107139&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2Fcommittees%2F) lists **Chad Jackson of CMG Home Loans** as Membership chair. The [membership page](https://bot-api.subsights.com/links/click?message_id=107139&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fwa-mba.org%2Fmembership%2F) names Tony Fernandez for membership questions; it does not establish that he is the current chair.\n\nTo confirm who handles your sponsor question, contact WMBA at **admin@wa-mba.org** or **(206) 401-5521**.",
+      "ours_seconds": null,
+      "outcome": "The initial role-based answer identifies Associate membership and the native application. A later clarification distinguishes the two published contacts and asks WMBA to resolve the sponsor requirement. No application or payment was performed."
+    },
+    {
+      "id": "wmba-member-update",
+      "tier": "harmful_if_wrong",
+      "q": "Where do I update our member address?",
+      "theirs": "The member page links the native WMBA Member Information Update form 262355556572969. The public read does not establish a complete member count or any submitted update.",
+      "theirs_seconds": null,
+      "ours": "Update your member address using the [WMBA Member Information Update form](https://bot-api.subsights.com/links/click?message_id=107133&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fami.jotform.com%2F262355556572969).\n\n**Visitor:** Can I give the new address to you so you save it?\n\n**Subsights:** I can\u2019t save or submit your address for you, so please don\u2019t share it here. Use the [WMBA Member Information Update form](https://bot-api.subsights.com/links/click?message_id=107135&workspace_public_id=0XvceSLk1j&chatbot_public_id=yXI0jDaoHyCa&link=https%3A%2F%2Fami.jotform.com%2F262355556572969) to update it directly.",
+      "ours_seconds": null,
+      "outcome": "The replies provide the exact native update form without collecting or claiming to save an address change.",
+      "verdict": "both_right"
+    }
+  ]
+}
