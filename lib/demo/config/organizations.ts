@@ -4,6 +4,94 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "crew-seattle",
+    "label": "CREW Seattle",
+    "url": "https://seattle.crewnetwork.org/",
+    "headline": "Find the right event, access or career program.",
+    "description": "Keep your Seattle event, member role or career goal together through the next question.",
+    "questions": [
+      "What is the next Seattle networking event?",
+      "Does a nonmember account include CREWbiz?",
+      "Is the $150 mentoring program open?",
+      "Where does a college group start?"
+    ],
+    "scope": "Selected official public pages checked November 25, 2026. Registration, renewal, payments and private member work stay in CREW’s own systems.",
+    "entry": [
+      {
+        "label": "Try it",
+        "text": "Ask a question, then change the event, your role or another detail."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Seattle events",
+        "url": "https://seattle.crewnetwork.org/events/view-all-events?from=2026-11-25&to=2029-12-30&chapters=CN%2CSEA&page=1"
+      },
+      {
+        "label": "January lunch",
+        "url": "https://seattle.crewnetwork.org/en/events/2027/january-lunch-program"
+      },
+      {
+        "label": "Membership",
+        "url": "https://seattle.crewnetwork.org/join"
+      },
+      {
+        "label": "Mentoring",
+        "url": "https://seattle.crewnetwork.org/get-involved/mentoring"
+      },
+      {
+        "label": "Leadership",
+        "url": "https://seattle.crewnetwork.org/events/leadership-series"
+      },
+      {
+        "label": "Career outreach",
+        "url": "https://seattle.crewnetwork.org/get-involved/career-outreach"
+      }
+    ],
+    "accent": "#1f2937",
+    "widgetUrl": "",
+    "teamView": [],
+    "tools": [
+      {
+        "name": "January 14 lunch",
+        "text": "Xander Snyder’s economic forecast, 11:15 a.m.–1 p.m. PST. Venue is TBD; published fees are $75 members and $105 nonmembers.",
+        "href": "https://seattle.crewnetwork.org/en/events/2027/january-lunch-program",
+        "action": "January details"
+      },
+      {
+        "name": "Membership and renewal",
+        "text": "Compare categories or use your existing member account to renew.",
+        "href": "https://seattle.crewnetwork.org/join",
+        "action": "Membership options"
+      },
+      {
+        "name": "CREWbiz",
+        "text": "Use the member discussion, directory and resources in the native community.",
+        "href": "https://seattle.crewnetwork.org/get-involved/crewbiz-online-community",
+        "action": "Explore CREWbiz"
+      },
+      {
+        "name": "Mentoring",
+        "text": "The published $150 cohort is from 2025–2026. Ask the chapter about the next cohort.",
+        "href": "https://seattle.crewnetwork.org/get-involved/mentoring",
+        "action": "Mentoring details"
+      },
+      {
+        "name": "Career center",
+        "text": "Search national employer listings by location. A listing is not a chapter staff vacancy.",
+        "href": "https://careers.crewnetwork.org/jobseekers/",
+        "action": "Search jobs"
+      },
+      {
+        "name": "College career exploration",
+        "text": "UCREW introduces college students to commercial real estate through local chapters.",
+        "href": "https://crewnetwork.org/get-involved/career-outreach-programs/ucrew",
+        "action": "Explore UCREW"
+      }
+    ],
+    "toolsComingSoon": "Coming soon: connected member-account help once CREW Seattle authorizes access."
+  },
+  {
     "slug": "wmba",
     "label": "Washington Mortgage Bankers Association",
     "url": "https://wa-mba.org/",
