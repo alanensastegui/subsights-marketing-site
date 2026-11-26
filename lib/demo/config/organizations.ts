@@ -9,6 +9,12 @@ export const ORGANIZATION_DEMOS: ProspectDemo[] = [
     "url": "https://bellevuerotary.org/",
     "headline": "Plan a visit or find a way to serve.",
     "description": "Find Tuesday lunch details, ask about helping with a local project and see where Bellevue Rotary handles membership or grant questions.",
+    "entry": [
+      {
+        "label": "First visit",
+        "text": "The club covers lunch for first-time guests."
+      }
+    ],
     "questions": [
       "When can I visit for a first lunch?",
       "Can I help with a Porchlight project?",
