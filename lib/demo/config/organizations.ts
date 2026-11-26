@@ -4,6 +4,32 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "timber-ridge",
+    "label": "Timber Ridge at Talus",
+    "url": "https://timberridgelcs.com/",
+    "headline": "Plan a visit or explore life at Timber Ridge.",
+    "description": "Find the right contact for a visit, compare apartment layouts and understand which programs are for residents.",
+    "questions": [
+      "Who do I contact to arrange a tour?",
+      "Which apartments have a bedroom and a den?",
+      "Can nonresidents apply directly for assisted living?"
+    ],
+    "sources": [
+      {"label": "Timber Ridge contact", "url": "https://timberridgelcs.com/contact/"},
+      {"label": "Fitness and wellness", "url": "https://timberridgelcs.com/lifestyle/fitness-wellness/"},
+      {"label": "Assisted living", "url": "https://timberridgelcs.com/health-center/assisted-living/"}
+    ],
+    "tools": [
+      {"name": "Ask about a tour", "text": "Reach the senior living team to request a visit.", "href": "https://timberridgelcs.com/contact/", "action": "Contact Timber Ridge"},
+      {"name": "Compare apartment layouts", "text": "Look through the published independent living floor plans.", "href": "https://timberridgelcs.com/independent-living/floor-plans/", "action": "Floor plans"},
+      {"name": "Explore resident programs", "text": "Read about continuing education and other wellness activities.", "href": "https://timberridgelcs.com/lifestyle/fitness-wellness/", "action": "Fitness and wellness"}
+    ],
+    "scope": "Timber Ridge handles visits, availability and resident services through its own team and website.",
+    "accent": "#345749",
+    "widgetUrl": "",
+    "teamView": []
+  },
+  {
     "slug": "seattle-chamber",
     "label": "Seattle Metro Chamber",
     "url": "https://www.seattlechamber.com/",
