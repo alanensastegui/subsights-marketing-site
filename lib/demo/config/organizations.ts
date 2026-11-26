@@ -3,6 +3,73 @@ import type { ProspectDemo } from './prospects';
 
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
+{
+  "slug": "oneredmond",
+  "label": "OneRedmond",
+  "url": "https://oneredmond.org/",
+  "headline": "Find the right business support.",
+  "description": "Explore free advice, compare membership or plan an event visit. Change a detail without starting over.",
+  "questions": [
+    "Can I get free business advice?",
+    "Compare annual membership levels",
+    "Plan the December networking lunch",
+    "Find relocation resources"
+  ],
+  "scope": "Selected official public pages checked November 26, 2026. Advice requests, membership and event registration finish through OneRedmond.",
+  "entry": [
+    {
+      "label": "Try it",
+      "text": "Ask a question, then change your employee count, location or another detail."
+    }
+  ],
+  "sources": [
+    {
+      "label": "Business advice",
+      "url": "https://oneredmond.org/support-services/"
+    },
+    {
+      "label": "Membership",
+      "url": "https://engage.oneredmond.org/membership-levels"
+    },
+    {
+      "label": "Holiday lunch",
+      "url": "https://engage.oneredmond.org/events/lunchdec26"
+    },
+    {
+      "label": "Relocation",
+      "url": "https://oneredmond.org/locate-your-business/"
+    }
+  ],
+  "accent": "#1f2937",
+  "widgetUrl": "",
+  "teamView": [],
+  "tools": [
+    {
+      "name": "Find free advice",
+      "text": "Explore no-cost business advice and public resources before deciding whether to contact an adviser.",
+      "href": "https://oneredmond.org/support-services/",
+      "action": "Business support"
+    },
+    {
+      "name": "Compare membership",
+      "text": "Check annual levels for your organization type and employee count.",
+      "href": "https://engage.oneredmond.org/membership-levels",
+      "action": "Membership levels"
+    },
+    {
+      "name": "Plan the holiday lunch",
+      "text": "Check the December 3 lunch at Together Center, its agenda and the published member rate.",
+      "href": "https://engage.oneredmond.org/events/lunchdec26",
+      "action": "Holiday lunch details"
+    },
+    {
+      "name": "Explore relocation",
+      "text": "Find OneRedmond’s relocation guide and local business support.",
+      "href": "https://oneredmond.org/locate-your-business/",
+      "action": "Relocation resources"
+    }
+  ]
+},
   {
     slug: 'kidder-simon-anderson',
     label: 'Simon | Anderson',

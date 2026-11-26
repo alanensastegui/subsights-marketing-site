@@ -2,6 +2,7 @@ import 'server-only';
 
 // Exact existing bot/workspace identities; capabilities never live in this catalog.
 export const PRIVATE_DEMO_IDENTITIES: Record<string, {workspace: string; bot: string}> = {
+  oneredmond: { workspace: '0XvceSLk1j', bot: 'IghIH1d1RlRr' },
   'kidder-simon-anderson': { workspace: '0XvceSLk1j', bot: 'WmRcP6mBHWQQ' },
   'gsba-business-support': { workspace: '0XvceSLk1j', bot: 'jbreLNX0dX8c' },
   'startup425': { workspace: '0XvceSLk1j', bot: 'sDmmOe5sqiBi' },
