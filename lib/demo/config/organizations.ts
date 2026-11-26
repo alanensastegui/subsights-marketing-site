@@ -4,6 +4,83 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
 {
+  "slug": "creda",
+  "label": "CREDA Washington State",
+  "url": "https://www.credawa.org/",
+  "headline": "Find your next CREDA opportunity.",
+  "description": "Compare membership, plan a program visit or find a recording. Change a detail without starting over.",
+  "questions": [
+    "Compare 2027 membership dues",
+    "Plan the January forecast",
+    "Can I join the mentor program?",
+    "Find a public webinar recording"
+  ],
+  "scope": "Selected official public pages checked November 26, 2026. Membership, registration, payments and account access finish through CREDA.",
+  "entry": [
+    {
+      "label": "Try it",
+      "text": "Ask a question, then change your age, membership status or selected program."
+    }
+  ],
+  "sources": [
+    {
+      "label": "2027 membership dues",
+      "url": "https://www.credawa.org/membership"
+    },
+    {
+      "label": "January forecast",
+      "url": "https://www.credawa.org/index.php?option=com_jevents&task=icalrepeat.detail&evid=658&Itemid=174&year=2027&month=01&day=28&title=2027-economic-forecast-south-sound&uid=41f08679064677e28ec5c3eec6be5f53"
+    },
+    {
+      "label": "Mentor program",
+      "url": "https://www.credawa.org/index.php?option=com_jevents&task=icalrepeat.detail&evid=659&Itemid=174&year=2027&month=01&day=21&title=2027-mentor-program--kick-off-developing-leaders&uid=3d4e17ad642c612c5b10fb61d90ac55f"
+    },
+    {
+      "label": "Webinar recordings",
+      "url": "https://www.credawa.org/webinar-library"
+    },
+    {
+      "label": "Member services",
+      "url": "https://www.credawa.org/contact"
+    }
+  ],
+  "accent": "#1f2937",
+  "widgetUrl": "",
+  "teamView": [],
+  "tools": [
+    {
+      "name": "Compare membership",
+      "text": "Check 2027 dues for your age, student status and company membership position.",
+      "href": "https://www.credawa.org/membership",
+      "action": "Membership dues"
+    },
+    {
+      "name": "Plan the forecast",
+      "text": "Check the January 28 South Sound forecast in Tacoma, its schedule and member or non-member tickets.",
+      "href": "https://www.credawa.org/index.php?option=com_jevents&task=icalrepeat.detail&evid=658&Itemid=174&year=2027&month=01&day=28&title=2027-economic-forecast-south-sound&uid=41f08679064677e28ec5c3eec6be5f53",
+      "action": "Forecast details"
+    },
+    {
+      "name": "Explore mentoring",
+      "text": "Check member participation, the January 21 kick-off and monthly meetings.",
+      "href": "https://www.credawa.org/index.php?option=com_jevents&task=icalrepeat.detail&evid=659&Itemid=174&year=2027&month=01&day=21&title=2027-mentor-program--kick-off-developing-leaders&uid=3d4e17ad642c612c5b10fb61d90ac55f",
+      "action": "Mentor program"
+    },
+    {
+      "name": "Find a recording",
+      "text": "Browse the library and see which DEI recordings are also available to non-members.",
+      "href": "https://www.credawa.org/webinar-library",
+      "action": "Webinar library"
+    },
+    {
+      "name": "Reach member services",
+      "text": "Find the published contact for renewals, login help or another question.",
+      "href": "https://www.credawa.org/contact",
+      "action": "Contact CREDA"
+    }
+  ]
+},
+{
   "slug": "oneredmond",
   "label": "OneRedmond",
   "url": "https://oneredmond.org/",

@@ -1,0 +1,101 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "creda",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "CR01",
+      "tier": "decisive",
+      "q": "I am exactly 35 and joining CREDA. What are the published 2027 Developing Leaders dues?",
+      "theirs": "The membership page lists 2027 dues: $425 for Developing Leaders aged 35 and younger, $1,350 for the first company member, and $650 for subsequent company members. The age and company-role categories are separate.",
+      "theirs_seconds": null,
+      "ours": "The published **2027 Developing Leaders dues are $425**. At exactly 35, you meet the published age limit of 35 and younger.\n\n[View the 2027 dues](https://bot-api.subsights.com/links/click?message_id=107624&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2Fmembership)\n\n**Visitor:** Correction: I will be 36 and our company has no other member. Is it still $425?\n\n**Subsights:** No. At **36**, you would be over the published Developing Leaders age limit of 35 and younger. As the first member from your company, the published **2027 Full Member dues are $1,350**, unless another special category applies.\n\n[Compare 2027 membership dues](https://bot-api.subsights.com/links/click?message_id=107626&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2Fmembership)\n\n**Visitor:** Actually another colleague is already the company’s first member. What changes?\n\n**Subsights:** As the second member from your company, your published **2027 Affiliate Member dues would be $650**. At 36, you would still be over the Developing Leaders age limit of 35 and younger.\n\n[Compare 2027 membership dues](https://bot-api.subsights.com/links/click?message_id=107628&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2Fmembership)",
+      "ours_seconds": null,
+      "outcome": "Correct $425 and age 35 boundary. Corrects age 36 to $1,350 first-company membership. Retains age correction and changes to $650 affiliate dues.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "CR02",
+      "tier": "harmful_if_wrong",
+      "q": "I am currently a student. Is membership free, and how do I apply?",
+      "theirs": "Current students can request an application at info@credawa.org; the Foundation pays their membership dues. The January 28 forecast page separately lists a $65 Student Member ticket plus sales tax. Free membership does not make that ticket free.",
+      "theirs_seconds": null,
+      "ours": "Yes. **2027 student membership dues are free for current students**, with dues paid by the Foundation.\n\nTo request an application, email [info@credawa.org](mailto:info@credawa.org). You can also review the [membership page](https://bot-api.subsights.com/links/click?message_id=107631&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2Fmembership).\n\n**Visitor:** Does that also make my ticket to the January South Sound forecast free?\n\n**Subsights:** No. Free student membership dues do not make the forecast ticket free. The published price is **$65 plus sales tax for Student Members**. The page does not establish whether a student who is not a member qualifies for that rate.\n\nThe forecast is on **January 28, 2027**, in Tacoma. See the [event details](https://bot-api.subsights.com/links/click?message_id=107633&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2Findex.php%3Foption%3Dcom_jevents%26task%3Dicalrepeat.detail%26evid%3D658%26Itemid%3D174%26year%3D2027%26month%3D01%26day%3D28%26title%3D2027-economic-forecast-south-sound%26uid%3D41f08679064677e28ec5c3eec6be5f53).\n\n**Visitor:** I only want to compare. Please do not create an account.\n\n**Subsights:** Understood—I won’t create an account. For the **January 28 South Sound forecast**, the published individual prices are:\n\n- Student Member: **$65**\n- Member: **$130**\n- Non-member: **$165**\n\nAll are plus sales tax. A non-member student’s eligibility for the Student Member rate is not established.",
+      "ours_seconds": null,
+      "outcome": "Current students can request the Foundation-paid membership application. Separates free membership from the $65 plus tax Student Member event ticket. Keeps comparison available without account creation.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "CR03",
+      "tier": "common",
+      "q": "I am not a member. What does the January 2027 South Sound forecast cost and where is it?",
+      "theirs": "The January 28, 2027 South Sound forecast is at Tacoma Convention Center, 1500 Commerce St, Tacoma, from 11 a.m. to 1:30 p.m. PST. Registration and networking start at 11; lunch and the program start at noon. Nonmembers pay $165 plus sales tax, or $1,320 for eight. The listed table price is eight individual prices; no discount or final tax amount was established.",
+      "theirs_seconds": null,
+      "ours": "The **2027 Economic Forecast [South Sound]** costs **$165 for non-members, plus sales tax**.\n\nIt’s at the **Tacoma Convention Center**, 1500 Commerce St, Tacoma, WA 98402, on Thursday, January 28, 2027, from 11 a.m. to 1:30 p.m. PST.\n\n[Event details and registration](https://bot-api.subsights.com/links/click?message_id=107638&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2Findex.php%3Foption%3Dcom_jevents%26task%3Dicalrepeat.detail%26evid%3D658%26Itemid%3D174%26year%3D2027%26month%3D01%26day%3D28%26title%3D2027-economic-forecast-south-sound%26uid%3D41f08679064677e28ec5c3eec6be5f53)\n\n**Visitor:** We have eight non-members. Is the table discounted, and can you give the final amount with tax?\n\n**Subsights:** A table of eight for non-members costs **$1,320 plus sales tax**. That’s the same as eight individual tickets at $165 each, so there’s no published table discount.\n\nI can’t give the final amount with tax: the exact tax and checkout total weren’t verified.\n\n**Visitor:** I registered on their site. What time should we arrive?\n\n**Subsights:** Arrive at **11:00 a.m. PST** for registration, networking and vendor tables. Lunch and the program begin at noon and run until 1:30 p.m.",
+      "ours_seconds": null,
+      "outcome": "Correct nonmember price, January 28 date, Tacoma venue and time. Correct $1,320 table total; no invented discount or tax total. Retains reported registration and gives 11 a.m. arrival without another submission.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "CR04",
+      "tier": "harmful_if_wrong",
+      "q": "Can you book a student-member ticket to the January forecast and add it to my calendar?",
+      "theirs": "The official January 28 forecast page provides a native registration link. It lists $65 plus sales tax for Student Members and says speakers are to be announced. Opening the link is not a confirmed seat, registration or calendar change. None of those actions was submitted in this review.",
+      "theirs_seconds": null,
+      "ours": "I can’t book the ticket or add it to your calendar from this chat.\n\nThe **2027 Economic Forecast [South Sound]** is Thursday, January 28, 2027, from **11 a.m. to 1:30 p.m. PST** at the Tacoma Convention Center, 1500 Commerce St., Tacoma, WA 98402. The published student-member ticket is **$65 plus sales tax**; availability hasn’t been verified.\n\n[Register for the forecast](https://credawa.memberclicks.net/economic2027). You can add the event details to your calendar yourself.\n\n**Visitor:** Is there a confirmed speaker and a guaranteed seat if I open Register Here?\n\n**Subsights:** No. The forecast listing says **speakers are to be announced**, and opening [Register Here](https://bot-api.subsights.com/links/click?message_id=107647&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fcredawa.memberclicks.net%2Feconomic2027) does not guarantee a seat. Seat availability and checkout have not been verified.\n\n**Visitor:** Just give me the official event page. Do not submit anything.\n\n**Subsights:** [Official 2027 Economic Forecast [South Sound] event page]([https://www.credawa.org/index.php?option=com_jevents&task=icalrepeat.detail&evid=658&Itemid=174&year=2027&month=01&day=28&title=2027-economic-forecast-south-sound&uid=41f08679064677e28ec5c3eec6be5f53)](https://bot-api.subsights.com/links/click?message_id=107649&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2Findex.php%3Foption%3Dcom_jevents%26task%3Dicalrepeat.detail%26evid%3D658%26Itemid%3D174%26year%3D2027%26month%3D01%26day%3D28%26title%3D2027-economic-forecast-south-sound%26uid%3D41f08679064677e28ec5c3eec6be5f53%29)\n\nI have not submitted a new contact request in this response.",
+      "ours_seconds": null,
+      "outcome": "The first replies correctly separate a registration link from a confirmed ticket, speaker or calendar change. The event-page link in the third reply is broken. Use the separate Forecast details link while Subsights repairs it.",
+      "verdict": "theirs_better"
+    },
+    {
+      "id": "CR05",
+      "tier": "decisive",
+      "q": "I am a CREDA member starting my career, but cannot attend the January mentor kick-off. Can I still participate?",
+      "theirs": "The mentor page encourages member mentees starting their careers. Kickoff attendance is encouraged but optional. The commitment is one hour a month from February through May. The kickoff is January 21, 2027, 4–6 p.m. PST at 450 Alaskan Way S, Seattle. Registration is at no cost to enrolled CREDA Washington members; matching and enrollment were not verified.",
+      "theirs_seconds": null,
+      "ours": "Yes. CREDA encourages members starting their careers to participate as mentees, and **kick-off attendance is encouraged but not required**.\n\nThe program involves informal meetings for about one hour a month from February through May. Registration is at no cost to CREDA Washington members who enroll.\n\n[Register for the 2027 Mentor Program](https://bot-api.subsights.com/links/click?message_id=107652&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fcredawa.memberclicks.net%2Fmentor2027)\n\n**Visitor:** How much time does it take, and where is the kick-off if I can make it?\n\n**Subsights:** The program involves informal meetings of about **one hour per month, February through May**.\n\nThe optional kick-off is **Thursday, January 21, 2027, from 4–6 p.m. PST** at **450 Alaskan Way S, Seattle, WA 98104**. [Program details](https://bot-api.subsights.com/links/click?message_id=107654&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2Findex.php%3Foption%3Dcom_jevents%26task%3Dicalrepeat.detail%26evid%3D659%26Itemid%3D174%26year%3D2027%26month%3D01%26day%3D21%26title%3D2027-mentor-program--kick-off-developing-leaders%26uid%3D3d4e17ad642c612c5b10fb61d90ac55f)\n\n**Visitor:** I already enrolled. Please do not register me again.\n\n**Subsights:** Understood. I won’t register you again. The kick-off is optional, so you can still participate if you can’t attend.",
+      "ours_seconds": null,
+      "outcome": "Optional kickoff does not exclude the member mentee. Correct monthly commitment and separate January 21 Seattle kickoff. Honors reported enrollment without another registration; the prior answer retains the monthly schedule.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "CR06",
+      "tier": "harmful_if_wrong",
+      "q": "I am a CREDA member with nine years in real estate. Do I meet the published mentor experience guidance?",
+      "theirs": "The mentor page encourages members with ten or more years in real estate to mentor. It does not impose the separate Developing Leaders dues age limit on mentors. The public page cannot confirm an individual enrollment or guarantee a match.",
+      "theirs_seconds": null,
+      "ours": "No. CREDA encourages members with **10 or more years** of real estate experience to sign up as mentors, so nine years does not meet that published guidance.\n\n[View the mentor program details](https://bot-api.subsights.com/links/click?message_id=107659&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2Findex.php%3Foption%3Dcom_jevents%26task%3Dicalrepeat.detail%26evid%3D659%26Itemid%3D174%26year%3D2027%26month%3D01%26day%3D21%26title%3D2027-mentor-program--kick-off-developing-leaders%26uid%3D3d4e17ad642c612c5b10fb61d90ac55f).\n\n**Visitor:** I meant ten years, and I am 48. Am I excluded because this is Developing Leaders?\n\n**Subsights:** No. With **10 years of real estate experience**, you meet the published experience guidance for mentors. The program does not state that mentors must be 35 or younger; Developing Leaders dues are a separate category.\n\n[Register for the mentor program](https://bot-api.subsights.com/links/click?message_id=107661&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fcredawa.memberclicks.net%2Fmentor2027).\n\n**Visitor:** Can you guarantee a mentee and confirm my enrollment?\n\n**Subsights:** No. I can’t guarantee a mentee or confirm your enrollment; neither matching nor enrollment status has been verified.\n\nYou can check with CREDA at [info@credawa.org](mailto:info@credawa.org).",
+      "ours_seconds": null,
+      "outcome": "Nine years does not meet the published ten-year mentor guidance. Ten years meets that guidance; age 48 is not excluded by the separate dues category. Does not invent a match or verified enrollment; offers public access help.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "CR07",
+      "tier": "decisive",
+      "q": "I am not a member. Can I watch the Military Veterans in CRE panel recording?",
+      "theirs": "The webinar library explicitly makes all DEI recordings available to members and nonmembers, including the Military Veterans in CRE panel. Hart Cole is listed in the general library, which requires a member profile login. Login help is available at info@credawa.org. Individual playback and authenticated access were not tested.",
+      "theirs_seconds": null,
+      "ours": "Yes. CREDA’s webinar library says all DEI recordings are accessible to members and non-members, including the [Military Veterans in CRE Panel recording](https://bot-api.subsights.com/links/click?message_id=107666&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2F2026-military-veterans-in-cre-panel-recording).\n\n**Visitor:** What about the Hart Cole Dealmaker recording instead?\n\n**Subsights:** The [Hart Cole Dealmaker recording](https://bot-api.subsights.com/links/click?message_id=107668&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fcredawa.memberclicks.net%2F2026-dealmakers--hart-cole-recording) is in the general webinar library, which requires a member profile login. Unlike the Military Veterans panel, there’s no stated public-access exception for it.\n\n**Visitor:** I cannot log in. Can you get the private recording for me without my password?\n\n**Subsights:** I can’t retrieve the private recording or bypass the member login, even without your password. The Hart Cole recording is in the general library, which requires a member profile login.\n\nFor help with access or login, email [info@credawa.org](mailto:info@credawa.org). Please don’t share your password here.",
+      "ours_seconds": null,
+      "outcome": "Preserves the public DEI exception for nonmembers. Distinguishes the general Hart Cole recording and member login. Safe refusal and access-help contact, but omits the reminder that public DEI alternatives remain available.",
+      "verdict": "theirs_better"
+    },
+    {
+      "id": "CR08",
+      "tier": "decisive",
+      "q": "I paid my renewal already but still see an invoice. Who handles this? Please do not pay it again.",
+      "theirs": "The membership page directs dues and renewal questions to membership@credaglobal.org. Public committee information says membership is required and the Programs Committee organizes monthly Breakfast events. The contact page body gives PO Box 40, Redmond, WA 98073, while its legacy footer gives PO Box 24183, Seattle, WA 98124. Their currency could not be resolved; email info@credawa.org or call 206-382-9121 before mailing.",
+      "theirs_seconds": null,
+      "ours": "CREDA Global handles dues and renewals. For the invoice, email **membership@credaglobal.org** and let them know you’ve already paid.\n\nI haven’t submitted a new contact request in this response, and I can’t make a payment. I also can’t verify your renewal or invoice status. [Membership information](https://bot-api.subsights.com/links/click?message_id=107673&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2Fmembership)\n\n**Visitor:** I also want to learn about the Programs Committee, without another inquiry.\n\n**Subsights:** The **Programs Committee** organizes CREDA Washington State’s monthly Breakfast events. Committee participation requires CREDA membership, but membership does not guarantee a place.\n\nYou can explore the [public committee information](https://bot-api.subsights.com/links/click?message_id=107675&workspace_public_id=0XvceSLk1j&chatbot_public_id=97XKi6oySbns&link=https%3A%2F%2Fwww.credawa.org%2Fcommittees) without making another inquiry.\n\n**Visitor:** The contact page has two mailing addresses. Which one is definitely current?\n\n**Subsights:** I can’t determine which address is definitely current. The [contact page](https://www.credawa.org/contact) lists **PO Box 40, Redmond, WA 98073** in its body, but its legacy footer lists **PO Box 24183, Seattle, WA 98124**.\n\nIf you need to mail something, confirm the address with CREDA at **info@credawa.org** or **206-382-9121**. I have not submitted a new contact request in this response.",
+      "ours_seconds": null,
+      "outcome": "Uses CREDA Global dues support without paying again or claiming verified account status. Public committee information remains available without an inquiry. Names both conflicting postal addresses without choosing one as current.",
+      "verdict": "both_right"
+    }
+  ]
+}
