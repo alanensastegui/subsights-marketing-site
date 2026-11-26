@@ -4,6 +4,28 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "lucas-pinto-group",
+    "label": "Lucas Pinto Group",
+    "url": "https://lucaspintoteam.com/",
+    "headline": "Refine your home search or find Gavin’s calendar.",
+    "description": "Keep the details that matter as you change your search, then open the team’s official property filters or Gavin Stewart’s booking page.",
+    "questions": ["Where should I search for homes?", "Can I change my price range and keep three bedrooms?", "Where is Gavin Stewart’s calendar?"],
+    "sources": [
+      {"label": "Lucas Pinto Group Property Listings", "url": "https://lucaspintoteam.com/properties/"},
+      {"label": "Gavin Stewart’s team profile", "url": "https://lucaspintoteam.com/gavin-stewart/"},
+      {"label": "Gavin Stewart’s 30-minute calendar", "url": "https://calendly.com/gavin-lpgreal/30min"}
+    ],
+    "tools": [
+      {"name": "Search for a home", "text": "Use the team’s location, price and bedroom filters for current listings.", "href": "https://lucaspintoteam.com/properties/", "action": "Lucas Pinto Group Property Listings"},
+      {"name": "Learn about Gavin", "text": "Open Gavin’s public team profile.", "href": "https://lucaspintoteam.com/gavin-stewart/", "action": "Gavin Stewart’s profile"},
+      {"name": "See Gavin’s calendar", "text": "Open Gavin’s own booking page and choose a time if you want a meeting.", "href": "https://calendly.com/gavin-lpgreal/30min", "action": "Gavin’s 30-minute calendar"}
+    ],
+    "scope": "Confirm listings through the team’s search and choose appointments through Gavin’s calendar. The chat leaves the search, booking and consent in your hands.",
+    "accent": "#2a4265",
+    "widgetUrl": "",
+    "teamView": []
+  },
+  {
     "slug": "colliers-seattle-dsf",
     "label": "Colliers Seattle Debt & Structured Finance",
     "url": "https://www.colliers.com/en/services/colliers-debt-and-structured-finance",

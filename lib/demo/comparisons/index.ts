@@ -9,6 +9,7 @@ import crewSeattle from './crew-seattle.json';
 import wmfha from './wmfha.json';
 import bellevueRotary from './bellevue-rotary.json';
 import kirklandRotary from './kirkland-rotary.json';
+import lucasPintoGroup from './lucas-pinto-group.json';
 import colliersSeattleDsf from './colliers-seattle-dsf.json';
 import seattleFinanceCollective from './seattle-finance-collective.json';
 import timberRidge from './timber-ridge.json';
@@ -37,6 +38,7 @@ const FILES: Record<string, unknown> = {
   wmfha,
   'bellevue-rotary': bellevueRotary,
   'kirkland-rotary': kirklandRotary,
+  'lucas-pinto-group': lucasPintoGroup,
   'colliers-seattle-dsf': colliersSeattleDsf,
   'seattle-finance-collective': seattleFinanceCollective,
   'timber-ridge': timberRidge,

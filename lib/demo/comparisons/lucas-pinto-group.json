@@ -1,0 +1,29 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "lucas-pinto-group",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-26"
+  },
+  "questions": [
+    {
+      "id": "gs-listing",
+      "tier": "decisive",
+      "q": "Can you show me homes under my budget that are available right now?",
+      "theirs": "The team’s property search provides location, price and bedroom filters.",
+      "ours": "You can search by price, location and bedrooms on the [Lucas Pinto Group Property Listings page](https://bot-api.subsights.com/links/click?message_id=107785&workspace_public_id=0XvceSLk1j&chatbot_public_id=uXkpDxR8KXh6&link=https%3A%2F%2Flucaspintoteam.com%2Fproperties%2F). I can’t verify live availability from this chat.\n\nWhat’s your budget ceiling?\n\n**Visitor:** I'm buying near Mill Creek, up to $850,000, three bedrooms. I'm only exploring, not pre-approved, and I don't want calls.\n\nFor your search, use **Mill Creek**, a maximum price of **$850,000**, and **three bedrooms** on the [Property Listings page](https://bot-api.subsights.com/links/click?message_id=107787&workspace_public_id=0XvceSLk1j&chatbot_public_id=uXkpDxR8KXh6&link=https%3A%2F%2Flucaspintoteam.com%2Fproperties%2F). I can’t verify current availability from this chat.\n\nI understand you’re exploring, aren’t pre-approved and don’t want calls. I have not submitted a new contact request in this response.\n\n**Visitor:** Actually change that to Bothell, maximum $750,000. Keep three bedrooms and everything else.\n\nUse **Bothell**, a maximum price of **$750,000**, and **three bedrooms** on the [Property Listings page](https://bot-api.subsights.com/links/click?message_id=107789&workspace_public_id=0XvceSLk1j&chatbot_public_id=uXkpDxR8KXh6&link=https%3A%2F%2Flucaspintoteam.com%2Fproperties%2F). I can’t verify current availability from this chat.\n\nYou’re still exploring, not pre-approved, and don’t want calls. I have not submitted a new contact request in this response.",
+      "outcome": "Keeps three bedrooms and the visitor’s no-calls preference while updating the search to Bothell and $750,000. Current availability stays with the live listings."
+    },
+    {
+      "id": "gs-talk",
+      "tier": "harmful_if_wrong",
+      "q": "How do I contact Gavin about buying or selling?",
+      "theirs": "Gavin’s official team profile publishes his own 30-minute calendar.",
+      "ours": "You can use [Gavin Stewart’s 30-minute meeting calendar](https://bot-api.subsights.com/links/click?message_id=107792&workspace_public_id=0XvceSLk1j&chatbot_public_id=uXkpDxR8KXh6&link=https%3A%2F%2Fcalendly.com%2Fgavin-lpgreal%2F30min) to choose an available time to discuss buying or selling.\n\nYou can also visit [Gavin’s team profile](https://bot-api.subsights.com/links/click?message_id=107792&workspace_public_id=0XvceSLk1j&chatbot_public_id=uXkpDxR8KXh6&link=https%3A%2F%2Flucaspintoteam.com%2Fgavin-stewart%2F).\n\n**Visitor:** Could Gavin do Tuesday at 3pm? I'm only exploring, so please don't call me.\n\nI can’t confirm whether Gavin is available Tuesday at 3 p.m. You can check [Gavin’s 30-minute calendar](https://bot-api.subsights.com/links/click?message_id=107794&workspace_public_id=0XvceSLk1j&chatbot_public_id=uXkpDxR8KXh6&link=https%3A%2F%2Fcalendly.com%2Fgavin-lpgreal%2F30min) yourself.\n\nI understand you’re just exploring and don’t want a call. I have not submitted a new contact request in this response.\n\n**Visitor:** Actually Thursday morning instead. I only want Gavin's calendar link. I haven't booked anything.\n\n[Gavin’s 30-minute calendar](https://bot-api.subsights.com/links/click?message_id=107796&workspace_public_id=0XvceSLk1j&chatbot_public_id=uXkpDxR8KXh6&link=https%3A%2F%2Fcalendly.com%2Fgavin-lpgreal%2F30min)",
+      "outcome": "After the visitor revises the time and asks for the link alone, returns Gavin’s official calendar without confirming availability or a booking."
+    }
+  ]
+}
