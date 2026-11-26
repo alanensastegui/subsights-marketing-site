@@ -1,0 +1,29 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "northmarq",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-26"
+  },
+  "questions": [
+    {
+      "id": "NM01",
+      "tier": "decisive",
+      "q": "I’m looking to buy an operating apartment property around Seattle. Where should I look on Northmarq?",
+      "theirs": "The multifamily search is the starting point for operating properties. On Tyler Smith’s profile, the Properties tab lists Rainier Beach Development Site as Vacant Land.",
+      "ours": "Start with Northmarq’s [multifamily property listings](https://bot-api.subsights.com/links/click?message_id=107703&workspace_public_id=0XvceSLk1j&chatbot_public_id=wpdh9BsY0WrQ&link=https%3A%2F%2Fwww.northmarq.com%2Fproperties%2Fmultifamily) and look for Seattle-area apartment properties. Confirm that a property is operating and still available before pursuing it.\n\nYou can also check the **Properties** tab on [Seattle broker Tyler Smith’s profile](https://bot-api.subsights.com/links/click?message_id=107703&workspace_public_id=0XvceSLk1j&chatbot_public_id=wpdh9BsY0WrQ&link=https%3A%2F%2Fwww.northmarq.com%2Fpeople%2Ftyler-smith).\n\n**Visitor:** I saw Rainier Beach Development Site. Is that an operating apartment property, and where is the actual listing?\n\n**Subsights:** No. **Rainier Beach Development Site** is listed as vacant land, not an operating apartment property.\n\nTo reach the listing, open [Tyler Smith’s Northmarq profile](https://bot-api.subsights.com/links/click?message_id=107706&workspace_public_id=0XvceSLk1j&chatbot_public_id=wpdh9BsY0WrQ&link=https%3A%2F%2Fwww.northmarq.com%2Fpeople%2Ftyler-smith), select the **Properties** tab, and find the Rainier Beach Development Site card.",
+      "outcome": "The answer changes from a multifamily search to the named vacant land listing and gives the profile and tab that contain the listing card."
+    },
+    {
+      "id": "NM02",
+      "tier": "decisive",
+      "q": "What’s the current asking price and exact number of units for Cheney Park Commons?",
+      "theirs": "The Cheney Park Commons card says Contact Broker for Pricing. The checked public views showed conflicting unit counts. Northmarq’s financing inquiry form is a separate public page.",
+      "ours": "Cheney Park Commons is listed as **“Contact Broker for Pricing”**; a current asking price isn’t available in the information I have. Public renderings also disagree on the unit count: **89 or 90 units**.\n\nFor current figures, contact the broker through [Tyler Smith’s profile and its Properties tab](https://bot-api.subsights.com/links/click?message_id=107709&workspace_public_id=0XvceSLk1j&chatbot_public_id=wpdh9BsY0WrQ&link=https%3A%2F%2Fwww.northmarq.com%2Fpeople%2Ftyler-smith).\n\n**Visitor:** I still mean Cheney Park Commons, but I want to explore financing it. Where should I start an inquiry?\n\n**Subsights:** Start with Northmarq’s [financing inquiry form](https://bot-api.subsights.com/links/click?message_id=107711&workspace_public_id=0XvceSLk1j&chatbot_public_id=wpdh9BsY0WrQ&link=https%3A%2F%2Fwww.northmarq.com%2Fform%2Flisting-engine-financing) and identify **Cheney Park Commons in Cheney, Washington** as the property. The form starts a financing conversation; it is not a loan approval.",
+      "outcome": "The answer withholds an exact price and unit count, keeps Cheney Park Commons in view and links to the financing inquiry."
+    }
+  ]
+}
