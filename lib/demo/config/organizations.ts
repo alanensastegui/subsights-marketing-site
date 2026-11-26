@@ -4,6 +4,56 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "seattle-finance-collective",
+    "label": "Seattle Finance Collective",
+    "url": "https://www.seattlefinancecollective.com/",
+    "headline": "Find your next step with Seattle Finance Collective.",
+    "description": "Check the guest event allowance, open the membership application or find the right place to ask about sponsorship.",
+    "questions": [
+      "Can I attend a second event as a guest?",
+      "How do I apply after two SFC events?",
+      "Where do I ask about sponsorship?"
+    ],
+    "sources": [
+      {
+        "label": "Membership and guest policy",
+        "url": "https://www.seattlefinancecollective.com/members"
+      },
+      {
+        "label": "SFC Event Calendar",
+        "url": "https://www.seattlefinancecollective.com/new-events"
+      },
+      {
+        "label": "Contact Seattle Finance Collective",
+        "url": "https://www.seattlefinancecollective.com/contact"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Find an event",
+        "text": "Look up dates and check the details for a particular event.",
+        "href": "https://www.seattlefinancecollective.com/new-events",
+        "action": "SFC Event Calendar"
+      },
+      {
+        "name": "Apply for membership",
+        "text": "Open the official application after attending two events.",
+        "href": "https://www.seattlefinancecollective.com/new-sfc-member-application",
+        "action": "New SFC Member Application"
+      },
+      {
+        "name": "Ask about sponsorship",
+        "text": "Reach SFC about sponsoring an event.",
+        "href": "https://www.seattlefinancecollective.com/contact",
+        "action": "Contact Seattle Finance Collective"
+      }
+    ],
+    "scope": "Seattle Finance Collective handles registration, applications, sponsorship and dues through its own pages and team.",
+    "accent": "#244662",
+    "widgetUrl": "",
+    "teamView": []
+  },
+  {
     "slug": "timber-ridge",
     "label": "Timber Ridge at Talus",
     "url": "https://timberridgelcs.com/",

@@ -3,6 +3,7 @@ import 'server-only';
 // Exact existing bot/workspace identities; capabilities never live in this catalog.
 export const PRIVATE_DEMO_IDENTITIES: Record<string, {workspace: string; bot: string}> = {
   'timber-ridge': { workspace: '0XvceSLk1j', bot: 'fjFKFtGY0G7e' },
+  'seattle-finance-collective': { workspace: '0XvceSLk1j', bot: 'qIUvfq6hdXEr' },
   'kirkland-rotary': { workspace: '0XvceSLk1j', bot: 'Jo00xh1PEbCV' },
   'bellevue-rotary': { workspace: '0XvceSLk1j', bot: 'IfO177RQiubx' },
   reaps: { workspace: '0XvceSLk1j', bot: 'R3OxycakOFvq' },
