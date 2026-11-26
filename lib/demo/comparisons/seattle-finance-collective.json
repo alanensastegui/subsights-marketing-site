@@ -1,0 +1,29 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "seattle-finance-collective",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-26"
+  },
+  "questions": [
+    {
+      "id": "SF01",
+      "tier": "common",
+      "q": "I went to one event as a guest this calendar year. Can I go to another without joining, and where do I check dates?",
+      "theirs": "The membership page gives prospective members two complimentary events per calendar year. The separate event calendar is the place to check dates. The November grid checked had no verified future guest slot. The contact page accepts general questions.",
+      "ours": "Yes. Under SFC’s published policy, prospective members can attend two complimentary events per calendar year, so you have **one remaining**, subject to the event’s own guest terms.\n\nCheck dates on the [SFC event calendar](https://bot-api.subsights.com/links/click?message_id=107765&workspace_public_id=0XvceSLk1j&chatbot_public_id=qIUvfq6hdXEr&link=https%3A%2F%2Fwww.seattlefinancecollective.com%2Fnew-events%3Fview%3Dcalendar%26month%3D11-2026). The general allowance doesn’t confirm that a particular event qualifies or has space. Check its listing or [contact SFC](https://bot-api.subsights.com/links/click?message_id=107765&workspace_public_id=0XvceSLk1j&chatbot_public_id=qIUvfq6hdXEr&link=https%3A%2F%2Fwww.seattlefinancecollective.com%2Fcontact) to confirm.\n\n**Visitor:** I don’t have an event name yet. Can you confirm that the next event is open to guests? Please don’t register me.\n\nI can’t confirm that the next event is open to guests without a specific listing; the general guest allowance doesn’t establish eligibility or available space.\n\nCheck the [event calendar](https://bot-api.subsights.com/links/click?message_id=107767&workspace_public_id=0XvceSLk1j&chatbot_public_id=qIUvfq6hdXEr&link=https%3A%2F%2Fwww.seattlefinancecollective.com%2Fnew-events%3Fview%3Dcalendar%26month%3D11-2026), then [contact SFC](https://bot-api.subsights.com/links/click?message_id=107767&workspace_public_id=0XvceSLk1j&chatbot_public_id=qIUvfq6hdXEr&link=https%3A%2F%2Fwww.seattlefinancecollective.com%2Fcontact) about the event’s guest terms. I can’t register you.",
+      "outcome": "Applies the annual allowance to the visitor’s count, then directs them to SFC to confirm eligibility for a particular event."
+    },
+    {
+      "id": "SF02",
+      "tier": "decisive",
+      "q": "I’ve already been to two SFC events this calendar year and want to join. What happens next?",
+      "theirs": "The membership page describes the application, committee conversation and annual invoice if approved. Its link opens the official application. The separate contact page handles sponsorship.",
+      "ours": "The next step is to submit the [New SFC Member Application](https://bot-api.subsights.com/links/click?message_id=107770&workspace_public_id=0XvceSLk1j&chatbot_public_id=qIUvfq6hdXEr&link=https%3A%2F%2Fwww.seattlefinancecollective.com%2Fnew-sfc-member-application).\n\nThe Membership Committee will then reach out for a brief introductory conversation. If you’re approved, SFC invoices you for annual dues.\n\n**Visitor:** Actually, my company just wants to ask about sponsorship. Which page should I use? Please don’t send anything.\n\nUse the [SFC contact page](https://bot-api.subsights.com/links/click?message_id=107772&workspace_public_id=0XvceSLk1j&chatbot_public_id=qIUvfq6hdXEr&link=https%3A%2F%2Fwww.seattlefinancecollective.com%2Fcontact) to ask about sponsorship. The membership application is for joining.\n\nI have not submitted a new contact request in this response.",
+      "outcome": "Opens the official application for membership and switches to Contact when the visitor asks about sponsorship."
+    }
+  ]
+}
