@@ -4,6 +4,56 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "colliers-seattle-dsf",
+    "label": "Colliers Seattle Debt & Structured Finance",
+    "url": "https://www.colliers.com/en/services/colliers-debt-and-structured-finance",
+    "headline": "Find the right Colliers financing or servicing route.",
+    "description": "Connect with Seattle’s multifamily financing team for a new inquiry, or open the official borrower portal for an existing loan.",
+    "questions": [
+      "Who handles Seattle multifamily financing?",
+      "Who can I talk to about a refinance?",
+      "Where is the existing borrower login?"
+    ],
+    "sources": [
+      {
+        "label": "Colliers’ financing and servicing routes",
+        "url": "https://www.colliers.com/en/services/colliers-debt-and-structured-finance"
+      },
+      {
+        "label": "Mark Plenge’s Seattle financing profile",
+        "url": "https://www.colliers.com/en/experts/mark-plenge"
+      },
+      {
+        "label": "Colliers’ official borrower sign-in",
+        "url": "https://colliers.precision-lm.com/"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Seattle financing contact",
+        "text": "Find the Colliers Seattle expert for multifamily acquisition or refinance.",
+        "href": "https://www.colliers.com/en/experts/mark-plenge",
+        "action": "Mark Plenge’s profile"
+      },
+      {
+        "name": "Debt & Structured Finance",
+        "text": "See Colliers’ published financing and servicing routes.",
+        "href": "https://www.colliers.com/en/services/colliers-debt-and-structured-finance",
+        "action": "Colliers financing services"
+      },
+      {
+        "name": "Service an existing loan",
+        "text": "Open the borrower sign-in published by Colliers for current clients.",
+        "href": "https://colliers.precision-lm.com/",
+        "action": "Colliers borrower portal"
+      }
+    ],
+    "scope": "Colliers handles rates and eligibility, account access and loan servicing through its own team and portal.",
+    "accent": "#235373",
+    "widgetUrl": "",
+    "teamView": []
+  },
+  {
     "slug": "seattle-finance-collective",
     "label": "Seattle Finance Collective",
     "url": "https://www.seattlefinancecollective.com/",
