@@ -4,6 +4,75 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    slug: 'kidder-simon-anderson',
+    label: 'Simon | Anderson',
+    url: 'https://simonandersonteam.com/',
+    headline: 'Keep your apartment search on track.',
+    description:
+      'Explore listings, choose a market report, understand valuation or find the right person. Change a detail without starting over.',
+    questions: [
+      'Find listings by county and type',
+      'Choose a Puget Sound report',
+      'How does valuation work?',
+      'Find a team member',
+    ],
+    scope:
+      'Selected official public pages checked November 26, 2026. Finish listing searches, valuation and contact requests on the team’s site.',
+    entry: [
+      {
+        label: 'Try it',
+        text: 'Ask a question, then change the county, report edition or another detail.',
+      },
+    ],
+    sources: [
+      {
+        label: 'Property listings',
+        url: 'https://simonandersonteam.com/listings/',
+      },
+      {
+        label: 'Market reports',
+        url: 'https://simonandersonteam.com/market-reports/',
+      },
+      {
+        label: 'How it works',
+        url: 'https://simonandersonteam.com/how-we-do-it/',
+      },
+      {
+        label: 'Team',
+        url: 'https://simonandersonteam.com/team/',
+      },
+    ],
+    accent: '#1f2937',
+    widgetUrl: '',
+    teamView: [],
+    tools: [
+      {
+        name: 'Find listings',
+        text: 'Choose property type, county, status and broker on the team’s listing page. Use List View or Map View to explore matching results.',
+        href: 'https://simonandersonteam.com/listings/',
+        action: 'Property listings',
+      },
+      {
+        name: 'Choose a report',
+        text: 'Find the November 10 Q4 2026 Puget Sound report or the August 16 Q3 edition for historical comparison. Open the selected report from the archive.',
+        href: 'https://simonandersonteam.com/market-reports/',
+        action: 'Report archive',
+      },
+      {
+        name: 'Explore valuation',
+        text: 'Learn what the team asks for in its free valuation request and how its six-stage brokerage process works. You can explore before deciding to sell.',
+        href: 'https://simonandersonteam.com/how-we-do-it/',
+        action: 'Valuation and process',
+      },
+      {
+        name: 'Find the right person',
+        text: 'Choose a named team member, a general discussion or research updates. Use the existing contact route only when you want it.',
+        href: 'https://simonandersonteam.com/team/',
+        action: 'Team profiles',
+      },
+    ],
+  },
+  {
     "slug": "gsba-business-support",
     "label": "GSBA",
     "url": "https://thegsba.org/",
