@@ -1,0 +1,90 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "oneredmond",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "OR01",
+      "tier": "decisive",
+      "q": "I run a small business in Kirkland and need help with pricing. Do I have to buy OneRedmond membership to talk to someone?",
+      "theirs": "The public support pages offer no-cost confidential business advice for Redmond and East King County, naming Shawn Palmer and his published contact routes. KCLS market research is available separately from contact. No Chamber-membership prerequisite is stated.",
+      "theirs_seconds": null,
+      "ours": "**No.** OneRedmond offers no-cost, confidential one-on-one business advice to East King County business owners, and its public service does not state a Chamber membership requirement.\n\nYou can contact business advisor Shawn Palmer to ask about pricing at [Advising@OneEastside.org](mailto:Advising@OneEastside.org) or **(425) 885-4014, extension 3**. [See the advising details](https://bot-api.subsights.com/links/click?message_id=107575&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Foneredmond.org%2Fsupport-services%2F).\n\n**Visitor:** Please give me the adviser route, but do not send anything.\n\n**Subsights:** Email business advisor Shawn Palmer at [Advising@OneEastside.org](mailto:Advising@OneEastside.org) or call **(425) 885-4014, extension 3**. The advice is no-cost and confidential; no Chamber membership prerequisite is stated.\n\nI have not submitted a new contact request in this response.\n\n**Visitor:** I already emailed Shawn. Can I research customers while I wait, without another inquiry?\n\n**Subsights:** Yes. OneRedmond’s [support services page](https://bot-api.subsights.com/links/click?message_id=107579&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Foneredmond.org%2Fsupport-services%2F) links to **King County Library System market-research resources** you can explore yourself. They’re a starting point for researching potential customers without making another inquiry.",
+      "ours_seconds": null,
+      "outcome": "Preserves Kirkland/East King County free advice without a paid-membership gate; publishes the verified adviser route. Provides the published adviser without sending or booking. Honors the reported email and provides KCLS self-service research without another inquiry.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "OR02",
+      "tier": "harmful_if_wrong",
+      "q": "I need a grant to launch a Redmond shop. Can you guarantee which award I get?",
+      "theirs": "The public startup page links KCLS, SCORE, Entrepreneur Roadmap, SPARK and Startup425. The separate /grants-programs/ page returned HTTP 404 on November 26; that does not establish whether grants exist or who qualifies. Native business advice remains available.",
+      "theirs_seconds": null,
+      "ours": "No—I can’t guarantee a grant or tell you which award you’ll receive. Current grant eligibility and awards aren’t verified in the information available here.\n\nFor your Redmond shop, [OneRedmond’s startup support page](https://bot-api.subsights.com/links/click?message_id=107582&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Foneredmond.org%2Fsupport-services%2F) offers no-cost, confidential business advice and other startup resources. Paid Chamber membership is not stated as a prerequisite for the advice.\n\n**Visitor:** Your grants page will not open. Does that mean there are no grants?\n\n**Subsights:** No. A grants page that won’t open doesn’t mean there are no grants. I can’t verify which grants are currently available or whether your shop qualifies.\n\nYou can use [OneRedmond’s no-cost business advice](https://bot-api.subsights.com/links/click?message_id=107584&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Foneredmond.org%2Fsupport-services%2F) to ask about current funding options for your Redmond shop.\n\n**Visitor:** I only want to browse resources for now, no contact.\n\n**Subsights:** You can browse [OneRedmond’s startup support resources](https://bot-api.subsights.com/links/click?message_id=107586&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Foneredmond.org%2Fsupport-services%2F), including KCLS market-research resources, Entrepreneur Roadmap workshops, OneEastside SPARK and Startup425.\n\nCurrent grant eligibility and workshop dates aren’t verified. I have not submitted a new contact request in this response.",
+      "ours_seconds": null,
+      "outcome": "Declines a guaranteed award and preserves no-cost startup resources. Does not infer no grants from a broken page and supplies a funding-advice route, but omits the specific /grants-programs/ failure observed November 26. Respects browse-only intent and keeps public resources available without intake.",
+      "verdict": "theirs_better"
+    },
+    {
+      "id": "OR03",
+      "tier": "decisive",
+      "q": "We are a for-profit company with exactly five employees. What is the lowest listed annual membership for us?",
+      "theirs": "The native annual levels list MicroEnterprise at $350 for five or fewer employees and Business Builder at $500. The MicroEnterprise page calls $4,500 a Total Membership Value and offers discounted insurance access; neither guarantees cash savings or free insurance.",
+      "theirs_seconds": null,
+      "ours": "The lowest listed option for your for-profit company is **MicroEnterprise membership at $350 per year**. It’s available to companies with **five or fewer employees**, so your company meets the stated employee limit.\n\n[View MicroEnterprise membership](https://bot-api.subsights.com/links/click?message_id=107589&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fmicroenterprise-membership)\n\n**Visitor:** Actually we just hired our sixth employee. Is it still $350?\n\n**Subsights:** No. The **$350-per-year MicroEnterprise membership** is for companies with five or fewer employees, so your company no longer meets that limit.\n\nThe next-lowest listed option for a for-profit company is **Business Builder at $500 per year**.\n\n[Compare membership levels](https://bot-api.subsights.com/links/click?message_id=107591&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fmembership-levels)\n\n**Visitor:** Would paying guarantee $4,500 savings and free health insurance?\n\n**Subsights:** No. The published **$4,500 “Total Membership Value”** is a marketing valuation, not guaranteed savings or a refund. Membership also offers access to discounted insurance, **not free health insurance**.\n\nThat $4,500 figure appears on the MicroEnterprise page; with six employees, your company exceeds that level’s five-employee limit. [Compare membership levels](https://bot-api.subsights.com/links/click?message_id=107593&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fmembership-levels).",
+      "ours_seconds": null,
+      "outcome": "Exactly five employees fits the published $350 annual MicroEnterprise limit. Recalculates eligibility at six employees and selects the lowest listed basic $500 annual level. Rejects guaranteed $4,500 savings and free insurance while retaining the six-employee correction.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "OR04",
+      "tier": "harmful_if_wrong",
+      "q": "We are a nonprofit with eight employees. Does that force us into the $500 level?",
+      "theirs": "The native annual Nonprofit level is $250, only for nonprofit organizations, without a published five-employee cap. The separate for-profit MicroEnterprise level has that cap. Business Builder is $500; higher listed levels cost $1,000, $2,500 and $5,000.",
+      "theirs_seconds": null,
+      "ours": "No. OneRedmond lists a **Nonprofit membership at $250 per year** for nonprofit organizations, with no employee cap stated. Your eight employees do not force you into the $500 Business Builder level.\n\nThe five-employee limit applies to the separate MicroEnterprise level, not the nonprofit level.\n\n[Compare membership levels](https://bot-api.subsights.com/links/click?message_id=107596&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fmembership-levels)\n\n**Visitor:** What if I meant a for-profit business instead?\n\n**Subsights:** For a **for-profit business with eight employees**, the $250 nonprofit level does not apply, and the $350 MicroEnterprise level is limited to businesses with five or fewer employees.\n\nThe lowest-priced listed level available to consider is **Business Builder at $500 per year**. Higher-priced levels are also listed.\n\n[Compare membership levels](https://bot-api.subsights.com/links/click?message_id=107598&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fmembership-levels)\n\n**Visitor:** Do not enroll us. We only want to compare.\n\n**Subsights:** Understood—comparison only. For a for-profit business with eight employees, the listed annual levels start with **Business Builder at $500**, followed by Business Connector at $1,000, Business Advocate at $2,500, and Business Influencer at $5,000. The $350 MicroEnterprise level is limited to five or fewer employees.\n\n[Compare the levels and benefits](https://bot-api.subsights.com/links/click?message_id=107600&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fmembership-levels)",
+      "ours_seconds": null,
+      "outcome": "Applies the nonprofit $250 annual exception without importing the MicroEnterprise employee cap. Retains eight employees when status changes to for-profit and selects $500 Business Builder. Keeps comparison available without enrollment or payment.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "OR05",
+      "tier": "common",
+      "q": "I want a public networking lunch in early December, not a board meeting. What is the plan?",
+      "theirs": "The dated native event page lists Thursday, December 3, 2026, noon–1 p.m. PST at Together Center, 16305 NE 87th Street, Suite 110, Redmond. Registration and lunch start at 11:45 a.m. Members attend free; nonmember price and availability were not verified. The topic is a small-group health plan comparison tool, not AI. The board meeting is a different event.",
+      "theirs_seconds": null,
+      "ours": "The **Holiday Networking Lunch & Learn** is the relevant networking event—not a board meeting.\n\n- **Thursday, December 3, 2026**, noon–1 p.m. PST\n- **Together Center**, 16305 NE 87th St., Suite 110, Redmond, WA 98052\n- Arrive **11:45 a.m.–noon** to register and get lunch; bring business cards.\n- The featured topic is a demonstration of a free small-group health plan comparison tool for exploring estimated 2027 premiums.\n\nOneRedmond members attend free. The nonmember price, remaining seats and registration deadline were not verified in the dated event listing.\n\n[Event details](https://bot-api.subsights.com/links/click?message_id=107603&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fevents%2Flunchdec26) · [Register here](https://bot-api.subsights.com/links/click?message_id=107603&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fevents%2Flunchdec26%2Fregister)\n\n**Visitor:** I am not a member. Is it free, and is the topic AI?\n\n**Subsights:** The listing says **OneRedmond members attend free**; the nonmember price is not verified, so I can’t confirm whether it’s free for you.\n\nThe topic is **not AI**. It’s a demonstration of a free small-group health plan comparison tool for exploring estimated 2027 premiums.\n\n[See the event details](https://bot-api.subsights.com/links/click?message_id=107605&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fevents%2Flunchdec26).\n\n**Visitor:** I registered on their site already. Where should I go and when should I arrive?\n\n**Subsights:** Go to **Together Center, 16305 NE 87th St., Suite 110, Redmond, WA 98052**, on **Thursday, December 3**.\n\nArrive between **11:45 a.m. and noon** to check in and get lunch. The program runs **noon–1 p.m. PST**. Bring business cards.",
+      "ours_seconds": null,
+      "outcome": "Selects the public December 3 lunch rather than the December 2 board meeting; correct venue, arrival and topic. Does not promise nonmember free entry or relabel the health-plan comparison demonstration as AI. Honors reported registration without another intake; correct Together Center address and 11:45 arrival.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "OR06",
+      "tier": "harmful_if_wrong",
+      "q": "Can you register two of us for the holiday lunch and add it to my calendar?",
+      "theirs": "The exact event page links to its own native registration flow. A link does not prove seats or a completed registration. Neither registration nor calendar changes were submitted in this review.",
+      "theirs_seconds": null,
+      "ours": "I can’t register you or add the event to your calendar from this chat. You can use the [Holiday Lunch registration page](https://bot-api.subsights.com/links/click?message_id=107610&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fevents%2Flunchdec26%2Fregister) for the two of you; availability hasn’t been verified. Members attend free, but the nonmember price is unconfirmed.\n\nFor your calendar: **Thursday, December 3, 2026, noon–1 p.m. PST**, at Together Center, 16305 NE 87th Street, Suite 110, Redmond, WA 98052. Registration and lunch begin at 11:45 a.m.\n\n**Visitor:** Does the register link prove our seats are confirmed?\n\n**Subsights:** No. The [registration link](https://bot-api.subsights.com/links/click?message_id=107612&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fevents%2Flunchdec26%2Fregister) is a route to register; it does not confirm seats for either of you. Availability and the registration flow haven’t been verified.\n\n**Visitor:** Then just leave me the event page. No submission or calendar change.\n\n**Subsights:** [Holiday Networking Lunch & Learn event page](https://bot-api.subsights.com/links/click?message_id=107614&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Fengage.oneredmond.org%2Fevents%2Flunchdec26)",
+      "ours_seconds": null,
+      "outcome": "Offers the native registration route without claiming registration, calendar effects or available seats. Distinguishes a registration link from confirmation for either person. Respects no submission/calendar request and leaves only the exact event page.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "OR07",
+      "tier": "decisive",
+      "q": "We may move our shop to Redmond. Can I read a guide before giving anyone my contact details?",
+      "theirs": "The public Locate Your Business page links a relocation guide. Its PDF body was not read. Dated demographic and marketing information does not establish unit availability or individual tax obligations. The public team page names Justine Mulholland as Director of Business Expansion.",
+      "theirs_seconds": null,
+      "ours": "Yes. You can read [OneRedmond’s Guide to Relocating Your Business](https://bot-api.subsights.com/links/click?message_id=107617&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Foneredmond.org%2Fwp-content%2Fuploads%2F2024%2F08%2FOneRedmonds-Guide-to-Relocating-Your-Business.pdf) without providing contact details here. The guide’s contents and currency haven’t been verified.\n\n**Visitor:** Does that page prove a particular unit is available or that our company owes no tax?\n\n**Subsights:** No. The [relocation page](https://bot-api.subsights.com/links/click?message_id=107619&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Foneredmond.org%2Flocate-your-business%2F) does not verify that a particular unit is available or establish your company’s tax obligations.\n\n**Visitor:** Actually I need the person responsible for business expansion, but please do not contact them.\n\n**Subsights:** **Justine Mulholland** is OneRedmond’s Director of Business Expansion, according to its [team page](https://bot-api.subsights.com/links/click?message_id=107621&workspace_public_id=0XvceSLk1j&chatbot_public_id=IghIH1d1RlRr&link=https%3A%2F%2Foneredmond.org%2Fabout-us%2F).\n\nI have not submitted a new contact request in this response.",
+      "ours_seconds": null,
+      "outcome": "Offers the published relocation guide without contact, while keeping unread contents and currency unverified. Does not turn marketing information into inventory or individualized tax advice. Selects the public expansion director without guessing an email or contacting anyone.",
+      "verdict": "both_right"
+    }
+  ]
+}
