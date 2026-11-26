@@ -8,6 +8,7 @@ import wmba from './wmba.json';
 import crewSeattle from './crew-seattle.json';
 import wmfha from './wmfha.json';
 import bellevueRotary from './bellevue-rotary.json';
+import kirklandRotary from './kirkland-rotary.json';
 import sunriseRotary from './bellevue-sunrise-rotary.json';
 import redmondRotary from './redmond-rotary.json';
 import seattleRotary from './seattle-4-rotary.json';
@@ -31,6 +32,7 @@ const FILES: Record<string, unknown> = {
   'crew-seattle': crewSeattle,
   wmfha,
   'bellevue-rotary': bellevueRotary,
+  'kirkland-rotary': kirklandRotary,
   'bellevue-sunrise-rotary': sunriseRotary,
   'redmond-rotary': redmondRotary,
   'seattle-4-rotary': seattleRotary,
