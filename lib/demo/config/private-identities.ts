@@ -2,6 +2,7 @@ import 'server-only';
 
 // Exact existing bot/workspace identities; capabilities never live in this catalog.
 export const PRIVATE_DEMO_IDENTITIES: Record<string, {workspace: string; bot: string}> = {
+  'bellevue-rotary': { workspace: '0XvceSLk1j', bot: 'IfO177RQiubx' },
   reaps: { workspace: '0XvceSLk1j', bot: 'R3OxycakOFvq' },
   northmarq: { workspace: '0XvceSLk1j', bot: 'wpdh9BsY0WrQ' },
   creda: { workspace: '0XvceSLk1j', bot: '97XKi6oySbns' },

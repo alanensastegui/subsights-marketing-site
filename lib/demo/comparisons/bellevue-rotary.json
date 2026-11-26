@@ -1,0 +1,29 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "bellevue-rotary",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-26"
+  },
+  "questions": [
+    {
+      "id": "BR01",
+      "tier": "decisive",
+      "q": "I’ve never been to Bellevue Rotary. Where and when is the first lunch, and what will it cost?",
+      "theirs": "The Visit page lists the regular Tuesday lunch, Bake’s Place and the first-lunch offer. The Join page has a Membership Team inquiry and publishes no dues.",
+      "ours": "Bellevue Rotary meets for lunch on **Tuesdays at Bake’s Place**, 155 108th Ave NE, Suite 110, Bellevue.\n\nArrive at **noon** for social time and check-in. Club business starts at 12:30 p.m., the program starts at 1 p.m., and the meeting ends at 1:30 p.m.\n\n**Your first visitor lunch is covered by the club.** See the [visitor page](https://bot-api.subsights.com/links/click?message_id=107714&workspace_public_id=0XvceSLk1j&chatbot_public_id=IfO177RQiubx&link=https%3A%2F%2Fbellevuerotary.org%2Fvisit-us%2F) for details.\n\n**Visitor:** Actually, I’m trying to decide whether to join. Does that free lunch tell me the membership dues, and where can I ask about joining?\n\n**Subsights:** No. The club covers your first visitor lunch, but that doesn’t establish membership dues. The Join page doesn’t publish a dues amount.\n\nTo ask about joining and current costs, use the Membership Team inquiry on the [Join page](https://bot-api.subsights.com/links/click?message_id=107716&workspace_public_id=0XvceSLk1j&chatbot_public_id=IfO177RQiubx&link=https%3A%2F%2Fbellevuerotary.org%2Fjoin-bellevue-rotary%2F).",
+      "outcome": "The answer gives the first-visit details, then sends the visitor to the Membership Team for dues and joining."
+    },
+    {
+      "id": "BR02",
+      "tier": "decisive",
+      "q": "I’d like to help with a local food project. Does Bellevue Rotary work with Porchlight, and how do I ask about volunteering?",
+      "theirs": "The Service Projects page describes Porchlight kitchen work. The local grant application page says the 2026–27 cycle is closed and excludes ongoing rent. It points to July 2027 for next-cycle information.",
+      "ours": "Yes. Bellevue Rotary lists **kitchen work with Porchlight** among its [service projects](https://bot-api.subsights.com/links/click?message_id=107719&workspace_public_id=0XvceSLk1j&chatbot_public_id=IfO177RQiubx&link=https%3A%2F%2Fbellevuerotary.org%2Fservice-projects%2F).\n\nUse the club’s [Contact page](https://bot-api.subsights.com/links/click?message_id=107719&workspace_public_id=0XvceSLk1j&chatbot_public_id=IfO177RQiubx&link=https%3A%2F%2Fbellevuerotary.org%2Fcontact%2F) to ask about current volunteering opportunities and eligibility. The project listing doesn’t confirm an open shift.\n\n**Visitor:** Change of plans: my Bellevue nonprofit needs money for its ongoing rent instead. Is the local community grant open, and would it pay the rent?\n\n**Subsights:** The **2026–27 community grant cycle is closed**. The club says to check back in July 2027 for information about the 2027–28 cycle; that is not a promised reopening date.\n\nSeparately, the grant **does not fund ongoing operating costs such as rent**, so it would not pay for the rent you described. See the [Community Grant page](https://bot-api.subsights.com/links/click?message_id=107721&workspace_public_id=0XvceSLk1j&chatbot_public_id=IfO177RQiubx&link=https%3A%2F%2Fbellevuerotary.org%2Fapply-for-local-grant%2F) for the cycle and criteria.",
+      "outcome": "The answer sends the volunteer to the club for current opportunities. When the request changes to rent, it gives the closed grant cycle, the rent exclusion and the July 2027 information check."
+    }
+  ]
+}
