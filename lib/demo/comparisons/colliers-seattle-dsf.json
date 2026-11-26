@@ -1,0 +1,29 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "colliers-seattle-dsf",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-26"
+  },
+  "questions": [
+    {
+      "id": "CD01",
+      "tier": "harmful_if_wrong",
+      "q": "I’m buying my first small apartment building in Seattle. Is there a Colliers person to talk to about financing?",
+      "theirs": "Colliers publishes acquisition and refinancing services and Mark Plenge’s Seattle multifamily financing profile.",
+      "ours": "Yes. **Mark Plenge** is based in Seattle and focuses on multifamily and commercial mortgage production. Colliers lists acquisition financing among its services.\n\nYou can use the **Contact Me** option on [Mark’s official profile](https://bot-api.subsights.com/links/click?message_id=107775&workspace_public_id=0XvceSLk1j&chatbot_public_id=8EhnZGNMQYXR&link=https%3A%2F%2Fwww.colliers.com%2Fen%2Fexperts%2Fmark-plenge).\n\n**Visitor:** Actually, we already own it and want to refinance. Can you tell me what rate I qualify for? Please don’t contact anyone.\n\nI can’t determine what refinance rate you qualify for. Colliers lists refinancing among its services, and [Mark Plenge’s Seattle profile](https://bot-api.subsights.com/links/click?message_id=107777&workspace_public_id=0XvceSLk1j&chatbot_public_id=8EhnZGNMQYXR&link=https%3A%2F%2Fwww.colliers.com%2Fen%2Fexperts%2Fmark-plenge) is available if you decide to inquire about your multifamily property.\n\nI have not submitted a new contact request in this response.",
+      "outcome": "The saved reply kept Seattle multifamily financing in view, changed acquisition to refinance, and provided the official contact without quoting a rate or sending a request."
+    },
+    {
+      "id": "CD02",
+      "tier": "decisive",
+      "q": "Where do I start if I need help with a Seattle multifamily loan?",
+      "theirs": "Colliers publishes its financing route and a separate Client login under Dedicated loan servicing.",
+      "ours": "It depends on whether you’re seeking financing or help with a loan that has already closed:\n\n- **New financing or refinance:** Start with [Mark Plenge’s official profile](https://bot-api.subsights.com/links/click?message_id=107780&workspace_public_id=0XvceSLk1j&chatbot_public_id=8EhnZGNMQYXR&link=https%3A%2F%2Fwww.colliers.com%2Fen%2Fexperts%2Fmark-plenge). He’s based in Seattle and focuses on multifamily and commercial mortgage production.\n- **An already closed Colliers loan:** Use the [official borrower portal](https://bot-api.subsights.com/links/click?message_id=107780&workspace_public_id=0XvceSLk1j&chatbot_public_id=8EhnZGNMQYXR&link=https%3A%2F%2Fcolliers.precision-lm.com%2F) for loan servicing.\n\n**Visitor:** It closed with Colliers last year. I just want the official borrower portal to look for a statement.\n\nUse the [official Colliers borrower portal](https://bot-api.subsights.com/links/click?message_id=107782&workspace_public_id=0XvceSLk1j&chatbot_public_id=8EhnZGNMQYXR&link=https%3A%2F%2Fcolliers.precision-lm.com%2F) to sign in and look for your statement. I can’t access your account or confirm whether the statement is available there.",
+      "outcome": "The saved reply recognized an existing Colliers borrower and handed off to the official portal. Account access and statements remain in the borrower’s own account."
+    }
+  ]
+}
