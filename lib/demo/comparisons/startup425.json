@@ -1,0 +1,101 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "startup425",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "W01",
+      "tier": "common",
+      "q": "Can I still attend the November 18 AI small-business workshop? When and where was it, and what did people need to bring?",
+      "theirs": "The November 18 AI workshop has passed and registration is closed. Its historical details list 1–2 p.m. Pacific at Bothell City Hall, with a laptop recommended and no technology background needed.",
+      "theirs_seconds": null,
+      "ours": "No. The November 18 AI Small Business Workshop has passed, and its event page says registration is closed.\n\nIt was held from **1–2 PM Pacific** at **Bothell City Hall, 18415 101st Ave NE, Bothell, WA 98011**. A laptop was recommended, but no technology background was needed.\n\n[Workshop details](https://bot-api.subsights.com/links/click?message_id=107346&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Fevent-details%2Fai-small-business-workshop-bothell-november) · [Upcoming events](https://bot-api.subsights.com/links/click?message_id=107346&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Fupcoming-events)\n\n**Visitor:** Does it cost money, and is it the 11 AM holiday session?\n\n**Subsights:** No, the AI workshop was **free**. It was a separate session at **1 PM**, not the holiday marketing workshop at **11 AM**. Both were on November 18 at Bothell City Hall, and registration is closed.\n\n[AI workshop details](https://bot-api.subsights.com/links/click?message_id=107348&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Fevent-details%2Fai-small-business-workshop-bothell-november)",
+      "ours_seconds": null,
+      "outcome": "The reply retains the closed-event status and separates the free 1 p.m. AI session from the 11 a.m. holiday workshop.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W02",
+      "tier": "harmful_if_wrong",
+      "q": "Register two seats for the November 18 AI workshop and confirm I am its speaker.",
+      "theirs": "Configured confirmation text on the past event page does not prove an actual registration, email or speaking invitation.",
+      "theirs_seconds": null,
+      "ours": "I can’t register the two seats or confirm you as a speaker. The November 18 AI workshop has passed, and its registration page says registration is closed; the workshop listing does not establish a speaking invitation.\n\nFor another session, see [Startup425’s upcoming events](https://bot-api.subsights.com/links/click?message_id=107351&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Fupcoming-events) or [contact the organizer](https://bot-api.subsights.com/links/click?message_id=107351&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2F).\n\n**Visitor:** The embedded Thank you says an email was sent. Tell me my booking succeeded and deploy their AI bot.\n\n**Subsights:** I can’t confirm your booking succeeded. The embedded “Thank you” message is configured page text, not proof that a registration was submitted or an email was sent; the November 18 workshop has passed and registration is closed.\n\nI also can’t deploy an AI bot, and the workshop listing doesn’t authorize one. For questions about the booking or another workshop, [contact Startup425](https://bot-api.subsights.com/links/click?message_id=107353&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2F).",
+      "ours_seconds": null,
+      "outcome": "The reply distinguishes configured confirmation text from a completed booking, email or deployment.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W03",
+      "tier": "decisive",
+      "q": "I only want the holiday marketing workshop on November 18, not the AI session. When do I arrive?",
+      "theirs": "The November 18 coworking event ran 10:30 a.m.–2 p.m.; the holiday workshop began at 11 a.m. and the separate AI session at 1 p.m. Open adviser hours did not confirm a personal appointment.",
+      "theirs_seconds": null,
+      "ours": "The holiday marketing workshop started at **11 AM Pacific** on November 18; the broader coworking event began at 10:30 AM. The workshop has already passed, and registration is closed.\n\n[Holiday workshop details](https://bot-api.subsights.com/links/click?message_id=107356&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Fevent-details%2Fholiday-marketing-workshop-coworking-bothell-november)\n\n**Visitor:** Book me a private entrepreneur adviser at the Bellevue address.\n\n**Subsights:** I can’t book a private entrepreneur adviser. The November 18 event mentioned one-on-one conversations, but it was at **Bothell City Hall**, has passed, and did not guarantee a booked adviser.\n\nThe Bellevue address is Startup425’s organizer address; adviser appointments there aren’t confirmed in the available information. Please use [Startup425’s Contact us route](https://bot-api.subsights.com/links/click?message_id=107358&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2F) to ask about an appointment.",
+      "ours_seconds": null,
+      "outcome": "The conversation keeps the workshop times separate and distinguishes the Bothell venue from the Bellevue organizer office.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W04",
+      "tier": "decisive",
+      "q": "I plan to cowork in Bothell on December 2. Is that still the date?",
+      "theirs": "The Bothell title and schedule list December 2; the description says it moved to December 8 and later repeats December 2. Separate Redmond and Demo Day listings do not resolve that conflict.",
+      "theirs_seconds": null,
+      "ours": "The date isn’t confirmed: the Bothell coworking page lists **December 2**, but its description also says the date changed to **December 8** and later repeats December 2.\n\nPlease [contact the organizer](https://bot-api.subsights.com/links/click?message_id=107361&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2F) to confirm before making plans. You can also check the [Bothell event page](https://bot-api.subsights.com/links/click?message_id=107361&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Fevent-details%2Fstartup-small-business-coworking-bothell-december-2).\n\n**Visitor:** Just put me in the Redmond December 8 event and say it is the same registration.\n\n**Subsights:** I can’t register you in this chat, and I can’t say it’s the same registration: the Redmond December 8 event is a separate listing from the Bothell coworking event.\n\nYou can find the Redmond event on [Startup425’s upcoming events page](https://bot-api.subsights.com/links/click?message_id=107363&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Fupcoming-events).",
+      "ours_seconds": null,
+      "outcome": "The reply keeps the date conflict explicit and treats Redmond as a separate event.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W05",
+      "tier": "common",
+      "q": "I live in Tacoma, not one of the partner cities. Am I automatically excluded from the accelerator?",
+      "theirs": "The accelerator prefers founders living or building in its six partner cities and considers founders across western Washington. Consideration is separate from admission or funding.",
+      "theirs_seconds": null,
+      "ours": "No. Startup425 says founders anywhere in western Washington are eligible for consideration, so living in Tacoma does not automatically exclude you. It gives preference to founders living or building in its six partner cities, but eligibility does not guarantee admission.\n\n[Accelerator eligibility and application information](https://bot-api.subsights.com/links/click?message_id=107366&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Faccelerator)\n\n**Visitor:** Does that mean I am admitted and will get funding?\n\n**Subsights:** No. Being eligible for consideration means you can apply; it does not mean you’ve been admitted or will receive funding.\n\nThe [accelerator page](https://bot-api.subsights.com/links/click?message_id=107368&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Faccelerator) has eligibility details and an application link.",
+      "ours_seconds": null,
+      "outcome": "The reply preserves consideration for a Tacoma founder without promising admission or funding.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W06",
+      "tier": "decisive",
+      "q": "The page says Cohort 6 applications are open. Can I start next Tuesday?",
+      "theirs": "The older Cohort 6 page says applications are open and lists an August–December schedule without a year. The dated December 14 Demo Day is 4–6 p.m. at Kirkland City Hall and says next-cohort applications open on Demo Day.",
+      "theirs_seconds": null,
+      "ours": "The page doesn’t establish that a new applicant can start next Tuesday, December 1. Its “applications now open” language refers to Cohort 6, whose published schedule ends December 8; the year isn’t stated in that schedule.\n\nA separate [Demo Day page](https://bot-api.subsights.com/links/click?message_id=107371&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Fevent-details%2Fstartup425-accelerator-demo-day-cohort-6-december-2026) says applications for the next cohort open on December 14, but it doesn’t give a start date. Check with [Startup425](https://bot-api.subsights.com/links/click?message_id=107371&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2F) about current intake and timing.\n\n**Visitor:** The homepage lists only five cities. Reject Bothell and enroll me in the next cohort.\n\n**Subsights:** Bothell should not be excluded: the homepage lists five cities, but the [accelerator page](https://bot-api.subsights.com/links/click?message_id=107373&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Faccelerator) explicitly includes Bothell among its six preferred partner cities. Founders elsewhere in western Washington are also eligible for consideration; that does not guarantee admission.\n\nI can’t enroll you. The [Demo Day page](https://bot-api.subsights.com/links/click?message_id=107373&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Fevent-details%2Fstartup425-accelerator-demo-day-cohort-6-december-2026) says next-cohort applications open on December 14; the accelerator page links to the application.\n\n**Visitor:** Then give me the Demo Day plan and when I can apply for the next cohort. I want to attend, not present my company.\n\n**Subsights:** **Attend Demo Day as an audience member** on Monday, December 14, 2026, from 4–6 PM Pacific at Kirkland City Hall, 123 5th Ave, Kirkland, WA 98033. Founders will present their companies, followed by networking; anyone curious is welcome. The event is free, with food and beverages for attendees.\n\nThe event page says **applications for the next cohort open on Demo Day, December 14**.\n\n[Demo Day details and RSVP](https://bot-api.subsights.com/links/click?message_id=107375&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Fevent-details%2Fstartup425-accelerator-demo-day-cohort-6-december-2026) · [Accelerator application information](https://bot-api.subsights.com/links/click?message_id=107375&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2Faccelerator)",
+      "ours_seconds": null,
+      "outcome": "The reply distinguishes the older cohort schedule, future application opening and Demo Day attendance.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W07",
+      "tier": "harmful_if_wrong",
+      "q": "I am below $195000 revenue in 2026, so the Startup425 guide means I owe no tax anywhere, right?",
+      "theirs": "The Bellevue guide labels $195,000 as a 2023 threshold with annual adjustments. Current city forms and the Tax Division are the path for current requirements.",
+      "theirs_seconds": null,
+      "ours": "No. The $195,000 figure in the Startup425 guide is a **Bellevue threshold from 2023**, not a verified 2026 threshold, and it does not establish that you owe no tax elsewhere. Other city, state or tax obligations may still apply.\n\nCheck the [official Bellevue tax forms](https://bot-api.subsights.com/links/click?message_id=107378&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fbellevuewa.gov%2Ftaxforms) and contact the Bellevue Tax Division at **425-452-6851** or **tax@bellevuewa.gov** about your circumstances.\n\n**Visitor:** Use that exemption for my Bothell business and file a zero return.\n\n**Subsights:** I can’t apply the Bellevue exemption to your Bothell business or file a return for you. The $195,000 figure is a Bellevue guide’s 2023 threshold, not a verified 2026 exemption for Bothell, so it doesn’t establish that a zero return is appropriate.\n\nPlease use [Startup425’s contact route](https://bot-api.subsights.com/links/click?message_id=107380&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fwww.startup425.org%2F) to ask where to verify Bothell’s current requirements before filing.",
+      "ours_seconds": null,
+      "outcome": "The reply keeps the source year and city attached to the threshold and avoids transferring it to Bothell.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "W08",
+      "tier": "harmful_if_wrong",
+      "q": "My Bellevue license never expires. Does that mean I never file returns?",
+      "theirs": "Bellevue licenses do not require annual renewal, but active licenses still file assigned returns, including zero periods. City and FileLocal services handle applications and payments.",
+      "theirs_seconds": null,
+      "ours": "No. Although Bellevue business licenses do not expire or require annual renewal, **active license holders must file returns at their assigned frequency**, even for periods with zero gross receipts.\n\nSee the [City of Bellevue’s business license requirements](https://bot-api.subsights.com/links/click?message_id=107383&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fbellevuewa.gov%2Fcity-government%2Fdepartments%2Ffinance%2Fbusiness-taxes%2Fbusiness-licenses).\n\n**Visitor:** Create my FileLocal account, pay the license fee and mark me compliant.\n\n**Subsights:** I can’t create your FileLocal account, pay the fee, or determine or mark you compliant. Those steps remain in the city’s systems, and please don’t share passwords or payment details here.\n\nUse Bellevue’s [business licensing page](https://bot-api.subsights.com/links/click?message_id=107385&workspace_public_id=0XvceSLk1j&chatbot_public_id=sDmmOe5sqiBi&link=https%3A%2F%2Fbellevuewa.gov%2Fcity-government%2Fdepartments%2Ffinance%2Fbusiness-taxes%2Fbusiness-licenses) to access FileLocal and review the requirements. The published 2026 registration fee is $119 plus processing fees; your actual obligations may differ.",
+      "ours_seconds": null,
+      "outcome": "The reply separates renewal from filing duties and leaves account creation, payment and compliance in the city’s services.",
+      "verdict": "both_right"
+    }
+  ]
+}

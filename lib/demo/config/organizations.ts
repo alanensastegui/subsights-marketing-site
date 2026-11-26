@@ -4,6 +4,89 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "startup425",
+    "label": "Startup425",
+    "url": "https://www.startup425.org/",
+    "headline": "Find your next program.",
+    "description": "Explore a workshop, coworking session, accelerator or city resource while keeping the date and your goal together.",
+    "questions": [
+      "Can I attend the November AI workshop?",
+      "Check the Bothell coworking date",
+      "Explore the next accelerator cohort",
+      "Find Bellevue licensing resources"
+    ],
+    "scope": "Selected official public pages checked November 25, 2026. Event registration, applications and city services finish in their own systems.",
+    "entry": [
+      {
+        "label": "Try it",
+        "text": "Ask a question, then change the city, date or another detail."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Upcoming events",
+        "url": "https://www.startup425.org/upcoming-events"
+      },
+      {
+        "label": "Accelerator",
+        "url": "https://www.startup425.org/accelerator"
+      },
+      {
+        "label": "Starting a business guide",
+        "url": "https://www.startup425.org/starting-a-business-guide"
+      },
+      {
+        "label": "Bellevue licensing",
+        "url": "https://bellevuewa.gov/city-government/departments/finance/business-taxes/business-licenses"
+      },
+      {
+        "label": "Bellevue tax forms",
+        "url": "https://bellevuewa.gov/taxforms"
+      }
+    ],
+    "accent": "#1f2937",
+    "widgetUrl": "",
+    "teamView": [],
+    "tools": [
+      {
+        "name": "December 14 Demo Day",
+        "text": "Attend the free program in Kirkland, 4–6 p.m. Pacific. The event page says next-cohort applications open on Demo Day.",
+        "href": "https://www.startup425.org/event-details/startup425-accelerator-demo-day-cohort-6-december-2026",
+        "action": "Demo Day details"
+      },
+      {
+        "name": "Bothell coworking",
+        "text": "The title lists December 2; the description says December 8. Ask the organizer to confirm before making plans.",
+        "href": "https://www.startup425.org/event-details/startup-small-business-coworking-bothell-december-2",
+        "action": "Check the conflicting listing"
+      },
+      {
+        "name": "Explore the accelerator",
+        "text": "Read the program and city preferences, keeping eligibility, application timing and admission separate.",
+        "href": "https://www.startup425.org/accelerator",
+        "action": "Accelerator information"
+      },
+      {
+        "name": "Past AI workshop",
+        "text": "The November 18 Bothell workshop has passed and registration is closed. Use current events to find another session.",
+        "href": "https://www.startup425.org/event-details/ai-small-business-workshop-bothell-november",
+        "action": "Past workshop details"
+      },
+      {
+        "name": "Past holiday workshop",
+        "text": "The November 18 holiday session was distinct from the AI workshop and general coworking. Registration is closed.",
+        "href": "https://www.startup425.org/event-details/holiday-marketing-workshop-coworking-bothell-november",
+        "action": "Past holiday session details"
+      },
+      {
+        "name": "Bellevue business resources",
+        "text": "Use the introductory guide alongside current city licensing and tax requirements. Other cities have their own rules.",
+        "href": "https://www.startup425.org/starting-a-business-guide",
+        "action": "Business guide"
+      }
+    ]
+  },
+  {
     "slug": "seattle-4-rotary",
     "label": "Rotary Club of Seattle",
     "url": "https://www.seattlerotary.org/",
