@@ -15,6 +15,8 @@ import gsba from './gsba.json';
 import kidder from './kidder-simon-anderson.json';
 import oneRedmond from './oneredmond.json';
 import creda from './creda.json';
+import reaps from './reaps.json';
+import northmarq from './northmarq.json';
 
 // Add a prospect by dropping <slug>.json here and one line below. A file that does not match the schema fails the
 // build (the registry test parses every entry), so a half-written comparison never reaches a prospect.
@@ -35,6 +37,8 @@ const FILES: Record<string, unknown> = {
   'kidder-simon-anderson': kidder,
   oneredmond: oneRedmond,
   creda,
+  reaps,
+  northmarq,
 };
 
 export function getComparison(slug: string): Comparison | null {

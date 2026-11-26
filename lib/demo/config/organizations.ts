@@ -3,6 +3,118 @@ import type { ProspectDemo } from './prospects';
 
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
+  {
+    "slug": "reaps",
+    "label": "Real Estate Association of Puget Sound",
+    "url": "https://www.reapsweb.com/",
+    "headline": "Find the right REAPS event or membership.",
+    "description": "Check when the first-time guest pass applies, what your event costs and which membership includes in-person meetings.",
+    "questions": [
+      "Can I use my first-time pass for Bellevue Coffee?",
+      "What changes if I’m already a member?",
+      "Can five coworkers share a business membership?"
+    ],
+    "sources": [
+      {
+        "label": "Meeting schedule",
+        "url": "https://www.reapsweb.com/Page.aspx?ID=REAPS-Monthly-Meetings-Schedule"
+      },
+      {
+        "label": "Event calendar",
+        "url": "https://www.reapsweb.com/Calendar.aspx"
+      },
+      {
+        "label": "Membership options",
+        "url": "https://www.reapsweb.com/MembershipInfo.aspx"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Try a regular Main meeting",
+        "text": "Check the one-time free guest pass for regular Main meetings.",
+        "href": "https://www.reapsweb.com/GuestPass.aspx",
+        "action": "Guest pass rules"
+      },
+      {
+        "name": "Plan a visit to Bellevue Coffee",
+        "text": "Open the December 1 event for the time, venue and member or guest price.",
+        "href": "https://www.reapsweb.com/Events.aspx?ID=Coffee-Conversations-Focused-on-REI-213-12-1-2026",
+        "action": "Bellevue Coffee details"
+      },
+      {
+        "name": "Choose a membership",
+        "text": "Compare online-only, individual and business options.",
+        "href": "https://www.reapsweb.com/MembershipInfo.aspx",
+        "action": "Membership options"
+      },
+      {
+        "name": "Resolve a membership question",
+        "text": "Check a conflicting price or business seat limit with REAPS before paying.",
+        "href": "https://www.reapsweb.com/Contact.aspx",
+        "action": "Contact REAPS"
+      }
+    ],
+    "scope": "REAPS handles event registration, membership and guest passes on its website.",
+    "accent": "#263e36",
+    "widgetUrl": "",
+    "teamView": []
+  },
+  {
+    "slug": "northmarq",
+    "label": "Northmarq Seattle",
+    "url": "https://www.northmarq.com/offices/wa/seattle-wa-8th-st",
+    "headline": "Find the right Seattle investment sales or financing team.",
+    "description": "Browse multifamily properties, look up the Seattle team and find the right next step for a purchase or refinance.",
+    "questions": [
+      "Is Rainier Beach an operating apartment property or a development site?",
+      "Where can I check the terms for Cheney Park Commons?",
+      "Who should I talk to if I want financing for a multifamily property?"
+    ],
+    "sources": [
+      {
+        "label": "Seattle 8th Street office",
+        "url": "https://www.northmarq.com/offices/wa/seattle-wa-8th-st"
+      },
+      {
+        "label": "Seattle brokerage profile and properties",
+        "url": "https://www.northmarq.com/people/tyler-smith"
+      },
+      {
+        "label": "Multifamily services",
+        "url": "https://www.northmarq.com/property-types-industries/multifamily"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Browse apartments for sale",
+        "text": "Open Northmarq’s multifamily listings and use its location and property filters.",
+        "href": "https://www.northmarq.com/properties/multifamily",
+        "action": "Multifamily listings"
+      },
+      {
+        "name": "Look up a named property",
+        "text": "Find the Seattle team’s property cards and open the details for the listing you mean.",
+        "href": "https://www.northmarq.com/people/tyler-smith",
+        "action": "Seattle team properties"
+      },
+      {
+        "name": "Explore multifamily financing",
+        "text": "Find the financing path for an acquisition or refinance.",
+        "href": "https://www.northmarq.com/property-types-industries/multifamily",
+        "action": "Multifamily financing"
+      },
+      {
+        "name": "Reach the Seattle team",
+        "text": "Find the local office and its published contacts.",
+        "href": "https://www.northmarq.com/offices/wa/seattle-wa-8th-st",
+        "action": "Seattle office"
+      }
+    ],
+    "scope": "Northmarq publishes its listings and handles inquiries directly.",
+    "accent": "#20334a",
+    "widgetUrl": "",
+    "teamView": []
+  },
 {
   "slug": "creda",
   "label": "CREDA Washington State",

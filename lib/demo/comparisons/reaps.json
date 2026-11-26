@@ -1,0 +1,29 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "reaps",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-26"
+  },
+  "questions": [
+    {
+      "id": "RE01",
+      "tier": "decisive",
+      "q": "I’ve never been to REAPS. Can I try a regular Main meeting for free, and where do I get the guest pass?",
+      "theirs": "The guest-pass page covers one free visit to a regular Main meeting. The December 1 Bellevue Coffee event lists Woods Coffee from 8:30 to 10:30 a.m. and $20 for nonmembers. This is a separate subgroup event.",
+      "ours": "Yes. First-time guests can attend one regular monthly Main meeting free with a guest pass. The pass is limited to one per person and doesn’t apply to subgroup events.\n\nGet yours through the [REAPS guest pass form](https://bot-api.subsights.com/links/click?message_id=107694&workspace_public_id=0XvceSLk1j&chatbot_public_id=R3OxycakOFvq&link=https%3A%2F%2Fwww.reapsweb.com%2FGuestPass.aspx).\n\n**Visitor:** Actually, I want to go to the December 1 Bellevue Coffee as a nonmember. Will that pass work there, and what should I plan for?\n\n**Subsights:** No—the free guest pass applies only to a regular Main meeting, not the Bellevue Coffee subgroup.\n\nFor **Tuesday, December 1, 2026**, plan for:\n\n- **Time:** 8:30–10:30 a.m. Pacific\n- **Location:** Woods Coffee, 625 116th Ave NE, Bellevue\n- **Nonmember price:** $20\n\nSee the [Bellevue Coffee Conversations event listing](https://bot-api.subsights.com/links/click?message_id=107696&workspace_public_id=0XvceSLk1j&chatbot_public_id=R3OxycakOFvq&link=https%3A%2F%2Fwww.reapsweb.com%2FEvents.aspx%3FID%3DCoffee-Conversations-Focused-on-REI-213-12-1-2026) for the event details. Live availability isn’t confirmed here.",
+      "outcome": "The answer keeps the first-time offer for a Main meeting, drops it for the Bellevue subgroup and gives the correct time, venue and $20 nonmember price."
+    },
+    {
+      "id": "RE02",
+      "tier": "decisive",
+      "q": "I mostly want online REAPS meetings for myself. What does online-only membership cost, and does it include in-person meetings?",
+      "theirs": "The membership page lists the $99 annual online-only membership without in-person access. Its Platinum benefits say six people while the product rows say four. REAPS has a separate contact page.",
+      "ours": "The **online-only individual membership costs $99 per year**. It does **not** include in-person meetings.\n\n[View REAPS membership options](https://bot-api.subsights.com/links/click?message_id=107701&workspace_public_id=0XvceSLk1j&chatbot_public_id=R3OxycakOFvq&link=https%3A%2F%2Fwww.reapsweb.com%2FMembershipInfo.aspx)\n\n**Visitor:** Actually, there would be five coworkers and we all want to go in person. Can we buy one Platinum membership for all five?\n\n**Subsights:** **It’s unclear whether one Platinum membership covers all five.** REAPS’ Platinum benefits say six people, but its product rows say four.\n\nPlease [confirm the Platinum seat limit with REAPS](https://bot-api.subsights.com/links/click?message_id=107705&workspace_public_id=0XvceSLk1j&chatbot_public_id=R3OxycakOFvq&link=https%3A%2F%2Fwww.reapsweb.com%2FContact.aspx) before paying.",
+      "outcome": "The answer identifies the conflict and routes the five-person group to REAPS before purchase."
+    }
+  ]
+}
