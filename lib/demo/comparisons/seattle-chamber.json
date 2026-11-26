@@ -1,0 +1,29 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "seattle-chamber",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-26"
+  },
+  "questions": [
+    {
+      "id": "SM01",
+      "tier": "decisive",
+      "q": "My company hasn't joined the Seattle Metro Chamber. Can I attend a program to see whether membership is useful?",
+      "theirs": "The FAQ welcomes prospective members to attend one program. It describes employees of member companies as the main audience and says some annual events are public. The calendar has separate views and individual listings.",
+      "ours": "Yes. The Chamber’s [FAQ](https://bot-api.subsights.com/links/click?message_id=107734&workspace_public_id=0XvceSLk1j&chatbot_public_id=WYA0B24DnjAe&link=https%3A%2F%2Fwww.seattlechamber.com%2Ffaq%2F) says prospective members are welcome to attend **one program** to learn about the Chamber, although programs are generally intended for employees of member companies.\n\nCheck the [Organization calendar](https://bot-api.subsights.com/links/click?message_id=107734&workspace_public_id=0XvceSLk1j&chatbot_public_id=WYA0B24DnjAe&link=https%3A%2F%2Fmembers.seattlechamber.com%2Fatlas%2Fcalendar%3Foe%3Dtrue) for a program that interests you and review its listing for attendance restrictions and registration details.\n\n**Visitor:** Actually my employer is already a Chamber member. Can I attend as an employee, and where should I check the rules for the specific event?\n\nYes. Chamber programs are generally intended for employees of member companies.\n\nFor a specific event, check its listing in the [Organization calendar](https://bot-api.subsights.com/links/click?message_id=107736&workspace_public_id=0XvceSLk1j&chatbot_public_id=WYA0B24DnjAe&link=https%3A%2F%2Fmembers.seattlechamber.com%2Fatlas%2Fcalendar%3Foe%3Dtrue) for attendance restrictions and registration details.",
+      "outcome": "The assistant answers for the prospective visitor, then applies the employee rule and opens the official calendar to check the specific event."
+    },
+    {
+      "id": "SM02",
+      "tier": "harmful_if_wrong",
+      "q": "Where can I look up whether my employer has a public listing in the Seattle Metro Chamber directory? I don't have a member login.",
+      "theirs": "The public site links to the Member Directory. The FAQ says the main company contact edits its listing through the Member Dashboard and the Membership Department can help identify that contact.",
+      "ours": "You can look up or browse your employer in the public [Seattle Metro Chamber Member Directory](https://bot-api.subsights.com/links/click?message_id=107739&workspace_public_id=0XvceSLk1j&chatbot_public_id=WYA0B24DnjAe&link=https%3A%2F%2Fseattlechamber.weblinkconnect.com%2Fatlas%2Fdirectory%2Fall-categories). You don’t need a member login.\n\n**Visitor:** I found the listing. The company's old website is still there. I'm not our main Chamber contact. Who can change it and where is that explained?\n\nYour company’s **main Chamber contact** can change the listing by signing in to the existing Member Dashboard. This is explained in the [Chamber FAQ](https://bot-api.subsights.com/links/click?message_id=107741&workspace_public_id=0XvceSLk1j&chatbot_public_id=WYA0B24DnjAe&link=https%3A%2F%2Fwww.seattlechamber.com%2Ffaq%2F) under “How do I make changes to my company’s listing in the membership directory?”\n\nYou can ask your main contact to update the website. If you don’t know who that is, contact the Membership Department at [membership@seattlechamber.com](mailto:membership@seattlechamber.com) or **(206) 389-7210** for help.",
+      "outcome": "The assistant opens the public directory first, then explains who can make the correction and links to the Chamber’s instructions."
+    }
+  ]
+}

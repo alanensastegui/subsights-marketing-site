@@ -4,6 +4,32 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "seattle-chamber",
+    "label": "Seattle Metro Chamber",
+    "url": "https://www.seattlechamber.com/",
+    "headline": "Find a Chamber event or member resource.",
+    "description": "Check who can attend a program, find a company listing or reach the Chamber team that can help.",
+    "questions": [
+      "Can I attend a program as a prospective member?",
+      "Where can I look up my company in the directory?",
+      "Who can correct a listing for my company?"
+    ],
+    "sources": [
+      {"label": "Chamber FAQs", "url": "https://www.seattlechamber.com/faq/"},
+      {"label": "Events by program", "url": "https://www.seattlechamber.com/events-by-program/"},
+      {"label": "Member portal guide", "url": "https://www.seattlechamber.com/news/2025/02/27/community-news/new-chamber-website-is-here/"}
+    ],
+    "tools": [
+      {"name": "Find a Chamber event", "text": "Open the Chamber calendar to check event details, eligibility and registration.", "href": "https://members.seattlechamber.com/atlas/calendar?oe=true", "action": "Chamber calendar"},
+      {"name": "Look up a business", "text": "Browse public listings in the existing member directory.", "href": "https://seattlechamber.weblinkconnect.com/atlas/directory/all-categories", "action": "Member directory"},
+      {"name": "Fix a company listing", "text": "Find the Chamber's instructions and who can change the listing.", "href": "https://www.seattlechamber.com/faq/", "action": "Member services FAQ"}
+    ],
+    "scope": "Event registration, membership and directory edits stay in the Chamber’s systems.",
+    "accent": "#28624b",
+    "widgetUrl": "",
+    "teamView": []
+  },
+  {
     "slug": "kirkland-rotary",
     "label": "Rotary Club of Kirkland",
     "url": "https://www.kirklandrotary.org/",
