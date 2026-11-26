@@ -4,6 +4,89 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "gsba-business-support",
+    "label": "GSBA",
+    "url": "https://thegsba.org/",
+    "headline": "Find the right GSBA support.",
+    "description": "Explore business consulting, membership, directory help or an event. Keep your goal and the relevant terms together.",
+    "questions": [
+      "Find business consulting",
+      "Compare membership options",
+      "Understand monthly dues",
+      "Find a business or event"
+    ],
+    "scope": "Selected official public pages checked November 26, 2026. Consulting requests, membership and events finish through GSBA.",
+    "entry": [
+      {
+        "label": "Try it",
+        "text": "Ask a question, then change a detail or ask what to do next."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Business Academy",
+        "url": "https://thegsba.org/business-academy/"
+      },
+      {
+        "label": "Membership and dues",
+        "url": "https://thegsba.org/levels-and-benefits/"
+      },
+      {
+        "label": "Directory guide",
+        "url": "https://thegsba.org/how-to-use-the-gsba-directory/"
+      },
+      {
+        "label": "GSBA events",
+        "url": "https://thegsba.org/"
+      },
+      {
+        "label": "GSBA team",
+        "url": "https://thegsba.org/team/"
+      }
+    ],
+    "accent": "#1f2937",
+    "widgetUrl": "",
+    "teamView": [],
+    "tools": [
+      {
+        "name": "One-to-one business support",
+        "text": "Explore cash flow, business plans, grant applications and other consulting topics. Ask GSBA about a session for your business.",
+        "href": "https://thegsba.org/business-academy/",
+        "action": "Consulting topics"
+      },
+      {
+        "name": "Compare membership",
+        "text": "Compare business, nonprofit and individual categories, their eligibility and published benefits. GSBA reviews applications.",
+        "href": "https://thegsba.org/levels-and-benefits/",
+        "action": "Membership options"
+      },
+      {
+        "name": "Understand dues",
+        "text": "Small Business monthly payments are installments of annual dues, with a $20 fee on the first payment. Ask about qualification for affordability support.",
+        "href": "https://thegsba.org/levels-and-benefits/",
+        "action": "Dues and payment terms"
+      },
+      {
+        "name": "Find a business",
+        "text": "Use GSBA’s guide to search the existing directory by name, category or keyword and refine the attributes that matter to you.",
+        "href": "https://thegsba.org/how-to-use-the-gsba-directory/",
+        "action": "Directory search guide"
+      },
+      {
+        "name": "Improve your listing",
+        "text": "Keep included Small Business onboarding help separate from optional $75 premium assistance. Start with your existing membership.",
+        "href": "https://thegsba.org/levels-and-benefits/",
+        "action": "Listing benefits"
+      },
+      {
+        "name": "Choose an event",
+        "text": "Power Connect at WAC and Hill Talk at Union are separate events. Use the selected event’s own listing for attendance details.",
+        "href": "https://thegsba.org/",
+        "action": "GSBA events"
+      }
+    ]
+  },
+  {
     "slug": "startup425",
     "label": "Startup425",
     "url": "https://www.startup425.org/",
