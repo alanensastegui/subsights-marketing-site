@@ -4,6 +4,68 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "bellevue-rotary",
+    "label": "Bellevue Rotary Club",
+    "url": "https://bellevuerotary.org/",
+    "headline": "Plan a visit or find a way to serve.",
+    "description": "Find Tuesday lunch details, ask about helping with a local project and see where Bellevue Rotary handles membership or grant questions.",
+    "entry": [
+      {
+        "label": "First visit",
+        "text": "The club covers lunch for first-time guests."
+      }
+    ],
+    "questions": [
+      "When can I visit for a first lunch?",
+      "Can I help with a Porchlight project?",
+      "Are local grant applications open?"
+    ],
+    "sources": [
+      {
+        "label": "Weekly meetings",
+        "url": "https://bellevuerotary.org/events/"
+      },
+      {
+        "label": "Club calendar",
+        "url": "https://bellevuerotary.org/rotary-calendar/"
+      },
+      {
+        "label": "Club contact",
+        "url": "https://bellevuerotary.org/contact/"
+      }
+    ],
+    "tools": [
+      {
+        "name": "Visit a Tuesday lunch",
+        "text": "See the venue, schedule and first-visit lunch offer.",
+        "href": "https://bellevuerotary.org/visit-us/",
+        "action": "Visit Bellevue Rotary"
+      },
+      {
+        "name": "Find a service project",
+        "text": "Browse the club’s local and international work.",
+        "href": "https://bellevuerotary.org/service-projects/",
+        "action": "Service projects"
+      },
+      {
+        "name": "Ask about membership",
+        "text": "Contact the Membership Team about dues or joining.",
+        "href": "https://bellevuerotary.org/join-bellevue-rotary/",
+        "action": "Membership inquiry"
+      },
+      {
+        "name": "Check a local grant",
+        "text": "Find the current cycle and the expenses the club funds.",
+        "href": "https://bellevuerotary.org/apply-for-local-grant/",
+        "action": "Local grant application"
+      }
+    ],
+    "scope": "Bellevue Rotary handles visits, membership inquiries, volunteer arrangements and grant applications on its website.",
+    "accent": "#153c69",
+    "widgetUrl": "",
+    "teamView": []
+  },
+  {
     "slug": "reaps",
     "label": "Real Estate Association of Puget Sound",
     "url": "https://www.reapsweb.com/",
