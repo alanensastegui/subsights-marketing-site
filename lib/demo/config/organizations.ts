@@ -15,7 +15,7 @@ export const ORGANIZATION_DEMOS: ProspectDemo[] = [
     "Can I join the mentor program?",
     "Find a public webinar recording"
   ],
-  "scope": "Selected official public pages checked November 26, 2026. Membership, registration, payments and account access finish through CREDA.",
+  "scope": "Selected official public pages checked November 25, 2026 (Pacific). Membership, registration, payments and account access finish through CREDA.",
   "entry": [
     {
       "label": "Try it",
