@@ -1,0 +1,29 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "kirkland-rotary",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-26"
+  },
+  "questions": [
+    {
+      "id": "KR01",
+      "tier": "decisive",
+      "q": "I’ve never been to this club. Where should I go on December 7 and when should I arrive for dinner versus the meeting?",
+      "theirs": "The December 7 listing puts dinner at 5:30 p.m. and the start of the meeting at 6:15 p.m. at Prosecco. The calendar has a separate December 14 gift-wrapping dinner at St. John’s and lists guest registration, $45 per person and the December 11 noon deadline.",
+      "ours": "On **Monday, December 7**, go to **Prosecco Restaurant & Pizzeria, 7 Lakeshore Plaza, Kirkland**. First-time visitors are welcome.\n\n- **For dinner:** Arrive at **5:30 p.m.** to order and socialize.\n- **For the meeting:** It starts at **6:15 p.m.**\n\nSee the club’s [December 7 event listing](https://bot-api.subsights.com/links/click?message_id=107724&workspace_public_id=0XvceSLk1j&chatbot_public_id=Jo00xh1PEbCV&link=https%3A%2F%2Fwww.kirklandrotary.org%2Fevent%2Frotary-club-of-kirkland-meeting-112%2F).\n\n**Visitor:** I can only come on December 14 now. Is it still at the same restaurant, and can I register as a guest?\n\nNo. On **Monday, December 14**, the holiday gathering is at **St. John’s Episcopal Church, 105 State St, Kirkland**, not Prosecco. Gift wrapping starts at **5:30 p.m.**, with dinner to follow.\n\nYes, the listing says guests can register themselves or be registered by a member. It lists **$45 per person** and a registration deadline of **Friday, December 11 at noon**. The club handles registration availability and payment.\n\n[View the December 14 event](https://bot-api.subsights.com/links/click?message_id=107726&workspace_public_id=0XvceSLk1j&chatbot_public_id=Jo00xh1PEbCV&link=https%3A%2F%2Fportal.clubrunner.ca%2F2187%2FEvent%2Frotary-club-of-kirkland-social-16).",
+      "outcome": "The answer distinguishes dinner from the regular meeting, then changes the venue and guest steps when the visitor switches dates."
+    },
+    {
+      "id": "KR02",
+      "tier": "harmful_if_wrong",
+      "q": "We’re a local business and four coworkers want to take part. How many people does corporate membership cover, and do the dues include meals?",
+      "theirs": "The membership information lists one primary corporate member and up to three designees, with meals separate. The club’s public pages show two individual dues figures. The membership inquiry is the club’s route to confirm terms and learn about sponsorship.",
+      "ours": "Corporate membership covers **up to four people**: one primary member and up to three secondary designees. The designees must work for the same business and require board approval.\n\nThe club lists annual corporate dues of **$648; meals are separate**. Membership itself is by invitation and approval.\n\nTo confirm current dues and begin the process, use the club’s [membership inquiry form](https://bot-api.subsights.com/links/click?message_id=107729&workspace_public_id=0XvceSLk1j&chatbot_public_id=Jo00xh1PEbCV&link=https%3A%2F%2Fkirklandrotary.org%2Fform%2Fmembership-inquiry%2F).\n\n**Visitor:** Actually only I want to join. I saw $415 and $423 for annual dues and don’t know a Rotarian. Which number is current and where do I start?\n\nThe club’s published figures conflict, so I can’t tell which is current. Its [Become a Rotarian page](https://bot-api.subsights.com/links/click?message_id=107731&workspace_public_id=0XvceSLk1j&chatbot_public_id=Jo00xh1PEbCV&link=https%3A%2F%2Fwww.kirklandrotary.org%2Fsitepage%2Fmembership-in-rotary%2Fbecome-a-rotarian) lists both **$423 and $415**, while its [Membership Criteria page](https://bot-api.subsights.com/links/click?message_id=107731&workspace_public_id=0XvceSLk1j&chatbot_public_id=Jo00xh1PEbCV&link=https%3A%2F%2Fwww.kirklandrotary.org%2Fsitepage%2Fmembership-in-rotary%2Fmembership-criteria) lists **$415**. Meals are separate.\n\nStart with the [membership inquiry form](https://bot-api.subsights.com/links/click?message_id=107731&workspace_public_id=0XvceSLk1j&chatbot_public_id=Jo00xh1PEbCV&link=https%3A%2F%2Fkirklandrotary.org%2Fform%2Fmembership-inquiry%2F) and ask the club to confirm the current dues. You don’t need to know a Rotarian—the club can arrange a sponsor. Candidates are invited to attend at least three meetings; membership is by invitation and approval.",
+      "outcome": "The answer explains the four-person corporate route and then identifies the individual price conflict and the club’s membership inquiry."
+    }
+  ]
+}

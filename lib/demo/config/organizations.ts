@@ -4,6 +4,32 @@ import type { ProspectDemo } from './prospects';
 // Public source content only. Bot capabilities are supplied after native access verification.
 export const ORGANIZATION_DEMOS: ProspectDemo[] = [
   {
+    "slug": "kirkland-rotary",
+    "label": "Rotary Club of Kirkland",
+    "url": "https://www.kirklandrotary.org/",
+    "headline": "Visit a meeting or find your way into Rotary.",
+    "description": "Check where a club event takes place, compare membership options and reach the right club page.",
+    "questions": [
+      "Where should I go for a first visit?",
+      "Can a guest register for the holiday dinner?",
+      "Where can I confirm current membership dues?"
+    ],
+    "sources": [
+      {"label": "Club events", "url": "https://www.kirklandrotary.org/events"},
+      {"label": "Membership information", "url": "https://www.kirklandrotary.org/sitepage/membership-in-rotary/become-a-rotarian"},
+      {"label": "Community service", "url": "https://www.kirklandrotary.org/sitepage/community-service"}
+    ],
+    "tools": [
+      {"name": "Find a meeting", "text": "Check the date, location and dinner or meeting time.", "href": "https://www.kirklandrotary.org/events", "action": "Club events"},
+      {"name": "Ask about joining", "text": "Confirm dues and ask the club about the inquiry process.", "href": "https://kirklandrotary.org/form/membership-inquiry/", "action": "Membership inquiry"},
+      {"name": "Get involved locally", "text": "Find the club’s local community service work.", "href": "https://www.kirklandrotary.org/sitepage/community-service", "action": "Community service"}
+    ],
+    "scope": "The club handles event registration, payments and membership inquiries on its own website.",
+    "accent": "#17458f",
+    "widgetUrl": "",
+    "teamView": []
+  },
+  {
     "slug": "bellevue-rotary",
     "label": "Bellevue Rotary Club",
     "url": "https://bellevuerotary.org/",
