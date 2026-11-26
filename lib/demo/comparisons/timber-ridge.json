@@ -1,0 +1,29 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "timber-ridge",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-26"
+  },
+  "questions": [
+    {
+      "id": "TR01",
+      "tier": "decisive",
+      "q": "My family is considering independent living in Issaquah. Where should we ask Timber Ridge at Talus to arrange a tour?",
+      "theirs": "The contact page lists the senior living advisor. The Fitness and Wellness page describes Timber Ridge University, and Timber Ridge’s resident article describes it as continuing education for residents.",
+      "ours": "Ask a Senior Living Advisor for a tour through Timber Ridge’s [Contact Us page](https://bot-api.subsights.com/links/click?message_id=107747&workspace_public_id=0XvceSLk1j&chatbot_public_id=fjFKFtGY0G7e&link=https%3A%2F%2Ftimberridgelcs.com%2Fcontact%2F).\n\n**Visitor:** Instead of a tour, could we come for a Timber Ridge University art class if we don't live there? Where is that program described?\n\nTimber Ridge University is a continuing education program for residents. **Nonresident attendance is not confirmed**, so I can’t say whether your family could join an art class.\n\nThe [Fitness and Wellness page](https://bot-api.subsights.com/links/click?message_id=107749&workspace_public_id=0XvceSLk1j&chatbot_public_id=fjFKFtGY0G7e&link=https%3A%2F%2Ftimberridgelcs.com%2Flifestyle%2Ffitness-wellness%2F) describes the program, including arts classes.",
+      "outcome": "The guide opens the official contact page for a tour request and changes to the wellness source when asked about a class. It leaves nonresident attendance unconfirmed."
+    },
+    {
+      "id": "TR02",
+      "tier": "harmful_if_wrong",
+      "q": "Which independent living floor plans at Timber Ridge show one bedroom, a den and one and a half baths? Where can I compare them?",
+      "theirs": "The floor plans show the Douglas Fir II and Fraser Fir II with one bedroom, one and a half baths and a den. The separate assisted living page states that the service is for residents and that Timber Ridge does not offer direct admission.",
+      "ours": "**The Douglas Fir II** and **The Fraser Fir II** are both listed as one bedroom, a den and one and a half baths.\n\nYou can compare their layouts on the [Floor Plans page](https://bot-api.subsights.com/links/click?message_id=107752&workspace_public_id=0XvceSLk1j&chatbot_public_id=fjFKFtGY0G7e&link=https%3A%2F%2Ftimberridgelcs.com%2Findependent-living%2Ffloor-plans%2F). Listing a floor plan does not confirm that a unit is available.\n\n**Visitor:** Actually we're asking about assisted living for someone who doesn't live there. Can they move directly into assisted living at Timber Ridge? Where is that eligibility published?\n\nNo. Timber Ridge’s [Assisted Living page](https://bot-api.subsights.com/links/click?message_id=107754&workspace_public_id=0XvceSLk1j&chatbot_public_id=fjFKFtGY0G7e&link=https%3A%2F%2Ftimberridgelcs.com%2Fhealth-center%2Fassisted-living%2F) states: “Services are available only to residents; direct admission is not offered.”",
+      "outcome": "The guide links the published layouts and their features, then opens the separate assisted living policy when the family changes the request."
+    }
+  ]
+}
