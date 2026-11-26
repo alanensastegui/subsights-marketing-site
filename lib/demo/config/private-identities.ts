@@ -5,6 +5,7 @@ export const PRIVATE_DEMO_IDENTITIES: Record<string, {workspace: string; bot: st
   'timber-ridge': { workspace: '0XvceSLk1j', bot: 'fjFKFtGY0G7e' },
   'seattle-finance-collective': { workspace: '0XvceSLk1j', bot: 'qIUvfq6hdXEr' },
   'colliers-seattle-dsf': { workspace: '0XvceSLk1j', bot: '8EhnZGNMQYXR' },
+  'lucas-pinto-group': { workspace: '0XvceSLk1j', bot: 'uXkpDxR8KXh6' },
   'kirkland-rotary': { workspace: '0XvceSLk1j', bot: 'Jo00xh1PEbCV' },
   'bellevue-rotary': { workspace: '0XvceSLk1j', bot: 'IfO177RQiubx' },
   reaps: { workspace: '0XvceSLk1j', bot: 'R3OxycakOFvq' },
