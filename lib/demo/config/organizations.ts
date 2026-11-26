@@ -14,6 +14,20 @@ export const ORGANIZATION_DEMOS: ProspectDemo[] = [
       "Who can I talk to about a refinance?",
       "Where is the existing borrower login?"
     ],
+    "sources": [
+      {
+        "label": "Colliers’ financing and servicing routes",
+        "url": "https://www.colliers.com/en/services/colliers-debt-and-structured-finance"
+      },
+      {
+        "label": "Mark Plenge’s Seattle financing profile",
+        "url": "https://www.colliers.com/en/experts/mark-plenge"
+      },
+      {
+        "label": "Colliers’ official borrower sign-in",
+        "url": "https://colliers.precision-lm.com/"
+      }
+    ],
     "tools": [
       {
         "name": "Seattle financing contact",
