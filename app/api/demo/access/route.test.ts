@@ -82,7 +82,7 @@ it.each(warm)('authorizes %s only through its exact native identity', async (slu
   expect(new URLSearchParams(widget.hash.slice(1)).get('api_key')).toBe(key);
   expect(upstream.mock.calls[0][0]).toContain(`bot=${bot}`);
 });
-it.each([...warm, ['bellevue', 'gDz1Noxsjr9U'] as const, ['issaquah', 'Cz8TTZvCk7fF'] as const, ['rhawa', 'OW45SH6wfmwS'] as const, ['wmba', 'yXI0jDaoHyCa'] as const, ['crew-seattle', 'tvROp0BfgdvA'] as const, ['wmfha', 'EIMt8YnHb0OK'] as const, ['bellevue-sunrise-rotary', '2CEkfrLiLRKh'] as const, ['redmond-rotary', 'AHp9JueXRvcA'] as const, ['seattle-4-rotary', 'gTNatsF2teOw'] as const, ['startup425', 'sDmmOe5sqiBi'] as const])('does not disclose %s for missing, blank, wrong or stale authorization', async (slug, bot) => {
+it.each([...warm, ['bellevue', 'gDz1Noxsjr9U'] as const, ['issaquah', 'Cz8TTZvCk7fF'] as const, ['rhawa', 'OW45SH6wfmwS'] as const, ['wmba', 'yXI0jDaoHyCa'] as const, ['crew-seattle', 'tvROp0BfgdvA'] as const, ['wmfha', 'EIMt8YnHb0OK'] as const, ['bellevue-sunrise-rotary', '2CEkfrLiLRKh'] as const, ['redmond-rotary', 'AHp9JueXRvcA'] as const, ['seattle-4-rotary', 'gTNatsF2teOw'] as const, ['startup425', 'sDmmOe5sqiBi'] as const, ['gsba-business-support', 'jbreLNX0dX8c'] as const])('does not disclose %s for missing, blank, wrong or stale authorization', async (slug, bot) => {
   const upstream = vi.fn(); vi.stubGlobal('fetch', upstream);
   for (const authorization of [null, '', 'Basic ', 'Basic short']) {
     expect((await POST(request(slug, authorization))).status).toBe(404);
@@ -112,7 +112,7 @@ it.each(['forks', 'kirkland-chamber', 'visit-kitsap-peninsula', 'cascara-capital
   expect((await response.json()).prospect.slug).toBe(slug);
 });
 
-it.each([['bellevue', 'gDz1Noxsjr9U'], ['issaquah', 'Cz8TTZvCk7fF'], ['rhawa', 'OW45SH6wfmwS'], ['wmba', 'yXI0jDaoHyCa'], ['crew-seattle', 'tvROp0BfgdvA'], ['wmfha', 'EIMt8YnHb0OK'], ['bellevue-sunrise-rotary', '2CEkfrLiLRKh'], ['redmond-rotary', 'AHp9JueXRvcA'], ['seattle-4-rotary', 'gTNatsF2teOw'], ['startup425', 'sDmmOe5sqiBi']])('keeps %s recorded evidence and native assistant on the same authorized identity', async (slug, bot) => {
+it.each([['bellevue', 'gDz1Noxsjr9U'], ['issaquah', 'Cz8TTZvCk7fF'], ['rhawa', 'OW45SH6wfmwS'], ['wmba', 'yXI0jDaoHyCa'], ['crew-seattle', 'tvROp0BfgdvA'], ['wmfha', 'EIMt8YnHb0OK'], ['bellevue-sunrise-rotary', '2CEkfrLiLRKh'], ['redmond-rotary', 'AHp9JueXRvcA'], ['seattle-4-rotary', 'gTNatsF2teOw'], ['startup425', 'sDmmOe5sqiBi'], ['gsba-business-support', 'jbreLNX0dX8c']])('keeps %s recorded evidence and native assistant on the same authorized identity', async (slug, bot) => {
   const upstream = vi.fn<(url: string) => Promise<Response>>(async () => new Response(JSON.stringify({ workspace: '0XvceSLk1j', chatbot: bot })));
   vi.stubGlobal('fetch', upstream);
   const response = await POST(request(slug));

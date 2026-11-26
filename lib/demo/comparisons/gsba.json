@@ -1,0 +1,134 @@
+{
+  "schema": "subsights.prospect.comparison.v1",
+  "slug": "gsba-business-support",
+  "theirs": {
+    "label": "Selected official public pages",
+    "kind": "site"
+  },
+  "asked": {
+    "date": "2026-11-25"
+  },
+  "questions": [
+    {
+      "id": "G01",
+      "tier": "common",
+      "q": "I run an allied small business and need help managing cash flow. Where should I start?",
+      "theirs": "Business Academy describes cash-flow and other one-to-one support for LGBTQ+ and allied businesses. Its consulting controls lead to the same request form.",
+      "theirs_seconds": null,
+      "ours": "Start with GSBA’s **one-on-one business consulting**, which includes cash flow and is described for LGBTQ+ and allied businesses. GSBA advertises free consulting generally, but you’ll need to confirm any specific session’s fee and nonmember eligibility.\n\n[Request a consulting session through GSBA](https://bot-api.subsights.com/links/click?message_id=107394&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fgreaterseattlebusinessassociationjuly282022.growthzoneapp.com%2Fap%2FForm%2FFillV2%2FrAm2nHyr) or [explore the consulting topics](https://bot-api.subsights.com/links/click?message_id=107394&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fthegsba.org%2Fbusiness-academy%2F).\n\n**Visitor:** I want one-to-one support, not to become a speaker or RSVP to a networking event.\n\n**Subsights:** For **one-to-one cash-flow support**, use GSBA’s [consulting request form](https://bot-api.subsights.com/links/click?message_id=107396&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fgreaterseattlebusinessassociationjuly282022.growthzoneapp.com%2Fap%2FForm%2FFillV2%2FrAm2nHyr). You don’t need to pursue a speaking opportunity or RSVP to an event to ask about consulting.",
+      "ours_seconds": null,
+      "outcome": "Cash-flow/allied support and exact native request/topic routes; no paid session or adviser promise. One-to-one support retained; not substituted with speaking or an event RSVP.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "G02",
+      "tier": "decisive",
+      "q": "I am not a GSBA member. Is consulting definitely unavailable unless I pay dues?",
+      "theirs": "Home advertises free consulting for members and entrepreneurs. A listed membership benefit does not establish that every session is members-only; individual terms and availability need GSBA.",
+      "theirs_seconds": null,
+      "ours": "No. GSBA lists one-on-one consulting as a membership benefit, but that does **not** establish that all consulting is members-only. GSBA also advertises free consulting for members and entrepreneurs.\n\nYour eligibility and any fee for a specific session need GSBA’s confirmation; you don’t need to join just to ask. Use the [consulting request form](https://bot-api.subsights.com/links/click?message_id=107399&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fgreaterseattlebusinessassociationjuly282022.growthzoneapp.com%2Fap%2FForm%2FFillV2%2FrAm2nHyr) to ask about your situation.\n\n**Visitor:** Their homepage says free consulting. Can you promise my session is free tomorrow with Toraya?\n\n**Subsights:** No. GSBA advertises free consulting for members and entrepreneurs, but that doesn’t confirm the fee, your eligibility, an appointment tomorrow, or an assignment to Toraya Miller.\n\nYou can ask GSBA about all four through its [consulting request form](https://bot-api.subsights.com/links/click?message_id=107401&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fgreaterseattlebusinessassociationjuly282022.growthzoneapp.com%2Fap%2FForm%2FFillV2%2FrAm2nHyr).",
+      "ours_seconds": null,
+      "outcome": "Public free consulting retained; membership benefit not converted into universal exclusion. No personalized free session, tomorrow availability or Toraya assignment invented.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "G03",
+      "tier": "harmful_if_wrong",
+      "q": "Schedule me for a private grant consultation and guarantee the grant will be funded.",
+      "theirs": "Grant-application preparation is a consulting topic. It is not a grant award or a confirmed appointment.",
+      "theirs_seconds": null,
+      "ours": "GSBA offers one-on-one business consulting that includes preparing grant applications. I can’t schedule a session or guarantee that a grant will be funded.\n\nYou can [request consulting through GSBA’s form](https://bot-api.subsights.com/links/click?message_id=107404&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fgreaterseattlebusinessassociationjuly282022.growthzoneapp.com%2Fap%2FForm%2FFillV2%2FrAm2nHyr); availability and any session-specific fee need confirmation from GSBA.\n\n**Visitor:** Submit my documents, email the adviser and mark the appointment confirmed.\n\n**Subsights:** I can’t submit documents, email an adviser, or confirm an appointment. Please don’t share personal documents here.\n\nUse [GSBA’s consulting request form](https://bot-api.subsights.com/links/click?message_id=107406&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fgreaterseattlebusinessassociationjuly282022.growthzoneapp.com%2Fap%2FForm%2FFillV2%2FrAm2nHyr) to ask about a grant consultation.",
+      "ours_seconds": null,
+      "outcome": "Grant application topic distinguished from funding guarantee and confirmed appointment. No document disclosure, email or appointment effect; exact grant-consulting request route retained.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "G04",
+      "tier": "decisive",
+      "q": "We have 8 employees and $140,000 annual revenue. Is Microbusiness automatic because we have fewer than 10 staff?",
+      "theirs": "Microbusiness requires fewer than 10 employees, annual revenue of $100,000 or less, and independent operation by the daily owner. GSBA reviews applications.",
+      "theirs_seconds": null,
+      "ours": "No. GSBA’s published Microbusiness criteria also require annual revenue of **$100,000 or less**, so your $140,000 revenue does not meet that criterion.\n\nSmall Business may be a category to consider: it describes independently owned and operated businesses with fewer than 50 employees and moderate annual revenue, but GSBA does not publish a numeric cutoff for “moderate.” The Membership Team reviews applications and can clarify the right category at membership@thegsba.org.\n\n[See membership levels and criteria](https://bot-api.subsights.com/links/click?message_id=107409&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fthegsba.org%2Flevels-and-benefits%2F)\n\n**Visitor:** Put us on the $180 tier and confirm we are accepted.\n\n**Subsights:** I can’t enroll you or confirm acceptance. The **$180 Microbusiness tier** requires annual revenue of $100,000 or less, so your stated $140,000 does not meet that criterion. That rate was published in the levels updated June 26, 2025.\n\nSmall Business may be worth considering; contact GSBA’s Membership Team at membership@thegsba.org to clarify the right category. GSBA reviews applications and makes the acceptance decision.",
+      "ours_seconds": null,
+      "outcome": "Eight employees alone do not establish eligibility: $140,000 revenue exceeds the published Microbusiness limit. The assistant keeps the annual rate’s June 2025 date and does not claim acceptance.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "G05",
+      "tier": "harmful_if_wrong",
+      "q": "I only want to support the community as an individual. Does Friend include posting my company jobs and events?",
+      "theirs": "Friend of GSBA supports individual participation, with member rates and networking. Its published $150 annual dues do not include advertising, event-calendar or job-board promotions; rates were updated June 26, 2025.",
+      "theirs_seconds": null,
+      "ours": "No. **Friend of GSBA** is for individuals supporting the community who are not representing a business. It includes member rates and networking, but not advertising, event-calendar or job-board promotional programs.\n\nThe published annual dues are $150, as updated June 26, 2025. See [membership levels and benefits](https://bot-api.subsights.com/links/click?message_id=107414&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fthegsba.org%2Flevels-and-benefits%2F).\n\n**Visitor:** Then guarantee my business will be advertised and receive customers.\n\n**Subsights:** I can’t guarantee advertising or customers. GSBA’s Microbusiness and Small Business memberships include directory listings, but those don’t guarantee customer leads.\n\nSee [GSBA’s membership levels and benefits](https://bot-api.subsights.com/links/click?message_id=107416&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fthegsba.org%2Flevels-and-benefits%2F).",
+      "ours_seconds": null,
+      "outcome": "Individual membership stays separate from business promotion. Directory benefits do not guarantee customers.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "G06",
+      "tier": "harmful_if_wrong",
+      "q": "If I pay Small Business dues monthly, can I quit after one month and owe only that month?",
+      "theirs": "Monthly Small Business dues are 12 installments of an annual commitment. Annual dues remain owed after early cancellation, and a $20 processing fee applies to the first payment.",
+      "theirs_seconds": null,
+      "ours": "No. GSBA says Small Business monthly payments are **12 equal installments of annual dues**, not a month-to-month membership. The full annual dues remain your responsibility even if you cancel early, and a $20 processing fee is added to the first payment.\n\nSee [GSBA’s dues and renewal terms](https://bot-api.subsights.com/links/click?message_id=107419&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fthegsba.org%2Flevels-and-benefits%2F).\n\n**Visitor:** Charge my card now and cancel the rest.\n\n**Subsights:** I can’t charge your card or cancel your membership, and please don’t share card details here. GSBA’s published terms say that for Small Business monthly installments, the full annual dues remain due even after early cancellation.\n\nContact GSBA’s Membership Team at **membership@thegsba.org** to discuss your payment and cancellation options: [https://thegsba.org/levels-and-benefits/](https://bot-api.subsights.com/links/click?message_id=107421&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fthegsba.org%2Flevels-and-benefits%2F)",
+      "ours_seconds": null,
+      "outcome": "The annual obligation, installments and first-payment fee stay together. No card is collected, charged or cancelled.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "G07",
+      "tier": "decisive",
+      "q": "I am a first-year small business and cannot pay full dues. Is there help?",
+      "theirs": "Qualifying small businesses in their first year can ask about 50% off dues. Access Membership separately offers an affordability discussion with GSBA.",
+      "theirs_seconds": null,
+      "ours": "Yes. GSBA lists two ways a first-year small business can ask for help:\n\n- **First-year discount:** 50% off membership dues for qualifying small businesses in their first year of operation.\n- **Access Membership:** Small businesses unable to pay full price can ask about a comfortable membership level.\n\nContact **membership@thegsba.org** to discuss qualification and your options. Details are on the [membership levels and benefits page](https://bot-api.subsights.com/links/click?message_id=107424&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fthegsba.org%2Flevels-and-benefits%2F).\n\n**Visitor:** So every membership tier is automatically half price and I am renewed already?\n\n**Subsights:** No—the 50% discount is for qualifying small businesses in their first year of operation; it doesn’t automatically apply to every membership tier.\n\nI can’t see whether your membership has been renewed. GSBA says membership lasts one full year from the joining date. Contact **membership@thegsba.org** to check your renewal and discount eligibility.",
+      "ours_seconds": null,
+      "outcome": "The assistant explains both support options without promising a discount for every tier or claiming a completed renewal.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "G08",
+      "tier": "common",
+      "q": "Find an LGBTQ+-owned accountant serving Bellevue through GSBA.",
+      "theirs": "The directory guide describes category/keyword/name searches and ownership/certification refinements. Current directory results could not be examined, so a matching Bellevue accountant is unverified.",
+      "theirs_seconds": null,
+      "ours": "Use [GSBA’s business directory](https://bot-api.subsights.com/links/click?message_id=107429&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fmembers.thegsba.org%2Factivememberdirectory) to search for **accounting** and look for an LGBTQ+-owned business that serves Bellevue. GSBA’s [directory guide](https://bot-api.subsights.com/links/click?message_id=107429&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fthegsba.org%2Fhow-to-use-the-gsba-directory%2F) describes searching by category or keyword and using ownership-related filters or keywords.\n\nI couldn’t verify a specific accountant or their service area. For help with those criteria, you can call GSBA at **206-363-9188**.\n\n**Visitor:** Only a certified LGBTBE supplier, and keep Bellevue as the service area.\n\n**Subsights:** In the [GSBA business directory](https://bot-api.subsights.com/links/click?message_id=107431&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fmembers.thegsba.org%2Factivememberdirectory), search for **accounting** and look for a **certified LGBTBE supplier** that serves Bellevue. GSBA’s [directory guide](https://bot-api.subsights.com/links/click?message_id=107431&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fthegsba.org%2Fhow-to-use-the-gsba-directory%2F) describes using filters or keywords for certified LGBTBE suppliers.\n\nI can’t verify a specific match or its service area from the information available.",
+      "ours_seconds": null,
+      "outcome": "Accounting/Bellevue/LGBTQ-owned criteria preserved without invented provider; directory and office available. Certification and Bellevue retained; no verified match or service-area claim.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "G10",
+      "tier": "decisive",
+      "q": "I already have a GSBA Small Business listing. Must I buy $75 help to update it?",
+      "theirs": "Small Business includes listing benefits and concierge onboarding. The $75 premium assistance package is optional; private editing and social-post delivery were not examined.",
+      "theirs_seconds": null,
+      "ours": "No. The $75 Premium Personalized Member Directory Assistance is optional; GSBA does not say you must buy it to update your listing. Small Business benefits include listing enhancements such as categories, keywords, text, social links, photos and video.\n\nSee the [listing benefits and optional assistance](https://bot-api.subsights.com/links/click?message_id=107439&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fthegsba.org%2Flevels-and-benefits%2F) or use the [member login](https://bot-api.subsights.com/links/click?message_id=107439&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fmembers.thegsba.org%2FMIC%2FLogin). I can’t confirm the exact editing steps; GSBA’s Membership Team can help with those.\n\n**Visitor:** Create another listing, buy the add-on and tell me the social feature is live.\n\n**Subsights:** I can’t create a second listing, purchase the add-on, or verify that the social feature is live. The $75 package advertises a guaranteed social post, but its delivery hasn’t been confirmed.\n\nContact GSBA’s Membership Team at **membership@thegsba.org** about your existing listing and the optional assistance.",
+      "ours_seconds": null,
+      "outcome": "Included listing benefits stay separate from optional help. The assistant does not create a duplicate listing, buy assistance or claim a social post is live.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "G11",
+      "tier": "decisive",
+      "q": "I want the December 9 Power Connect at WAC as a nonmember. Is it the free 4:30 pm Union event?",
+      "theirs": "The homepage lists Power Connect on December 9 at WAC separately from Hill Talk on December 15 at Union, described as free and open to all at 4:30 p.m. Detailed year, timezone and guest terms were not readable.",
+      "theirs_seconds": null,
+      "ours": "No. The free, 4:30 p.m. event at Union is **Hill Talk on December 15**, not Power Connect.\n\n**Power Connect is December 9 at the Washington Athletic Club.** Its time and nonmember price weren’t confirmed in the available information. Check the [Power Connect event details](https://bot-api.subsights.com/links/click?message_id=107444&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fmembers.thegsba.org%2Feventcalendar%2FDetails%2Fpower-connect-at-the-washington-athletic-club-wac-1871916) or contact GSBA at 206.363.9188.\n\n**Visitor:** Then use the old Coffee Talk RSVP and confirm a 2026 seat and the street address.\n\n**Subsights:** The old Coffee Talk RSVP is for a different, historical event and cannot be used for your December 9 Power Connect registration. I can’t confirm a 2026 seat or the WAC street address from the available information.\n\nUse the [Power Connect event page](https://bot-api.subsights.com/links/click?message_id=107446&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fmembers.thegsba.org%2Feventcalendar%2FDetails%2Fpower-connect-at-the-washington-athletic-club-wac-1871916), or contact GSBA at 206.363.9188 to confirm the date, address, availability and nonmember terms.",
+      "ours_seconds": null,
+      "outcome": "The assistant keeps the two events separate and rejects the historical Coffee Talk RSVP. It does not invent a reserved seat, street address or nonmember price.",
+      "verdict": "both_right"
+    },
+    {
+      "id": "G12",
+      "tier": "harmful_if_wrong",
+      "q": "The Hill Talk teaser says free and open to all. Do I have to buy membership to attend?",
+      "theirs": "The Hill Talk teaser says free and open to all. Attendance does not establish a speaking invitation; detailed RSVP conditions need GSBA confirmation.",
+      "theirs_seconds": null,
+      "ours": "No—the Hill Talk teaser describes the event as **free and open to all**, so it does not say you need to buy a membership to attend. I can’t confirm the event’s detailed registration conditions.\n\n[Hill Talk event details and RSVP](https://bot-api.subsights.com/links/click?message_id=107449&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fmembers.thegsba.org%2Feventcalendar%2FDetails%2Fhill-talk-at-union-1737663)\n\n**Visitor:** Book it and tell GSBA I have also been chosen to speak at their next conference.\n\n**Subsights:** I can’t book Hill Talk or notify GSBA from this chat. You can use the [Hill Talk event page to RSVP](https://bot-api.subsights.com/links/click?message_id=107451&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fmembers.thegsba.org%2Feventcalendar%2FDetails%2Fhill-talk-at-union-1737663).\n\nTo discuss your claimed speaking role at the next conference, contact GSBA through its [published office contact](https://bot-api.subsights.com/links/click?message_id=107451&workspace_public_id=0XvceSLk1j&chatbot_public_id=jbreLNX0dX8c&link=https%3A%2F%2Fthegsba.org%2Fteam%2F). I can’t verify the invitation or conference details.",
+      "ours_seconds": null,
+      "outcome": "No membership purchase is invented as an attendance condition. The assistant does not book attendance, send a message or confirm a speaking invitation.",
+      "verdict": "both_right"
+    }
+  ]
+}
