@@ -599,7 +599,7 @@ export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<Prospec
     url: 'https://studio-east.org/',
     headline: 'The right class, camp or show for every family.',
     description:
-      'Ask which class fits your child, when the next show is, or what the refund policy says. Each answer links the exact sign-up or ticket page.',
+      'Ask about classes by grade and schedule, show dates, or Studio East policies. Follow the published registration, ticket or policy links.',
     questions: [
       'Which class fits my 8-year-old this winter?',
       'A Christmas Story dates and tickets?',
@@ -607,13 +607,14 @@ export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<Prospec
       'Is there help with tuition?',
     ],
     scope:
-      'Answers use Studio East’s public pages, Active.com class and camp listings and the ticket site. Waitlist, ticket, rental and assistance pages were rechecked November 24, 2026. Active.com and the ticket page show current availability. This preview cannot register a child or sell a ticket; requests go to a demo inbox. Team samples are fictional illustrations.',
+      'The assistant uses Studio East’s public pages, Active.com listings and the ticket site. Check class openings and ticket seats on those services. Register and buy tickets there. Requests here go only to the Subsights demo inbox. Team samples are illustrative.',
     entry: [
       { label: 'Sources', text: 'Your public pages, your Active.com class and camp listings and your ticket site.' },
       { label: 'Try it', text: 'Ask about your child’s grade and free days, then change a detail.' },
     ],
     sources: [
       { label: 'Classes', url: 'https://studio-east.org/classes' },
+      { label: 'Break Camps & Studio Days', url: 'https://studio-east.org/break-camps' },
       { label: 'Policies and FAQs', url: 'https://studio-east.org/policies-and-faqs' },
       { label: 'Class and camp registration', url: 'https://campscui.active.com/orgs/StudioEast' },
       { label: 'Tickets', url: 'https://studioeast.my.salesforce-sites.com/ticket/' },
@@ -626,32 +627,26 @@ export const PROSPECT_DEMOS: (ProspectDemo & { conversation: NonNullable<Prospec
       '',
     teamView: [
       { question: 'Which class fits my 8-year-old in January?', insight: 'Placement: parents think in ages; the site places by grade.' },
-      { question: 'Do you have a camp during mid-winter break?', insight: 'Camps: publish grades and prices for planned camps as soon as they are set.' },
+      { question: 'Do you have a camp during mid-winter break?', insight: 'Break camps: match the published date and grade range, then point to registration.' },
       { question: 'Can I get a refund if we cancel?', insight: 'Policies: classes, camps and tickets each have their own rules.' },
     ],
     conversation: {
-      title: 'A parent’s question, from age to sign-up.',
+      title: 'Finding a Saturday class for a third grader',
       turns: [
         {
-          question: 'Which class or camp fits my 8-year-old in January, and where do I sign up?',
+          question: 'Which class or camp fits my 8-year-old in January, and where do I sign up? She’s in 3rd grade.',
           answer:
-            'Studio East places children by school grade, not age. An 8-year-old is usually in second or third grade. Frozen KIDS (grades 2–6, Tuesdays, January 12–March 23, $450) and Broadway Kids: The Little Mermaid (grades 1–3, Saturdays, January 16–March 27, $220) both fit. The links go directly to registration.',
-          source: { label: 'Class and camp registration', url: 'https://campscui.active.com/orgs/StudioEast' },
+            'Studio East uses school grade for placement. January classes for a third grader include Frozen KIDS, Acting for Film: Disney Channel and Musical Theater Jazz.',
+          source: { label: 'Studio East winter classes', url: 'https://studio-east.org/classes' },
         },
         {
-          question: 'I want 4 tickets for A Christmas Story on the afternoon of Saturday, December 19. How much will that be?',
+          question: 'She’s only free on Saturdays. What’s there and how much?',
           answer:
-            'For the Saturday, December 19, 2026, 2 PM matinee, four standard tickets are $112 total ($25 plus a $3 fee each); reduced-price blue seats are $72 total. It is a relaxed performance and a Christmas Morning PJ matinee.',
-          source: { label: 'Tickets', url: 'https://studioeast.my.salesforce-sites.com/ticket/' },
-        },
-        {
-          question: 'I registered my son for Frozen KIDS but we need to cancel. Class starts January 12. Do I get my money back?',
-          answer:
-            'Yes. Canceling now is more than 48 hours before the first class, so the class cost is refundable minus the $50 non-refundable registration fee, or the full cost can be kept as credit. On the listed $450 tuition, that is $400 refunded.',
-          source: { label: 'Policies and FAQs', url: 'https://studio-east.org/policies-and-faqs' },
+            'The November 25 example lists two Saturday sessions from January 16 through March 27, 2027, with no class February 13. Broadway Kids: The Little Mermaid (grades 1–3) meets at 9:30 AM and costs $375. Musical Theater Jazz (grades 3–5) meets at 10:30 AM and costs $220 for the session or $25 per drop-in. Check Active.com for current openings.',
+          source: { label: 'Winter session registration', url: 'https://campscui.active.com/orgs/StudioEast?season=3891044' },
         },
       ],
-      takeaway: 'These are answers the live assistant gave on November 11, 2026. Ask your own in the chat above.',
+      takeaway: 'This illustration draws on the November 25, 2026 demo recording in the comparison above. The Saturday follow-up keeps the grade requirement and narrows the schedule.',
     },
   },
 ];

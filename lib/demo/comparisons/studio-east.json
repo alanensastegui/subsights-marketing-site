@@ -2,23 +2,23 @@
   "schema": "subsights.prospect.comparison.v1",
   "slug": "studio-east",
   "theirs": {
-    "label": "What a visitor finds on your site today",
+    "label": "Studio East’s public pages",
     "kind": "site"
   },
   "asked": {
-    "date": "2026-11-11",
-    "note": "These website comparisons include November 11 recordings and November 25 rechecks. Replies in the final November 25 checks took about 14 to 24 seconds. Registration and ticket links show current availability."
+    "date": "2026-11-27",
+    "note": "The kindergarten, January class finder, Saturday class, waitlist, five-ticket, rental, tuition assistance and donation replies were recorded November 25, 2026. The other replies were recorded November 11, 2026. Prices and dates in the replies reflect those recordings. Check Active.com for current class and camp openings and the Salesforce ticket site for seats."
   },
   "questions": [
     {
       "id": "k-winter",
       "tier": "common",
       "q": "What classes do you have for kindergarteners this winter?",
-      "theirs": "The Classes page carousel shows class names and grades. Times, prices and the full list are on Active.com.",
+      "theirs": "The Classes page highlights winter offerings and their grade ranges. It links to Active.com for the full catalog, session details and registration.",
       "theirs_seconds": null,
       "ours": "Studio East has two **winter 2027 classes** for kindergarteners:\n\n- **[Broadway Kids: Wicked](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958334)** — Grades K–2. Singing, dancing and acting inspired by *Wicked*. Wednesdays, 3:30–5 PM, January 13–March 24. **$375**.\n- **[Drama Bugs: Puppies and Kitties!](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934043)** — Pre-K–Kindergarten. Drama games, stories and songs. Saturdays, 9:30–10:30 AM, January 16–March 27; no class February 13. **$375**.\n\nThe registration links show live openings and waitlists; a listing does not reserve a spot.",
       "ours_seconds": 14.3,
-      "outcome": "Ours lists both kindergarten classes with day, time, dates, price and the sign-up link.",
+      "outcome": "The recorded reply brings together two kindergarten options, with days, times, prices and session links.",
       "verdict": "ours_better"
     },
     {
@@ -80,33 +80,22 @@
       "id": "fit-8yo",
       "tier": "decisive",
       "q": "Which class or camp fits my 8-year-old in January, and where do I sign up? She's in 3rd grade.",
-      "theirs": "Nothing on the site matches classes to an age. The parent compares grade ranges on the site with times and prices on Active.com, and the homepage still promotes the Nov 11 Studio Day.",
+      "theirs": "The Classes and Break Camps & Studio Days pages list grade ranges and dates. Their registration links lead to Active.com for session details and signup.",
       "theirs_seconds": null,
-      "ours": "These January 2027 options all welcome third-graders:\n\n- **[Marvel Heroes & Villains Studio Day](https://campscui.active.com/orgs/StudioEast?season=3861533&session=73225145):** Grades 3–5; Monday, January 18, 9 AM–3 PM; **$175**.\n- **[Frozen KIDS](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234):** Grades 2–6; Tuesdays, 4–6:30 PM, January 12–March 23; **$450**.\n- **[Acting for Film: Disney Channel](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72936139):** Grades 3–5; Wednesdays, 3:30–5 PM, January 13–March 24; **$375**.\n- **[Musical Theater Jazz](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241):** Grades 3–5; Saturdays, 10:30–11:30 AM, January 16–March 27, with no class February 13; **$220**.\n\nEach link goes to the session’s Active.com registration page, where you can check live openings or a waitlist.\n\n**Visitor:** She's only free on Saturdays. What's there and how much?\n\n**Subsights:** Two Saturday classes fit her grade. Both run **January 16–March 27, 2027**, with no class February 13:\n\n- **Broadway Kids: The Little Mermaid** — Grades 1–3, 9:30–10:30 AM. **$375** for the session. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)\n- **Musical Theater Jazz: 3rd–5th Grade** — Grades 3–5, 10:30–11:30 AM. **$220** for the session or **$25** per drop-in class. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nActive.com shows live openings and waitlists.",
+      "ours": "These options all fit a **3rd grader** and begin in January 2027:\n\n- **Studio Day: Marvel Heroes & Villains** — Grades 3–5; Monday, January 18, 9 AM–3 PM; **$175**. [Register](https://campscui.active.com/orgs/StudioEast?season=3861533&session=73225145)\n- **Frozen KIDS** — A production class for grades 2–6; Tuesdays, 4–6:30 PM, January 12–March 23; **$450**. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234)\n- **Acting for Film: And you’re watching Disney Channel!** — Grades 3–5; Wednesdays, 3:30–5 PM, January 13–March 24; **$375**. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72936139)\n- **Musical Theater Jazz** — Grades 3–5; Saturdays, 10:30–11:30 AM, January 16–March 27, with no class February 13; **$220**. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nThe Active.com pages show live openings and waitlists; a listing doesn’t reserve a spot.\n\n**Visitor:** She's only free on Saturdays. What's there and how much?\n\n**Subsights:** Two Saturday classes fit her grade. Both run **January 16–March 27, 2027**, with no class February 13:\n\n- **Broadway Kids: The Little Mermaid** — Grades 1–3, 9:30–10:30 AM. **$375** for the session. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)\n- **Musical Theater Jazz: 3rd–5th Grade** — Grades 3–5, 10:30–11:30 AM. **$220** for the session or **$25** per drop-in class. [Register](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)\n\nActive.com shows live openings and waitlists.",
       "ours_seconds": null,
-      "outcome": "Ours lists four January options that fit a 3rd grader, with days, times, prices and sign-up links. Asked about Saturdays, it narrows to The Little Mermaid ($375) and Musical Theater Jazz ($220 or $25 a class).",
+      "outcome": "The recorded follow-up keeps the third-grade requirement and narrows the options to Saturday: The Little Mermaid ($375) and Musical Theater Jazz ($220 for the session or $25 per drop-in).",
       "verdict": "ours_better"
     },
     {
       "id": "sat-3rd",
       "tier": "decisive",
       "q": "What Saturday class could my 3rd grader take this winter, and what does it cost?",
-      "theirs": "The parent filters Active.com by day and grade.",
+      "theirs": "The Classes page lists grades 1–3 for The Little Mermaid and links to Active.com. Families can use the winter catalog to compare other Saturday sessions.",
       "theirs_seconds": null,
       "ours": "Two Saturday classes fit a third grader this winter:\n\n- **[Broadway Kids: The Little Mermaid](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72977135)** — Grades 1–3; singing, dancing and acting. Saturdays, 9:30–10:30 AM; **$375** for the session.\n- **[Musical Theater Jazz](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72934241)** — Grades 3–5; jazz dance technique. Saturdays, 10:30–11:30 AM; **$220** for the session or **$25** per drop-in class.\n\nBoth run **January 16–March 27, 2027**, with no class February 13. Check the registration links for live openings or waitlists.",
       "ours_seconds": null,
-      "outcome": "Ours gives both Saturday options, The Little Mermaid at $375 and Musical Theater Jazz at $220 or $25 a class, with times, dates and sign-up links.",
-      "verdict": "ours_better"
-    },
-    {
-      "id": "midwinter",
-      "tier": "decisive",
-      "q": "Do you have a camp during mid-winter break in February for my 2nd grader?",
-      "theirs": "Break camp registration says it opens Nov 16. Planned February dates appear only on the internal-style calendar.",
-      "theirs_seconds": null,
-      "ours": "Studio East plans two Mid-Winter Break Camps, **Descendants** and **Frozen**, for **February 11–12, 2027, from 9 AM to 3 PM**.\n\nThe grade ranges and prices haven’t been published yet, so I can’t confirm whether either camp will be open to your 2nd grader. Registration is scheduled to open Monday, November 16, 2026, on [Active.com](https://campscui.active.com/orgs/StudioEast?season=3861533).",
-      "ours_seconds": 9.2,
-      "outcome": "Ours gives the planned Feb 11-12 camps and says grades and prices aren't published yet.",
+      "outcome": "The recorded reply puts two options side by side with their grade ranges, times, prices and signup links.",
       "verdict": "ours_better"
     },
     {
@@ -118,17 +107,6 @@
       "ours": "For the **Saturday, December 19, 2026, 2 PM** matinee, four tickets cost:\n\n- **Standard:** $112 total ($25 plus a $3 fee per ticket)\n- **Reduced-price blue seats:** $72 total ($15 plus a $3 fee per ticket)\n- **Supporter:** $140 total ($35 per ticket, with no added fee)\n\nThis is a relaxed performance and a Christmas Morning PJ matinee. [Check seat availability and buy tickets](https://studioeast.my.salesforce-sites.com/ticket/#/instances/a0FRi000009nSlxMAE).",
       "ours_seconds": 11.2,
       "outcome": "Ours finds the Dec 19 2 PM relaxed matinee and gives the totals for four tickets with the exact link.",
-      "verdict": "ours_better"
-    },
-    {
-      "id": "winter-break",
-      "tier": "decisive",
-      "q": "Is there anything for kids to do over winter break at the end of December?",
-      "theirs": "Nothing is published for late December. A parent has to check several pages to be sure.",
-      "theirs_seconds": null,
-      "ours": "I couldn’t find a Studio East camp or class listed for the end-of-December 2026 break.\n\nThe next planned school-day-off activities are **Studio Day: Moana** and **Studio Day: Wicked** on Monday, January 18, 2027, from 9 AM to 3 PM. Grades and prices haven’t been published yet. [Registration for break camps and Studio Days](https://campscui.active.com/orgs/StudioEast?season=3861533) opens Monday, November 16, 2026.",
-      "ours_seconds": 12.1,
-      "outcome": "Ours says nothing is listed, gives the next Studio Day and when registration opens, and mentions the show.",
       "verdict": "ours_better"
     },
     {
@@ -216,7 +194,7 @@
       "theirs_seconds": null,
       "ours": "**D&D: Roll For Drama! is for grades 3–5**, and Studio East places children by school grade rather than age. A 5-year-old is typically in kindergarten, so he would need an approved exception if he’s outside the posted range.\n\nExceptions are very rare and must be approved by the Education Director. You can explain his maturity and ask the Education Team before registering: [education@studio-east.org](mailto:education@studio-east.org) or 425-820-1800.",
       "ours_seconds": 10.5,
-      "outcome": "Both correct. Ours makes no promise and routes to the Education Director.",
+      "outcome": "Both explain grade placement and leave exceptions with the Education Director.",
       "verdict": "both_right"
     },
     {
@@ -234,7 +212,7 @@
       "id": "waitlist",
       "tier": "decisive",
       "q": "If Frozen KIDS fills up, can I get on a waitlist for my 3rd grader?",
-      "theirs": "Active’s Frozen KIDS registration listing offers a separate waitlist option. On November 24 the session had open spots; parents check the session page for current availability.",
+      "theirs": "Active.com hosts Frozen KIDS registration. The November 24 check found a separate waitlist option. Use the session page to check current availability.",
       "theirs_seconds": null,
       "ours": "Yes. Your 3rd grader is eligible for **Frozen KIDS**, which is for grades 2–6.\n\nIf the class fills, select the official waitlist on the [Frozen KIDS Active.com page](https://campscui.active.com/orgs/StudioEast?season=3891044&session=72958234). Joining the waitlist doesn’t guarantee a place.",
       "ours_seconds": 13.838,
@@ -260,7 +238,7 @@
       "theirs_seconds": null,
       "ours": "It may be possible: Studio East accepts space rental inquiries, but pricing and availability aren’t published. I couldn’t find a published birthday-party package, so the front office would need to confirm whether a rental would work.\n\nYou can contact the office at [info@studio-east.org](mailto:info@studio-east.org) or 425-820-1800.\n\nWould you like me to pass along an inquiry? If so, please share the date, approximate headcount, any space needs, and your name and email or phone. In this demo, the inquiry would go to the Subsights demo inbox; on Studio East’s live site, it would go to their team.",
       "ours_seconds": 16.5,
-      "outcome": "Ours says no birthday package, price or availability is published, gives the office email and phone, and offers to pass an inquiry on, asking for the date, headcount, space needs and a contact.",
+      "outcome": "The recorded reply gives the office contact and offers to collect inquiry details. Staff delivery is unconfirmed.",
       "verdict": "ours_better"
     },
     {
@@ -277,28 +255,20 @@
   ],
   "found": {
     "tools": [
-      "No chat on the site",
-      "Class and camp registration on Active.com",
-      "Tickets on a Salesforce ticket site",
-      "A public Teamup calendar (the team and room planner)",
-      "Email: info@, education@, tickets@",
-      "Tuition assistance by Google Form"
+      "Class and camp listings with registration on Active.com",
+      "Performance listings and tickets through Salesforce",
+      "Education and box office contacts and a tuition assistance form"
     ],
-    "faq": "Good: a Policies and FAQs page (about 13 questions, plus refund, payment, medical and pickup policies) and a Production FAQ with the ticket policy.",
-    "gap": "Find which class or camp fits their child on given dates, and where to sign up, in one place. Grades are on the site; times, prices and dates are on Active.com; tickets are on another site.",
+    "faq": "Studio East publishes policies on placement, trials, tuition assistance, cancellations and ticket exchanges.",
     "noticed": [
-      "The Classes page carousel shows some winter end dates like \"Jan 13-24\"; the registration listing runs to Mar 24.",
-      "The homepage still promotes the Nov 11 Studio Day. Today its Register button shows \"Registration opens November 16\".",
-      "A draft season page (/2627-season-1) with placeholder text (\"Directed by X\") is public in the sitemap.",
-      "The Auditions page lists A Christmas Story through Dec 20; the ticket site sells shows through Dec 23.",
-      "The \"Calendar\" link opens the team and room planner (rehearsals, rentals, holds), not a public events calendar."
+      "The Classes page shows winter registration open. Break Camps & Studio Days lists Marvel: Heroes & Villains (grades 3–5) and Minions & Monsters (grades K–2) on January 18, plus K-Pop Demon Hunters (grades K–6) on February 15. Each links to Active.com for registration."
     ]
   },
   "cost": {
     "today": [
       {
         "label": "Today",
-        "amount": "Staff time: parent questions go to education@, info@ and tickets@ by email and phone. No chat vendor."
+        "amount": "Families can use Studio East’s published contact routes for education, general inquiries and tickets."
       }
     ],
     "ours": {
